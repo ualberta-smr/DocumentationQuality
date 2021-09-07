@@ -1,8 +1,9 @@
 import functools
 import os
 import subprocess
-from fuzzywuzzy import fuzz
 import re
+
+from fuzzywuzzy import fuzz
 from pyquery import PyQuery as pq
 
 
@@ -19,7 +20,6 @@ def call_extractor(inp):
 def get_paragraphs_and_tasks(paragraphs):
     paragraphs_w_tasks = []
     with open(TASKS_FILE, "w", encoding="utf-8") as task_file:
-        os.chdir("TaskExtractor")
         for paragraph in paragraphs.items():
             if len(paragraph[0].classes) == 0:
                 extract = call_extractor(paragraph.text())
@@ -29,7 +29,6 @@ def get_paragraphs_and_tasks(paragraphs):
                     task_file.write("\n")
                     task_file.write(extract.replace("\r\n", "\n"))
                     task_file.write("\n")
-        os.chdir("..")
     return paragraphs_w_tasks
 
 
@@ -66,9 +65,11 @@ def link_code_examples_and_paragraphs(code_examples, paragraphs):
 
 
 def link():
+    os.chdir("TaskExtractor")
     raw_html = pq(url="https://stanfordnlp.github.io/CoreNLP/ner.html")
     paragraphs = get_paragraphs_and_tasks(raw_html("p"))
 
     code_examples = raw_html("code")
 
     link_code_examples_and_paragraphs(code_examples, paragraphs)
+    os.chdir("..")
