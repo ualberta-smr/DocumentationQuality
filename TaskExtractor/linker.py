@@ -2,13 +2,14 @@ import functools
 import os
 import subprocess
 import re
+import csv
 
 from fuzzywuzzy import fuzz
 from pyquery import PyQuery as pq
 
 
-LINKS_FILE = os.path.normpath("results/links.txt")
-TASKS_FILE = os.path.normpath("results/tasks.txt")
+LINKS_FILE = os.path.normpath("results/links.csv")
+TASKS_FILE = os.path.normpath("results/tasks.csv")
 
 
 def call_extractor(inp):
@@ -19,16 +20,14 @@ def call_extractor(inp):
 
 def get_paragraphs_and_tasks(paragraphs):
     paragraphs_w_tasks = []
-    with open(TASKS_FILE, "w", encoding="utf-8") as task_file:
+    with open(TASKS_FILE, "w", encoding="utf-8", newline="") as task_file:
+        writer = csv.writer(task_file, quoting=csv.QUOTE_MINIMAL)
         for paragraph in paragraphs.items():
             if len(paragraph[0].classes) == 0:
                 extract = call_extractor(paragraph.text())
                 if extract:
                     paragraphs_w_tasks.append(paragraph.text().strip())
-                    task_file.write(paragraph.text().strip())
-                    task_file.write("\n")
-                    task_file.write(extract.replace("\r\n", "\n"))
-                    task_file.write("\n")
+                    writer.writerow([paragraph.text().strip(), extract.replace("\r\n", ",")])
     return paragraphs_w_tasks
 
 
@@ -37,7 +36,8 @@ def fuzzy_compare(potential, paragraph):
 
 
 def link_code_examples_and_paragraphs(code_examples, paragraphs):
-    with open(LINKS_FILE, "w", encoding="utf-8") as links_file:
+    with open(LINKS_FILE, "w", encoding="utf-8", newline="") as links_file:
+        writer = csv.writer(links_file, quoting=csv.QUOTE_MINIMAL)
         for example in code_examples.items():
             if example.parent()[0].tag != "p":
                 code = example
@@ -60,8 +60,9 @@ def link_code_examples_and_paragraphs(code_examples, paragraphs):
                     if example[0] == child:
                         break
                 if paragraph is not None:
-                    links_file.write(paragraph + "\n")
-                    links_file.write(code.text() + "\n\n")
+                    writer.writerow([paragraph, code.text()])
+                    # links_file.write(paragraph + "\n")
+                    # links_file.write(code.text() + "\n\n")
 
 
 def extract_and_link(url):
