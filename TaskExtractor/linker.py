@@ -20,8 +20,8 @@ def call_extractor(inp):
 
 def get_paragraphs_and_tasks(paragraphs, task_file):
     paragraphs_w_tasks = []
-    with open(task_file, "w", encoding="utf-8", newline="") as task_file:
-        writer = csv.writer(task_file, quoting=csv.QUOTE_MINIMAL)
+    with open(task_file, "w", encoding="utf-8", newline="") as out_file:
+        writer = csv.writer(out_file, quoting=csv.QUOTE_MINIMAL)
         for paragraph in paragraphs.items():
             if len(paragraph[0].classes) == 0:
                 extracted = call_extractor(paragraph.text())
@@ -36,8 +36,8 @@ def fuzzy_compare(potential, paragraph):
 
 
 def link_code_examples_and_paragraphs(code_examples, paragraphs, link_file):
-    with open(link_file, "w", encoding="utf-8", newline="") as links_file:
-        writer = csv.writer(links_file, quoting=csv.QUOTE_MINIMAL)
+    with open(link_file, "w", encoding="utf-8", newline="") as out_file:
+        writer = csv.writer(out_file, quoting=csv.QUOTE_MINIMAL)
         for example in code_examples.items():
             if example.parent()[0].tag != "p":
                 code = example
@@ -76,10 +76,9 @@ def extract_and_link(url, task_file=TASKS_FILE, link_file=LINKS_FILE):
 
 
 def extract(url, task_file):
-
     if os.path.basename(os.getcwd()) != "TaskExtractor":
         os.chdir("TaskExtractor")
     raw_html = pq(url=url)
-    paragraphs = get_paragraphs_and_tasks(raw_html("p"), task_file=task_file)
+    paragraphs = get_paragraphs_and_tasks(raw_html("p"), task_file)
     os.chdir("..")
     return paragraphs
