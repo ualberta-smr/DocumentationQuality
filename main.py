@@ -1,4 +1,4 @@
 from TaskExtractor import linker
 
 if __name__ == '__main__':
-    linker.link()
+    linker.extract_and_link("https://stanfordnlp.github.io/CoreNLP/ner.html")

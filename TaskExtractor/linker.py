@@ -64,9 +64,9 @@ def link_code_examples_and_paragraphs(code_examples, paragraphs):
                     links_file.write(code.text() + "\n\n")
 
 
-def link():
+def extract_and_link(url):
     os.chdir("TaskExtractor")
-    raw_html = pq(url="https://stanfordnlp.github.io/CoreNLP/ner.html")
+    raw_html = pq(url=url)
     paragraphs = get_paragraphs_and_tasks(raw_html("p"))
 
     code_examples = raw_html("code")
