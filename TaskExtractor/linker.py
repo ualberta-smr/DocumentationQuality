@@ -18,16 +18,16 @@ def call_extractor(inp):
     return result.stdout.decode("utf-8")
 
 
-def get_paragraphs_and_tasks(paragraphs):
+def get_paragraphs_and_tasks(paragraphs, task_file):
     paragraphs_w_tasks = []
-    with open(TASKS_FILE, "w", encoding="utf-8", newline="") as task_file:
+    with open(task_file, "w", encoding="utf-8", newline="") as task_file:
         writer = csv.writer(task_file, quoting=csv.QUOTE_MINIMAL)
         for paragraph in paragraphs.items():
             if len(paragraph[0].classes) == 0:
-                extract = call_extractor(paragraph.text())
-                if extract:
+                extracted = call_extractor(paragraph.text())
+                if extracted:
                     paragraphs_w_tasks.append(paragraph.text().strip())
-                    writer.writerow([paragraph.text().strip(), extract.replace("\r\n", ",")])
+                    writer.writerow([paragraph.text().strip(), extracted.replace("\r\n", ",")])
     return paragraphs_w_tasks
 
 
@@ -35,8 +35,8 @@ def fuzzy_compare(potential, paragraph):
     return fuzz.partial_ratio(potential, paragraph)
 
 
-def link_code_examples_and_paragraphs(code_examples, paragraphs):
-    with open(LINKS_FILE, "w", encoding="utf-8", newline="") as links_file:
+def link_code_examples_and_paragraphs(code_examples, paragraphs, link_file):
+    with open(link_file, "w", encoding="utf-8", newline="") as links_file:
         writer = csv.writer(links_file, quoting=csv.QUOTE_MINIMAL)
         for example in code_examples.items():
             if example.parent()[0].tag != "p":
@@ -65,12 +65,21 @@ def link_code_examples_and_paragraphs(code_examples, paragraphs):
                     # links_file.write(code.text() + "\n\n")
 
 
-def extract_and_link(url):
+def extract_and_link(url, task_file=TASKS_FILE, link_file=LINKS_FILE):
     os.chdir("TaskExtractor")
     raw_html = pq(url=url)
-    paragraphs = get_paragraphs_and_tasks(raw_html("p"))
-
+    paragraphs = extract(url, task_file)
     code_examples = raw_html("code")
 
-    link_code_examples_and_paragraphs(code_examples, paragraphs)
+    link_code_examples_and_paragraphs(code_examples, paragraphs, link_file=link_file)
     os.chdir("..")
+
+
+def extract(url, task_file):
+
+    if os.path.basename(os.getcwd()) != "TaskExtractor":
+        os.chdir("TaskExtractor")
+    raw_html = pq(url=url)
+    paragraphs = get_paragraphs_and_tasks(raw_html("p"), task_file=task_file)
+    os.chdir("..")
+    return paragraphs
