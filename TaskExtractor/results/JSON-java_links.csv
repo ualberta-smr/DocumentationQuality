@@ -1,0 +1,8 @@
+"The org.json package can be built from the command line, Maven, and Gradle. The unit tests can be executed from Maven, Gradle, or individually in an IDE e.g. Eclipse.",javac org/json/*.java
+"The org.json package can be built from the command line, Maven, and Gradle. The unit tests can be executed from Maven, Gradle, or individually in an IDE e.g. Eclipse.",jar cf json-java.jar org/json/*.class
+"The org.json package can be built from the command line, Maven, and Gradle. The unit tests can be executed from Maven, Gradle, or individually in an IDE e.g. Eclipse.",javac -cp .;json-java.jar Test.java
+"The org.json package can be built from the command line, Maven, and Gradle. The unit tests can be executed from Maven, Gradle, or individually in an IDE e.g. Eclipse.","import org.json.JSONObject; public class Test { public static void main(String args[]){ JSONObject jo = new JSONObject(""{ \""abc\"" : \""def\"" }""); System.out.println(jo.toString()); } }"
+"The org.json package can be built from the command line, Maven, and Gradle. The unit tests can be executed from Maven, Gradle, or individually in an IDE e.g. Eclipse.",java -cp .;json-java.jar Test
+"The org.json package can be built from the command line, Maven, and Gradle. The unit tests can be executed from Maven, Gradle, or individually in an IDE e.g. Eclipse.","{""abc"":""def""}"
+Execute the test suite with Maven:,mvn clean test
+Execute the test suite with Gradlew:,gradlew clean build test
