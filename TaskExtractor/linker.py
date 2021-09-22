@@ -3,18 +3,30 @@ import os
 import subprocess
 import re
 import csv
+import html
 
 from fuzzywuzzy import fuzz
 from pyquery import PyQuery as pq
-
+from urllib.request import Request, urlopen
 
 LINKS_FILE = os.path.normpath("results/links.csv")
 TASKS_FILE = os.path.normpath("results/tasks.csv")
 
+HEADERS = {
+    'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) '
+                  'AppleWebKit/537.11 (KHTML, like Gecko) '
+                  'Chrome/23.0.1271.64 Safari/537.11',
+    'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+    'Accept-Charset': 'ISO-8859-1,utf-8;q=0.7,*;q=0.3',
+    'Accept-Encoding': 'none',
+    'Accept-Language': 'en-US,en;q=0.8',
+    'Connection': 'keep-alive'}
+
 
 def call_extractor(inp):
     inp = inp.replace("’", "'")
-    result = subprocess.run(["java", "-jar", "StringToTasks.jar", inp.encode("utf-8").decode("utf-8")], stdout=subprocess.PIPE)
+    result = subprocess.run(["java", "-jar", "StringToTasks.jar", inp.encode("utf-8").decode("utf-8")],
+                            stdout=subprocess.PIPE)
     return result.stdout.decode("utf-8")
 
 
@@ -27,7 +39,9 @@ def get_paragraphs_and_tasks(paragraphs, task_file):
                 extracted = call_extractor(paragraph.text())
                 if extracted:
                     paragraphs_w_tasks.append(paragraph.text().strip())
-                    writer.writerow([paragraph.text().strip(), extracted.replace("\r\n", ",")])
+                    extracted = extracted.replace("\r\n", ",")
+                    extracted = extracted.replace("\n", ",")
+                    writer.writerow([paragraph.text().strip(), extracted])
     return paragraphs_w_tasks
 
 
@@ -52,7 +66,8 @@ def link_code_examples_and_paragraphs(code_examples, paragraphs, link_file):
                     if re.match(re.compile("h[0-6]"), child.tag):
                         paragraph = None
                     elif child.text and child.text.count(" ") > 2:
-                        for i, ratio in enumerate(list(map(functools.partial(fuzzy_compare, child.text.strip()), paragraphs))):
+                        for i, ratio in enumerate(
+                                list(map(functools.partial(fuzzy_compare, child.text.strip()), paragraphs))):
                             if ratio == 100:
                                 paragraph = paragraphs[i]
                     # If we reach the code example then break, since according to our heuristic,
@@ -61,24 +76,50 @@ def link_code_examples_and_paragraphs(code_examples, paragraphs, link_file):
                         break
                 if paragraph is not None:
                     writer.writerow([paragraph, code.text()])
-                    # links_file.write(paragraph + "\n")
-                    # links_file.write(code.text() + "\n\n")
 
 
-def extract_and_link(url, task_file=TASKS_FILE, link_file=LINKS_FILE):
-    os.chdir("TaskExtractor")
-    raw_html = pq(url=url)
-    paragraphs = extract(url, task_file)
+def filename_maker(url, ftype):
+    filename = (url.split("/")[-1] if url.split("/")[-1] != "" else url.split("/")[-2])
+    if "." in filename:
+        filename = filename.split(".")[-2] + "_" + ftype + ".csv"
+    else:
+        filename = filename + "_" + ftype + ".csv"
+    return os.path.normpath("results/" + filename)
+
+
+def extract_and_link(url):
+    paragraphs = extract_tasks(url)
+
+    req = Request(url=url, headers=HEADERS)
+    content = html.unescape(urlopen(req).read().decode("utf-8"))
+    raw_html = pq(content)
     code_examples = raw_html("code")
-
-    link_code_examples_and_paragraphs(code_examples, paragraphs, link_file=link_file)
-    os.chdir("..")
-
-
-def extract(url, task_file):
     if os.path.basename(os.getcwd()) != "TaskExtractor":
         os.chdir("TaskExtractor")
-    raw_html = pq(url=url)
-    paragraphs = get_paragraphs_and_tasks(raw_html("p"), task_file)
+    link_code_examples_and_paragraphs(code_examples, paragraphs, filename_maker(url, "links"))
+    os.chdir("..")
+
+
+# Extracts the paragraphs from the HTML and uses TaskExtractor to extract the tasks
+# Then returns the paragraphs that had extracted tasks
+def extract_tasks(url):
+    req = Request(url=url, headers=HEADERS)
+    content = html.unescape(urlopen(req).read().decode("utf-8"))
+    raw_html = pq(content)
+    if os.path.basename(os.getcwd()) != "TaskExtractor":
+        os.chdir("TaskExtractor")
+    paragraphs = get_paragraphs_and_tasks(raw_html("p"), filename_maker(url, "tasks"))
     os.chdir("..")
     return paragraphs
+
+
+def extract_paragraphs(url, out_file):
+    req = Request(url=url, headers=HEADERS)
+    content = html.unescape(urlopen(req).read().decode("utf-8"))
+    raw_html = pq(content)
+    paragraphs = raw_html("p")
+    with open(out_file, "w", encoding="utf-8", newline="") as out_file:
+        writer = csv.writer(out_file, quoting=csv.QUOTE_MINIMAL)
+        for paragraph in paragraphs.items():
+            if len(paragraph[0].classes) == 0:
+                writer.writerow([paragraph.text().strip()])
