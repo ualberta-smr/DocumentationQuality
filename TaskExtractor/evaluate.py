@@ -21,6 +21,7 @@ def evaluate(truth, test):
                 truth_row = list(map(lambda i: i.strip("\""), truth_row))
                 for test_row in test_list:
                     if truth_row[0] == test_row[0]:
+                        count_found = 0
                         count = 0
                         truth_tasks = list(filter(None, truth_row[1].split(",")))
                         test_tasks = list(filter(None, test_row[1].split(",")))
@@ -32,12 +33,17 @@ def evaluate(truth, test):
                                 # print(truth_task.lower() + " | " + test_task.lower())
                                 # print(pr)
                                 if pr > 69:
-                                    print(truth_row[0])
-                                    print(truth_task.lower() + " | " + test_task.lower())
-                                    print(pr)
+                                    found = True
+                                    # print(truth_row[0])
+                                    # print(truth_task.lower() + " | " + test_task.lower())
+                                    # print(pr)
                                     count += 1
+                            if found:
+                                count_found += 1
                         print(truth_row[0])
-                        print(count, len(test_tasks), len(truth_tasks))
+                        print(count, len(test_tasks)) # precision
+                        print(count_found, len(truth_tasks)) # recall
+                        break
 
 
 if __name__ == '__main__':
