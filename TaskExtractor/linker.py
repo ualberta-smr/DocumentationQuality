@@ -1,3 +1,4 @@
+import errno
 import functools
 import os
 import subprocess
@@ -31,18 +32,15 @@ def call_extractor(inp):
 
 
 def get_paragraphs_and_tasks(paragraphs, task_file):
-    paragraphs_w_tasks = []
     with open(task_file, "w", encoding="utf-8", newline="") as out_file:
         writer = csv.writer(out_file, quoting=csv.QUOTE_MINIMAL)
         for paragraph in paragraphs.items():
             if len(paragraph[0].classes) == 0:
                 extracted = call_extractor(paragraph.text())
                 if extracted:
-                    paragraphs_w_tasks.append(paragraph.text().strip())
                     extracted = extracted.replace("\r\n", ",")
                     extracted = extracted.replace("\n", ",")
                     writer.writerow([paragraph.text().strip(), extracted])
-    return paragraphs_w_tasks
 
 
 def fuzzy_compare(potential, paragraph):
@@ -50,7 +48,11 @@ def fuzzy_compare(potential, paragraph):
 
 
 def link_code_examples_and_paragraphs(code_examples, paragraphs, link_file):
-    with open(link_file, "w", encoding="utf-8", newline="") as out_file:
+    if os.path.isfile(link_file):
+        mode = "a"
+    else:
+        mode = "w"
+    with open(link_file, mode, encoding="utf-8", newline="") as out_file:
         writer = csv.writer(out_file, quoting=csv.QUOTE_MINIMAL)
         for example in code_examples.items():
             if example.parent()[0].tag != "p":
@@ -68,7 +70,7 @@ def link_code_examples_and_paragraphs(code_examples, paragraphs, link_file):
                     elif child.text and child.text.count(" ") > 2:
                         for i, ratio in enumerate(
                                 list(map(functools.partial(fuzzy_compare, child.text.strip()), paragraphs))):
-                            if ratio == 100:
+                            if ratio >= 95:
                                 paragraph = paragraphs[i]
                     # If we reach the code example then break, since according to our heuristic,
                     # explanations are not below examples
@@ -88,15 +90,27 @@ def filename_maker(url, ftype):
 
 
 def extract_and_link(url):
-    paragraphs = extract_tasks(url)
+    p_file = extract_tasks(url)
 
     req = Request(url=url, headers=HEADERS)
     content = html.unescape(urlopen(req).read().decode("utf-8"))
     raw_html = pq(content)
     code_examples = raw_html("code")
+    pre_examples = raw_html("pre")
     if os.path.basename(os.getcwd()) != "TaskExtractor":
         os.chdir("TaskExtractor")
-    link_code_examples_and_paragraphs(code_examples, paragraphs, filename_maker(url, "links"))
+    with open(p_file, "r", newline="") as p:
+        paragraphs = list(e[0] for e in list(csv.reader(p)))
+        link_file = filename_maker(url, "links")
+        # Taken from: https://stackoverflow.com/questions/10840533/most-pythonic-way-to-delete-a-file-which-may-not-exist
+        # User Matt, at 10:56 am MDT
+        try:
+            os.remove(link_file)
+        except OSError as e:
+            if e.errno != errno.ENOENT:
+                raise
+        link_code_examples_and_paragraphs(code_examples, paragraphs, link_file)
+        link_code_examples_and_paragraphs(pre_examples, paragraphs, link_file)
     os.chdir("..")
 
 
@@ -108,9 +122,10 @@ def extract_tasks(url):
     raw_html = pq(content)
     if os.path.basename(os.getcwd()) != "TaskExtractor":
         os.chdir("TaskExtractor")
-    paragraphs = get_paragraphs_and_tasks(raw_html("p"), filename_maker(url, "tasks"))
+    filename = filename_maker(url, "tasks")
+    get_paragraphs_and_tasks(raw_html("p"), filename)
     os.chdir("..")
-    return paragraphs
+    return filename
 
 
 def extract_paragraphs(url, out_file):
