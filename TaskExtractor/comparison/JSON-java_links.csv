@@ -1,2 +1,3 @@
+Paragraph,Ground Truth link,Program link,Partial ratio
 Execute the test suite with Maven:,mvn clean test,mvn clean test,100
 Execute the test suite with Gradlew:,gradlew clean build test,gradlew clean build test,100

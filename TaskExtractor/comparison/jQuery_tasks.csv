@@ -1,3 +1,4 @@
+Paragraph,Ground truth tasks,Program tasks,Partial Ratio
 "The Promise interface also allows jQuery's Ajax methods, including $.get(), to chain multiple .done(), .fail(), and .always() callbacks on a single request, and even to assign these callbacks after the request may have completed. If the request is already complete, the callback is fired immediately.",chain callbacks on request,assign callbacks after request,77
 "Request the test.php page, but ignore the return results.",request page but ignore results,ignore return results,67
 Request the test.php page and send some additional data along (while still ignoring the return results).,request page and send additional data,request test.php page,57

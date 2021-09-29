@@ -1,3 +1,4 @@
+Paragraph,Ground truth tasks,Program tasks,Partial Ratio
 The minimal command to run Stanford CoreNLP from the command line is:,run corenlp from command line,run stanford corenlp from command line,93
 "To use the properties in the properties file sampleProps.properties, you give a command as follows:",use properties file,use properties in properties file sampleprops.properties,84
 "However, if you just want to specify a few properties, you can instead place them on the command line. For example, we can specify annotators and the output format with:",specify few properties,specify few properties,100

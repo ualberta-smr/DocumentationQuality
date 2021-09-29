@@ -1,3 +1,4 @@
+Paragraph,Ground Truth link,Program link,Partial ratio
 Return a dot representation suitable for using with Graphviz.,">>> dg = dependencygraph(
 ...     'john n 2\n'
 ...     'loves v 0\n'

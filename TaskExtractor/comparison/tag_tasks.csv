@@ -1,3 +1,4 @@
+Paragraph,Ground truth tasks,Program tasks,Partial Ratio
 "A processing interface for assigning a tag to each token in a list. Tags are case sensitive strings that identify some property of each token, such as its part of speech or its sense.",assign a tag for each token in a list,assign tag,80
 "A processing interface for assigning a tag to each token in a list. Tags are case sensitive strings that identify some property of each token, such as its part of speech or its sense.",assign a tag for each token in a list,identify property such_as part,37
 "A processing interface for assigning a tag to each token in a list. Tags are case sensitive strings that identify some property of each token, such as its part of speech or its sense.",assign a tag for each token in a list,identify case sensitive strings such_as part,38

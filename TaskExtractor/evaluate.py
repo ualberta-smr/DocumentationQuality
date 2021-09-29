@@ -20,7 +20,8 @@ def evaluate_tasks(truth, test, filename):
             recall_total = 0
             truth_total = 0
             with open(os.path.normpath(os.path.join("comparison", filename)), "w", encoding="utf-8", newline="") as out_file:
-                writer = csv.writer(out_file, quoting=csv.QUOTE_MINIMAL)
+                task_writer = csv.writer(out_file, quoting=csv.QUOTE_MINIMAL)
+                task_writer.writerow(["Paragraph", "Ground truth tasks", "Program tasks", "Partial Ratio"])
                 for truth_row in truth_list:
                     truth_row = list(map(lambda i: i.strip("\""), truth_row))
                     for test_row in test_list:
@@ -34,7 +35,7 @@ def evaluate_tasks(truth, test, filename):
                                 found = False
                                 for test_task in test_tasks:
                                     pr = fuzz.partial_ratio(truth_task.lower(), test_task.lower())
-                                    writer.writerow([truth_row[0], truth_task.lower(), test_task.lower(), pr])
+                                    task_writer.writerow([truth_row[0], truth_task.lower(), test_task.lower(), pr])
                                     if pr >= 70:
                                         found = True
                                         precision_count += 1
@@ -69,7 +70,8 @@ def evaluate_links(truth, test, filename):
             precision_total = 0
             recall_total = 0
             with open(os.path.normpath(os.path.join("comparison", filename)), "w", encoding="utf-8", newline="") as out_file:
-                writer = csv.writer(out_file, quoting=csv.QUOTE_MINIMAL)
+                link_writer = csv.writer(out_file, quoting=csv.QUOTE_MINIMAL)
+                link_writer.writerow(["Paragraph", "Ground Truth link", "Program link", "Partial ratio"])
                 for truth_row in truth_list:
                     truth_row = list(map(lambda i: i.strip("\""), truth_row))
                     for test_row in test_list:
@@ -78,7 +80,7 @@ def evaluate_links(truth, test, filename):
                             # When creating the ground truth, the tabs when copy pasting from website may be multiple spaces
                             # This matters when fuzzy matching so we remove those spaces
                             pr = fuzz.partial_ratio(re.sub(re.compile(r" +"), " ", truth_row[1].lower()), test_row[1].lower())
-                            writer.writerow([truth_row[0], truth_row[1].lower(), test_row[1].lower(), pr])
+                            link_writer.writerow([truth_row[0], truth_row[1].lower(), test_row[1].lower(), pr])
                             if pr >= 95:
                                 recall_total += 1
                                 precision_total += 1

@@ -1,3 +1,4 @@
+Paragraph,Ground Truth link,Program link,Partial ratio
 A module for POS tagging using CRFSuite https://pypi.python.org/pypi/python-crfsuite,">>> from nltk.tag import crftagger
 >>> ct = crftagger()",>>> from nltk.tag import crftagger >>> ct = crftagger(),98
 A module for POS tagging using CRFSuite https://pypi.python.org/pypi/python-crfsuite,">>> from nltk.tag import crftagger

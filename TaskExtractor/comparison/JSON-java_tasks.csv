@@ -1,3 +1,4 @@
+Paragraph,Ground truth tasks,Program tasks,Partial Ratio
 Create the jar file in the current directory,create jar file,create jar file in current directory,100
 Execute the Test file,execute tests,execute test file,92
 Execute the test suite with Maven:,execute with maven,execute test suite with maven,78
