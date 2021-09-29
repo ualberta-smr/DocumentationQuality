@@ -1,0 +1,317 @@
+Return a dot representation suitable for using with Graphviz.,">>> dg = dependencygraph(
+...     'john n 2\n'
+...     'loves v 0\n'
+...     'mary n 2'
+... )
+>>> print(dg.to_dot())
+digraph g{
+edge [dir=forward]
+node [shape=plaintext]
+
+0 [label=""0 (none)""]
+0 -> 2 [label=""root""]
+1 [label=""1 (john)""]
+2 [label=""2 (loves)""]
+2 -> 1 [label=""""]
+2 -> 3 [label=""""]
+3 [label=""3 (mary)""]
+}",">>> dg = dependencygraph( ... 'john n 2\n' ... 'loves v 0\n' ... 'mary n 2' ... ) >>> print(dg.to_dot()) digraph g{ edge [dir=forward] node [shape=plaintext] 0 [label=""0 (none)""] 0 -> 2 [label=""root""] 1 [label=""1 (john)""] 2 [label=""2 (loves)""] 2 -> 1 [label=""""] 2 -> 3 [label=""""] 3 [label=""3 (mary)""] }",94
+Class for measuring labelled and unlabelled attachment score for dependency parsing. Note that the evaluation ignores punctuation.,">>> from nltk.parse import dependencygraph, dependencyevaluator",">>> from nltk.parse import dependencygraph, dependencyevaluator",100
+Class for measuring labelled and unlabelled attachment score for dependency parsing. Note that the evaluation ignores punctuation.,">>> from nltk.parse import dependencygraph, dependencyevaluator",">>> gold_sent = dependencygraph("""""" ... pierre nnp 2 nmod ... vinken nnp 8 sub ... , , 2 p ... 61 cd 5 nmod ... years nns 6 amod ... old jj 2 nmod ... , , 2 p ... will md 0 root ... join vb 8 vc ... the dt 11 nmod ... board nn 9 obj ... as in 9 vmod ... a dt 15 nmod ... nonexecutive jj 15 nmod ... director nn 12 pmod ... nov. nnp 9 vmod ... 29 cd 16 nmod ... . . 9 vmod ... """""")",49
+Class for measuring labelled and unlabelled attachment score for dependency parsing. Note that the evaluation ignores punctuation.,">>> from nltk.parse import dependencygraph, dependencyevaluator",">>> parsed_sent = dependencygraph("""""" ... pierre nnp 8 nmod ... vinken nnp 1 sub ... , , 3 p ... 61 cd 6 nmod ... years nns 6 amod ... old jj 2 nmod ... , , 3 amod ... will md 0 root ... join vb 8 vc ... the dt 11 amod ... board nn 9 object ... as in 9 nmod ... a dt 15 nmod ... nonexecutive jj 15 nmod ... director nn 12 pmod ... nov. nnp 9 vmod ... 29 cd 16 nmod ... . . 9 vmod ... """""")",51
+Class for measuring labelled and unlabelled attachment score for dependency parsing. Note that the evaluation ignores punctuation.,">>> from nltk.parse import dependencygraph, dependencyevaluator",">>> de = dependencyevaluator([parsed_sent],[gold_sent]) >>> las, uas = de.eval() >>> las 0.6... >>> uas 0.8... >>> abs(uas - 0.8) < 0.00001 true",43
+Class for measuring labelled and unlabelled attachment score for dependency parsing. Note that the evaluation ignores punctuation.,">>> gold_sent = dependencygraph(""""""
+... pierre  nnp     2       nmod
+... vinken  nnp     8       sub
+... ,       ,       2       p
+... 61      cd      5       nmod
+... years   nns     6       amod
+... old     jj      2       nmod
+... ,       ,       2       p
+... will    md      0       root
+... join    vb      8       vc
+... the     dt      11      nmod
+... board   nn      9       obj
+... as      in      9       vmod
+... a       dt      15      nmod
+... nonexecutive    jj      15      nmod
+... director        nn      12      pmod
+... nov.    nnp     9       vmod
+... 29      cd      16      nmod
+... .       .       9       vmod
+... """""")",">>> from nltk.parse import dependencygraph, dependencyevaluator",49
+Class for measuring labelled and unlabelled attachment score for dependency parsing. Note that the evaluation ignores punctuation.,">>> gold_sent = dependencygraph(""""""
+... pierre  nnp     2       nmod
+... vinken  nnp     8       sub
+... ,       ,       2       p
+... 61      cd      5       nmod
+... years   nns     6       amod
+... old     jj      2       nmod
+... ,       ,       2       p
+... will    md      0       root
+... join    vb      8       vc
+... the     dt      11      nmod
+... board   nn      9       obj
+... as      in      9       vmod
+... a       dt      15      nmod
+... nonexecutive    jj      15      nmod
+... director        nn      12      pmod
+... nov.    nnp     9       vmod
+... 29      cd      16      nmod
+... .       .       9       vmod
+... """""")",">>> gold_sent = dependencygraph("""""" ... pierre nnp 2 nmod ... vinken nnp 8 sub ... , , 2 p ... 61 cd 5 nmod ... years nns 6 amod ... old jj 2 nmod ... , , 2 p ... will md 0 root ... join vb 8 vc ... the dt 11 nmod ... board nn 9 obj ... as in 9 vmod ... a dt 15 nmod ... nonexecutive jj 15 nmod ... director nn 12 pmod ... nov. nnp 9 vmod ... 29 cd 16 nmod ... . . 9 vmod ... """""")",95
+Class for measuring labelled and unlabelled attachment score for dependency parsing. Note that the evaluation ignores punctuation.,">>> gold_sent = dependencygraph(""""""
+... pierre  nnp     2       nmod
+... vinken  nnp     8       sub
+... ,       ,       2       p
+... 61      cd      5       nmod
+... years   nns     6       amod
+... old     jj      2       nmod
+... ,       ,       2       p
+... will    md      0       root
+... join    vb      8       vc
+... the     dt      11      nmod
+... board   nn      9       obj
+... as      in      9       vmod
+... a       dt      15      nmod
+... nonexecutive    jj      15      nmod
+... director        nn      12      pmod
+... nov.    nnp     9       vmod
+... 29      cd      16      nmod
+... .       .       9       vmod
+... """""")",">>> parsed_sent = dependencygraph("""""" ... pierre nnp 8 nmod ... vinken nnp 1 sub ... , , 3 p ... 61 cd 6 nmod ... years nns 6 amod ... old jj 2 nmod ... , , 3 amod ... will md 0 root ... join vb 8 vc ... the dt 11 amod ... board nn 9 object ... as in 9 nmod ... a dt 15 nmod ... nonexecutive jj 15 nmod ... director nn 12 pmod ... nov. nnp 9 vmod ... 29 cd 16 nmod ... . . 9 vmod ... """""")",91
+Class for measuring labelled and unlabelled attachment score for dependency parsing. Note that the evaluation ignores punctuation.,">>> gold_sent = dependencygraph(""""""
+... pierre  nnp     2       nmod
+... vinken  nnp     8       sub
+... ,       ,       2       p
+... 61      cd      5       nmod
+... years   nns     6       amod
+... old     jj      2       nmod
+... ,       ,       2       p
+... will    md      0       root
+... join    vb      8       vc
+... the     dt      11      nmod
+... board   nn      9       obj
+... as      in      9       vmod
+... a       dt      15      nmod
+... nonexecutive    jj      15      nmod
+... director        nn      12      pmod
+... nov.    nnp     9       vmod
+... 29      cd      16      nmod
+... .       .       9       vmod
+... """""")",">>> de = dependencyevaluator([parsed_sent],[gold_sent]) >>> las, uas = de.eval() >>> las 0.6... >>> uas 0.8... >>> abs(uas - 0.8) < 0.00001 true",39
+Class for measuring labelled and unlabelled attachment score for dependency parsing. Note that the evaluation ignores punctuation.,">>> parsed_sent = dependencygraph(""""""
+... pierre  nnp     8       nmod
+... vinken  nnp     1       sub
+... ,       ,       3       p
+... 61      cd      6       nmod
+... years   nns     6       amod
+... old     jj      2       nmod
+... ,       ,       3       amod
+... will    md      0       root
+... join    vb      8       vc
+... the     dt      11      amod
+... board   nn      9       object
+... as      in      9       nmod
+... a       dt      15      nmod
+... nonexecutive    jj      15      nmod
+... director        nn      12      pmod
+... nov.    nnp     9       vmod
+... 29      cd      16      nmod
+... .       .       9       vmod
+... """""")",">>> from nltk.parse import dependencygraph, dependencyevaluator",51
+Class for measuring labelled and unlabelled attachment score for dependency parsing. Note that the evaluation ignores punctuation.,">>> parsed_sent = dependencygraph(""""""
+... pierre  nnp     8       nmod
+... vinken  nnp     1       sub
+... ,       ,       3       p
+... 61      cd      6       nmod
+... years   nns     6       amod
+... old     jj      2       nmod
+... ,       ,       3       amod
+... will    md      0       root
+... join    vb      8       vc
+... the     dt      11      amod
+... board   nn      9       object
+... as      in      9       nmod
+... a       dt      15      nmod
+... nonexecutive    jj      15      nmod
+... director        nn      12      pmod
+... nov.    nnp     9       vmod
+... 29      cd      16      nmod
+... .       .       9       vmod
+... """""")",">>> gold_sent = dependencygraph("""""" ... pierre nnp 2 nmod ... vinken nnp 8 sub ... , , 2 p ... 61 cd 5 nmod ... years nns 6 amod ... old jj 2 nmod ... , , 2 p ... will md 0 root ... join vb 8 vc ... the dt 11 nmod ... board nn 9 obj ... as in 9 vmod ... a dt 15 nmod ... nonexecutive jj 15 nmod ... director nn 12 pmod ... nov. nnp 9 vmod ... 29 cd 16 nmod ... . . 9 vmod ... """""")",91
+Class for measuring labelled and unlabelled attachment score for dependency parsing. Note that the evaluation ignores punctuation.,">>> parsed_sent = dependencygraph(""""""
+... pierre  nnp     8       nmod
+... vinken  nnp     1       sub
+... ,       ,       3       p
+... 61      cd      6       nmod
+... years   nns     6       amod
+... old     jj      2       nmod
+... ,       ,       3       amod
+... will    md      0       root
+... join    vb      8       vc
+... the     dt      11      amod
+... board   nn      9       object
+... as      in      9       nmod
+... a       dt      15      nmod
+... nonexecutive    jj      15      nmod
+... director        nn      12      pmod
+... nov.    nnp     9       vmod
+... 29      cd      16      nmod
+... .       .       9       vmod
+... """""")",">>> parsed_sent = dependencygraph("""""" ... pierre nnp 8 nmod ... vinken nnp 1 sub ... , , 3 p ... 61 cd 6 nmod ... years nns 6 amod ... old jj 2 nmod ... , , 3 amod ... will md 0 root ... join vb 8 vc ... the dt 11 amod ... board nn 9 object ... as in 9 nmod ... a dt 15 nmod ... nonexecutive jj 15 nmod ... director nn 12 pmod ... nov. nnp 9 vmod ... 29 cd 16 nmod ... . . 9 vmod ... """""")",95
+Class for measuring labelled and unlabelled attachment score for dependency parsing. Note that the evaluation ignores punctuation.,">>> parsed_sent = dependencygraph(""""""
+... pierre  nnp     8       nmod
+... vinken  nnp     1       sub
+... ,       ,       3       p
+... 61      cd      6       nmod
+... years   nns     6       amod
+... old     jj      2       nmod
+... ,       ,       3       amod
+... will    md      0       root
+... join    vb      8       vc
+... the     dt      11      amod
+... board   nn      9       object
+... as      in      9       nmod
+... a       dt      15      nmod
+... nonexecutive    jj      15      nmod
+... director        nn      12      pmod
+... nov.    nnp     9       vmod
+... 29      cd      16      nmod
+... .       .       9       vmod
+... """""")",">>> de = dependencyevaluator([parsed_sent],[gold_sent]) >>> las, uas = de.eval() >>> las 0.6... >>> uas 0.8... >>> abs(uas - 0.8) < 0.00001 true",39
+Class for measuring labelled and unlabelled attachment score for dependency parsing. Note that the evaluation ignores punctuation.,">>> de = dependencyevaluator([parsed_sent],[gold_sent])
+>>> las, uas = de.eval()
+>>> las
+0.6...
+>>> uas
+0.8...
+>>> abs(uas - 0.8) < 0.00001
+true",">>> from nltk.parse import dependencygraph, dependencyevaluator",43
+Class for measuring labelled and unlabelled attachment score for dependency parsing. Note that the evaluation ignores punctuation.,">>> de = dependencyevaluator([parsed_sent],[gold_sent])
+>>> las, uas = de.eval()
+>>> las
+0.6...
+>>> uas
+0.8...
+>>> abs(uas - 0.8) < 0.00001
+true",">>> gold_sent = dependencygraph("""""" ... pierre nnp 2 nmod ... vinken nnp 8 sub ... , , 2 p ... 61 cd 5 nmod ... years nns 6 amod ... old jj 2 nmod ... , , 2 p ... will md 0 root ... join vb 8 vc ... the dt 11 nmod ... board nn 9 obj ... as in 9 vmod ... a dt 15 nmod ... nonexecutive jj 15 nmod ... director nn 12 pmod ... nov. nnp 9 vmod ... 29 cd 16 nmod ... . . 9 vmod ... """""")",36
+Class for measuring labelled and unlabelled attachment score for dependency parsing. Note that the evaluation ignores punctuation.,">>> de = dependencyevaluator([parsed_sent],[gold_sent])
+>>> las, uas = de.eval()
+>>> las
+0.6...
+>>> uas
+0.8...
+>>> abs(uas - 0.8) < 0.00001
+true",">>> parsed_sent = dependencygraph("""""" ... pierre nnp 8 nmod ... vinken nnp 1 sub ... , , 3 p ... 61 cd 6 nmod ... years nns 6 amod ... old jj 2 nmod ... , , 3 amod ... will md 0 root ... join vb 8 vc ... the dt 11 amod ... board nn 9 object ... as in 9 nmod ... a dt 15 nmod ... nonexecutive jj 15 nmod ... director nn 12 pmod ... nov. nnp 9 vmod ... 29 cd 16 nmod ... . . 9 vmod ... """""")",36
+Class for measuring labelled and unlabelled attachment score for dependency parsing. Note that the evaluation ignores punctuation.,">>> de = dependencyevaluator([parsed_sent],[gold_sent])
+>>> las, uas = de.eval()
+>>> las
+0.6...
+>>> uas
+0.8...
+>>> abs(uas - 0.8) < 0.00001
+true",">>> de = dependencyevaluator([parsed_sent],[gold_sent]) >>> las, uas = de.eval() >>> las 0.6... >>> uas 0.8... >>> abs(uas - 0.8) < 0.00001 true",95
+"A dependency scorer built around a MaxEnt classifier. In this particular class that classifier is a NaiveBayesClassifier. It uses head-word, head-tag, child-word, and child-tag features for classification.",">>> from nltk.parse.dependencygraph import dependencygraph, conll_data2",">>> from nltk.parse.dependencygraph import dependencygraph, conll_data2",100
+"A dependency scorer built around a MaxEnt classifier. In this particular class that classifier is a NaiveBayesClassifier. It uses head-word, head-tag, child-word, and child-tag features for classification.",">>> from nltk.parse.dependencygraph import dependencygraph, conll_data2",">>> graphs = [dependencygraph(entry) for entry in conll_data2.split('\n\n') if entry] >>> npp = probabilisticnonprojectiveparser() >>> npp.train(graphs, naivebayesdependencyscorer()) >>> parses = npp.parse(['cathy', 'zag', 'hen', 'zwaaien', '.'], ['n', 'v', 'pron', 'adj', 'n', 'punc']) >>> len(list(parses)) 1",58
+"A dependency scorer built around a MaxEnt classifier. In this particular class that classifier is a NaiveBayesClassifier. It uses head-word, head-tag, child-word, and child-tag features for classification.",">>> graphs = [dependencygraph(entry) for entry in conll_data2.split('\n\n') if entry]
+>>> npp = probabilisticnonprojectiveparser()
+>>> npp.train(graphs, naivebayesdependencyscorer())
+>>> parses = npp.parse(['cathy', 'zag', 'hen', 'zwaaien', '.'], ['n', 'v', 'pron', 'adj', 'n', 'punc'])
+>>> len(list(parses))
+1",">>> from nltk.parse.dependencygraph import dependencygraph, conll_data2",58
+"A dependency scorer built around a MaxEnt classifier. In this particular class that classifier is a NaiveBayesClassifier. It uses head-word, head-tag, child-word, and child-tag features for classification.",">>> graphs = [dependencygraph(entry) for entry in conll_data2.split('\n\n') if entry]
+>>> npp = probabilisticnonprojectiveparser()
+>>> npp.train(graphs, naivebayesdependencyscorer())
+>>> parses = npp.parse(['cathy', 'zag', 'hen', 'zwaaien', '.'], ['n', 'v', 'pron', 'adj', 'n', 'punc'])
+>>> len(list(parses))
+1",">>> graphs = [dependencygraph(entry) for entry in conll_data2.split('\n\n') if entry] >>> npp = probabilisticnonprojectiveparser() >>> npp.train(graphs, naivebayesdependencyscorer()) >>> parses = npp.parse(['cathy', 'zag', 'hen', 'zwaaien', '.'], ['n', 'v', 'pron', 'adj', 'n', 'punc']) >>> len(list(parses)) 1",98
+"A. Check the ARC-STANDARD training >>> import tempfile >>> import os >>> input_file = tempfile.NamedTemporaryFile(prefix=’transition_parse.train’, dir=tempfile.gettempdir(), delete=False)",">>> parser_std = transitionparser('arc-standard')
+>>> print(', '.join(parser_std._create_training_examples_arc_std([gold_sent], input_file)))
+ number of training examples : 1
+ number of valid (projective) examples : 1
+shift, leftarc:att, shift, leftarc:sbj, shift, shift, leftarc:att, shift, shift, shift, leftarc:att, rightarc:pc, rightarc:att, rightarc:obj, shift, rightarc:pu, rightarc:root, shift
+",">>> parser_std = transitionparser('arc-standard') >>> print(', '.join(parser_std._create_training_examples_arc_std([gold_sent], input_file))) number of training examples : 1 number of valid (projective) examples : 1 shift, leftarc:att, shift, leftarc:sbj, shift, shift, leftarc:att, shift, shift, shift, leftarc:att, rightarc:pc, rightarc:att, rightarc:obj, shift, rightarc:pu, rightarc:root, shift",99
+"A. Check the ARC-STANDARD training >>> import tempfile >>> import os >>> input_file = tempfile.NamedTemporaryFile(prefix=’transition_parse.train’, dir=tempfile.gettempdir(), delete=False)",">>> parser_std = transitionparser('arc-standard')
+>>> print(', '.join(parser_std._create_training_examples_arc_std([gold_sent], input_file)))
+ number of training examples : 1
+ number of valid (projective) examples : 1
+shift, leftarc:att, shift, leftarc:sbj, shift, shift, leftarc:att, shift, shift, shift, leftarc:att, rightarc:pc, rightarc:att, rightarc:obj, shift, rightarc:pu, rightarc:root, shift
+",">>> parser_std.train([gold_sent],'temp.arcstd.model', verbose=false) number of training examples : 1 number of valid (projective) examples : 1 >>> remove(input_file.name)",68
+"A. Check the ARC-STANDARD training >>> import tempfile >>> import os >>> input_file = tempfile.NamedTemporaryFile(prefix=’transition_parse.train’, dir=tempfile.gettempdir(), delete=False)",">>> parser_std = transitionparser('arc-standard')
+>>> print(', '.join(parser_std._create_training_examples_arc_std([gold_sent], input_file)))
+ number of training examples : 1
+ number of valid (projective) examples : 1
+shift, leftarc:att, shift, leftarc:sbj, shift, shift, leftarc:att, shift, shift, shift, leftarc:att, rightarc:pc, rightarc:att, rightarc:obj, shift, rightarc:pu, rightarc:root, shift
+",">>> input_file = tempfile.namedtemporaryfile(prefix='transition_parse.train', dir=tempfile.gettempdir(),delete=false) >>> parser_eager = transitionparser('arc-eager') >>> print(', '.join(parser_eager._create_training_examples_arc_eager([gold_sent], input_file))) number of training examples : 1 number of valid (projective) examples : 1 shift, leftarc:att, shift, leftarc:sbj, rightarc:root, shift, leftarc:att, rightarc:obj, rightarc:att, shift, leftarc:att, rightarc:pc, reduce, reduce, reduce, rightarc:pu",82
+"A. Check the ARC-STANDARD training >>> import tempfile >>> import os >>> input_file = tempfile.NamedTemporaryFile(prefix=’transition_parse.train’, dir=tempfile.gettempdir(), delete=False)",">>> parser_std = transitionparser('arc-standard')
+>>> print(', '.join(parser_std._create_training_examples_arc_std([gold_sent], input_file)))
+ number of training examples : 1
+ number of valid (projective) examples : 1
+shift, leftarc:att, shift, leftarc:sbj, shift, shift, leftarc:att, shift, shift, shift, leftarc:att, rightarc:pc, rightarc:att, rightarc:obj, shift, rightarc:pu, rightarc:root, shift
+",">>> parser_eager.train([gold_sent],'temp.arceager.model', verbose=false) number of training examples : 1 number of valid (projective) examples : 1",73
+"A. Check the ARC-STANDARD training >>> import tempfile >>> import os >>> input_file = tempfile.NamedTemporaryFile(prefix=’transition_parse.train’, dir=tempfile.gettempdir(), delete=False)",">>> parser_std = transitionparser('arc-standard')
+>>> print(', '.join(parser_std._create_training_examples_arc_std([gold_sent], input_file)))
+ number of training examples : 1
+ number of valid (projective) examples : 1
+shift, leftarc:att, shift, leftarc:sbj, shift, shift, leftarc:att, shift, shift, shift, leftarc:att, rightarc:pc, rightarc:att, rightarc:obj, shift, rightarc:pu, rightarc:root, shift
+",>>> remove(input_file.name),52
+"A. Check the ARC-STANDARD training >>> import tempfile >>> import os >>> input_file = tempfile.NamedTemporaryFile(prefix=’transition_parse.train’, dir=tempfile.gettempdir(), delete=False)",">>> parser_std = transitionparser('arc-standard')
+>>> print(', '.join(parser_std._create_training_examples_arc_std([gold_sent], input_file)))
+ number of training examples : 1
+ number of valid (projective) examples : 1
+shift, leftarc:att, shift, leftarc:sbj, shift, shift, leftarc:att, shift, shift, shift, leftarc:att, rightarc:pc, rightarc:att, rightarc:obj, shift, rightarc:pu, rightarc:root, shift
+",">>> result = parser_std.parse([gold_sent], 'temp.arcstd.model') >>> de = dependencyevaluator(result, [gold_sent]) >>> de.eval() >= (0, 0) true",44
+"A. Check the ARC-STANDARD training >>> import tempfile >>> import os >>> input_file = tempfile.NamedTemporaryFile(prefix=’transition_parse.train’, dir=tempfile.gettempdir(), delete=False)",">>> parser_std.train([gold_sent],'temp.arcstd.model', verbose=false)
+ number of training examples : 1
+ number of valid (projective) examples : 1
+>>> remove(input_file.name)",">>> parser_std = transitionparser('arc-standard') >>> print(', '.join(parser_std._create_training_examples_arc_std([gold_sent], input_file))) number of training examples : 1 number of valid (projective) examples : 1 shift, leftarc:att, shift, leftarc:sbj, shift, shift, leftarc:att, shift, shift, shift, leftarc:att, rightarc:pc, rightarc:att, rightarc:obj, shift, rightarc:pu, rightarc:root, shift",68
+"A. Check the ARC-STANDARD training >>> import tempfile >>> import os >>> input_file = tempfile.NamedTemporaryFile(prefix=’transition_parse.train’, dir=tempfile.gettempdir(), delete=False)",">>> parser_std.train([gold_sent],'temp.arcstd.model', verbose=false)
+ number of training examples : 1
+ number of valid (projective) examples : 1
+>>> remove(input_file.name)",">>> parser_std.train([gold_sent],'temp.arcstd.model', verbose=false) number of training examples : 1 number of valid (projective) examples : 1 >>> remove(input_file.name)",98
+"A. Check the ARC-STANDARD training >>> import tempfile >>> import os >>> input_file = tempfile.NamedTemporaryFile(prefix=’transition_parse.train’, dir=tempfile.gettempdir(), delete=False)",">>> parser_std.train([gold_sent],'temp.arcstd.model', verbose=false)
+ number of training examples : 1
+ number of valid (projective) examples : 1
+>>> remove(input_file.name)",">>> input_file = tempfile.namedtemporaryfile(prefix='transition_parse.train', dir=tempfile.gettempdir(),delete=false) >>> parser_eager = transitionparser('arc-eager') >>> print(', '.join(parser_eager._create_training_examples_arc_eager([gold_sent], input_file))) number of training examples : 1 number of valid (projective) examples : 1 shift, leftarc:att, shift, leftarc:sbj, rightarc:root, shift, leftarc:att, rightarc:obj, rightarc:att, shift, leftarc:att, rightarc:pc, reduce, reduce, reduce, rightarc:pu",66
+"A. Check the ARC-STANDARD training >>> import tempfile >>> import os >>> input_file = tempfile.NamedTemporaryFile(prefix=’transition_parse.train’, dir=tempfile.gettempdir(), delete=False)",">>> parser_std.train([gold_sent],'temp.arcstd.model', verbose=false)
+ number of training examples : 1
+ number of valid (projective) examples : 1
+>>> remove(input_file.name)",">>> parser_eager.train([gold_sent],'temp.arceager.model', verbose=false) number of training examples : 1 number of valid (projective) examples : 1",93
+"A. Check the ARC-STANDARD training >>> import tempfile >>> import os >>> input_file = tempfile.NamedTemporaryFile(prefix=’transition_parse.train’, dir=tempfile.gettempdir(), delete=False)",">>> parser_std.train([gold_sent],'temp.arcstd.model', verbose=false)
+ number of training examples : 1
+ number of valid (projective) examples : 1
+>>> remove(input_file.name)",>>> remove(input_file.name),100
+"A. Check the ARC-STANDARD training >>> import tempfile >>> import os >>> input_file = tempfile.NamedTemporaryFile(prefix=’transition_parse.train’, dir=tempfile.gettempdir(), delete=False)",">>> parser_std.train([gold_sent],'temp.arcstd.model', verbose=false)
+ number of training examples : 1
+ number of valid (projective) examples : 1
+>>> remove(input_file.name)",">>> result = parser_std.parse([gold_sent], 'temp.arcstd.model') >>> de = dependencyevaluator(result, [gold_sent]) >>> de.eval() >= (0, 0) true",51
+A module to convert a single POS tagged sentence into CONLL format.,">>> from nltk import word_tokenize, pos_tag
+>>> text = ""this is a foobar sentence.""
+>>> for line in taggedsent_to_conll(pos_tag(word_tokenize(text))):
+...         print(line, end="""")
+    1       this    _       dt      dt      _       0       a       _       _
+    2       is      _       vbz     vbz     _       0       a       _       _
+    3       a       _       dt      dt      _       0       a       _       _
+    4       foobar  _       jj      jj      _       0       a       _       _
+    5       sentence        _       nn      nn      _       0       a       _       _
+    6       .               _       .       .       _       0       a       _       _",">>> from nltk import word_tokenize, pos_tag >>> text = ""this is a foobar sentence."" >>> for line in taggedsent_to_conll(pos_tag(word_tokenize(text))): ... print(line, end="""") 1 this _ dt dt _ 0 a _ _ 2 is _ vbz vbz _ 0 a _ _ 3 a _ dt dt _ 0 a _ _ 4 foobar _ jj jj _ 0 a _ _ 5 sentence _ nn nn _ 0 a _ _ 6 . _ . . _ 0 a _ _",97
+"A module to convert the a POS tagged document stream (i.e. list of list of tuples, a list of sentences) and yield lines in CONLL format. This module yields one line per word and two newlines for end of sentence.",">>> from nltk import word_tokenize, sent_tokenize, pos_tag
+>>> text = ""this is a foobar sentence. is that right?""
+>>> sentences = [pos_tag(word_tokenize(sent)) for sent in sent_tokenize(text)]
+>>> for line in taggedsents_to_conll(sentences):
+...     if line:
+...         print(line, end="""")
+1   this    _       dt      dt      _       0       a       _       _
+2   is      _       vbz     vbz     _       0       a       _       _
+3   a       _       dt      dt      _       0       a       _       _
+4   foobar  _       jj      jj      _       0       a       _       _
+5   sentence        _       nn      nn      _       0       a       _       _
+6   .               _       .       .       _       0       a       _       _
+
+
+1   is      _       vbz     vbz     _       0       a       _       _
+2   that    _       in      in      _       0       a       _       _
+3   right   _       nn      nn      _       0       a       _       _
+4   ?       _       .       .       _       0       a       _       _
+",">>> from nltk import word_tokenize, sent_tokenize, pos_tag >>> text = ""this is a foobar sentence. is that right?"" >>> sentences = [pos_tag(word_tokenize(sent)) for sent in sent_tokenize(text)] >>> for line in taggedsents_to_conll(sentences): ... if line: ... print(line, end="""") 1 this _ dt dt _ 0 a _ _ 2 is _ vbz vbz _ 0 a _ _ 3 a _ dt dt _ 0 a _ _ 4 foobar _ jj jj _ 0 a _ _ 5 sentence _ nn nn _ 0 a _ _ 6 . _ . . _ 0 a _ _ 1 is _ vbz vbz _ 0 a _ _ 2 that _ in in _ 0 a _ _ 3 right _ nn nn _ 0 a _ _ 4 ? _ . . _ 0 a _ _",97

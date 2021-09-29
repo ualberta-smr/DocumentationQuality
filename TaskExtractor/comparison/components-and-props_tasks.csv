@@ -1,0 +1,7 @@
+The simplest way to define a component is to write a JavaScript function:,how to define a react component,write javascript function,44
+You can also use an ES6 class to define a component:,how to use es6 for react components,define component,69
+"Components can refer to other components in their output. This lets us use the same component abstraction for any level of detail. A button, a form, a dialog, a screen: in React apps, all those are commonly expressed as components.",nest components,use same component abstraction for level,80
+Don’t be afraid to split components into smaller components.,split components into smaller components,split components into smaller components,100
+"Such functions are called “pure” because they do not attempt to change their inputs, and always return the same result for the same inputs.",create pure component,call such functions,42
+"Such functions are called “pure” because they do not attempt to change their inputs, and always return the same result for the same inputs.",create pure component,change inputs,46
+"Such functions are called “pure” because they do not attempt to change their inputs, and always return the same result for the same inputs.",create pure component,return same result for same inputs,48
