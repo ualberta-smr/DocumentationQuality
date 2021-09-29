@@ -49,10 +49,12 @@ def evaluate_tasks(truth, test, filename):
                             truth_total += len(truth_tasks)
                             break
                 try:
-                    print("Precision:", precision_total, "/", test_total, "=", precision_total/test_total)
-                    print("Recall:", recall_total, "/", truth_total, "=", recall_total/truth_total)
+                    # print("Precision:", precision_total, "/", test_total, "=", precision_total/test_total)
+                    # print("Recall:", recall_total, "/", truth_total, "=", recall_total/truth_total)
+                    return [precision_total, test_total, precision_total/test_total, recall_total, truth_total, recall_total/truth_total]
                 except ZeroDivisionError:
-                    print("No extracted tasks")
+                    # print("No extracted tasks")
+                    return ["N/A"] * 6
 
 
 def evaluate_links(truth, test, filename):
@@ -81,22 +83,27 @@ def evaluate_links(truth, test, filename):
                                 recall_total += 1
                                 precision_total += 1
                 try:
-                    print("Precision:", precision_total, "/", len(test_list), "=", precision_total/len(test_list))
-                    print("Recall", recall_total, "/", len(truth_list), "=", recall_total / len(truth_list))
+                    # print("Precision:", precision_total, "/", len(test_list), "=", precision_total/len(test_list))
+                    # print("Recall", recall_total, "/", len(truth_list), "=", recall_total / len(truth_list))
+                    return [precision_total, len(test_list), precision_total/len(test_list), recall_total, len(truth_list), recall_total/len(truth_list)]
                 except ZeroDivisionError:
-                    print("No code example links")
+                    # print("No code example links")
+                    return ["N/A"] * 6
 
 
 if __name__ == '__main__':
-    for file in os.listdir("truth"):
-        truth_file = os.path.join("truth", file)
-        for file2 in os.listdir("results"):
-            test_file = os.path.join("results", file2)
-            if file == file2:
-                print(file, file2)
-                if re.search(re.compile(r"(?<=_).+(?=\.)"), file)[0] == "tasks":
-                    evaluate_tasks(truth_file, test_file, file)
-                else:
-                    evaluate_links(truth_file, test_file, file)
-                print()
-                break
+    with open(os.path.normpath("comparison/totals.csv"), "w", encoding="utf-8", newline="") as out_file:
+        writer = csv.writer(out_file, quoting=csv.QUOTE_MINIMAL)
+        writer.writerow(["File", "Correct extracted tasks", "Total extracted tasks", "Precision", "Correct truth tasks", "Total truth tasks", "Recall"])
+        for file in os.listdir("truth"):
+            truth_file = os.path.join("truth", file)
+            for file2 in os.listdir("results"):
+                test_file = os.path.join("results", file2)
+                if file == file2:
+                    row = [file]
+                    if re.search(re.compile(r"(?<=_).+(?=\.)"), file)[0] == "tasks":
+                        row = [*row, *evaluate_tasks(truth_file, test_file, file)]
+                    else:
+                        row = [*row, *evaluate_links(truth_file, test_file, file)]
+                    writer.writerow(row)
+                    break
