@@ -1,3 +1,36 @@
 Paragraph,Ground Truth link,Program link,Partial ratio
 Execute the test suite with Maven:,mvn clean test,mvn clean test,100
+Execute the test suite with Maven:,mvn clean test,mvn clean test,100
 Execute the test suite with Gradlew:,gradlew clean build test,gradlew clean build test,100
+Execute the test suite with Gradlew:,gradlew clean build test,gradlew clean build test,100
+"For example, code like this will create a mixed JSONArray, some items wrapped, others not:","somebean[] myarr = new somebean[]{ new somebean(1), new somebean(2) };
+// these will be wrapped
+jsonarray jarr = new jsonarray(myarr);
+// these will not be wrapped
+jarr.putall(new somebean[]{ new somebean(3), new somebean(4) });","somebean[] myarr = new somebean[]{ new somebean(1), new somebean(2) }; // these will be wrapped jsonarray jarr = new jsonarray(myarr); // these will not be wrapped jarr.putall(new somebean[]{ new somebean(3), new somebean(4) });",98
+"For structure consistency, it would be recommended that the above code is changed to look like 1 of 2 ways.","somebean[] myarr = new somebean[]{ new somebean(1), new somebean(2) };
+jsonarray jarr = new jsonarray();
+// these will not be wrapped
+jarr.putall(myarr);
+// these will not be wrapped
+jarr.putall(new somebean[]{ new somebean(3), new somebean(4) });
+// our jarr is now consistent.","somebean[] myarr = new somebean[]{ new somebean(1), new somebean(2) }; jsonarray jarr = new jsonarray(); // these will not be wrapped jarr.putall(myarr); // these will not be wrapped jarr.putall(new somebean[]{ new somebean(3), new somebean(4) }); // our jarr is now consistent.",98
+"For structure consistency, it would be recommended that the above code is changed to look like 1 of 2 ways.","somebean[] myarr = new somebean[]{ new somebean(1), new somebean(2) };
+jsonarray jarr = new jsonarray();
+// these will not be wrapped
+jarr.putall(myarr);
+// these will not be wrapped
+jarr.putall(new somebean[]{ new somebean(3), new somebean(4) });
+// our jarr is now consistent.","somebean[] myarr = new somebean[]{ new somebean(1), new somebean(2) }; // these will be wrapped jsonarray jarr = new jsonarray(myarr); // these will be wrapped jarr.putall(new jsonarray(new somebean[]{ new somebean(3), new somebean(4) })); // our jarr is now consistent.",82
+"For structure consistency, it would be recommended that the above code is changed to look like 1 of 2 ways.","somebean[] myarr = new somebean[]{ new somebean(1), new somebean(2) };
+// these will be wrapped
+jsonarray jarr = new jsonarray(myarr);
+// these will be wrapped
+jarr.putall(new jsonarray(new somebean[]{ new somebean(3), new somebean(4) }));
+// our jarr is now consistent.","somebean[] myarr = new somebean[]{ new somebean(1), new somebean(2) }; jsonarray jarr = new jsonarray(); // these will not be wrapped jarr.putall(myarr); // these will not be wrapped jarr.putall(new somebean[]{ new somebean(3), new somebean(4) }); // our jarr is now consistent.",83
+"For structure consistency, it would be recommended that the above code is changed to look like 1 of 2 ways.","somebean[] myarr = new somebean[]{ new somebean(1), new somebean(2) };
+// these will be wrapped
+jsonarray jarr = new jsonarray(myarr);
+// these will be wrapped
+jarr.putall(new jsonarray(new somebean[]{ new somebean(3), new somebean(4) }));
+// our jarr is now consistent.","somebean[] myarr = new somebean[]{ new somebean(1), new somebean(2) }; // these will be wrapped jsonarray jarr = new jsonarray(myarr); // these will be wrapped jarr.putall(new jsonarray(new somebean[]{ new somebean(3), new somebean(4) })); // our jarr is now consistent.",98

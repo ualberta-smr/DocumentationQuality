@@ -31,16 +31,32 @@ def call_extractor(inp):
     return result.stdout.decode("utf-8")
 
 
+def preprocess(raw_html):
+    code = re.compile(r"(?:<code|<pre).*?>(.*?)</(?:code|pre)>")
+    text = raw_html
+    if re.findall(code, text):
+        for code_term in re.findall(code, text):
+            text = re.sub(code, "<tt>" + code_term + "</tt>", text, 1)
+    # We want to replace all tags except <tt> and <h1-6>
+    replaceable = re.compile(r"<(?!/?t{2})(?!h[1-6]).*?>")
+    text = re.sub(replaceable, "", text)
+    return text
+
+
 def get_paragraphs_and_tasks(paragraphs, task_file):
+    tt = re.compile(r"</?tt>")
     with open(task_file, "w", encoding="utf-8", newline="") as out_file:
         writer = csv.writer(out_file, quoting=csv.QUOTE_MINIMAL)
         for paragraph in paragraphs.items():
             if len(paragraph[0].classes) == 0:
-                extracted = call_extractor(paragraph.text())
+                text = preprocess(paragraph.html())
+                extracted = call_extractor(text)
                 if extracted:
                     extracted = extracted.replace("\r\n", ",")
                     extracted = extracted.replace("\n", ",")
-                    writer.writerow([paragraph.text().strip(), extracted])
+                    extracted = re.sub(tt, "", extracted)
+                    # Remove the trailing comma
+                    writer.writerow([paragraph.text().strip(), extracted[:-1]])
 
 
 def fuzzy_compare(potential, paragraph):
