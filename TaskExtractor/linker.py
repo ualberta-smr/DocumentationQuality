@@ -71,10 +71,21 @@ def link_code_examples_and_paragraphs(code_examples, paragraphs, link_file):
     with open(link_file, mode, encoding="utf-8", newline="") as out_file:
         writer = csv.writer(out_file, quoting=csv.QUOTE_MINIMAL)
         for example in code_examples.items():
+            # exclude code/pre that is inline a (p)aragraph
             if example.parent()[0].tag != "p":
                 code = example
-                # Look for the closest parent with siblings
-                while example.siblings().length == 0:
+                # Look for the closest parent with siblings of tag "p" or we reach a containing div
+                potential = False
+                while True:
+                    if example.siblings().length != 0:
+                        for child in example.parent().children():
+                            if child.tag == "p":
+                                potential = True
+                                break
+                        if potential:
+                            break
+                        if example[0].tag == "div":
+                            break
                     example = example.parent()
 
                 # Find the paragraph that is right above the code example not crossing a header
@@ -117,16 +128,24 @@ def extract_and_link(url):
         os.chdir("TaskExtractor")
     with open(p_file, "r", newline="") as p:
         paragraphs = list(e[0] for e in list(csv.reader(p)))
-        link_file = filename_maker(url, "links")
+        link_pot = filename_maker(url, "links_pot")
         # Taken from: https://stackoverflow.com/questions/10840533/most-pythonic-way-to-delete-a-file-which-may-not-exist
         # User Matt, at 10:56 am MDT
         try:
-            os.remove(link_file)
+            os.remove(link_pot)
         except OSError as e:
             if e.errno != errno.ENOENT:
                 raise
-        link_code_examples_and_paragraphs(code_examples, paragraphs, link_file)
-        link_code_examples_and_paragraphs(pre_examples, paragraphs, link_file)
+        link_code_examples_and_paragraphs(code_examples, paragraphs, link_pot)
+        link_code_examples_and_paragraphs(pre_examples, paragraphs, link_pot)
+    # Remove duplicates
+    with open(link_pot, "r", encoding="utf-8", newline="") as potential, open(filename_maker(url, "links"), "w", encoding="utf-8", newline="") as final:
+        seen = set()
+        for line in potential:
+            if line not in seen:
+                seen.add(line)
+                final.write(line)
+    os.remove(link_pot)
     os.chdir("..")
 
 

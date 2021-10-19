@@ -93,3 +93,62 @@ Don’t be afraid to split components into smaller components.,"function comment
 "In contrast, this function is impure because it changes its own input:","function withdraw(account, amount) {
   account.total -= amount;
 }","function withdraw(account, amount) { account.total -= amount; }",97
+"Previously, we only encountered React elements that represent DOM tags:",const element = <div />;
+"However, elements can also represent user-defined components:","const element = <welcome name=""sara"" />;"
+"Components can refer to other components in their output. This lets us use the same component abstraction for any level of detail. A button, a form, a dialog, a screen: in React apps, all those are commonly expressed as components.","function welcome(props) {
+  return <h1>hello, {props.name}</h1>;
+}
+
+function app() {
+  return (
+    <div>
+      <welcome name=""sara"" />      <welcome name=""cahal"" />      <welcome name=""edite"" />    </div>
+  );
+}
+
+reactdom.render(
+  <app />,
+  document.getelementbyid('root')
+);"
+"First, we will extract Avatar:","function avatar(props) {
+  return (
+    <img classname=""avatar""      src={props.user.avatarurl}      alt={props.user.name}    />  );
+}"
+We can now simplify Comment a tiny bit:,"function comment(props) {
+  return (
+    <div classname=""comment"">
+      <div classname=""userinfo"">
+        <avatar user={props.author} />        <div classname=""userinfo-name"">
+          {props.author.name}
+        </div>
+      </div>
+      <div classname=""comment-text"">
+        {props.text}
+      </div>
+      <div classname=""comment-date"">
+        {formatdate(props.date)}
+      </div>
+    </div>
+  );
+}"
+This lets us simplify Comment even further:,"function comment(props) {
+  return (
+    <div classname=""comment"">
+      <userinfo user={props.author} />      <div classname=""comment-text"">
+        {props.text}
+      </div>
+      <div classname=""comment-date"">
+        {formatdate(props.date)}
+      </div>
+    </div>
+  );
+}"
+"Whether you declare a component as a function or a class, it must never modify its own props. Consider this sum function:","function sum(a, b) {
+  return a + b;
+}"
+"For example, we can create an App component that renders Welcome many times:",,"function welcome(props) { return <h1>hello, {props.name}h1>; } function app() { return ( <div> <welcome name=""sara"" /> <welcome name=""cahal"" /> <welcome name=""edite"" /> div> ); } reactdom.render( <app />, document.getelementbyid('root') );"
+"This component can be tricky to change because of all the nesting, and it is also hard to reuse individual parts of it. Let’s extract a few components from it.",,"function avatar(props) { return ( <img classname=""avatar"" src={props.user.avatarurl} alt={props.user.name} /> ); }"
+We recommend naming props from the component’s own point of view rather than the context in which it is being used.,,"function comment(props) { return ( <div classname=""comment""> <div classname=""userinfo""> <avatar user={props.author} /> <div classname=""userinfo-name""> {props.author.name} div> div> <div classname=""comment-text""> {props.text} div> <div classname=""comment-date""> {formatdate(props.date)} div> div> ); }"
+"For example, we can create an App component that renders Welcome many times:",,"function welcome(props) { return <h1>hello, {props.name}h1>; } function app() { return ( <div> <welcome name=""sara"" /> <welcome name=""cahal"" /> <welcome name=""edite"" /> div> ); } reactdom.render( <app />, document.getelementbyid('root') );"
+"This component can be tricky to change because of all the nesting, and it is also hard to reuse individual parts of it. Let’s extract a few components from it.",,"function avatar(props) { return ( <img classname=""avatar"" src={props.user.avatarurl} alt={props.user.name} /> ); }"
+We recommend naming props from the component’s own point of view rather than the context in which it is being used.,,"function comment(props) { return ( <div classname=""comment""> <div classname=""userinfo""> <avatar user={props.author} /> <div classname=""userinfo-name""> {props.author.name} div> div> <div classname=""comment-text""> {props.text} div> <div classname=""comment-date""> {formatdate(props.date)} div> div> ); }"

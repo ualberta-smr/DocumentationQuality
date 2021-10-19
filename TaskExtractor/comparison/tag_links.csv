@@ -145,3 +145,149 @@ high -> jj
 rate -> nn
 of -> in
 unemployment -> none",">>> from nltk.corpus import brown >>> from nltk.tag import unigramtagger >>> tagger = unigramtagger(brown.tagged_sents(categories='news')[:500]) >>> sent = ['mitchell', 'decried', 'the', 'high', 'rate', 'of', 'unemployment'] >>> for word, tag in tagger.tag(sent): ... print(word, '->', tag) mitchell -> np decried -> none the -> at high -> jj rate -> nn of -> in unemployment -> none",97
+,">>> backoff = regexptagger([
+... (r'^-?[0-9]+(.[0-9]+)?$', 'cd'),   # cardinal numbers
+... (r'(the|the|a|a|an|an)$', 'at'),   # articles
+... (r'.*able$', 'jj'),                # adjectives
+... (r'.*ness$', 'nn'),                # nouns formed from adjectives
+... (r'.*ly$', 'rb'),                  # adverbs
+... (r'.*s$', 'nns'),                  # plural nouns
+... (r'.*ing$', 'vbg'),                # gerunds
+... (r'.*ed$', 'vbd'),                 # past tense verbs
+... (r'.*', 'nn')                      # nouns (default)
+... ])"
+"# NOTE1: (!!FIXME) A far better baseline uses nltk.tag.UnigramTagger, # with a RegexpTagger only as backoff. For instance, # >>> baseline = UnigramTagger(baseline_data, backoff=backoff) # However, as of Nov 2013, nltk.tag.UnigramTagger does not yield consistent results # between python versions. The simplistic backoff above is a workaround to make doctests # get consistent input.",>>> baseline = backoff #see note1
+,">>> baseline.evaluate(gold_data) 
+0.2450142..."
+,">>> tagger1 = tt.train(training_data, max_rules=10)
+tbl train (fast) (seqs: 100; tokens: 2417; tpls: 2; min score: 2; min acc: none)
+finding initial useful rules...
+    found 845 useful rules.
+
+           b      |
+   s   f   r   o  |        score = fixed - broken
+   c   i   o   t  |  r     fixed = num tags changed incorrect -> correct
+   o   x   k   h  |  u     broken = num tags changed correct -> incorrect
+   r   e   e   e  |  l     other = num tags changed incorrect -> incorrect
+   e   d   n   r  |  e
+------------------+-------------------------------------------------------
+ 132 132   0   0  | at->dt if pos:nn@[-1]
+  85  85   0   0  | nn->, if pos:nn@[-1] & word:,@[0]
+  69  69   0   0  | nn->. if pos:nn@[-1] & word:.@[0]
+  51  51   0   0  | nn->in if pos:nn@[-1] & word:of@[0]
+  47  63  16 161  | nn->in if pos:nns@[-1]
+  33  33   0   0  | nn->to if pos:nn@[-1] & word:to@[0]
+  26  26   0   0  | in->. if pos:nns@[-1] & word:.@[0]
+  24  24   0   0  | in->, if pos:nns@[-1] & word:,@[0]
+  22  27   5  24  | nn->-none- if pos:vbd@[-1]
+  17  17   0   0  | nn->cc if pos:nn@[-1] & word:and@[0]"
+,">>> tagger1.rules()[1:3]
+(rule('001', 'nn', ',', [(pos([-1]),'nn'), (word([0]),',')]), rule('001', 'nn', '.', [(pos([-1]),'nn'), (word([0]),'.')]))"
+,">>> train_stats = tagger1.train_stats()
+>>> [train_stats[stat] for stat in ['initialerrors', 'finalerrors', 'rulescores']]
+[1775, 1269, [132, 85, 69, 51, 47, 33, 26, 24, 22, 17]]"
+,">>> tagger1.print_template_statistics(printunused=false)
+template statistics (train)  2 templates, 10 rules)
+train (   2417 tokens) initial  1775 0.2656 final:  1269 0.4750
+#id | score (train) |  #rules     | template
+--------------------------------------------
+001 |   305   0.603 |   7   0.700 | template(pos([-1]),word([0]))
+000 |   201   0.397 |   3   0.300 | template(pos([-1]))"
+,">>> tagger1.evaluate(gold_data) 
+0.43996..."
+,">>> tagged, test_stats = tagger1.batch_tag_incremental(testing_data, gold_data)"
+,">>> tagged[33][12:] == [('foreign', 'in'), ('debt', 'nn'), ('of', 'in'), ('$', 'nn'), ('64', 'cd'),
+... ('billion', 'nn'), ('*u*', 'nn'), ('--', 'nn'), ('the', 'dt'), ('third-highest', 'nn'), ('in', 'nn'),
+... ('the', 'dt'), ('developing', 'vbg'), ('world', 'nn'), ('.', '.')]
+true"
+,">>> [test_stats[stat] for stat in ['initialerrors', 'finalerrors', 'rulescores']]
+[1855, 1376, [100, 85, 67, 58, 27, 36, 27, 16, 31, 32]]"
+,">>> tagger2.evaluate(gold_data)  
+0.44159544...
+>>> tagger2.rules()[2:4]
+(rule('001', 'nn', '.', [(pos([-1]),'nn'), (word([0]),'.')]), rule('001', 'nn', 'in', [(pos([-1]),'nn'), (word([0]),'of')])"
+"where the summation ranges over all state sequences, S. Let Z = Pr(O) = sum_S Pr(S, O)} where the summation ranges over all state sequences and O is the observation sequence. As such the entropy can be re-expressed as:","h = - sum_s pr(s | o) log [ pr(s, o) / z ]
+= log z - sum_s pr(s | o) log pr(s, 0)
+= log z - sum_s pr(s | o) [ log pr(s_0) + sum_t pr(s_t | s_{t-1}) + sum_t pr(o_t | s_t) ]"
+"
+A class for pos tagging with HunPos. The input is the paths to:",">>> from nltk.tag import hunpostagger
+>>> ht = hunpostagger('en_wsj.model')
+>>> ht.tag('what is the airspeed of an unladen swallow ?'.split())
+[('what', 'wp'), ('is', 'vbz'), ('the', 'dt'), ('airspeed', 'nn'), ('of', 'in'), ('an', 'dt'), ('unladen', 'nn'), ('swallow', 'vb'), ('?', '.')]
+>>> ht.close()"
+Maps the tag from the source tagset to the target tagset.,">>> map_tag('en-ptb', 'universal', 'vbz')
+'verb'
+>>> map_tag('en-ptb', 'universal', 'vbp')
+'verb'
+>>> map_tag('en-ptb', 'universal', '``')
+'.'"
+Train the model,>>> tagger = perceptrontagger(load=false)
+Train the model,">>> tagger.train([[('today','nn'),('is','vbz'),('good','jj'),('day','nn')],
+... [('yes','nns'),('it','prp'),('beautiful','jj')]])"
+Train the model,">>> tagger.tag(['today','is','a','beautiful','day'])
+[('today', 'nn'), ('is', 'prp'), ('a', 'prp'), ('beautiful', 'jj'), ('day', 'nn')]"
+SennaTagger will automatically search for executable file specified in SENNA environment variable,">>> from nltk.tag import sennatagger
+>>> tagger = sennatagger('/usr/share/senna-v3.0')
+>>> tagger.tag('what is the airspeed of an unladen swallow ?'.split()) 
+[('what', 'wp'), ('is', 'vbz'), ('the', 'dt'), ('airspeed', 'nn'),
+('of', 'in'), ('an', 'dt'), ('unladen', 'nn'), ('swallow', 'nn'), ('?', '.')]"
+SennaTagger will automatically search for executable file specified in SENNA environment variable,">>> from nltk.tag import sennachunktagger
+>>> chktagger = sennachunktagger('/usr/share/senna-v3.0')
+>>> chktagger.tag('what is the airspeed of an unladen swallow ?'.split()) 
+[('what', 'b-np'), ('is', 'b-vp'), ('the', 'b-np'), ('airspeed', 'i-np'),
+('of', 'b-pp'), ('an', 'b-np'), ('unladen', 'i-np'), ('swallow', 'i-np'),
+('?', 'o')]"
+SennaTagger will automatically search for executable file specified in SENNA environment variable,">>> from nltk.tag import sennanertagger
+>>> nertagger = sennanertagger('/usr/share/senna-v3.0')
+>>> nertagger.tag('shakespeare theatre was in london .'.split()) 
+[('shakespeare', 'b-per'), ('theatre', 'o'), ('was', 'o'), ('in', 'o'),
+('london', 'b-loc'), ('.', 'o')]
+>>> nertagger.tag('un headquarters are in ny , usa .'.split()) 
+[('un', 'b-org'), ('headquarters', 'o'), ('are', 'o'), ('in', 'o'),
+('ny', 'b-loc'), (',', 'o'), ('usa', 'b-loc'), ('.', 'o')]"
+Extracts the chunks in a BIO chunk-tagged sentence.,">>> from nltk.tag import sennachunktagger
+>>> chktagger = sennachunktagger('/usr/share/senna-v3.0')
+>>> sent = 'what is the airspeed of an unladen swallow ?'.split()
+>>> tagged_sent = chktagger.tag(sent) 
+>>> tagged_sent 
+[('what', 'b-np'), ('is', 'b-vp'), ('the', 'b-np'), ('airspeed', 'i-np'),
+('of', 'b-pp'), ('an', 'b-np'), ('unladen', 'i-np'), ('swallow', 'i-np'),
+('?', 'o')]
+>>> list(chktagger.bio_to_chunks(tagged_sent, chunk_type='np')) 
+[('what', '0'), ('the airspeed', '2-3'), ('an unladen swallow', '5-6-7')]"
+A class for Named-Entity Tagging with Stanford Tagger. The input is the paths to:,">>> from nltk.tag import stanfordnertagger
+>>> st = stanfordnertagger('english.all.3class.distsim.crf.ser.gz') 
+>>> st.tag('rami eid is studying at stony brook university in ny'.split()) 
+[('rami', 'person'), ('eid', 'person'), ('is', 'o'), ('studying', 'o'),
+ ('at', 'o'), ('stony', 'organization'), ('brook', 'organization'),
+ ('university', 'organization'), ('in', 'o'), ('ny', 'location')]"
+A class for pos tagging with Stanford Tagger. The input is the paths to:,">>> from nltk.tag import stanfordpostagger
+>>> st = stanfordpostagger('english-bidirectional-distsim.tagger')
+>>> st.tag('what is the airspeed of an unladen swallow ?'.split())
+[('what', 'wp'), ('is', 'vbz'), ('the', 'dt'), ('airspeed', 'nn'), ('of', 'in'), ('an', 'dt'), ('unladen', 'jj'), ('swallow', 'vb'), ('?', '.')]"
+We evaluate a tagger on data that was not seen during training:,">>> tagger.evaluate(brown.tagged_sents(categories='news')[500:600])
+0.7..."
+Use NLTK’s currently recommended part of speech tagger to tag the given list of tokens.,">>> from nltk.tag import pos_tag
+>>> from nltk.tokenize import word_tokenize
+>>> pos_tag(word_tokenize(""john's big idea isn't all that bad.""))
+[('john', 'nnp'), (""'s"", 'pos'), ('big', 'jj'), ('idea', 'nn'), ('is', 'vbz'),
+(""n't"", 'rb'), ('all', 'pdt'), ('that', 'dt'), ('bad', 'jj'), ('.', '.')]
+>>> pos_tag(word_tokenize(""john's big idea isn't all that bad.""), tagset='universal')
+[('john', 'noun'), (""'s"", 'prt'), ('big', 'adj'), ('idea', 'noun'), ('is', 'verb'),
+(""n't"", 'adv'), ('all', 'det'), ('that', 'det'), ('bad', 'adj'), ('.', '.')]"
+"Trains the Brill tagger on the corpus train_sents, producing at most max_rules transformations, each of which reduces the net number of errors in the corpus by at least min_score, and each of which has accuracy not lower than min_acc.",,">>> backoff = regexptagger([ ... (r'^-?[0-9]+(.[0-9]+)?$', 'cd'), # cardinal numbers ... (r'(the|the|a|a|an|an)$', 'at'), # articles ... (r'.*able$', 'jj'), # adjectives ... (r'.*ness$', 'nn'), # nouns formed from adjectives ... (r'.*ly$', 'rb'), # adverbs ... (r'.*s$', 'nns'), # plural nouns ... (r'.*ing$', 'vbg'), # gerunds ... (r'.*ed$', 'vbd'), # past tense verbs ... (r'.*', 'nn') # nouns (default) ... ])"
+"Trains the Brill tagger on the corpus train_sents, producing at most max_rules transformations, each of which reduces the net number of errors in the corpus by at least min_score, and each of which has accuracy not lower than min_acc.",,>>> baseline = backoff #see note1
+"Trains the Brill tagger on the corpus train_sents, producing at most max_rules transformations, each of which reduces the net number of errors in the corpus by at least min_score, and each of which has accuracy not lower than min_acc.",,>>> baseline.evaluate(gold_data) 0.2450142...
+"#templates >>> Template._cleartemplates() #clear any templates created in earlier tests >>> templates = [Template(Pos([-1])), Template(Pos([-1]), Word([0]))]",,">>> tagger1 = tt.train(training_data, max_rules=10) tbl train (fast) (seqs: 100; tokens: 2417; tpls: 2; min score: 2; min acc: none) finding initial useful rules... found 845 useful rules. b | s f r o | score = fixed - broken c i o t | r fixed = num tags changed incorrect -> correct o x k h | u broken = num tags changed correct -> incorrect r e e e | l other = num tags changed incorrect -> incorrect e d n r | e ------------------+------------------------------------------------------- 132 132 0 0 | at->dt if pos:nn@[-1] 85 85 0 0 | nn->, if pos:nn@[-1] & word:,@[0] 69 69 0 0 | nn->. if pos:nn@[-1] & word:.@[0] 51 51 0 0 | nn->in if pos:nn@[-1] & word:of@[0] 47 63 16 161 | nn->in if pos:nns@[-1] 33 33 0 0 | nn->to if pos:nn@[-1] & word:to@[0] 26 26 0 0 | in->. if pos:nns@[-1] & word:.@[0] 24 24 0 0 | in->, if pos:nns@[-1] & word:,@[0] 22 27 5 24 | nn->-none- if pos:vbd@[-1] 17 17 0 0 | nn->cc if pos:nn@[-1] & word:and@[0]"
+"#templates >>> Template._cleartemplates() #clear any templates created in earlier tests >>> templates = [Template(Pos([-1])), Template(Pos([-1]), Word([0]))]",,">>> tagger1.rules()[1:3] (rule('001', 'nn', ',', [(pos([-1]),'nn'), (word([0]),',')]), rule('001', 'nn', '.', [(pos([-1]),'nn'), (word([0]),'.')]))"
+"#templates >>> Template._cleartemplates() #clear any templates created in earlier tests >>> templates = [Template(Pos([-1])), Template(Pos([-1]), Word([0]))]",,">>> train_stats = tagger1.train_stats() >>> [train_stats[stat] for stat in ['initialerrors', 'finalerrors', 'rulescores']] [1775, 1269, [132, 85, 69, 51, 47, 33, 26, 24, 22, 17]]"
+"#templates >>> Template._cleartemplates() #clear any templates created in earlier tests >>> templates = [Template(Pos([-1])), Template(Pos([-1]), Word([0]))]",,">>> tagger1.print_template_statistics(printunused=false) template statistics (train) 2 templates, 10 rules) train ( 2417 tokens) initial 1775 0.2656 final: 1269 0.4750 #id | score (train) | #rules | template -------------------------------------------- 001 | 305 0.603 | 7 0.700 | template(pos([-1]),word([0])) 000 | 201 0.397 | 3 0.300 | template(pos([-1]))"
+"#templates >>> Template._cleartemplates() #clear any templates created in earlier tests >>> templates = [Template(Pos([-1])), Template(Pos([-1]), Word([0]))]",,>>> tagger1.evaluate(gold_data) 0.43996...
+"#templates >>> Template._cleartemplates() #clear any templates created in earlier tests >>> templates = [Template(Pos([-1])), Template(Pos([-1]), Word([0]))]",,">>> tagged, test_stats = tagger1.batch_tag_incremental(testing_data, gold_data)"
+"#templates >>> Template._cleartemplates() #clear any templates created in earlier tests >>> templates = [Template(Pos([-1])), Template(Pos([-1]), Word([0]))]",,">>> tagged[33][12:] == [('foreign', 'in'), ('debt', 'nn'), ('of', 'in'), ('$', 'nn'), ('64', 'cd'), ... ('billion', 'nn'), ('*u*', 'nn'), ('--', 'nn'), ('the', 'dt'), ('third-highest', 'nn'), ('in', 'nn'), ... ('the', 'dt'), ('developing', 'vbg'), ('world', 'nn'), ('.', '.')] true"
+"#templates >>> Template._cleartemplates() #clear any templates created in earlier tests >>> templates = [Template(Pos([-1])), Template(Pos([-1]), Word([0]))]",,">>> [test_stats[stat] for stat in ['initialerrors', 'finalerrors', 'rulescores']] [1855, 1376, [100, 85, 67, 58, 27, 36, 27, 16, 31, 32]]"
+"# a high-accuracy tagger >>> tagger2 = tt.train(training_data, max_rules=10, min_acc=0.99) TBL train (fast) (seqs: 100; tokens: 2417; tpls: 2; min score: 2; min acc: 0.99) Finding initial useful rules…",,">>> tagger2.evaluate(gold_data) 0.44159544... >>> tagger2.rules()[2:4] (rule('001', 'nn', '.', [(pos([-1]),'nn'), (word([0]),'.')]), rule('001', 'nn', 'in', [(pos([-1]),'nn'), (word([0]),'of')]))"
+Note: Unit tests for this module can be found in test/unit/test_senna.py,,">>> from nltk.tag import sennatagger >>> tagger = sennatagger('/usr/share/senna-v3.0') >>> tagger.tag('what is the airspeed of an unladen swallow ?'.split()) [('what', 'wp'), ('is', 'vbz'), ('the', 'dt'), ('airspeed', 'nn'), ('of', 'in'), ('an', 'dt'), ('unladen', 'nn'), ('swallow', 'nn'), ('?', '.')]"
+Note: Unit tests for this module can be found in test/unit/test_senna.py,,">>> from nltk.tag import sennachunktagger >>> chktagger = sennachunktagger('/usr/share/senna-v3.0') >>> chktagger.tag('what is the airspeed of an unladen swallow ?'.split()) [('what', 'b-np'), ('is', 'b-vp'), ('the', 'b-np'), ('airspeed', 'i-np'), ('of', 'b-pp'), ('an', 'b-np'), ('unladen', 'i-np'), ('swallow', 'i-np'), ('?', 'o')]"
+Note: Unit tests for this module can be found in test/unit/test_senna.py,,">>> from nltk.tag import sennanertagger >>> nertagger = sennanertagger('/usr/share/senna-v3.0') >>> nertagger.tag('shakespeare theatre was in london .'.split()) [('shakespeare', 'b-per'), ('theatre', 'o'), ('was', 'o'), ('in', 'o'), ('london', 'b-loc'), ('.', 'o')] >>> nertagger.tag('un headquarters are in ny , usa .'.split()) [('un', 'b-org'), ('headquarters', 'o'), ('are', 'o'), ('in', 'o'), ('ny', 'b-loc'), (',', 'o'), ('usa', 'b-loc'), ('.', 'o')]"
+Note that words that the tagger has not seen during training receive a tag of None.,,>>> tagger.evaluate(brown.tagged_sents(categories='news')[500:600]) 0.7...

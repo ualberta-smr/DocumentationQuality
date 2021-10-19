@@ -811,3 +811,105 @@ qnsize = 25
 
 # makes it go faster
 featurediffthresh=0.05","# location of training data trainfilelist = /path/to/conll.3class.train # location of test data testfile = /path/to/all.3class.test # where to store the saved model serializeto = ner.model.ser.gz type = crf wordfunction = edu.stanford.nlp.process.americanizefunction usedistsim = false # establish the data file format map = word=0,answer=1 savefeatureindextodisk = true useclassfeature=true useword=true usengrams=true nomidngrams=true maxngramleng=6 useprev=true usenext=true uselongsequences=true usesequences=true useprevsequences=true maxleft=1 usetypeseqs=true usetypeseqs2=true usetypeysequences=true useoccurrencepatterns=true uselastrealword=true usenextrealword=true normalize=true wordshape=chris2uselc usedisjunctive=true disjunctionwidth=5 readerandwriter=edu.stanford.nlp.sequences.columndocumentreaderandwriter useobservedsequencesonly=true useqn = true qnsize = 25 # makes it go faster featurediffthresh=0.05",95
+The tags set by this phase include:,"cause_of_death, city, country, criminal_charge, email, handle,
+ideology, nationality, religion, state_or_province, title, url"
+"means to match the token “Bachelor”, then the token “of”, and finally either the token “Arts” or “Science”.",bachelor of (arts|science)	degree	misc	1.0
+"As an example, this is the default ner.fine.regexner.mapping setting:","ignorecase=true,validpospattern=^(nn|jj).*,edu/stanford/nlp/models/kbp/english/gazetteers/regexner_caseless.tab;edu/stanford/nlp/models/kbp/english/gazetteers/regexner_cased.tab"
+The two rules files are:,"edu/stanford/nlp/models/kbp/english/gazetteers/regexner_caseless.tab
+edu/stanford/nlp/models/kbp/english/gazetteers/regexner_cased.tab"
+Your rules file might look like this /path/to/sports_teams.rules,"boston red sox       sports_team     organization,misc       1
+denver broncos       sports_team     organization,misc       1
+detroit red wings    sports_team     organization,misc       1
+los angeles lakers   sports_team     organization,misc       1
+"
+,"package edu.stanford.nlp.examples;
+
+import edu.stanford.nlp.pipeline.*;
+
+import java.util.properties;
+import java.util.stream.collectors;
+
+public class nerpipelinedemo {
+
+  public static void main(string[] args) {
+    // set up pipeline properties
+    properties props = new properties();
+    props.setproperty(""annotators"", ""tokenize,ssplit,pos,lemma,ner"");
+    // example customizations (these are commented out but you can uncomment them to see the results
+
+    // disable fine grained ner
+    // props.setproperty(""ner.applyfinegrained"", ""false"");
+
+    // customize fine grained ner
+    // props.setproperty(""ner.fine.regexner.mapping"", ""example.rules"");
+    // props.setproperty(""ner.fine.regexner.ignorecase"", ""true"");
+
+    // add additional rules, customize tokensregexner annotator
+    // props.setproperty(""ner.additional.regexner.mapping"", ""example.rules"");
+    // props.setproperty(""ner.additional.regexner.ignorecase"", ""true"");
+
+    // add 2 additional rules files ; set the first one to be case-insensitive
+    // props.setproperty(""ner.additional.regexner.mapping"", ""ignorecase=true,example_one.rules;example_two.rules"");
+
+    // set document date to be a specific date (other options are explained in the document date section)
+    // props.setproperty(""ner.docdate.usefixeddate"", ""2019-01-01"");
+
+    // only run rules based ner
+    // props.setproperty(""ner.rulesonly"", ""true"");
+
+    // only run statistical ner
+    // props.setproperty(""ner.statisticalonly"", ""true"");
+
+    // set up pipeline
+    stanfordcorenlp pipeline = new stanfordcorenlp(props);
+    // make an example document
+    coredocument doc = new coredocument(""joe smith is from seattle."");
+    // annotate the document
+    pipeline.annotate(doc);
+    // view results
+    system.out.println(""---"");
+    system.out.println(""entities found"");
+    for (coreentitymention em : doc.entitymentions())
+      system.out.println(""\tdetected entity: \t""+em.text()+""\t""+em.entitytype());
+    system.out.println(""---"");
+    system.out.println(""tokens and ner tags"");
+    string tokensandnertags = doc.tokens().stream().map(token -> ""(""+token.word()+"",""+token.ner()+"")"").collect(
+        collectors.joining("" ""));
+    system.out.println(tokensandnertags);
+  }
+
+}
+
+"
+the entity Los Angeles would be assigned the LOCATION tag with a confidence of .992.,"{word: 'los', 'tag': 'location', 'prob': .992} 
+{word: 'angeles', 'tag': 'location', 'prob': .999}"
+The train/dev/test data files should be in the following format:,"joe    person
+smith  person
+lives  o
+in     o
+california    location
+.    o
+
+he    o
+used    o
+to    o
+live    o
+in    o
+oregon    location
+.    o
+"
+Here is the command for starting the training process (make sure your CLASSPATH is set up to include all of the Stanford CoreNLP jars):,"java -xmx2g -cp ""*"" edu.stanford.nlp.ie.crf.crfclassifier -prop ner.model.props"
+"At this point, a series of rules used for the KBP 2017 competition will be run to create more fine-grained NER tags. These rules are applied using a TokensRegexNERAnnotator sub-annotator. That is the main NERCombinerAnnotator builds a TokensRegexNERAnnotator as a sub-annotator and runs it on all sentences as part of it’s entire tagging process. The purpose of these rules is give tokens more specific tags. So for instance California would be tagged as a STATE_OR_PROVINCE rather than just a LOCATION.",,"cause_of_death, city, country, criminal_charge, email, handle, ideology, nationality, religion, state_or_province, title, url"
+"The first column is the tokens pattern, the second column is the NER tag to apply, the third is the types of NER tags that can be overwritten, and the fourth is a priority used for tie-breaking if two rules match a sequence.",,"los angeles city location,misc 1.0"
+Here is a breakdown of how to customize the fine-grained NER. The overall ner annotator creates a sub-annotator called ner.fine.regexner which is an instance of a TokensRegexNERAnnotator.,,"ignorecase=true,validpospattern=^(nn|jj).*,edu/stanford/nlp/models/kbp/english/gazetteers/regexner_caseless.tab;edu/stanford/nlp/models/kbp/english/gazetteers/regexner_cased.tab"
+Here is a breakdown of how to customize the fine-grained NER. The overall ner annotator creates a sub-annotator called ner.fine.regexner which is an instance of a TokensRegexNERAnnotator.,,edu/stanford/nlp/models/kbp/english/gazetteers/regexner_caseless.tab edu/stanford/nlp/models/kbp/english/gazetteers/regexner_cased.tab
+"For instance, suppose you want to match sports teams after the previous NER steps have been run.",,"boston red sox sports_team organization,misc 1 denver broncos sports_team organization,misc 1 detroit red wings sports_team organization,misc 1 los angeles lakers sports_team organization,misc 1"
+The following example shows how to access label confidences for tokens and entities. Each token stores the probability of its NER label given by the CRF that was used to assign the label in the CoreAnnotations.NamedEntityTagProbsAnnotation.class. Each entity mention contains the probability of the token with the lowest label probability in its span. For example if Los Angeles had the following probabilities:,,"{word: 'los', 'tag': 'location', 'prob': .992} {word: 'angeles', 'tag': 'location', 'prob': .999}"
+"The standard training data sets used for PERSON/LOCATION/ORGANIZATION/MISC must be purchased from the LDC, we do not distribute them.",,"java -xmx2g -cp ""*"" edu.stanford.nlp.ie.crf.crfclassifier -prop ner.model.props"
+"At this point, a series of rules used for the KBP 2017 competition will be run to create more fine-grained NER tags. These rules are applied using a TokensRegexNERAnnotator sub-annotator. That is the main NERCombinerAnnotator builds a TokensRegexNERAnnotator as a sub-annotator and runs it on all sentences as part of it’s entire tagging process. The purpose of these rules is give tokens more specific tags. So for instance California would be tagged as a STATE_OR_PROVINCE rather than just a LOCATION.",,"cause_of_death, city, country, criminal_charge, email, handle, ideology, nationality, religion, state_or_province, title, url"
+"The first column is the tokens pattern, the second column is the NER tag to apply, the third is the types of NER tags that can be overwritten, and the fourth is a priority used for tie-breaking if two rules match a sequence.",,"los angeles city location,misc 1.0"
+Here is a breakdown of how to customize the fine-grained NER. The overall ner annotator creates a sub-annotator called ner.fine.regexner which is an instance of a TokensRegexNERAnnotator.,,"ignorecase=true,validpospattern=^(nn|jj).*,edu/stanford/nlp/models/kbp/english/gazetteers/regexner_caseless.tab;edu/stanford/nlp/models/kbp/english/gazetteers/regexner_cased.tab"
+Here is a breakdown of how to customize the fine-grained NER. The overall ner annotator creates a sub-annotator called ner.fine.regexner which is an instance of a TokensRegexNERAnnotator.,,edu/stanford/nlp/models/kbp/english/gazetteers/regexner_caseless.tab edu/stanford/nlp/models/kbp/english/gazetteers/regexner_cased.tab
+"For instance, suppose you want to match sports teams after the previous NER steps have been run.",,"boston red sox sports_team organization,misc 1 denver broncos sports_team organization,misc 1 detroit red wings sports_team organization,misc 1 los angeles lakers sports_team organization,misc 1"
+The following example shows how to access label confidences for tokens and entities. Each token stores the probability of its NER label given by the CRF that was used to assign the label in the CoreAnnotations.NamedEntityTagProbsAnnotation.class. Each entity mention contains the probability of the token with the lowest label probability in its span. For example if Los Angeles had the following probabilities:,,"{word: 'los', 'tag': 'location', 'prob': .992} {word: 'angeles', 'tag': 'location', 'prob': .999}"
+"The standard training data sets used for PERSON/LOCATION/ORGANIZATION/MISC must be purchased from the LDC, we do not distribute them.",,"java -xmx2g -cp ""*"" edu.stanford.nlp.ie.crf.crfclassifier -prop ner.model.props"
