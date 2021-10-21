@@ -1,7 +1,11 @@
 Paragraph,Ground truth tasks,Program tasks,Partial Ratio
-"Request the test.php page, but ignore the return results.","request test.php, ignore results",ignore return results,67
-Request the test.php page and send some additional data along (while still ignoring the return results).,"request test.php, send data, ignore results",request test.php page,86
-Get another page on the same domain. Outputs to console both the data returned and the type of data returned.,"get page, return data",get page on same domain,62
+"Request the test.php page, but ignore the return results.",request test.php,ignore return results,50
+"Request the test.php page, but ignore the return results.", ignore results,ignore return results,73
+Request the test.php page and send some additional data along (while still ignoring the return results).,request test.php,request test.php page,100
+Request the test.php page and send some additional data along (while still ignoring the return results)., send data,request test.php page,30
+Request the test.php page and send some additional data along (while still ignoring the return results)., ignore results,request test.php page,40
+Get another page on the same domain. Outputs to console both the data returned and the type of data returned.,get page,get page on same domain,100
+Get another page on the same domain. Outputs to console both the data returned and the type of data returned., return data,get page on same domain,42
 Pass arrays of data to the server (while still ignoring the return results).,"pass data, ignore results"
 "Get the test.php page contents, which has been returned in json format (""""John"""",""""time""""=>""""2pm"""" ) ); ?>), and add it to the page.",get test.php
 "The success callback function is passed the returned data, which will be an XML root element, text string, JavaScript file, or JSON object, depending on the MIME type of the response. It is also passed the text status of the response.",,"pass returned data,pass success callback function,pass text status of response"

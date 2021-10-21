@@ -30,7 +30,8 @@ def evaluate_tasks(truth, test, filename):
                         if truth_row[0] == test_row[0]:
                             recall_count = 0
                             precision_count = 0
-                            truth_tasks = list(filter(None, truth_row[1].split("\n")))
+                            # Remove any empty strings
+                            truth_tasks = list(filter(None, truth_row[1].split(",")))
                             test_tasks = list(filter(None, test_row[1].split(",")))
                             for truth_task in truth_tasks:
                                 found = False

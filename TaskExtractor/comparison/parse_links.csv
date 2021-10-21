@@ -17,10 +17,31 @@ node [shape=plaintext]
 2 -> 3 [label=""""]
 3 [label=""3 (mary)""]
 }",">>> dg = dependencygraph( ... 'john n 2\n' ... 'loves v 0\n' ... 'mary n 2' ... ) >>> print(dg.to_dot()) digraph g{ edge [dir=forward] node [shape=plaintext] 0 [label=""0 (none)""] 0 -> 2 [label=""root""] 1 [label=""1 (john)""] 2 [label=""2 (loves)""] 2 -> 1 [label=""""] 2 -> 3 [label=""""] 3 [label=""3 (mary)""] }",94
+Class for measuring labelled and unlabelled attachment score for dependency parsing. Note that the evaluation ignores punctuation.,">>> from nltk.parse import dependencygraph, dependencyevaluator",eval,100
 Class for measuring labelled and unlabelled attachment score for dependency parsing. Note that the evaluation ignores punctuation.,">>> from nltk.parse import dependencygraph, dependencyevaluator",">>> from nltk.parse import dependencygraph, dependencyevaluator",100
 Class for measuring labelled and unlabelled attachment score for dependency parsing. Note that the evaluation ignores punctuation.,">>> from nltk.parse import dependencygraph, dependencyevaluator",">>> gold_sent = dependencygraph("""""" ... pierre nnp 2 nmod ... vinken nnp 8 sub ... , , 2 p ... 61 cd 5 nmod ... years nns 6 amod ... old jj 2 nmod ... , , 2 p ... will md 0 root ... join vb 8 vc ... the dt 11 nmod ... board nn 9 obj ... as in 9 vmod ... a dt 15 nmod ... nonexecutive jj 15 nmod ... director nn 12 pmod ... nov. nnp 9 vmod ... 29 cd 16 nmod ... . . 9 vmod ... """""")",49
 Class for measuring labelled and unlabelled attachment score for dependency parsing. Note that the evaluation ignores punctuation.,">>> from nltk.parse import dependencygraph, dependencyevaluator",">>> parsed_sent = dependencygraph("""""" ... pierre nnp 8 nmod ... vinken nnp 1 sub ... , , 3 p ... 61 cd 6 nmod ... years nns 6 amod ... old jj 2 nmod ... , , 3 amod ... will md 0 root ... join vb 8 vc ... the dt 11 amod ... board nn 9 object ... as in 9 nmod ... a dt 15 nmod ... nonexecutive jj 15 nmod ... director nn 12 pmod ... nov. nnp 9 vmod ... 29 cd 16 nmod ... . . 9 vmod ... """""")",51
 Class for measuring labelled and unlabelled attachment score for dependency parsing. Note that the evaluation ignores punctuation.,">>> from nltk.parse import dependencygraph, dependencyevaluator",">>> de = dependencyevaluator([parsed_sent],[gold_sent]) >>> las, uas = de.eval() >>> las 0.6... >>> uas 0.8... >>> abs(uas - 0.8) < 0.00001 true",43
+Class for measuring labelled and unlabelled attachment score for dependency parsing. Note that the evaluation ignores punctuation.,">>> gold_sent = dependencygraph(""""""
+... pierre  nnp     2       nmod
+... vinken  nnp     8       sub
+... ,       ,       2       p
+... 61      cd      5       nmod
+... years   nns     6       amod
+... old     jj      2       nmod
+... ,       ,       2       p
+... will    md      0       root
+... join    vb      8       vc
+... the     dt      11      nmod
+... board   nn      9       obj
+... as      in      9       vmod
+... a       dt      15      nmod
+... nonexecutive    jj      15      nmod
+... director        nn      12      pmod
+... nov.    nnp     9       vmod
+... 29      cd      16      nmod
+... .       .       9       vmod
+... """""")",eval,50
 Class for measuring labelled and unlabelled attachment score for dependency parsing. Note that the evaluation ignores punctuation.,">>> gold_sent = dependencygraph(""""""
 ... pierre  nnp     2       nmod
 ... vinken  nnp     8       sub
@@ -120,6 +141,26 @@ Class for measuring labelled and unlabelled attachment score for dependency pars
 ... nov.    nnp     9       vmod
 ... 29      cd      16      nmod
 ... .       .       9       vmod
+... """""")",eval,50
+Class for measuring labelled and unlabelled attachment score for dependency parsing. Note that the evaluation ignores punctuation.,">>> parsed_sent = dependencygraph(""""""
+... pierre  nnp     8       nmod
+... vinken  nnp     1       sub
+... ,       ,       3       p
+... 61      cd      6       nmod
+... years   nns     6       amod
+... old     jj      2       nmod
+... ,       ,       3       amod
+... will    md      0       root
+... join    vb      8       vc
+... the     dt      11      amod
+... board   nn      9       object
+... as      in      9       nmod
+... a       dt      15      nmod
+... nonexecutive    jj      15      nmod
+... director        nn      12      pmod
+... nov.    nnp     9       vmod
+... 29      cd      16      nmod
+... .       .       9       vmod
 ... """""")",">>> from nltk.parse import dependencygraph, dependencyevaluator",51
 Class for measuring labelled and unlabelled attachment score for dependency parsing. Note that the evaluation ignores punctuation.,">>> parsed_sent = dependencygraph(""""""
 ... pierre  nnp     8       nmod
@@ -188,6 +229,14 @@ Class for measuring labelled and unlabelled attachment score for dependency pars
 >>> uas
 0.8...
 >>> abs(uas - 0.8) < 0.00001
+true",eval,100
+Class for measuring labelled and unlabelled attachment score for dependency parsing. Note that the evaluation ignores punctuation.,">>> de = dependencyevaluator([parsed_sent],[gold_sent])
+>>> las, uas = de.eval()
+>>> las
+0.6...
+>>> uas
+0.8...
+>>> abs(uas - 0.8) < 0.00001
 true",">>> from nltk.parse import dependencygraph, dependencyevaluator",43
 Class for measuring labelled and unlabelled attachment score for dependency parsing. Note that the evaluation ignores punctuation.,">>> de = dependencyevaluator([parsed_sent],[gold_sent])
 >>> las, uas = de.eval()
@@ -213,8 +262,76 @@ Class for measuring labelled and unlabelled attachment score for dependency pars
 0.8...
 >>> abs(uas - 0.8) < 0.00001
 true",">>> de = dependencyevaluator([parsed_sent],[gold_sent]) >>> las, uas = de.eval() >>> las 0.6... >>> uas 0.8... >>> abs(uas - 0.8) < 0.00001 true",95
+A class for dependency parsing with MaltParser. The input is the paths to: - a maltparser directory - (optionally) the path to a pre-trained MaltParser .mco model file - (optionally) the tagger to use for POS tagging before parsing - (optionally) additional Java arguments,">>> from nltk.parse import malt
+>>> # with malt_parser and malt_model environment set.
+>>> mp = malt.maltparser('maltparser-1.7.2', 'engmalt.linear-1.7.mco') 
+>>> mp.parse_one('i shot an elephant in my pajamas .'.split()).tree() 
+(shot i (elephant an) (in (pajamas my)) .)
+>>> # without malt_parser and malt_model environment.
+>>> mp = malt.maltparser('/home/user/maltparser-1.7.2/', '/home/user/engmalt.linear-1.7.mco') 
+>>> mp.parse_one('i shot an elephant in my pajamas .'.split()).tree() 
+(shot i (elephant an) (in (pajamas my)) .)",generate_malt_command,43
+A class for dependency parsing with MaltParser. The input is the paths to: - a maltparser directory - (optionally) the path to a pre-trained MaltParser .mco model file - (optionally) the tagger to use for POS tagging before parsing - (optionally) additional Java arguments,">>> from nltk.parse import malt
+>>> # with malt_parser and malt_model environment set.
+>>> mp = malt.maltparser('maltparser-1.7.2', 'engmalt.linear-1.7.mco') 
+>>> mp.parse_one('i shot an elephant in my pajamas .'.split()).tree() 
+(shot i (elephant an) (in (pajamas my)) .)
+>>> # without malt_parser and malt_model environment.
+>>> mp = malt.maltparser('/home/user/maltparser-1.7.2/', '/home/user/engmalt.linear-1.7.mco') 
+>>> mp.parse_one('i shot an elephant in my pajamas .'.split()).tree() 
+(shot i (elephant an) (in (pajamas my)) .)",parse_sents,55
+A class for dependency parsing with MaltParser. The input is the paths to: - a maltparser directory - (optionally) the path to a pre-trained MaltParser .mco model file - (optionally) the tagger to use for POS tagging before parsing - (optionally) additional Java arguments,">>> from nltk.parse import malt
+>>> # with malt_parser and malt_model environment set.
+>>> mp = malt.maltparser('maltparser-1.7.2', 'engmalt.linear-1.7.mco') 
+>>> mp.parse_one('i shot an elephant in my pajamas .'.split()).tree() 
+(shot i (elephant an) (in (pajamas my)) .)
+>>> # without malt_parser and malt_model environment.
+>>> mp = malt.maltparser('/home/user/maltparser-1.7.2/', '/home/user/engmalt.linear-1.7.mco') 
+>>> mp.parse_one('i shot an elephant in my pajamas .'.split()).tree() 
+(shot i (elephant an) (in (pajamas my)) .)",parse_tagged_sents,44
+A class for dependency parsing with MaltParser. The input is the paths to: - a maltparser directory - (optionally) the path to a pre-trained MaltParser .mco model file - (optionally) the tagger to use for POS tagging before parsing - (optionally) additional Java arguments,">>> from nltk.parse import malt
+>>> # with malt_parser and malt_model environment set.
+>>> mp = malt.maltparser('maltparser-1.7.2', 'engmalt.linear-1.7.mco') 
+>>> mp.parse_one('i shot an elephant in my pajamas .'.split()).tree() 
+(shot i (elephant an) (in (pajamas my)) .)
+>>> # without malt_parser and malt_model environment.
+>>> mp = malt.maltparser('/home/user/maltparser-1.7.2/', '/home/user/engmalt.linear-1.7.mco') 
+>>> mp.parse_one('i shot an elephant in my pajamas .'.split()).tree() 
+(shot i (elephant an) (in (pajamas my)) .)",train,60
+A class for dependency parsing with MaltParser. The input is the paths to: - a maltparser directory - (optionally) the path to a pre-trained MaltParser .mco model file - (optionally) the tagger to use for POS tagging before parsing - (optionally) additional Java arguments,">>> from nltk.parse import malt
+>>> # with malt_parser and malt_model environment set.
+>>> mp = malt.maltparser('maltparser-1.7.2', 'engmalt.linear-1.7.mco') 
+>>> mp.parse_one('i shot an elephant in my pajamas .'.split()).tree() 
+(shot i (elephant an) (in (pajamas my)) .)
+>>> # without malt_parser and malt_model environment.
+>>> mp = malt.maltparser('/home/user/maltparser-1.7.2/', '/home/user/engmalt.linear-1.7.mco') 
+>>> mp.parse_one('i shot an elephant in my pajamas .'.split()).tree() 
+(shot i (elephant an) (in (pajamas my)) .)",train_from_file,33
+A class for dependency parsing with MaltParser. The input is the paths to: - a maltparser directory - (optionally) the path to a pre-trained MaltParser .mco model file - (optionally) the tagger to use for POS tagging before parsing - (optionally) additional Java arguments,">>> from nltk.parse import malt
+>>> # with malt_parser and malt_model environment set.
+>>> mp = malt.maltparser('maltparser-1.7.2', 'engmalt.linear-1.7.mco') 
+>>> mp.parse_one('i shot an elephant in my pajamas .'.split()).tree() 
+(shot i (elephant an) (in (pajamas my)) .)
+>>> # without malt_parser and malt_model environment.
+>>> mp = malt.maltparser('/home/user/maltparser-1.7.2/', '/home/user/engmalt.linear-1.7.mco') 
+>>> mp.parse_one('i shot an elephant in my pajamas .'.split()).tree() 
+(shot i (elephant an) (in (pajamas my)) .)",">>> from nltk.parse import malt >>> # with malt_parser and malt_model environment set. >>> mp = malt.maltparser('maltparser-1.7.2', 'engmalt.linear-1.7.mco') >>> mp.parse_one('i shot an elephant in my pajamas .'.split()).tree() (shot i (elephant an) (in (pajamas my)) .) >>> # without malt_parser and malt_model environment. >>> mp = malt.maltparser('/home/user/maltparser-1.7.2/', '/home/user/engmalt.linear-1.7.mco') >>> mp.parse_one('i shot an elephant in my pajamas .'.split()).tree() (shot i (elephant an) (in (pajamas my)) .)",98
+"A dependency scorer built around a MaxEnt classifier. In this particular class that classifier is a NaiveBayesClassifier. It uses head-word, head-tag, child-word, and child-tag features for classification.",">>> from nltk.parse.dependencygraph import dependencygraph, conll_data2",score,40
+"A dependency scorer built around a MaxEnt classifier. In this particular class that classifier is a NaiveBayesClassifier. It uses head-word, head-tag, child-word, and child-tag features for classification.",">>> from nltk.parse.dependencygraph import dependencygraph, conll_data2",train,40
 "A dependency scorer built around a MaxEnt classifier. In this particular class that classifier is a NaiveBayesClassifier. It uses head-word, head-tag, child-word, and child-tag features for classification.",">>> from nltk.parse.dependencygraph import dependencygraph, conll_data2",">>> from nltk.parse.dependencygraph import dependencygraph, conll_data2",100
 "A dependency scorer built around a MaxEnt classifier. In this particular class that classifier is a NaiveBayesClassifier. It uses head-word, head-tag, child-word, and child-tag features for classification.",">>> from nltk.parse.dependencygraph import dependencygraph, conll_data2",">>> graphs = [dependencygraph(entry) for entry in conll_data2.split('\n\n') if entry] >>> npp = probabilisticnonprojectiveparser() >>> npp.train(graphs, naivebayesdependencyscorer()) >>> parses = npp.parse(['cathy', 'zag', 'hen', 'zwaaien', '.'], ['n', 'v', 'pron', 'adj', 'n', 'punc']) >>> len(list(parses)) 1",58
+"A dependency scorer built around a MaxEnt classifier. In this particular class that classifier is a NaiveBayesClassifier. It uses head-word, head-tag, child-word, and child-tag features for classification.",">>> graphs = [dependencygraph(entry) for entry in conll_data2.split('\n\n') if entry]
+>>> npp = probabilisticnonprojectiveparser()
+>>> npp.train(graphs, naivebayesdependencyscorer())
+>>> parses = npp.parse(['cathy', 'zag', 'hen', 'zwaaien', '.'], ['n', 'v', 'pron', 'adj', 'n', 'punc'])
+>>> len(list(parses))
+1",score,60
+"A dependency scorer built around a MaxEnt classifier. In this particular class that classifier is a NaiveBayesClassifier. It uses head-word, head-tag, child-word, and child-tag features for classification.",">>> graphs = [dependencygraph(entry) for entry in conll_data2.split('\n\n') if entry]
+>>> npp = probabilisticnonprojectiveparser()
+>>> npp.train(graphs, naivebayesdependencyscorer())
+>>> parses = npp.parse(['cathy', 'zag', 'hen', 'zwaaien', '.'], ['n', 'v', 'pron', 'adj', 'n', 'punc'])
+>>> len(list(parses))
+1",train,40
 "A dependency scorer built around a MaxEnt classifier. In this particular class that classifier is a NaiveBayesClassifier. It uses head-word, head-tag, child-word, and child-tag features for classification.",">>> graphs = [dependencygraph(entry) for entry in conll_data2.split('\n\n') if entry]
 >>> npp = probabilisticnonprojectiveparser()
 >>> npp.train(graphs, naivebayesdependencyscorer())
@@ -621,15 +738,6 @@ Check whether there are cycles.,">>> cyclic_dg = dependencygraph()
 >>> cyclic_dg.root = top"
 Check whether there are cycles.,">>> cyclic_dg.contains_cycle()
 [3, 1, 2, 4]"
-A class for dependency parsing with MaltParser. The input is the paths to: - a maltparser directory - (optionally) the path to a pre-trained MaltParser .mco model file - (optionally) the tagger to use for POS tagging before parsing - (optionally) additional Java arguments,">>> from nltk.parse import malt
->>> # with malt_parser and malt_model environment set.
->>> mp = malt.maltparser('maltparser-1.7.2', 'engmalt.linear-1.7.mco') 
->>> mp.parse_one('i shot an elephant in my pajamas .'.split()).tree() 
-(shot i (elephant an) (in (pajamas my)) .)
->>> # without malt_parser and malt_model environment.
->>> mp = malt.maltparser('/home/user/maltparser-1.7.2/', '/home/user/engmalt.linear-1.7.mco') 
->>> mp.parse_one('i shot an elephant in my pajamas .'.split()).tree() 
-(shot i (elephant an) (in (pajamas my)) .)"
 A probabilistic non-projective dependency parser.,">>> class scorer(dependencyscoreri):
 ...     def train(self, graphs):
 ...         pass
@@ -853,6 +961,199 @@ Check the ARC-STANDARD parser,">>> result = parser_std.parse([gold_sent], 'temp.
 >>> de = dependencyevaluator(result, [gold_sent])
 >>> de.eval() >= (0, 0)
 true"
+"A processing class for deriving trees that represent possible structures for a sequence of tokens. These tree structures are known as “parses”. Typically, parsers are used to derive syntax trees for sentences. But parsers can also be used to derive other kinds of tree structure, such as morphological trees and discourse structures.",,grammar
+"A processing class for deriving trees that represent possible structures for a sequence of tokens. These tree structures are known as “parses”. Typically, parsers are used to derive syntax trees for sentences. But parsers can also be used to derive other kinds of tree structure, such as morphological trees and discourse structures.",,parse
+"A processing class for deriving trees that represent possible structures for a sequence of tokens. These tree structures are known as “parses”. Typically, parsers are used to derive syntax trees for sentences. But parsers can also be used to derive other kinds of tree structure, such as morphological trees and discourse structures.",,parse_all
+"A processing class for deriving trees that represent possible structures for a sequence of tokens. These tree structures are known as “parses”. Typically, parsers are used to derive syntax trees for sentences. But parsers can also be used to derive other kinds of tree structure, such as morphological trees and discourse structures.",,parse_one
+"A processing class for deriving trees that represent possible structures for a sequence of tokens. These tree structures are known as “parses”. Typically, parsers are used to derive syntax trees for sentences. But parsers can also be used to derive other kinds of tree structure, such as morphological trees and discourse structures.",,parse_sents
+Interface for parsing with BLLIP Parser. BllipParser objects can be constructed with the BllipParser.from_unified_model_dir class method or manually using the BllipParser constructor.,,from_unified_model_dir
+Interface for parsing with BLLIP Parser. BllipParser objects can be constructed with the BllipParser.from_unified_model_dir class method or manually using the BllipParser constructor.,,parse
+Interface for parsing with BLLIP Parser. BllipParser objects can be constructed with the BllipParser.from_unified_model_dir class method or manually using the BllipParser constructor.,,tagged_parse
+"Charts are encoded with the Chart class, and edges are encoded with the TreeEdge and LeafEdge classes. The chart parser module defines three chart parsers:",,nltk.parse.chart.
+"Charts are encoded with the Chart class, and edges are encoded with the TreeEdge and LeafEdge classes. The chart parser module defines three chart parsers:",,abstractchartrule
+"Charts are encoded with the Chart class, and edges are encoded with the TreeEdge and LeafEdge classes. The chart parser module defines three chart parsers:",,bottomupchartparser
+"Charts are encoded with the Chart class, and edges are encoded with the TreeEdge and LeafEdge classes. The chart parser module defines three chart parsers:",,bottomupleftcornerchartparser
+"Charts are encoded with the Chart class, and edges are encoded with the TreeEdge and LeafEdge classes. The chart parser module defines three chart parsers:",,bottomuppredictcombinerule
+"Charts are encoded with the Chart class, and edges are encoded with the TreeEdge and LeafEdge classes. The chart parser module defines three chart parsers:",,bottomuppredictrule
+"Charts are encoded with the Chart class, and edges are encoded with the TreeEdge and LeafEdge classes. The chart parser module defines three chart parsers:",,cachedtopdownpredictrule
+"A cached version of TopDownPredictRule. After the first time this rule is applied to an edge with a given end and next, it will not generate any more edges for edges with that end and next.",,apply
+"Charts are encoded with the Chart class, and edges are encoded with the TreeEdge and LeafEdge classes. The chart parser module defines three chart parsers:",,chart
+"A blackboard for hypotheses about the syntactic constituents of a sentence. A chart contains a set of edges, and each edge encodes a single hypothesis about the structure of some portion of the sentence.",,child_pointer_lists
+"A blackboard for hypotheses about the syntactic constituents of a sentence. A chart contains a set of edges, and each edge encodes a single hypothesis about the structure of some portion of the sentence.",,dot_digraph
+"A blackboard for hypotheses about the syntactic constituents of a sentence. A chart contains a set of edges, and each edge encodes a single hypothesis about the structure of some portion of the sentence.",,edges
+"A blackboard for hypotheses about the syntactic constituents of a sentence. A chart contains a set of edges, and each edge encodes a single hypothesis about the structure of some portion of the sentence.",,initialize
+"A blackboard for hypotheses about the syntactic constituents of a sentence. A chart contains a set of edges, and each edge encodes a single hypothesis about the structure of some portion of the sentence.",,insert
+"A blackboard for hypotheses about the syntactic constituents of a sentence. A chart contains a set of edges, and each edge encodes a single hypothesis about the structure of some portion of the sentence.",,insert_with_backpointer
+"A blackboard for hypotheses about the syntactic constituents of a sentence. A chart contains a set of edges, and each edge encodes a single hypothesis about the structure of some portion of the sentence.",,iteredges
+"A blackboard for hypotheses about the syntactic constituents of a sentence. A chart contains a set of edges, and each edge encodes a single hypothesis about the structure of some portion of the sentence.",,leaf
+"A blackboard for hypotheses about the syntactic constituents of a sentence. A chart contains a set of edges, and each edge encodes a single hypothesis about the structure of some portion of the sentence.",,leaves
+"A blackboard for hypotheses about the syntactic constituents of a sentence. A chart contains a set of edges, and each edge encodes a single hypothesis about the structure of some portion of the sentence.",,num_edges
+"A blackboard for hypotheses about the syntactic constituents of a sentence. A chart contains a set of edges, and each edge encodes a single hypothesis about the structure of some portion of the sentence.",,num_leaves
+"A blackboard for hypotheses about the syntactic constituents of a sentence. A chart contains a set of edges, and each edge encodes a single hypothesis about the structure of some portion of the sentence.",,parses
+"A blackboard for hypotheses about the syntactic constituents of a sentence. A chart contains a set of edges, and each edge encodes a single hypothesis about the structure of some portion of the sentence.",,pretty_format
+"A blackboard for hypotheses about the syntactic constituents of a sentence. A chart contains a set of edges, and each edge encodes a single hypothesis about the structure of some portion of the sentence.",,pretty_format_edge
+"A blackboard for hypotheses about the syntactic constituents of a sentence. A chart contains a set of edges, and each edge encodes a single hypothesis about the structure of some portion of the sentence.",,pretty_format_leaves
+"A blackboard for hypotheses about the syntactic constituents of a sentence. A chart contains a set of edges, and each edge encodes a single hypothesis about the structure of some portion of the sentence.",,select
+"A blackboard for hypotheses about the syntactic constituents of a sentence. A chart contains a set of edges, and each edge encodes a single hypothesis about the structure of some portion of the sentence.",,trees
+"Charts are encoded with the Chart class, and edges are encoded with the TreeEdge and LeafEdge classes. The chart parser module defines three chart parsers:",,chartparser
+"A generic chart parser. A “strategy”, or list of ChartRuleI instances, is used to decide what edges to add to the chart. In particular, ChartParser uses the following algorithm to parse texts:",,chart_parse
+"A generic chart parser. A “strategy”, or list of ChartRuleI instances, is used to decide what edges to add to the chart. In particular, ChartParser uses the following algorithm to parse texts:",,grammar
+"A generic chart parser. A “strategy”, or list of ChartRuleI instances, is used to decide what edges to add to the chart. In particular, ChartParser uses the following algorithm to parse texts:",,parse
+"Charts are encoded with the Chart class, and edges are encoded with the TreeEdge and LeafEdge classes. The chart parser module defines three chart parsers:",,chartrulei
+"A rule that specifies what new edges are licensed by any given set of existing edges. Each chart rule expects a fixed number of edges, as indicated by the class variable NUM_EDGES. In particular:",,apply
+"A rule that specifies what new edges are licensed by any given set of existing edges. Each chart rule expects a fixed number of edges, as indicated by the class variable NUM_EDGES. In particular:",,apply_everywhere
+"Charts are encoded with the Chart class, and edges are encoded with the TreeEdge and LeafEdge classes. The chart parser module defines three chart parsers:",,edgei
+"Charts are encoded with the Chart class, and edges are encoded with the TreeEdge and LeafEdge classes. The chart parser module defines three chart parsers:",,emptypredictrule
+"Charts are encoded with the Chart class, and edges are encoded with the TreeEdge and LeafEdge classes. The chart parser module defines three chart parsers:",,filteredbottomuppredictcombinerule
+"Charts are encoded with the Chart class, and edges are encoded with the TreeEdge and LeafEdge classes. The chart parser module defines three chart parsers:",,filteredsingleedgefundamentalrule
+"Charts are encoded with the Chart class, and edges are encoded with the TreeEdge and LeafEdge classes. The chart parser module defines three chart parsers:",,nltk.parse.chart.singleedgefundamentalrule
+"Charts are encoded with the Chart class, and edges are encoded with the TreeEdge and LeafEdge classes. The chart parser module defines three chart parsers:",,fundamentalrule
+"Charts are encoded with the Chart class, and edges are encoded with the TreeEdge and LeafEdge classes. The chart parser module defines three chart parsers:",,leafedge
+"Charts are encoded with the Chart class, and edges are encoded with the TreeEdge and LeafEdge classes. The chart parser module defines three chart parsers:",,leafinitrule
+"Charts are encoded with the Chart class, and edges are encoded with the TreeEdge and LeafEdge classes. The chart parser module defines three chart parsers:",,leftcornerchartparser
+"Charts are encoded with the Chart class, and edges are encoded with the TreeEdge and LeafEdge classes. The chart parser module defines three chart parsers:",,nltk.parse.chart.chartparser
+"Charts are encoded with the Chart class, and edges are encoded with the TreeEdge and LeafEdge classes. The chart parser module defines three chart parsers:",,singleedgefundamentalrule
+"A rule that joins a given edge with adjacent edges in the chart, to form combined edges. In particular, this rule specifies that either of the edges:",,num_edges
+"A rule that joins a given edge with adjacent edges in the chart, to form combined edges. In particular, this rule specifies that either of the edges:",,apply
+"Charts are encoded with the Chart class, and edges are encoded with the TreeEdge and LeafEdge classes. The chart parser module defines three chart parsers:",,steppingchartparser
+"Charts are encoded with the Chart class, and edges are encoded with the TreeEdge and LeafEdge classes. The chart parser module defines three chart parsers:",,topdownchartparser
+"Charts are encoded with the Chart class, and edges are encoded with the TreeEdge and LeafEdge classes. The chart parser module defines three chart parsers:",,topdowninitrule
+"Charts are encoded with the Chart class, and edges are encoded with the TreeEdge and LeafEdge classes. The chart parser module defines three chart parsers:",,topdownpredictrule
+"Charts are encoded with the Chart class, and edges are encoded with the TreeEdge and LeafEdge classes. The chart parser module defines three chart parsers:",,treeedge
+"Charts are encoded with the Chart class, and edges are encoded with the TreeEdge and LeafEdge classes. The chart parser module defines three chart parsers:",,demo
+"Charts are encoded with the Chart class, and edges are encoded with the TreeEdge and LeafEdge classes. The chart parser module defines three chart parsers:",,demo_grammar
+Tools for reading and writing dependency trees. The input is assumed to be in Malt-TAB format (http://stp.lingfil.uu.se/~nivre/research/MaltXML.html).,,nltk.parse.dependencygraph.
+Tools for reading and writing dependency trees. The input is assumed to be in Malt-TAB format (http://stp.lingfil.uu.se/~nivre/research/MaltXML.html).,,dependencygraph
+Tools for reading and writing dependency trees. The input is assumed to be in Malt-TAB format (http://stp.lingfil.uu.se/~nivre/research/MaltXML.html).,,dependencygrapherror
+Tools for reading and writing dependency trees. The input is assumed to be in Malt-TAB format (http://stp.lingfil.uu.se/~nivre/research/MaltXML.html).,,conll_demo
+Tools for reading and writing dependency trees. The input is assumed to be in Malt-TAB format (http://stp.lingfil.uu.se/~nivre/research/MaltXML.html).,,conll_file_demo
+Tools for reading and writing dependency trees. The input is assumed to be in Malt-TAB format (http://stp.lingfil.uu.se/~nivre/research/MaltXML.html).,,cycle_finding_demo
+Tools for reading and writing dependency trees. The input is assumed to be in Malt-TAB format (http://stp.lingfil.uu.se/~nivre/research/MaltXML.html).,,demo
+Tools for reading and writing dependency trees. The input is assumed to be in Malt-TAB format (http://stp.lingfil.uu.se/~nivre/research/MaltXML.html).,,malt_demo
+"Data classes and parser implementations for incremental chart parsers, which use dynamic programming to efficiently parse a text. A “chart parser” derives parse trees for a text by iteratively adding “edges” to a “chart”. Each “edge” represents a hypothesis about the tree structure for a subsequence of the text. The “chart” is a “blackboard” for composing and combining these hypotheses.",,nltk.parse.earleychart.
+"Data classes and parser implementations for incremental chart parsers, which use dynamic programming to efficiently parse a text. A “chart parser” derives parse trees for a text by iteratively adding “edges” to a “chart”. Each “edge” represents a hypothesis about the tree structure for a subsequence of the text. The “chart” is a “blackboard” for composing and combining these hypotheses.",,completefundamentalrule
+"Data classes and parser implementations for incremental chart parsers, which use dynamic programming to efficiently parse a text. A “chart parser” derives parse trees for a text by iteratively adding “edges” to a “chart”. Each “edge” represents a hypothesis about the tree structure for a subsequence of the text. The “chart” is a “blackboard” for composing and combining these hypotheses.",,nltk.parse.chart.singleedgefundamentalrule
+"Data classes and parser implementations for incremental chart parsers, which use dynamic programming to efficiently parse a text. A “chart parser” derives parse trees for a text by iteratively adding “edges” to a “chart”. Each “edge” represents a hypothesis about the tree structure for a subsequence of the text. The “chart” is a “blackboard” for composing and combining these hypotheses.",,completerrule
+"Data classes and parser implementations for incremental chart parsers, which use dynamic programming to efficiently parse a text. A “chart parser” derives parse trees for a text by iteratively adding “edges” to a “chart”. Each “edge” represents a hypothesis about the tree structure for a subsequence of the text. The “chart” is a “blackboard” for composing and combining these hypotheses.",,earleychartparser
+"Data classes and parser implementations for incremental chart parsers, which use dynamic programming to efficiently parse a text. A “chart parser” derives parse trees for a text by iteratively adding “edges” to a “chart”. Each “edge” represents a hypothesis about the tree structure for a subsequence of the text. The “chart” is a “blackboard” for composing and combining these hypotheses.",,nltk.parse.earleychart.incrementalchartparser
+"Data classes and parser implementations for incremental chart parsers, which use dynamic programming to efficiently parse a text. A “chart parser” derives parse trees for a text by iteratively adding “edges” to a “chart”. Each “edge” represents a hypothesis about the tree structure for a subsequence of the text. The “chart” is a “blackboard” for composing and combining these hypotheses.",,featurecompletefundamentalrule
+"Data classes and parser implementations for incremental chart parsers, which use dynamic programming to efficiently parse a text. A “chart parser” derives parse trees for a text by iteratively adding “edges” to a “chart”. Each “edge” represents a hypothesis about the tree structure for a subsequence of the text. The “chart” is a “blackboard” for composing and combining these hypotheses.",,nltk.parse.featurechart.featuresingleedgefundamentalrule
+"Data classes and parser implementations for incremental chart parsers, which use dynamic programming to efficiently parse a text. A “chart parser” derives parse trees for a text by iteratively adding “edges” to a “chart”. Each “edge” represents a hypothesis about the tree structure for a subsequence of the text. The “chart” is a “blackboard” for composing and combining these hypotheses.",,featurecompleterrule
+"Data classes and parser implementations for incremental chart parsers, which use dynamic programming to efficiently parse a text. A “chart parser” derives parse trees for a text by iteratively adding “edges” to a “chart”. Each “edge” represents a hypothesis about the tree structure for a subsequence of the text. The “chart” is a “blackboard” for composing and combining these hypotheses.",,nltk.parse.earleychart.completerrule
+"Data classes and parser implementations for incremental chart parsers, which use dynamic programming to efficiently parse a text. A “chart parser” derives parse trees for a text by iteratively adding “edges” to a “chart”. Each “edge” represents a hypothesis about the tree structure for a subsequence of the text. The “chart” is a “blackboard” for composing and combining these hypotheses.",,featureearleychartparser
+"Data classes and parser implementations for incremental chart parsers, which use dynamic programming to efficiently parse a text. A “chart parser” derives parse trees for a text by iteratively adding “edges” to a “chart”. Each “edge” represents a hypothesis about the tree structure for a subsequence of the text. The “chart” is a “blackboard” for composing and combining these hypotheses.",,nltk.parse.earleychart.featureincrementalchartparser
+"Data classes and parser implementations for incremental chart parsers, which use dynamic programming to efficiently parse a text. A “chart parser” derives parse trees for a text by iteratively adding “edges” to a “chart”. Each “edge” represents a hypothesis about the tree structure for a subsequence of the text. The “chart” is a “blackboard” for composing and combining these hypotheses.",,featureincrementalbottomupchartparser
+"Data classes and parser implementations for incremental chart parsers, which use dynamic programming to efficiently parse a text. A “chart parser” derives parse trees for a text by iteratively adding “edges” to a “chart”. Each “edge” represents a hypothesis about the tree structure for a subsequence of the text. The “chart” is a “blackboard” for composing and combining these hypotheses.",,featureincrementalbottomupleftcornerchartparser
+"Data classes and parser implementations for incremental chart parsers, which use dynamic programming to efficiently parse a text. A “chart parser” derives parse trees for a text by iteratively adding “edges” to a “chart”. Each “edge” represents a hypothesis about the tree structure for a subsequence of the text. The “chart” is a “blackboard” for composing and combining these hypotheses.",,featureincrementalchart
+"Data classes and parser implementations for incremental chart parsers, which use dynamic programming to efficiently parse a text. A “chart parser” derives parse trees for a text by iteratively adding “edges” to a “chart”. Each “edge” represents a hypothesis about the tree structure for a subsequence of the text. The “chart” is a “blackboard” for composing and combining these hypotheses.",,featureincrementalchartparser
+"Data classes and parser implementations for incremental chart parsers, which use dynamic programming to efficiently parse a text. A “chart parser” derives parse trees for a text by iteratively adding “edges” to a “chart”. Each “edge” represents a hypothesis about the tree structure for a subsequence of the text. The “chart” is a “blackboard” for composing and combining these hypotheses.",,nltk.parse.featurechart.featurechartparser
+"Data classes and parser implementations for incremental chart parsers, which use dynamic programming to efficiently parse a text. A “chart parser” derives parse trees for a text by iteratively adding “edges” to a “chart”. Each “edge” represents a hypothesis about the tree structure for a subsequence of the text. The “chart” is a “blackboard” for composing and combining these hypotheses.",,featureincrementaltopdownchartparser
+"Data classes and parser implementations for incremental chart parsers, which use dynamic programming to efficiently parse a text. A “chart parser” derives parse trees for a text by iteratively adding “edges” to a “chart”. Each “edge” represents a hypothesis about the tree structure for a subsequence of the text. The “chart” is a “blackboard” for composing and combining these hypotheses.",,featurepredictorrule
+"Data classes and parser implementations for incremental chart parsers, which use dynamic programming to efficiently parse a text. A “chart parser” derives parse trees for a text by iteratively adding “edges” to a “chart”. Each “edge” represents a hypothesis about the tree structure for a subsequence of the text. The “chart” is a “blackboard” for composing and combining these hypotheses.",,nltk.parse.featurechart.featuretopdownpredictrule
+"Data classes and parser implementations for incremental chart parsers, which use dynamic programming to efficiently parse a text. A “chart parser” derives parse trees for a text by iteratively adding “edges” to a “chart”. Each “edge” represents a hypothesis about the tree structure for a subsequence of the text. The “chart” is a “blackboard” for composing and combining these hypotheses.",,featurescannerrule
+"Data classes and parser implementations for incremental chart parsers, which use dynamic programming to efficiently parse a text. A “chart parser” derives parse trees for a text by iteratively adding “edges” to a “chart”. Each “edge” represents a hypothesis about the tree structure for a subsequence of the text. The “chart” is a “blackboard” for composing and combining these hypotheses.",,nltk.parse.earleychart.scannerrule
+"Data classes and parser implementations for incremental chart parsers, which use dynamic programming to efficiently parse a text. A “chart parser” derives parse trees for a text by iteratively adding “edges” to a “chart”. Each “edge” represents a hypothesis about the tree structure for a subsequence of the text. The “chart” is a “blackboard” for composing and combining these hypotheses.",,filteredcompletefundamentalrule
+"Data classes and parser implementations for incremental chart parsers, which use dynamic programming to efficiently parse a text. A “chart parser” derives parse trees for a text by iteratively adding “edges” to a “chart”. Each “edge” represents a hypothesis about the tree structure for a subsequence of the text. The “chart” is a “blackboard” for composing and combining these hypotheses.",,incrementalbottomupchartparser
+"Data classes and parser implementations for incremental chart parsers, which use dynamic programming to efficiently parse a text. A “chart parser” derives parse trees for a text by iteratively adding “edges” to a “chart”. Each “edge” represents a hypothesis about the tree structure for a subsequence of the text. The “chart” is a “blackboard” for composing and combining these hypotheses.",,incrementalbottomupleftcornerchartparser
+"Data classes and parser implementations for incremental chart parsers, which use dynamic programming to efficiently parse a text. A “chart parser” derives parse trees for a text by iteratively adding “edges” to a “chart”. Each “edge” represents a hypothesis about the tree structure for a subsequence of the text. The “chart” is a “blackboard” for composing and combining these hypotheses.",,incrementalchart
+"Data classes and parser implementations for incremental chart parsers, which use dynamic programming to efficiently parse a text. A “chart parser” derives parse trees for a text by iteratively adding “edges” to a “chart”. Each “edge” represents a hypothesis about the tree structure for a subsequence of the text. The “chart” is a “blackboard” for composing and combining these hypotheses.",,incrementalchartparser
+"Data classes and parser implementations for incremental chart parsers, which use dynamic programming to efficiently parse a text. A “chart parser” derives parse trees for a text by iteratively adding “edges” to a “chart”. Each “edge” represents a hypothesis about the tree structure for a subsequence of the text. The “chart” is a “blackboard” for composing and combining these hypotheses.",,incrementalleftcornerchartparser
+"Data classes and parser implementations for incremental chart parsers, which use dynamic programming to efficiently parse a text. A “chart parser” derives parse trees for a text by iteratively adding “edges” to a “chart”. Each “edge” represents a hypothesis about the tree structure for a subsequence of the text. The “chart” is a “blackboard” for composing and combining these hypotheses.",,incrementaltopdownchartparser
+"Data classes and parser implementations for incremental chart parsers, which use dynamic programming to efficiently parse a text. A “chart parser” derives parse trees for a text by iteratively adding “edges” to a “chart”. Each “edge” represents a hypothesis about the tree structure for a subsequence of the text. The “chart” is a “blackboard” for composing and combining these hypotheses.",,predictorrule
+"Data classes and parser implementations for incremental chart parsers, which use dynamic programming to efficiently parse a text. A “chart parser” derives parse trees for a text by iteratively adding “edges” to a “chart”. Each “edge” represents a hypothesis about the tree structure for a subsequence of the text. The “chart” is a “blackboard” for composing and combining these hypotheses.",,nltk.parse.chart.cachedtopdownpredictrule
+"Data classes and parser implementations for incremental chart parsers, which use dynamic programming to efficiently parse a text. A “chart parser” derives parse trees for a text by iteratively adding “edges” to a “chart”. Each “edge” represents a hypothesis about the tree structure for a subsequence of the text. The “chart” is a “blackboard” for composing and combining these hypotheses.",,scannerrule
+"Data classes and parser implementations for incremental chart parsers, which use dynamic programming to efficiently parse a text. A “chart parser” derives parse trees for a text by iteratively adding “edges” to a “chart”. Each “edge” represents a hypothesis about the tree structure for a subsequence of the text. The “chart” is a “blackboard” for composing and combining these hypotheses.",,demo
+Extension of chart parsing implementation to handle grammars with feature structures as nodes.,,nltk.parse.featurechart.
+Extension of chart parsing implementation to handle grammars with feature structures as nodes.,,featurebottomupchartparser
+Extension of chart parsing implementation to handle grammars with feature structures as nodes.,,nltk.parse.featurechart.featurechartparser
+Extension of chart parsing implementation to handle grammars with feature structures as nodes.,,featurebottomupleftcornerchartparser
+Extension of chart parsing implementation to handle grammars with feature structures as nodes.,,featurebottomuppredictcombinerule
+Extension of chart parsing implementation to handle grammars with feature structures as nodes.,,featurebottomuppredictrule
+Extension of chart parsing implementation to handle grammars with feature structures as nodes.,,featurechart
+Extension of chart parsing implementation to handle grammars with feature structures as nodes.,,featurechartparser
+Extension of chart parsing implementation to handle grammars with feature structures as nodes.,,nltk.parse.chart.chartparser
+Extension of chart parsing implementation to handle grammars with feature structures as nodes.,,featureemptypredictrule
+Extension of chart parsing implementation to handle grammars with feature structures as nodes.,,featurefundamentalrule
+assuming that B1 and B2 can be unified to generate B3.,,apply
+Extension of chart parsing implementation to handle grammars with feature structures as nodes.,,featuresingleedgefundamentalrule
+Extension of chart parsing implementation to handle grammars with feature structures as nodes.,,featuretopdownchartparser
+Extension of chart parsing implementation to handle grammars with feature structures as nodes.,,featuretopdowninitrule
+Extension of chart parsing implementation to handle grammars with feature structures as nodes.,,featuretopdownpredictrule
+The top down expand rule states that:,,apply
+Extension of chart parsing implementation to handle grammars with feature structures as nodes.,,featuretreeedge
+A specialized tree edge that allows shared variable bindings between nonterminals on the left-hand side and right-hand side.,,bindings
+A specialized tree edge that allows shared variable bindings between nonterminals on the left-hand side and right-hand side.,,from_production
+A specialized tree edge that allows shared variable bindings between nonterminals on the left-hand side and right-hand side.,,move_dot_forward
+A specialized tree edge that allows shared variable bindings between nonterminals on the left-hand side and right-hand side.,,next_with_bindings
+A specialized tree edge that allows shared variable bindings between nonterminals on the left-hand side and right-hand side.,,variables
+Extension of chart parsing implementation to handle grammars with feature structures as nodes.,,instantiatevarschart
+"A specialized chart that ‘instantiates’ variables whose names start with ‘@’, by replacing them with unique new variables. In particular, whenever a complete edge is added to the chart, any variables in the edge’s lhs whose names start with ‘@’ will be replaced by unique new ``Variable``s.",,initialize
+"A specialized chart that ‘instantiates’ variables whose names start with ‘@’, by replacing them with unique new variables. In particular, whenever a complete edge is added to the chart, any variables in the edge’s lhs whose names start with ‘@’ will be replaced by unique new ``Variable``s.",,insert
+"A specialized chart that ‘instantiates’ variables whose names start with ‘@’, by replacing them with unique new variables. In particular, whenever a complete edge is added to the chart, any variables in the edge’s lhs whose names start with ‘@’ will be replaced by unique new ``Variable``s.",,inst_vars
+"A specialized chart that ‘instantiates’ variables whose names start with ‘@’, by replacing them with unique new variables. In particular, whenever a complete edge is added to the chart, any variables in the edge’s lhs whose names start with ‘@’ will be replaced by unique new ``Variable``s.",,instantiate_edge
+Extension of chart parsing implementation to handle grammars with feature structures as nodes.,,demo
+Extension of chart parsing implementation to handle grammars with feature structures as nodes.,,demo_grammar
+Extension of chart parsing implementation to handle grammars with feature structures as nodes.,,run_profile
+"A scorer for calculated the weights on the edges of a weighted dependency graph. This is used by a ProbabilisticNonprojectiveParser to initialize the edge weights of a DependencyGraph. While typically this would be done by training a binary classifier, any class that can return a multidimensional list representation of the edge weights can implement this interface. As such, it has no necessary fields.",,score
+"A scorer for calculated the weights on the edges of a weighted dependency graph. This is used by a ProbabilisticNonprojectiveParser to initialize the edge weights of a DependencyGraph. While typically this would be done by training a binary classifier, any class that can return a multidimensional list representation of the edge weights can implement this interface. As such, it has no necessary fields.",,train
+"A non-projective, rule-based, dependency parser. This parser will return the set of all possible non-projective parses based on the word-to-word relations defined in the parser’s dependency grammar, and will allow the branches of the parse tree to cross in order to capture a variety of linguistic phenomena that a projective parser will not.",,parse
+"Nonprojective dependencies allows for “crossing branches” in the parse tree which is necessary for representing particular linguistic phenomena, or even typical parses in some languages. This parser follows the MST parsing algorithm, outlined in McDonald(2005), which likens the search for the best non-projective parse to finding the maximum spanning tree in a weighted directed graph.",,best_incoming_arc
+"Nonprojective dependencies allows for “crossing branches” in the parse tree which is necessary for representing particular linguistic phenomena, or even typical parses in some languages. This parser follows the MST parsing algorithm, outlined in McDonald(2005), which likens the search for the best non-projective parse to finding the maximum spanning tree in a weighted directed graph.",,collapse_nodes
+"Nonprojective dependencies allows for “crossing branches” in the parse tree which is necessary for representing particular linguistic phenomena, or even typical parses in some languages. This parser follows the MST parsing algorithm, outlined in McDonald(2005), which likens the search for the best non-projective parse to finding the maximum spanning tree in a weighted directed graph.",,compute_max_subtract_score
+"Nonprojective dependencies allows for “crossing branches” in the parse tree which is necessary for representing particular linguistic phenomena, or even typical parses in some languages. This parser follows the MST parsing algorithm, outlined in McDonald(2005), which likens the search for the best non-projective parse to finding the maximum spanning tree in a weighted directed graph.",,compute_original_indexes
+"Nonprojective dependencies allows for “crossing branches” in the parse tree which is necessary for representing particular linguistic phenomena, or even typical parses in some languages. This parser follows the MST parsing algorithm, outlined in McDonald(2005), which likens the search for the best non-projective parse to finding the maximum spanning tree in a weighted directed graph.",,initialize_edge_scores
+"Nonprojective dependencies allows for “crossing branches” in the parse tree which is necessary for representing particular linguistic phenomena, or even typical parses in some languages. This parser follows the MST parsing algorithm, outlined in McDonald(2005), which likens the search for the best non-projective parse to finding the maximum spanning tree in a weighted directed graph.",,original_best_arc
+"Nonprojective dependencies allows for “crossing branches” in the parse tree which is necessary for representing particular linguistic phenomena, or even typical parses in some languages. This parser follows the MST parsing algorithm, outlined in McDonald(2005), which likens the search for the best non-projective parse to finding the maximum spanning tree in a weighted directed graph.",,parse
+"Nonprojective dependencies allows for “crossing branches” in the parse tree which is necessary for representing particular linguistic phenomena, or even typical parses in some languages. This parser follows the MST parsing algorithm, outlined in McDonald(2005), which likens the search for the best non-projective parse to finding the maximum spanning tree in a weighted directed graph.",,train
+"Nonprojective dependencies allows for “crossing branches” in the parse tree which is necessary for representing particular linguistic phenomena, or even typical parses in some languages. This parser follows the MST parsing algorithm, outlined in McDonald(2005), which likens the search for the best non-projective parse to finding the maximum spanning tree in a weighted directed graph.",,update_edge_scores
+Classes and interfaces for associating probabilities with tree structures that represent the internal organization of a text. The probabilistic parser module defines BottomUpProbabilisticChartParser.,,nltk.parse.pchart.
+Classes and interfaces for associating probabilities with tree structures that represent the internal organization of a text. The probabilistic parser module defines BottomUpProbabilisticChartParser.,,bottomupprobabilisticchartparser
+The sorting order for the queue is not specified by BottomUpProbabilisticChartParser. Different sorting orders will result in different search strategies. The sorting order for the queue is defined by the method sort_queue; subclasses are required to provide a definition for this method.,,grammar
+The sorting order for the queue is not specified by BottomUpProbabilisticChartParser. Different sorting orders will result in different search strategies. The sorting order for the queue is defined by the method sort_queue; subclasses are required to provide a definition for this method.,,parse
+The sorting order for the queue is not specified by BottomUpProbabilisticChartParser. Different sorting orders will result in different search strategies. The sorting order for the queue is defined by the method sort_queue; subclasses are required to provide a definition for this method.,,sort_queue
+The sorting order for the queue is not specified by BottomUpProbabilisticChartParser. Different sorting orders will result in different search strategies. The sorting order for the queue is defined by the method sort_queue; subclasses are required to provide a definition for this method.,,trace
+Classes and interfaces for associating probabilities with tree structures that represent the internal organization of a text. The probabilistic parser module defines BottomUpProbabilisticChartParser.,,insidechartparser
+"A bottom-up parser for PCFG grammars that tries edges in descending order of the inside probabilities of their trees. The “inside probability” of a tree is simply the probability of the entire tree, ignoring its context. In particular, the inside probability of a tree generated by production p with children c[1], c[2], …, c[n] is P(p)P(c[1])P(c[2])…P(c[n]); and the inside probability of a token is 1 if it is present in the text, and 0 if it is absent.",,sort_queue
+Classes and interfaces for associating probabilities with tree structures that represent the internal organization of a text. The probabilistic parser module defines BottomUpProbabilisticChartParser.,,longestchartparser
+Classes and interfaces for associating probabilities with tree structures that represent the internal organization of a text. The probabilistic parser module defines BottomUpProbabilisticChartParser.,,probabilisticbottomupinitrule
+Classes and interfaces for associating probabilities with tree structures that represent the internal organization of a text. The probabilistic parser module defines BottomUpProbabilisticChartParser.,,probabilisticbottomuppredictrule
+Classes and interfaces for associating probabilities with tree structures that represent the internal organization of a text. The probabilistic parser module defines BottomUpProbabilisticChartParser.,,probabilisticfundamentalrule
+Classes and interfaces for associating probabilities with tree structures that represent the internal organization of a text. The probabilistic parser module defines BottomUpProbabilisticChartParser.,,probabilisticleafedge
+Classes and interfaces for associating probabilities with tree structures that represent the internal organization of a text. The probabilistic parser module defines BottomUpProbabilisticChartParser.,,probabilistictreeedge
+Classes and interfaces for associating probabilities with tree structures that represent the internal organization of a text. The probabilistic parser module defines BottomUpProbabilisticChartParser.,,randomchartparser
+Classes and interfaces for associating probabilities with tree structures that represent the internal organization of a text. The probabilistic parser module defines BottomUpProbabilisticChartParser.,,singleedgeprobabilisticfundamentalrule
+Classes and interfaces for associating probabilities with tree structures that represent the internal organization of a text. The probabilistic parser module defines BottomUpProbabilisticChartParser.,,unsortedchartparser
+Classes and interfaces for associating probabilities with tree structures that represent the internal organization of a text. The probabilistic parser module defines BottomUpProbabilisticChartParser.,,demo
+"A cell from the parse chart formed when performing the CYK algorithm. Each cell keeps track of its x and y coordinates (though this will probably be discarded), and a list of spans serving as the cell’s entries.",,add
+"This parser returns the most probable projective parse derived from the probabilistic dependency grammar derived from the train() method. The probabilistic model is an implementation of Eisner’s (1996) Model C, which conditions on head-word, head-tag, child-word, and child-tag. The decoding uses a bottom-up chart-based span concatenation algorithm that’s identical to the one utilized by the rule-based projective parser.",,compute_prob
+"This parser returns the most probable projective parse derived from the probabilistic dependency grammar derived from the train() method. The probabilistic model is an implementation of Eisner’s (1996) Model C, which conditions on head-word, head-tag, child-word, and child-tag. The decoding uses a bottom-up chart-based span concatenation algorithm that’s identical to the one utilized by the rule-based projective parser.",,concatenate
+"This parser returns the most probable projective parse derived from the probabilistic dependency grammar derived from the train() method. The probabilistic model is an implementation of Eisner’s (1996) Model C, which conditions on head-word, head-tag, child-word, and child-tag. The decoding uses a bottom-up chart-based span concatenation algorithm that’s identical to the one utilized by the rule-based projective parser.",,parse
+"This parser returns the most probable projective parse derived from the probabilistic dependency grammar derived from the train() method. The probabilistic model is an implementation of Eisner’s (1996) Model C, which conditions on head-word, head-tag, child-word, and child-tag. The decoding uses a bottom-up chart-based span concatenation algorithm that’s identical to the one utilized by the rule-based projective parser.",,train
+"A projective, rule-based, dependency parser. A ProjectiveDependencyParser is created with a DependencyGrammar, a set of productions specifying word-to-word dependency relations. The parse() method will then return the set of all parses, in tree representation, for a given input sequence of tokens. Each parse must meet the requirements of the both the grammar and the projectivity constraint which specifies that the branches of the dependency tree are not allowed to cross. Alternatively, this can be understood as stating that each parent node and its children in the parse tree form a continuous substring of the input sequence.",,concatenate
+"A projective, rule-based, dependency parser. A ProjectiveDependencyParser is created with a DependencyGrammar, a set of productions specifying word-to-word dependency relations. The parse() method will then return the set of all parses, in tree representation, for a given input sequence of tokens. Each parse must meet the requirements of the both the grammar and the projectivity constraint which specifies that the branches of the dependency tree are not allowed to cross. Alternatively, this can be understood as stating that each parent node and its children in the parse tree form a continuous substring of the input sequence.",,parse
+"When the parser begins parsing a text, it constructs a tree containing only the start symbol, and a frontier containing the location of the tree’s root node. It then extends the tree to cover the text, using the following recursive procedure:",,grammar
+"When the parser begins parsing a text, it constructs a tree containing only the start symbol, and a frontier containing the location of the tree’s root node. It then extends the tree to cover the text, using the following recursive procedure:",,parse
+"When the parser begins parsing a text, it constructs a tree containing only the start symbol, and a frontier containing the location of the tree’s root node. It then extends the tree to cover the text, using the following recursive procedure:",,trace
+"Note that these heuristics are not guaranteed to choose an operation that leads to a parse of the text. Also, if multiple parses exists, ShiftReduceParser will return at most one of them.",,grammar
+"Note that these heuristics are not guaranteed to choose an operation that leads to a parse of the text. Also, if multiple parses exists, ShiftReduceParser will return at most one of them.",,parse
+"Note that these heuristics are not guaranteed to choose an operation that leads to a parse of the text. Also, if multiple parses exists, ShiftReduceParser will return at most one of them.",,trace
+This class also provides a method to represent a configuration as list of features.,,extract_features
+"This class defines a set of transition which is applied to a configuration to get another configuration Note that for different parsing algorithm, the transition is different.",,left_arc
+"This class defines a set of transition which is applied to a configuration to get another configuration Note that for different parsing algorithm, the transition is different.",,reduce
+"This class defines a set of transition which is applied to a configuration to get another configuration Note that for different parsing algorithm, the transition is different.",,right_arc
+"This class defines a set of transition which is applied to a configuration to get another configuration Note that for different parsing algorithm, the transition is different.",,shift
+"This class defines a set of transition which is applied to a configuration to get another configuration Note that for different parsing algorithm, the transition is different.",,left_arc
+"This class defines a set of transition which is applied to a configuration to get another configuration Note that for different parsing algorithm, the transition is different.",,reduce
+"This class defines a set of transition which is applied to a configuration to get another configuration Note that for different parsing algorithm, the transition is different.",,right_arc
+"This class defines a set of transition which is applied to a configuration to get another configuration Note that for different parsing algorithm, the transition is different.",,shift
+Class for transition based parser. Implement 2 algorithms which are “arc-standard” and “arc-eager”,,arc_eager
+Class for transition based parser. Implement 2 algorithms which are “arc-standard” and “arc-eager”,,arc_standard
+Class for transition based parser. Implement 2 algorithms which are “arc-standard” and “arc-eager”,,parse
+Class for transition based parser. Implement 2 algorithms which are “arc-standard” and “arc-eager”,,train
+Unit tests for CFG.,,run
+"In order to find the most likely constituent with a given span and node value, the ViterbiParser parser considers all productions that could produce that node value. For each production, it finds all children that collectively cover the span and have the node values specified by the production’s right hand side. If the probability of the tree formed by applying the production to the children is greater than the probability of the current entry in the table, then the table is updated with this new tree.",,grammar
+"In order to find the most likely constituent with a given span and node value, the ViterbiParser parser considers all productions that could produce that node value. For each production, it finds all children that collectively cover the span and have the node values specified by the production’s right hand side. If the probability of the tree formed by applying the production to the children is greater than the probability of the current entry in the table, then the table is updated with this new tree.",,parse
+"In order to find the most likely constituent with a given span and node value, the ViterbiParser parser considers all productions that could produce that node value. For each production, it finds all children that collectively cover the span and have the node values specified by the production’s right hand side. If the probability of the tree formed by applying the production to the children is greater than the probability of the current entry in the table, then the table is updated with this new tree.",,trace
 "Nonprojective dependencies allows for “crossing branches” in the parse tree which is necessary for representing particular linguistic phenomena, or even typical parses in some languages. This parser follows the MST parsing algorithm, outlined in McDonald(2005), which likens the search for the best non-projective parse to finding the maximum spanning tree in a weighted directed graph.",,">>> class scorer(dependencyscoreri): ... def train(self, graphs): ... pass ... ... def score(self, graph): ... return [ ... [[], [5], [1], [1]], ... [[], [], [11], [4]], ... [[], [10], [], [5]], ... [[], [8], [8], []], ... ]"
 "Nonprojective dependencies allows for “crossing branches” in the parse tree which is necessary for representing particular linguistic phenomena, or even typical parses in some languages. This parser follows the MST parsing algorithm, outlined in McDonald(2005), which likens the search for the best non-projective parse to finding the maximum spanning tree in a weighted directed graph.",,">>> npp = probabilisticnonprojectiveparser() >>> npp.train([], scorer())"
 "Nonprojective dependencies allows for “crossing branches” in the parse tree which is necessary for representing particular linguistic phenomena, or even typical parses in some languages. This parser follows the MST parsing algorithm, outlined in McDonald(2005), which likens the search for the best non-projective parse to finding the maximum spanning tree in a weighted directed graph.",,">>> parses = npp.parse(['v1', 'v2', 'v3'], [none, none, none]) >>> len(list(parses)) 1"
