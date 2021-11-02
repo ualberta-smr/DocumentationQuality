@@ -52,8 +52,7 @@ def get_paragraphs_and_tasks(paragraphs, task_file):
                 text = preprocess(paragraph.html())
                 extracted = call_extractor(text)
                 if extracted:
-                    extracted = extracted.replace("\r\n", ",")
-                    extracted = extracted.replace("\n", ",")
+                    extracted = extracted.replace("\r\n", "\n")
                     extracted = re.sub(tt, "", extracted)
                     # Remove the trailing comma
                     writer.writerow([paragraph.text().strip(), extracted[:-1]])
@@ -118,7 +117,7 @@ def filename_maker(url, ftype):
 
 def extract_and_link(url):
     p_file = extract_tasks(url)
-
+    # p_file = filename_maker(url, "tasks")
     req = Request(url=url, headers=HEADERS)
     content = html.unescape(urlopen(req).read().decode("utf-8"))
     raw_html = pq(content)

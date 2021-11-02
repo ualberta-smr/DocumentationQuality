@@ -39,9 +39,10 @@ def evaluate_tasks(truth, test, filename):
                                     pr = fuzz.partial_ratio(truth_task.lower(), test_task.lower())
                                     seen.add(truth_row[0])
                                     task_writer.writerow([truth_row[0], truth_task.lower(), test_task.lower(), pr])
-                                    if pr >= 70:
+                                    if pr >= 90:
                                         found = True
                                         precision_count += 1
+                                        break
                                 if found:
                                     recall_count += 1
                             # print(truth_row[0])
@@ -57,17 +58,19 @@ def evaluate_tasks(truth, test, filename):
                     if truth_row[0] not in seen:
                         truth_tasks = list(filter(None, truth_row[1].split("\n")))
                         for truth_task in truth_tasks:
+                            truth_total += 1
                             task_writer.writerow([truth_row[0], truth_task.lower()])
                 for test_row in test_list:
                     test_row = list(map(lambda i: i.strip("\""), test_row))
                     if test_row[0] not in seen:
                         test_tasks = list(filter(None, test_row[1].split("\n")))
                         for test_task in test_tasks:
+                            test_total += 1
                             task_writer.writerow([test_row[0], "", test_task.lower()])
                 try:
                     # print("Precision:", precision_total, "/", test_total, "=", precision_total/test_total)
                     # print("Recall:", recall_total, "/", truth_total, "=", recall_total/truth_total)
-                    return [precision_total, test_total, precision_total/test_total, recall_total, truth_total, recall_total/truth_total]
+                    return [precision_total, test_total, round(precision_total/test_total, 2), recall_total, truth_total, round(recall_total/truth_total, 2)]
                 except ZeroDivisionError:
                     # print("No extracted tasks")
                     return ["N/A"] * 6
@@ -96,7 +99,7 @@ def evaluate_links(truth, test, filename):
                             seen.add(truth_row[0])
                             # When creating the ground truth, the tabs when copy pasting from website may be multiple spaces
                             # This matters when fuzzy matching so we remove those spaces
-                            pr = fuzz.partial_ratio(re.sub(re.compile(r" +"), " ", truth_row[1].lower()), test_row[1].lower())
+                            pr = fuzz.ratio(re.sub(re.compile(r" +"), " ", truth_row[1].lower()), test_row[1].lower())
                             link_writer.writerow([truth_row[0], truth_row[1].lower(), test_row[1].lower(), pr])
                             if pr >= 95:
                                 recall_total += 1
@@ -112,13 +115,16 @@ def evaluate_links(truth, test, filename):
                 try:
                     # print("Precision:", precision_total, "/", len(test_list), "=", precision_total/len(test_list))
                     # print("Recall", recall_total, "/", len(truth_list), "=", recall_total / len(truth_list))
-                    return [precision_total, len(test_list), precision_total/len(test_list), recall_total, len(truth_list), recall_total/len(truth_list)]
+                    return [precision_total, len(test_list), round(precision_total/len(test_list), 2), recall_total, len(truth_list), round(recall_total/len(truth_list), 2)]
                 except ZeroDivisionError:
                     # print("No code example links")
                     return ["N/A"] * 6
 
 
 if __name__ == '__main__':
+    # x = evaluate_tasks("truth/orjson_tasks.csv", "results/orjson_tasks.csv", "orjson_tasks.csv")
+    # y = evaluate_links("truth/tag_links.csv", "results/tag_links.csv", "tag_links.csv")
+    # print(x, y)
     with open(os.path.normpath("comparison/totals.csv"), "w", encoding="utf-8", newline="") as out_file:
         writer = csv.writer(out_file, quoting=csv.QUOTE_MINIMAL)
         writer.writerow(["File", "Correct extracted tasks", "Total extracted tasks", "Precision", "Correct truth tasks", "Total truth tasks", "Recall"])
