@@ -3,7 +3,8 @@ Paragraph,Tasks
 """Conceptually, components are like JavaScript functions. They accept arbitrary inputs (called “props”) and return React elements describing what should appear on the screen.""",
 The simplest way to define a component is to write a JavaScript function:,Define component
 This function is a valid React component because it accepts a single “props” (which stands for properties) object argument with data and returns a React element. We call such components “function components” because they are literally JavaScript functions.,
-You can also use an ES6 class to define a component:,"Use ES6, Define component"
+You can also use an ES6 class to define a component:,"Use ES6
+Define component"
 The above two components are equivalent from React’s point of view.,
 Function and Class components both have some additional features that we will discuss in the next sections.,
 """Previously, we only encountered React elements that represent DOM tags:""",

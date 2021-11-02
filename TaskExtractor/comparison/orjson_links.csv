@@ -13,7 +13,7 @@ jsonencodeerror: type is not json serializable: decimal.decimal
 >>> orjson.dumps(decimal.decimal(""0.0842389659712649442845""), default=default)
 b'""0.0842389659712649442845""'
 >>> orjson.dumps({1, 2}, default=default)
-orjson.jsonencodeerror: type is not json serializable: set",">>> import orjson, decimal >>> def default(obj): if isinstance(obj, decimal.decimal): return str(obj) raise typeerror >>> orjson.dumps(decimal.decimal(""0.0842389659712649442845"")) jsonencodeerror: type is not json serializable: decimal.decimal >>> orjson.dumps(decimal.decimal(""0.0842389659712649442845""), default=default) b'""0.0842389659712649442845""' >>> orjson.dumps({1, 2}, default=default) orjson.jsonencodeerror: type is not json serializable: set",97
+orjson.jsonencodeerror: type is not json serializable: set",">>> import orjson, decimal >>> def default(obj): if isinstance(obj, decimal.decimal): return str(obj) raise typeerror >>> orjson.dumps(decimal.decimal(""0.0842389659712649442845"")) jsonencodeerror: type is not json serializable: decimal.decimal >>> orjson.dumps(decimal.decimal(""0.0842389659712649442845""), default=default) b'""0.0842389659712649442845""' >>> orjson.dumps({1, 2}, default=default) orjson.jsonencodeerror: type is not json serializable: set",98
 "It is important that default raise an exception if a type cannot be handled. Python otherwise implicitly returns None, which appears to the caller like a legitimate value and is serialized:",">>> import orjson, json, rapidjson
 >>>
 def default(obj):
@@ -25,7 +25,7 @@ b'{""set"":null}'
 >>> json.dumps({""set"":{1, 2}}, default=default)
 '{""set"":null}'
 >>> rapidjson.dumps({""set"":{1, 2}}, default=default)
-'{""set"":null}'",">>> import orjson, json, rapidjson >>> def default(obj): if isinstance(obj, decimal.decimal): return str(obj) >>> orjson.dumps({""set"":{1, 2}}, default=default) b'{""set"":null}' >>> json.dumps({""set"":{1, 2}}, default=default) '{""set"":null}' >>> rapidjson.dumps({""set"":{1, 2}}, default=default) '{""set"":null}'",96
+'{""set"":null}'",">>> import orjson, json, rapidjson >>> def default(obj): if isinstance(obj, decimal.decimal): return str(obj) >>> orjson.dumps({""set"":{1, 2}}, default=default) b'{""set"":null}' >>> json.dumps({""set"":{1, 2}}, default=default) '{""set"":null}' >>> rapidjson.dumps({""set"":{1, 2}}, default=default) '{""set"":null}'",97
 orjson serializes enums natively. Options apply to their values.,">>> import enum, datetime, orjson
 >>>
 class datetimeenum(enum.enum):
@@ -33,7 +33,7 @@ class datetimeenum(enum.enum):
 >>> orjson.dumps(datetimeenum.epoch)
 b'""1970-01-01t00:00:00""'
 >>> orjson.dumps(datetimeenum.epoch, option=orjson.opt_naive_utc)
-b'""1970-01-01t00:00:00+00:00""'",">>> import enum, datetime, orjson >>> class datetimeenum(enum.enum): epoch = datetime.datetime(1970, 1, 1, 0, 0, 0) >>> orjson.dumps(datetimeenum.epoch) b'""1970-01-01t00:00:00""' >>> orjson.dumps(datetimeenum.epoch, option=orjson.opt_naive_utc) b'""1970-01-01t00:00:00+00:00""'",97
+b'""1970-01-01t00:00:00+00:00""'",">>> import enum, datetime, orjson >>> class datetimeenum(enum.enum): epoch = datetime.datetime(1970, 1, 1, 0, 0, 0) >>> orjson.dumps(datetimeenum.epoch) b'""1970-01-01t00:00:00""' >>> orjson.dumps(datetimeenum.epoch, option=orjson.opt_naive_utc) b'""1970-01-01t00:00:00+00:00""'",98
 Enums with members that are not supported types can be serialized using default:,">>> import enum, orjson
 >>>
 class custom:
@@ -49,7 +49,7 @@ class customenum(enum.enum):
     one = custom(1)
 
 >>> orjson.dumps(customenum.one, default=default)
-b'1'",">>> import enum, orjson >>> class custom: def __init__(self, val): self.val = val def default(obj): if isinstance(obj, custom): return obj.val raise typeerror class customenum(enum.enum): one = custom(1) >>> orjson.dumps(customenum.one, default=default) b'1'",95
+b'1'",">>> import enum, orjson >>> class custom: def __init__(self, val): self.val = val def default(obj): if isinstance(obj, custom): return obj.val raise typeerror class customenum(enum.enum): one = custom(1) >>> orjson.dumps(customenum.one, default=default) b'1'",96
 "orjson serializes and deserializes 64-bit integers by default. The range supported is a signed 64-bit integer's minimum (-9223372036854775807) to an unsigned 64-bit integer's maximum (18446744073709551615). This is widely compatible, but there are implementations that only support 53-bits for integers, e.g., web browsers. For those implementations, dumps() can be configured to raise a JSONEncodeError on values exceeding the 53-bit range.",">>> import orjson
 >>> orjson.dumps(9007199254740992)
 b'9007199254740992'
@@ -62,13 +62,13 @@ orjson is faster than all compared libraries at serializing numpy instances. Ser
         numpy.array([[1, 2, 3], [4, 5, 6]]),
         option=orjson.opt_serialize_numpy,
 )
-b'[[1,2,3],[4,5,6]]'",">>> import orjson, numpy >>> orjson.dumps( numpy.array([[1, 2, 3], [4, 5, 6]]), option=orjson.opt_serialize_numpy, ) b'[[1,2,3],[4,5,6]]'",96
+b'[[1,2,3],[4,5,6]]'",">>> import orjson, numpy >>> orjson.dumps( numpy.array([[1, 2, 3], [4, 5, 6]]), option=orjson.opt_serialize_numpy, ) b'[[1,2,3],[4,5,6]]'",97
 orjson is faster than all compared libraries at serializing numpy instances. Serializing numpy data requires specifying option=orjson.OPT_SERIALIZE_NUMPY.,">>> import orjson, numpy
 >>> orjson.dumps(
         numpy.array([[1, 2, 3], [4, 5, 6]]),
         option=orjson.opt_serialize_numpy,
 )
-b'[[1,2,3],[4,5,6]]'",">>> import orjson, numpy >>> orjson.dumps( numpy.datetime64(""2021-01-01t00:00:00.172""), option=orjson.opt_serialize_numpy, ) b'""2021-01-01t00:00:00.172000""' >>> orjson.dumps( numpy.datetime64(""2021-01-01t00:00:00.172""), option=( orjson.opt_serialize_numpy | orjson.opt_naive_utc | orjson.opt_omit_microseconds ), ) b'""2021-01-01t00:00:00+00:00""'",67
+b'[[1,2,3],[4,5,6]]'",">>> import orjson, numpy >>> orjson.dumps( numpy.datetime64(""2021-01-01t00:00:00.172""), option=orjson.opt_serialize_numpy, ) b'""2021-01-01t00:00:00.172000""' >>> orjson.dumps( numpy.datetime64(""2021-01-01t00:00:00.172""), option=( orjson.opt_serialize_numpy | orjson.opt_naive_utc | orjson.opt_omit_microseconds ), ) b'""2021-01-01t00:00:00+00:00""'",42
 "To make a best effort at deserializing bad input, first decode bytes using the replace or lossy argument for errors:",">>> import orjson
 >>> orjson.loads(b'""\xed\xa0\x80""')
 jsondecodeerror: str is not valid utf-8: surrogates not allowed

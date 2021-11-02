@@ -5,7 +5,7 @@ Most implementations will specify a success handler:,"$.get( ""ajax/test.html"",
 });","$.get( ""ajax/test.html"", function( data ) {
 $( "".result"" ).html( data );
 alert( ""load was performed."" );
-});",98
+});",99
 "The Promise interface also allows jQuery's Ajax methods, including $.get(), to chain multiple .done(), .fail(), and .always() callbacks on a single request, and even to assign these callbacks after the request may have completed. If the request is already complete, the callback is fired immediately.","// assign handlers immediately after making the request,
 // and remember the jqxhr object for this request
 var jqxhr = $.get( ""example.php"", function() {
@@ -42,7 +42,7 @@ alert( ""finished"" );
 // set another completion function for the request above
 jqxhr.always(function() {
 alert( ""second finished"" );
-alert the results from requesting test.php (html or xml",95
+alert the results from requesting test.php (html or xml",92
 "Request the test.php page, but ignore the return results.","$.get( ""test.php"" );","$.get( ""test.php"" );",100
 Request the test.php page and send some additional data along (while still ignoring the return results).,"$.get( ""test.php"", { name: ""john"", time: ""2pm"" } );","$.get( ""test.php"", { name: ""john"", time: ""2pm"" } );",100
 Get another page on the same domain. Outputs to console both the data returned and the type of data returned.,"// if this was sent on https://api.jquery.com/jquery.get/ you will

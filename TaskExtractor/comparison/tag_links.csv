@@ -1,117 +1,117 @@
 Paragraph,Ground Truth link,Program link,Partial ratio
 A module for POS tagging using CRFSuite https://pypi.python.org/pypi/python-crfsuite,">>> from nltk.tag import crftagger
->>> ct = crftagger()",nltk.tag.crf.,62
+>>> ct = crftagger()",nltk.tag.crf.,32
 A module for POS tagging using CRFSuite https://pypi.python.org/pypi/python-crfsuite,">>> from nltk.tag import crftagger
->>> ct = crftagger()",crftagger,100
+>>> ct = crftagger()",crftagger,28
 A module for POS tagging using CRFSuite https://pypi.python.org/pypi/python-crfsuite,">>> from nltk.tag import crftagger
->>> ct = crftagger()",set_model_file,21
+>>> ct = crftagger()",set_model_file,17
 A module for POS tagging using CRFSuite https://pypi.python.org/pypi/python-crfsuite,">>> from nltk.tag import crftagger
->>> ct = crftagger()",tag,100
+>>> ct = crftagger()",tag,10
 A module for POS tagging using CRFSuite https://pypi.python.org/pypi/python-crfsuite,">>> from nltk.tag import crftagger
->>> ct = crftagger()",tag_sents,44
+>>> ct = crftagger()",tag_sents,16
 A module for POS tagging using CRFSuite https://pypi.python.org/pypi/python-crfsuite,">>> from nltk.tag import crftagger
->>> ct = crftagger()",train,40
+>>> ct = crftagger()",train,10
 A module for POS tagging using CRFSuite https://pypi.python.org/pypi/python-crfsuite,">>> from nltk.tag import crftagger
 >>> ct = crftagger()",>>> from nltk.tag import crftagger >>> ct = crftagger(),98
 A module for POS tagging using CRFSuite https://pypi.python.org/pypi/python-crfsuite,">>> from nltk.tag import crftagger
->>> ct = crftagger()",">>> train_data = [[('university','noun'), ('is','verb'), ('a','det'), ('good','adj'), ('place','noun')], ... [('dog','noun'),('eat','verb'),('meat','noun')]]",31
+>>> ct = crftagger()",">>> train_data = [[('university','noun'), ('is','verb'), ('a','det'), ('good','adj'), ('place','noun')], ... [('dog','noun'),('eat','verb'),('meat','noun')]]",24
 A module for POS tagging using CRFSuite https://pypi.python.org/pypi/python-crfsuite,">>> from nltk.tag import crftagger
->>> ct = crftagger()",">>> ct.train(train_data,'model.crf.tagger') >>> ct.tag_sents([['dog','is','good'], ['cat','eat','meat']]) [[('dog', 'noun'), ('is', 'verb'), ('good', 'adj')], [('cat', 'noun'), ('eat', 'verb'), ('meat', 'noun')]]",53
+>>> ct = crftagger()",">>> ct.train(train_data,'model.crf.tagger') >>> ct.tag_sents([['dog','is','good'], ['cat','eat','meat']]) [[('dog', 'noun'), ('is', 'verb'), ('good', 'adj')], [('cat', 'noun'), ('eat', 'verb'), ('meat', 'noun')]]",27
 A module for POS tagging using CRFSuite https://pypi.python.org/pypi/python-crfsuite,">>> from nltk.tag import crftagger
->>> ct = crftagger()",">>> gold_sentences = [[('dog','noun'),('is','verb'),('good','adj')] , [('cat','noun'),('eat','verb'), ('meat','noun')]] >>> ct.evaluate(gold_sentences) 1.0",29
+>>> ct = crftagger()",">>> gold_sentences = [[('dog','noun'),('is','verb'),('good','adj')] , [('cat','noun'),('eat','verb'), ('meat','noun')]] >>> ct.evaluate(gold_sentences) 1.0",25
 A module for POS tagging using CRFSuite https://pypi.python.org/pypi/python-crfsuite,">>> train_data = [[('university','noun'), ('is','verb'), ('a','det'), ('good','adj'), ('place','noun')],
-... [('dog','noun'),('eat','verb'),('meat','noun')]]",nltk.tag.crf.,31
+... [('dog','noun'),('eat','verb'),('meat','noun')]]",nltk.tag.crf.,8
 A module for POS tagging using CRFSuite https://pypi.python.org/pypi/python-crfsuite,">>> train_data = [[('university','noun'), ('is','verb'), ('a','det'), ('good','adj'), ('place','noun')],
-... [('dog','noun'),('eat','verb'),('meat','noun')]]",crftagger,33
+... [('dog','noun'),('eat','verb'),('meat','noun')]]",crftagger,8
 A module for POS tagging using CRFSuite https://pypi.python.org/pypi/python-crfsuite,">>> train_data = [[('university','noun'), ('is','verb'), ('a','det'), ('good','adj'), ('place','noun')],
-... [('dog','noun'),('eat','verb'),('meat','noun')]]",set_model_file,29
+... [('dog','noun'),('eat','verb'),('meat','noun')]]",set_model_file,8
 A module for POS tagging using CRFSuite https://pypi.python.org/pypi/python-crfsuite,">>> train_data = [[('university','noun'), ('is','verb'), ('a','det'), ('good','adj'), ('place','noun')],
-... [('dog','noun'),('eat','verb'),('meat','noun')]]",tag,67
+... [('dog','noun'),('eat','verb'),('meat','noun')]]",tag,4
 A module for POS tagging using CRFSuite https://pypi.python.org/pypi/python-crfsuite,">>> train_data = [[('university','noun'), ('is','verb'), ('a','det'), ('good','adj'), ('place','noun')],
-... [('dog','noun'),('eat','verb'),('meat','noun')]]",tag_sents,44
+... [('dog','noun'),('eat','verb'),('meat','noun')]]",tag_sents,8
 A module for POS tagging using CRFSuite https://pypi.python.org/pypi/python-crfsuite,">>> train_data = [[('university','noun'), ('is','verb'), ('a','det'), ('good','adj'), ('place','noun')],
-... [('dog','noun'),('eat','verb'),('meat','noun')]]",train,100
+... [('dog','noun'),('eat','verb'),('meat','noun')]]",train,6
 A module for POS tagging using CRFSuite https://pypi.python.org/pypi/python-crfsuite,">>> train_data = [[('university','noun'), ('is','verb'), ('a','det'), ('good','adj'), ('place','noun')],
-... [('dog','noun'),('eat','verb'),('meat','noun')]]",>>> from nltk.tag import crftagger >>> ct = crftagger(),31
+... [('dog','noun'),('eat','verb'),('meat','noun')]]",>>> from nltk.tag import crftagger >>> ct = crftagger(),24
 A module for POS tagging using CRFSuite https://pypi.python.org/pypi/python-crfsuite,">>> train_data = [[('university','noun'), ('is','verb'), ('a','det'), ('good','adj'), ('place','noun')],
 ... [('dog','noun'),('eat','verb'),('meat','noun')]]",">>> train_data = [[('university','noun'), ('is','verb'), ('a','det'), ('good','adj'), ('place','noun')], ... [('dog','noun'),('eat','verb'),('meat','noun')]]",99
 A module for POS tagging using CRFSuite https://pypi.python.org/pypi/python-crfsuite,">>> train_data = [[('university','noun'), ('is','verb'), ('a','det'), ('good','adj'), ('place','noun')],
-... [('dog','noun'),('eat','verb'),('meat','noun')]]",">>> ct.train(train_data,'model.crf.tagger') >>> ct.tag_sents([['dog','is','good'], ['cat','eat','meat']]) [[('dog', 'noun'), ('is', 'verb'), ('good', 'adj')], [('cat', 'noun'), ('eat', 'verb'), ('meat', 'noun')]]",63
+... [('dog','noun'),('eat','verb'),('meat','noun')]]",">>> ct.train(train_data,'model.crf.tagger') >>> ct.tag_sents([['dog','is','good'], ['cat','eat','meat']]) [[('dog', 'noun'), ('is', 'verb'), ('good', 'adj')], [('cat', 'noun'), ('eat', 'verb'), ('meat', 'noun')]]",60
 A module for POS tagging using CRFSuite https://pypi.python.org/pypi/python-crfsuite,">>> train_data = [[('university','noun'), ('is','verb'), ('a','det'), ('good','adj'), ('place','noun')],
 ... [('dog','noun'),('eat','verb'),('meat','noun')]]",">>> gold_sentences = [[('dog','noun'),('is','verb'),('good','adj')] , [('cat','noun'),('eat','verb'), ('meat','noun')]] >>> ct.evaluate(gold_sentences) 1.0",63
 A module for POS tagging using CRFSuite https://pypi.python.org/pypi/python-crfsuite,">>> ct.train(train_data,'model.crf.tagger')
 >>> ct.tag_sents([['dog','is','good'], ['cat','eat','meat']])
-[[('dog', 'noun'), ('is', 'verb'), ('good', 'adj')], [('cat', 'noun'), ('eat', 'verb'), ('meat', 'noun')]]",nltk.tag.crf.,46
+[[('dog', 'noun'), ('is', 'verb'), ('good', 'adj')], [('cat', 'noun'), ('eat', 'verb'), ('meat', 'noun')]]",nltk.tag.crf.,8
 A module for POS tagging using CRFSuite https://pypi.python.org/pypi/python-crfsuite,">>> ct.train(train_data,'model.crf.tagger')
 >>> ct.tag_sents([['dog','is','good'], ['cat','eat','meat']])
-[[('dog', 'noun'), ('is', 'verb'), ('good', 'adj')], [('cat', 'noun'), ('eat', 'verb'), ('meat', 'noun')]]",crftagger,89
+[[('dog', 'noun'), ('is', 'verb'), ('good', 'adj')], [('cat', 'noun'), ('eat', 'verb'), ('meat', 'noun')]]",crftagger,8
 A module for POS tagging using CRFSuite https://pypi.python.org/pypi/python-crfsuite,">>> ct.train(train_data,'model.crf.tagger')
 >>> ct.tag_sents([['dog','is','good'], ['cat','eat','meat']])
-[[('dog', 'noun'), ('is', 'verb'), ('good', 'adj')], [('cat', 'noun'), ('eat', 'verb'), ('meat', 'noun')]]",set_model_file,50
+[[('dog', 'noun'), ('is', 'verb'), ('good', 'adj')], [('cat', 'noun'), ('eat', 'verb'), ('meat', 'noun')]]",set_model_file,9
 A module for POS tagging using CRFSuite https://pypi.python.org/pypi/python-crfsuite,">>> ct.train(train_data,'model.crf.tagger')
 >>> ct.tag_sents([['dog','is','good'], ['cat','eat','meat']])
-[[('dog', 'noun'), ('is', 'verb'), ('good', 'adj')], [('cat', 'noun'), ('eat', 'verb'), ('meat', 'noun')]]",tag,100
+[[('dog', 'noun'), ('is', 'verb'), ('good', 'adj')], [('cat', 'noun'), ('eat', 'verb'), ('meat', 'noun')]]",tag,3
 A module for POS tagging using CRFSuite https://pypi.python.org/pypi/python-crfsuite,">>> ct.train(train_data,'model.crf.tagger')
 >>> ct.tag_sents([['dog','is','good'], ['cat','eat','meat']])
-[[('dog', 'noun'), ('is', 'verb'), ('good', 'adj')], [('cat', 'noun'), ('eat', 'verb'), ('meat', 'noun')]]",tag_sents,100
+[[('dog', 'noun'), ('is', 'verb'), ('good', 'adj')], [('cat', 'noun'), ('eat', 'verb'), ('meat', 'noun')]]",tag_sents,8
 A module for POS tagging using CRFSuite https://pypi.python.org/pypi/python-crfsuite,">>> ct.train(train_data,'model.crf.tagger')
 >>> ct.tag_sents([['dog','is','good'], ['cat','eat','meat']])
-[[('dog', 'noun'), ('is', 'verb'), ('good', 'adj')], [('cat', 'noun'), ('eat', 'verb'), ('meat', 'noun')]]",train,100
+[[('dog', 'noun'), ('is', 'verb'), ('good', 'adj')], [('cat', 'noun'), ('eat', 'verb'), ('meat', 'noun')]]",train,5
 A module for POS tagging using CRFSuite https://pypi.python.org/pypi/python-crfsuite,">>> ct.train(train_data,'model.crf.tagger')
 >>> ct.tag_sents([['dog','is','good'], ['cat','eat','meat']])
-[[('dog', 'noun'), ('is', 'verb'), ('good', 'adj')], [('cat', 'noun'), ('eat', 'verb'), ('meat', 'noun')]]",>>> from nltk.tag import crftagger >>> ct = crftagger(),53
+[[('dog', 'noun'), ('is', 'verb'), ('good', 'adj')], [('cat', 'noun'), ('eat', 'verb'), ('meat', 'noun')]]",>>> from nltk.tag import crftagger >>> ct = crftagger(),27
 A module for POS tagging using CRFSuite https://pypi.python.org/pypi/python-crfsuite,">>> ct.train(train_data,'model.crf.tagger')
 >>> ct.tag_sents([['dog','is','good'], ['cat','eat','meat']])
-[[('dog', 'noun'), ('is', 'verb'), ('good', 'adj')], [('cat', 'noun'), ('eat', 'verb'), ('meat', 'noun')]]",">>> train_data = [[('university','noun'), ('is','verb'), ('a','det'), ('good','adj'), ('place','noun')], ... [('dog','noun'),('eat','verb'),('meat','noun')]]",62
+[[('dog', 'noun'), ('is', 'verb'), ('good', 'adj')], [('cat', 'noun'), ('eat', 'verb'), ('meat', 'noun')]]",">>> train_data = [[('university','noun'), ('is','verb'), ('a','det'), ('good','adj'), ('place','noun')], ... [('dog','noun'),('eat','verb'),('meat','noun')]]",59
 A module for POS tagging using CRFSuite https://pypi.python.org/pypi/python-crfsuite,">>> ct.train(train_data,'model.crf.tagger')
 >>> ct.tag_sents([['dog','is','good'], ['cat','eat','meat']])
 [[('dog', 'noun'), ('is', 'verb'), ('good', 'adj')], [('cat', 'noun'), ('eat', 'verb'), ('meat', 'noun')]]",">>> ct.train(train_data,'model.crf.tagger') >>> ct.tag_sents([['dog','is','good'], ['cat','eat','meat']]) [[('dog', 'noun'), ('is', 'verb'), ('good', 'adj')], [('cat', 'noun'), ('eat', 'verb'), ('meat', 'noun')]]",99
 A module for POS tagging using CRFSuite https://pypi.python.org/pypi/python-crfsuite,">>> ct.train(train_data,'model.crf.tagger')
 >>> ct.tag_sents([['dog','is','good'], ['cat','eat','meat']])
-[[('dog', 'noun'), ('is', 'verb'), ('good', 'adj')], [('cat', 'noun'), ('eat', 'verb'), ('meat', 'noun')]]",">>> gold_sentences = [[('dog','noun'),('is','verb'),('good','adj')] , [('cat','noun'),('eat','verb'), ('meat','noun')]] >>> ct.evaluate(gold_sentences) 1.0",72
+[[('dog', 'noun'), ('is', 'verb'), ('good', 'adj')], [('cat', 'noun'), ('eat', 'verb'), ('meat', 'noun')]]",">>> gold_sentences = [[('dog','noun'),('is','verb'),('good','adj')] , [('cat','noun'),('eat','verb'), ('meat','noun')]] >>> ct.evaluate(gold_sentences) 1.0",60
 A module for POS tagging using CRFSuite https://pypi.python.org/pypi/python-crfsuite,">>> gold_sentences = [[('dog','noun'),('is','verb'),('good','adj')] , [('cat','noun'),('eat','verb'), ('meat','noun')]]
 >>> ct.evaluate(gold_sentences)
-1.0",nltk.tag.crf.,31
+1.0",nltk.tag.crf.,8
 A module for POS tagging using CRFSuite https://pypi.python.org/pypi/python-crfsuite,">>> gold_sentences = [[('dog','noun'),('is','verb'),('good','adj')] , [('cat','noun'),('eat','verb'), ('meat','noun')]]
 >>> ct.evaluate(gold_sentences)
-1.0",crftagger,22
+1.0",crftagger,7
 A module for POS tagging using CRFSuite https://pypi.python.org/pypi/python-crfsuite,">>> gold_sentences = [[('dog','noun'),('is','verb'),('good','adj')] , [('cat','noun'),('eat','verb'), ('meat','noun')]]
 >>> ct.evaluate(gold_sentences)
-1.0",set_model_file,36
+1.0",set_model_file,11
 A module for POS tagging using CRFSuite https://pypi.python.org/pypi/python-crfsuite,">>> gold_sentences = [[('dog','noun'),('is','verb'),('good','adj')] , [('cat','noun'),('eat','verb'), ('meat','noun')]]
 >>> ct.evaluate(gold_sentences)
-1.0",tag,33
+1.0",tag,4
 A module for POS tagging using CRFSuite https://pypi.python.org/pypi/python-crfsuite,">>> gold_sentences = [[('dog','noun'),('is','verb'),('good','adj')] , [('cat','noun'),('eat','verb'), ('meat','noun')]]
 >>> ct.evaluate(gold_sentences)
-1.0",tag_sents,56
+1.0",tag_sents,11
 A module for POS tagging using CRFSuite https://pypi.python.org/pypi/python-crfsuite,">>> gold_sentences = [[('dog','noun'),('is','verb'),('good','adj')] , [('cat','noun'),('eat','verb'), ('meat','noun')]]
 >>> ct.evaluate(gold_sentences)
-1.0",train,40
+1.0",train,5
 A module for POS tagging using CRFSuite https://pypi.python.org/pypi/python-crfsuite,">>> gold_sentences = [[('dog','noun'),('is','verb'),('good','adj')] , [('cat','noun'),('eat','verb'), ('meat','noun')]]
 >>> ct.evaluate(gold_sentences)
-1.0",>>> from nltk.tag import crftagger >>> ct = crftagger(),29
+1.0",>>> from nltk.tag import crftagger >>> ct = crftagger(),26
 A module for POS tagging using CRFSuite https://pypi.python.org/pypi/python-crfsuite,">>> gold_sentences = [[('dog','noun'),('is','verb'),('good','adj')] , [('cat','noun'),('eat','verb'), ('meat','noun')]]
 >>> ct.evaluate(gold_sentences)
 1.0",">>> train_data = [[('university','noun'), ('is','verb'), ('a','det'), ('good','adj'), ('place','noun')], ... [('dog','noun'),('eat','verb'),('meat','noun')]]",63
 A module for POS tagging using CRFSuite https://pypi.python.org/pypi/python-crfsuite,">>> gold_sentences = [[('dog','noun'),('is','verb'),('good','adj')] , [('cat','noun'),('eat','verb'), ('meat','noun')]]
 >>> ct.evaluate(gold_sentences)
-1.0",">>> ct.train(train_data,'model.crf.tagger') >>> ct.tag_sents([['dog','is','good'], ['cat','eat','meat']]) [[('dog', 'noun'), ('is', 'verb'), ('good', 'adj')], [('cat', 'noun'), ('eat', 'verb'), ('meat', 'noun')]]",73
+1.0",">>> ct.train(train_data,'model.crf.tagger') >>> ct.tag_sents([['dog','is','good'], ['cat','eat','meat']]) [[('dog', 'noun'), ('is', 'verb'), ('good', 'adj')], [('cat', 'noun'), ('eat', 'verb'), ('meat', 'noun')]]",60
 A module for POS tagging using CRFSuite https://pypi.python.org/pypi/python-crfsuite,">>> gold_sentences = [[('dog','noun'),('is','verb'),('good','adj')] , [('cat','noun'),('eat','verb'), ('meat','noun')]]
 >>> ct.evaluate(gold_sentences)
 1.0",">>> gold_sentences = [[('dog','noun'),('is','verb'),('good','adj')] , [('cat','noun'),('eat','verb'), ('meat','noun')]] >>> ct.evaluate(gold_sentences) 1.0",99
 Returns the entropy over labellings of the given sequence. This is given by:,h(o) = - sum_s pr(s | o) log pr(s | o),h(o) = - sum_s pr(s | o) log pr(s | o),100
-Returns the entropy over labellings of the given sequence. This is given by:,h(o) = - sum_s pr(s | o) log pr(s | o),"h = - sum_s pr(s | o) log [ pr(s, o) / z ] = log z - sum_s pr(s | o) log pr(s, 0) = log z - sum_s pr(s | o) [ log pr(s_0) + sum_t pr(s_t | s_{t-1}) + sum_t pr(o_t | s_t) ]",87
+Returns the entropy over labellings of the given sequence. This is given by:,h(o) = - sum_s pr(s | o) log pr(s | o),"h = - sum_s pr(s | o) log [ pr(s, o) / z ] = log z - sum_s pr(s | o) log pr(s, 0) = log z - sum_s pr(s | o) [ log pr(s_0) + sum_t pr(s_t | s_{t-1}) + sum_t pr(o_t | s_t) ]",36
 "The order of summation for the log terms can be flipped, allowing dynamic programming to be used to calculate the entropy. Specifically, we use the forward and backward probabilities (alpha, beta) giving:","h = log z - sum_s0 alpha_0(s0) beta_0(s0) / z * log pr(s0)
 + sum_t,si,sj alpha_t(si) pr(sj | si) pr(o_t+1 | sj) beta_t(sj) / z * log pr(sj | si)
 + sum_t,st alpha_t(st) beta_t(st) / z * log pr(o_t | st)","h = log z - sum_s0 alpha_0(s0) beta_0(s0) / z * log pr(s0) + sum_t,si,sj alpha_t(si) pr(sj | si) pr(o_t+1 | sj) beta_t(sj) / z * log pr(sj | si) + sum_t,st alpha_t(st) beta_t(st) / z * log pr(o_t | st)",99
 "This class communicates with the hunpos-tag binary via pipes. When the tagger object is no longer needed, the close() method should be called to free system resources. The class supports the context manager interface; if used in a with statement, the close() method is invoked automatically:",">>> with hunpostagger('en_wsj.model') as ht:
 ...     ht.tag('what is the airspeed of an unladen swallow ?'.split())
 ...
-[('what', 'wp'), ('is', 'vbz'), ('the', 'dt'), ('airspeed', 'nn'), ('of', 'in'), ('an', 'dt'), ('unladen', 'nn'), ('swallow', 'vb'), ('?', '.')]",close,20
+[('what', 'wp'), ('is', 'vbz'), ('the', 'dt'), ('airspeed', 'nn'), ('of', 'in'), ('an', 'dt'), ('unladen', 'nn'), ('swallow', 'vb'), ('?', '.')]",close,3
 "This class communicates with the hunpos-tag binary via pipes. When the tagger object is no longer needed, the close() method should be called to free system resources. The class supports the context manager interface; if used in a with statement, the close() method is invoked automatically:",">>> with hunpostagger('en_wsj.model') as ht:
 ...     ht.tag('what is the airspeed of an unladen swallow ?'.split())
 ...
-[('what', 'wp'), ('is', 'vbz'), ('the', 'dt'), ('airspeed', 'nn'), ('of', 'in'), ('an', 'dt'), ('unladen', 'nn'), ('swallow', 'vb'), ('?', '.')]",tag,100
+[('what', 'wp'), ('is', 'vbz'), ('the', 'dt'), ('airspeed', 'nn'), ('of', 'in'), ('an', 'dt'), ('unladen', 'nn'), ('swallow', 'vb'), ('?', '.')]",tag,2
 "This class communicates with the hunpos-tag binary via pipes. When the tagger object is no longer needed, the close() method should be called to free system resources. The class supports the context manager interface; if used in a with statement, the close() method is invoked automatically:",">>> with hunpostagger('en_wsj.model') as ht:
 ...     ht.tag('what is the airspeed of an unladen swallow ?'.split())
 ...
@@ -119,67 +119,67 @@ Returns the entropy over labellings of the given sequence. This is given by:,h(o
 Retrieve the mapping dictionary between tagsets.,">>> tagset_mapping('ru-rnc', 'universal') == {'!': '.', 'a': 'adj', 'c': 'conj', 'ad': 'adv',            'nn': 'noun', 'vg': 'verb', 'comp': 'conj', 'nc': 'num', 'vp': 'verb', 'p': 'adp',            'ij': 'x', 'v': 'verb', 'z': 'x', 'vi': 'verb', 'yes_no_sent': 'x', 'ptcl': 'prt'}
 true",">>> tagset_mapping('ru-rnc', 'universal') == {'!': '.', 'a': 'adj', 'c': 'conj', 'ad': 'adv', 'nn': 'noun', 'vg': 'verb', 'comp': 'conj', 'nc': 'num', 'vp': 'verb', 'p': 'adp', 'ij': 'x', 'v': 'verb', 'z': 'x', 'vi': 'verb', 'yes_no_sent': 'x', 'ptcl': 'prt'} true",100
 "Greedy Averaged Perceptron tagger, as implemented by Matthew Honnibal. See more implementation details here:",>>> from nltk.tag.perceptron import perceptrontagger,>>> from nltk.tag.perceptron import perceptrontagger,100
-"Greedy Averaged Perceptron tagger, as implemented by Matthew Honnibal. See more implementation details here:",>>> from nltk.tag.perceptron import perceptrontagger,>>> tagger = perceptrontagger(load=false),56
-"Greedy Averaged Perceptron tagger, as implemented by Matthew Honnibal. See more implementation details here:",>>> from nltk.tag.perceptron import perceptrontagger,">>> tagger.train([[('today','nn'),('is','vbz'),('good','jj'),('day','nn')], ... [('yes','nns'),('it','prp'),('beautiful','jj')]])",31
-"Greedy Averaged Perceptron tagger, as implemented by Matthew Honnibal. See more implementation details here:",>>> from nltk.tag.perceptron import perceptrontagger,">>> tagger.tag(['today','is','a','beautiful','day']) [('today', 'nn'), ('is', 'prp'), ('a', 'prp'), ('beautiful', 'jj'), ('day', 'nn')]",29
-Use the pretrain model (the default constructor),>>> pretrain = perceptrontagger(),end,33
-Use the pretrain model (the default constructor),>>> pretrain = perceptrontagger(),start,40
-Use the pretrain model (the default constructor),>>> pretrain = perceptrontagger(),decode_json_obj,33
-Use the pretrain model (the default constructor),>>> pretrain = perceptrontagger(),encode_json_obj,33
-Use the pretrain model (the default constructor),>>> pretrain = perceptrontagger(),json_tag,62
-Use the pretrain model (the default constructor),>>> pretrain = perceptrontagger(),load,25
-Use the pretrain model (the default constructor),>>> pretrain = perceptrontagger(),normalize,33
-Use the pretrain model (the default constructor),>>> pretrain = perceptrontagger(),tag,100
-Use the pretrain model (the default constructor),>>> pretrain = perceptrontagger(),train,100
+"Greedy Averaged Perceptron tagger, as implemented by Matthew Honnibal. See more implementation details here:",>>> from nltk.tag.perceptron import perceptrontagger,>>> tagger = perceptrontagger(load=false),58
+"Greedy Averaged Perceptron tagger, as implemented by Matthew Honnibal. See more implementation details here:",>>> from nltk.tag.perceptron import perceptrontagger,">>> tagger.train([[('today','nn'),('is','vbz'),('good','jj'),('day','nn')], ... [('yes','nns'),('it','prp'),('beautiful','jj')]])",22
+"Greedy Averaged Perceptron tagger, as implemented by Matthew Honnibal. See more implementation details here:",>>> from nltk.tag.perceptron import perceptrontagger,">>> tagger.tag(['today','is','a','beautiful','day']) [('today', 'nn'), ('is', 'prp'), ('a', 'prp'), ('beautiful', 'jj'), ('day', 'nn')]",25
+Use the pretrain model (the default constructor),>>> pretrain = perceptrontagger(),end,11
+Use the pretrain model (the default constructor),>>> pretrain = perceptrontagger(),start,21
+Use the pretrain model (the default constructor),>>> pretrain = perceptrontagger(),decode_json_obj,21
+Use the pretrain model (the default constructor),>>> pretrain = perceptrontagger(),encode_json_obj,25
+Use the pretrain model (the default constructor),>>> pretrain = perceptrontagger(),json_tag,24
+Use the pretrain model (the default constructor),>>> pretrain = perceptrontagger(),load,11
+Use the pretrain model (the default constructor),>>> pretrain = perceptrontagger(),normalize,19
+Use the pretrain model (the default constructor),>>> pretrain = perceptrontagger(),tag,17
+Use the pretrain model (the default constructor),>>> pretrain = perceptrontagger(),train,26
 Use the pretrain model (the default constructor),>>> pretrain = perceptrontagger(),>>> pretrain = perceptrontagger(),100
-Use the pretrain model (the default constructor),>>> pretrain = perceptrontagger(),">>> pretrain.tag('the quick brown fox jumps over the lazy dog'.split()) [('the', 'dt'), ('quick', 'jj'), ('brown', 'nn'), ('fox', 'nn'), ('jumps', 'vbz'), ('over', 'in'), ('the', 'dt'), ('lazy', 'jj'), ('dog', 'nn')]",52
-Use the pretrain model (the default constructor),>>> pretrain = perceptrontagger(),">>> pretrain.tag(""the red cat"".split()) [('the', 'dt'), ('red', 'jj'), ('cat', 'nn')]",52
+Use the pretrain model (the default constructor),>>> pretrain = perceptrontagger(),">>> pretrain.tag('the quick brown fox jumps over the lazy dog'.split()) [('the', 'dt'), ('quick', 'jj'), ('brown', 'nn'), ('fox', 'nn'), ('jumps', 'vbz'), ('over', 'in'), ('the', 'dt'), ('lazy', 'jj'), ('dog', 'nn')]",22
+Use the pretrain model (the default constructor),>>> pretrain = perceptrontagger(),">>> pretrain.tag(""the red cat"".split()) [('the', 'dt'), ('red', 'jj'), ('cat', 'nn')]",37
 Use the pretrain model (the default constructor),">>> pretrain.tag('the quick brown fox jumps over the lazy dog'.split())
-[('the', 'dt'), ('quick', 'jj'), ('brown', 'nn'), ('fox', 'nn'), ('jumps', 'vbz'), ('over', 'in'), ('the', 'dt'), ('lazy', 'jj'), ('dog', 'nn')]",end,33
+[('the', 'dt'), ('quick', 'jj'), ('brown', 'nn'), ('fox', 'nn'), ('jumps', 'vbz'), ('over', 'in'), ('the', 'dt'), ('lazy', 'jj'), ('dog', 'nn')]",end,3
 Use the pretrain model (the default constructor),">>> pretrain.tag('the quick brown fox jumps over the lazy dog'.split())
-[('the', 'dt'), ('quick', 'jj'), ('brown', 'nn'), ('fox', 'nn'), ('jumps', 'vbz'), ('over', 'in'), ('the', 'dt'), ('lazy', 'jj'), ('dog', 'nn')]",start,20
+[('the', 'dt'), ('quick', 'jj'), ('brown', 'nn'), ('fox', 'nn'), ('jumps', 'vbz'), ('over', 'in'), ('the', 'dt'), ('lazy', 'jj'), ('dog', 'nn')]",start,5
 Use the pretrain model (the default constructor),">>> pretrain.tag('the quick brown fox jumps over the lazy dog'.split())
-[('the', 'dt'), ('quick', 'jj'), ('brown', 'nn'), ('fox', 'nn'), ('jumps', 'vbz'), ('over', 'in'), ('the', 'dt'), ('lazy', 'jj'), ('dog', 'nn')]",decode_json_obj,27
+[('the', 'dt'), ('quick', 'jj'), ('brown', 'nn'), ('fox', 'nn'), ('jumps', 'vbz'), ('over', 'in'), ('the', 'dt'), ('lazy', 'jj'), ('dog', 'nn')]",decode_json_obj,10
 Use the pretrain model (the default constructor),">>> pretrain.tag('the quick brown fox jumps over the lazy dog'.split())
-[('the', 'dt'), ('quick', 'jj'), ('brown', 'nn'), ('fox', 'nn'), ('jumps', 'vbz'), ('over', 'in'), ('the', 'dt'), ('lazy', 'jj'), ('dog', 'nn')]",encode_json_obj,27
+[('the', 'dt'), ('quick', 'jj'), ('brown', 'nn'), ('fox', 'nn'), ('jumps', 'vbz'), ('over', 'in'), ('the', 'dt'), ('lazy', 'jj'), ('dog', 'nn')]",encode_json_obj,10
 Use the pretrain model (the default constructor),">>> pretrain.tag('the quick brown fox jumps over the lazy dog'.split())
-[('the', 'dt'), ('quick', 'jj'), ('brown', 'nn'), ('fox', 'nn'), ('jumps', 'vbz'), ('over', 'in'), ('the', 'dt'), ('lazy', 'jj'), ('dog', 'nn')]",json_tag,38
+[('the', 'dt'), ('quick', 'jj'), ('brown', 'nn'), ('fox', 'nn'), ('jumps', 'vbz'), ('over', 'in'), ('the', 'dt'), ('lazy', 'jj'), ('dog', 'nn')]",json_tag,6
 Use the pretrain model (the default constructor),">>> pretrain.tag('the quick brown fox jumps over the lazy dog'.split())
-[('the', 'dt'), ('quick', 'jj'), ('brown', 'nn'), ('fox', 'nn'), ('jumps', 'vbz'), ('over', 'in'), ('the', 'dt'), ('lazy', 'jj'), ('dog', 'nn')]",load,50
+[('the', 'dt'), ('quick', 'jj'), ('brown', 'nn'), ('fox', 'nn'), ('jumps', 'vbz'), ('over', 'in'), ('the', 'dt'), ('lazy', 'jj'), ('dog', 'nn')]",load,4
 Use the pretrain model (the default constructor),">>> pretrain.tag('the quick brown fox jumps over the lazy dog'.split())
-[('the', 'dt'), ('quick', 'jj'), ('brown', 'nn'), ('fox', 'nn'), ('jumps', 'vbz'), ('over', 'in'), ('the', 'dt'), ('lazy', 'jj'), ('dog', 'nn')]",normalize,22
+[('the', 'dt'), ('quick', 'jj'), ('brown', 'nn'), ('fox', 'nn'), ('jumps', 'vbz'), ('over', 'in'), ('the', 'dt'), ('lazy', 'jj'), ('dog', 'nn')]",normalize,7
 Use the pretrain model (the default constructor),">>> pretrain.tag('the quick brown fox jumps over the lazy dog'.split())
-[('the', 'dt'), ('quick', 'jj'), ('brown', 'nn'), ('fox', 'nn'), ('jumps', 'vbz'), ('over', 'in'), ('the', 'dt'), ('lazy', 'jj'), ('dog', 'nn')]",tag,100
+[('the', 'dt'), ('quick', 'jj'), ('brown', 'nn'), ('fox', 'nn'), ('jumps', 'vbz'), ('over', 'in'), ('the', 'dt'), ('lazy', 'jj'), ('dog', 'nn')]",tag,3
 Use the pretrain model (the default constructor),">>> pretrain.tag('the quick brown fox jumps over the lazy dog'.split())
-[('the', 'dt'), ('quick', 'jj'), ('brown', 'nn'), ('fox', 'nn'), ('jumps', 'vbz'), ('over', 'in'), ('the', 'dt'), ('lazy', 'jj'), ('dog', 'nn')]",train,100
+[('the', 'dt'), ('quick', 'jj'), ('brown', 'nn'), ('fox', 'nn'), ('jumps', 'vbz'), ('over', 'in'), ('the', 'dt'), ('lazy', 'jj'), ('dog', 'nn')]",train,5
 Use the pretrain model (the default constructor),">>> pretrain.tag('the quick brown fox jumps over the lazy dog'.split())
-[('the', 'dt'), ('quick', 'jj'), ('brown', 'nn'), ('fox', 'nn'), ('jumps', 'vbz'), ('over', 'in'), ('the', 'dt'), ('lazy', 'jj'), ('dog', 'nn')]",>>> pretrain = perceptrontagger(),52
+[('the', 'dt'), ('quick', 'jj'), ('brown', 'nn'), ('fox', 'nn'), ('jumps', 'vbz'), ('over', 'in'), ('the', 'dt'), ('lazy', 'jj'), ('dog', 'nn')]",>>> pretrain = perceptrontagger(),22
 Use the pretrain model (the default constructor),">>> pretrain.tag('the quick brown fox jumps over the lazy dog'.split())
 [('the', 'dt'), ('quick', 'jj'), ('brown', 'nn'), ('fox', 'nn'), ('jumps', 'vbz'), ('over', 'in'), ('the', 'dt'), ('lazy', 'jj'), ('dog', 'nn')]",">>> pretrain.tag('the quick brown fox jumps over the lazy dog'.split()) [('the', 'dt'), ('quick', 'jj'), ('brown', 'nn'), ('fox', 'nn'), ('jumps', 'vbz'), ('over', 'in'), ('the', 'dt'), ('lazy', 'jj'), ('dog', 'nn')]",100
 Use the pretrain model (the default constructor),">>> pretrain.tag('the quick brown fox jumps over the lazy dog'.split())
-[('the', 'dt'), ('quick', 'jj'), ('brown', 'nn'), ('fox', 'nn'), ('jumps', 'vbz'), ('over', 'in'), ('the', 'dt'), ('lazy', 'jj'), ('dog', 'nn')]",">>> pretrain.tag(""the red cat"".split()) [('the', 'dt'), ('red', 'jj'), ('cat', 'nn')]",62
+[('the', 'dt'), ('quick', 'jj'), ('brown', 'nn'), ('fox', 'nn'), ('jumps', 'vbz'), ('over', 'in'), ('the', 'dt'), ('lazy', 'jj'), ('dog', 'nn')]",">>> pretrain.tag(""the red cat"".split()) [('the', 'dt'), ('red', 'jj'), ('cat', 'nn')]",50
 Use the pretrain model (the default constructor),">>> pretrain.tag(""the red cat"".split())
-[('the', 'dt'), ('red', 'jj'), ('cat', 'nn')]",end,67
+[('the', 'dt'), ('red', 'jj'), ('cat', 'nn')]",end,7
 Use the pretrain model (the default constructor),">>> pretrain.tag(""the red cat"".split())
-[('the', 'dt'), ('red', 'jj'), ('cat', 'nn')]",start,40
+[('the', 'dt'), ('red', 'jj'), ('cat', 'nn')]",start,9
 Use the pretrain model (the default constructor),">>> pretrain.tag(""the red cat"".split())
-[('the', 'dt'), ('red', 'jj'), ('cat', 'nn')]",decode_json_obj,27
+[('the', 'dt'), ('red', 'jj'), ('cat', 'nn')]",decode_json_obj,12
 Use the pretrain model (the default constructor),">>> pretrain.tag(""the red cat"".split())
-[('the', 'dt'), ('red', 'jj'), ('cat', 'nn')]",encode_json_obj,27
+[('the', 'dt'), ('red', 'jj'), ('cat', 'nn')]",encode_json_obj,14
 Use the pretrain model (the default constructor),">>> pretrain.tag(""the red cat"".split())
-[('the', 'dt'), ('red', 'jj'), ('cat', 'nn')]",json_tag,50
+[('the', 'dt'), ('red', 'jj'), ('cat', 'nn')]",json_tag,9
 Use the pretrain model (the default constructor),">>> pretrain.tag(""the red cat"".split())
-[('the', 'dt'), ('red', 'jj'), ('cat', 'nn')]",load,25
+[('the', 'dt'), ('red', 'jj'), ('cat', 'nn')]",load,4
 Use the pretrain model (the default constructor),">>> pretrain.tag(""the red cat"".split())
-[('the', 'dt'), ('red', 'jj'), ('cat', 'nn')]",normalize,22
+[('the', 'dt'), ('red', 'jj'), ('cat', 'nn')]",normalize,13
 Use the pretrain model (the default constructor),">>> pretrain.tag(""the red cat"".split())
-[('the', 'dt'), ('red', 'jj'), ('cat', 'nn')]",tag,100
+[('the', 'dt'), ('red', 'jj'), ('cat', 'nn')]",tag,7
 Use the pretrain model (the default constructor),">>> pretrain.tag(""the red cat"".split())
-[('the', 'dt'), ('red', 'jj'), ('cat', 'nn')]",train,100
+[('the', 'dt'), ('red', 'jj'), ('cat', 'nn')]",train,11
 Use the pretrain model (the default constructor),">>> pretrain.tag(""the red cat"".split())
-[('the', 'dt'), ('red', 'jj'), ('cat', 'nn')]",>>> pretrain = perceptrontagger(),52
+[('the', 'dt'), ('red', 'jj'), ('cat', 'nn')]",>>> pretrain = perceptrontagger(),37
 Use the pretrain model (the default constructor),">>> pretrain.tag(""the red cat"".split())
-[('the', 'dt'), ('red', 'jj'), ('cat', 'nn')]",">>> pretrain.tag('the quick brown fox jumps over the lazy dog'.split()) [('the', 'dt'), ('quick', 'jj'), ('brown', 'nn'), ('fox', 'nn'), ('jumps', 'vbz'), ('over', 'in'), ('the', 'dt'), ('lazy', 'jj'), ('dog', 'nn')]",62
+[('the', 'dt'), ('red', 'jj'), ('cat', 'nn')]",">>> pretrain.tag('the quick brown fox jumps over the lazy dog'.split()) [('the', 'dt'), ('quick', 'jj'), ('brown', 'nn'), ('fox', 'nn'), ('jumps', 'vbz'), ('over', 'in'), ('the', 'dt'), ('lazy', 'jj'), ('dog', 'nn')]",50
 Use the pretrain model (the default constructor),">>> pretrain.tag(""the red cat"".split())
 [('the', 'dt'), ('red', 'jj'), ('cat', 'nn')]",">>> pretrain.tag(""the red cat"".split()) [('the', 'dt'), ('red', 'jj'), ('cat', 'nn')]",99
 Return the feature detector that this tagger uses to generate featuresets for its classifier. The feature detector is a function with the signature:,"feature_detector(tokens, index, history) -> featureset","feature_detector(tokens, index, history) -> featureset",100
@@ -211,7 +211,7 @@ The RegexpTagger assigns tags to tokens by comparing their word strings to a ser
 (""atlanta's"", 'nns'), ('recent', 'nn'), ('primary', 'nn'), ('election', 'nn'),
 ('produced', 'vbd'), ('``', 'nn'), ('no', 'nn'), ('evidence', 'nn'), (""''"", 'nn'),
 ('that', 'nn'), ('any', 'nn'), ('irregularities', 'nns'), ('took', 'nn'),
-('place', 'nn'), ('.', 'nn')]",choose_tag,50
+('place', 'nn'), ('.', 'nn')]",choose_tag,2
 The RegexpTagger assigns tags to tokens by comparing their word strings to a series of regular expressions. The following tagger uses word suffixes to make guesses about the correct Brown Corpus part of speech tag:,">>> from nltk.corpus import brown
 >>> from nltk.tag import regexptagger
 >>> test_sent = brown.sents(categories='news')[0]
@@ -234,7 +234,7 @@ The RegexpTagger assigns tags to tokens by comparing their word strings to a ser
 (""atlanta's"", 'nns'), ('recent', 'nn'), ('primary', 'nn'), ('election', 'nn'),
 ('produced', 'vbd'), ('``', 'nn'), ('no', 'nn'), ('evidence', 'nn'), (""''"", 'nn'),
 ('that', 'nn'), ('any', 'nn'), ('irregularities', 'nns'), ('took', 'nn'),
-('place', 'nn'), ('.', 'nn')]",decode_json_obj,33
+('place', 'nn'), ('.', 'nn')]",decode_json_obj,2
 The RegexpTagger assigns tags to tokens by comparing their word strings to a series of regular expressions. The following tagger uses word suffixes to make guesses about the correct Brown Corpus part of speech tag:,">>> from nltk.corpus import brown
 >>> from nltk.tag import regexptagger
 >>> test_sent = brown.sents(categories='news')[0]
@@ -257,7 +257,7 @@ The RegexpTagger assigns tags to tokens by comparing their word strings to a ser
 (""atlanta's"", 'nns'), ('recent', 'nn'), ('primary', 'nn'), ('election', 'nn'),
 ('produced', 'vbd'), ('``', 'nn'), ('no', 'nn'), ('evidence', 'nn'), (""''"", 'nn'),
 ('that', 'nn'), ('any', 'nn'), ('irregularities', 'nns'), ('took', 'nn'),
-('place', 'nn'), ('.', 'nn')]",encode_json_obj,33
+('place', 'nn'), ('.', 'nn')]",encode_json_obj,2
 The RegexpTagger assigns tags to tokens by comparing their word strings to a series of regular expressions. The following tagger uses word suffixes to make guesses about the correct Brown Corpus part of speech tag:,">>> from nltk.corpus import brown
 >>> from nltk.tag import regexptagger
 >>> test_sent = brown.sents(categories='news')[0]
@@ -280,7 +280,7 @@ The RegexpTagger assigns tags to tokens by comparing their word strings to a ser
 (""atlanta's"", 'nns'), ('recent', 'nn'), ('primary', 'nn'), ('election', 'nn'),
 ('produced', 'vbd'), ('``', 'nn'), ('no', 'nn'), ('evidence', 'nn'), (""''"", 'nn'),
 ('that', 'nn'), ('any', 'nn'), ('irregularities', 'nns'), ('took', 'nn'),
-('place', 'nn'), ('.', 'nn')]",json_tag,50
+('place', 'nn'), ('.', 'nn')]",json_tag,2
 The RegexpTagger assigns tags to tokens by comparing their word strings to a series of regular expressions. The following tagger uses word suffixes to make guesses about the correct Brown Corpus part of speech tag:,">>> from nltk.corpus import brown
 >>> from nltk.tag import regexptagger
 >>> test_sent = brown.sents(categories='news')[0]
@@ -304,7 +304,7 @@ The RegexpTagger assigns tags to tokens by comparing their word strings to a ser
 ('produced', 'vbd'), ('``', 'nn'), ('no', 'nn'), ('evidence', 'nn'), (""''"", 'nn'),
 ('that', 'nn'), ('any', 'nn'), ('irregularities', 'nns'), ('took', 'nn'),
 ('place', 'nn'), ('.', 'nn')]",">>> from nltk.corpus import brown >>> from nltk.tag import regexptagger >>> test_sent = brown.sents(categories='news')[0] >>> regexp_tagger = regexptagger( ... [(r'^-?[0-9]+(.[0-9]+)?$', 'cd'), # cardinal numbers ... (r'(the|the|a|a|an|an)$', 'at'), # articles ... (r'.*able$', 'jj'), # adjectives ... (r'.*ness$', 'nn'), # nouns formed from adjectives ... (r'.*ly$', 'rb'), # adverbs ... (r'.*s$', 'nns'), # plural nouns ... (r'.*ing$', 'vbg'), # gerunds ... (r'.*ed$', 'vbd'), # past tense verbs ... (r'.*', 'nn') # nouns (default) ... ]) >>> regexp_tagger
->>> regexp_tagger.tag(test_sent) [('the', 'at'), ('fulton', 'nn'), ('county', 'nn'), ('grand', 'nn'), ('jury', 'nn'), ('said', 'nn'), ('friday', 'nn'), ('an', 'at'), ('investigation', 'nn'), ('of', 'nn'), (""atlanta's"", 'nns'), ('recent', 'nn'), ('primary', 'nn'), ('election', 'nn'), ('produced', 'vbd'), ('``', 'nn'), ('no', 'nn'), ('evidence', 'nn'), (""''"", 'nn'), ('that', 'nn'), ('any', 'nn'), ('irregularities', 'nns'), ('took', 'nn'), ('place', 'nn'), ('.', 'nn')]",96
+>>> regexp_tagger.tag(test_sent) [('the', 'at'), ('fulton', 'nn'), ('county', 'nn'), ('grand', 'nn'), ('jury', 'nn'), ('said', 'nn'), ('friday', 'nn'), ('an', 'at'), ('investigation', 'nn'), ('of', 'nn'), (""atlanta's"", 'nns'), ('recent', 'nn'), ('primary', 'nn'), ('election', 'nn'), ('produced', 'vbd'), ('``', 'nn'), ('no', 'nn'), ('evidence', 'nn'), (""''"", 'nn'), ('that', 'nn'), ('any', 'nn'), ('irregularities', 'nns'), ('took', 'nn'), ('place', 'nn'), ('.', 'nn')]",97
 "The UnigramTagger finds the most likely tag for each word in a training corpus, and then uses that information to assign tags to new tokens.",">>> from nltk.corpus import brown
 >>> from nltk.tag import unigramtagger
 >>> test_sent = brown.sents(categories='news')[0]
@@ -316,7 +316,7 @@ The RegexpTagger assigns tags to tokens by comparing their word strings to a ser
 (investigation, nn), (of, in), (atlanta's, np$), (recent, jj),
 (primary, nn), (election, nn), (produced, vbd), (``, ``),
 (no, at), (evidence, nn), ('', ''), (that, cs), (any, dti),
-(irregularities, nns), (took, vbd), (place, nn), (., .),",context,43
+(irregularities, nns), (took, vbd), (place, nn), (., .),",context,2
 "The UnigramTagger finds the most likely tag for each word in a training corpus, and then uses that information to assign tags to new tokens.",">>> from nltk.corpus import brown
 >>> from nltk.tag import unigramtagger
 >>> test_sent = brown.sents(categories='news')[0]
@@ -328,7 +328,7 @@ The RegexpTagger assigns tags to tokens by comparing their word strings to a ser
 (investigation, nn), (of, in), (atlanta's, np$), (recent, jj),
 (primary, nn), (election, nn), (produced, vbd), (``, ``),
 (no, at), (evidence, nn), ('', ''), (that, cs), (any, dti),
-(irregularities, nns), (took, vbd), (place, nn), (., .),",json_tag,38
+(irregularities, nns), (took, vbd), (place, nn), (., .),",json_tag,2
 "The UnigramTagger finds the most likely tag for each word in a training corpus, and then uses that information to assign tags to new tokens.",">>> from nltk.corpus import brown
 >>> from nltk.tag import unigramtagger
 >>> test_sent = brown.sents(categories='news')[0]

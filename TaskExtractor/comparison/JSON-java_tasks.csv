@@ -1,22 +1,47 @@
 Paragraph,Ground truth tasks,Program tasks,Partial Ratio
-Create the jar file in the current directory,create jar file,create jar file in current directory,100
-Execute the Test file,execute test,execute test file,100
-Execute the test suite with Maven:,test maven,execute test suite with maven,70
-Execute the test suite with Gradlew:,test gradlew,execute test suite with gradlew,75
-Building from the command line,build command line
-Build the class files from the package root directory src/main/java,build class files    
+The JSON-Java package is a reference implementation that demonstrates how to parse JSON documents into Java objects and how to generate new JSON documents from the Java classes.,generate new json documents from java classes,generate new json documents from java classes,100
+"The files in this package implement JSON encoders and decoders. The package can also convert between JSON and XML, HTTP headers, Cookies, and CDL.","implement json encorders
+implement decoders
+convert between cdl
+convert between json
+convert between xml
+convert between http headers
+convert between cookies","implement json encoders
+implement decoders
+convert  between cdl
+convert  between json
+convert  between xml
+convert  between http headers
+convert  between cookies",97
+"The org.json package can be built from the command line, Maven, and Gradle. The unit tests can be executed from Maven, Gradle, or individually in an IDE e.g. Eclipse.","execute unit tests from maven
+execute unit tests from gradle","execute unit tests from e.g. eclipse
+execute unit tests from maven
+execute unit tests from gradle",100
+Create the jar file in the current directory,create jar file in current directory,create jar file in current directory,100
+Compile a program that uses the jar (see example code below),compile program,"compile program
+use jar
+use program",100
+Test file contents,test file contents,test file contents,100
+Execute the Test file,execute test file,execute test file,100
+Tools to build the package and execute the unit tests,execute unit tests,execute unit,100
+Execute the test suite with Maven:,execute test suite with maven,execute test suite with maven,100
+Execute the test suite with Gradlew:,execute test suite with gradlew,execute test suite with gradlew,100
+Build the class files from the package root directory src/main/java,build class files
 "For example, code like this will create a mixed JSONArray, some items wrapped, others not:",create jsonarray
-"JSONObject.java: The JSONObject can parse text from a String or a JSONTokener to produce a map-like object. The object provides methods for manipulating its contents, and for producing a JSON compliant object serialization.","parse string, parse jsontokener, produce map"
-"JSONArray.java: The JSONArray can parse text from a String or a JSONTokener to produce a vector-like object. The object provides methods for manipulating its contents, and for producing a JSON compliant array serialization.","parse string, parse jsontokener, produce vector"
-"JSONTokener.java: The JSONTokener breaks a text into a sequence of individual tokens. It can be constructed from a String, Reader, or InputStream. It also can parse text from a String, Number, Boolean or null like """"hello"""", 42, true, null to produce a simple json object.","parse string, parse number, parse boolean, parse null "
+"JSONObject.java: The JSONObject can parse text from a String or a JSONTokener to produce a map-like object. The object provides methods for manipulating its contents, and for producing a JSON compliant object serialization.",parse string
+"JSONObject.java: The JSONObject can parse text from a String or a JSONTokener to produce a map-like object. The object provides methods for manipulating its contents, and for producing a JSON compliant object serialization.",parse jsontokener
+"JSONObject.java: The JSONObject can parse text from a String or a JSONTokener to produce a map-like object. The object provides methods for manipulating its contents, and for producing a JSON compliant object serialization.",produce map
+"JSONArray.java: The JSONArray can parse text from a String or a JSONTokener to produce a vector-like object. The object provides methods for manipulating its contents, and for producing a JSON compliant array serialization.",parse string
+"JSONArray.java: The JSONArray can parse text from a String or a JSONTokener to produce a vector-like object. The object provides methods for manipulating its contents, and for producing a JSON compliant array serialization.",parse jsontokener
+"JSONArray.java: The JSONArray can parse text from a String or a JSONTokener to produce a vector-like object. The object provides methods for manipulating its contents, and for producing a JSON compliant array serialization.",produce vector
+"JSONTokener.java: The JSONTokener breaks a text into a sequence of individual tokens. It can be constructed from a String, Reader, or InputStream. It also can parse text from a String, Number, Boolean or null like """"hello"""", 42, true, null to produce a simple json object.",parse string
+"JSONTokener.java: The JSONTokener breaks a text into a sequence of individual tokens. It can be constructed from a String, Reader, or InputStream. It also can parse text from a String, Number, Boolean or null like """"hello"""", 42, true, null to produce a simple json object.",parse number
+"JSONTokener.java: The JSONTokener breaks a text into a sequence of individual tokens. It can be constructed from a String, Reader, or InputStream. It also can parse text from a String, Number, Boolean or null like """"hello"""", 42, true, null to produce a simple json object.",parse boolean
+"JSONTokener.java: The JSONTokener breaks a text into a sequence of individual tokens. It can be constructed from a String, Reader, or InputStream. It also can parse text from a String, Number, Boolean or null like """"hello"""", 42, true, null to produce a simple json object.",parse null 
 "JSONString.java: The JSONString interface requires a toJSONString method, allowing an object to provide its own serialization.",provide serialization
 JSONStringer.java: The JSONStringer provides a convenient facility for building JSON strings.,build json
 JSONWriter.java: The JSONWriter provides a convenient facility for building JSON text through a writer.,build json
-The JSON-Java package is a reference implementation that demonstrates how to parse JSON documents into Java objects and how to generate new JSON documents from the Java classes.,,generate new json documents from java classes
-"The files in this package implement JSON encoders and decoders. The package can also convert between JSON and XML, HTTP headers, Cookies, and CDL.",,"implement json encoders,implement decoders,convert  between cdl,convert  between json,convert  between xml,convert  between http headers,convert  between cookies"
-"The license includes this restriction: ""The software shall be used for good, not evil."" If your conscience cannot live with that, then choose a different package.",,"include restriction,use software,choose different package"
+"The license includes this restriction: ""The software shall be used for good, not evil."" If your conscience cannot live with that, then choose a different package.",,include restriction
+"The license includes this restriction: ""The software shall be used for good, not evil."" If your conscience cannot live with that, then choose a different package.",,use software
+"The license includes this restriction: ""The software shall be used for good, not evil."" If your conscience cannot live with that, then choose a different package.",,choose different package
 "Bug fixes, code improvements, and unit test coverage changes are welcome! Because this project is currently in the maintenance phase, the kinds of changes that can be accepted are limited. For more information, please read the FAQ.",,read faq for more information
-"The org.json package can be built from the command line, Maven, and Gradle. The unit tests can be executed from Maven, Gradle, or individually in an IDE e.g. Eclipse.",,"execute unit tests from e.g. eclipse,execute unit tests from maven,execute unit tests from gradle"
-Compile a program that uses the jar (see example code below),,"compile program,use jar,use program"
-Test file contents,,test file contents
-Tools to build the package and execute the unit tests,,execute unit
