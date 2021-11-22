@@ -7,7 +7,7 @@ import csv
 import html
 
 from fuzzywuzzy import fuzz
-from pyquery import PyQuery as pq
+from bs4 import BeautifulSoup
 from urllib.request import Request, urlopen
 
 LINKS_FILE = os.path.normpath("results/links.csv")
@@ -46,20 +46,25 @@ def preprocess(raw_html):
 def get_paragraphs_and_tasks(paragraphs, task_file):
     tt = re.compile(r"</?tt>")
     with open(task_file, "w", encoding="utf-8", newline="") as out_file:
-        writer = csv.writer(out_file, quoting=csv.QUOTE_MINIMAL)
-        for paragraph in paragraphs.items():
-            if len(paragraph[0].classes) == 0:
-                text = preprocess(paragraph.html())
+        writer = csv.writer(out_file, quoting=csv.QUOTE_ALL)
+        for paragraph in paragraphs:
+            if not paragraph.has_attr("class"):
+                text = preprocess(paragraph.prettify())
                 extracted = call_extractor(text)
                 if extracted:
                     extracted = extracted.replace("\r\n", "\n")
                     extracted = re.sub(tt, "", extracted)
                     # Remove the trailing comma
-                    writer.writerow([paragraph.text().strip(), extracted[:-1]])
+                    writer.writerow([paragraph.get_text().strip(), extracted[:-1]])
 
 
 def fuzzy_compare(potential, paragraph):
-    return fuzz.partial_ratio(potential, paragraph)
+    ratio = 0
+    try:
+        ratio = fuzz.partial_ratio(potential, paragraph)
+    except:
+        pass
+    return ratio
 
 
 def link_code_examples_and_paragraphs(code_examples, paragraphs, link_file):
@@ -68,42 +73,42 @@ def link_code_examples_and_paragraphs(code_examples, paragraphs, link_file):
     else:
         mode = "w"
     with open(link_file, mode, encoding="utf-8", newline="") as out_file:
-        writer = csv.writer(out_file, quoting=csv.QUOTE_MINIMAL)
-        for example in code_examples.items():
+        writer = csv.writer(out_file, quoting=csv.QUOTE_ALL)
+        for example in code_examples:
             # exclude code/pre that is inline a (p)aragraph
-            if example.parent()[0].tag != "p":
+            if example.parent.name != "p":
                 code = example
                 # Look for the closest parent with siblings of tag "p" or we reach a containing div
                 potential = False
                 while True:
-                    if example.siblings().length != 0:
-                        for child in example.parent().children():
-                            if child.tag == "p":
+                    if len(list(example.parent.children)) > 1:
+                        for child in example.parent.children:
+                            if child.name == "p":
                                 potential = True
                                 break
                         if potential:
                             break
-                        if example[0].tag == "div":
+                        if example.name == "div":
                             break
-                    example = example.parent()
+                    example = example.parent
 
                 # Find the paragraph that is right above the code example not crossing a header
                 paragraph = None
-                for child in example.parent().children():
+                for child in example.parent.children:
                     # If the current child is a header then any potential paragraph previously should not be relevant
-                    if re.match(re.compile("h[0-6]"), child.tag):
+                    if child.name and re.match(re.compile("h[0-6]"), child.name):
                         paragraph = None
-                    elif child.text and child.text.count(" ") > 2:
+                    elif child.get_text() and child.get_text().count(" ") > 2:
                         for i, ratio in enumerate(
-                                list(map(functools.partial(fuzzy_compare, child.text.strip()), paragraphs))):
+                                list(map(functools.partial(fuzzy_compare, child.get_text().strip()), paragraphs))):
                             if ratio >= 95:
                                 paragraph = paragraphs[i]
                     # If we reach the code example then break, since according to our heuristic,
                     # explanations are not below examples
-                    if example[0] == child:
+                    if example == child:
                         break
                 if paragraph is not None:
-                    writer.writerow([paragraph, code.text()])
+                    writer.writerow([paragraph, code.get_text().strip()])
 
 
 def filename_maker(url, ftype):
@@ -120,12 +125,12 @@ def extract_and_link(url):
     # p_file = filename_maker(url, "tasks")
     req = Request(url=url, headers=HEADERS)
     content = html.unescape(urlopen(req).read().decode("utf-8"))
-    raw_html = pq(content)
-    code_examples = raw_html("code")
-    pre_examples = raw_html("pre")
+    soup = BeautifulSoup(content, "html.parser")
+    code_examples = soup.find_all("code")
+    pre_examples = soup.find_all("pre")
     if os.path.basename(os.getcwd()) != "TaskExtractor":
         os.chdir("TaskExtractor")
-    with open(p_file, "r", newline="") as p:
+    with open(p_file, "r", encoding="utf-8", newline="") as p:
         paragraphs = list(e[0] for e in list(csv.reader(p)))
         link_pot = filename_maker(url, "links_pot")
         # Taken from: https://stackoverflow.com/questions/10840533/most-pythonic-way-to-delete-a-file-which-may-not-exist
@@ -153,11 +158,11 @@ def extract_and_link(url):
 def extract_tasks(url):
     req = Request(url=url, headers=HEADERS)
     content = html.unescape(urlopen(req).read().decode("utf-8"))
-    raw_html = pq(content)
+    soup = BeautifulSoup(content, "html.parser")
     if os.path.basename(os.getcwd()) != "TaskExtractor":
         os.chdir("TaskExtractor")
     filename = filename_maker(url, "tasks")
-    get_paragraphs_and_tasks(raw_html("p"), filename)
+    get_paragraphs_and_tasks(soup.find_all("p"), filename)
     os.chdir("..")
     return filename
 
@@ -165,10 +170,10 @@ def extract_tasks(url):
 def extract_paragraphs(url, out_file):
     req = Request(url=url, headers=HEADERS)
     content = html.unescape(urlopen(req).read().decode("utf-8"))
-    raw_html = pq(content)
-    paragraphs = raw_html("p")
+    soup = BeautifulSoup(content, "html.parser")
+    paragraphs = soup.find_all("p")
     with open(out_file, "w", encoding="utf-8", newline="") as out_file:
-        writer = csv.writer(out_file, quoting=csv.QUOTE_MINIMAL)
-        for paragraph in paragraphs.items():
+        writer = csv.writer(out_file, quoting=csv.QUOTE_ALL)
+        for paragraph in paragraphs:
             if len(paragraph[0].classes) == 0:
                 writer.writerow([paragraph.text().strip()])
