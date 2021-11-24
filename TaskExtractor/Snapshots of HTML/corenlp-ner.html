@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en-US"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=Edge"><title>Named Entity Recognition - CoreNLP</title><meta name="keywords" content=" ner, named entity recognition, NERCombinerAnnotator"><link rel="shortcut icon" href="https://stanfordnlp.github.io/CoreNLP/favicon.ico" type="image/x-icon"><link rel="stylesheet" href="corenlp-ner_files/font-awesome.css"><link rel="stylesheet" href="corenlp-ner_files/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous"><link rel="stylesheet" href="corenlp-ner_files/just-the-docs.css"> <script type="text/javascript" async="" src="corenlp-ner_files/analytics.js"></script><script async="" src="corenlp-ner_files/js.js"></script> <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', "UA-133356038-1"); </script> <script type="text/javascript" src="corenlp-ner_files/lunr.js"></script> <script type="text/javascript" src="corenlp-ner_files/just-the-docs.js"></script><meta name="viewport" content="width=device-width, initial-scale=1"><title>Named Entity Recognition | CoreNLP</title><meta name="generator" content="Jekyll v3.9.0"><meta property="og:title" content="Named Entity Recognition"><meta property="og:locale" content="en_US"><meta name="description" content="NLP Processing In Java"><meta property="og:description" content="NLP Processing In Java"><link rel="canonical" href="https://stanfordnlp.github.io/CoreNLP/ner.html"><meta property="og:url" content="https://stanfordnlp.github.io/CoreNLP/ner.html"><meta property="og:site_name" content="CoreNLP"><meta name="twitter:card" content="summary"><meta property="twitter:title" content="Named Entity Recognition"> <script type="application/ld+json"> {"description":"NLP Processing In Java","url":"https://stanfordnlp.github.io/CoreNLP/ner.html","@type":"WebPage","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://stanfordnlp.github.io/CoreNLP/assets/images/corenlp-logo.png"}},"headline":"Named Entity Recognition","@context":"https://schema.org"}</script><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content="@stanfordnlp"><meta name="twitter:creator" content="@stanfordnlp"><meta name="twitter:title" content="CoreNLP"><meta name="twitter:description" content="High-performance human language analysis tools, now with native deep learning modules in Python, available in many human languages."><meta name="twitter:image" content="https://stanfordnlp.github.io/CoreNLP/assets/images/corenlp-logo.png"><meta name="google-site-verification" content="h3zCtOJy9KzG1XWf5-3ppU1liaJ8NkpGvK_BbOOq3-4"></head><body> <svg xmlns="http://www.w3.org/2000/svg" style="display: none;"> <symbol id="link" viewBox="0 0 16 16"><title>Link</title><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path> </symbol> </svg><div class="page-wrap"><div class="side-bar"><div class="site-header"> <a href="https://stanfordnlp.github.io/CoreNLP" class="site-title lh-tight"><div class="site-logo"></div></a> <button class="menu-button fs-3 js-main-nav-trigger" data-text-toggle="Hide" type="button">Menu</button></div><div class="navigation main-nav js-main-nav"><nav role="navigation" aria-label="Main navigation"><ul class="navigation-list"><li class="navigation-list-item"><a href="https://stanfordnlp.github.io/CoreNLP/index.html" class="navigation-list-link">Overview</a></li><li class="navigation-list-item"><a href="https://stanfordnlp.github.io/CoreNLP/usage.html" class="navigation-list-link">Usage</a><ul class="navigation-list-child-list "><li class="navigation-list-item "><a href="https://stanfordnlp.github.io/CoreNLP/download.html" class="navigation-list-link">Download</a></li><li class="navigation-list-item "><a href="https://stanfordnlp.github.io/CoreNLP/migration.html" class="navigation-list-link">Migration</a></li><li class="navigation-list-item "><a href="https://stanfordnlp.github.io/CoreNLP/cmdline.html" class="navigation-list-link">Command Line Usage</a></li><li class="navigation-list-item "><a href="https://stanfordnlp.github.io/CoreNLP/api.html" class="navigation-list-link">CoreNLP API</a></li><li class="navigation-list-item "><a href="https://stanfordnlp.github.io/CoreNLP/simple.html" class="navigation-list-link">Simple API</a></li><li class="navigation-list-item "><a href="https://stanfordnlp.github.io/CoreNLP/repl.html" class="navigation-list-link">Interactive mode (REPL)</a></li><li class="navigation-list-item "><a href="https://stanfordnlp.github.io/CoreNLP/corenlp-server.html" class="navigation-list-link">CoreNLP Server</a></li><li class="navigation-list-item "><a href="https://stanfordnlp.github.io/CoreNLP/caseless.html" class="navigation-list-link">Caseless models</a></li><li class="navigation-list-item "><a href="https://stanfordnlp.github.io/CoreNLP/human-languages.html" class="navigation-list-link">Using CoreNLP on other human languages</a></li><li class="navigation-list-item "><a href="https://stanfordnlp.github.io/CoreNLP/other-languages.html" class="navigation-list-link">Using CoreNLP within other programming languages and packages</a></li></ul></li><li class="navigation-list-item"><a href="https://stanfordnlp.github.io/CoreNLP/demo.html" class="navigation-list-link">Demo</a></li><li class="navigation-list-item active"><a href="https://stanfordnlp.github.io/CoreNLP/pipeline.html" class="navigation-list-link">Pipeline</a><ul class="navigation-list-child-list "><li class="navigation-list-item "><a href="https://stanfordnlp.github.io/CoreNLP/annotators.html" class="navigation-list-link">Full List Of Annotators</a></li><li class="navigation-list-item "><a href="https://stanfordnlp.github.io/CoreNLP/new_annotator.html" class="navigation-list-link">Custom Annotators</a></li><li class="navigation-list-item "><a href="https://stanfordnlp.github.io/CoreNLP/tokenize.html" class="navigation-list-link">Tokenization</a></li><li class="navigation-list-item "><a href="https://stanfordnlp.github.io/CoreNLP/cleanxml.html" class="navigation-list-link">CleanXML</a></li><li class="navigation-list-item "><a href="https://stanfordnlp.github.io/CoreNLP/ssplit.html" class="navigation-list-link">Sentence Splitting</a></li><li class="navigation-list-item "><a href="https://stanfordnlp.github.io/CoreNLP/mwt.html" class="navigation-list-link">Multi Word Token Expansion</a></li><li class="navigation-list-item "><a href="https://stanfordnlp.github.io/CoreNLP/pos.html" class="navigation-list-link">Parts Of Speech</a></li><li class="navigation-list-item "><a href="https://stanfordnlp.github.io/CoreNLP/lemma.html" class="navigation-list-link">Lemmatization</a></li><li class="navigation-list-item active"><a href="https://stanfordnlp.github.io/CoreNLP/ner.html" class="navigation-list-link active">Named Entity Recognition</a></li><li class="navigation-list-item "><a href="https://stanfordnlp.github.io/CoreNLP/depparse.html" class="navigation-list-link">Dependency Parsing</a></li><li class="navigation-list-item "><a href="https://stanfordnlp.github.io/CoreNLP/parse.html" class="navigation-list-link">Constituency Parsing</a></li><li class="navigation-list-item "><a href="https://stanfordnlp.github.io/CoreNLP/coref.html" class="navigation-list-link">Coreference Resolution</a></li><li class="navigation-list-item "><a href="https://stanfordnlp.github.io/CoreNLP/openie.html" class="navigation-list-link">OpenIE</a></li><li class="navigation-list-item "><a href="https://stanfordnlp.github.io/CoreNLP/kbp.html" class="navigation-list-link">KBP</a></li><li class="navigation-list-item "><a href="https://stanfordnlp.github.io/CoreNLP/entitylink.html" class="navigation-list-link">Entity Linking</a></li><li class="navigation-list-item "><a href="https://stanfordnlp.github.io/CoreNLP/quote.html" class="navigation-list-link">Quote Extraction And Attribution</a></li><li class="navigation-list-item "><a href="https://stanfordnlp.github.io/CoreNLP/sentiment.html" class="navigation-list-link">Sentiment</a></li></ul></li><li class="navigation-list-item"><a href="https://stanfordnlp.github.io/CoreNLP/additional.html" class="navigation-list-link">Additional Tools</a><ul class="navigation-list-child-list "><li class="navigation-list-item "><a href="https://stanfordnlp.github.io/CoreNLP/patterns.html" class="navigation-list-link">Bootstrapped surface patterns</a></li><li class="navigation-list-item "><a href="https://stanfordnlp.github.io/CoreNLP/extensions.html" class="navigation-list-link">Extensions and Packages and Models by others extending CoreNLP</a></li><li class="navigation-list-item "><a href="https://stanfordnlp.github.io/CoreNLP/sutime.html" class="navigation-list-link">SUTime</a></li><li class="navigation-list-item "><a href="https://stanfordnlp.github.io/CoreNLP/tokensregex.html" class="navigation-list-link">TokensRegex</a></li></ul></li><li class="navigation-list-item"><a href="https://stanfordnlp.github.io/CoreNLP/resources.html" class="navigation-list-link">Resources</a><ul class="navigation-list-child-list "><li class="navigation-list-item "><a href="https://stanfordnlp.github.io/CoreNLP/model-zoo.html" class="navigation-list-link">Model Zoo</a></li><li class="navigation-list-item "><a href="https://stanfordnlp.github.io/CoreNLP/faq.html" class="navigation-list-link">FAQ</a></li><li class="navigation-list-item "><a href="https://stanfordnlp.github.io/CoreNLP/tutorials.html" class="navigation-list-link">Tutorials</a></li><li class="navigation-list-item "><a href="https://stanfordnlp.github.io/CoreNLP/memory-time.html" class="navigation-list-link">Understanding memory and time usage</a></li><li class="navigation-list-item "><a href="https://stanfordnlp.github.io/CoreNLP/pipelines.html" class="navigation-list-link">CoreNLP Pipelines</a></li><li class="navigation-list-item "><a href="https://stanfordnlp.github.io/CoreNLP/history.html" class="navigation-list-link">Release History</a></li><li class="navigation-list-item "><a href="https://stanfordnlp.github.io/CoreNLP/contact.html" class="navigation-list-link">Contact</a></li></ul></li><li class="navigation-list-item"><a href="https://stanfordnlp.github.io/CoreNLP/standalone.html" class="navigation-list-link">Standalone Distributions</a><ul class="navigation-list-child-list "><li class="navigation-list-item "><a href="https://stanfordnlp.github.io/CoreNLP/parser-standalone.html" class="navigation-list-link">Parser</a></li></ul></li></ul></nav></div><footer class="site-footer"><ul><li><a href="https://github.com/stanfordnlp/CoreNLP"><i class="fab fa-github"></i></a></li><li><a href="https://twitter.com/stanfordnlp"><i class="fab fa-twitter"></i></a></li></ul><p class="text-small text-grey-dk-000 mb-4">CoreNLP is created by the <a href="https://nlp.stanford.edu/">Stanford NLP Group</a>. This site uses the Jekyll theme <a href="https://github.com/pmarsceill/just-the-docs">Just the Docs</a>.</p></footer></div><div class="main-content-wrap js-main-content" tabindex="0"><div class="main-content"><div class="page-header js-page-header"><div class="search"><div class="search-input-wrap"> <input type="text" class="js-search-input search-input" tabindex="0" placeholder="Search CoreNLP" aria-label="Search CoreNLP" autocomplete="off"> <svg width="14" height="14" viewBox="0 0 28 28" xmlns="http://www.w3.org/2000/svg" class="search-icon"><title>Search</title><g fill-rule="nonzero"><path d="M17.332 20.735c-5.537 0-10-4.6-10-10.247 0-5.646 4.463-10.247 10-10.247 5.536 0 10 4.601 10 10.247s-4.464 10.247-10 10.247zm0-4c3.3 0 6-2.783 6-6.247 0-3.463-2.7-6.247-6-6.247s-6 2.784-6 6.247c0 3.464 2.7 6.247 6 6.247z"></path><path d="M11.672 13.791L.192 25.271 3.02 28.1 14.5 16.62z"></path></g></svg></div><div class="js-search-results search-results-wrap"></div></div></div><div class="page"><nav class="breadcrumb-nav"><ol class="breadcrumb-nav-list"><li class="breadcrumb-nav-list-item"><a href="https://stanfordnlp.github.io/CoreNLP/pipeline.html">Pipeline</a></li><li class="breadcrumb-nav-list-item"><span>Named Entity Recognition</span></li></ol></nav><div id="main-content" class="page-content" role="main"><h1> Named Entity Recognition</h1><h2 class="text-delta"> Table of contents</h2><div class="toc"><ul><li><a href="#description">Description</a></li><li><a href="#options">Options</a></li><li><a href="#ner-pipeline-overview">NER Pipeline Overview</a><ul><li><a href="#statistical-models">Statistical Models</a></li><li><a href="#numeric-sequences-and-sutime">Numeric Sequences and SUTime</a></li><li><a href="#fine-grained-ner">Fine Grained NER</a></li><li><a href="#regexner-rules-format">RegexNER Rules Format</a></li><li><a href="#customizing-the-fine-grained-ner">Customizing The Fine-Grained NER</a></li><li><a href="#additional-tokensregexner-rules">Additional TokensRegexNER Rules</a></li><li><a href="#additional-tokensregex-rules">Additional TokensRegex Rules</a></li><li><a href="#entity-mention-detection">Entity Mention Detection</a></li></ul></li><li><a href="#command-line-examples">Command Line Examples</a></li><li><a href="#java-api-example">Java API Example</a></li><li><a href="#sutime">SUTime</a><ul><li><a href="#setting-document-date">Setting Document Date</a></li></ul></li><li><a href="#accessing-entity-confidences">Accessing Entity Confidences</a></li><li><a href="#caseless-models">Caseless models</a></li><li><a href="#training-or-retraining-new-models">Training or retraining new models</a></li><li><a href="#more-information">More information</a></li></ul></div><hr><h2 id="description"> <a href="#description" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> Description</h2><p>Recognizes
+ named entities (person and company names, etc.) in text. Principally, 
+this annotator uses one or more machine learning sequence models to 
+label entities, but it may also call specialist rule-based components, 
+such as for labeling and interpreting times and dates. Numerical 
+entities that require normalization, e.g., dates, have their normalized 
+value stored in NormalizedNamedEntityTagAnnotation. For more extensive 
+support for rule-based NER, you may also want to look at the <a href="https://stanfordnlp.github.io/CoreNLP/regexner.html">RegexNER annotator</a>.
+ The set of entities recognized is language-dependent, and the 
+recognized set of entities is frequently more limited for other 
+languages than what is described below for English. As the name 
+“NERClassifierCombiner” implies, commonly this annotator will run 
+several named entity recognizers and then combine their results but it 
+can run just a single annotator or only rule-based quantity NER.</p><p>For
+ English, by default, this annotator recognizes named (PERSON, LOCATION,
+ ORGANIZATION, MISC), numerical (MONEY, NUMBER, ORDINAL, PERCENT), and 
+temporal (DATE, TIME, DURATION, SET) entities (12 classes). Adding the <code class="language-plaintext highlighter-rouge">regexner</code> annotator and using the supplied <a href="https://stanfordnlp.github.io/CoreNLP/regexner.html">RegexNER</a>
+ pattern files adds support for the fine-grained and additional entity 
+classes EMAIL, URL, CITY, STATE_OR_PROVINCE, COUNTRY, NATIONALITY, 
+RELIGION, (job) TITLE, IDEOLOGY, CRIMINAL_CHARGE, CAUSE_OF_DEATH, 
+(Twitter, etc.) HANDLE (12 classes) for a total of 24 classes. Named 
+entities are recognized using a combination of three CRF sequence 
+taggers trained on various corpora, including CoNLL, ACE, MUC, and ERE 
+corpora. Numerical entities are recognized using a rule-based system.</p><div class="table-wrapper"><table><thead><tr><th>Property name</th><th>Annotator class name</th><th>Generated Annotation</th></tr></thead><tbody><tr><td>ner</td><td>NERClassifierCombiner</td><td>NamedEntityTagAnnotation and NormalizedNamedEntityTagAnnotation</td></tr></tbody></table></div><h2 id="options"> <a href="#options" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> Options</h2><div class="table-wrapper"><table><thead><tr><th>Option name</th><th>Type</th><th>Default</th><th>Description</th></tr></thead><tbody><tr><td>ner.model</td><td>List(String)</td><td>null</td><td>A
+ comma-separated list of NER model names (or just a single name is 
+okay). If none are specified, a default list of English models is used 
+(3class, 7class, and MISCclass, in that order). The names will be looked
+ for as classpath resources, filenames, or URLs.</td></tr><tr><td>ner.rulesOnly</td><td>boolean</td><td>false</td><td>Whether or not to only run rules based NER.</td></tr><tr><td>ner.statisticalOnly</td><td>boolean</td><td>false</td><td>Whether or not to only run statistical NER.</td></tr><tr><td>ner.applyNumericClassifiers</td><td>boolean</td><td>true</td><td>Whether or not to use numeric classifiers, for money, percent, numbers, including <a href="http://nlp.stanford.edu/software/regexner/">SUTime</a>. These are hardcoded for English, so if using a different language, this should be set to false.</td></tr><tr><td>ner.applyFineGrained</td><td>boolean</td><td>true</td><td>whether or not to apply fine-grained NER tags (e.g. LOCATION –&gt; CITY) ; this will slow down performance</td></tr><tr><td>ner.buildEntityMentions</td><td>boolean</td><td>true</td><td>whether or not to build entity mentions from token NER tags</td></tr><tr><td>ner.combinationMode</td><td>String</td><td>NORMAL</td><td>when
+ set to NORMAL each tag can only be applied by the first CRF classifier 
+that applies that tag ; when set to HIGH_RECALL all CRF classifiers can 
+apply all of their tags</td></tr><tr><td>ner.useNERSpecificTokenization</td><td>boolean</td><td>true</td><td>Whether
+ or not to use NER-specific tokenization which merges tokens separated 
+by hyphens. Models released with Stanford CoreNLP 4.0.0 expect a 
+tokenization standard that does NOT split on hyphens.</td></tr><tr><td>ner.useSUTime</td><td>boolean</td><td>true</td><td>Whether
+ or not to use SUTime. SUTime at present only supports English; if not 
+processing English, make sure to set this to false.</td></tr><tr><td>sutime.markTimeRanges</td><td>boolean</td><td>false</td><td>Tells
+ SUTime whether to mark phrases such as “From January to March” as a 
+range, instead of marking “January” and “March” separately.</td></tr><tr><td>sutime.includeRange</td><td>boolean</td><td>false</td><td>If marking time ranges, set the time range in the TIMEX output from SUTime.</td></tr><tr><td>maxAdditionalKnownLCWords</td><td>int</td><td>-</td><td>Limit
+ the size of the known lower case words set. Set this to 0 to prevent 
+ordering issues (i.e. when this is nonzero running on document1 then 
+document2 can have different results than running on document2 then 
+document1</td></tr></tbody></table></div><h2 id="ner-pipeline-overview"> <a href="#ner-pipeline-overview" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> NER Pipeline Overview</h2><p>The
+ full named entity recognition pipeline has become fairly complex and 
+involves a set of distinct phases integrating statistical and rule based
+ approaches. Here is a breakdown of those distinct phases.</p><p>The main class that runs this process is <code class="language-plaintext highlighter-rouge">edu.stanford.nlp.pipeline.NERCombinerAnnotator</code></p><h3 id="statistical-models"> <a href="#statistical-models" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> Statistical Models</h3><p>During
+ this phase a series of trained CRF’s will be run on each sentence. 
+These CRF’s are trained on large tagged data sets. They evaluate the 
+entire sequence and pick the optimal tag sequence.</p><p>These are the default models that are run:</p><div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># tags: LOCATION, ORGANIZATION, PERSON
+edu/stanford/nlp/models/ner/english.all.3class.distsim.crf.ser.gz
+# tags: DATE, LOCATION, MONEY, ORGANIZATION, PERCENT, PERSON, TIME
+edu/stanford/nlp/models/ner/english.muc.7class.distsim.crf.ser.gz
+# LOCATION, MISC, ORGANIZATION, PERSON
+edu/stanford/nlp/models/ner/english.conll.4class.distsim.crf.ser.gz
+</code></pre></div></div><p>Tags written by one model <em>cannot</em> be overwritten by subsequent models in the series.</p><p>There are two options for how the models are combined. These are selected with the <code class="language-plaintext highlighter-rouge">ner.combinationMode</code> property.</p><ul><li><em>NORMAL</em> - any given tag can only be applied by one model (the first model that applies a tag)</li><li><em>HIGH_RECALL</em> - all models can apply all tags</li></ul><p>So for example, if the <code class="language-plaintext highlighter-rouge">ner.combinationMode</code> is set to <code class="language-plaintext highlighter-rouge">NORMAL</code>, only the 3-class model’s ORGANIZATION tags will be applied. If it is set to <code class="language-plaintext highlighter-rouge">HIGH_RECALL</code>, the 7-class and 4-class models’ ORGANIZATION tags will also be applied.</p><p>If you do not want to run any statistical models, set <code class="language-plaintext highlighter-rouge">ner.model</code> to the empty string.</p><h3 id="numeric-sequences-and-sutime"> <a href="#numeric-sequences-and-sutime" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> Numeric Sequences and SUTime</h3><p>Next a series of rule based systems are run to recognize and tag numeric sequences and time related sequences.</p><p>This phase runs by default, but can be deactivated by setting <code class="language-plaintext highlighter-rouge">ner.applyNumericClassifiers</code> to <code class="language-plaintext highlighter-rouge">false</code>.</p><p>This produces tags such as <code class="language-plaintext highlighter-rouge">NUMBER, ORDINAL, MONEY, DATE, and TIME</code></p><p>The class that runs this phase is <code class="language-plaintext highlighter-rouge">edu.stanford.nlp.ie.regexp.NumberSequenceClassifier</code></p><p>SUTime (described in more detail below) is also used by default. You can deactivate this by setting <code class="language-plaintext highlighter-rouge">ner.useSUTime</code> to <code class="language-plaintext highlighter-rouge">false</code>.</p><h3 id="fine-grained-ner"> <a href="#fine-grained-ner" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> Fine Grained NER</h3><p>At
+ this point, a series of rules used for the KBP 2017 competition will be
+ run to create more fine-grained NER tags. These rules are applied using
+ a TokensRegexNERAnnotator sub-annotator. That is the main <code class="language-plaintext highlighter-rouge">NERCombinerAnnotator</code> builds a <code class="language-plaintext highlighter-rouge">TokensRegexNERAnnotator</code>
+ as a sub-annotator and runs it on all sentences as part of it’s entire 
+tagging process. The purpose of these rules is give tokens more specific
+ tags. So for instance <code class="language-plaintext highlighter-rouge">California</code> would be tagged as a <code class="language-plaintext highlighter-rouge">STATE_OR_PROVINCE</code> rather than just a <code class="language-plaintext highlighter-rouge">LOCATION</code>.</p><p>The <code class="language-plaintext highlighter-rouge">TokensRegexNERAnnotator</code> runs TokensRegex rules. You can review all of the settings for a TokensRegexNERAnnotator <a href="https://stanfordnlp.github.io/CoreNLP/regexner.html">here</a>.</p><p><em>NOTE:</em> applying these rules will significantly slow down the tagging process.</p><p>The tags set by this phase include:</p><div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>CAUSE_OF_DEATH, CITY, COUNTRY, CRIMINAL_CHARGE, EMAIL, HANDLE,
+IDEOLOGY, NATIONALITY, RELIGION, STATE_OR_PROVINCE, TITLE, URL
+</code></pre></div></div><p>If you do not want to run the fine-grained rules, set <code class="language-plaintext highlighter-rouge">ner.applyFineGrained</code> to <code class="language-plaintext highlighter-rouge">false</code>.</p><h3 id="regexner-rules-format"> <a href="#regexner-rules-format" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> RegexNER Rules Format</h3><p>There is a more detailed write up about RegexNER <a href="https://nlp.stanford.edu/software/regexner.html">here</a></p><p>The format is a series of tab-delimited columns.</p><p>The
+ first column is the tokens pattern, the second column is the NER tag to
+ apply, the third is the types of NER tags that can be overwritten, and 
+the fourth is a priority used for tie-breaking if two rules match a 
+sequence.</p><p>Each space delimited entry represents a regex to match a token.</p><p>The rule (remember these are tab-delimited columns):</p><div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Los Angeles	CITY	LOCATION,MISC	1.0
+</code></pre></div></div><p>means to match the token “Los” followed by 
+the token “Angeles”, and label them both as CITY, provided they have a 
+current NER tag of O, LOCATION, or MISC.</p><p>The rule:</p><div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Bachelor of (Arts|Science)	DEGREE	MISC	1.0
+</code></pre></div></div><p>means to match the token “Bachelor”, then the token “of”, and finally either the token “Arts” or “Science”.</p><h3 id="customizing-the-fine-grained-ner"> <a href="#customizing-the-fine-grained-ner" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> Customizing The Fine-Grained NER</h3><p>Here is a breakdown of how to customize the fine-grained NER. The overall <code class="language-plaintext highlighter-rouge">ner</code> annotator creates a sub-annotator called <code class="language-plaintext highlighter-rouge">ner.fine.regexner</code> which is an instance of a <code class="language-plaintext highlighter-rouge">TokensRegexNERAnnotator</code>.</p><p>The <code class="language-plaintext highlighter-rouge">ner.fine.regexner.mapping</code> property allows one to specify a set of rules files and additional properties for each rules file.</p><p>The format is as follows:</p><ol><li>For each rules file there is a comma delimited list of options, ending in the path of the rules file</li><li>Each entry for a rules file is separated by a <code class="language-plaintext highlighter-rouge">;</code></li></ol><p>As an example, this is the default <code class="language-plaintext highlighter-rouge">ner.fine.regexner.mapping</code> setting:</p><div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ignorecase=true,validpospattern=^(NN|JJ).*,edu/stanford/nlp/models/kbp/english/gazetteers/regexner_caseless.tab;edu/stanford/nlp/models/kbp/english/gazetteers/regexner_cased.tab
+</code></pre></div></div><p>The two rules files are:</p><div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>edu/stanford/nlp/models/kbp/english/gazetteers/regexner_caseless.tab
+edu/stanford/nlp/models/kbp/english/gazetteers/regexner_cased.tab
+</code></pre></div></div><p>The options for <code class="language-plaintext highlighter-rouge">edu/stanford/nlp/models/kbp/english/gazetteers/regexner_caseless.tab</code> are:</p><p><code class="language-plaintext highlighter-rouge">ignorecase=true,validpospattern=^(NN|JJ).*</code></p><p>while there are no options set for <code class="language-plaintext highlighter-rouge">edu/stanford/nlp/models/kbp/english/gazetteers/regexner_cased.tab</code> in this example.</p><p>Here is a description of some common options for the <code class="language-plaintext highlighter-rouge">TokensRegexNERAnnotator</code> sub-annotator used by <code class="language-plaintext highlighter-rouge">ner</code></p><p>You can find more details on the page for the <code class="language-plaintext highlighter-rouge">TokensRegexNERAnnotator</code> located <a href="https://stanfordnlp.github.io/CoreNLP/regexner.html">here</a></p><div class="table-wrapper"><table><thead><tr><th>Option name</th><th>Type</th><th>Default</th><th>Description</th></tr></thead><tbody><tr><td>ignorecase</td><td>boolean</td><td>false</td><td>make patterns case-insensitive or not?</td></tr><tr><td>validpospattern</td><td>regex</td><td>null</td><td>part of speech tag pattern that has to be matched</td></tr></tbody></table></div><p>If you want to set global settings that will apply for all rules files, remember to use <code class="language-plaintext highlighter-rouge">ner.fine.regexner.ignorecase</code> and <code class="language-plaintext highlighter-rouge">ner.fine.regexner.validpospattern</code>. If you are setting options for a specific rules file with the <code class="language-plaintext highlighter-rouge">ner.fine.regexner.mapping</code> option, follow the pattern from above.</p><h3 id="additional-tokensregexner-rules"> <a href="#additional-tokensregexner-rules" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> Additional TokensRegexNER Rules</h3><p>After
+ the fine-grained rules are run, there is also an option for a user to 
+specify additional rules they would like to have run after the 
+fine-grained NER phase.</p><p>This second <code class="language-plaintext highlighter-rouge">TokensRegexNERAnnotator</code> sub-annotator has the name <code class="language-plaintext highlighter-rouge">ner.additional.regexner</code>
+ and is customized in the same manner. This is for the case when users 
+want to run their own rules after the standard rules we provide.</p><p>For instance, suppose you want to match sports teams after the previous NER steps have been run.</p><p>Your rules file might look like this <code class="language-plaintext highlighter-rouge">/path/to/sports_teams.rules</code></p><div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">Boston</span> <span class="nc">Red</span> <span class="nc">Sox</span>       <span class="no">SPORTS_TEAM</span>     <span class="no">ORGANIZATION</span><span class="o">,</span><span class="no">MISC</span>       <span class="mi">1</span>
+<span class="nc">Denver</span> <span class="nc">Broncos</span>       <span class="no">SPORTS_TEAM</span>     <span class="no">ORGANIZATION</span><span class="o">,</span><span class="no">MISC</span>       <span class="mi">1</span>
+<span class="nc">Detroit</span> <span class="nc">Red</span> <span class="nc">Wings</span>    <span class="no">SPORTS_TEAM</span>     <span class="no">ORGANIZATION</span><span class="o">,</span><span class="no">MISC</span>       <span class="mi">1</span>
+<span class="nc">Los</span> <span class="nc">Angeles</span> <span class="nc">Lakers</span>   <span class="no">SPORTS_TEAM</span>     <span class="no">ORGANIZATION</span><span class="o">,</span><span class="no">MISC</span>       <span class="mi">1</span>
+</code></pre></div></div><p>You could integrate this into the entire NER process by setting <code class="language-plaintext highlighter-rouge">ner.additional.regexner.mapping</code> to <code class="language-plaintext highlighter-rouge">/path/to/sports_teams.rules</code></p><p>By default no additional rules are run, so leaving <code class="language-plaintext highlighter-rouge">ner.additional.regexner.mapping</code> blank will cause this phase to not be run at all.</p><h3 id="additional-tokensregex-rules"> <a href="#additional-tokensregex-rules" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> Additional TokensRegex Rules</h3><p>If you want to run a series of TokensRegex rules before entity building, you can also specify a set of TokensRegex rules. A <code class="language-plaintext highlighter-rouge">TokensRegexAnnotator</code> sub-annotator will be called. It has the name <code class="language-plaintext highlighter-rouge">ner.additional.tokensregex</code>.</p><p>Example command:</p><div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>java <span class="nt">-Xmx5g</span> edu.stanford.nlp.pipeline.StanfordCoreNLP <span class="nt">-annotators</span> tokenize,ssplit,pos,lemma,ner <span class="nt">-ner</span>.additional.tokensregex.rules example.rules <span class="nt">-file</span> example.txt <span class="nt">-outputFormat</span> text
+</code></pre></div></div><p>You can learn more about TokensRegex rules <a href="https://stanfordnlp.github.io/CoreNLP/tokensregex.html">here</a></p><h3 id="entity-mention-detection"> <a href="#entity-mention-detection" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> Entity Mention Detection</h3><p>After
+ all of the previous steps have been run, entity detection will be run 
+to combine the tagged tokens into entities. The entity mention detection
+ will be based off of the tagging scheme. This is accomplished with an <code class="language-plaintext highlighter-rouge">EntityMentionsAnnotator</code> sub-annotator.</p><p>You can find a more detailed description of this annotator <a href="https://stanfordnlp.github.io/CoreNLP/entitymentions.html">here</a></p><p>If
+ a basic IO tagging scheme (example: PERSON, ORGANIZATION, LOCATION) is 
+used, all contiguous sequences of tokens with the same tag will be 
+marked as an entity.</p><p>If a more advanced tagging scheme (such as 
+BIO with tags like B-PERSON and I-PERSON) is used, sequences with the 
+same tag split by a B-tag will be turned into multiple entities.</p><p>All of our models and rule files use a basic tagging scheme, but you could create your own models and rules that use BIO.</p><p>For instance <code class="language-plaintext highlighter-rouge">(Joe PERSON) (Smith PERSON) (Jane PERSON) (Smith PERSON)</code> will create the entity <code class="language-plaintext highlighter-rouge">Joe Smith Jane Smith</code>.</p><p>On the other hand <code class="language-plaintext highlighter-rouge">(Joe B-PERSON) (Smith I-PERSON) (Jane B-PERSON) (Smith I-PERSON)</code> will create two entities: <code class="language-plaintext highlighter-rouge">Joe Smith</code> and <code class="language-plaintext highlighter-rouge">Jane Smith</code>.</p><p>You can deactivate this with <code class="language-plaintext highlighter-rouge">ner.buildEntityMentions</code> being set to <code class="language-plaintext highlighter-rouge">false</code>.</p><p>At this point the NER process will be finished, having tagged tokens with NER tags and created entities.</p><h2 id="command-line-examples"> <a href="#command-line-examples" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> Command Line Examples</h2><p>There a variety of ways to customize an NER pipeline. Below are some example commands.</p><div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># run default NER</span>
+java <span class="nt">-Xmx4g</span> <span class="nt">-cp</span> <span class="s2">"*"</span> edu.stanford.nlp.pipeline.StanfordCoreNLP <span class="nt">-annotators</span> tokenize,ssplit,pos,lemma,ner <span class="nt">-file</span> example.txt <span class="nt">-outputFormat</span> text
+</code></pre></div></div><div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># only run rules based NER (numeric classifiers, SUTime, TokensRegexNER, TokensRegex)</span>
+java <span class="nt">-Xmx4g</span> <span class="nt">-cp</span> <span class="s2">"*"</span> edu.stanford.nlp.pipeline.StanfordCoreNLP <span class="nt">-annotators</span> tokenize,ssplit,pos,lemma,ner <span class="nt">-ner</span>.rulesOnly <span class="nt">-file</span> example.txt 
+</code></pre></div></div><div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># only run statistical NER</span>
+java <span class="nt">-Xmx4g</span> <span class="nt">-cp</span> <span class="s2">"*"</span> edu.stanford.nlp.pipeline.StanfordCoreNLP <span class="nt">-annotators</span> tokenize,ssplit,pos,lemma,ner <span class="nt">-ner</span>.statisticalOnly <span class="nt">-file</span> example.txt 
+</code></pre></div></div><div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># shut off numeric classifiers</span>
+<span class="c"># note that in this case ner no longer requires pos or lemma</span>
+java <span class="nt">-Xmx4g</span> <span class="nt">-cp</span> <span class="s2">"*"</span> edu.stanford.nlp.pipeline.StanfordCoreNLP <span class="nt">-annotators</span> tokenize,ssplit,ner <span class="nt">-ner</span>.applyNumericClassifiers <span class="nb">false</span> <span class="nt">-file</span> example.txt <span class="nt">-outputFormat</span> text
+</code></pre></div></div><div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># shut off SUTime</span>
+java <span class="nt">-Xmx4g</span> <span class="nt">-cp</span> <span class="s2">"*"</span> edu.stanford.nlp.pipeline.StanfordCoreNLP <span class="nt">-annotators</span> tokenize,ssplit,pos,lemma,ner <span class="nt">-ner</span>.useSUTime <span class="nb">false</span> <span class="nt">-file</span> example.txt <span class="nt">-outputFormat</span> text
+</code></pre></div></div><div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># specify doc date for each document to be 2019-01-01</span>
+<span class="c"># other options for setting doc date specified below</span>
+java <span class="nt">-Xmx4g</span> <span class="nt">-cp</span> <span class="s2">"*"</span> edu.stanford.nlp.pipeline.StanfordCoreNLP <span class="nt">-annotators</span> tokenize,ssplit,pos,lemma,ner <span class="nt">-ner</span>.docdate.useFixedDate 2019-01-01 <span class="nt">-file</span> example.txt
+</code></pre></div></div><div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># shut off fine grained NER</span>
+java <span class="nt">-Xmx4g</span> <span class="nt">-cp</span> <span class="s2">"*"</span> edu.stanford.nlp.pipeline.StanfordCoreNLP <span class="nt">-annotators</span> tokenize,ssplit,pos,lemma,ner <span class="nt">-ner</span>.applyFineGrained <span class="nb">false</span> <span class="nt">-file</span> example.txt <span class="nt">-outputFormat</span> text
+</code></pre></div></div><div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># run fine-grained NER with a custom rules file</span>
+java <span class="nt">-Xmx4g</span> <span class="nt">-cp</span> <span class="s2">"*"</span> edu.stanford.nlp.pipeline.StanfordCoreNLP <span class="nt">-annotators</span> tokenize,ssplit,pos,lemma,ner <span class="nt">-ner</span>.fine.regexner.mapping custom.rules <span class="nt">-file</span> example.txt <span class="nt">-outputFormat</span> text
+</code></pre></div></div><div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># run fine-grained NER with two custom rules files</span>
+<span class="c"># the first rules file caseless.rules should be case-insensitive, the second rules file uses default options</span>
+java <span class="nt">-Xmx4g</span> <span class="nt">-cp</span> <span class="s2">"*"</span> edu.stanford.nlp.pipeline.StanfordCoreNLP <span class="nt">-annotators</span> tokenize,ssplit,pos,lemma,ner <span class="nt">-ner</span>.fine.regexner.mapping <span class="s2">"ignorecase=true,caseless.rules;cased.rules"</span> <span class="nt">-file</span> example.txt <span class="nt">-outputFormat</span> text
+</code></pre></div></div><div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># add additional rules to run after fine-grained NER</span>
+java <span class="nt">-Xmx4g</span> <span class="nt">-cp</span> <span class="s2">"*"</span> edu.stanford.nlp.pipeline.StanfordCoreNLP <span class="nt">-annotators</span> tokenize,ssplit,pos,lemma,ner <span class="nt">-ner</span>.additional.regexner.mapping additional.rules <span class="nt">-file</span> example.txt <span class="nt">-outputFormat</span> text
+</code></pre></div></div><div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># run tokens regex rules</span>
+java <span class="nt">-Xmx5g</span> edu.stanford.nlp.pipeline.StanfordCoreNLP <span class="nt">-annotators</span> tokenize,ssplit,pos,lemma,ner <span class="nt">-ner</span>.additional.tokensregex.rules example.rules <span class="nt">-file</span> example.txt <span class="nt">-outputFormat</span> text
+</code></pre></div></div><div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># don't build entity mentions</span>
+java <span class="nt">-Xmx4g</span> <span class="nt">-cp</span> <span class="s2">"*"</span> edu.stanford.nlp.pipeline.StanfordCoreNLP <span class="nt">-annotators</span> tokenize,ssplit,pos,lemma,ner <span class="nt">-ner</span>.buildEntityMentions <span class="nb">false</span> <span class="nt">-file</span> example.txt <span class="nt">-outputFormat</span> text
+</code></pre></div></div><h2 id="java-api-example"> <a href="#java-api-example" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> Java API Example</h2><div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">edu.stanford.nlp.examples</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">edu.stanford.nlp.pipeline.*</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.util.Properties</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.stream.Collectors</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">NERPipelineDemo</span> <span class="o">{</span>
+
+  <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+    <span class="c1">// set up pipeline properties</span>
+    <span class="nc">Properties</span> <span class="n">props</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Properties</span><span class="o">();</span>
+    <span class="n">props</span><span class="o">.</span><span class="na">setProperty</span><span class="o">(</span><span class="s">"annotators"</span><span class="o">,</span> <span class="s">"tokenize,ssplit,pos,lemma,ner"</span><span class="o">);</span>
+    <span class="c1">// example customizations (these are commented out but you can uncomment them to see the results</span>
+
+    <span class="c1">// disable fine grained ner</span>
+    <span class="c1">// props.setProperty("ner.applyFineGrained", "false");</span>
+
+    <span class="c1">// customize fine grained ner</span>
+    <span class="c1">// props.setProperty("ner.fine.regexner.mapping", "example.rules");</span>
+    <span class="c1">// props.setProperty("ner.fine.regexner.ignorecase", "true");</span>
+
+    <span class="c1">// add additional rules, customize TokensRegexNER annotator</span>
+    <span class="c1">// props.setProperty("ner.additional.regexner.mapping", "example.rules");</span>
+    <span class="c1">// props.setProperty("ner.additional.regexner.ignorecase", "true");</span>
+
+    <span class="c1">// add 2 additional rules files ; set the first one to be case-insensitive</span>
+    <span class="c1">// props.setProperty("ner.additional.regexner.mapping", "ignorecase=true,example_one.rules;example_two.rules");</span>
+
+    <span class="c1">// set document date to be a specific date (other options are explained in the document date section)</span>
+    <span class="c1">// props.setProperty("ner.docdate.useFixedDate", "2019-01-01");</span>
+
+    <span class="c1">// only run rules based NER</span>
+    <span class="c1">// props.setProperty("ner.rulesOnly", "true");</span>
+
+    <span class="c1">// only run statistical NER</span>
+    <span class="c1">// props.setProperty("ner.statisticalOnly", "true");</span>
+
+    <span class="c1">// set up pipeline</span>
+    <span class="nc">StanfordCoreNLP</span> <span class="n">pipeline</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">StanfordCoreNLP</span><span class="o">(</span><span class="n">props</span><span class="o">);</span>
+    <span class="c1">// make an example document</span>
+    <span class="nc">CoreDocument</span> <span class="n">doc</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">CoreDocument</span><span class="o">(</span><span class="s">"Joe Smith is from Seattle."</span><span class="o">);</span>
+    <span class="c1">// annotate the document</span>
+    <span class="n">pipeline</span><span class="o">.</span><span class="na">annotate</span><span class="o">(</span><span class="n">doc</span><span class="o">);</span>
+    <span class="c1">// view results</span>
+    <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"---"</span><span class="o">);</span>
+    <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"entities found"</span><span class="o">);</span>
+    <span class="k">for</span> <span class="o">(</span><span class="nc">CoreEntityMention</span> <span class="n">em</span> <span class="o">:</span> <span class="n">doc</span><span class="o">.</span><span class="na">entityMentions</span><span class="o">())</span>
+      <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"\tdetected entity: \t"</span><span class="o">+</span><span class="n">em</span><span class="o">.</span><span class="na">text</span><span class="o">()+</span><span class="s">"\t"</span><span class="o">+</span><span class="n">em</span><span class="o">.</span><span class="na">entityType</span><span class="o">());</span>
+    <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"---"</span><span class="o">);</span>
+    <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"tokens and ner tags"</span><span class="o">);</span>
+    <span class="nc">String</span> <span class="n">tokensAndNERTags</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="na">tokens</span><span class="o">().</span><span class="na">stream</span><span class="o">().</span><span class="na">map</span><span class="o">(</span><span class="n">token</span> <span class="o">-&gt;</span> <span class="s">"("</span><span class="o">+</span><span class="n">token</span><span class="o">.</span><span class="na">word</span><span class="o">()+</span><span class="s">","</span><span class="o">+</span><span class="n">token</span><span class="o">.</span><span class="na">ner</span><span class="o">()+</span><span class="s">")"</span><span class="o">).</span><span class="na">collect</span><span class="o">(</span>
+        <span class="nc">Collectors</span><span class="o">.</span><span class="na">joining</span><span class="o">(</span><span class="s">" "</span><span class="o">));</span>
+    <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">tokensAndNERTags</span><span class="o">);</span>
+  <span class="o">}</span>
+
+<span class="o">}</span>
+
+</code></pre></div></div><h2 id="sutime"> <a href="#sutime" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> SUTime</h2><p>Stanford CoreNLP includes <a href="http://nlp.stanford.edu/software/sutime.html">SUTime</a>,
+ Stanford’s temporal expression recognizer. SUTime is transparently 
+called from the “ner” annotator, so no configuration is necessary. 
+Furthermore, the “cleanxml” annotator can extract the reference date for
+ a given XML document, so relative dates, e.g., “yesterday”, are 
+transparently normalized with no configuration necessary.</p><p>SUTime 
+supports the same annotations as before, i.e., NamedEntityTagAnnotation 
+is set with the label of the numeric entity (DATE, TIME, DURATION, 
+MONEY, PERCENT, or NUMBER) and NormalizedNamedEntityTagAnnotation is set
+ to the value of the normalized temporal expression.</p><p>Also, SUTime 
+sets the TimexAnnotation key to an edu.stanford.nlp.time.Timex object, 
+which contains the complete list of TIMEX3 fields for the corresponding 
+expressions, such as “val”, “alt_val”, “type”, “tid”. This might be 
+useful to developers interested in recovering complete TIMEX3 
+expressions.</p><p>Reference dates are by default extracted from the 
+“datetime” and “date” tags in an xml document. To set a different set of
+ tags to use, use the clean.datetags property. When using the API, 
+reference dates can be added to an <code class="language-plaintext highlighter-rouge">Annotation</code> via <code class="language-plaintext highlighter-rouge">edu.stanford.nlp.ling.CoreAnnotations.DocDateAnnotation</code>, although note that when processing an xml document, the cleanxml annotator will overwrite the <code class="language-plaintext highlighter-rouge">DocDateAnnotation</code> if “datetime” or “date” are specified in the document.</p><h3 id="setting-document-date"> <a href="#setting-document-date" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> Setting Document Date</h3><p>The <code class="language-plaintext highlighter-rouge">DocDateAnnotator</code> provides a variety of options for setting the document date. The <code class="language-plaintext highlighter-rouge">ner</code> annotator will run this annotator as a sub-annotator. These can be specified by setting properties for the <code class="language-plaintext highlighter-rouge">ner.docdate</code> sub-annotator.</p><div class="table-wrapper"><table><thead><tr><th>Option</th><th>Example</th><th>Description</th></tr></thead><tbody><tr><td>useFixedDate</td><td>2019-01-01</td><td>Provide a fixed date for each document.</td></tr><tr><td>useMappingFile</td><td>dates.txt</td><td>Use a tab-delimited file to specify doc dates. First column is document ID, second column is date.</td></tr><tr><td>usePresent</td><td>-</td><td>Give every document the present date.</td></tr><tr><td>useRegex</td><td>NYT-([0-9]{4}-[0-9]{2}-[0-9]{2}).xml</td><td>Specify a regular expression matching file names. The first group will be extracted as the date.</td></tr></tbody></table></div><h2 id="accessing-entity-confidences"> <a href="#accessing-entity-confidences" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> Accessing Entity Confidences</h2><p>The
+ following example shows how to access label confidences for tokens and 
+entities. Each token stores the probability of its NER label given by 
+the CRF that was used to assign the label in the <code class="language-plaintext highlighter-rouge">CoreAnnotations.NamedEntityTagProbsAnnotation.class</code>. Each entity mention contains the probability of the token with the lowest label probability in its span. For example if <code class="language-plaintext highlighter-rouge">Los Angeles</code> had the following probabilities:</p><div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{word: 'Los', 'tag': 'LOCATION', 'prob': .992} 
+{word: 'Angeles', 'tag': 'LOCATION', 'prob': .999}
+</code></pre></div></div><p>the entity <code class="language-plaintext highlighter-rouge">Los Angeles</code> would be assigned the <code class="language-plaintext highlighter-rouge">LOCATION</code> tag with a confidence of <code class="language-plaintext highlighter-rouge">.992</code>.</p><p>Below is code for accessing these confidences.</p><div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>package edu.stanford.nlp.examples;
+
+import edu.stanford.nlp.ling.*;
+import edu.stanford.nlp.pipeline.*;
+import java.util.*;
+
+public class NERConfidenceExample {
+
+    public static void main(String[] args) {
+        String exampleText = "Joe Smith lives in California.";
+        Properties props = new Properties();
+        props.setProperty("annotators", "tokenize,ssplit,pos,lemma,ner");
+        StanfordCoreNLP pipeline = new StanfordCoreNLP(props);
+        CoreDocument document = new CoreDocument(exampleText);
+        pipeline.annotate(document);
+        // get confidences for entities
+        for (CoreEntityMention em : document.entityMentions()) {
+            System.out.println(em.text() + "\t" + em.entityTypeConfidences());
+        }
+        // get confidences for tokens
+        for (CoreLabel token : document.tokens()) {
+            System.out.println(token.word() + "\t" + token.get(CoreAnnotations.NamedEntityTagProbsAnnotation.class));
+        }
+    }
+}
+</code></pre></div></div><h2 id="caseless-models"> <a href="#caseless-models" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> Caseless models</h2><p>It
+ is possible to run Stanford CoreNLP with NER models that ignore 
+capitalization. We have trained models like this for English. You can 
+find details on the <a href="https://stanfordnlp.github.io/CoreNLP/caseless.html">Caseless models</a> page.</p><h2 id="training-or-retraining-new-models"> <a href="#training-or-retraining-new-models" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> Training or retraining new models</h2><p>The train/dev/test data files should be in the following format:</p><div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Joe    PERSON
+Smith  PERSON
+lives  O
+in     O
+California    LOCATION
+.    O
+
+He    O
+used    O
+to    O
+live    O
+in    O
+Oregon    LOCATION
+.    O
+
+</code></pre></div></div><p>In this example, each line is a token, 
+followed by a tab, followed by the NER tag. A blank line represents a 
+sentence break. The model that we release is trained on over a million 
+tokens. The more training data you have, the more accurate your model 
+should be.</p><p>The standard training data sets used for 
+PERSON/LOCATION/ORGANIZATION/MISC must be purchased from the LDC, we do 
+not distribute them.</p><p>Here is the command for starting the training
+ process (make sure your CLASSPATH is set up to include all of the 
+Stanford CoreNLP jars):</p><div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>java <span class="nt">-Xmx2g</span> <span class="nt">-cp</span> <span class="s2">"*"</span> edu.stanford.nlp.ie.crf.CRFClassifier <span class="nt">-prop</span> ner.model.props
+</code></pre></div></div><p>The training process can be customized using
+ a properties file. Here is an example properties file for training an 
+English model(ner.model.props):</p><div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># location of training data
+trainFileList = /path/to/conll.3class.train
+# location of test data
+testFile = /path/to/all.3class.test
+# where to store the saved model
+serializeTo = ner.model.ser.gz
+
+type = crf
+
+wordFunction = edu.stanford.nlp.process.AmericanizeFunction
+
+useDistSim = false
+
+# establish the data file format
+map = word=0,answer=1
+
+saveFeatureIndexToDisk = true
+
+useClassFeature=true
+useWord=true
+useNGrams=true
+noMidNGrams=true
+maxNGramLeng=6
+usePrev=true
+useNext=true
+useLongSequences=true
+useSequences=true
+usePrevSequences=true
+maxLeft=1
+useTypeSeqs=true
+useTypeSeqs2=true
+useTypeySequences=true
+useOccurrencePatterns=true
+useLastRealWord=true
+useNextRealWord=true
+normalize=true
+wordShape=chris2useLC
+useDisjunctive=true
+disjunctionWidth=5
+
+readerAndWriter=edu.stanford.nlp.sequences.ColumnDocumentReaderAndWriter
+
+useObservedSequencesOnly=true
+
+useQN = true
+QNsize = 25
+
+# makes it go faster
+featureDiffThresh=0.05
+
+</code></pre></div></div><p>There is more info about training a CRF model <a href="https://nlp.stanford.edu/software/crf-faq.html#a">here</a>.</p><p>You can learn more about what the various properties above mean <a href="https://nlp.stanford.edu/nlp/javadoc/javanlp/edu/stanford/nlp/ie/NERFeatureFactory.html">here</a>.</p><p>SUTime
+ rules can be changed by modifying its included TokensRegex rule files. 
+Changing other rule-based components (money, etc.) requires changes to 
+the Java source code.</p><h2 id="more-information"> <a href="#more-information" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> More information</h2><p>For more details on the CRF tagger see <a href="http://nlp.stanford.edu/software/CRF-NER.html">this page</a>.</p><hr><footer role="contentinfo"><p class="text-small text-grey-dk-000 mb-0">Copyright © 2020 Stanford NLP Group.</p></footer></div></div></div></div>
+</div></body></html>
