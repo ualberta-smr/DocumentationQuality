@@ -145,10 +145,12 @@ def extract_and_link(url):
     # Remove duplicates
     with open(link_pot, "r", encoding="utf-8", newline="") as potential, open(filename_maker(url, "links"), "w", encoding="utf-8", newline="") as final:
         seen = set()
-        for line in potential:
-            if line not in seen:
-                seen.add(line)
-                final.write(line)
+        pot_reader = csv.reader(potential)
+        link_writer = csv.writer(final)
+        for line in pot_reader:
+            if line[1] not in seen:
+                seen.add(line[1])
+                link_writer.writerow(line)
     os.remove(link_pot)
     os.chdir("..")
 
