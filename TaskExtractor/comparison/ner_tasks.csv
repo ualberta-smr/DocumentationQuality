@@ -190,7 +190,7 @@ You can find more details on the page for the TokensRegexNERAnnotator located he
 "For instance, suppose you want to match sports teams after the previous NER steps have been run.",,match sports teams
 "For instance, suppose you want to match sports teams after the previous NER steps have been run.",,run previous ner steps
 You can find a more detailed description of this annotator here,,find detailed description of annotator
-For instance (Joe PERSON) (Smith PERSON) (Jane PERSON) (Smith PERSON) will create the entity Joe Smith Jane Smith.,,create entity joe smith jane smith for instance
+For instance (Joe PERSON) (Smith PERSON) (Jane PERSON) (Smith PERSON) will create the entity Joe Smith Jane Smith.,,create entity for instance
 On the other hand (Joe B-PERSON) (Smith I-PERSON) (Jane B-PERSON) (Smith I-PERSON) will create two entities: Joe Smith and Jane Smith.,,create entities on other hand
 the entity Los Angeles would be assigned the LOCATION tag with a confidence of .992.,,assign location tag with confidence
 the entity Los Angeles would be assigned the LOCATION tag with a confidence of .992.,,assign entity los angeles with confidence

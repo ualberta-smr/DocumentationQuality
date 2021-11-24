@@ -1,4 +1,4 @@
-The JSON-Java package is a reference implementation that demonstrates how to parse JSON documents into Java objects and how to generate new JSON documents from the Java classes.,generate new JSON documents from Java classes
+"The JSON-Java package is a reference implementation that demonstrates how to parse JSON documents into Java objects and how to generate new JSON documents from the Java classes.","generate new JSON documents from Java classes"
 "The files in this package implement JSON encoders and decoders. The package can also convert between JSON and XML, HTTP headers, Cookies, and CDL.","implement JSON encoders
 implement decoders
 convert  between CDL
@@ -9,16 +9,16 @@ convert  between cookies"
 "The license includes this restriction: ""The software shall be used for good, not evil."" If your conscience cannot live with that, then choose a different package.","include restriction
 use software
 choose different package"
-"Bug fixes, code improvements, and unit test coverage changes are welcome! Because this project is currently in the maintenance phase, the kinds of changes that can be accepted are limited. For more information, please read the FAQ.",read FAQ for more information
+"Bug fixes, code improvements, and unit test coverage changes are welcome! Because this project is currently in the maintenance phase, the kinds of changes that can be accepted are limited. For more information, please read the FAQ.","read FAQ for more information"
 "The org.json package can be built from the command line, Maven, and Gradle. The unit tests can be executed from Maven, Gradle, or individually in an IDE e.g. Eclipse.","execute unit tests from e.g. eclipse
 execute unit tests from maven
 execute unit tests from gradle"
-Create the jar file in the current directory,create jar file in current directory
-Compile a program that uses the jar (see example code below),"compile program
+"Create the jar file in the current directory","create jar file in current directory"
+"Compile a program that uses the jar (see example code below)","compile program
 use jar
 use program"
-Test file contents,test file contents
-Execute the Test file,execute Test file
-Tools to build the package and execute the unit tests,execute unit
-Execute the test suite with Maven:,execute test suite with maven
-Execute the test suite with Gradlew:,execute test suite with gradlew
+"Test file contents","test file contents"
+"Execute the Test file","execute Test file"
+"Tools to build the package and execute the unit tests","execute unit"
+"Execute the test suite with Maven:","execute test suite with maven"
+"Execute the test suite with Gradlew:","execute test suite with gradlew"

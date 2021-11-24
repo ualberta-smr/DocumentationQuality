@@ -30,43 +30,21 @@ specify output format","specify few properties
 place  on command line
 specify annotators
 specify output format",76
-"The -annotators argument is also optional. If you leave it out, the code uses a built in properties file, which enables the following annotators: tokenization and sentence splitting, POS tagging, lemmatization, NER, dependency parsing, and statistical coreference resolution: annotators = tokenize, ssplit, pos, lemma, ner, depparse, coref.",use built annotators = tokenize,use built annotators = tokenize,100
-"The -annotators argument is also optional. If you leave it out, the code uses a built in properties file, which enables the following annotators: tokenization and sentence splitting, POS tagging, lemmatization, NER, dependency parsing, and statistical coreference resolution: annotators = tokenize, ssplit, pos, lemma, ner, depparse, coref.", ssplit,use built annotators = tokenize,43
-"The -annotators argument is also optional. If you leave it out, the code uses a built in properties file, which enables the following annotators: tokenization and sentence splitting, POS tagging, lemmatization, NER, dependency parsing, and statistical coreference resolution: annotators = tokenize, ssplit, pos, lemma, ner, depparse, coref.", ssplit, ssplit,100
-"The -annotators argument is also optional. If you leave it out, the code uses a built in properties file, which enables the following annotators: tokenization and sentence splitting, POS tagging, lemmatization, NER, dependency parsing, and statistical coreference resolution: annotators = tokenize, ssplit, pos, lemma, ner, depparse, coref.", pos,use built annotators = tokenize,50
-"The -annotators argument is also optional. If you leave it out, the code uses a built in properties file, which enables the following annotators: tokenization and sentence splitting, POS tagging, lemmatization, NER, dependency parsing, and statistical coreference resolution: annotators = tokenize, ssplit, pos, lemma, ner, depparse, coref.", pos, ssplit,50
-"The -annotators argument is also optional. If you leave it out, the code uses a built in properties file, which enables the following annotators: tokenization and sentence splitting, POS tagging, lemmatization, NER, dependency parsing, and statistical coreference resolution: annotators = tokenize, ssplit, pos, lemma, ner, depparse, coref.", pos, pos,100
-"The -annotators argument is also optional. If you leave it out, the code uses a built in properties file, which enables the following annotators: tokenization and sentence splitting, POS tagging, lemmatization, NER, dependency parsing, and statistical coreference resolution: annotators = tokenize, ssplit, pos, lemma, ner, depparse, coref.", lemma,use built annotators = tokenize,33
-"The -annotators argument is also optional. If you leave it out, the code uses a built in properties file, which enables the following annotators: tokenization and sentence splitting, POS tagging, lemmatization, NER, dependency parsing, and statistical coreference resolution: annotators = tokenize, ssplit, pos, lemma, ner, depparse, coref.", lemma, ssplit,33
-"The -annotators argument is also optional. If you leave it out, the code uses a built in properties file, which enables the following annotators: tokenization and sentence splitting, POS tagging, lemmatization, NER, dependency parsing, and statistical coreference resolution: annotators = tokenize, ssplit, pos, lemma, ner, depparse, coref.", lemma, pos,25
-"The -annotators argument is also optional. If you leave it out, the code uses a built in properties file, which enables the following annotators: tokenization and sentence splitting, POS tagging, lemmatization, NER, dependency parsing, and statistical coreference resolution: annotators = tokenize, ssplit, pos, lemma, ner, depparse, coref.", lemma, lemma,100
-"The -annotators argument is also optional. If you leave it out, the code uses a built in properties file, which enables the following annotators: tokenization and sentence splitting, POS tagging, lemmatization, NER, dependency parsing, and statistical coreference resolution: annotators = tokenize, ssplit, pos, lemma, ner, depparse, coref.", ner,use built annotators = tokenize,50
-"The -annotators argument is also optional. If you leave it out, the code uses a built in properties file, which enables the following annotators: tokenization and sentence splitting, POS tagging, lemmatization, NER, dependency parsing, and statistical coreference resolution: annotators = tokenize, ssplit, pos, lemma, ner, depparse, coref.", ner, ssplit,25
-"The -annotators argument is also optional. If you leave it out, the code uses a built in properties file, which enables the following annotators: tokenization and sentence splitting, POS tagging, lemmatization, NER, dependency parsing, and statistical coreference resolution: annotators = tokenize, ssplit, pos, lemma, ner, depparse, coref.", ner, pos,25
-"The -annotators argument is also optional. If you leave it out, the code uses a built in properties file, which enables the following annotators: tokenization and sentence splitting, POS tagging, lemmatization, NER, dependency parsing, and statistical coreference resolution: annotators = tokenize, ssplit, pos, lemma, ner, depparse, coref.", ner, lemma,50
-"The -annotators argument is also optional. If you leave it out, the code uses a built in properties file, which enables the following annotators: tokenization and sentence splitting, POS tagging, lemmatization, NER, dependency parsing, and statistical coreference resolution: annotators = tokenize, ssplit, pos, lemma, ner, depparse, coref.", ner, ner,100
-"The -annotators argument is also optional. If you leave it out, the code uses a built in properties file, which enables the following annotators: tokenization and sentence splitting, POS tagging, lemmatization, NER, dependency parsing, and statistical coreference resolution: annotators = tokenize, ssplit, pos, lemma, ner, depparse, coref.", depparse,use built annotators = tokenize,33
-"The -annotators argument is also optional. If you leave it out, the code uses a built in properties file, which enables the following annotators: tokenization and sentence splitting, POS tagging, lemmatization, NER, dependency parsing, and statistical coreference resolution: annotators = tokenize, ssplit, pos, lemma, ner, depparse, coref.", depparse, ssplit,29
-"The -annotators argument is also optional. If you leave it out, the code uses a built in properties file, which enables the following annotators: tokenization and sentence splitting, POS tagging, lemmatization, NER, dependency parsing, and statistical coreference resolution: annotators = tokenize, ssplit, pos, lemma, ner, depparse, coref.", depparse, pos,50
-"The -annotators argument is also optional. If you leave it out, the code uses a built in properties file, which enables the following annotators: tokenization and sentence splitting, POS tagging, lemmatization, NER, dependency parsing, and statistical coreference resolution: annotators = tokenize, ssplit, pos, lemma, ner, depparse, coref.", depparse, lemma,50
-"The -annotators argument is also optional. If you leave it out, the code uses a built in properties file, which enables the following annotators: tokenization and sentence splitting, POS tagging, lemmatization, NER, dependency parsing, and statistical coreference resolution: annotators = tokenize, ssplit, pos, lemma, ner, depparse, coref.", depparse, ner,50
-"The -annotators argument is also optional. If you leave it out, the code uses a built in properties file, which enables the following annotators: tokenization and sentence splitting, POS tagging, lemmatization, NER, dependency parsing, and statistical coreference resolution: annotators = tokenize, ssplit, pos, lemma, ner, depparse, coref.", depparse, depparse,100
+"The -annotators argument is also optional. If you leave it out, the code uses a built in properties file, which enables the following annotators: tokenization and sentence splitting, POS tagging, lemmatization, NER, dependency parsing, and statistical coreference resolution: annotators = tokenize, ssplit, pos, lemma, ner, depparse, coref.",use built annotators = tokenize,"use built file
+enable built file",48
+"The -annotators argument is also optional. If you leave it out, the code uses a built in properties file, which enables the following annotators: tokenization and sentence splitting, POS tagging, lemmatization, NER, dependency parsing, and statistical coreference resolution: annotators = tokenize, ssplit, pos, lemma, ner, depparse, coref.", ssplit,"use built file
+enable built file",43
+"The -annotators argument is also optional. If you leave it out, the code uses a built in properties file, which enables the following annotators: tokenization and sentence splitting, POS tagging, lemmatization, NER, dependency parsing, and statistical coreference resolution: annotators = tokenize, ssplit, pos, lemma, ner, depparse, coref.", pos,"use built file
+enable built file",25
+"The -annotators argument is also optional. If you leave it out, the code uses a built in properties file, which enables the following annotators: tokenization and sentence splitting, POS tagging, lemmatization, NER, dependency parsing, and statistical coreference resolution: annotators = tokenize, ssplit, pos, lemma, ner, depparse, coref.", lemma,"use built file
+enable built file",50
+"The -annotators argument is also optional. If you leave it out, the code uses a built in properties file, which enables the following annotators: tokenization and sentence splitting, POS tagging, lemmatization, NER, dependency parsing, and statistical coreference resolution: annotators = tokenize, ssplit, pos, lemma, ner, depparse, coref.", ner,"use built file
+enable built file",25
+"The -annotators argument is also optional. If you leave it out, the code uses a built in properties file, which enables the following annotators: tokenization and sentence splitting, POS tagging, lemmatization, NER, dependency parsing, and statistical coreference resolution: annotators = tokenize, ssplit, pos, lemma, ner, depparse, coref.", depparse,"use built file
+enable built file",33
 "The -annotators argument is also optional. If you leave it out, the code uses a built in properties file, which enables the following annotators: tokenization and sentence splitting, POS tagging, lemmatization, NER, dependency parsing, and statistical coreference resolution: annotators = tokenize, ssplit, pos, lemma, ner, depparse, coref."," coreref
-enable properties file",use built annotators = tokenize,33
-"The -annotators argument is also optional. If you leave it out, the code uses a built in properties file, which enables the following annotators: tokenization and sentence splitting, POS tagging, lemmatization, NER, dependency parsing, and statistical coreference resolution: annotators = tokenize, ssplit, pos, lemma, ner, depparse, coref."," coreref
-enable properties file", ssplit,29
-"The -annotators argument is also optional. If you leave it out, the code uses a built in properties file, which enables the following annotators: tokenization and sentence splitting, POS tagging, lemmatization, NER, dependency parsing, and statistical coreference resolution: annotators = tokenize, ssplit, pos, lemma, ner, depparse, coref."," coreref
-enable properties file", pos,75
-"The -annotators argument is also optional. If you leave it out, the code uses a built in properties file, which enables the following annotators: tokenization and sentence splitting, POS tagging, lemmatization, NER, dependency parsing, and statistical coreference resolution: annotators = tokenize, ssplit, pos, lemma, ner, depparse, coref."," coreref
-enable properties file", lemma,50
-"The -annotators argument is also optional. If you leave it out, the code uses a built in properties file, which enables the following annotators: tokenization and sentence splitting, POS tagging, lemmatization, NER, dependency parsing, and statistical coreference resolution: annotators = tokenize, ssplit, pos, lemma, ner, depparse, coref."," coreref
-enable properties file", ner,50
-"The -annotators argument is also optional. If you leave it out, the code uses a built in properties file, which enables the following annotators: tokenization and sentence splitting, POS tagging, lemmatization, NER, dependency parsing, and statistical coreference resolution: annotators = tokenize, ssplit, pos, lemma, ner, depparse, coref."," coreref
-enable properties file", depparse,44
-"The -annotators argument is also optional. If you leave it out, the code uses a built in properties file, which enables the following annotators: tokenization and sentence splitting, POS tagging, lemmatization, NER, dependency parsing, and statistical coreference resolution: annotators = tokenize, ssplit, pos, lemma, ner, depparse, coref."," coreref
-enable properties file"," coref
-enable following annotators
-enable properties file",81
+enable properties file","use built file
+enable built file",56
 "If you have a lot of text but all you want to do is to, say, get part-of-speech (POS) tags, then you should definitely specify an annotators list, as above, since you can then omit later annotators which invoke much more expensive processing that you don’t need. For example, you might give the command:","get part-of-speech tags
 omit later annotators
 specify annotators list","get part-of-speech tags
@@ -77,10 +55,7 @@ specify details on properties","specify details on annotators
 specify details on properties",100
 "To process one file, use the -file option followed by a filename. To process a list of files, use the -fileList parameter:","process file
 process list of files","process file
-use -file option
-process list of files
-use -filelist parameter
-use files",76
+process list of files",100
 "If your input files have XML tags in them, you may wish to add the cleanxml annotator to preprocess it. Place it immediately after tokenize.",add cleanxml annotator,"add cleanxml annotator
 place  after tokenize",100
 "Fine point: Stanford CoreNLP treats Unicode end of line markers (LS U+2028 and PS U+2029) as line ends, whereas conventional Unix utilities do not. If these characters are present and you are using CoreNLP in a Unix line-oriented processing pipeline, you may need to remap these characters to ‘\n’ or ‘ ‘ at the start of your processing pipeline.",use corenlp in unix line-oriented processing pipeline,use corenlp in unix line-oriented processing pipeline,100
@@ -89,8 +64,7 @@ load pipeline for layering","add  on further annotations
 read annotations
 use class
 specify  in inputserializer property
-load pipeline for layering
-include property enforcerequirements = false",68
+load pipeline for layering",68
 "For each input file, Stanford CoreNLP generates one output file, with a name that adds an extra extension to the input filename. (If reading input from stdin, then it will send output to stdout.) The output may contain the output of all annotations that were done, or just a subset of them. For the first example under Quick Start above, with input.txt containing the text below:",generate output file with name,"generate output file with name
 generate output file for input file
 add extra extension to input filename
@@ -111,10 +85,11 @@ implement methods for python
 implement methods for c + +
 get information from stack overflow
 get information from other places",99
-CoreNLP’s default character encoding is Unicode’s UTF-8. You can change the encoding used by supplying the program with the command line flag -encoding FOO (or including the corresponding property in a properties file that you are using). We’ve done a lot of careful work to make sure CoreNLP works with any character encoding supported by Java. Want to use ISO-8859-15 or GB18030? Be our guest!,change encoding,change encoding,100
+CoreNLP’s default character encoding is Unicode’s UTF-8. You can change the encoding used by supplying the program with the command line flag -encoding FOO (or including the corresponding property in a properties file that you are using). We’ve done a lot of careful work to make sure CoreNLP works with any character encoding supported by Java. Want to use ISO-8859-15 or GB18030? Be our guest!,change encoding,"change encoding
+encode foo",100
 "If this command is run from the distribution directory, it processes the included sample file input.txt. We use a wildcard ""*"" after -cp to load all jar files in the current directory – it needs to be in quotes. This command writes the output to an XML file named input.txt.xml in the same directory.",load jar file sin current directory,"process included sample file input.txt
 run command from distribution directory
-use wildcard \""*\"" after -cp
+use wildcard * after cp
 load jar files in current directory
 write output to xml file",97
 "Your command line has to load the code, libraries, and model jars that CoreNLP uses. These are all contained in JAR files (compressed archives with extension “.jar”) which come in the CoreNLP download or which can be downloaded on demand from Maven Central. The easiest way to make them available is with a command line like this, where /Users/me/corenlp/ should be changed to the path where you put CoreNLP:",,load code

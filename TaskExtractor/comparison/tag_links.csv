@@ -1,377 +1,26 @@
 Paragraph,Ground Truth link,Program link,Partial ratio
 A module for POS tagging using CRFSuite https://pypi.python.org/pypi/python-crfsuite,">>> from nltk.tag import crftagger
->>> ct = crftagger()",nltk.tag.crf.,32
-A module for POS tagging using CRFSuite https://pypi.python.org/pypi/python-crfsuite,">>> from nltk.tag import crftagger
->>> ct = crftagger()",crftagger,28
-A module for POS tagging using CRFSuite https://pypi.python.org/pypi/python-crfsuite,">>> from nltk.tag import crftagger
 >>> ct = crftagger()",set_model_file,17
-A module for POS tagging using CRFSuite https://pypi.python.org/pypi/python-crfsuite,">>> from nltk.tag import crftagger
->>> ct = crftagger()",tag,10
-A module for POS tagging using CRFSuite https://pypi.python.org/pypi/python-crfsuite,">>> from nltk.tag import crftagger
->>> ct = crftagger()",tag_sents,16
-A module for POS tagging using CRFSuite https://pypi.python.org/pypi/python-crfsuite,">>> from nltk.tag import crftagger
->>> ct = crftagger()",train,10
-A module for POS tagging using CRFSuite https://pypi.python.org/pypi/python-crfsuite,">>> from nltk.tag import crftagger
->>> ct = crftagger()",>>> from nltk.tag import crftagger >>> ct = crftagger(),98
-A module for POS tagging using CRFSuite https://pypi.python.org/pypi/python-crfsuite,">>> from nltk.tag import crftagger
->>> ct = crftagger()",">>> train_data = [[('university','noun'), ('is','verb'), ('a','det'), ('good','adj'), ('place','noun')], ... [('dog','noun'),('eat','verb'),('meat','noun')]]",24
-A module for POS tagging using CRFSuite https://pypi.python.org/pypi/python-crfsuite,">>> from nltk.tag import crftagger
->>> ct = crftagger()",">>> ct.train(train_data,'model.crf.tagger') >>> ct.tag_sents([['dog','is','good'], ['cat','eat','meat']]) [[('dog', 'noun'), ('is', 'verb'), ('good', 'adj')], [('cat', 'noun'), ('eat', 'verb'), ('meat', 'noun')]]",27
-A module for POS tagging using CRFSuite https://pypi.python.org/pypi/python-crfsuite,">>> from nltk.tag import crftagger
->>> ct = crftagger()",">>> gold_sentences = [[('dog','noun'),('is','verb'),('good','adj')] , [('cat','noun'),('eat','verb'), ('meat','noun')]] >>> ct.evaluate(gold_sentences) 1.0",25
-A module for POS tagging using CRFSuite https://pypi.python.org/pypi/python-crfsuite,">>> train_data = [[('university','noun'), ('is','verb'), ('a','det'), ('good','adj'), ('place','noun')],
-... [('dog','noun'),('eat','verb'),('meat','noun')]]",nltk.tag.crf.,8
-A module for POS tagging using CRFSuite https://pypi.python.org/pypi/python-crfsuite,">>> train_data = [[('university','noun'), ('is','verb'), ('a','det'), ('good','adj'), ('place','noun')],
-... [('dog','noun'),('eat','verb'),('meat','noun')]]",crftagger,8
 A module for POS tagging using CRFSuite https://pypi.python.org/pypi/python-crfsuite,">>> train_data = [[('university','noun'), ('is','verb'), ('a','det'), ('good','adj'), ('place','noun')],
 ... [('dog','noun'),('eat','verb'),('meat','noun')]]",set_model_file,8
-A module for POS tagging using CRFSuite https://pypi.python.org/pypi/python-crfsuite,">>> train_data = [[('university','noun'), ('is','verb'), ('a','det'), ('good','adj'), ('place','noun')],
-... [('dog','noun'),('eat','verb'),('meat','noun')]]",tag,4
-A module for POS tagging using CRFSuite https://pypi.python.org/pypi/python-crfsuite,">>> train_data = [[('university','noun'), ('is','verb'), ('a','det'), ('good','adj'), ('place','noun')],
-... [('dog','noun'),('eat','verb'),('meat','noun')]]",tag_sents,8
-A module for POS tagging using CRFSuite https://pypi.python.org/pypi/python-crfsuite,">>> train_data = [[('university','noun'), ('is','verb'), ('a','det'), ('good','adj'), ('place','noun')],
-... [('dog','noun'),('eat','verb'),('meat','noun')]]",train,6
-A module for POS tagging using CRFSuite https://pypi.python.org/pypi/python-crfsuite,">>> train_data = [[('university','noun'), ('is','verb'), ('a','det'), ('good','adj'), ('place','noun')],
-... [('dog','noun'),('eat','verb'),('meat','noun')]]",>>> from nltk.tag import crftagger >>> ct = crftagger(),24
-A module for POS tagging using CRFSuite https://pypi.python.org/pypi/python-crfsuite,">>> train_data = [[('university','noun'), ('is','verb'), ('a','det'), ('good','adj'), ('place','noun')],
-... [('dog','noun'),('eat','verb'),('meat','noun')]]",">>> train_data = [[('university','noun'), ('is','verb'), ('a','det'), ('good','adj'), ('place','noun')], ... [('dog','noun'),('eat','verb'),('meat','noun')]]",99
-A module for POS tagging using CRFSuite https://pypi.python.org/pypi/python-crfsuite,">>> train_data = [[('university','noun'), ('is','verb'), ('a','det'), ('good','adj'), ('place','noun')],
-... [('dog','noun'),('eat','verb'),('meat','noun')]]",">>> ct.train(train_data,'model.crf.tagger') >>> ct.tag_sents([['dog','is','good'], ['cat','eat','meat']]) [[('dog', 'noun'), ('is', 'verb'), ('good', 'adj')], [('cat', 'noun'), ('eat', 'verb'), ('meat', 'noun')]]",60
-A module for POS tagging using CRFSuite https://pypi.python.org/pypi/python-crfsuite,">>> train_data = [[('university','noun'), ('is','verb'), ('a','det'), ('good','adj'), ('place','noun')],
-... [('dog','noun'),('eat','verb'),('meat','noun')]]",">>> gold_sentences = [[('dog','noun'),('is','verb'),('good','adj')] , [('cat','noun'),('eat','verb'), ('meat','noun')]] >>> ct.evaluate(gold_sentences) 1.0",63
-A module for POS tagging using CRFSuite https://pypi.python.org/pypi/python-crfsuite,">>> ct.train(train_data,'model.crf.tagger')
->>> ct.tag_sents([['dog','is','good'], ['cat','eat','meat']])
-[[('dog', 'noun'), ('is', 'verb'), ('good', 'adj')], [('cat', 'noun'), ('eat', 'verb'), ('meat', 'noun')]]",nltk.tag.crf.,8
-A module for POS tagging using CRFSuite https://pypi.python.org/pypi/python-crfsuite,">>> ct.train(train_data,'model.crf.tagger')
->>> ct.tag_sents([['dog','is','good'], ['cat','eat','meat']])
-[[('dog', 'noun'), ('is', 'verb'), ('good', 'adj')], [('cat', 'noun'), ('eat', 'verb'), ('meat', 'noun')]]",crftagger,8
 A module for POS tagging using CRFSuite https://pypi.python.org/pypi/python-crfsuite,">>> ct.train(train_data,'model.crf.tagger')
 >>> ct.tag_sents([['dog','is','good'], ['cat','eat','meat']])
 [[('dog', 'noun'), ('is', 'verb'), ('good', 'adj')], [('cat', 'noun'), ('eat', 'verb'), ('meat', 'noun')]]",set_model_file,9
-A module for POS tagging using CRFSuite https://pypi.python.org/pypi/python-crfsuite,">>> ct.train(train_data,'model.crf.tagger')
->>> ct.tag_sents([['dog','is','good'], ['cat','eat','meat']])
-[[('dog', 'noun'), ('is', 'verb'), ('good', 'adj')], [('cat', 'noun'), ('eat', 'verb'), ('meat', 'noun')]]",tag,3
-A module for POS tagging using CRFSuite https://pypi.python.org/pypi/python-crfsuite,">>> ct.train(train_data,'model.crf.tagger')
->>> ct.tag_sents([['dog','is','good'], ['cat','eat','meat']])
-[[('dog', 'noun'), ('is', 'verb'), ('good', 'adj')], [('cat', 'noun'), ('eat', 'verb'), ('meat', 'noun')]]",tag_sents,8
-A module for POS tagging using CRFSuite https://pypi.python.org/pypi/python-crfsuite,">>> ct.train(train_data,'model.crf.tagger')
->>> ct.tag_sents([['dog','is','good'], ['cat','eat','meat']])
-[[('dog', 'noun'), ('is', 'verb'), ('good', 'adj')], [('cat', 'noun'), ('eat', 'verb'), ('meat', 'noun')]]",train,5
-A module for POS tagging using CRFSuite https://pypi.python.org/pypi/python-crfsuite,">>> ct.train(train_data,'model.crf.tagger')
->>> ct.tag_sents([['dog','is','good'], ['cat','eat','meat']])
-[[('dog', 'noun'), ('is', 'verb'), ('good', 'adj')], [('cat', 'noun'), ('eat', 'verb'), ('meat', 'noun')]]",>>> from nltk.tag import crftagger >>> ct = crftagger(),27
-A module for POS tagging using CRFSuite https://pypi.python.org/pypi/python-crfsuite,">>> ct.train(train_data,'model.crf.tagger')
->>> ct.tag_sents([['dog','is','good'], ['cat','eat','meat']])
-[[('dog', 'noun'), ('is', 'verb'), ('good', 'adj')], [('cat', 'noun'), ('eat', 'verb'), ('meat', 'noun')]]",">>> train_data = [[('university','noun'), ('is','verb'), ('a','det'), ('good','adj'), ('place','noun')], ... [('dog','noun'),('eat','verb'),('meat','noun')]]",59
-A module for POS tagging using CRFSuite https://pypi.python.org/pypi/python-crfsuite,">>> ct.train(train_data,'model.crf.tagger')
->>> ct.tag_sents([['dog','is','good'], ['cat','eat','meat']])
-[[('dog', 'noun'), ('is', 'verb'), ('good', 'adj')], [('cat', 'noun'), ('eat', 'verb'), ('meat', 'noun')]]",">>> ct.train(train_data,'model.crf.tagger') >>> ct.tag_sents([['dog','is','good'], ['cat','eat','meat']]) [[('dog', 'noun'), ('is', 'verb'), ('good', 'adj')], [('cat', 'noun'), ('eat', 'verb'), ('meat', 'noun')]]",99
-A module for POS tagging using CRFSuite https://pypi.python.org/pypi/python-crfsuite,">>> ct.train(train_data,'model.crf.tagger')
->>> ct.tag_sents([['dog','is','good'], ['cat','eat','meat']])
-[[('dog', 'noun'), ('is', 'verb'), ('good', 'adj')], [('cat', 'noun'), ('eat', 'verb'), ('meat', 'noun')]]",">>> gold_sentences = [[('dog','noun'),('is','verb'),('good','adj')] , [('cat','noun'),('eat','verb'), ('meat','noun')]] >>> ct.evaluate(gold_sentences) 1.0",60
-A module for POS tagging using CRFSuite https://pypi.python.org/pypi/python-crfsuite,">>> gold_sentences = [[('dog','noun'),('is','verb'),('good','adj')] , [('cat','noun'),('eat','verb'), ('meat','noun')]]
->>> ct.evaluate(gold_sentences)
-1.0",nltk.tag.crf.,8
-A module for POS tagging using CRFSuite https://pypi.python.org/pypi/python-crfsuite,">>> gold_sentences = [[('dog','noun'),('is','verb'),('good','adj')] , [('cat','noun'),('eat','verb'), ('meat','noun')]]
->>> ct.evaluate(gold_sentences)
-1.0",crftagger,7
 A module for POS tagging using CRFSuite https://pypi.python.org/pypi/python-crfsuite,">>> gold_sentences = [[('dog','noun'),('is','verb'),('good','adj')] , [('cat','noun'),('eat','verb'), ('meat','noun')]]
 >>> ct.evaluate(gold_sentences)
 1.0",set_model_file,11
-A module for POS tagging using CRFSuite https://pypi.python.org/pypi/python-crfsuite,">>> gold_sentences = [[('dog','noun'),('is','verb'),('good','adj')] , [('cat','noun'),('eat','verb'), ('meat','noun')]]
->>> ct.evaluate(gold_sentences)
-1.0",tag,4
-A module for POS tagging using CRFSuite https://pypi.python.org/pypi/python-crfsuite,">>> gold_sentences = [[('dog','noun'),('is','verb'),('good','adj')] , [('cat','noun'),('eat','verb'), ('meat','noun')]]
->>> ct.evaluate(gold_sentences)
-1.0",tag_sents,11
-A module for POS tagging using CRFSuite https://pypi.python.org/pypi/python-crfsuite,">>> gold_sentences = [[('dog','noun'),('is','verb'),('good','adj')] , [('cat','noun'),('eat','verb'), ('meat','noun')]]
->>> ct.evaluate(gold_sentences)
-1.0",train,5
-A module for POS tagging using CRFSuite https://pypi.python.org/pypi/python-crfsuite,">>> gold_sentences = [[('dog','noun'),('is','verb'),('good','adj')] , [('cat','noun'),('eat','verb'), ('meat','noun')]]
->>> ct.evaluate(gold_sentences)
-1.0",>>> from nltk.tag import crftagger >>> ct = crftagger(),26
-A module for POS tagging using CRFSuite https://pypi.python.org/pypi/python-crfsuite,">>> gold_sentences = [[('dog','noun'),('is','verb'),('good','adj')] , [('cat','noun'),('eat','verb'), ('meat','noun')]]
->>> ct.evaluate(gold_sentences)
-1.0",">>> train_data = [[('university','noun'), ('is','verb'), ('a','det'), ('good','adj'), ('place','noun')], ... [('dog','noun'),('eat','verb'),('meat','noun')]]",63
-A module for POS tagging using CRFSuite https://pypi.python.org/pypi/python-crfsuite,">>> gold_sentences = [[('dog','noun'),('is','verb'),('good','adj')] , [('cat','noun'),('eat','verb'), ('meat','noun')]]
->>> ct.evaluate(gold_sentences)
-1.0",">>> ct.train(train_data,'model.crf.tagger') >>> ct.tag_sents([['dog','is','good'], ['cat','eat','meat']]) [[('dog', 'noun'), ('is', 'verb'), ('good', 'adj')], [('cat', 'noun'), ('eat', 'verb'), ('meat', 'noun')]]",60
-A module for POS tagging using CRFSuite https://pypi.python.org/pypi/python-crfsuite,">>> gold_sentences = [[('dog','noun'),('is','verb'),('good','adj')] , [('cat','noun'),('eat','verb'), ('meat','noun')]]
->>> ct.evaluate(gold_sentences)
-1.0",">>> gold_sentences = [[('dog','noun'),('is','verb'),('good','adj')] , [('cat','noun'),('eat','verb'), ('meat','noun')]] >>> ct.evaluate(gold_sentences) 1.0",99
-Returns the entropy over labellings of the given sequence. This is given by:,h(o) = - sum_s pr(s | o) log pr(s | o),h(o) = - sum_s pr(s | o) log pr(s | o),100
-Returns the entropy over labellings of the given sequence. This is given by:,h(o) = - sum_s pr(s | o) log pr(s | o),"h = - sum_s pr(s | o) log [ pr(s, o) / z ] = log z - sum_s pr(s | o) log pr(s, 0) = log z - sum_s pr(s | o) [ log pr(s_0) + sum_t pr(s_t | s_{t-1}) + sum_t pr(o_t | s_t) ]",36
-"The order of summation for the log terms can be flipped, allowing dynamic programming to be used to calculate the entropy. Specifically, we use the forward and backward probabilities (alpha, beta) giving:","h = log z - sum_s0 alpha_0(s0) beta_0(s0) / z * log pr(s0)
-+ sum_t,si,sj alpha_t(si) pr(sj | si) pr(o_t+1 | sj) beta_t(sj) / z * log pr(sj | si)
-+ sum_t,st alpha_t(st) beta_t(st) / z * log pr(o_t | st)","h = log z - sum_s0 alpha_0(s0) beta_0(s0) / z * log pr(s0) + sum_t,si,sj alpha_t(si) pr(sj | si) pr(o_t+1 | sj) beta_t(sj) / z * log pr(sj | si) + sum_t,st alpha_t(st) beta_t(st) / z * log pr(o_t | st)",99
-"This class communicates with the hunpos-tag binary via pipes. When the tagger object is no longer needed, the close() method should be called to free system resources. The class supports the context manager interface; if used in a with statement, the close() method is invoked automatically:",">>> with hunpostagger('en_wsj.model') as ht:
-...     ht.tag('what is the airspeed of an unladen swallow ?'.split())
-...
-[('what', 'wp'), ('is', 'vbz'), ('the', 'dt'), ('airspeed', 'nn'), ('of', 'in'), ('an', 'dt'), ('unladen', 'nn'), ('swallow', 'vb'), ('?', '.')]",close,3
-"This class communicates with the hunpos-tag binary via pipes. When the tagger object is no longer needed, the close() method should be called to free system resources. The class supports the context manager interface; if used in a with statement, the close() method is invoked automatically:",">>> with hunpostagger('en_wsj.model') as ht:
-...     ht.tag('what is the airspeed of an unladen swallow ?'.split())
-...
-[('what', 'wp'), ('is', 'vbz'), ('the', 'dt'), ('airspeed', 'nn'), ('of', 'in'), ('an', 'dt'), ('unladen', 'nn'), ('swallow', 'vb'), ('?', '.')]",tag,2
-"This class communicates with the hunpos-tag binary via pipes. When the tagger object is no longer needed, the close() method should be called to free system resources. The class supports the context manager interface; if used in a with statement, the close() method is invoked automatically:",">>> with hunpostagger('en_wsj.model') as ht:
-...     ht.tag('what is the airspeed of an unladen swallow ?'.split())
-...
-[('what', 'wp'), ('is', 'vbz'), ('the', 'dt'), ('airspeed', 'nn'), ('of', 'in'), ('an', 'dt'), ('unladen', 'nn'), ('swallow', 'vb'), ('?', '.')]",">>> with hunpostagger('en_wsj.model') as ht: ... ht.tag('what is the airspeed of an unladen swallow ?'.split()) ... [('what', 'wp'), ('is', 'vbz'), ('the', 'dt'), ('airspeed', 'nn'), ('of', 'in'), ('an', 'dt'), ('unladen', 'nn'), ('swallow', 'vb'), ('?', '.')]",99
 Retrieve the mapping dictionary between tagsets.,">>> tagset_mapping('ru-rnc', 'universal') == {'!': '.', 'a': 'adj', 'c': 'conj', 'ad': 'adv',            'nn': 'noun', 'vg': 'verb', 'comp': 'conj', 'nc': 'num', 'vp': 'verb', 'p': 'adp',            'ij': 'x', 'v': 'verb', 'z': 'x', 'vi': 'verb', 'yes_no_sent': 'x', 'ptcl': 'prt'}
-true",">>> tagset_mapping('ru-rnc', 'universal') == {'!': '.', 'a': 'adj', 'c': 'conj', 'ad': 'adv', 'nn': 'noun', 'vg': 'verb', 'comp': 'conj', 'nc': 'num', 'vp': 'verb', 'p': 'adp', 'ij': 'x', 'v': 'verb', 'z': 'x', 'vi': 'verb', 'yes_no_sent': 'x', 'ptcl': 'prt'} true",100
-"Greedy Averaged Perceptron tagger, as implemented by Matthew Honnibal. See more implementation details here:",>>> from nltk.tag.perceptron import perceptrontagger,>>> from nltk.tag.perceptron import perceptrontagger,100
-"Greedy Averaged Perceptron tagger, as implemented by Matthew Honnibal. See more implementation details here:",>>> from nltk.tag.perceptron import perceptrontagger,>>> tagger = perceptrontagger(load=false),58
-"Greedy Averaged Perceptron tagger, as implemented by Matthew Honnibal. See more implementation details here:",>>> from nltk.tag.perceptron import perceptrontagger,">>> tagger.train([[('today','nn'),('is','vbz'),('good','jj'),('day','nn')], ... [('yes','nns'),('it','prp'),('beautiful','jj')]])",22
-"Greedy Averaged Perceptron tagger, as implemented by Matthew Honnibal. See more implementation details here:",>>> from nltk.tag.perceptron import perceptrontagger,">>> tagger.tag(['today','is','a','beautiful','day']) [('today', 'nn'), ('is', 'prp'), ('a', 'prp'), ('beautiful', 'jj'), ('day', 'nn')]",25
+true",tagset_mapping,10
 Use the pretrain model (the default constructor),>>> pretrain = perceptrontagger(),end,11
 Use the pretrain model (the default constructor),>>> pretrain = perceptrontagger(),start,21
-Use the pretrain model (the default constructor),>>> pretrain = perceptrontagger(),decode_json_obj,21
-Use the pretrain model (the default constructor),>>> pretrain = perceptrontagger(),encode_json_obj,25
-Use the pretrain model (the default constructor),>>> pretrain = perceptrontagger(),json_tag,24
-Use the pretrain model (the default constructor),>>> pretrain = perceptrontagger(),load,11
-Use the pretrain model (the default constructor),>>> pretrain = perceptrontagger(),normalize,19
-Use the pretrain model (the default constructor),>>> pretrain = perceptrontagger(),tag,17
-Use the pretrain model (the default constructor),>>> pretrain = perceptrontagger(),train,26
-Use the pretrain model (the default constructor),>>> pretrain = perceptrontagger(),>>> pretrain = perceptrontagger(),100
-Use the pretrain model (the default constructor),>>> pretrain = perceptrontagger(),">>> pretrain.tag('the quick brown fox jumps over the lazy dog'.split()) [('the', 'dt'), ('quick', 'jj'), ('brown', 'nn'), ('fox', 'nn'), ('jumps', 'vbz'), ('over', 'in'), ('the', 'dt'), ('lazy', 'jj'), ('dog', 'nn')]",22
-Use the pretrain model (the default constructor),>>> pretrain = perceptrontagger(),">>> pretrain.tag(""the red cat"".split()) [('the', 'dt'), ('red', 'jj'), ('cat', 'nn')]",37
 Use the pretrain model (the default constructor),">>> pretrain.tag('the quick brown fox jumps over the lazy dog'.split())
 [('the', 'dt'), ('quick', 'jj'), ('brown', 'nn'), ('fox', 'nn'), ('jumps', 'vbz'), ('over', 'in'), ('the', 'dt'), ('lazy', 'jj'), ('dog', 'nn')]",end,3
 Use the pretrain model (the default constructor),">>> pretrain.tag('the quick brown fox jumps over the lazy dog'.split())
 [('the', 'dt'), ('quick', 'jj'), ('brown', 'nn'), ('fox', 'nn'), ('jumps', 'vbz'), ('over', 'in'), ('the', 'dt'), ('lazy', 'jj'), ('dog', 'nn')]",start,5
-Use the pretrain model (the default constructor),">>> pretrain.tag('the quick brown fox jumps over the lazy dog'.split())
-[('the', 'dt'), ('quick', 'jj'), ('brown', 'nn'), ('fox', 'nn'), ('jumps', 'vbz'), ('over', 'in'), ('the', 'dt'), ('lazy', 'jj'), ('dog', 'nn')]",decode_json_obj,10
-Use the pretrain model (the default constructor),">>> pretrain.tag('the quick brown fox jumps over the lazy dog'.split())
-[('the', 'dt'), ('quick', 'jj'), ('brown', 'nn'), ('fox', 'nn'), ('jumps', 'vbz'), ('over', 'in'), ('the', 'dt'), ('lazy', 'jj'), ('dog', 'nn')]",encode_json_obj,10
-Use the pretrain model (the default constructor),">>> pretrain.tag('the quick brown fox jumps over the lazy dog'.split())
-[('the', 'dt'), ('quick', 'jj'), ('brown', 'nn'), ('fox', 'nn'), ('jumps', 'vbz'), ('over', 'in'), ('the', 'dt'), ('lazy', 'jj'), ('dog', 'nn')]",json_tag,6
-Use the pretrain model (the default constructor),">>> pretrain.tag('the quick brown fox jumps over the lazy dog'.split())
-[('the', 'dt'), ('quick', 'jj'), ('brown', 'nn'), ('fox', 'nn'), ('jumps', 'vbz'), ('over', 'in'), ('the', 'dt'), ('lazy', 'jj'), ('dog', 'nn')]",load,4
-Use the pretrain model (the default constructor),">>> pretrain.tag('the quick brown fox jumps over the lazy dog'.split())
-[('the', 'dt'), ('quick', 'jj'), ('brown', 'nn'), ('fox', 'nn'), ('jumps', 'vbz'), ('over', 'in'), ('the', 'dt'), ('lazy', 'jj'), ('dog', 'nn')]",normalize,7
-Use the pretrain model (the default constructor),">>> pretrain.tag('the quick brown fox jumps over the lazy dog'.split())
-[('the', 'dt'), ('quick', 'jj'), ('brown', 'nn'), ('fox', 'nn'), ('jumps', 'vbz'), ('over', 'in'), ('the', 'dt'), ('lazy', 'jj'), ('dog', 'nn')]",tag,3
-Use the pretrain model (the default constructor),">>> pretrain.tag('the quick brown fox jumps over the lazy dog'.split())
-[('the', 'dt'), ('quick', 'jj'), ('brown', 'nn'), ('fox', 'nn'), ('jumps', 'vbz'), ('over', 'in'), ('the', 'dt'), ('lazy', 'jj'), ('dog', 'nn')]",train,5
-Use the pretrain model (the default constructor),">>> pretrain.tag('the quick brown fox jumps over the lazy dog'.split())
-[('the', 'dt'), ('quick', 'jj'), ('brown', 'nn'), ('fox', 'nn'), ('jumps', 'vbz'), ('over', 'in'), ('the', 'dt'), ('lazy', 'jj'), ('dog', 'nn')]",>>> pretrain = perceptrontagger(),22
-Use the pretrain model (the default constructor),">>> pretrain.tag('the quick brown fox jumps over the lazy dog'.split())
-[('the', 'dt'), ('quick', 'jj'), ('brown', 'nn'), ('fox', 'nn'), ('jumps', 'vbz'), ('over', 'in'), ('the', 'dt'), ('lazy', 'jj'), ('dog', 'nn')]",">>> pretrain.tag('the quick brown fox jumps over the lazy dog'.split()) [('the', 'dt'), ('quick', 'jj'), ('brown', 'nn'), ('fox', 'nn'), ('jumps', 'vbz'), ('over', 'in'), ('the', 'dt'), ('lazy', 'jj'), ('dog', 'nn')]",100
-Use the pretrain model (the default constructor),">>> pretrain.tag('the quick brown fox jumps over the lazy dog'.split())
-[('the', 'dt'), ('quick', 'jj'), ('brown', 'nn'), ('fox', 'nn'), ('jumps', 'vbz'), ('over', 'in'), ('the', 'dt'), ('lazy', 'jj'), ('dog', 'nn')]",">>> pretrain.tag(""the red cat"".split()) [('the', 'dt'), ('red', 'jj'), ('cat', 'nn')]",50
 Use the pretrain model (the default constructor),">>> pretrain.tag(""the red cat"".split())
 [('the', 'dt'), ('red', 'jj'), ('cat', 'nn')]",end,7
 Use the pretrain model (the default constructor),">>> pretrain.tag(""the red cat"".split())
 [('the', 'dt'), ('red', 'jj'), ('cat', 'nn')]",start,9
-Use the pretrain model (the default constructor),">>> pretrain.tag(""the red cat"".split())
-[('the', 'dt'), ('red', 'jj'), ('cat', 'nn')]",decode_json_obj,12
-Use the pretrain model (the default constructor),">>> pretrain.tag(""the red cat"".split())
-[('the', 'dt'), ('red', 'jj'), ('cat', 'nn')]",encode_json_obj,14
-Use the pretrain model (the default constructor),">>> pretrain.tag(""the red cat"".split())
-[('the', 'dt'), ('red', 'jj'), ('cat', 'nn')]",json_tag,9
-Use the pretrain model (the default constructor),">>> pretrain.tag(""the red cat"".split())
-[('the', 'dt'), ('red', 'jj'), ('cat', 'nn')]",load,4
-Use the pretrain model (the default constructor),">>> pretrain.tag(""the red cat"".split())
-[('the', 'dt'), ('red', 'jj'), ('cat', 'nn')]",normalize,13
-Use the pretrain model (the default constructor),">>> pretrain.tag(""the red cat"".split())
-[('the', 'dt'), ('red', 'jj'), ('cat', 'nn')]",tag,7
-Use the pretrain model (the default constructor),">>> pretrain.tag(""the red cat"".split())
-[('the', 'dt'), ('red', 'jj'), ('cat', 'nn')]",train,11
-Use the pretrain model (the default constructor),">>> pretrain.tag(""the red cat"".split())
-[('the', 'dt'), ('red', 'jj'), ('cat', 'nn')]",>>> pretrain = perceptrontagger(),37
-Use the pretrain model (the default constructor),">>> pretrain.tag(""the red cat"".split())
-[('the', 'dt'), ('red', 'jj'), ('cat', 'nn')]",">>> pretrain.tag('the quick brown fox jumps over the lazy dog'.split()) [('the', 'dt'), ('quick', 'jj'), ('brown', 'nn'), ('fox', 'nn'), ('jumps', 'vbz'), ('over', 'in'), ('the', 'dt'), ('lazy', 'jj'), ('dog', 'nn')]",50
-Use the pretrain model (the default constructor),">>> pretrain.tag(""the red cat"".split())
-[('the', 'dt'), ('red', 'jj'), ('cat', 'nn')]",">>> pretrain.tag(""the red cat"".split()) [('the', 'dt'), ('red', 'jj'), ('cat', 'nn')]",99
-Return the feature detector that this tagger uses to generate featuresets for its classifier. The feature detector is a function with the signature:,"feature_detector(tokens, index, history) -> featureset","feature_detector(tokens, index, history) -> featureset",100
-A sequential tagger that uses a classifier to choose the tag for each token in a sentence. The featureset input for the classifier is generated by a feature detector function:,"feature_detector(tokens, index, history) -> featureset","feature_detector(tokens, index, history) -> featureset",100
-Return the feature detector that this tagger uses to generate featuresets for its classifier. The feature detector is a function with the signature:,"feature_detector(tokens, index, history) -> featureset","feature_detector(tokens, index, history) -> featureset",100
-A tagger that assigns the same tag to every token.,">>> from nltk.tag import defaulttagger
->>> default_tagger = defaulttagger('nn')
->>> list(default_tagger.tag('this is a test'.split()))
-[('this', 'nn'), ('is', 'nn'), ('a', 'nn'), ('test', 'nn')]",">>> from nltk.tag import defaulttagger >>> default_tagger = defaulttagger('nn') >>> list(default_tagger.tag('this is a test'.split())) [('this', 'nn'), ('is', 'nn'), ('a', 'nn'), ('test', 'nn')]",98
-The RegexpTagger assigns tags to tokens by comparing their word strings to a series of regular expressions. The following tagger uses word suffixes to make guesses about the correct Brown Corpus part of speech tag:,">>> from nltk.corpus import brown
->>> from nltk.tag import regexptagger
->>> test_sent = brown.sents(categories='news')[0]
->>> regexp_tagger = regexptagger(
-...     [(r'^-?[0-9]+(.[0-9]+)?$', 'cd'),   # cardinal numbers
-...      (r'(the|the|a|a|an|an)$', 'at'),   # articles
-...      (r'.*able$', 'jj'),                # adjectives
-...      (r'.*ness$', 'nn'),                # nouns formed from adjectives
-...      (r'.*ly$', 'rb'),                  # adverbs
-...      (r'.*s$', 'nns'),                  # plural nouns
-...      (r'.*ing$', 'vbg'),                # gerunds
-...      (r'.*ed$', 'vbd'),                 # past tense verbs
-...      (r'.*', 'nn')                      # nouns (default)
-... ])
->>> regexp_tagger
-<regexp tagger: size=9>
->>> regexp_tagger.tag(test_sent)
-[('the', 'at'), ('fulton', 'nn'), ('county', 'nn'), ('grand', 'nn'), ('jury', 'nn'),
-('said', 'nn'), ('friday', 'nn'), ('an', 'at'), ('investigation', 'nn'), ('of', 'nn'),
-(""atlanta's"", 'nns'), ('recent', 'nn'), ('primary', 'nn'), ('election', 'nn'),
-('produced', 'vbd'), ('``', 'nn'), ('no', 'nn'), ('evidence', 'nn'), (""''"", 'nn'),
-('that', 'nn'), ('any', 'nn'), ('irregularities', 'nns'), ('took', 'nn'),
-('place', 'nn'), ('.', 'nn')]",choose_tag,2
-The RegexpTagger assigns tags to tokens by comparing their word strings to a series of regular expressions. The following tagger uses word suffixes to make guesses about the correct Brown Corpus part of speech tag:,">>> from nltk.corpus import brown
->>> from nltk.tag import regexptagger
->>> test_sent = brown.sents(categories='news')[0]
->>> regexp_tagger = regexptagger(
-...     [(r'^-?[0-9]+(.[0-9]+)?$', 'cd'),   # cardinal numbers
-...      (r'(the|the|a|a|an|an)$', 'at'),   # articles
-...      (r'.*able$', 'jj'),                # adjectives
-...      (r'.*ness$', 'nn'),                # nouns formed from adjectives
-...      (r'.*ly$', 'rb'),                  # adverbs
-...      (r'.*s$', 'nns'),                  # plural nouns
-...      (r'.*ing$', 'vbg'),                # gerunds
-...      (r'.*ed$', 'vbd'),                 # past tense verbs
-...      (r'.*', 'nn')                      # nouns (default)
-... ])
->>> regexp_tagger
-<regexp tagger: size=9>
->>> regexp_tagger.tag(test_sent)
-[('the', 'at'), ('fulton', 'nn'), ('county', 'nn'), ('grand', 'nn'), ('jury', 'nn'),
-('said', 'nn'), ('friday', 'nn'), ('an', 'at'), ('investigation', 'nn'), ('of', 'nn'),
-(""atlanta's"", 'nns'), ('recent', 'nn'), ('primary', 'nn'), ('election', 'nn'),
-('produced', 'vbd'), ('``', 'nn'), ('no', 'nn'), ('evidence', 'nn'), (""''"", 'nn'),
-('that', 'nn'), ('any', 'nn'), ('irregularities', 'nns'), ('took', 'nn'),
-('place', 'nn'), ('.', 'nn')]",decode_json_obj,2
-The RegexpTagger assigns tags to tokens by comparing their word strings to a series of regular expressions. The following tagger uses word suffixes to make guesses about the correct Brown Corpus part of speech tag:,">>> from nltk.corpus import brown
->>> from nltk.tag import regexptagger
->>> test_sent = brown.sents(categories='news')[0]
->>> regexp_tagger = regexptagger(
-...     [(r'^-?[0-9]+(.[0-9]+)?$', 'cd'),   # cardinal numbers
-...      (r'(the|the|a|a|an|an)$', 'at'),   # articles
-...      (r'.*able$', 'jj'),                # adjectives
-...      (r'.*ness$', 'nn'),                # nouns formed from adjectives
-...      (r'.*ly$', 'rb'),                  # adverbs
-...      (r'.*s$', 'nns'),                  # plural nouns
-...      (r'.*ing$', 'vbg'),                # gerunds
-...      (r'.*ed$', 'vbd'),                 # past tense verbs
-...      (r'.*', 'nn')                      # nouns (default)
-... ])
->>> regexp_tagger
-<regexp tagger: size=9>
->>> regexp_tagger.tag(test_sent)
-[('the', 'at'), ('fulton', 'nn'), ('county', 'nn'), ('grand', 'nn'), ('jury', 'nn'),
-('said', 'nn'), ('friday', 'nn'), ('an', 'at'), ('investigation', 'nn'), ('of', 'nn'),
-(""atlanta's"", 'nns'), ('recent', 'nn'), ('primary', 'nn'), ('election', 'nn'),
-('produced', 'vbd'), ('``', 'nn'), ('no', 'nn'), ('evidence', 'nn'), (""''"", 'nn'),
-('that', 'nn'), ('any', 'nn'), ('irregularities', 'nns'), ('took', 'nn'),
-('place', 'nn'), ('.', 'nn')]",encode_json_obj,2
-The RegexpTagger assigns tags to tokens by comparing their word strings to a series of regular expressions. The following tagger uses word suffixes to make guesses about the correct Brown Corpus part of speech tag:,">>> from nltk.corpus import brown
->>> from nltk.tag import regexptagger
->>> test_sent = brown.sents(categories='news')[0]
->>> regexp_tagger = regexptagger(
-...     [(r'^-?[0-9]+(.[0-9]+)?$', 'cd'),   # cardinal numbers
-...      (r'(the|the|a|a|an|an)$', 'at'),   # articles
-...      (r'.*able$', 'jj'),                # adjectives
-...      (r'.*ness$', 'nn'),                # nouns formed from adjectives
-...      (r'.*ly$', 'rb'),                  # adverbs
-...      (r'.*s$', 'nns'),                  # plural nouns
-...      (r'.*ing$', 'vbg'),                # gerunds
-...      (r'.*ed$', 'vbd'),                 # past tense verbs
-...      (r'.*', 'nn')                      # nouns (default)
-... ])
->>> regexp_tagger
-<regexp tagger: size=9>
->>> regexp_tagger.tag(test_sent)
-[('the', 'at'), ('fulton', 'nn'), ('county', 'nn'), ('grand', 'nn'), ('jury', 'nn'),
-('said', 'nn'), ('friday', 'nn'), ('an', 'at'), ('investigation', 'nn'), ('of', 'nn'),
-(""atlanta's"", 'nns'), ('recent', 'nn'), ('primary', 'nn'), ('election', 'nn'),
-('produced', 'vbd'), ('``', 'nn'), ('no', 'nn'), ('evidence', 'nn'), (""''"", 'nn'),
-('that', 'nn'), ('any', 'nn'), ('irregularities', 'nns'), ('took', 'nn'),
-('place', 'nn'), ('.', 'nn')]",json_tag,2
-The RegexpTagger assigns tags to tokens by comparing their word strings to a series of regular expressions. The following tagger uses word suffixes to make guesses about the correct Brown Corpus part of speech tag:,">>> from nltk.corpus import brown
->>> from nltk.tag import regexptagger
->>> test_sent = brown.sents(categories='news')[0]
->>> regexp_tagger = regexptagger(
-...     [(r'^-?[0-9]+(.[0-9]+)?$', 'cd'),   # cardinal numbers
-...      (r'(the|the|a|a|an|an)$', 'at'),   # articles
-...      (r'.*able$', 'jj'),                # adjectives
-...      (r'.*ness$', 'nn'),                # nouns formed from adjectives
-...      (r'.*ly$', 'rb'),                  # adverbs
-...      (r'.*s$', 'nns'),                  # plural nouns
-...      (r'.*ing$', 'vbg'),                # gerunds
-...      (r'.*ed$', 'vbd'),                 # past tense verbs
-...      (r'.*', 'nn')                      # nouns (default)
-... ])
->>> regexp_tagger
-<regexp tagger: size=9>
->>> regexp_tagger.tag(test_sent)
-[('the', 'at'), ('fulton', 'nn'), ('county', 'nn'), ('grand', 'nn'), ('jury', 'nn'),
-('said', 'nn'), ('friday', 'nn'), ('an', 'at'), ('investigation', 'nn'), ('of', 'nn'),
-(""atlanta's"", 'nns'), ('recent', 'nn'), ('primary', 'nn'), ('election', 'nn'),
-('produced', 'vbd'), ('``', 'nn'), ('no', 'nn'), ('evidence', 'nn'), (""''"", 'nn'),
-('that', 'nn'), ('any', 'nn'), ('irregularities', 'nns'), ('took', 'nn'),
-('place', 'nn'), ('.', 'nn')]",">>> from nltk.corpus import brown >>> from nltk.tag import regexptagger >>> test_sent = brown.sents(categories='news')[0] >>> regexp_tagger = regexptagger( ... [(r'^-?[0-9]+(.[0-9]+)?$', 'cd'), # cardinal numbers ... (r'(the|the|a|a|an|an)$', 'at'), # articles ... (r'.*able$', 'jj'), # adjectives ... (r'.*ness$', 'nn'), # nouns formed from adjectives ... (r'.*ly$', 'rb'), # adverbs ... (r'.*s$', 'nns'), # plural nouns ... (r'.*ing$', 'vbg'), # gerunds ... (r'.*ed$', 'vbd'), # past tense verbs ... (r'.*', 'nn') # nouns (default) ... ]) >>> regexp_tagger
->>> regexp_tagger.tag(test_sent) [('the', 'at'), ('fulton', 'nn'), ('county', 'nn'), ('grand', 'nn'), ('jury', 'nn'), ('said', 'nn'), ('friday', 'nn'), ('an', 'at'), ('investigation', 'nn'), ('of', 'nn'), (""atlanta's"", 'nns'), ('recent', 'nn'), ('primary', 'nn'), ('election', 'nn'), ('produced', 'vbd'), ('``', 'nn'), ('no', 'nn'), ('evidence', 'nn'), (""''"", 'nn'), ('that', 'nn'), ('any', 'nn'), ('irregularities', 'nns'), ('took', 'nn'), ('place', 'nn'), ('.', 'nn')]",97
-"The UnigramTagger finds the most likely tag for each word in a training corpus, and then uses that information to assign tags to new tokens.",">>> from nltk.corpus import brown
->>> from nltk.tag import unigramtagger
->>> test_sent = brown.sents(categories='news')[0]
->>> unigram_tagger = unigramtagger(brown.tagged_sents(categories='news')[:500])
->>> for tok, tag in unigram_tagger.tag(test_sent):
-...     print(""({}, {}), "".format(tok, tag))
-(the, at), (fulton, np-tl), (county, nn-tl), (grand, jj-tl),
-(jury, nn-tl), (said, vbd), (friday, nr), (an, at),
-(investigation, nn), (of, in), (atlanta's, np$), (recent, jj),
-(primary, nn), (election, nn), (produced, vbd), (``, ``),
-(no, at), (evidence, nn), ('', ''), (that, cs), (any, dti),
-(irregularities, nns), (took, vbd), (place, nn), (., .),",context,2
-"The UnigramTagger finds the most likely tag for each word in a training corpus, and then uses that information to assign tags to new tokens.",">>> from nltk.corpus import brown
->>> from nltk.tag import unigramtagger
->>> test_sent = brown.sents(categories='news')[0]
->>> unigram_tagger = unigramtagger(brown.tagged_sents(categories='news')[:500])
->>> for tok, tag in unigram_tagger.tag(test_sent):
-...     print(""({}, {}), "".format(tok, tag))
-(the, at), (fulton, np-tl), (county, nn-tl), (grand, jj-tl),
-(jury, nn-tl), (said, vbd), (friday, nr), (an, at),
-(investigation, nn), (of, in), (atlanta's, np$), (recent, jj),
-(primary, nn), (election, nn), (produced, vbd), (``, ``),
-(no, at), (evidence, nn), ('', ''), (that, cs), (any, dti),
-(irregularities, nns), (took, vbd), (place, nn), (., .),",json_tag,2
-"The UnigramTagger finds the most likely tag for each word in a training corpus, and then uses that information to assign tags to new tokens.",">>> from nltk.corpus import brown
->>> from nltk.tag import unigramtagger
->>> test_sent = brown.sents(categories='news')[0]
->>> unigram_tagger = unigramtagger(brown.tagged_sents(categories='news')[:500])
->>> for tok, tag in unigram_tagger.tag(test_sent):
-...     print(""({}, {}), "".format(tok, tag))
-(the, at), (fulton, np-tl), (county, nn-tl), (grand, jj-tl),
-(jury, nn-tl), (said, vbd), (friday, nr), (an, at),
-(investigation, nn), (of, in), (atlanta's, np$), (recent, jj),
-(primary, nn), (election, nn), (produced, vbd), (``, ``),
-(no, at), (evidence, nn), ('', ''), (that, cs), (any, dti),
-(irregularities, nns), (took, vbd), (place, nn), (., .),",">>> from nltk.corpus import brown >>> from nltk.tag import unigramtagger >>> test_sent = brown.sents(categories='news')[0] >>> unigram_tagger = unigramtagger(brown.tagged_sents(categories='news')[:500]) >>> for tok, tag in unigram_tagger.tag(test_sent): ... print(""({}, {}), "".format(tok, tag)) (the, at), (fulton, np-tl), (county, nn-tl), (grand, jj-tl), (jury, nn-tl), (said, vbd), (friday, nr), (an, at), (investigation, nn), (of, in), (atlanta's, np$), (recent, jj), (primary, nn), (election, nn), (produced, vbd), (``, ``), (no, at), (evidence, nn), ('', ''), (that, cs), (any, dti), (irregularities, nns), (took, vbd), (place, nn), (., .),",98
-"Given the string representation of a tagged token, return the corresponding tuple representation. The rightmost occurrence of sep in s will be used to divide s into a word string and a tag string. If sep does not occur in s, return (s, None).",">>> from nltk.tag.util import str2tuple
->>> str2tuple('fly/nn')
-('fly', 'nn')",">>> from nltk.tag.util import str2tuple >>> str2tuple('fly/nn') ('fly', 'nn')",97
-"Given the tuple representation of a tagged token, return the corresponding string representation. This representation is formed by concatenating the token’s word string, followed by the separator, followed by the token’s tag. (If the tag is None, then just return the bare word string.)",">>> from nltk.tag.util import tuple2str
->>> tagged_token = ('fly', 'nn')
->>> tuple2str(tagged_token)
-'fly/nn'",">>> from nltk.tag.util import tuple2str >>> tagged_token = ('fly', 'nn') >>> tuple2str(tagged_token) 'fly/nn'",97
-"Given a tagged sentence, return an untagged version of that sentence. I.e., return a list containing the first element of each tuple in tagged_sentence.",">>> from nltk.tag.util import untag
->>> untag([('john', 'nnp'), ('saw', 'vbd'), ('mary', 'nnp')])
-['john', 'saw', 'mary']",">>> from nltk.tag.util import untag >>> untag([('john', 'nnp'), ('saw', 'vbd'), ('mary', 'nnp')]) ['john', 'saw', 'mary']",98
-"A “tag” is a case-sensitive string that specifies some property of a token, such as its part of speech. Tagged tokens are encoded as tuples (tag, token). For example, the following tagged token combines the word 'fly' with a noun part of speech tag ('NN'):",">>> tagged_tok = ('fly', 'nn')",">>> tagged_tok = ('fly', 'nn')",100
-An off-the-shelf tagger is available for English. It uses the Penn Treebank tagset:,">>> from nltk import pos_tag, word_tokenize
->>> pos_tag(word_tokenize(""john's big idea isn't all that bad.""))
-[('john', 'nnp'), (""'s"", 'pos'), ('big', 'jj'), ('idea', 'nn'), ('is', 'vbz'),
-(""n't"", 'rb'), ('all', 'pdt'), ('that', 'dt'), ('bad', 'jj'), ('.', '.')]",">>> from nltk import pos_tag, word_tokenize >>> pos_tag(word_tokenize(""john's big idea isn't all that bad."")) [('john', 'nnp'), (""'s"", 'pos'), ('big', 'jj'), ('idea', 'nn'), ('is', 'vbz'), (""n't"", 'rb'), ('all', 'pdt'), ('that', 'dt'), ('bad', 'jj'), ('.', '.')]",99
-A Russian tagger is also available if you specify lang=”rus”. It uses the Russian National Corpus tagset:,">>> pos_tag(word_tokenize(""илья оторопел и дважды перечитал бумажку.""), lang='rus')    
-[('илья', 's'), ('оторопел', 'v'), ('и', 'conj'), ('дважды', 'adv'), ('перечитал', 'v'),
-('бумажку', 's'), ('.', 'nonlex')]",">>> pos_tag(word_tokenize(""илья оторопел и дважды перечитал бумажку.""), lang='rus') [('илья', 's'), ('оторопел', 'v'), ('и', 'conj'), ('дважды', 'adv'), ('перечитал', 'v'), ('бумажку', 's'), ('.', 'nonlex')]",99
-"This package defines several taggers, which take a list of tokens, assign a tag to each one, and return the resulting list of tagged tokens. Most of the taggers are built automatically based on a training corpus. For example, the unigram tagger tags each word w by checking what the most frequent tag for w was in a training corpus:",">>> from nltk.corpus import brown
->>> from nltk.tag import unigramtagger
->>> tagger = unigramtagger(brown.tagged_sents(categories='news')[:500])
->>> sent = ['mitchell', 'decried', 'the', 'high', 'rate', 'of', 'unemployment']
->>> for word, tag in tagger.tag(sent):
-...     print(word, '->', tag)
-mitchell -> np
-decried -> none
-the -> at
-high -> jj
-rate -> nn
-of -> in
-unemployment -> none",">>> from nltk.corpus import brown >>> from nltk.tag import unigramtagger >>> tagger = unigramtagger(brown.tagged_sents(categories='news')[:500]) >>> sent = ['mitchell', 'decried', 'the', 'high', 'rate', 'of', 'unemployment'] >>> for word, tag in tagger.tag(sent): ... print(word, '->', tag) mitchell -> np decried -> none the -> at high -> jj rate -> nn of -> in unemployment -> none",97
 ,">>> backoff = regexptagger([
 ... (r'^-?[0-9]+(.[0-9]+)?$', 'cd'),   # cardinal numbers
 ... (r'(the|the|a|a|an|an)$', 'at'),   # articles
@@ -433,21 +82,30 @@ true"
 0.44159544...
 >>> tagger2.rules()[2:4]
 (rule('001', 'nn', '.', [(pos([-1]),'nn'), (word([0]),'.')]), rule('001', 'nn', 'in', [(pos([-1]),'nn'), (word([0]),'of')])"
+Returns the entropy over labellings of the given sequence. This is given by:,h(o) = - sum_s pr(s | o) log pr(s | o)
 "where the summation ranges over all state sequences, S. Let Z = Pr(O) = sum_S Pr(S, O)} where the summation ranges over all state sequences and O is the observation sequence. As such the entropy can be re-expressed as:","h = - sum_s pr(s | o) log [ pr(s, o) / z ]
 = log z - sum_s pr(s | o) log pr(s, 0)
 = log z - sum_s pr(s | o) [ log pr(s_0) + sum_t pr(s_t | s_{t-1}) + sum_t pr(o_t | s_t) ]"
+"The order of summation for the log terms can be flipped, allowing dynamic programming to be used to calculate the entropy. Specifically, we use the forward and backward probabilities (alpha, beta) giving:","h = log z - sum_s0 alpha_0(s0) beta_0(s0) / z * log pr(s0)
++ sum_t,si,sj alpha_t(si) pr(sj | si) pr(o_t+1 | sj) beta_t(sj) / z * log pr(sj | si)
++ sum_t,st alpha_t(st) beta_t(st) / z * log pr(o_t | st)"
 "
 A class for pos tagging with HunPos. The input is the paths to:",">>> from nltk.tag import hunpostagger
 >>> ht = hunpostagger('en_wsj.model')
 >>> ht.tag('what is the airspeed of an unladen swallow ?'.split())
 [('what', 'wp'), ('is', 'vbz'), ('the', 'dt'), ('airspeed', 'nn'), ('of', 'in'), ('an', 'dt'), ('unladen', 'nn'), ('swallow', 'vb'), ('?', '.')]
 >>> ht.close()"
+"This class communicates with the hunpos-tag binary via pipes. When the tagger object is no longer needed, the close() method should be called to free system resources. The class supports the context manager interface; if used in a with statement, the close() method is invoked automatically:",">>> with hunpostagger('en_wsj.model') as ht:
+...     ht.tag('what is the airspeed of an unladen swallow ?'.split())
+...
+[('what', 'wp'), ('is', 'vbz'), ('the', 'dt'), ('airspeed', 'nn'), ('of', 'in'), ('an', 'dt'), ('unladen', 'nn'), ('swallow', 'vb'), ('?', '.')]"
 Maps the tag from the source tagset to the target tagset.,">>> map_tag('en-ptb', 'universal', 'vbz')
 'verb'
 >>> map_tag('en-ptb', 'universal', 'vbp')
 'verb'
 >>> map_tag('en-ptb', 'universal', '``')
 '.'"
+"Greedy Averaged Perceptron tagger, as implemented by Matthew Honnibal. See more implementation details here:",>>> from nltk.tag.perceptron import perceptrontagger
 Train the model,>>> tagger = perceptrontagger(load=false)
 Train the model,">>> tagger.train([[('today','nn'),('is','vbz'),('good','jj'),('day','nn')],
 ... [('yes','nns'),('it','prp'),('beautiful','jj')]])"
@@ -482,6 +140,48 @@ Extracts the chunks in a BIO chunk-tagged sentence.,">>> from nltk.tag import se
 ('?', 'o')]
 >>> list(chktagger.bio_to_chunks(tagged_sent, chunk_type='np')) 
 [('what', '0'), ('the airspeed', '2-3'), ('an unladen swallow', '5-6-7')]"
+Return the feature detector that this tagger uses to generate featuresets for its classifier. The feature detector is a function with the signature:,"feature_detector(tokens, index, history) -> featureset"
+A sequential tagger that uses a classifier to choose the tag for each token in a sentence. The featureset input for the classifier is generated by a feature detector function:,"feature_detector(tokens, index, history) -> featureset"
+Return the feature detector that this tagger uses to generate featuresets for its classifier. The feature detector is a function with the signature:,"feature_detector(tokens, index, history) -> featureset"
+A tagger that assigns the same tag to every token.,">>> from nltk.tag import defaulttagger
+>>> default_tagger = defaulttagger('nn')
+>>> list(default_tagger.tag('this is a test'.split()))
+[('this', 'nn'), ('is', 'nn'), ('a', 'nn'), ('test', 'nn')]"
+The RegexpTagger assigns tags to tokens by comparing their word strings to a series of regular expressions. The following tagger uses word suffixes to make guesses about the correct Brown Corpus part of speech tag:,">>> from nltk.corpus import brown
+>>> from nltk.tag import regexptagger
+>>> test_sent = brown.sents(categories='news')[0]
+>>> regexp_tagger = regexptagger(
+...     [(r'^-?[0-9]+(.[0-9]+)?$', 'cd'),   # cardinal numbers
+...      (r'(the|the|a|a|an|an)$', 'at'),   # articles
+...      (r'.*able$', 'jj'),                # adjectives
+...      (r'.*ness$', 'nn'),                # nouns formed from adjectives
+...      (r'.*ly$', 'rb'),                  # adverbs
+...      (r'.*s$', 'nns'),                  # plural nouns
+...      (r'.*ing$', 'vbg'),                # gerunds
+...      (r'.*ed$', 'vbd'),                 # past tense verbs
+...      (r'.*', 'nn')                      # nouns (default)
+... ])
+>>> regexp_tagger
+<regexp tagger: size=9>
+>>> regexp_tagger.tag(test_sent)
+[('the', 'at'), ('fulton', 'nn'), ('county', 'nn'), ('grand', 'nn'), ('jury', 'nn'),
+('said', 'nn'), ('friday', 'nn'), ('an', 'at'), ('investigation', 'nn'), ('of', 'nn'),
+(""atlanta's"", 'nns'), ('recent', 'nn'), ('primary', 'nn'), ('election', 'nn'),
+('produced', 'vbd'), ('``', 'nn'), ('no', 'nn'), ('evidence', 'nn'), (""''"", 'nn'),
+('that', 'nn'), ('any', 'nn'), ('irregularities', 'nns'), ('took', 'nn'),
+('place', 'nn'), ('.', 'nn')]"
+"The UnigramTagger finds the most likely tag for each word in a training corpus, and then uses that information to assign tags to new tokens.",">>> from nltk.corpus import brown
+>>> from nltk.tag import unigramtagger
+>>> test_sent = brown.sents(categories='news')[0]
+>>> unigram_tagger = unigramtagger(brown.tagged_sents(categories='news')[:500])
+>>> for tok, tag in unigram_tagger.tag(test_sent):
+...     print(""({}, {}), "".format(tok, tag))
+(the, at), (fulton, np-tl), (county, nn-tl), (grand, jj-tl),
+(jury, nn-tl), (said, vbd), (friday, nr), (an, at),
+(investigation, nn), (of, in), (atlanta's, np$), (recent, jj),
+(primary, nn), (election, nn), (produced, vbd), (``, ``),
+(no, at), (evidence, nn), ('', ''), (that, cs), (any, dti),
+(irregularities, nns), (took, vbd), (place, nn), (., .),"
 A class for Named-Entity Tagging with Stanford Tagger. The input is the paths to:,">>> from nltk.tag import stanfordnertagger
 >>> st = stanfordnertagger('english.all.3class.distsim.crf.ser.gz') 
 >>> st.tag('rami eid is studying at stony brook university in ny'.split()) 
@@ -492,6 +192,37 @@ A class for pos tagging with Stanford Tagger. The input is the paths to:,">>> fr
 >>> st = stanfordpostagger('english-bidirectional-distsim.tagger')
 >>> st.tag('what is the airspeed of an unladen swallow ?'.split())
 [('what', 'wp'), ('is', 'vbz'), ('the', 'dt'), ('airspeed', 'nn'), ('of', 'in'), ('an', 'dt'), ('unladen', 'jj'), ('swallow', 'vb'), ('?', '.')]"
+"Given the string representation of a tagged token, return the corresponding tuple representation. The rightmost occurrence of sep in s will be used to divide s into a word string and a tag string. If sep does not occur in s, return (s, None).",">>> from nltk.tag.util import str2tuple
+>>> str2tuple('fly/nn')
+('fly', 'nn')"
+"Given the tuple representation of a tagged token, return the corresponding string representation. This representation is formed by concatenating the token’s word string, followed by the separator, followed by the token’s tag. (If the tag is None, then just return the bare word string.)",">>> from nltk.tag.util import tuple2str
+>>> tagged_token = ('fly', 'nn')
+>>> tuple2str(tagged_token)
+'fly/nn'"
+"Given a tagged sentence, return an untagged version of that sentence. I.e., return a list containing the first element of each tuple in tagged_sentence.",">>> from nltk.tag.util import untag
+>>> untag([('john', 'nnp'), ('saw', 'vbd'), ('mary', 'nnp')])
+['john', 'saw', 'mary']"
+"A “tag” is a case-sensitive string that specifies some property of a token, such as its part of speech. Tagged tokens are encoded as tuples (tag, token). For example, the following tagged token combines the word 'fly' with a noun part of speech tag ('NN'):",">>> tagged_tok = ('fly', 'nn')"
+An off-the-shelf tagger is available for English. It uses the Penn Treebank tagset:,">>> from nltk import pos_tag, word_tokenize
+>>> pos_tag(word_tokenize(""john's big idea isn't all that bad.""))
+[('john', 'nnp'), (""'s"", 'pos'), ('big', 'jj'), ('idea', 'nn'), ('is', 'vbz'),
+(""n't"", 'rb'), ('all', 'pdt'), ('that', 'dt'), ('bad', 'jj'), ('.', '.')]"
+A Russian tagger is also available if you specify lang=”rus”. It uses the Russian National Corpus tagset:,">>> pos_tag(word_tokenize(""илья оторопел и дважды перечитал бумажку.""), lang='rus')    
+[('илья', 's'), ('оторопел', 'v'), ('и', 'conj'), ('дважды', 'adv'), ('перечитал', 'v'),
+('бумажку', 's'), ('.', 'nonlex')]"
+"This package defines several taggers, which take a list of tokens, assign a tag to each one, and return the resulting list of tagged tokens. Most of the taggers are built automatically based on a training corpus. For example, the unigram tagger tags each word w by checking what the most frequent tag for w was in a training corpus:",">>> from nltk.corpus import brown
+>>> from nltk.tag import unigramtagger
+>>> tagger = unigramtagger(brown.tagged_sents(categories='news')[:500])
+>>> sent = ['mitchell', 'decried', 'the', 'high', 'rate', 'of', 'unemployment']
+>>> for word, tag in tagger.tag(sent):
+...     print(word, '->', tag)
+mitchell -> np
+decried -> none
+the -> at
+high -> jj
+rate -> nn
+of -> in
+unemployment -> none"
 We evaluate a tagger on data that was not seen during training:,">>> tagger.evaluate(brown.tagged_sents(categories='news')[500:600])
 0.7..."
 Use NLTK’s currently recommended part of speech tagger to tag the given list of tokens.,">>> from nltk.tag import pos_tag
@@ -502,114 +233,307 @@ Use NLTK’s currently recommended part of speech tagger to tag the given list o
 >>> pos_tag(word_tokenize(""john's big idea isn't all that bad.""), tagset='universal')
 [('john', 'noun'), (""'s"", 'prt'), ('big', 'adj'), ('idea', 'noun'), ('is', 'verb'),
 (""n't"", 'adv'), ('all', 'det'), ('that', 'det'), ('bad', 'adj'), ('.', '.')]"
-"A processing interface for assigning a tag to each token in a list. Tags are case sensitive strings that identify some property of each token, such as its part of speech or its sense.",,evaluate
-"A processing interface for assigning a tag to each token in a list. Tags are case sensitive strings that identify some property of each token, such as its part of speech or its sense.",,tag
-"A processing interface for assigning a tag to each token in a list. Tags are case sensitive strings that identify some property of each token, such as its part of speech or its sense.",,tag_sents
-"Brill taggers can be created directly, from an initial tagger and a list of transformational rules; but more often, Brill taggers are created by learning rules from a training corpus, using one of the TaggerTrainers available.",,batch_tag_incremental
-"Brill taggers can be created directly, from an initial tagger and a list of transformational rules; but more often, Brill taggers are created by learning rules from a training corpus, using one of the TaggerTrainers available.",,decode_json_obj
-"Brill taggers can be created directly, from an initial tagger and a list of transformational rules; but more often, Brill taggers are created by learning rules from a training corpus, using one of the TaggerTrainers available.",,encode_json_obj
-"Brill taggers can be created directly, from an initial tagger and a list of transformational rules; but more often, Brill taggers are created by learning rules from a training corpus, using one of the TaggerTrainers available.",,json_tag
-"Brill taggers can be created directly, from an initial tagger and a list of transformational rules; but more often, Brill taggers are created by learning rules from a training corpus, using one of the TaggerTrainers available.",,print_template_statistics
-"Brill taggers can be created directly, from an initial tagger and a list of transformational rules; but more often, Brill taggers are created by learning rules from a training corpus, using one of the TaggerTrainers available.",,rules
-"Brill taggers can be created directly, from an initial tagger and a list of transformational rules; but more often, Brill taggers are created by learning rules from a training corpus, using one of the TaggerTrainers available.",,tag
-"Brill taggers can be created directly, from an initial tagger and a list of transformational rules; but more often, Brill taggers are created by learning rules from a training corpus, using one of the TaggerTrainers available.",,train_stats
-"For more information, please consult the source code for this module, which includes extensive demonstration code.",,nltk.tag.hmm.
-"For more information, please consult the source code for this module, which includes extensive demonstration code.",,hiddenmarkovmodeltagger
-"This implementation is based on the HMM description in Chapter 8, Huang, Acero and Hon, Spoken Language Processing and includes an extension for training shallow HMM parsers or specialized HMMs as in Molina et. al, 2002. A specialized HMM modifies training data by applying a specialization function to create a new training set that is more appropriate for sequential tagging with an HMM. A typical use case is chunking.",,best_path
-"This implementation is based on the HMM description in Chapter 8, Huang, Acero and Hon, Spoken Language Processing and includes an extension for training shallow HMM parsers or specialized HMMs as in Molina et. al, 2002. A specialized HMM modifies training data by applying a specialization function to create a new training set that is more appropriate for sequential tagging with an HMM. A typical use case is chunking.",,best_path_simple
-"This implementation is based on the HMM description in Chapter 8, Huang, Acero and Hon, Spoken Language Processing and includes an extension for training shallow HMM parsers or specialized HMMs as in Molina et. al, 2002. A specialized HMM modifies training data by applying a specialization function to create a new training set that is more appropriate for sequential tagging with an HMM. A typical use case is chunking.",,entropy
-"This implementation is based on the HMM description in Chapter 8, Huang, Acero and Hon, Spoken Language Processing and includes an extension for training shallow HMM parsers or specialized HMMs as in Molina et. al, 2002. A specialized HMM modifies training data by applying a specialization function to create a new training set that is more appropriate for sequential tagging with an HMM. A typical use case is chunking.",,log_probability
-"This implementation is based on the HMM description in Chapter 8, Huang, Acero and Hon, Spoken Language Processing and includes an extension for training shallow HMM parsers or specialized HMMs as in Molina et. al, 2002. A specialized HMM modifies training data by applying a specialization function to create a new training set that is more appropriate for sequential tagging with an HMM. A typical use case is chunking.",,point_entropy
-"This implementation is based on the HMM description in Chapter 8, Huang, Acero and Hon, Spoken Language Processing and includes an extension for training shallow HMM parsers or specialized HMMs as in Molina et. al, 2002. A specialized HMM modifies training data by applying a specialization function to create a new training set that is more appropriate for sequential tagging with an HMM. A typical use case is chunking.",,probability
-"This implementation is based on the HMM description in Chapter 8, Huang, Acero and Hon, Spoken Language Processing and includes an extension for training shallow HMM parsers or specialized HMMs as in Molina et. al, 2002. A specialized HMM modifies training data by applying a specialization function to create a new training set that is more appropriate for sequential tagging with an HMM. A typical use case is chunking.",,random_sample
-"This implementation is based on the HMM description in Chapter 8, Huang, Acero and Hon, Spoken Language Processing and includes an extension for training shallow HMM parsers or specialized HMMs as in Molina et. al, 2002. A specialized HMM modifies training data by applying a specialization function to create a new training set that is more appropriate for sequential tagging with an HMM. A typical use case is chunking.",,reset_cache
-"This implementation is based on the HMM description in Chapter 8, Huang, Acero and Hon, Spoken Language Processing and includes an extension for training shallow HMM parsers or specialized HMMs as in Molina et. al, 2002. A specialized HMM modifies training data by applying a specialization function to create a new training set that is more appropriate for sequential tagging with an HMM. A typical use case is chunking.",,tag
-"This implementation is based on the HMM description in Chapter 8, Huang, Acero and Hon, Spoken Language Processing and includes an extension for training shallow HMM parsers or specialized HMMs as in Molina et. al, 2002. A specialized HMM modifies training data by applying a specialization function to create a new training set that is more appropriate for sequential tagging with an HMM. A typical use case is chunking.",,test
-"This implementation is based on the HMM description in Chapter 8, Huang, Acero and Hon, Spoken Language Processing and includes an extension for training shallow HMM parsers or specialized HMMs as in Molina et. al, 2002. A specialized HMM modifies training data by applying a specialization function to create a new training set that is more appropriate for sequential tagging with an HMM. A typical use case is chunking.",,train
-"For more information, please consult the source code for this module, which includes extensive demonstration code.",,hiddenmarkovmodeltrainer
-"Creates an HMM trainer to induce an HMM with the given states and output symbol alphabet. A supervised and unsupervised training method may be used. If either of the states or symbols are not given, these may be derived from supervised training.",,train
-"Creates an HMM trainer to induce an HMM with the given states and output symbol alphabet. A supervised and unsupervised training method may be used. If either of the states or symbols are not given, these may be derived from supervised training.",,train_supervised
-"Creates an HMM trainer to induce an HMM with the given states and output symbol alphabet. A supervised and unsupervised training method may be used. If either of the states or symbols are not given, these may be derived from supervised training.",,train_unsupervised
-"For more information, please consult the source code for this module, which includes extensive demonstration code.",,demo
-"For more information, please consult the source code for this module, which includes extensive demonstration code.",,demo_bw
-"For more information, please consult the source code for this module, which includes extensive demonstration code.",,demo_pos
-"For more information, please consult the source code for this module, which includes extensive demonstration code.",,demo_pos_bw
-"For more information, please consult the source code for this module, which includes extensive demonstration code.",,load_pos
-"For more information, please consult the source code for this module, which includes extensive demonstration code.",,logsumexp2
-"Interface for converting POS tags from various treebanks to the universal tagset of Petrov, Das, & McDonald.",,nltk.tag.mapping.
-"Interface for converting POS tags from various treebanks to the universal tagset of Petrov, Das, & McDonald.",,map_tag
-"Interface for converting POS tags from various treebanks to the universal tagset of Petrov, Das, & McDonald.",,tagset_mapping
+return [self.tag(sent) for sent in sentences],,nltk.tag.api.
+return [self.tag(sent) for sent in sentences],,taggeri
+"Score the accuracy of the tagger against the gold standard.
+Strip the tags from the gold standard text, retag it using
+the tagger, then compute the accuracy score.",,evaluate
+"Determine the most appropriate tag sequence for the given
+token sequence, and return a corresponding list of tagged
+tokens.  A tagged token is encoded as a tuple (token, tag).",,tag
+return [self.tag(sent) for sent in sentences],,tag_sents
+"A “tag” is a case-sensitive string that specifies some property of a token,
+such as its part of speech.  Tagged tokens are encoded as tuples
+(tag, token).  For example, the following tagged token combines
+the word 'fly' with a noun part of speech tag ('NN'):",,nltk.tag.brill.
+"A “tag” is a case-sensitive string that specifies some property of a token,
+such as its part of speech.  Tagged tokens are encoded as tuples
+(tag, token).  For example, the following tagged token combines
+the word 'fly' with a noun part of speech tag ('NN'):",,brilltagger
+"NOTE: This is inefficient (does not build any index, so will traverse the entire
+corpus N times for N rules) – usually you would not care about statistics for
+individual rules and thus use batch_tag() instead",,batch_tag_incremental
+"NOTE: This is inefficient (does not build any index, so will traverse the entire
+corpus N times for N rules) – usually you would not care about statistics for
+individual rules and thus use batch_tag() instead",,decode_json_obj
+"NOTE: This is inefficient (does not build any index, so will traverse the entire
+corpus N times for N rules) – usually you would not care about statistics for
+individual rules and thus use batch_tag() instead",,encode_json_obj
+"NOTE: This is inefficient (does not build any index, so will traverse the entire
+corpus N times for N rules) – usually you would not care about statistics for
+individual rules and thus use batch_tag() instead",,json_tag
+"printunused (bool) – if True, print a list of all unused templates",,print_template_statistics
+the ordered list of transformation rules that correct the initial tagging,,rules
+"Return a named statistic collected during training, or a dictionary of all
+available statistics if no name given",,train_stats
+"A “tag” is a case-sensitive string that specifies some property of a token,
+such as its part of speech.  Tagged tokens are encoded as tuples
+(tag, token).  For example, the following tagged token combines
+the word 'fly' with a noun part of speech tag ('NN'):",,pos
+"A “tag” is a case-sensitive string that specifies some property of a token,
+such as its part of speech.  Tagged tokens are encoded as tuples
+(tag, token).  For example, the following tagged token combines
+the word 'fly' with a noun part of speech tag ('NN'):",,word
+"A “tag” is a case-sensitive string that specifies some property of a token,
+such as its part of speech.  Tagged tokens are encoded as tuples
+(tag, token).  For example, the following tagged token combines
+the word 'fly' with a noun part of speech tag ('NN'):",,brill24
+"A “tag” is a case-sensitive string that specifies some property of a token,
+such as its part of speech.  Tagged tokens are encoded as tuples
+(tag, token).  For example, the following tagged token combines
+the word 'fly' with a noun part of speech tag ('NN'):",,describe_template_sets
+"A “tag” is a case-sensitive string that specifies some property of a token,
+such as its part of speech.  Tagged tokens are encoded as tuples
+(tag, token).  For example, the following tagged token combines
+the word 'fly' with a noun part of speech tag ('NN'):",,fntbl37
+"A “tag” is a case-sensitive string that specifies some property of a token,
+such as its part of speech.  Tagged tokens are encoded as tuples
+(tag, token).  For example, the following tagged token combines
+the word 'fly' with a noun part of speech tag ('NN'):",,nltkdemo18
+"A “tag” is a case-sensitive string that specifies some property of a token,
+such as its part of speech.  Tagged tokens are encoded as tuples
+(tag, token).  For example, the following tagged token combines
+the word 'fly' with a noun part of speech tag ('NN'):",,nltkdemo18plus
+"A “tag” is a case-sensitive string that specifies some property of a token,
+such as its part of speech.  Tagged tokens are encoded as tuples
+(tag, token).  For example, the following tagged token combines
+the word 'fly' with a noun part of speech tag ('NN'):",,nltk.tag.brill_trainer.
+"A “tag” is a case-sensitive string that specifies some property of a token,
+such as its part of speech.  Tagged tokens are encoded as tuples
+(tag, token).  For example, the following tagged token combines
+the word 'fly' with a noun part of speech tag ('NN'):",,brilltaggertrainer
+min_score (int) – stop training when no rules better than min_score can be found,,train
+"Train the CRF tagger using CRFSuite
+:params train_data : is the list of annotated sentences.
+:type train_data : list (list(tuple(str,str)))
+:params model_file : the model will be saved to this file.",,nltk.tag.crf.
+"Train the CRF tagger using CRFSuite
+:params train_data : is the list of annotated sentences.
+:type train_data : list (list(tuple(str,str)))
+:params model_file : the model will be saved to this file.",,crftagger
+"Train a new HiddenMarkovModelTagger using the given labeled and
+unlabeled training instances. Testing will be performed if test
+instances are provided.",,nltk.tag.hmm.
+"Train a new HiddenMarkovModelTagger using the given labeled and
+unlabeled training instances. Testing will be performed if test
+instances are provided.",,hiddenmarkovmodeltagger
+"Returns the state sequence of the optimal (most probable) path through
+the HMM. Uses the Viterbi algorithm to calculate this part by dynamic
+programming.",,best_path
+"Returns the state sequence of the optimal (most probable) path through
+the HMM. Uses the Viterbi algorithm to calculate this part by dynamic
+programming.  This uses a simple, direct method, and is included for
+teaching purposes.",,best_path_simple
+"This simply uses alpha and beta to find the probabilities of partial
+sequences, constrained to include the given state(s) at some point in
+time.",,entropy
+"Returns the log-probability of the given symbol sequence. If the
+sequence is labelled, then returns the joint log-probability of the
+symbol, state sequence. Otherwise, uses the forward algorithm to find
+the log-probability over all label sequences.",,log_probability
+"Returns the pointwise entropy over the possible states at each
+position in the chain, given the observation sequence.",,point_entropy
+"Returns the probability of the given symbol sequence. If the sequence
+is labelled, then returns the joint probability of the symbol, state
+sequence. Otherwise, uses the forward algorithm to find the
+probability over all label sequences.",,probability
+"Randomly sample the HMM to generate a sentence of a given length. This
+samples the prior distribution then the observation distribution and
+transition distribution for each subsequent observation and state.
+This will mostly generate unintelligible garbage, but can provide some
+amusement.",,random_sample
+"Randomly sample the HMM to generate a sentence of a given length. This
+samples the prior distribution then the observation distribution and
+transition distribution for each subsequent observation and state.
+This will mostly generate unintelligible garbage, but can provide some
+amusement.",,reset_cache
+"verbose (bool) – boolean flag indicating whether training should be
+verbose or include printed output",,test
+kwargs may include following parameters:,,hiddenmarkovmodeltrainer
+"estimator – a function taking
+a FreqDist and a number of bins and returning a CProbDistI;
+otherwise a MLE estimate is used",,train_supervised
+kwargs may include following parameters:,,train_unsupervised
+kwargs may include following parameters:,,demo
+kwargs may include following parameters:,,demo_bw
+kwargs may include following parameters:,,demo_pos
+kwargs may include following parameters:,,demo_pos_bw
+kwargs may include following parameters:,,load_pos
+kwargs may include following parameters:,,logsumexp2
+"This class communicates with the hunpos-tag binary via pipes. When the
+tagger object is no longer needed, the close() method should be called to
+free system resources. The class supports the context manager interface; if
+used in a with statement, the close() method is invoked automatically:",,nltk.tag.hunpos.
+"This class communicates with the hunpos-tag binary via pipes. When the
+tagger object is no longer needed, the close() method should be called to
+free system resources. The class supports the context manager interface; if
+used in a with statement, the close() method is invoked automatically:",,hunpostagger
+"This class communicates with the hunpos-tag binary via pipes. When the
+tagger object is no longer needed, the close() method should be called to
+free system resources. The class supports the context manager interface; if
+used in a with statement, the close() method is invoked automatically:",,close
+"Interface for converting POS tags from various treebanks
+to the universal tagset of Petrov, Das, & McDonald.",,nltk.tag.mapping.
+"Interface for converting POS tags from various treebanks
+to the universal tagset of Petrov, Das, & McDonald.",,map_tag
+"A “tag” is a case-sensitive string that specifies some property of a token,
+such as its part of speech.  Tagged tokens are encoded as tuples
+(tag, token).  For example, the following tagged token combines
+the word 'fly' with a noun part of speech tag ('NN'):",,nltk.tag.perceptron.
+"A “tag” is a case-sensitive string that specifies some property of a token,
+such as its part of speech.  Tagged tokens are encoded as tuples
+(tag, token).  For example, the following tagged token combines
+the word 'fly' with a noun part of speech tag ('NN'):",,averagedperceptron
 "An averaged perceptron, as implemented by Matthew Honnibal.",,average_weights
-"An averaged perceptron, as implemented by Matthew Honnibal.",,decode_json_obj
-"An averaged perceptron, as implemented by Matthew Honnibal.",,encode_json_obj
-"An averaged perceptron, as implemented by Matthew Honnibal.",,json_tag
 "An averaged perceptron, as implemented by Matthew Honnibal.",,load
-"An averaged perceptron, as implemented by Matthew Honnibal.",,predict
-"An averaged perceptron, as implemented by Matthew Honnibal.",,save
-"An averaged perceptron, as implemented by Matthew Honnibal.",,update
-Note: Unit tests for this module can be found in test/unit/test_senna.py,,nltk.tag.senna.
-Note: Unit tests for this module can be found in test/unit/test_senna.py,,sennachunktagger
-Note: Unit tests for this module can be found in test/unit/test_senna.py,,sennanertagger
-Note: Unit tests for this module can be found in test/unit/test_senna.py,,sennatagger
-"Classes for tagging sentences sequentially, left to right. The abstract base class SequentialBackoffTagger serves as the base class for all the taggers in this module. Tagging of individual words is performed by the method choose_tag(), which is defined by subclasses of SequentialBackoffTagger. If a tagger is unable to determine a tag for the specified token, then its backoff tagger is consulted instead. Any SequentialBackoffTagger may serve as a backoff tagger for any other SequentialBackoffTagger.",,nltk.tag.sequential.
-"Classes for tagging sentences sequentially, left to right. The abstract base class SequentialBackoffTagger serves as the base class for all the taggers in this module. Tagging of individual words is performed by the method choose_tag(), which is defined by subclasses of SequentialBackoffTagger. If a tagger is unable to determine a tag for the specified token, then its backoff tagger is consulted instead. Any SequentialBackoffTagger may serve as a backoff tagger for any other SequentialBackoffTagger.",,affixtagger
-"A tagger that chooses a token’s tag based on a leading or trailing substring of its word string. (It is important to note that these substrings are not necessarily “true” morphological affixes). In particular, a fixed-length substring of the word is looked up in a table, and the corresponding tag is returned. Affix taggers are typically constructed by training them on a tagged corpus.",,context
-"A tagger that chooses a token’s tag based on a leading or trailing substring of its word string. (It is important to note that these substrings are not necessarily “true” morphological affixes). In particular, a fixed-length substring of the word is looked up in a table, and the corresponding tag is returned. Affix taggers are typically constructed by training them on a tagged corpus.",,decode_json_obj
-"A tagger that chooses a token’s tag based on a leading or trailing substring of its word string. (It is important to note that these substrings are not necessarily “true” morphological affixes). In particular, a fixed-length substring of the word is looked up in a table, and the corresponding tag is returned. Affix taggers are typically constructed by training them on a tagged corpus.",,encode_json_obj
-"A tagger that chooses a token’s tag based on a leading or trailing substring of its word string. (It is important to note that these substrings are not necessarily “true” morphological affixes). In particular, a fixed-length substring of the word is looked up in a table, and the corresponding tag is returned. Affix taggers are typically constructed by training them on a tagged corpus.",,json_tag
-"Classes for tagging sentences sequentially, left to right. The abstract base class SequentialBackoffTagger serves as the base class for all the taggers in this module. Tagging of individual words is performed by the method choose_tag(), which is defined by subclasses of SequentialBackoffTagger. If a tagger is unable to determine a tag for the specified token, then its backoff tagger is consulted instead. Any SequentialBackoffTagger may serve as a backoff tagger for any other SequentialBackoffTagger.",,bigramtagger
-"A tagger that chooses a token’s tag based its word string and on the preceding words’ tag. In particular, a tuple consisting of the previous tag and the word is looked up in a table, and the corresponding tag is returned.",,json_tag
-"Classes for tagging sentences sequentially, left to right. The abstract base class SequentialBackoffTagger serves as the base class for all the taggers in this module. Tagging of individual words is performed by the method choose_tag(), which is defined by subclasses of SequentialBackoffTagger. If a tagger is unable to determine a tag for the specified token, then its backoff tagger is consulted instead. Any SequentialBackoffTagger may serve as a backoff tagger for any other SequentialBackoffTagger.",,classifierbasedpostagger
-"Classes for tagging sentences sequentially, left to right. The abstract base class SequentialBackoffTagger serves as the base class for all the taggers in this module. Tagging of individual words is performed by the method choose_tag(), which is defined by subclasses of SequentialBackoffTagger. If a tagger is unable to determine a tag for the specified token, then its backoff tagger is consulted instead. Any SequentialBackoffTagger may serve as a backoff tagger for any other SequentialBackoffTagger.",,classifierbasedtagger
-Where tokens is the list of unlabeled tokens in the sentence; index is the index of the token for which feature detection should be performed; and history is list of the tags for all tokens before index.,,choose_tag
-Where tokens is the list of unlabeled tokens in the sentence; index is the index of the token for which feature detection should be performed; and history is list of the tags for all tokens before index.,,classifier
-Where tokens is the list of unlabeled tokens in the sentence; index is the index of the token for which feature detection should be performed; and history is list of the tags for all tokens before index.,,feature_detector
-"Classes for tagging sentences sequentially, left to right. The abstract base class SequentialBackoffTagger serves as the base class for all the taggers in this module. Tagging of individual words is performed by the method choose_tag(), which is defined by subclasses of SequentialBackoffTagger. If a tagger is unable to determine a tag for the specified token, then its backoff tagger is consulted instead. Any SequentialBackoffTagger may serve as a backoff tagger for any other SequentialBackoffTagger.",,contexttagger
-"A ContextTagger chooses the tag for a token by calculating the token’s context, and looking up the corresponding tag in a table. This table can be constructed manually; or it can be automatically constructed based on a training corpus, using the _train() factory method.",,choose_tag
-"A ContextTagger chooses the tag for a token by calculating the token’s context, and looking up the corresponding tag in a table. This table can be constructed manually; or it can be automatically constructed based on a training corpus, using the _train() factory method.",,context
-"A ContextTagger chooses the tag for a token by calculating the token’s context, and looking up the corresponding tag in a table. This table can be constructed manually; or it can be automatically constructed based on a training corpus, using the _train() factory method.",,size
-"Classes for tagging sentences sequentially, left to right. The abstract base class SequentialBackoffTagger serves as the base class for all the taggers in this module. Tagging of individual words is performed by the method choose_tag(), which is defined by subclasses of SequentialBackoffTagger. If a tagger is unable to determine a tag for the specified token, then its backoff tagger is consulted instead. Any SequentialBackoffTagger may serve as a backoff tagger for any other SequentialBackoffTagger.",,defaulttagger
-"This tagger is recommended as a backoff tagger, in cases where a more powerful tagger is unable to assign a tag to the word (e.g. because the word was not seen during training).",,choose_tag
-"This tagger is recommended as a backoff tagger, in cases where a more powerful tagger is unable to assign a tag to the word (e.g. because the word was not seen during training).",,decode_json_obj
-"This tagger is recommended as a backoff tagger, in cases where a more powerful tagger is unable to assign a tag to the word (e.g. because the word was not seen during training).",,encode_json_obj
-"This tagger is recommended as a backoff tagger, in cases where a more powerful tagger is unable to assign a tag to the word (e.g. because the word was not seen during training).",,json_tag
-"Classes for tagging sentences sequentially, left to right. The abstract base class SequentialBackoffTagger serves as the base class for all the taggers in this module. Tagging of individual words is performed by the method choose_tag(), which is defined by subclasses of SequentialBackoffTagger. If a tagger is unable to determine a tag for the specified token, then its backoff tagger is consulted instead. Any SequentialBackoffTagger may serve as a backoff tagger for any other SequentialBackoffTagger.",,ngramtagger
-"Train a new NgramTagger using the given training data or the supplied model. In particular, construct a new tagger whose table maps from each context (tag[i-n:i-1], word[i]) to the most frequent tag for that context. But exclude any contexts that are already tagged perfectly by the backoff tagger.",,context
-"Train a new NgramTagger using the given training data or the supplied model. In particular, construct a new tagger whose table maps from each context (tag[i-n:i-1], word[i]) to the most frequent tag for that context. But exclude any contexts that are already tagged perfectly by the backoff tagger.",,decode_json_obj
-"Train a new NgramTagger using the given training data or the supplied model. In particular, construct a new tagger whose table maps from each context (tag[i-n:i-1], word[i]) to the most frequent tag for that context. But exclude any contexts that are already tagged perfectly by the backoff tagger.",,encode_json_obj
-"Train a new NgramTagger using the given training data or the supplied model. In particular, construct a new tagger whose table maps from each context (tag[i-n:i-1], word[i]) to the most frequent tag for that context. But exclude any contexts that are already tagged perfectly by the backoff tagger.",,json_tag
-"Classes for tagging sentences sequentially, left to right. The abstract base class SequentialBackoffTagger serves as the base class for all the taggers in this module. Tagging of individual words is performed by the method choose_tag(), which is defined by subclasses of SequentialBackoffTagger. If a tagger is unable to determine a tag for the specified token, then its backoff tagger is consulted instead. Any SequentialBackoffTagger may serve as a backoff tagger for any other SequentialBackoffTagger.",,regexptagger
-"Classes for tagging sentences sequentially, left to right. The abstract base class SequentialBackoffTagger serves as the base class for all the taggers in this module. Tagging of individual words is performed by the method choose_tag(), which is defined by subclasses of SequentialBackoffTagger. If a tagger is unable to determine a tag for the specified token, then its backoff tagger is consulted instead. Any SequentialBackoffTagger may serve as a backoff tagger for any other SequentialBackoffTagger.",,sequentialbackofftagger
-"An abstract base class for taggers that tags words sequentially, left to right. Tagging of individual words is performed by the choose_tag() method, which should be defined by subclasses. If a tagger is unable to determine a tag for the specified token, then its backoff tagger is consulted.",,backoff
-"An abstract base class for taggers that tags words sequentially, left to right. Tagging of individual words is performed by the choose_tag() method, which should be defined by subclasses. If a tagger is unable to determine a tag for the specified token, then its backoff tagger is consulted.",,choose_tag
-"An abstract base class for taggers that tags words sequentially, left to right. Tagging of individual words is performed by the choose_tag() method, which should be defined by subclasses. If a tagger is unable to determine a tag for the specified token, then its backoff tagger is consulted.",,tag
-"An abstract base class for taggers that tags words sequentially, left to right. Tagging of individual words is performed by the choose_tag() method, which should be defined by subclasses. If a tagger is unable to determine a tag for the specified token, then its backoff tagger is consulted.",,tag_one
-"Classes for tagging sentences sequentially, left to right. The abstract base class SequentialBackoffTagger serves as the base class for all the taggers in this module. Tagging of individual words is performed by the method choose_tag(), which is defined by subclasses of SequentialBackoffTagger. If a tagger is unable to determine a tag for the specified token, then its backoff tagger is consulted instead. Any SequentialBackoffTagger may serve as a backoff tagger for any other SequentialBackoffTagger.",,trigramtagger
-"A tagger that chooses a token’s tag based its word string and on the preceding two words’ tags. In particular, a tuple consisting of the previous two tags and the word is looked up in a table, and the corresponding tag is returned.",,json_tag
-"Classes for tagging sentences sequentially, left to right. The abstract base class SequentialBackoffTagger serves as the base class for all the taggers in this module. Tagging of individual words is performed by the method choose_tag(), which is defined by subclasses of SequentialBackoffTagger. If a tagger is unable to determine a tag for the specified token, then its backoff tagger is consulted instead. Any SequentialBackoffTagger may serve as a backoff tagger for any other SequentialBackoffTagger.",,unigramtagger
-Tagger models need to be downloaded from https://nlp.stanford.edu/software and the STANFORD_MODELS environment variable set (a colon-separated list of paths).,,nltk.tag.stanford.
-Tagger models need to be downloaded from https://nlp.stanford.edu/software and the STANFORD_MODELS environment variable set (a colon-separated list of paths).,,stanfordnertagger
-Tagger models need to be downloaded from https://nlp.stanford.edu/software and the STANFORD_MODELS environment variable set (a colon-separated list of paths).,,stanfordpostagger
-Tagger models need to be downloaded from https://nlp.stanford.edu/software and the STANFORD_MODELS environment variable set (a colon-separated list of paths).,,stanfordtagger
-It is possible to differentiate the tags which are assigned to capitalized words. However this does not result in a significant gain in the accuracy of the results.,,tag
-It is possible to differentiate the tags which are assigned to capitalized words. However this does not result in a significant gain in the accuracy of the results.,,tagdata
-It is possible to differentiate the tags which are assigned to capitalized words. However this does not result in a significant gain in the accuracy of the results.,,train
-Note that words that the tagger has not seen during training receive a tag of None.,,nltk.tag.
-Note that words that the tagger has not seen during training receive a tag of None.,,pos_tag
-Note that words that the tagger has not seen during training receive a tag of None.,,pos_tag_sents
-"Trains the Brill tagger on the corpus train_sents, producing at most max_rules transformations, each of which reduces the net number of errors in the corpus by at least min_score, and each of which has accuracy not lower than min_acc.",,">>> backoff = regexptagger([ ... (r'^-?[0-9]+(.[0-9]+)?$', 'cd'), # cardinal numbers ... (r'(the|the|a|a|an|an)$', 'at'), # articles ... (r'.*able$', 'jj'), # adjectives ... (r'.*ness$', 'nn'), # nouns formed from adjectives ... (r'.*ly$', 'rb'), # adverbs ... (r'.*s$', 'nns'), # plural nouns ... (r'.*ing$', 'vbg'), # gerunds ... (r'.*ed$', 'vbd'), # past tense verbs ... (r'.*', 'nn') # nouns (default) ... ])"
-"Trains the Brill tagger on the corpus train_sents, producing at most max_rules transformations, each of which reduces the net number of errors in the corpus by at least min_score, and each of which has accuracy not lower than min_acc.",,>>> baseline = backoff #see note1
-"Trains the Brill tagger on the corpus train_sents, producing at most max_rules transformations, each of which reduces the net number of errors in the corpus by at least min_score, and each of which has accuracy not lower than min_acc.",,>>> baseline.evaluate(gold_data) 0.2450142...
-"#templates >>> Template._cleartemplates() #clear any templates created in earlier tests >>> templates = [Template(Pos([-1])), Template(Pos([-1]), Word([0]))]",,">>> tagger1 = tt.train(training_data, max_rules=10) tbl train (fast) (seqs: 100; tokens: 2417; tpls: 2; min score: 2; min acc: none) finding initial useful rules... found 845 useful rules. b | s f r o | score = fixed - broken c i o t | r fixed = num tags changed incorrect -> correct o x k h | u broken = num tags changed correct -> incorrect r e e e | l other = num tags changed incorrect -> incorrect e d n r | e ------------------+------------------------------------------------------- 132 132 0 0 | at->dt if pos:nn@[-1] 85 85 0 0 | nn->, if pos:nn@[-1] & word:,@[0] 69 69 0 0 | nn->. if pos:nn@[-1] & word:.@[0] 51 51 0 0 | nn->in if pos:nn@[-1] & word:of@[0] 47 63 16 161 | nn->in if pos:nns@[-1] 33 33 0 0 | nn->to if pos:nn@[-1] & word:to@[0] 26 26 0 0 | in->. if pos:nns@[-1] & word:.@[0] 24 24 0 0 | in->, if pos:nns@[-1] & word:,@[0] 22 27 5 24 | nn->-none- if pos:vbd@[-1] 17 17 0 0 | nn->cc if pos:nn@[-1] & word:and@[0]"
-"#templates >>> Template._cleartemplates() #clear any templates created in earlier tests >>> templates = [Template(Pos([-1])), Template(Pos([-1]), Word([0]))]",,">>> tagger1.rules()[1:3] (rule('001', 'nn', ',', [(pos([-1]),'nn'), (word([0]),',')]), rule('001', 'nn', '.', [(pos([-1]),'nn'), (word([0]),'.')]))"
-"#templates >>> Template._cleartemplates() #clear any templates created in earlier tests >>> templates = [Template(Pos([-1])), Template(Pos([-1]), Word([0]))]",,">>> train_stats = tagger1.train_stats() >>> [train_stats[stat] for stat in ['initialerrors', 'finalerrors', 'rulescores']] [1775, 1269, [132, 85, 69, 51, 47, 33, 26, 24, 22, 17]]"
-"#templates >>> Template._cleartemplates() #clear any templates created in earlier tests >>> templates = [Template(Pos([-1])), Template(Pos([-1]), Word([0]))]",,">>> tagger1.print_template_statistics(printunused=false) template statistics (train) 2 templates, 10 rules) train ( 2417 tokens) initial 1775 0.2656 final: 1269 0.4750 #id | score (train) | #rules | template -------------------------------------------- 001 | 305 0.603 | 7 0.700 | template(pos([-1]),word([0])) 000 | 201 0.397 | 3 0.300 | template(pos([-1]))"
-"#templates >>> Template._cleartemplates() #clear any templates created in earlier tests >>> templates = [Template(Pos([-1])), Template(Pos([-1]), Word([0]))]",,>>> tagger1.evaluate(gold_data) 0.43996...
-"#templates >>> Template._cleartemplates() #clear any templates created in earlier tests >>> templates = [Template(Pos([-1])), Template(Pos([-1]), Word([0]))]",,">>> tagged, test_stats = tagger1.batch_tag_incremental(testing_data, gold_data)"
-"#templates >>> Template._cleartemplates() #clear any templates created in earlier tests >>> templates = [Template(Pos([-1])), Template(Pos([-1]), Word([0]))]",,">>> tagged[33][12:] == [('foreign', 'in'), ('debt', 'nn'), ('of', 'in'), ('$', 'nn'), ('64', 'cd'), ... ('billion', 'nn'), ('*u*', 'nn'), ('--', 'nn'), ('the', 'dt'), ('third-highest', 'nn'), ('in', 'nn'), ... ('the', 'dt'), ('developing', 'vbg'), ('world', 'nn'), ('.', '.')] true"
-"#templates >>> Template._cleartemplates() #clear any templates created in earlier tests >>> templates = [Template(Pos([-1])), Template(Pos([-1]), Word([0]))]",,">>> [test_stats[stat] for stat in ['initialerrors', 'finalerrors', 'rulescores']] [1855, 1376, [100, 85, 67, 58, 27, 36, 27, 16, 31, 32]]"
-"# a high-accuracy tagger >>> tagger2 = tt.train(training_data, max_rules=10, min_acc=0.99) TBL train (fast) (seqs: 100; tokens: 2417; tpls: 2; min score: 2; min acc: 0.99) Finding initial useful rules…",,">>> tagger2.evaluate(gold_data) 0.44159544... >>> tagger2.rules()[2:4] (rule('001', 'nn', '.', [(pos([-1]),'nn'), (word([0]),'.')]), rule('001', 'nn', 'in', [(pos([-1]),'nn'), (word([0]),'of')]))"
-Note: Unit tests for this module can be found in test/unit/test_senna.py,,">>> from nltk.tag import sennatagger >>> tagger = sennatagger('/usr/share/senna-v3.0') >>> tagger.tag('what is the airspeed of an unladen swallow ?'.split()) [('what', 'wp'), ('is', 'vbz'), ('the', 'dt'), ('airspeed', 'nn'), ('of', 'in'), ('an', 'dt'), ('unladen', 'nn'), ('swallow', 'nn'), ('?', '.')]"
-Note: Unit tests for this module can be found in test/unit/test_senna.py,,">>> from nltk.tag import sennachunktagger >>> chktagger = sennachunktagger('/usr/share/senna-v3.0') >>> chktagger.tag('what is the airspeed of an unladen swallow ?'.split()) [('what', 'b-np'), ('is', 'b-vp'), ('the', 'b-np'), ('airspeed', 'i-np'), ('of', 'b-pp'), ('an', 'b-np'), ('unladen', 'i-np'), ('swallow', 'i-np'), ('?', 'o')]"
-Note: Unit tests for this module can be found in test/unit/test_senna.py,,">>> from nltk.tag import sennanertagger >>> nertagger = sennanertagger('/usr/share/senna-v3.0') >>> nertagger.tag('shakespeare theatre was in london .'.split()) [('shakespeare', 'b-per'), ('theatre', 'o'), ('was', 'o'), ('in', 'o'), ('london', 'b-loc'), ('.', 'o')] >>> nertagger.tag('un headquarters are in ny , usa .'.split()) [('un', 'b-org'), ('headquarters', 'o'), ('are', 'o'), ('in', 'o'), ('ny', 'b-loc'), (',', 'o'), ('usa', 'b-loc'), ('.', 'o')]"
-Note that words that the tagger has not seen during training receive a tag of None.,,>>> tagger.evaluate(brown.tagged_sents(categories='news')[500:600]) 0.7...
+Dot-product the features and current weights and return the best label.,,predict
+Save the pickled model weights.,,save
+Update the feature weights.,,update
+"A “tag” is a case-sensitive string that specifies some property of a token,
+such as its part of speech.  Tagged tokens are encoded as tuples
+(tag, token).  For example, the following tagged token combines
+the word 'fly' with a noun part of speech tag ('NN'):",,perceptrontagger
+"Normalization used in pre-processing.
+- All words are lower cased
+- Groups of digits of length 4 are represented as !YEAR;
+- Other digits are represented as !DIGITS",,normalize
+"Applies the tag method over a list of sentences. This method will return
+for each sentence a list of tuples of (word, tag).",,nltk.tag.senna.
+"Applies the tag method over a list of sentences. This method will return
+for each sentence a list of tuples of (word, tag).",,sennachunktagger
+"Applies the tag method over a list of sentences. This method will return
+for each sentence a list of tuples of (word, tag).",,sennanertagger
+"Applies the tag method over a list of sentences. This method will return
+for each sentence a list of tuples of (word, tag).",,sennatagger
+"min_stem_length – Any words whose length is less than
+min_stem_length+abs(affix_length) will be assigned a
+tag of None by this tagger.",,nltk.tag.sequential.
+"min_stem_length – Any words whose length is less than
+min_stem_length+abs(affix_length) will be assigned a
+tag of None by this tagger.",,affixtagger
+"min_stem_length – Any words whose length is less than
+min_stem_length+abs(affix_length) will be assigned a
+tag of None by this tagger.",,context
+"A tagger that chooses a token’s tag based its word string and on
+the preceding two words’ tags.  In particular, a tuple consisting
+of the previous two tags and the word is looked up in a table, and
+the corresponding tag is returned.",,bigramtagger
+"Return the feature detector that this tagger uses to generate
+featuresets for its classifier.  The feature detector is a
+function with the signature:",,classifierbasedpostagger
+"Return the feature detector that this tagger uses to generate
+featuresets for its classifier.  The feature detector is a
+function with the signature:",,feature_detector
+"index (int) – The index of the word whose tag should be
+returned.",,classifierbasedtagger
+"index (int) – The index of the word whose tag should be
+returned.",,choose_tag
+"Return the classifier that this tagger uses to choose a tag
+for each word in a sentence.  The input for this classifier is
+generated using this tagger’s feature detector.
+See feature_detector()",,classifier
+"index (int) – The index of the word whose tag should be
+returned.",,contexttagger
+"The number of entries in the table used by this
+tagger to map from contexts to tags.",,size
+"index (int) – The index of the word whose tag should be
+returned.",,defaulttagger
+"cutoff – If the most likely tag for a context occurs
+fewer than cutoff times, then exclude it from the
+context-to-tag table for the new tagger.",,ngramtagger
+"index (int) – The index of the word whose tag should be
+returned.",,regexptagger
+"Determine the most appropriate tag sequence for the given
+token sequence, and return a corresponding list of tagged
+tokens.  A tagged token is encoded as a tuple (token, tag).",,sequentialbackofftagger
+"An abstract base class for taggers that tags words sequentially,
+left to right.  Tagging of individual words is performed by the
+choose_tag() method, which should be defined by subclasses.  If
+a tagger is unable to determine a tag for the specified token,
+then its backoff tagger is consulted.",,backoff
+"index (int) – The index of the word whose tag should be
+returned.",,tag_one
+"A tagger that chooses a token’s tag based its word string and on
+the preceding two words’ tags.  In particular, a tuple consisting
+of the previous two tags and the word is looked up in a table, and
+the corresponding tag is returned.",,trigramtagger
+"The UnigramTagger finds the most likely tag for each word in a training
+corpus, and then uses that information to assign tags to new tokens.",,unigramtagger
+"(optionally) the path to the stanford tagger jar file. If not specified here,
+then this jar file must be specified in the CLASSPATH envinroment variable.",,nltk.tag.stanford.
+"(optionally) the path to the stanford tagger jar file. If not specified here,
+then this jar file must be specified in the CLASSPATH envinroment variable.",,stanfordnertagger
+"(optionally) the path to the stanford tagger jar file. If not specified here,
+then this jar file must be specified in the CLASSPATH envinroment variable.",,parse_output
+"(optionally) the path to the stanford tagger jar file. If not specified here,
+then this jar file must be specified in the CLASSPATH envinroment variable.",,stanfordpostagger
+return [self.tag(sent) for sent in sentences],,stanfordtagger
+"Uses a set of tagged data to train the tagger.
+If an unknown word tagger is specified,
+it is trained on the same data.",,nltk.tag.tnt.
+"Uses a set of tagged data to train the tagger.
+If an unknown word tagger is specified,
+it is trained on the same data.",,tnt
+"Invokes tag(sent) function for each sentence
+compiles the results into a list of tagged sentences
+each tagged sentence is a list of (word, tag) tuples",,tagdata
+"Function takes a list of tokens and separates the tokens into lists
+where each list represents a sentence fragment
+This function can separate both tagged and raw sequences into
+basic sentences.",,basic_sent_chop
+"Function takes a list of tokens and separates the tokens into lists
+where each list represents a sentence fragment
+This function can separate both tagged and raw sequences into
+basic sentences.",,demo2
+"Function takes a list of tokens and separates the tokens into lists
+where each list represents a sentence fragment
+This function can separate both tagged and raw sequences into
+basic sentences.",,demo3
+"A “tag” is a case-sensitive string that specifies some property of a token,
+such as its part of speech.  Tagged tokens are encoded as tuples
+(tag, token).  For example, the following tagged token combines
+the word 'fly' with a noun part of speech tag ('NN'):",,nltk.tag.util.
+"A “tag” is a case-sensitive string that specifies some property of a token,
+such as its part of speech.  Tagged tokens are encoded as tuples
+(tag, token).  For example, the following tagged token combines
+the word 'fly' with a noun part of speech tag ('NN'):",,str2tuple
+"A “tag” is a case-sensitive string that specifies some property of a token,
+such as its part of speech.  Tagged tokens are encoded as tuples
+(tag, token).  For example, the following tagged token combines
+the word 'fly' with a noun part of speech tag ('NN'):",,tuple2str
+"A “tag” is a case-sensitive string that specifies some property of a token,
+such as its part of speech.  Tagged tokens are encoded as tuples
+(tag, token).  For example, the following tagged token combines
+the word 'fly' with a noun part of speech tag ('NN'):",,untag
+NB. Use pos_tag_sents() for efficient tagging of more than one sentence.,,nltk.tag.
+NB. Use pos_tag_sents() for efficient tagging of more than one sentence.,,pos_tag
+NB. Use pos_tag_sents() for efficient tagging of more than one sentence.,,pos_tag_sents
+"S   F   r   O  |        Score = Fixed - Broken
+c   i   o   t  |  R     Fixed = num tags changed incorrect -> correct
+o   x   k   h  |  u     Broken = num tags changed correct -> incorrect
+r   e   e   e  |  l     Other = num tags changed incorrect -> incorrect
+e   d   n   r  |  e",,">>> tagger1 = tt.train(training_data, max_rules=10)
+tbl train (fast) (seqs: 100; tokens: 2417; tpls: 2; min score: 2; min acc: none)
+finding initial useful rules...
+    found 845 useful rules.
+
+           b      |
+   s   f   r   o  |        score = fixed - broken
+   c   i   o   t  |  r     fixed = num tags changed incorrect -> correct
+   o   x   k   h  |  u     broken = num tags changed correct -> incorrect
+   r   e   e   e  |  l     other = num tags changed incorrect -> incorrect
+   e   d   n   r  |  e
+------------------+-------------------------------------------------------
+ 132 132   0   0  | at->dt if pos:nn@[-1]
+  85  85   0   0  | nn->, if pos:nn@[-1] & word:,@[0]
+  69  69   0   0  | nn->. if pos:nn@[-1] & word:.@[0]
+  51  51   0   0  | nn->in if pos:nn@[-1] & word:of@[0]
+  47  63  16 161  | nn->in if pos:nns@[-1]
+  33  33   0   0  | nn->to if pos:nn@[-1] & word:to@[0]
+  26  26   0   0  | in->. if pos:nns@[-1] & word:.@[0]
+  24  24   0   0  | in->, if pos:nns@[-1] & word:,@[0]
+  22  27   5  24  | nn->-none- if pos:vbd@[-1]
+  17  17   0   0  | nn->cc if pos:nn@[-1] & word:and@[0]"
+"feature_detector – A function used to generate the
+featureset input for the classifier::
+feature_detector(tokens, index, history) -> featureset",,"feature_detector(tokens, index, history) -> featureset"

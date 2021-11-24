@@ -2,10 +2,7 @@ Paragraph,Ground Truth link,Program link,Partial ratio
 Most implementations will specify a success handler:,"$.get( ""ajax/test.html"", function( data ) {
   $( "".result"" ).html( data );
   alert( ""load was performed."" );
-});","$.get( ""ajax/test.html"", function( data ) {
-$( "".result"" ).html( data );
-alert( ""load was performed."" );
-});",99
+});","$.get( ""ajax/test.html"", function( data ) {  $( "".result"" ).html( data );  alert( ""load was performed."" );});",98
 "The Promise interface also allows jQuery's Ajax methods, including $.get(), to chain multiple .done(), .fail(), and .always() callbacks on a single request, and even to assign these callbacks after the request may have completed. If the request is already complete, the callback is fired immediately.","// assign handlers immediately after making the request,
 // and remember the jqxhr object for this request
 var jqxhr = $.get( ""example.php"", function() {
@@ -26,36 +23,22 @@ var jqxhr = $.get( ""example.php"", function() {
 // set another completion function for the request above
 jqxhr.always(function() {
   alert( ""second finished"" );
-});","// assign handlers immediately after making the request,
-// and remember the jqxhr object for this request
-var jqxhr = $.get( ""example.php"", function() {
-alert( ""success"" );
-})
-.done(function() {
-alert( ""second success"" );
-.fail(function() {
-alert( ""error"" );
-.always(function() {
-alert( ""finished"" );
-});
-// perform other work here ...
-// set another completion function for the request above
-jqxhr.always(function() {
-alert( ""second finished"" );
-alert the results from requesting test.php (html or xml",92
+});","// assign handlers immediately after making the request,// and remember the jqxhr object for this requestvar jqxhr = $.get( ""example.php"", function() {  alert( ""success"" );})  .done(function() {    alert( ""second success"" );  })  .fail(function() {    alert( ""error"" );  })  .always(function() {    alert( ""finished"" );  }); // perform other work here ... // set another completion function for the request abovejqxhr.always(function() {  alert( ""second finished"" );});",96
 "Request the test.php page, but ignore the return results.","$.get( ""test.php"" );","$.get( ""test.php"" );",100
 Request the test.php page and send some additional data along (while still ignoring the return results).,"$.get( ""test.php"", { name: ""john"", time: ""2pm"" } );","$.get( ""test.php"", { name: ""john"", time: ""2pm"" } );",100
+"Alert the results from requesting test.php (HTML or XML, depending on what was returned).","$.get( ""test.php"", function( data ) {
+  alert( ""data loaded: "" + data );
+});","$.get( ""test.php"", function( data ) {  alert( ""data loaded: "" + data );});",98
+"Alert the results from requesting test.cgi with an additional payload of data (HTML or XML, depending on what was returned).","$.get( ""test.cgi"", { name: ""john"", time: ""2pm"" } )
+  .done(function( data ) {
+    alert( ""data loaded: "" + data );
+  });","$.get( ""test.cgi"", { name: ""john"", time: ""2pm"" } )  .done(function( data ) {    alert( ""data loaded: "" + data );  });",97
 Get another page on the same domain. Outputs to console both the data returned and the type of data returned.,"// if this was sent on https://api.jquery.com/jquery.get/ you will
 // get the response result of https://api.jquery.com/jquery.ajax/
 $.get( ""/jquery.ajax/"", function( data ) {
   console.log( typeof data ); // string
   console.log( data ); // html content of the jquery.ajax page
-});","// if this was sent on https://api.jquery.com/jquery.get/ you will
-// get the response result of https://api.jquery.com/jquery.ajax/
-$.get( ""/jquery.ajax/"", function( data ) {
-console.log( typeof data ); // string
-console.log( data ); // html content of the jquery.ajax page
-",99
+});","// if this was sent on https://api.jquery.com/jquery.get/ you will// get the response result of https://api.jquery.com/jquery.ajax/$.get( ""/jquery.ajax/"", function( data ) {  console.log( typeof data ); // string  console.log( data ); // html content of the jquery.ajax page});",99
 "This is a shorthand Ajax function, which is equivalent to:","$.ajax({
   url: url,
   data: data,
@@ -63,15 +46,9 @@ console.log( data ); // html content of the jquery.ajax page
   datatype: datatype
 });"
 Pass arrays of data to the server (while still ignoring the return results).,"$.get( ""test.php"", { ""choices[]"": [""jon"", ""susan""] } );"
-"Alert the results from requesting test.php (HTML or XML, depending on what was returned).","$.get( ""test.php"", function( data ) {
-  alert( ""data loaded: "" + data );
-});"
-"Alert the results from requesting test.cgi with an additional payload of data (HTML or XML, depending on what was returned).","$.get( ""test.cgi"", { name: ""john"", time: ""2pm"" } )
-  .done(function( data ) {
-    alert( ""data loaded: "" + data );
-  });"
 "Get the test.php page contents, which has been returned in json format (<?php echo json_encode( array( ""name""=>""John"",""time""=>""2pm"" ) ); ?>), and add it to the page.","$.get( ""test.php"", function( data ) {
   $( ""body"" )
     .append( ""name: "" + data.name ) // john
     .append( ""time: "" + data.time ); //  2pm
 }, ""json"" );"
+"Get the test.php page contents, which has been returned in json format (""John"",""time""=>""2pm"" ) ); ?>), and add it to the page.",,"$.get( ""test.php"", function( data ) {  $( ""body"" )    .append( ""name: "" + data.name ) // john    .append( ""time: "" + data.time ); //  2pm}, ""json"" );"

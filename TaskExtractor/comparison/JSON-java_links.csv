@@ -1,9 +1,20 @@
 Paragraph,Ground Truth link,Program link,Partial ratio
+Create the jar file in the current directory,jar cf json-java.jar org/json/*.class,jar cf json-java.jar org/json/*.class,100
+Compile a program that uses the jar (see example code below),javac -cp .;json-java.jar test.java ,"javac -cp .;json-java.jar test.java (windows)
+javac -cp .:json-java.jar test.java (unix systems)",55
+Compile a program that uses the jar (see example code below),javac -cp .;json-java.jar test.java ,"import org.json.jsonobject;
+public class test {
+    public static void main(string args[]){
+       jsonobject jo = new jsonobject(""{ \""abc\"" : \""def\"" }"");
+       system.out.println(jo.tostring());
+    }
+}",17
+Execute the Test file,java -cp .;json-java.jar test,"java -cp .;json-java.jar test (windows)
+java -cp .:json-java.jar test (unix systems)",51
+Execute the Test file,java -cp .;json-java.jar test,"{""abc"":""def""}",14
 Execute the test suite with Maven:,mvn clean test,mvn clean test,100
 Execute the test suite with Gradlew:,gradlew clean build test,gradlew clean build test,100
 Build the class files from the package root directory src/main/java,javac org/json/*.java
-Create the jar file in the current directory,jar cf json-java.jar org/json/*.class
-Compile a program that uses the jar (see example code below),javac -cp .;json-java.jar test.java 
 Test file contents,"import org.json.jsonobject;
 public class test {
     public static void main(string args[]){
@@ -11,7 +22,6 @@ public class test {
        system.out.println(jo.tostring());
     }
 }"
-Execute the Test file,java -cp .;json-java.jar test
 Expected output,"{""abc"":""def""}"
 "For example, code like this will create a mixed JSONArray, some items wrapped, others not:","somebean[] myarr = new somebean[]{ new somebean(1), new somebean(2) };
 // these will be wrapped
@@ -32,8 +42,3 @@ jsonarray jarr = new jsonarray(myarr);
 jarr.putall(new jsonarray(new somebean[]{ new somebean(3), new somebean(4) }));
 // our jarr is now consistent."
 "The org.json package can be built from the command line, Maven, and Gradle. The unit tests can be executed from Maven, Gradle, or individually in an IDE e.g. Eclipse.",,javac org/json/*.java
-"The org.json package can be built from the command line, Maven, and Gradle. The unit tests can be executed from Maven, Gradle, or individually in an IDE e.g. Eclipse.",,jar cf json-java.jar org/json/*.class
-"The org.json package can be built from the command line, Maven, and Gradle. The unit tests can be executed from Maven, Gradle, or individually in an IDE e.g. Eclipse.",,javac -cp .;json-java.jar test.java (windows) javac -cp .:json-java.jar test.java (unix systems)
-"The org.json package can be built from the command line, Maven, and Gradle. The unit tests can be executed from Maven, Gradle, or individually in an IDE e.g. Eclipse.",,"import org.json.jsonobject; public class test { public static void main(string args[]){ jsonobject jo = new jsonobject(""{ \""abc\"" : \""def\"" }""); system.out.println(jo.tostring()); } }"
-"The org.json package can be built from the command line, Maven, and Gradle. The unit tests can be executed from Maven, Gradle, or individually in an IDE e.g. Eclipse.",,java -cp .;json-java.jar test (windows) java -cp .:json-java.jar test (unix systems)
-"The org.json package can be built from the command line, Maven, and Gradle. The unit tests can be executed from Maven, Gradle, or individually in an IDE e.g. Eclipse.",,"{""abc"":""def""}"

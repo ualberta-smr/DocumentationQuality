@@ -1,19 +1,31 @@
 Paragraph,Ground Truth link,Program link,Partial ratio
 The simplest way to define a component is to write a JavaScript function:,"function welcome(props) {
   return <h1>hello, {props.name}</h1>;
-}","function welcome(props) { return <h1>hello, {props.name}h1>; }",96
+}","function welcome(props) {
+  return <h1>hello, {props.name}h1>;
+}",98
 You can also use an ES6 class to define a component:,"class welcome extends react.component {
   render() {
     return <h1>hello, {this.props.name}</h1>;
   }
-}","class welcome extends react.component { render() { return <h1>hello, {this.props.name}h1>; } }",96
+}","class welcome extends react.component {
+  render() {
+    return <h1>hello, {this.props.name}h1>;
+  }
+}",97
 "When React sees an element representing a user-defined component, it passes JSX attributes and children to this component as a single object. We call this object “props”.","function welcome(props) {  return <h1>hello, {props.name}</h1>;
 }
 
 const element = <welcome name=""sara"" />;reactdom.render(
   element,
   document.getelementbyid('root')
-);","function welcome(props) { return <h1>hello, {props.name}h1>; } const element = <welcome name=""sara"" />;reactdom.render( element, document.getelementbyid('root') );",97
+);","function welcome(props) {  return <h1>hello, {props.name}h1>;
+}
+
+const element = <welcome name=""sara"" />;reactdom.render(
+  element,
+  document.getelementbyid('root')
+);",99
 "When React sees an element representing a user-defined component, it passes JSX attributes and children to this component as a single object. We call this object “props”.","function welcome(props) {  return <h1>hello, {props.name}</h1>;
 }
 
@@ -69,18 +81,54 @@ Don’t be afraid to split components into smaller components.,"function comment
       </div>
     </div>
   );
-}","function comment(props) { return ( <div classname=""comment""> <div classname=""userinfo""> <img classname=""avatar"" src={props.author.avatarurl} alt={props.author.name} /> <div classname=""userinfo-name""> {props.author.name} div> div> <div classname=""comment-text""> {props.text} div> <div classname=""comment-date""> {formatdate(props.date)} div> div> ); }",96
+}","function comment(props) {
+  return (
+    <div classname=""comment"">
+      <div classname=""userinfo"">
+        <img classname=""avatar""
+          src={props.author.avatarurl}
+          alt={props.author.name}
+        />
+        <div classname=""userinfo-name"">
+          {props.author.name}
+        div>
+      div>
+      <div classname=""comment-text"">
+        {props.text}
+      div>
+      <div classname=""comment-date"">
+        {formatdate(props.date)}
+      div>
+    div>
+  );
+}",86
 "Next, we will extract a UserInfo component that renders an Avatar next to the user’s name:","function userinfo(props) {
   return (
     <div classname=""userinfo"">      <avatar user={props.user} />      <div classname=""userinfo-name"">        {props.user.name}      </div>    </div>  );
-}","function userinfo(props) { return ( <div classname=""userinfo""> <avatar user={props.user} /> <div classname=""userinfo-name""> {props.user.name} div> div> ); }",97
+}","function userinfo(props) {
+  return (
+    <div classname=""userinfo"">      <avatar user={props.user} />      <div classname=""userinfo-name"">        {props.user.name}      div>    div>  );
+}",90
 "Next, we will extract a UserInfo component that renders an Avatar next to the user’s name:","function userinfo(props) {
   return (
     <div classname=""userinfo"">      <avatar user={props.user} />      <div classname=""userinfo-name"">        {props.user.name}      </div>    </div>  );
-}","function comment(props) { return ( <div classname=""comment""> <userinfo user={props.author} /> <div classname=""comment-text""> {props.text} div> <div classname=""comment-date""> {formatdate(props.date)} div> div> ); }",67
+}","function comment(props) {
+  return (
+    <div classname=""comment"">
+      <userinfo user={props.author} />      <div classname=""comment-text"">
+        {props.text}
+      div>
+      <div classname=""comment-date"">
+        {formatdate(props.date)}
+      div>
+    div>
+  );
+}",59
 "In contrast, this function is impure because it changes its own input:","function withdraw(account, amount) {
   account.total -= amount;
-}","function withdraw(account, amount) { account.total -= amount; }",98
+}","function withdraw(account, amount) {
+  account.total -= amount;
+}",99
 "Previously, we only encountered React elements that represent DOM tags:",const element = <div />;
 "However, elements can also represent user-defined components:","const element = <welcome name=""sara"" />;"
 "Components can refer to other components in their output. This lets us use the same component abstraction for any level of detail. A button, a form, a dialog, a screen: in React apps, all those are commonly expressed as components.","function welcome(props) {
@@ -134,6 +182,39 @@ This lets us simplify Comment even further:,"function comment(props) {
 "Whether you declare a component as a function or a class, it must never modify its own props. Consider this sum function:","function sum(a, b) {
   return a + b;
 }"
-"For example, we can create an App component that renders Welcome many times:",,"function welcome(props) { return <h1>hello, {props.name}h1>; } function app() { return ( <div> <welcome name=""sara"" /> <welcome name=""cahal"" /> <welcome name=""edite"" /> div> ); } reactdom.render( <app />, document.getelementbyid('root') );"
-"This component can be tricky to change because of all the nesting, and it is also hard to reuse individual parts of it. Let’s extract a few components from it.",,"function avatar(props) { return ( <img classname=""avatar"" src={props.user.avatarurl} alt={props.user.name} /> ); }"
-We recommend naming props from the component’s own point of view rather than the context in which it is being used.,,"function comment(props) { return ( <div classname=""comment""> <div classname=""userinfo""> <avatar user={props.author} /> <div classname=""userinfo-name""> {props.author.name} div> div> <div classname=""comment-text""> {props.text} div> <div classname=""comment-date""> {formatdate(props.date)} div> div> ); }"
+"For example, we can create an App component that renders Welcome many times:",,"function welcome(props) {
+  return <h1>hello, {props.name}h1>;
+}
+
+function app() {
+  return (
+    <div>
+      <welcome name=""sara"" />      <welcome name=""cahal"" />      <welcome name=""edite"" />    div>
+  );
+}
+
+reactdom.render(
+  <app />,
+  document.getelementbyid('root')
+);"
+"This component can be tricky to change because of all the nesting, and it is also hard to reuse individual parts of it. Let’s extract a few components from it.",,"function avatar(props) {
+  return (
+    <img classname=""avatar""      src={props.user.avatarurl}      alt={props.user.name}    />  );
+}"
+We recommend naming props from the component’s own point of view rather than the context in which it is being used.,,"function comment(props) {
+  return (
+    <div classname=""comment"">
+      <div classname=""userinfo"">
+        <avatar user={props.author} />        <div classname=""userinfo-name"">
+          {props.author.name}
+        div>
+      div>
+      <div classname=""comment-text"">
+        {props.text}
+      div>
+      <div classname=""comment-date"">
+        {formatdate(props.date)}
+      div>
+    div>
+  );
+}"
