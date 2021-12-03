@@ -61,7 +61,7 @@ def get_paragraphs_and_tasks(paragraphs, task_file):
 def fuzzy_compare(potential, paragraph):
     ratio = 0
     try:
-        ratio = fuzz.partial_ratio(potential, paragraph)
+        ratio = fuzz.ratio(potential, paragraph)
     except:
         pass
     return ratio
@@ -80,15 +80,16 @@ def link_code_examples_and_paragraphs(code_examples, paragraphs, link_file):
                 code = example
                 # Look for the closest parent with siblings of tag "p" or we reach a containing div
                 potential = False
-                while True:
+                within_section = True
+                while within_section:
                     if len(list(example.parent.children)) > 1:
                         for child in example.parent.children:
                             if child.name == "p":
                                 potential = True
                                 break
+                            if child.name and re.match(re.compile("h[0-6]"), child.name):
+                                within_section = False
                         if potential:
-                            break
-                        if example.name == "div":
                             break
                     example = example.parent
 
@@ -98,9 +99,8 @@ def link_code_examples_and_paragraphs(code_examples, paragraphs, link_file):
                     # If the current child is a header then any potential paragraph previously should not be relevant
                     if child.name and re.match(re.compile("h[0-6]"), child.name):
                         paragraph = None
-                    elif child.get_text() and child.get_text().count(" ") > 2:
-                        for i, ratio in enumerate(
-                                list(map(functools.partial(fuzzy_compare, child.get_text().strip()), paragraphs))):
+                    elif child.name == "p" and child.get_text() and child.get_text().count(" ") > 2:
+                        for i, ratio in enumerate(list(map(functools.partial(fuzzy_compare, child.get_text().strip()), paragraphs))):
                             if ratio >= 95:
                                 paragraph = paragraphs[i]
                     # If we reach the code example then break, since according to our heuristic,
@@ -121,8 +121,8 @@ def filename_maker(url, ftype):
 
 
 def extract_and_link(url):
-    p_file = extract_tasks(url)
-    # p_file = filename_maker(url, "tasks")
+    # p_file = extract_tasks(url)
+    p_file = filename_maker(url, "tasks")
     req = Request(url=url, headers=HEADERS)
     content = html.unescape(urlopen(req).read().decode("utf-8"))
     soup = BeautifulSoup(content, "html.parser")
