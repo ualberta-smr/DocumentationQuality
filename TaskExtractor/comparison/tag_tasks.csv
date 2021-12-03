@@ -1,17 +1,15 @@
 Paragraph,Ground truth tasks,Program tasks,Partial Ratio
 "Print a list of all templates, ranked according to efficiency.",print list of templates,print list of templates,100
 "printunused (bool) – if True, print a list of all unused templates",print unused templates,print list of unused templates,82
-"Print the available template sets in this demo, with a short description”",print templates,"set  with short description
-set  in demo",40
+"Print the available template sets in this demo, with a short description”",print templates,set  with short description,40
+"Print the available template sets in this demo, with a short description”",print templates,set  in demo,42
 A module for POS tagging using CRFSuite,use crfsuite,use crfsuite,100
 A module for POS tagging using CRFSuite https://pypi.python.org/pypi/python-crfsuite,use crfsuite,use crfsuite https://pypi.python.org/pypi/python-crfsuite,100
 Train a new model using ``train’’ function,train new model,use train,22
-Use the pre-trained model which is set via ``set_model_file’’ function,"use pre-trained model
-set pre-trained model via set_model_file function","use pre-trained model
-set pre-trained model via set_model_file function",100
-Use the pre-trained model which is set via ``set_model_file’’ function,"use pre-trained model
-set pre-trained model via set_model_file function","use pre-trained model
-set pre-trained model via set_model_file function",100
+Use the pre-trained model which is set via ``set_model_file’’ function,use pre-trained model,use pre-trained model,100
+Use the pre-trained model which is set via ``set_model_file’’ function,set pre-trained model via set_model_file function,use pre-trained model,95
+Use the pre-trained model which is set via ``set_model_file’’ function,use pre-trained model,use pre-trained model,100
+Use the pre-trained model which is set via ``set_model_file’’ function,set pre-trained model via set_model_file function,use pre-trained model,95
 kwargs – additional arguments to pass to the training methods,pass to training methods,pass  to training methods,96
 Retrieve the mapping dictionary between tagsets.,retrieve mapping dictionary between tagsets,retrieve mapping dictionary between tagsets,100
 Dot-product the features and current weights and return the best label.,return best label,return best label,100
@@ -19,10 +17,9 @@ Save the pickled model weights.,save pickled model weights,save pickled model we
 Update the feature weights.,update feature weights,update feature weights,100
 Use the pretrain model (the default constructor),use pretrain model,use pretrain model,100
 "save_loc – If not None, saves a pickled model in this location.",save pickled model in location,save pickled model in location,100
-SennaTagger will automatically search for executable file specified in SENNA environment variable,specify in senna environment variable,"search  for executable file
-specify  in senna environment variable",97
-Note: Unit tests for this module can be found in test/unit/test_senna.py,find unit tests in test/unit/test_senna.py,"find unit tests in test/unit/test_senna.py
-find unit tests for module",100
+SennaTagger will automatically search for executable file specified in SENNA environment variable,specify in senna environment variable,search  for executable file,41
+SennaTagger will automatically search for executable file specified in SENNA environment variable,specify in senna environment variable,specify  in senna environment variable,97
+Note: Unit tests for this module can be found in test/unit/test_senna.py,find unit tests in test/unit/test_senna.py,find unit tests in test/unit/test_senna.py,100
 A tagger that assigns the same tag to every token.,assign same tag,assign same tag,100
 Function provided to process text that is unsegmented,process text,process text,100
 "returns a list of (word, tag) tuples",return list of tuples,return list of tuples,100

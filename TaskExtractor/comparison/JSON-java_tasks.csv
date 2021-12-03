@@ -1,26 +1,40 @@
 Paragraph,Ground truth tasks,Program tasks,Partial Ratio
 The JSON-Java package is a reference implementation that demonstrates how to parse JSON documents into Java objects and how to generate new JSON documents from the Java classes.,generate new json documents from java classes,generate new json documents from java classes,100
-"The files in this package implement JSON encoders and decoders. The package can also convert between JSON and XML, HTTP headers, Cookies, and CDL.","implement json encorders
-implement decoders
-convert between cdl
-convert between json
-convert between xml
-convert between http headers
-convert between cookies","implement json encoders
-implement decoders
-convert  between cdl
-convert  between json
-convert  between xml
-convert  between http headers
-convert  between cookies",97
-"The org.json package can be built from the command line, Maven, and Gradle. The unit tests can be executed from Maven, Gradle, or individually in an IDE e.g. Eclipse.","execute unit tests from maven
-execute unit tests from gradle","execute unit tests from e.g. eclipse
-execute unit tests from maven
-execute unit tests from gradle",100
+"The files in this package implement JSON encoders and decoders. The package can also convert between JSON and XML, HTTP headers, Cookies, and CDL.",implement json encorders,implement json encoders,96
+"The files in this package implement JSON encoders and decoders. The package can also convert between JSON and XML, HTTP headers, Cookies, and CDL.",implement decoders,implement json encoders,67
+"The files in this package implement JSON encoders and decoders. The package can also convert between JSON and XML, HTTP headers, Cookies, and CDL.",implement decoders,implement decoders,100
+"The files in this package implement JSON encoders and decoders. The package can also convert between JSON and XML, HTTP headers, Cookies, and CDL.",convert between cdl,implement json encoders,37
+"The files in this package implement JSON encoders and decoders. The package can also convert between JSON and XML, HTTP headers, Cookies, and CDL.",convert between cdl,implement decoders,33
+"The files in this package implement JSON encoders and decoders. The package can also convert between JSON and XML, HTTP headers, Cookies, and CDL.",convert between cdl,convert  between cdl,95
+"The files in this package implement JSON encoders and decoders. The package can also convert between JSON and XML, HTTP headers, Cookies, and CDL.",convert between json,implement json encoders,40
+"The files in this package implement JSON encoders and decoders. The package can also convert between JSON and XML, HTTP headers, Cookies, and CDL.",convert between json,implement decoders,33
+"The files in this package implement JSON encoders and decoders. The package can also convert between JSON and XML, HTTP headers, Cookies, and CDL.",convert between json,convert  between cdl,80
+"The files in this package implement JSON encoders and decoders. The package can also convert between JSON and XML, HTTP headers, Cookies, and CDL.",convert between json,convert  between json,95
+"The files in this package implement JSON encoders and decoders. The package can also convert between JSON and XML, HTTP headers, Cookies, and CDL.",convert between xml,implement json encoders,26
+"The files in this package implement JSON encoders and decoders. The package can also convert between JSON and XML, HTTP headers, Cookies, and CDL.",convert between xml,implement decoders,28
+"The files in this package implement JSON encoders and decoders. The package can also convert between JSON and XML, HTTP headers, Cookies, and CDL.",convert between xml,convert  between cdl,84
+"The files in this package implement JSON encoders and decoders. The package can also convert between JSON and XML, HTTP headers, Cookies, and CDL.",convert between xml,convert  between json,84
+"The files in this package implement JSON encoders and decoders. The package can also convert between JSON and XML, HTTP headers, Cookies, and CDL.",convert between xml,convert  between xml,95
+"The files in this package implement JSON encoders and decoders. The package can also convert between JSON and XML, HTTP headers, Cookies, and CDL.",convert between http headers,implement json encoders,43
+"The files in this package implement JSON encoders and decoders. The package can also convert between JSON and XML, HTTP headers, Cookies, and CDL.",convert between http headers,implement decoders,57
+"The files in this package implement JSON encoders and decoders. The package can also convert between JSON and XML, HTTP headers, Cookies, and CDL.",convert between http headers,convert  between cdl,80
+"The files in this package implement JSON encoders and decoders. The package can also convert between JSON and XML, HTTP headers, Cookies, and CDL.",convert between http headers,convert  between json,76
+"The files in this package implement JSON encoders and decoders. The package can also convert between JSON and XML, HTTP headers, Cookies, and CDL.",convert between http headers,convert  between xml,80
+"The files in this package implement JSON encoders and decoders. The package can also convert between JSON and XML, HTTP headers, Cookies, and CDL.",convert between http headers,convert  between http headers,96
+"The files in this package implement JSON encoders and decoders. The package can also convert between JSON and XML, HTTP headers, Cookies, and CDL.",convert between cookies,implement json encoders,41
+"The files in this package implement JSON encoders and decoders. The package can also convert between JSON and XML, HTTP headers, Cookies, and CDL.",convert between cookies,implement decoders,44
+"The files in this package implement JSON encoders and decoders. The package can also convert between JSON and XML, HTTP headers, Cookies, and CDL.",convert between cookies,convert  between cdl,85
+"The files in this package implement JSON encoders and decoders. The package can also convert between JSON and XML, HTTP headers, Cookies, and CDL.",convert between cookies,convert  between json,81
+"The files in this package implement JSON encoders and decoders. The package can also convert between JSON and XML, HTTP headers, Cookies, and CDL.",convert between cookies,convert  between xml,80
+"The files in this package implement JSON encoders and decoders. The package can also convert between JSON and XML, HTTP headers, Cookies, and CDL.",convert between cookies,convert  between http headers,70
+"The files in this package implement JSON encoders and decoders. The package can also convert between JSON and XML, HTTP headers, Cookies, and CDL.",convert between cookies,convert  between cookies,96
+"The org.json package can be built from the command line, Maven, and Gradle. The unit tests can be executed from Maven, Gradle, or individually in an IDE e.g. Eclipse.",execute unit tests from maven,execute unit tests from e.g. eclipse,86
+"The org.json package can be built from the command line, Maven, and Gradle. The unit tests can be executed from Maven, Gradle, or individually in an IDE e.g. Eclipse.",execute unit tests from maven,execute unit tests from maven,100
+"The org.json package can be built from the command line, Maven, and Gradle. The unit tests can be executed from Maven, Gradle, or individually in an IDE e.g. Eclipse.",execute unit tests from gradle,execute unit tests from e.g. eclipse,87
+"The org.json package can be built from the command line, Maven, and Gradle. The unit tests can be executed from Maven, Gradle, or individually in an IDE e.g. Eclipse.",execute unit tests from gradle,execute unit tests from maven,86
+"The org.json package can be built from the command line, Maven, and Gradle. The unit tests can be executed from Maven, Gradle, or individually in an IDE e.g. Eclipse.",execute unit tests from gradle,execute unit tests from gradle,100
 Create the jar file in the current directory,create jar file in current directory,create jar file in current directory,100
-Compile a program that uses the jar (see example code below),compile program,"compile program
-use jar
-use program",100
+Compile a program that uses the jar (see example code below),compile program,compile program,100
 Test file contents,test file contents,test file contents,100
 Execute the Test file,execute test file,execute test file,100
 Tools to build the package and execute the unit tests,execute unit tests,execute unit,100

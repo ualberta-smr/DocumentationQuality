@@ -3,7 +3,7 @@ Paragraph,Tasks
 Pass text status of response
 Pass returned data"
 Most implementations will specify a success handler:,Specify success handler
-This example fetches the requested HTML snippet and inserts it on the page.,Fetch requested HTML snippoet
+This example fetches the requested HTML snippet and inserts it on the page.,Fetch requested HTML snippet
 "The Promise interface also allows jQuery's Ajax methods, including $.get(), to chain multiple .done(), .fail(), and .always() callbacks on a single request, and even to assign these callbacks after the request may have completed. If the request is already complete, the callback is fired immediately.",Assign callbacks after request
 "The jqXHR.success(), jqXHR.error(), and jqXHR.complete() callback methods are removed as of jQuery 3.0. You can use jqXHR.done(), jqXHR.fail(), and jqXHR.always() instead.",
 "Request the test.php page, but ignore the return results.","Request test.php page

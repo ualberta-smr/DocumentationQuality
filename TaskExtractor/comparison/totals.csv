@@ -1,17 +1,17 @@
 File,Correct extracted tasks,Total extracted tasks,Precision,Correct truth tasks,Total truth tasks,Recall
 cmdline_links.csv,11,12,0.92,11,12,0.92
-cmdline_tasks.csv,16,66,0.24,16,26,0.62
+cmdline_tasks.csv,35,128,0.27,35,37,0.95
 components-and-props_links.csv,4,15,0.27,4,13,0.31
-components-and-props_tasks.csv,2,43,0.05,2,6,0.33
-jQuery_links.csv,7,8,0.88,7,10,0.7
-jQuery_tasks.csv,8,25,0.32,8,12,0.67
+components-and-props_tasks.csv,2,55,0.04,2,7,0.29
+jQuery_links.csv,7,41,0.17,7,10,0.7
+jQuery_tasks.csv,13,35,0.37,13,19,0.68
 JSON-java_links.csv,3,8,0.38,3,11,0.27
-JSON-java_tasks.csv,10,16,0.62,10,25,0.4
+JSON-java_tasks.csv,17,28,0.61,17,32,0.53
 ner_links.csv,15,25,0.6,15,26,0.58
-ner_tasks.csv,29,68,0.43,29,40,0.72
+ner_tasks.csv,83,148,0.56,83,102,0.81
 orjson_links.csv,2,19,0.11,2,33,0.06
 orjson_tasks.csv,6,112,0.05,6,147,0.04
-parse_links.csv,0,267,0.0,0,86,0.0
-parse_tasks.csv,29,760,0.04,29,465,0.06
-tag_links.csv,0,107,0.0,0,51,0.0
-tag_tasks.csv,18,346,0.05,18,247,0.07
+parse_links.csv,1,210,0.0,1,86,0.01
+parse_tasks.csv,32,767,0.04,32,468,0.07
+tag_links.csv,10,120,0.08,10,51,0.2
+tag_tasks.csv,20,353,0.06,20,249,0.08

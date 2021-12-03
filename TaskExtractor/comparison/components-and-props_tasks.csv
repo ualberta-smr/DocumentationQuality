@@ -1,12 +1,12 @@
 Paragraph,Ground truth tasks,Program tasks,Partial Ratio
 The simplest way to define a component is to write a JavaScript function:,define component,write javascript function,38
-You can also use an ES6 class to define a component:,"use es6
-define component",define component,100
+You can also use an ES6 class to define a component:,use es6,define component,29
+You can also use an ES6 class to define a component:,define component,define component,100
 "Components can refer to other components in their output. This lets us use the same component abstraction for any level of detail. A button, a form, a dialog, a screen: in React apps, all those are commonly expressed as components.",use component,use same component abstraction for level,85
 Don’t be afraid to split components into smaller components.,split components,split components into smaller components,100
-"Such functions are called “pure” because they do not attempt to change their inputs, and always return the same result for the same inputs.",return result,"call such functions
-change inputs
-return same result for same inputs",62
+"Such functions are called “pure” because they do not attempt to change their inputs, and always return the same result for the same inputs.",return result,call such functions,31
+"Such functions are called “pure” because they do not attempt to change their inputs, and always return the same result for the same inputs.",return result,change inputs,31
+"Such functions are called “pure” because they do not attempt to change their inputs, and always return the same result for the same inputs.",return result,return same result for same inputs,62
 "However, elements can also represent user-defined components:",represent elements
 "Components let you split the UI into independent, reusable pieces, and think about each piece in isolation. This page provides an introduction to the idea of components. You can find a detailed component API reference here.",,split ui into independent reusable pieces
 "Components let you split the UI into independent, reusable pieces, and think about each piece in isolation. This page provides an introduction to the idea of components. You can find a detailed component API reference here.",,provide introduction to idea

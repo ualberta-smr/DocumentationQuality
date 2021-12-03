@@ -1,17 +1,17 @@
 Paragraph,Ground truth tasks,Program tasks,Partial Ratio
 An iterator that generates parse trees for the sentence.,generate parse trees,generate iterator,71
 When possible this list is sorted from most likely to least likely.,sort list,sort list,100
-A BllipParser object using the parser and reranker,"use parser
-use reranker","use parser
-use reranker",100
+A BllipParser object using the parser and reranker,use parser,use parser,100
+A BllipParser object using the parser and reranker,use reranker,use parser,70
+A BllipParser object using the parser and reranker,use reranker,use reranker,100
 An iterator that generates parse trees for the sentence,generate parse trees,generate iterator,71
 An iterator that generates parse trees for the sentence,generate parse trees,generate iterator,71
-"If chart or grammar are changed, then the cache is flushed.",flush cache,"change chart
-change grammar
-flush cache",100
-"Add a new edge to the chart, using a pointer to the previous edge.","add new edge to chart
-use pointer to previous edge","add new edge to chart
-use pointer to previous edge",100
+"If chart or grammar are changed, then the cache is flushed.",flush cache,change chart,36
+"If chart or grammar are changed, then the cache is flushed.",flush cache,change grammar,27
+"If chart or grammar are changed, then the cache is flushed.",flush cache,flush cache,100
+"Add a new edge to the chart, using a pointer to the previous edge.",add new edge to chart,add new edge to chart,100
+"Add a new edge to the chart, using a pointer to the previous edge.",use pointer to previous edge,add new edge to chart,38
+"Add a new edge to the chart, using a pointer to the previous edge.",use pointer to previous edge,use pointer to previous edge,100
 Return the leaf value of the word at the given index.,return leaf value of word,return leaf value of word,100
 Return the number of edges contained in this chart.,return number of edges,return number of edges,100
 An iterator that generates parse trees for the sentence.,generate parse trees,generate iterator,71
@@ -21,12 +21,11 @@ An iterator that generates parse trees for the sentence.,generate parse trees,ge
 When possible this list is sorted from most likely to least likely.,sort list,sort list,100
 Load a given chart into the chart parser.,loag given chart into chart parser,load given chart into chart parser,97
 Change the grammar used by the parser.,change grammar,use  by parser,29
-"stderr (stdout,) – Specifies where CoreNLP output is redirected. Valid values are ‘devnull’, ‘stdout’, ‘pipe’",redirect corenlp output,"redirect corenlp output
-redirect specifies",100
+"stderr (stdout,) – Specifies where CoreNLP output is redirected. Valid values are ‘devnull’, ‘stdout’, ‘pipe’",redirect corenlp output,redirect corenlp output,100
 The text might contain several sentences which will be split by CoreNLP.,split several sentences,split several sentences,100
 Return the node with the given address.,return node with given address,return node with given address,100
-Convert the data in a nodelist into a networkx labeled directed graph.,"convert data into networkx
-convert data in nodelist",convert data in nodelist graph,80
+Convert the data in a nodelist into a networkx labeled directed graph.,convert data into networkx,convert data in nodelist graph,73
+Convert the data in a nodelist into a networkx labeled directed graph.,convert data in nodelist,convert data in nodelist graph,100
 Return a dot representation suitable for using with Graphviz.,use with graphviz,use  with graphviz,94
 grammar – The Grammar used to generate sentences.,generate sentences,generate sentences,100
 start – The Nonterminal from which to start generate sentences.,generate sentences,generate sentences,100
@@ -42,9 +41,7 @@ An iterator that generates parse trees for the sentence.,generate parse trees,ge
 When possible this list is sorted from most likely to least likely.,sort list,sort list,100
 An iterator that generates parse trees for the sentence.,generate parse trees,generate iterator,71
 When possible this list is sorted from most likely to least likely.,sort list,sort list,100
-Set of arcs: for storing partially built dependency tree,store build dependency tree,"store built dependency tree
-set  of arcs
-set  for storing",96
+Set of arcs: for storing partially built dependency tree,store build dependency tree,store built dependency tree,96
 A module to convert a single POS tagged sentence into CONLL format.,convert single pos,convert single pos,100
 An iterator that generates parse trees for the sentence.,generate parse trees,generate iterator,71
 When possible this list is sorted from most likely to least likely.,sort list,sort list,100
