@@ -230,9 +230,9 @@ use pymem script"
 "Probably pip needs to be upgraded to version 20.3 or later to support
 the latest manylinux_x_y or universal2 wheel formats.","support latest manylinux_x_y
 support universal2 wheel formats"
-"The project's own CI tests against nightly-2021-10-01 and stable 1.54. It
+"The project's own CI tests against nightly-2021-08-17 and stable 1.54. It
 is prudent to pin the nightly version because that channel can introduce
-breaking changes.","test  against nightly-2021-10-01 stable 1.54
+breaking changes.","test  against nightly-2021-08-17 stable 1.54
 introduce breaking changes"
 "orjson is tested for amd64 and aarch64 on Linux and amd64 on macOS and
 Windows. It may not work on 32-bit targets.","test orjson on Linux

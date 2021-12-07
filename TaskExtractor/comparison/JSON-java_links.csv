@@ -1,17 +1,21 @@
 Paragraph,Ground Truth link,Program link,Partial ratio
 Create the jar file in the current directory,jar cf json-java.jar org/json/*.class,jar cf json-java.jar org/json/*.class,100
-Compile a program that uses the jar (see example code below),javac -cp .;json-java.jar test.java ,"javac -cp .;json-java.jar test.java (windows)
-javac -cp .:json-java.jar test.java (unix systems)",55
-Compile a program that uses the jar (see example code below),javac -cp .;json-java.jar test.java ,"import org.json.jsonobject;
+Compile a program that uses the jar (see example code below),"javac -cp .;json-java.jar test.java (windows)
+javac -cp .:json-java.jar test.java (unix systems)","javac -cp .;json-java.jar test.java (windows)
+javac -cp .:json-java.jar test.java (unix systems)",99
+Compile a program that uses the jar (see example code below),"javac -cp .;json-java.jar test.java (windows)
+javac -cp .:json-java.jar test.java (unix systems)","import org.json.jsonobject;
 public class test {
     public static void main(string args[]){
        jsonobject jo = new jsonobject(""{ \""abc\"" : \""def\"" }"");
        system.out.println(jo.tostring());
     }
-}",17
-Execute the Test file,java -cp .;json-java.jar test,"java -cp .;json-java.jar test (windows)
-java -cp .:json-java.jar test (unix systems)",51
-Execute the Test file,java -cp .;json-java.jar test,"{""abc"":""def""}",14
+}",32
+Execute the Test file,"java -cp .;json-java.jar test (windows)
+java -cp .:json-java.jar test (unix systems)","java -cp .;json-java.jar test (windows)
+java -cp .:json-java.jar test (unix systems)",99
+Execute the Test file,"java -cp .;json-java.jar test (windows)
+java -cp .:json-java.jar test (unix systems)","{""abc"":""def""}",8
 Execute the test suite with Maven:,mvn clean test,mvn clean test,100
 Execute the test suite with Gradlew:,gradlew clean build test,gradlew clean build test,100
 Build the class files from the package root directory src/main/java,javac org/json/*.java

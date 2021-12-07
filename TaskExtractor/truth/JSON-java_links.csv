@@ -1,7 +1,8 @@
 Explanation,Example
 Build the class files from the package root directory src/main/java,javac org/json/*.java
 Create the jar file in the current directory,jar cf json-java.jar org/json/*.class
-Compile a program that uses the jar (see example code below),javac -cp .;json-java.jar Test.java 
+Compile a program that uses the jar (see example code below),"javac -cp .;json-java.jar Test.java (Windows)
+javac -cp .:json-java.jar Test.java (Unix Systems)"
 Test file contents,"import org.json.JSONObject;
 public class Test {
     public static void main(String args[]){
@@ -9,7 +10,8 @@ public class Test {
        System.out.println(jo.toString());
     }
 }"
-Execute the Test file,java -cp .;json-java.jar Test
+Execute the Test file,"java -cp .;json-java.jar Test (Windows)
+java -cp .:json-java.jar Test (Unix Systems)"
 Expected output,"{""abc"":""def""}"
 Execute the test suite with Maven:,mvn clean test
 Execute the test suite with Gradlew:,gradlew clean build test

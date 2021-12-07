@@ -427,130 +427,9 @@ A probabilistic non-projective dependency parser.,">>> ndp = NonprojectiveDepend
 >>> list(ppdp.parse(sent))
 [Tree('zag', ['Cathy', 'hen', Tree('zwaaien', ['wild', '.'])])]"
 "ShiftReduceParser maintains a stack, which records the structure of a portion of the text. This stack is a list of strings and Trees that collectively cover a portion of the text. For example, while parsing the sentence “the dog saw the man” with a typical grammar, ShiftReduceParser will produce the following stack, which covers “the dog saw”:","[(NP: (Det: 'the') (N: 'dog')), (V: 'saw')]"
-,">>> dep_parser=StanfordDependencyParser(
-...     model_path=""edu/stanford/nlp/models/lexparser/englishPCFG.ser.gz""
-... )"
-,">>> [parse.tree() for parse in dep_parser.raw_parse(""The quick brown fox jumps over the lazy dog."")] 
-[Tree('jumps', [Tree('fox', ['The', 'quick', 'brown']), Tree('dog', ['over', 'the', 'lazy'])])]"
-,">>> [list(parse.triples()) for parse in dep_parser.raw_parse(""The quick brown fox jumps over the lazy dog."")] 
-[[((u'jumps', u'VBZ'), u'nsubj', (u'fox', u'NN')), ((u'fox', u'NN'), u'det', (u'The', u'DT')),
-((u'fox', u'NN'), u'amod', (u'quick', u'JJ')), ((u'fox', u'NN'), u'amod', (u'brown', u'JJ')),
-((u'jumps', u'VBZ'), u'nmod', (u'dog', u'NN')), ((u'dog', u'NN'), u'case', (u'over', u'IN')),
-((u'dog', u'NN'), u'det', (u'the', u'DT')), ((u'dog', u'NN'), u'amod', (u'lazy', u'JJ'))]]"
-,">>> sum([[parse.tree() for parse in dep_graphs] for dep_graphs in dep_parser.raw_parse_sents((
-...     ""The quick brown fox jumps over the lazy dog."",
-...     ""The quick grey wolf jumps over the lazy fox.""
-... ))], []) 
-[Tree('jumps', [Tree('fox', ['The', 'quick', 'brown']), Tree('dog', ['over', 'the', 'lazy'])]),
-Tree('jumps', [Tree('wolf', ['The', 'quick', 'grey']), Tree('fox', ['over', 'the', 'lazy'])])]"
-,">>> sum([[parse.tree() for parse in dep_graphs] for dep_graphs in dep_parser.parse_sents((
-...     ""I 'm a dog"".split(),
-...     ""This is my friends ' cat ( the tabby )"".split(),
-... ))], []) 
-[Tree('dog', ['I', ""'m"", 'a']), Tree('cat', ['This', 'is', Tree('friends', ['my', ""'""]), Tree('tabby', ['the'])])]"
-,">>> sum([[list(parse.triples()) for parse in dep_graphs] for dep_graphs in dep_parser.tagged_parse_sents((
-...     (
-...         (""The"", ""DT""),
-...         (""quick"", ""JJ""),
-...         (""brown"", ""JJ""),
-...         (""fox"", ""NN""),
-...         (""jumped"", ""VBD""),
-...         (""over"", ""IN""),
-...         (""the"", ""DT""),
-...         (""lazy"", ""JJ""),
-...         (""dog"", ""NN""),
-...         (""."", "".""),
-...     ),
-... ))],[]) 
-[[((u'jumped', u'VBD'), u'nsubj', (u'fox', u'NN')), ((u'fox', u'NN'), u'det', (u'The', u'DT')),
-((u'fox', u'NN'), u'amod', (u'quick', u'JJ')), ((u'fox', u'NN'), u'amod', (u'brown', u'JJ')),
-((u'jumped', u'VBD'), u'nmod', (u'dog', u'NN')), ((u'dog', u'NN'), u'case', (u'over', u'IN')),
-((u'dog', u'NN'), u'det', (u'the', u'DT')), ((u'dog', u'NN'), u'amod', (u'lazy', u'JJ'))]]"
-,">>> from nltk.parse.stanford import StanfordNeuralDependencyParser
->>> dep_parser=StanfordNeuralDependencyParser(java_options='-mx4g')"
-,">>> [parse.tree() for parse in dep_parser.raw_parse(""The quick brown fox jumps over the lazy dog."")] 
-[Tree('jumps', [Tree('fox', ['The', 'quick', 'brown']), Tree('dog', ['over', 'the', 'lazy']), '.'])]"
-,">>> [list(parse.triples()) for parse in dep_parser.raw_parse(""The quick brown fox jumps over the lazy dog."")] 
-[[((u'jumps', u'VBZ'), u'nsubj', (u'fox', u'NN')), ((u'fox', u'NN'), u'det',
-(u'The', u'DT')), ((u'fox', u'NN'), u'amod', (u'quick', u'JJ')), ((u'fox', u'NN'),
-u'amod', (u'brown', u'JJ')), ((u'jumps', u'VBZ'), u'nmod', (u'dog', u'NN')),
-((u'dog', u'NN'), u'case', (u'over', u'IN')), ((u'dog', u'NN'), u'det',
-(u'the', u'DT')), ((u'dog', u'NN'), u'amod', (u'lazy', u'JJ')), ((u'jumps', u'VBZ'),
-u'punct', (u'.', u'.'))]]"
-,">>> sum([[parse.tree() for parse in dep_graphs] for dep_graphs in dep_parser.raw_parse_sents((
-...     ""The quick brown fox jumps over the lazy dog."",
-...     ""The quick grey wolf jumps over the lazy fox.""
-... ))], []) 
-[Tree('jumps', [Tree('fox', ['The', 'quick', 'brown']), Tree('dog', ['over',
-'the', 'lazy']), '.']), Tree('jumps', [Tree('wolf', ['The', 'quick', 'grey']),
-Tree('fox', ['over', 'the', 'lazy']), '.'])]"
-,">>> sum([[parse.tree() for parse in dep_graphs] for dep_graphs in dep_parser.parse_sents((
-...     ""I 'm a dog"".split(),
-...     ""This is my friends ' cat ( the tabby )"".split(),
-... ))], []) 
-[Tree('dog', ['I', ""'m"", 'a']), Tree('cat', ['This', 'is', Tree('friends',
-['my', ""'""]), Tree('tabby', ['-LRB-', 'the', '-RRB-'])])]"
-,">>> parser=StanfordParser(
-...     model_path=""edu/stanford/nlp/models/lexparser/englishPCFG.ser.gz""
-... )"
-,">>> list(parser.raw_parse(""the quick brown fox jumps over the lazy dog"")) 
-[Tree('ROOT', [Tree('NP', [Tree('NP', [Tree('DT', ['the']), Tree('JJ', ['quick']), Tree('JJ', ['brown']),
-Tree('NN', ['fox'])]), Tree('NP', [Tree('NP', [Tree('NNS', ['jumps'])]), Tree('PP', [Tree('IN', ['over']),
-Tree('NP', [Tree('DT', ['the']), Tree('JJ', ['lazy']), Tree('NN', ['dog'])])])])])])]"
-,">>> sum([list(dep_graphs) for dep_graphs in parser.raw_parse_sents((
-...     ""the quick brown fox jumps over the lazy dog"",
-...     ""the quick grey wolf jumps over the lazy fox""
-... ))], []) 
-[Tree('ROOT', [Tree('NP', [Tree('NP', [Tree('DT', ['the']), Tree('JJ', ['quick']), Tree('JJ', ['brown']),
-Tree('NN', ['fox'])]), Tree('NP', [Tree('NP', [Tree('NNS', ['jumps'])]), Tree('PP', [Tree('IN', ['over']),
-Tree('NP', [Tree('DT', ['the']), Tree('JJ', ['lazy']), Tree('NN', ['dog'])])])])])]), Tree('ROOT', [Tree('NP',
-[Tree('NP', [Tree('DT', ['the']), Tree('JJ', ['quick']), Tree('JJ', ['grey']), Tree('NN', ['wolf'])]), Tree('NP',
-[Tree('NP', [Tree('NNS', ['jumps'])]), Tree('PP', [Tree('IN', ['over']), Tree('NP', [Tree('DT', ['the']),
-Tree('JJ', ['lazy']), Tree('NN', ['fox'])])])])])])]"
-,">>> sum([list(dep_graphs) for dep_graphs in parser.parse_sents((
-...     ""I 'm a dog"".split(),
-...     ""This is my friends ' cat ( the tabby )"".split(),
-... ))], []) 
-[Tree('ROOT', [Tree('S', [Tree('NP', [Tree('PRP', ['I'])]), Tree('VP', [Tree('VBP', [""'m""]),
-Tree('NP', [Tree('DT', ['a']), Tree('NN', ['dog'])])])])]), Tree('ROOT', [Tree('S', [Tree('NP',
-[Tree('DT', ['This'])]), Tree('VP', [Tree('VBZ', ['is']), Tree('NP', [Tree('NP', [Tree('NP', [Tree('PRP$', ['my']),
-Tree('NNS', ['friends']), Tree('POS', [""'""])]), Tree('NN', ['cat'])]), Tree('PRN', [Tree('-LRB-', [Tree('', []),
-Tree('NP', [Tree('DT', ['the']), Tree('NN', ['tabby'])]), Tree('-RRB-', [])])])])])])])]"
-,">>> sum([list(dep_graphs) for dep_graphs in parser.tagged_parse_sents((
-...     (
-...         (""The"", ""DT""),
-...         (""quick"", ""JJ""),
-...         (""brown"", ""JJ""),
-...         (""fox"", ""NN""),
-...         (""jumped"", ""VBD""),
-...         (""over"", ""IN""),
-...         (""the"", ""DT""),
-...         (""lazy"", ""JJ""),
-...         (""dog"", ""NN""),
-...         (""."", "".""),
-...     ),
-... ))],[]) 
-[Tree('ROOT', [Tree('S', [Tree('NP', [Tree('DT', ['The']), Tree('JJ', ['quick']), Tree('JJ', ['brown']),
-Tree('NN', ['fox'])]), Tree('VP', [Tree('VBD', ['jumped']), Tree('PP', [Tree('IN', ['over']), Tree('NP',
-[Tree('DT', ['the']), Tree('JJ', ['lazy']), Tree('NN', ['dog'])])])]), Tree('.', ['.'])])])]"
-,">>> from nltk.parse import DependencyGraph, DependencyEvaluator
->>> from nltk.parse.transitionparser import TransitionParser, Configuration, Transition
->>> gold_sent = DependencyGraph(""""""
-... Economic  JJ     2      ATT
-... news  NN     3       SBJ
-... has       VBD       0       ROOT
-... little      JJ      5       ATT
-... effect   NN     3       OBJ
-... on     IN      5       ATT
-... financial       JJ       8       ATT
-... markets    NNS      6       PC
-... .    .      3       PU
-... """""")"
-,>>> conf = Configuration(gold_sent)
 ###################### Check the Initial Feature ########################,">>> print(', '.join(conf.extract_features()))
 STK_0_POS_TOP, BUF_0_FORM_Economic, BUF_0_LEMMA_Economic, BUF_0_POS_JJ, BUF_1_FORM_news, BUF_1_POS_NN, BUF_2_POS_VBD, BUF_3_POS_JJ"
-"Do some transition checks for ARC-STANDARD
-",">>> operation = Transition('arc-standard')
+Do some transition checks for ARC-STANDARD,">>> operation = Transition('arc-standard')
 >>> operation.shift(conf)
 >>> operation.left_arc(conf, ""ATT"")
 >>> operation.shift(conf)
@@ -571,10 +450,7 @@ STK_0_FORM_on, STK_0_LEMMA_on, STK_0_POS_IN, STK_1_POS_NN, BUF_0_FORM_markets, B
 >>> operation.right_arc(conf, ""PU"")
 >>> operation.right_arc(conf, ""ROOT"")
 >>> operation.shift(conf)"
-"
-
-    Do some transition checks for ARC-EAGER
-",">>> conf = Configuration(gold_sent)
+Do some transition checks for ARC-EAGER,">>> conf = Configuration(gold_sent)
 >>> operation = Transition('arc-eager')
 >>> operation.shift(conf)
 >>> operation.left_arc(conf,'ATT')

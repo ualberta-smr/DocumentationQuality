@@ -2,15 +2,15 @@ Paragraph,Ground Truth link,Program link,Partial ratio
 Most implementations will specify a success handler:,"$.get( ""ajax/test.html"", function( data ) {
   $( "".result"" ).html( data );
   alert( ""load was performed."" );
-});","$.get( ""ajax/test.html"", function( data ) {",56
+});","$.get( ""ajax/test.html"", function( data ) {",55
 Most implementations will specify a success handler:,"$.get( ""ajax/test.html"", function( data ) {
   $( "".result"" ).html( data );
   alert( ""load was performed."" );
-});","$( "".result"" ).html( data );",41
+});","$( "".result"" ).html( data );",40
 Most implementations will specify a success handler:,"$.get( ""ajax/test.html"", function( data ) {
   $( "".result"" ).html( data );
   alert( ""load was performed."" );
-});","alert( ""load was performed."" );",44
+});","alert( ""load was performed."" );",43
 Most implementations will specify a success handler:,"$.get( ""ajax/test.html"", function( data ) {
   $( "".result"" ).html( data );
   alert( ""load was performed."" );
@@ -18,7 +18,7 @@ Most implementations will specify a success handler:,"$.get( ""ajax/test.html"",
 Most implementations will specify a success handler:,"$.get( ""ajax/test.html"", function( data ) {
   $( "".result"" ).html( data );
   alert( ""load was performed."" );
-});","$.get( ""ajax/test.html"", function( data ) {  $( "".result"" ).html( data );  alert( ""load was performed."" );});",98
+});","$.get( ""ajax/test.html"", function( data ) {  $( "".result"" ).html( data );  alert( ""load was performed."" );});",97
 "The Promise interface also allows jQuery's Ajax methods, including $.get(), to chain multiple .done(), .fail(), and .always() callbacks on a single request, and even to assign these callbacks after the request may have completed. If the request is already complete, the callback is fired immediately.","// assign handlers immediately after making the request,
 // and remember the jqxhr object for this request
 var jqxhr = $.get( ""example.php"", function() {
@@ -39,7 +39,7 @@ var jqxhr = $.get( ""example.php"", function() {
 // set another completion function for the request above
 jqxhr.always(function() {
   alert( ""second finished"" );
-});","// assign handlers immediately after making the request,",21
+});","// assign handlers immediately after making the request,",20
 "The Promise interface also allows jQuery's Ajax methods, including $.get(), to chain multiple .done(), .fail(), and .always() callbacks on a single request, and even to assign these callbacks after the request may have completed. If the request is already complete, the callback is fired immediately.","// assign handlers immediately after making the request,
 // and remember the jqxhr object for this request
 var jqxhr = $.get( ""example.php"", function() {
@@ -60,7 +60,7 @@ var jqxhr = $.get( ""example.php"", function() {
 // set another completion function for the request above
 jqxhr.always(function() {
   alert( ""second finished"" );
-});",// and remember the jqxhr object for this request,19
+});",// and remember the jqxhr object for this request,18
 "The Promise interface also allows jQuery's Ajax methods, including $.get(), to chain multiple .done(), .fail(), and .always() callbacks on a single request, and even to assign these callbacks after the request may have completed. If the request is already complete, the callback is fired immediately.","// assign handlers immediately after making the request,
 // and remember the jqxhr object for this request
 var jqxhr = $.get( ""example.php"", function() {
@@ -81,7 +81,7 @@ var jqxhr = $.get( ""example.php"", function() {
 // set another completion function for the request above
 jqxhr.always(function() {
   alert( ""second finished"" );
-});","var jqxhr = $.get( ""example.php"", function() {",18
+});","var jqxhr = $.get( ""example.php"", function() {",17
 "The Promise interface also allows jQuery's Ajax methods, including $.get(), to chain multiple .done(), .fail(), and .always() callbacks on a single request, and even to assign these callbacks after the request may have completed. If the request is already complete, the callback is fired immediately.","// assign handlers immediately after making the request,
 // and remember the jqxhr object for this request
 var jqxhr = $.get( ""example.php"", function() {
@@ -102,7 +102,7 @@ var jqxhr = $.get( ""example.php"", function() {
 // set another completion function for the request above
 jqxhr.always(function() {
   alert( ""second finished"" );
-});","alert( ""success"" );",8
+});","alert( ""success"" );",7
 "The Promise interface also allows jQuery's Ajax methods, including $.get(), to chain multiple .done(), .fail(), and .always() callbacks on a single request, and even to assign these callbacks after the request may have completed. If the request is already complete, the callback is fired immediately.","// assign handlers immediately after making the request,
 // and remember the jqxhr object for this request
 var jqxhr = $.get( ""example.php"", function() {
@@ -291,7 +291,7 @@ var jqxhr = $.get( ""example.php"", function() {
 // set another completion function for the request above
 jqxhr.always(function() {
   alert( ""second finished"" );
-});",// perform other work here ...,12
+});",// perform other work here ...,11
 "The Promise interface also allows jQuery's Ajax methods, including $.get(), to chain multiple .done(), .fail(), and .always() callbacks on a single request, and even to assign these callbacks after the request may have completed. If the request is already complete, the callback is fired immediately.","// assign handlers immediately after making the request,
 // and remember the jqxhr object for this request
 var jqxhr = $.get( ""example.php"", function() {
@@ -312,7 +312,7 @@ var jqxhr = $.get( ""example.php"", function() {
 // set another completion function for the request above
 jqxhr.always(function() {
   alert( ""second finished"" );
-});",// set another completion function for the request above,21
+});",// set another completion function for the request above,20
 "The Promise interface also allows jQuery's Ajax methods, including $.get(), to chain multiple .done(), .fail(), and .always() callbacks on a single request, and even to assign these callbacks after the request may have completed. If the request is already complete, the callback is fired immediately.","// assign handlers immediately after making the request,
 // and remember the jqxhr object for this request
 var jqxhr = $.get( ""example.php"", function() {
@@ -354,7 +354,7 @@ var jqxhr = $.get( ""example.php"", function() {
 // set another completion function for the request above
 jqxhr.always(function() {
   alert( ""second finished"" );
-});","alert( ""second finished"" );",11
+});","alert( ""second finished"" );",10
 "The Promise interface also allows jQuery's Ajax methods, including $.get(), to chain multiple .done(), .fail(), and .always() callbacks on a single request, and even to assign these callbacks after the request may have completed. If the request is already complete, the callback is fired immediately.","// assign handlers immediately after making the request,
 // and remember the jqxhr object for this request
 var jqxhr = $.get( ""example.php"", function() {
@@ -380,21 +380,21 @@ jqxhr.always(function() {
 Request the test.php page and send some additional data along (while still ignoring the return results).,"$.get( ""test.php"", { name: ""john"", time: ""2pm"" } );","$.get( ""test.php"", { name: ""john"", time: ""2pm"" } );",100
 "Alert the results from requesting test.php (HTML or XML, depending on what was returned).","$.get( ""test.php"", function( data ) {
   alert( ""data loaded: "" + data );
-});","$.get( ""test.php"", function( data ) {",66
+});","$.get( ""test.php"", function( data ) {",65
 "Alert the results from requesting test.php (HTML or XML, depending on what was returned).","$.get( ""test.php"", function( data ) {
   alert( ""data loaded: "" + data );
-});","alert( ""data loaded: "" + data );",60
+});","alert( ""data loaded: "" + data );",59
 "Alert the results from requesting test.php (HTML or XML, depending on what was returned).","$.get( ""test.php"", function( data ) {
   alert( ""data loaded: "" + data );
-});","$.get( ""test.php"", function( data ) {  alert( ""data loaded: "" + data );});",98
+});","$.get( ""test.php"", function( data ) {  alert( ""data loaded: "" + data );});",97
 "Alert the results from requesting test.cgi with an additional payload of data (HTML or XML, depending on what was returned).","$.get( ""test.cgi"", { name: ""john"", time: ""2pm"" } )
   .done(function( data ) {
     alert( ""data loaded: "" + data );
-  });","$.get( ""test.cgi"", { name: ""john"", time: ""2pm"" } )",61
+  });","$.get( ""test.cgi"", { name: ""john"", time: ""2pm"" } )",60
 "Alert the results from requesting test.cgi with an additional payload of data (HTML or XML, depending on what was returned).","$.get( ""test.cgi"", { name: ""john"", time: ""2pm"" } )
   .done(function( data ) {
     alert( ""data loaded: "" + data );
-  });",.done(function( data ) {,35
+  });",.done(function( data ) {,34
 "Alert the results from requesting test.cgi with an additional payload of data (HTML or XML, depending on what was returned).","$.get( ""test.cgi"", { name: ""john"", time: ""2pm"" } )
   .done(function( data ) {
     alert( ""data loaded: "" + data );
@@ -410,7 +410,7 @@ Get another page on the same domain. Outputs to console both the data returned a
 $.get( ""/jquery.ajax/"", function( data ) {
   console.log( typeof data ); // string
   console.log( data ); // html content of the jquery.ajax page
-});",// get the response result of https://api.jquery.com/jquery.ajax/,38
+});",// get the response result of https://api.jquery.com/jquery.ajax/,37
 Get another page on the same domain. Outputs to console both the data returned and the type of data returned.,"// if this was sent on https://api.jquery.com/jquery.get/ you will
 // get the response result of https://api.jquery.com/jquery.ajax/
 $.get( ""/jquery.ajax/"", function( data ) {
@@ -434,7 +434,7 @@ Get another page on the same domain. Outputs to console both the data returned a
 $.get( ""/jquery.ajax/"", function( data ) {
   console.log( typeof data ); // string
   console.log( data ); // html content of the jquery.ajax page
-});","// if this was sent on https://api.jquery.com/jquery.get/ you will// get the response result of https://api.jquery.com/jquery.ajax/$.get( ""/jquery.ajax/"", function( data ) {  console.log( typeof data ); // string  console.log( data ); // html content of the jquery.ajax page});",99
+});","// if this was sent on https://api.jquery.com/jquery.get/ you will// get the response result of https://api.jquery.com/jquery.ajax/$.get( ""/jquery.ajax/"", function( data ) {  console.log( typeof data ); // string  console.log( data ); // html content of the jquery.ajax page});",98
 "This is a shorthand Ajax function, which is equivalent to:","$.ajax({
   url: url,
   data: data,

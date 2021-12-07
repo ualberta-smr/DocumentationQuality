@@ -7,16 +7,13 @@ The minimal command to run Stanford CoreNLP from the command line is:,"java -cp 
 "However, if you just want to specify a few properties, you can instead place them on the command line. For example, we can specify annotators and the output format with:","java -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit -file input.txt -outputformat conll -output.columns word","java -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit -file input.txt -outputformat conll -output.columns word",100
 "If you have a lot of text but all you want to do is to, say, get part-of-speech (POS) tags, then you should definitely specify an annotators list, as above, since you can then omit later annotators which invoke much more expensive processing that you don’t need. For example, you might give the command:","java -cp ""*"" -xmx500m edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos -file wikipedia.txt -outputformat conll","java -cp ""*"" -xmx500m edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos -file wikipedia.txt -outputformat conll",100
 "We provide a small shell script corenlp.sh. On Linux or OS X, this may be useful in allowing you to type shorter command lines to invoke CoreNLP. For example, you can instead say:","./corenlp.sh -annotators tokenize,ssplit,pos -file wikipedia.txt -outputformat conll","./corenlp.sh -annotators tokenize,ssplit,pos -file wikipedia.txt -outputformat conll",100
-"You first have to have available a models jar file for the language you wish to use. You can download it from this site or you can use the models file on Maven Central. If using Maven, you add it to your pom file like this:","<dependency>
-    <groupid>edu.stanford.nlp</groupid>
-    <artifactid>stanford-corenlp</artifactid>
-    <version>3.9.1</version>
-    <classifier>models-chinese</classifier>
-</dependency>
-","edu.stanford.nlp
+"You first have to have available a models jar file for the language you wish to use. You can download it from this site or you can use the models file on Maven Central. If using Maven, you add it to your pom file like this:","edu.stanford.nlp
     stanford-corenlp
     3.9.1
-    models-chinese",48
+    models-chinese","edu.stanford.nlp
+    stanford-corenlp
+    3.9.1
+    models-chinese",100
 "Our examples assume that you are in the root directory of CoreNLP and that these extra jar files are also available there. Each language jar contains a default properties file for the appropriate language. Working with text in another language is then as easy as specifying this properties file. For example, for Chinese:","java -mx3g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -props stanfordcorenlp-chinese.properties -file chinese.txt -outputformat text","java -mx3g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -props stanfordcorenlp-chinese.properties -file chinese.txt -outputformat text",100
 You can as usual specify details on the annotators and properties:,"java -mx1g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -props stanfordcorenlp-french.properties -annotators tokenize,ssplit,pos,depparse -file french.txt -outputformat conllu","java -mx1g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -props stanfordcorenlp-french.properties -annotators tokenize,ssplit,pos,depparse -file french.txt -outputformat conllu",100
 "To process one file, use the -file option followed by a filename. To process a list of files, use the -fileList parameter:","java -cp ""*"" -xmx2g edu.stanford.nlp.pipeline.stanfordcorenlp [ -props myprops.props ] -filelist filelist.txt","java -cp ""*"" -xmx2g edu.stanford.nlp.pipeline.stanfordcorenlp [ -props myprops.props ] -filelist filelist.txt",100

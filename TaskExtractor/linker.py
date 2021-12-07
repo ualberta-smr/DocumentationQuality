@@ -121,8 +121,8 @@ def filename_maker(url, ftype):
 
 
 def extract_and_link(url):
-    # p_file = extract_tasks(url)
-    p_file = filename_maker(url, "tasks")
+    p_file = extract_tasks(url)
+    # p_file = filename_maker(url, "tasks")
     req = Request(url=url, headers=HEADERS)
     content = html.unescape(urlopen(req).read().decode("utf-8"))
     soup = BeautifulSoup(content, "html.parser")
