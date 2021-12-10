@@ -5,7 +5,7 @@ A module for POS tagging using CRFSuite https://pypi.python.org/pypi/python-crfs
 >>> ct = crftagger()",train,10
 A module for POS tagging using CRFSuite https://pypi.python.org/pypi/python-crfsuite,">>> from nltk.tag import crftagger
 >>> ct = crftagger()",">>> from nltk.tag import crftagger
->>> ct = crftagger()",100
+>>> ct = crftagger()",99
 A module for POS tagging using CRFSuite https://pypi.python.org/pypi/python-crfsuite,">>> from nltk.tag import crftagger
 >>> ct = crftagger()",">>> train_data = [[('university','noun'), ('is','verb'), ('a','det'), ('good','adj'), ('place','noun')],
 ... [('dog','noun'),('eat','verb'),('meat','noun')]]",23
@@ -58,7 +58,7 @@ A module for POS tagging using CRFSuite https://pypi.python.org/pypi/python-crfs
 >>> ct.tag_sents([['dog','is','good'], ['cat','eat','meat']])
 [[('dog', 'noun'), ('is', 'verb'), ('good', 'adj')], [('cat', 'noun'), ('eat', 'verb'), ('meat', 'noun')]]",">>> gold_sentences = [[('dog','noun'),('is','verb'),('good','adj')] , [('cat','noun'),('eat','verb'), ('meat','noun')]]
 >>> ct.evaluate(gold_sentences)
-1.0",59
+1.0",60
 A module for POS tagging using CRFSuite https://pypi.python.org/pypi/python-crfsuite,">>> gold_sentences = [[('dog','noun'),('is','verb'),('good','adj')] , [('cat','noun'),('eat','verb'), ('meat','noun')]]
 >>> ct.evaluate(gold_sentences)
 1.0",set_model_file,11
@@ -68,7 +68,7 @@ A module for POS tagging using CRFSuite https://pypi.python.org/pypi/python-crfs
 A module for POS tagging using CRFSuite https://pypi.python.org/pypi/python-crfsuite,">>> gold_sentences = [[('dog','noun'),('is','verb'),('good','adj')] , [('cat','noun'),('eat','verb'), ('meat','noun')]]
 >>> ct.evaluate(gold_sentences)
 1.0",">>> from nltk.tag import crftagger
->>> ct = crftagger()",26
+>>> ct = crftagger()",25
 A module for POS tagging using CRFSuite https://pypi.python.org/pypi/python-crfsuite,">>> gold_sentences = [[('dog','noun'),('is','verb'),('good','adj')] , [('cat','noun'),('eat','verb'), ('meat','noun')]]
 >>> ct.evaluate(gold_sentences)
 1.0",">>> train_data = [[('university','noun'), ('is','verb'), ('a','det'), ('good','adj'), ('place','noun')],
@@ -77,12 +77,12 @@ A module for POS tagging using CRFSuite https://pypi.python.org/pypi/python-crfs
 >>> ct.evaluate(gold_sentences)
 1.0",">>> ct.train(train_data,'model.crf.tagger')
 >>> ct.tag_sents([['dog','is','good'], ['cat','eat','meat']])
-[[('dog', 'noun'), ('is', 'verb'), ('good', 'adj')], [('cat', 'noun'), ('eat', 'verb'), ('meat', 'noun')]]",59
+[[('dog', 'noun'), ('is', 'verb'), ('good', 'adj')], [('cat', 'noun'), ('eat', 'verb'), ('meat', 'noun')]]",60
 A module for POS tagging using CRFSuite https://pypi.python.org/pypi/python-crfsuite,">>> gold_sentences = [[('dog','noun'),('is','verb'),('good','adj')] , [('cat','noun'),('eat','verb'), ('meat','noun')]]
 >>> ct.evaluate(gold_sentences)
 1.0",">>> gold_sentences = [[('dog','noun'),('is','verb'),('good','adj')] , [('cat','noun'),('eat','verb'), ('meat','noun')]]
 >>> ct.evaluate(gold_sentences)
-1.0",100
+1.0",99
 Returns the entropy over labellings of the given sequence. This is given by:,h(o) = - sum_s pr(s | o) log pr(s | o),h(o) = - sum_s pr(s | o) log pr(s | o),100
 Returns the entropy over labellings of the given sequence. This is given by:,h(o) = - sum_s pr(s | o) log pr(s | o),"h = - sum_s pr(s | o) log [ pr(s, o) / z ]
 = log z - sum_s pr(s | o) log pr(s, 0)
@@ -102,7 +102,7 @@ Returns the entropy over labellings of the given sequence. This is given by:,h(o
 [('what', 'wp'), ('is', 'vbz'), ('the', 'dt'), ('airspeed', 'nn'), ('of', 'in'), ('an', 'dt'), ('unladen', 'nn'), ('swallow', 'vb'), ('?', '.')]",">>> with hunpostagger('en_wsj.model') as ht:
 ...     ht.tag('what is the airspeed of an unladen swallow ?'.split())
 ...
-[('what', 'wp'), ('is', 'vbz'), ('the', 'dt'), ('airspeed', 'nn'), ('of', 'in'), ('an', 'dt'), ('unladen', 'nn'), ('swallow', 'vb'), ('?', '.')]",100
+[('what', 'wp'), ('is', 'vbz'), ('the', 'dt'), ('airspeed', 'nn'), ('of', 'in'), ('an', 'dt'), ('unladen', 'nn'), ('swallow', 'vb'), ('?', '.')]",99
 Retrieve the mapping dictionary between tagsets.,">>> tagset_mapping('ru-rnc', 'universal') == {'!': '.', 'a': 'adj', 'c': 'conj', 'ad': 'adv',            'nn': 'noun', 'vg': 'verb', 'comp': 'conj', 'nc': 'num', 'vp': 'verb', 'p': 'adp',            'ij': 'x', 'v': 'verb', 'z': 'x', 'vi': 'verb', 'yes_no_sent': 'x', 'ptcl': 'prt'}
 true",">>> tagset_mapping('ru-rnc', 'universal') == {'!': '.', 'a': 'adj', 'c': 'conj', 'ad': 'adv',            'nn': 'noun', 'vg': 'verb', 'comp': 'conj', 'nc': 'num', 'vp': 'verb', 'p': 'adp',            'ij': 'x', 'v': 'verb', 'z': 'x', 'vi': 'verb', 'yes_no_sent': 'x', 'ptcl': 'prt'}
 true",100
@@ -111,7 +111,7 @@ true",100
 "Greedy Averaged Perceptron tagger, as implemented by Matthew Honnibal. See more implementation details here:",>>> from nltk.tag.perceptron import perceptrontagger,">>> tagger.train([[('today','nn'),('is','vbz'),('good','jj'),('day','nn')],
 ... [('yes','nns'),('it','prp'),('beautiful','jj')]])",22
 "Greedy Averaged Perceptron tagger, as implemented by Matthew Honnibal. See more implementation details here:",>>> from nltk.tag.perceptron import perceptrontagger,">>> tagger.tag(['today','is','a','beautiful','day'])
-[('today', 'nn'), ('is', 'prp'), ('a', 'prp'), ('beautiful', 'jj'), ('day', 'nn')]",24
+[('today', 'nn'), ('is', 'prp'), ('a', 'prp'), ('beautiful', 'jj'), ('day', 'nn')]",25
 Use the pretrain model (the default constructor),>>> pretrain = perceptrontagger(),end,11
 Use the pretrain model (the default constructor),>>> pretrain = perceptrontagger(),start,21
 Use the pretrain model (the default constructor),>>> pretrain = perceptrontagger(),normalize,19
@@ -147,7 +147,7 @@ Use the pretrain model (the default constructor),">>> pretrain.tag(""the red cat
 [('the', 'dt'), ('quick', 'jj'), ('brown', 'nn'), ('fox', 'nn'), ('jumps', 'vbz'), ('over', 'in'), ('the', 'dt'), ('lazy', 'jj'), ('dog', 'nn')]",51
 Use the pretrain model (the default constructor),">>> pretrain.tag(""the red cat"".split())
 [('the', 'dt'), ('red', 'jj'), ('cat', 'nn')]",">>> pretrain.tag(""the red cat"".split())
-[('the', 'dt'), ('red', 'jj'), ('cat', 'nn')]",100
+[('the', 'dt'), ('red', 'jj'), ('cat', 'nn')]",99
 Return the feature detector that this tagger uses to generate featuresets for its classifier. The feature detector is a function with the signature:,"feature_detector(tokens, index, history) -> featureset","feature_detector(tokens, index, history) -> featureset",100
 Return the feature detector that this tagger uses to generate featuresets for its classifier. The feature detector is a function with the signature:,"feature_detector(tokens, index, history) -> featureset","feature_detector(tokens, index, history) -> featureset",100
 A tagger that assigns the same tag to every token.,">>> from nltk.tag import defaulttagger
@@ -156,7 +156,7 @@ A tagger that assigns the same tag to every token.,">>> from nltk.tag import def
 [('this', 'nn'), ('is', 'nn'), ('a', 'nn'), ('test', 'nn')]",">>> from nltk.tag import defaulttagger
 >>> default_tagger = defaulttagger('nn')
 >>> list(default_tagger.tag('this is a test'.split()))
-[('this', 'nn'), ('is', 'nn'), ('a', 'nn'), ('test', 'nn')]",100
+[('this', 'nn'), ('is', 'nn'), ('a', 'nn'), ('test', 'nn')]",99
 The RegexpTagger assigns tags to tokens by comparing their word strings to a series of regular expressions. The following tagger uses word suffixes to make guesses about the correct Brown Corpus part of speech tag:,">>> from nltk.corpus import brown
 >>> from nltk.tag import regexptagger
 >>> test_sent = brown.sents(categories='news')[0]
@@ -201,7 +201,7 @@ The RegexpTagger assigns tags to tokens by comparing their word strings to a ser
 (""atlanta's"", 'nns'), ('recent', 'nn'), ('primary', 'nn'), ('election', 'nn'),
 ('produced', 'vbd'), ('``', 'nn'), ('no', 'nn'), ('evidence', 'nn'), (""''"", 'nn'),
 ('that', 'nn'), ('any', 'nn'), ('irregularities', 'nns'), ('took', 'nn'),
-('place', 'nn'), ('.', 'nn')]",99
+('place', 'nn'), ('.', 'nn')]",98
 "The UnigramTagger finds the most likely tag for each word in a training corpus, and then uses that information to assign tags to new tokens.",">>> from nltk.corpus import brown
 >>> from nltk.tag import unigramtagger
 >>> test_sent = brown.sents(categories='news')[0]
@@ -224,24 +224,24 @@ The RegexpTagger assigns tags to tokens by comparing their word strings to a ser
 (investigation, nn), (of, in), (atlanta's, np$), (recent, jj),
 (primary, nn), (election, nn), (produced, vbd), (``, ``),
 (no, at), (evidence, nn), ('', ''), (that, cs), (any, dti),
-(irregularities, nns), (took, vbd), (place, nn), (., .),",100
+(irregularities, nns), (took, vbd), (place, nn), (., .),",99
 "Given the string representation of a tagged token, return the corresponding tuple representation. The rightmost occurrence of sep in s will be used to divide s into a word string and a tag string. If sep does not occur in s, return (s, None).",">>> from nltk.tag.util import str2tuple
 >>> str2tuple('fly/nn')
 ('fly', 'nn')",">>> from nltk.tag.util import str2tuple
 >>> str2tuple('fly/nn')
-('fly', 'nn')",100
+('fly', 'nn')",99
 "Given the tuple representation of a tagged token, return the corresponding string representation. This representation is formed by concatenating the token’s word string, followed by the separator, followed by the token’s tag. (If the tag is None, then just return the bare word string.)",">>> from nltk.tag.util import tuple2str
 >>> tagged_token = ('fly', 'nn')
 >>> tuple2str(tagged_token)
 'fly/nn'",">>> from nltk.tag.util import tuple2str
 >>> tagged_token = ('fly', 'nn')
 >>> tuple2str(tagged_token)
-'fly/nn'",100
+'fly/nn'",99
 "Given a tagged sentence, return an untagged version of that sentence. I.e., return a list containing the first element of each tuple in tagged_sentence.",">>> from nltk.tag.util import untag
 >>> untag([('john', 'nnp'), ('saw', 'vbd'), ('mary', 'nnp')])
 ['john', 'saw', 'mary']",">>> from nltk.tag.util import untag
 >>> untag([('john', 'nnp'), ('saw', 'vbd'), ('mary', 'nnp')])
-['john', 'saw', 'mary']",100
+['john', 'saw', 'mary']",99
 "A “tag” is a case-sensitive string that specifies some property of a token, such as its part of speech. Tagged tokens are encoded as tuples (tag, token). For example, the following tagged token combines the word 'fly' with a noun part of speech tag ('NN'):",">>> tagged_tok = ('fly', 'nn')",">>> tagged_tok = ('fly', 'nn')",100
 An off-the-shelf tagger is available for English. It uses the Penn Treebank tagset:,">>> from nltk import pos_tag, word_tokenize
 >>> pos_tag(word_tokenize(""john's big idea isn't all that bad.""))
@@ -249,7 +249,7 @@ An off-the-shelf tagger is available for English. It uses the Penn Treebank tags
 (""n't"", 'rb'), ('all', 'pdt'), ('that', 'dt'), ('bad', 'jj'), ('.', '.')]",">>> from nltk import pos_tag, word_tokenize
 >>> pos_tag(word_tokenize(""john's big idea isn't all that bad.""))
 [('john', 'nnp'), (""'s"", 'pos'), ('big', 'jj'), ('idea', 'nn'), ('is', 'vbz'),
-(""n't"", 'rb'), ('all', 'pdt'), ('that', 'dt'), ('bad', 'jj'), ('.', '.')]",100
+(""n't"", 'rb'), ('all', 'pdt'), ('that', 'dt'), ('bad', 'jj'), ('.', '.')]",99
 A Russian tagger is also available if you specify lang=”rus”. It uses the Russian National Corpus tagset:,">>> pos_tag(word_tokenize(""илья оторопел и дважды перечитал бумажку.""), lang='rus')    
 [('илья', 's'), ('оторопел', 'v'), ('и', 'conj'), ('дважды', 'adv'), ('перечитал', 'v'),
 ('бумажку', 's'), ('.', 'nonlex')]",">>> pos_tag(word_tokenize(""илья оторопел и дважды перечитал бумажку.""), lang='rus')    
@@ -279,7 +279,7 @@ the -> at
 high -> jj
 rate -> nn
 of -> in
-unemployment -> none",100
+unemployment -> none",98
 "#construct a BrillTaggerTrainer >>> tt = BrillTaggerTrainer(baseline, templates, trace=3)",">>> tagger1 = tt.train(training_data, max_rules=10)
 tbl train (fast) (seqs: 100; tokens: 2417; tpls: 2; min score: 2; min acc: none)
 finding initial useful rules...

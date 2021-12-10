@@ -33,7 +33,7 @@ node [shape=plaintext]
 2 -> 1 [label=""""]
 2 -> 3 [label=""""]
 3 [label=""3 (mary)""]
-}",97
+}",100
 Class for measuring labelled and unlabelled attachment score for dependency parsing. Note that the evaluation ignores punctuation.,">>> from nltk.parse import dependencygraph, dependencyevaluator",eval,12
 Class for measuring labelled and unlabelled attachment score for dependency parsing. Note that the evaluation ignores punctuation.,">>> from nltk.parse import dependencygraph, dependencyevaluator",">>> from nltk.parse import dependencygraph, dependencyevaluator",100
 Class for measuring labelled and unlabelled attachment score for dependency parsing. Note that the evaluation ignores punctuation.,">>> from nltk.parse import dependencygraph, dependencyevaluator",">>> gold_sent = dependencygraph(""""""
@@ -55,7 +55,7 @@ Class for measuring labelled and unlabelled attachment score for dependency pars
 ... nov.    nnp     9       vmod
 ... 29      cd      16      nmod
 ... .       .       9       vmod
-... """""")",19
+... """""")",18
 Class for measuring labelled and unlabelled attachment score for dependency parsing. Note that the evaluation ignores punctuation.,">>> from nltk.parse import dependencygraph, dependencyevaluator",">>> parsed_sent = dependencygraph(""""""
 ... pierre  nnp     8       nmod
 ... vinken  nnp     1       sub
@@ -75,7 +75,7 @@ Class for measuring labelled and unlabelled attachment score for dependency pars
 ... nov.    nnp     9       vmod
 ... 29      cd      16      nmod
 ... .       .       9       vmod
-... """""")",19
+... """""")",18
 Class for measuring labelled and unlabelled attachment score for dependency parsing. Note that the evaluation ignores punctuation.,">>> from nltk.parse import dependencygraph, dependencyevaluator",">>> de = dependencyevaluator([parsed_sent],[gold_sent])
 >>> las, uas = de.eval()
 >>> las
@@ -83,7 +83,7 @@ Class for measuring labelled and unlabelled attachment score for dependency pars
 >>> uas
 0.8...
 >>> abs(uas - 0.8) < 0.00001
-true",32
+true",31
 Class for measuring labelled and unlabelled attachment score for dependency parsing. Note that the evaluation ignores punctuation.,">>> gold_sent = dependencygraph(""""""
 ... pierre  nnp     2       nmod
 ... vinken  nnp     8       sub
@@ -162,7 +162,7 @@ Class for measuring labelled and unlabelled attachment score for dependency pars
 ... nov.    nnp     9       vmod
 ... 29      cd      16      nmod
 ... .       .       9       vmod
-... """""")",98
+... """""")",100
 Class for measuring labelled and unlabelled attachment score for dependency parsing. Note that the evaluation ignores punctuation.,">>> gold_sent = dependencygraph(""""""
 ... pierre  nnp     2       nmod
 ... vinken  nnp     8       sub
@@ -201,7 +201,7 @@ Class for measuring labelled and unlabelled attachment score for dependency pars
 ... nov.    nnp     9       vmod
 ... 29      cd      16      nmod
 ... .       .       9       vmod
-... """""")",94
+... """""")",96
 Class for measuring labelled and unlabelled attachment score for dependency parsing. Note that the evaluation ignores punctuation.,">>> gold_sent = dependencygraph(""""""
 ... pierre  nnp     2       nmod
 ... vinken  nnp     8       sub
@@ -228,7 +228,7 @@ Class for measuring labelled and unlabelled attachment score for dependency pars
 >>> uas
 0.8...
 >>> abs(uas - 0.8) < 0.00001
-true",26
+true",28
 Class for measuring labelled and unlabelled attachment score for dependency parsing. Note that the evaluation ignores punctuation.,">>> parsed_sent = dependencygraph(""""""
 ... pierre  nnp     8       nmod
 ... vinken  nnp     1       sub
@@ -307,7 +307,7 @@ Class for measuring labelled and unlabelled attachment score for dependency pars
 ... nov.    nnp     9       vmod
 ... 29      cd      16      nmod
 ... .       .       9       vmod
-... """""")",94
+... """""")",96
 Class for measuring labelled and unlabelled attachment score for dependency parsing. Note that the evaluation ignores punctuation.,">>> parsed_sent = dependencygraph(""""""
 ... pierre  nnp     8       nmod
 ... vinken  nnp     1       sub
@@ -346,7 +346,7 @@ Class for measuring labelled and unlabelled attachment score for dependency pars
 ... nov.    nnp     9       vmod
 ... 29      cd      16      nmod
 ... .       .       9       vmod
-... """""")",98
+... """""")",100
 Class for measuring labelled and unlabelled attachment score for dependency parsing. Note that the evaluation ignores punctuation.,">>> parsed_sent = dependencygraph(""""""
 ... pierre  nnp     8       nmod
 ... vinken  nnp     1       sub
@@ -373,7 +373,7 @@ Class for measuring labelled and unlabelled attachment score for dependency pars
 >>> uas
 0.8...
 >>> abs(uas - 0.8) < 0.00001
-true",26
+true",28
 Class for measuring labelled and unlabelled attachment score for dependency parsing. Note that the evaluation ignores punctuation.,">>> de = dependencyevaluator([parsed_sent],[gold_sent])
 >>> las, uas = de.eval()
 >>> las
@@ -416,7 +416,7 @@ true",">>> gold_sent = dependencygraph(""""""
 ... nov.    nnp     9       vmod
 ... 29      cd      16      nmod
 ... .       .       9       vmod
-... """""")",26
+... """""")",28
 Class for measuring labelled and unlabelled attachment score for dependency parsing. Note that the evaluation ignores punctuation.,">>> de = dependencyevaluator([parsed_sent],[gold_sent])
 >>> las, uas = de.eval()
 >>> las
@@ -443,7 +443,7 @@ true",">>> parsed_sent = dependencygraph(""""""
 ... nov.    nnp     9       vmod
 ... 29      cd      16      nmod
 ... .       .       9       vmod
-... """""")",26
+... """""")",28
 Class for measuring labelled and unlabelled attachment score for dependency parsing. Note that the evaluation ignores punctuation.,">>> de = dependencyevaluator([parsed_sent],[gold_sent])
 >>> las, uas = de.eval()
 >>> las
@@ -458,7 +458,7 @@ true",">>> de = dependencyevaluator([parsed_sent],[gold_sent])
 >>> uas
 0.8...
 >>> abs(uas - 0.8) < 0.00001
-true",98
+true",100
 A class for dependency parsing with MaltParser. The input is the paths to: - a maltparser directory - (optionally) the path to a pre-trained MaltParser .mco model file - (optionally) the tagger to use for POS tagging before parsing - (optionally) additional Java arguments,">>> from nltk.parse import malt
 >>> # with malt_parser and malt_model environment set.
 >>> mp = malt.maltparser('maltparser-1.7.2', 'engmalt.linear-1.7.mco') 
@@ -511,14 +511,14 @@ A class for dependency parsing with MaltParser. The input is the paths to: - a m
 >>> # without malt_parser and malt_model environment.
 >>> mp = malt.maltparser('/home/user/maltparser-1.7.2/', '/home/user/engmalt.linear-1.7.mco') 
 >>> mp.parse_one('i shot an elephant in my pajamas .'.split()).tree() 
-(shot i (elephant an) (in (pajamas my)) .)",99
+(shot i (elephant an) (in (pajamas my)) .)",100
 "A dependency scorer built around a MaxEnt classifier. In this particular class that classifier is a NaiveBayesClassifier. It uses head-word, head-tag, child-word, and child-tag features for classification.",">>> from nltk.parse.dependencygraph import dependencygraph, conll_data2",">>> from nltk.parse.dependencygraph import dependencygraph, conll_data2",100
 "A dependency scorer built around a MaxEnt classifier. In this particular class that classifier is a NaiveBayesClassifier. It uses head-word, head-tag, child-word, and child-tag features for classification.",">>> from nltk.parse.dependencygraph import dependencygraph, conll_data2",">>> graphs = [dependencygraph(entry) for entry in conll_data2.split('\n\n') if entry]
 >>> npp = probabilisticnonprojectiveparser()
 >>> npp.train(graphs, naivebayesdependencyscorer())
 >>> parses = npp.parse(['cathy', 'zag', 'hen', 'zwaaien', '.'], ['n', 'v', 'pron', 'adj', 'n', 'punc'])
 >>> len(list(parses))
-1",27
+1",26
 "A dependency scorer built around a MaxEnt classifier. In this particular class that classifier is a NaiveBayesClassifier. It uses head-word, head-tag, child-word, and child-tag features for classification.",">>> graphs = [dependencygraph(entry) for entry in conll_data2.split('\n\n') if entry]
 >>> npp = probabilisticnonprojectiveparser()
 >>> npp.train(graphs, naivebayesdependencyscorer())
@@ -535,7 +535,7 @@ A class for dependency parsing with MaltParser. The input is the paths to: - a m
 >>> npp.train(graphs, naivebayesdependencyscorer())
 >>> parses = npp.parse(['cathy', 'zag', 'hen', 'zwaaien', '.'], ['n', 'v', 'pron', 'adj', 'n', 'punc'])
 >>> len(list(parses))
-1",99
+1",100
 "ShiftReduceParser maintains a stack, which records the structure of a portion of the text. This stack is a list of strings and Trees that collectively cover a portion of the text. For example, while parsing the sentence “the dog saw the man” with a typical grammar, ShiftReduceParser will produce the following stack, which covers “the dog saw”:","[(np: (det: 'the') (n: 'dog')), (v: 'saw')]","[(np: (det: 'the') (n: 'dog')), (v: 'saw')]",100
 "A. Check the ARC-STANDARD training >>> import tempfile >>> import os >>> input_file = tempfile.NamedTemporaryFile(prefix=’transition_parse.train’, dir=tempfile.gettempdir(), delete=False)",">>> parser_std = transitionparser('arc-standard')
 >>> print(', '.join(parser_std._create_training_examples_arc_std([gold_sent], input_file)))
@@ -546,7 +546,7 @@ shift, leftarc:att, shift, leftarc:sbj, shift, shift, leftarc:att, shift, shift,
 >>> print(', '.join(parser_std._create_training_examples_arc_std([gold_sent], input_file)))
  number of training examples : 1
  number of valid (projective) examples : 1
-shift, leftarc:att, shift, leftarc:sbj, shift, shift, leftarc:att, shift, shift, shift, leftarc:att, rightarc:pc, rightarc:att, rightarc:obj, shift, rightarc:pu, rightarc:root, shift",99
+shift, leftarc:att, shift, leftarc:sbj, shift, shift, leftarc:att, shift, shift, shift, leftarc:att, rightarc:pc, rightarc:att, rightarc:obj, shift, rightarc:pu, rightarc:root, shift",100
 "A. Check the ARC-STANDARD training >>> import tempfile >>> import os >>> input_file = tempfile.NamedTemporaryFile(prefix=’transition_parse.train’, dir=tempfile.gettempdir(), delete=False)",">>> parser_std = transitionparser('arc-standard')
 >>> print(', '.join(parser_std._create_training_examples_arc_std([gold_sent], input_file)))
  number of training examples : 1
@@ -566,7 +566,7 @@ shift, leftarc:att, shift, leftarc:sbj, shift, shift, leftarc:att, shift, shift,
 >>> print(', '.join(parser_eager._create_training_examples_arc_eager([gold_sent], input_file)))
  number of training examples : 1
  number of valid (projective) examples : 1
-shift, leftarc:att, shift, leftarc:sbj, rightarc:root, shift, leftarc:att, rightarc:obj, rightarc:att, shift, leftarc:att, rightarc:pc, reduce, reduce, reduce, rightarc:pu",72
+shift, leftarc:att, shift, leftarc:sbj, rightarc:root, shift, leftarc:att, rightarc:obj, rightarc:att, shift, leftarc:att, rightarc:pc, reduce, reduce, reduce, rightarc:pu",73
 "A. Check the ARC-STANDARD training >>> import tempfile >>> import os >>> input_file = tempfile.NamedTemporaryFile(prefix=’transition_parse.train’, dir=tempfile.gettempdir(), delete=False)",">>> parser_std = transitionparser('arc-standard')
 >>> print(', '.join(parser_std._create_training_examples_arc_std([gold_sent], input_file)))
  number of training examples : 1
@@ -574,7 +574,7 @@ shift, leftarc:att, shift, leftarc:sbj, rightarc:root, shift, leftarc:att, right
 shift, leftarc:att, shift, leftarc:sbj, shift, shift, leftarc:att, shift, shift, shift, leftarc:att, rightarc:pc, rightarc:att, rightarc:obj, shift, rightarc:pu, rightarc:root, shift
 ",">>> parser_eager.train([gold_sent],'temp.arceager.model', verbose=false)
  number of training examples : 1
- number of valid (projective) examples : 1",42
+ number of valid (projective) examples : 1",43
 "A. Check the ARC-STANDARD training >>> import tempfile >>> import os >>> input_file = tempfile.NamedTemporaryFile(prefix=’transition_parse.train’, dir=tempfile.gettempdir(), delete=False)",">>> parser_std = transitionparser('arc-standard')
 >>> print(', '.join(parser_std._create_training_examples_arc_std([gold_sent], input_file)))
  number of training examples : 1
@@ -597,14 +597,14 @@ true",29
 >>> print(', '.join(parser_std._create_training_examples_arc_std([gold_sent], input_file)))
  number of training examples : 1
  number of valid (projective) examples : 1
-shift, leftarc:att, shift, leftarc:sbj, shift, shift, leftarc:att, shift, shift, shift, leftarc:att, rightarc:pc, rightarc:att, rightarc:obj, shift, rightarc:pu, rightarc:root, shift",46
+shift, leftarc:att, shift, leftarc:sbj, shift, shift, leftarc:att, shift, shift, shift, leftarc:att, rightarc:pc, rightarc:att, rightarc:obj, shift, rightarc:pu, rightarc:root, shift",47
 "A. Check the ARC-STANDARD training >>> import tempfile >>> import os >>> input_file = tempfile.NamedTemporaryFile(prefix=’transition_parse.train’, dir=tempfile.gettempdir(), delete=False)",">>> parser_std.train([gold_sent],'temp.arcstd.model', verbose=false)
  number of training examples : 1
  number of valid (projective) examples : 1
 >>> remove(input_file.name)",">>> parser_std.train([gold_sent],'temp.arcstd.model', verbose=false)
  number of training examples : 1
  number of valid (projective) examples : 1
->>> remove(input_file.name)",99
+>>> remove(input_file.name)",100
 "A. Check the ARC-STANDARD training >>> import tempfile >>> import os >>> input_file = tempfile.NamedTemporaryFile(prefix=’transition_parse.train’, dir=tempfile.gettempdir(), delete=False)",">>> parser_std.train([gold_sent],'temp.arcstd.model', verbose=false)
  number of training examples : 1
  number of valid (projective) examples : 1
@@ -619,7 +619,7 @@ shift, leftarc:att, shift, leftarc:sbj, rightarc:root, shift, leftarc:att, right
  number of valid (projective) examples : 1
 >>> remove(input_file.name)",">>> parser_eager.train([gold_sent],'temp.arceager.model', verbose=false)
  number of training examples : 1
- number of valid (projective) examples : 1",85
+ number of valid (projective) examples : 1",86
 "A. Check the ARC-STANDARD training >>> import tempfile >>> import os >>> input_file = tempfile.NamedTemporaryFile(prefix=’transition_parse.train’, dir=tempfile.gettempdir(), delete=False)",">>> parser_std.train([gold_sent],'temp.arcstd.model', verbose=false)
  number of training examples : 1
  number of valid (projective) examples : 1
@@ -630,7 +630,7 @@ shift, leftarc:att, shift, leftarc:sbj, rightarc:root, shift, leftarc:att, right
 >>> remove(input_file.name)",">>> result = parser_std.parse([gold_sent], 'temp.arcstd.model')
 >>> de = dependencyevaluator(result, [gold_sent])
 >>> de.eval() >= (0, 0)
-true",50
+true",51
 A module to convert a single POS tagged sentence into CONLL format.,">>> from nltk import word_tokenize, pos_tag
 >>> text = ""this is a foobar sentence.""
 >>> for line in taggedsent_to_conll(pos_tag(word_tokenize(text))):
@@ -649,7 +649,7 @@ A module to convert a single POS tagged sentence into CONLL format.,">>> from nl
     3       a       _       dt      dt      _       0       a       _       _
     4       foobar  _       jj      jj      _       0       a       _       _
     5       sentence        _       nn      nn      _       0       a       _       _
-    6       .               _       .       .       _       0       a       _       _",99
+    6       .               _       .       .       _       0       a       _       _",100
 "A module to convert the a POS tagged document stream (i.e. list of list of tuples, a list of sentences) and yield lines in CONLL format. This module yields one line per word and two newlines for end of sentence.",">>> from nltk import word_tokenize, sent_tokenize, pos_tag
 >>> text = ""this is a foobar sentence. is that right?""
 >>> sentences = [pos_tag(word_tokenize(sent)) for sent in sent_tokenize(text)]
@@ -685,7 +685,7 @@ A module to convert a single POS tagged sentence into CONLL format.,">>> from nl
 1   is      _       vbz     vbz     _       0       a       _       _
 2   that    _       in      in      _       0       a       _       _
 3   right   _       nn      nn      _       0       a       _       _
-4   ?       _       .       .       _       0       a       _       _",98
+4   ?       _       .       .       _       0       a       _       _",100
 Dependency parser.,>>> dep_parser = corenlpdependencyparser(url='http://localhost:9000')
 Dependency parser.,">>> parse, = dep_parser.raw_parse(
 ...     'the quick brown fox jumps over the lazy dog.'

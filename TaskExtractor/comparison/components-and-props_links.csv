@@ -3,7 +3,7 @@ The simplest way to define a component is to write a JavaScript function:,"funct
   return <h1>hello, {props.name}</h1>;
 }","function welcome(props) {
   return <h1>hello, {props.name}h1>;
-}",98
+}",97
 You can also use an ES6 class to define a component:,"class welcome extends react.component {
   render() {
     return <h1>hello, {this.props.name}</h1>;
@@ -12,7 +12,7 @@ You can also use an ES6 class to define a component:,"class welcome extends reac
   render() {
     return <h1>hello, {this.props.name}h1>;
   }
-}",99
+}",97
 "When React sees an element representing a user-defined component, it passes JSX attributes and children to this component as a single object. We call this object “props”.","function welcome(props) {  return <h1>hello, {props.name}</h1>;
 }
 
@@ -25,7 +25,7 @@ const element = <welcome name=""sara"" />;reactdom.render(
 const element = <welcome name=""sara"" />;reactdom.render(
   element,
   document.getelementbyid('root')
-);",99
+);",98
 "When React sees an element representing a user-defined component, it passes JSX attributes and children to this component as a single object. We call this object “props”.","function welcome(props) {  return <h1>hello, {props.name}</h1>;
 }
 
@@ -101,14 +101,14 @@ Don’t be afraid to split components into smaller components.,"function comment
       div>
     div>
   );
-}",99
+}",96
 "Next, we will extract a UserInfo component that renders an Avatar next to the user’s name:","function userinfo(props) {
   return (
     <div classname=""userinfo"">      <avatar user={props.user} />      <div classname=""userinfo-name"">        {props.user.name}      </div>    </div>  );
 }","function userinfo(props) {
   return (
     <div classname=""userinfo"">      <avatar user={props.user} />      <div classname=""userinfo-name"">        {props.user.name}      div>    div>  );
-}",99
+}",98
 "Next, we will extract a UserInfo component that renders an Avatar next to the user’s name:","function userinfo(props) {
   return (
     <div classname=""userinfo"">      <avatar user={props.user} />      <div classname=""userinfo-name"">        {props.user.name}      </div>    </div>  );
@@ -128,7 +128,7 @@ Don’t be afraid to split components into smaller components.,"function comment
   account.total -= amount;
 }","function withdraw(account, amount) {
   account.total -= amount;
-}",100
+}",98
 "Previously, we only encountered React elements that represent DOM tags:",const element = <div />;
 "However, elements can also represent user-defined components:","const element = <welcome name=""sara"" />;"
 "Components can refer to other components in their output. This lets us use the same component abstraction for any level of detail. A button, a form, a dialog, a screen: in React apps, all those are commonly expressed as components.","function welcome(props) {
