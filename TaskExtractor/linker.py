@@ -10,8 +10,6 @@ from fuzzywuzzy import fuzz
 from bs4 import BeautifulSoup
 from urllib.request import Request, urlopen
 
-LINKS_FILE = os.path.normpath("results/links.csv")
-TASKS_FILE = os.path.normpath("results/tasks.csv")
 
 HEADERS = {
     'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) '
@@ -112,12 +110,14 @@ def link_code_examples_and_paragraphs(code_examples, paragraphs, link_file):
 
 
 def filename_maker(url, ftype):
+    domain_regex = re.compile(r"(?:https?://)([\w.]+)/")
+    domain = re.search(domain_regex, url)[1]
     filename = (url.split("/")[-1] if url.split("/")[-1] != "" else url.split("/")[-2])
     if "." in filename:
         filename = filename.split(".")[-2] + "_" + ftype + ".csv"
     else:
         filename = filename + "_" + ftype + ".csv"
-    return os.path.normpath("results/" + filename)
+    return os.path.normpath("results/" + domain + "/" + filename)
 
 
 def extract_and_link(url):
@@ -128,31 +128,32 @@ def extract_and_link(url):
     soup = BeautifulSoup(content, "html.parser")
     code_examples = soup.find_all("code")
     pre_examples = soup.find_all("pre")
-    if os.path.basename(os.getcwd()) != "TaskExtractor":
-        os.chdir("TaskExtractor")
-    with open(p_file, "r", encoding="utf-8", newline="") as p:
-        paragraphs = list(e[0] for e in list(csv.reader(p)))
-        link_pot = filename_maker(url, "links_pot")
-        # Taken from: https://stackoverflow.com/questions/10840533/most-pythonic-way-to-delete-a-file-which-may-not-exist
-        # User Matt, at 10:56 am MDT
-        try:
-            os.remove(link_pot)
-        except OSError as e:
-            if e.errno != errno.ENOENT:
-                raise
-        link_code_examples_and_paragraphs(code_examples, paragraphs, link_pot)
-        link_code_examples_and_paragraphs(pre_examples, paragraphs, link_pot)
-    # Remove duplicates
-    with open(link_pot, "r", encoding="utf-8", newline="") as potential, open(filename_maker(url, "links"), "w", encoding="utf-8", newline="") as final:
-        seen = set()
-        pot_reader = csv.reader(potential)
-        link_writer = csv.writer(final)
-        for line in pot_reader:
-            if line[1] not in seen:
-                seen.add(line[1])
-                link_writer.writerow(line)
-    os.remove(link_pot)
-    os.chdir("..")
+    if os.stat(p_file).st_size != 0:
+        with open(p_file, "r", encoding="utf-8", newline="") as p:
+            paragraphs = list(e[0] for e in list(csv.reader(p)))
+            link_pot = filename_maker(url, "links_pot")
+            # Taken from: https://stackoverflow.com/questions/10840533/most-pythonic-way-to-delete-a-file-which-may-not-exist
+            # User Matt, at 10:56 am MDT
+            try:
+                os.remove(link_pot)
+            except OSError as e:
+                if e.errno != errno.ENOENT:
+                    raise
+            link_code_examples_and_paragraphs(code_examples, paragraphs, link_pot)
+            link_code_examples_and_paragraphs(pre_examples, paragraphs, link_pot)
+        # Remove duplicates
+        if os.stat(link_pot).st_size != 0:
+            with open(link_pot, "r", encoding="utf-8", newline="") as potential, open(filename_maker(url, "links"), "w", encoding="utf-8", newline="") as final:
+                seen = set()
+                pot_reader = csv.reader(potential)
+                link_writer = csv.writer(final)
+                for line in pot_reader:
+                    if line[1] not in seen:
+                        seen.add(line[1])
+                        link_writer.writerow(line)
+        os.remove(link_pot)
+    else:
+        os.remove(p_file)
 
 
 # Extracts the paragraphs from the HTML and uses TaskExtractor to extract the tasks
@@ -161,11 +162,8 @@ def extract_tasks(url):
     req = Request(url=url, headers=HEADERS)
     content = html.unescape(urlopen(req).read().decode("utf-8"))
     soup = BeautifulSoup(content, "html.parser")
-    if os.path.basename(os.getcwd()) != "TaskExtractor":
-        os.chdir("TaskExtractor")
     filename = filename_maker(url, "tasks")
     get_paragraphs_and_tasks(soup.find_all("p"), filename)
-    os.chdir("..")
     return filename
 
 
