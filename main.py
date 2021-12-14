@@ -5,6 +5,7 @@ import os
 from TaskExtractor import linker
 from urllib.request import Request, urlopen
 from bs4 import BeautifulSoup
+from MethodExtractor import matcher
 
 
 def read_page(url):
@@ -31,8 +32,8 @@ def read_page(url):
     os.chdir("..")
 
 
-if __name__ == '__main__':
-    # read_page("https://stanfordnlp.github.io/CoreNLP/index.html")
+def task_extract_and_link(url):
+    # read_page(url)
 
     # https://github.com/ijl/orjson
     read_page("http://web.archive.org/web/20210831032333/https://github.com/ijl/orjson")
@@ -46,3 +47,17 @@ if __name__ == '__main__':
     read_page("https://web.archive.org/web/20210417122335/https://www.nltk.org/api/nltk.parse.html")
     read_page("https://api.jquery.com/jQuery.get/")
     read_page("https://reactjs.org/docs/components-and-props.html")
+
+
+def api_methods_examples(language, repo_url, doc_url):
+    os.chdir("MethodExtractor")
+    matcher.calculate_ratios(language, repo_url, doc_url)
+    os.chdir("..")
+
+
+if __name__ == '__main__':
+    # Extract tasks and link code examples
+    # url = "https://stanfordnlp.github.io/CoreNLP/index.html"
+    # task_extract_and_link(url)
+    api_methods_examples("python", "https://github.com/ijl/orjson.git", "http://web.archive.org/web/20210831032333/https://github.com/ijl/orjson")
+
