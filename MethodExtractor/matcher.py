@@ -65,8 +65,8 @@ def rmtree_access_error_handler(func, path, exc_info):
 
 
 def get_source_files(repo_url):
-    repo_regex = re.compile(r"/[a-zA-Z.]+(?!/)$")
-    repo_name = re.search(repo_regex, repo_url)[0][1:-4]
+    repo_regex = re.compile(r"(?<=/)[a-zA-Z.]+(?!/)$")
+    repo_name = re.search(repo_regex, repo_url)[0][:-4]
     repo_dir = os.path.normpath("repos/" + repo_name)
     if os.path.exists(repo_dir):
         rmtree(repo_dir, onerror=rmtree_access_error_handler)
