@@ -134,7 +134,7 @@ def find_python_arguments(source_file):
                         required.append(arg.arg)
                     found = False
 
-                functions.append((item.name, (required, optionals)))
+                functions.append((item.name, (len(required), len(optionals))))
         return functions
 
 
@@ -152,16 +152,63 @@ def calculate_ratios(language, repo_url, doc_url):
 
     extension_finder(language)
     source_files = get_source_files(repo_url)
+    functions = {}
     for source_file in source_files:
-        # method_signature = re.search(param_regex, code_def)[0]
-        functions = find_params(language, source_file)
-        print(source_file)
-        print(functions)
+        funcs = find_params(language, source_file)
+        for func in funcs:
+            functions[func[0]] = {"source_file": source_file, "req_args": func[1][0], "opt_args": func[1][1]}
 
-    # python_console = re.compile(">>> *")
-    called_method_regex = re.compile(r"[\w.](?=\()")
-    method_arguments_regex = re.compile(r"(?<=\().+(?=\))")
+    files = {}
+    for func in functions:
+        if functions[func]["source_file"] in files:
+            files[functions[func]["source_file"]] += 1
+        else:
+            files[functions[func]["source_file"]] = 1
+
+    call_regex = re.compile(r"[\w]+(?=\().+?\)")
+    args_regex = re.compile(r"(?<=\()(?:.|\n)+?(?=\))")
+    method_calls = set()
     for ex in doc_examples:
-        # print(ast.dump(ast.parse(re.sub(python_console, "", ex))))
-        name = re.search(called_method_regex, ex)
+        calls = re.findall(call_regex, ex)
+        for call in calls:
+            try:
+                func_def = functions[call.split("(")[0]]
+                args = re.search(args_regex, call)
+                try:
+                    num_args = len(args[0].split(","))
+                except TypeError:
+                    num_args = 0
+                if num_args >= func_def["req_args"] and num_args <= (func_def["req_args"] + func_def["opt_args"]):
+                    method_calls.add((func_def["source_file"], call.split("(")[0]))
+                if len(method_calls) == len(functions):
+                    break
+            # Just because the found method call is not found in the public
+            # API methods, does not mean it is incorrect, it could be calling
+            # a method from a different library
+            except KeyError:
+                pass
 
+    found_examples = {}
+    for call in method_calls:
+        if call[0] in found_examples:
+            found_examples[call[0]] += 1
+        else:
+            found_examples[call[0]] = 1
+
+    # print(files)
+    # print(found_examples)
+
+    example_count = 0
+    classes_count = 0
+    for examples in found_examples:
+        example_count += found_examples[examples]
+        if found_examples[examples] == files[examples]:
+            classes_count += 1
+
+    total_examples = 0
+    total_classes = len(files)
+    for file in files:
+        total_examples += files[file]
+
+    print(example_count/total_examples)
+    print(classes_count/total_classes)
