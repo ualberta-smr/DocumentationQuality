@@ -106,7 +106,7 @@ def get_public_methods(language, repo_url):
 
 
 def find_python_arguments(source_file):
-    with open(source_file, "r") as f:
+    with open(source_file, "r", encoding="utf-8") as f:
         a = ast.parse(f.read(), mode="exec")
         functions = []
         for item in a.body:
@@ -127,7 +127,7 @@ def find_python_arguments(source_file):
                 found = False
                 for arg in params:
                     for optional in optionals:
-                        if arg.arg in optional:
+                        if arg.arg == optional:
                             found = True
                             break
                     if not found:
@@ -147,9 +147,6 @@ def find_params(language, source_file):
 
 def calculate_ratios(language, repo_url, doc_url):
     doc_examples = get_documentation_examples(doc_url)
-    # code_defs = get_public_methods(language, repo_url)
-    # param_regex = re.compile(r"^(?:def|public).+\((?:.|\n)*?\)", re.MULTILINE)
-
     extension_finder(language)
     source_files = get_source_files(repo_url)
     functions = {}
@@ -197,6 +194,7 @@ def calculate_ratios(language, repo_url, doc_url):
 
     # print(files)
     # print(found_examples)
+    # print(method_calls)
 
     example_count = 0
     classes_count = 0
@@ -210,5 +208,6 @@ def calculate_ratios(language, repo_url, doc_url):
     for file in files:
         total_examples += files[file]
 
-    print(example_count/total_examples)
-    print(classes_count/total_classes)
+    # print(example_count/total_examples)
+    # print(classes_count/total_classes)
+    return example_count, total_examples, classes_count, total_classes

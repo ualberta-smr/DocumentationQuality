@@ -133,7 +133,7 @@ def extract_and_link(url):
             paragraphs = list(e[0] for e in list(csv.reader(p)))
             link_pot = filename_maker(url, "links_pot")
             # Taken from: https://stackoverflow.com/questions/10840533/most-pythonic-way-to-delete-a-file-which-may-not-exist
-            # User Matt, at 10:56 am MDT
+            # Answer by User Matt, by Henry Tang, at 10:56 am MDT
             try:
                 os.remove(link_pot)
             except OSError as e:
