@@ -12,7 +12,7 @@ def get_webpages(doc_home):
     req = Request(url=doc_home, headers=linker.HEADERS)
     content = html.unescape(urlopen(req).read().decode("utf-8"))
     soup = BeautifulSoup(content, "html.parser")
-    domain_regex = re.compile(r"(?:https?://)([\w.]+)/")
+    domain_regex = re.compile(r"(?:https?://)([\w.-]+)/")
     domain = re.search(domain_regex, doc_home)
     if not domain:
         print("Invalid Link")
@@ -20,7 +20,8 @@ def get_webpages(doc_home):
     pages = []
     for link in soup.find_all("a", href=True):
         href = link["href"]
-        if not re.search(re.compile("^#"), href):
+        # re.search(re.compile("^#"), href):
+        if not "#" in href:
             link_domain = re.search(domain_regex, href)
             if link_domain and link_domain[1] == domain[1]:
                 pages.append(href)
@@ -62,21 +63,15 @@ def task_extract_and_link(url):
 def api_methods_examples(language, repo_url, doc_url):
     os.chdir("MethodExtractor")
     _, pages = get_webpages(doc_url)
-    example_count = 0
-    total_examples = 0
-    classes_count = 0
-    total_classes = 0
-    for page in pages:
-        try:
-            a, b, c, d = matcher.calculate_ratios(language, repo_url, page)
-            example_count += a
-            total_examples += b
-            classes_count += c
-            total_classes += d
-        except:
-            pass
-    print(example_count/total_examples)
-    print(classes_count/total_classes)
+    example_count, total_methods, classes_count, total_classes = matcher.calculate_ratios(language, repo_url, pages)
+    print("Methods found:", example_count)
+    print("Total methods:", total_methods)
+    print("Classes found:", classes_count)
+    print("Total classes:", total_classes)
+    if total_methods > 0:
+        print(example_count/total_methods)
+    if total_classes > 0:
+        print(classes_count/total_classes)
     os.chdir("..")
 
 
@@ -84,6 +79,6 @@ if __name__ == '__main__':
     # Extract tasks and link code examples
     # url = "https://stanfordnlp.github.io/CoreNLP/index.html"
     # task_extract_and_link(url)
-    api_methods_examples("python", "https://github.com/ijl/orjson.git", "https://github.com/ijl/orjson")
-    # api_methods_examples("python", "https://github.com/nltk/nltk.git", "https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.html")
+    # api_methods_examples("python", "https://github.com/ijl/orjson.git", "https://github.com/ijl/orjson")
+    api_methods_examples("python", "https://github.com/nltk/nltk.git", "https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.html")
 
