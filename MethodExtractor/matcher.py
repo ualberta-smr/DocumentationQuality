@@ -200,8 +200,8 @@ def calculate_ratios(language, repo_url, pages):
     call_regex = re.compile(r"(?:\w+\.)?\w+(?=\()")
     args_regex = re.compile(r"(?<=\()(?:.|\n)+?(?=\))")
     method_calls = set()
-    for ex in doc_examples:
-        calls = re.findall(call_regex, ex)
+    for example in doc_examples:
+        calls = re.findall(call_regex, example)
         for call in calls:
             func_def = None
             function = call.split("(")[0].lower()
@@ -213,7 +213,7 @@ def calculate_ratios(language, repo_url, pages):
             else:
                 func_def = functions[function]
             if func_def:
-                args = re.search(args_regex, ex)
+                args = re.search(args_regex, example)
                 try:
                     num_args = len(args[0].split(","))
                 except TypeError:
@@ -224,10 +224,10 @@ def calculate_ratios(language, repo_url, pages):
     example_count = len(method_calls)
     classes_count = 0
     for examples in method_calls:
-        ex = examples[1].split(".")
+        example = examples[1].split(".")
         # If we cannot split anything then the method is not in a class
-        if len(ex) > 1:
-            if ex[0].lower() in classes:
+        if len(example) > 1:
+            if example[0].lower() in classes:
                 classes_count += 1
 
     total_classes = len(classes)
