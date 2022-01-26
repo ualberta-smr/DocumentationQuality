@@ -196,9 +196,10 @@ def calculate_ratios(language, repo_url, pages):
             doc_examples.extend(get_documentation_examples(page))
         except:
             pass
+    # Remove duplicates but retain order
+    doc_examples = list(dict.fromkeys(doc_examples))
 
     call_regex = re.compile(r"(?:\w+\.)?\w+(?=\()")
-    args_regex = re.compile(r"(?<=\()(?:.|\n)+?(?=\))")
     method_calls = set()
     for example in doc_examples:
         calls = re.findall(call_regex, example)
@@ -213,9 +214,10 @@ def calculate_ratios(language, repo_url, pages):
             else:
                 func_def = functions[function]
             if func_def:
+                args_regex = re.compile(r"(?<=%s\()(?:.|\n)+?(?=\))" % function)
                 args = re.search(args_regex, example)
                 try:
-                    num_args = len(args[0].split(","))
+                    num_args = len(args[0].split(", "))
                 except TypeError:
                     num_args = 0
                 if func_def["req_args"] <= num_args <= (func_def["req_args"] + func_def["opt_args"]):
