@@ -2,6 +2,7 @@ import html
 import re
 import os
 import ast
+import csv
 
 from urllib.request import Request, urlopen
 from bs4 import BeautifulSoup
@@ -38,8 +39,15 @@ def extension_finder(language):
         EXTENSION = ".java"
 
 
-def get_documentation_examples(url):
-    req = Request(url=url, headers=HEADERS)
+def get_documentation_examples(doc_url, url):
+    try:
+        req = Request(url=url, headers=HEADERS)
+    except ValueError:
+        try:
+            url = re.match(re.compile(".+/"), doc_url)[0] + url
+            req = Request(url=url, headers=HEADERS)
+        except ValueError:
+            return []
     content = html.unescape(urlopen(req).read().decode("utf-8"))
     soup = BeautifulSoup(content, "html.parser")
     raw_examples = soup.find_all("code") + soup.find_all("pre")
@@ -90,31 +98,6 @@ def get_source_files(repo_url):
             if EXTENSION in file and "test" not in file:
                 source_files.append(os.path.normpath(root + "/" + file))
     return source_files
-
-
-# NOT USED
-def get_public_methods(language, repo_url):
-    extension_finder(language)
-    source_files = get_source_files(repo_url)
-    code_defs = []
-    code_def = []
-    save_snippet = False
-    for src in source_files:
-        with open(src, encoding="utf-8") as file:
-            for line in file:
-                if re.search(FUNC_DEF, line):
-                    save_snippet = True
-                if save_snippet:
-                    code_def.append(line)
-                if ")" in line:
-                    save_snippet = False
-                    if code_def:
-                        code_defs.append(code_def.copy())
-                        code_def.clear()
-    for index, code_def in enumerate(code_defs):
-        code_defs[index] = "".join(code_def)
-
-    return code_defs
 
 
 def extract_python_ast_args(func_def, class_method):
@@ -187,9 +170,9 @@ def get_methods_and_classes(language, repo_url):
     return functions, classes
 
 
-def calculate_ratios(language, repo_url, pages):
+def calculate_ratios(language, repo_name, repo_url, doc_url, pages):
     extension_finder(language)
-    functions, classes = get_methods_and_classes(language, repo_url)
+    methods, classes = get_methods_and_classes(language, repo_url)
     doc_examples = []
     for page in pages:
         try:
@@ -201,27 +184,35 @@ def calculate_ratios(language, repo_url, pages):
 
     call_regex = re.compile(r"(?:\w+\.)?\w+(?=\()")
     method_calls = set()
-    for example in doc_examples:
-        calls = re.findall(call_regex, example)
-        for call in calls:
-            func_def = None
-            function = call.split("(")[0].lower()
-            if function not in functions:
-                function_split = function.split(".")
-                if len(function_split) > 1:
-                    if function_split[1] in functions:
-                        func_def = functions[function_split[1]]
-            else:
-                func_def = functions[function]
-            if func_def:
-                args_regex = re.compile(r"(?<=%s\()(?:.|\n)+?(?=\))" % function)
-                args = re.search(args_regex, example)
-                try:
-                    num_args = len(args[0].split(", "))
-                except TypeError:
-                    num_args = 0
-                if func_def["req_args"] <= num_args <= (func_def["req_args"] + func_def["opt_args"]):
-                    method_calls.add((func_def["source_file"], function))
+    with open("results/" + repo_name + ".csv", "w", encoding="utf-8", newline="") as out:
+        writer = csv.writer(out, quoting=csv.QUOTE_MINIMAL)
+        writer.writerow(["Example", "Method", "Function", "Source", "Matched"])
+        for example in doc_examples:
+            calls = re.findall(call_regex, example)
+            for call in calls:
+                func_def = None
+                method = call.split("(")[0].lower()
+                if method not in methods:
+                    function_split = method.split(".")
+                    if len(function_split) > 1:
+                        if function_split[1] in methods:
+                            func_def = methods[function_split[1]]
+                else:
+                    func_def = methods[method]
+                if func_def:
+                    args_regex = re.compile(r"(?<=%s\()(?:.|\n)+?(?=\))" % method)
+                    args = re.search(args_regex, example)
+                    try:
+                        num_args = len(args[0].split(", "))
+                    except TypeError:
+                        num_args = 0
+                    if func_def["req_args"] <= num_args <= (func_def["req_args"] + func_def["opt_args"]):
+                        method_calls.add((func_def["source_file"], method))
+                        writer.writerow([example, call, method, func_def["source_file"], "True"])
+                    else:
+                        writer.writerow([example, call, method, func_def["source_file"], "False"])
+                else:
+                    writer.writerow([example, call, "N/A", "N/A", "N/A"])
 
     example_count = len(method_calls)
     classes_count = 0
@@ -233,5 +224,5 @@ def calculate_ratios(language, repo_url, pages):
                 classes_count += 1
 
     total_classes = len(classes)
-    total_methods = len(functions)
+    total_methods = len(methods)
     return example_count, total_methods, classes_count, total_classes
