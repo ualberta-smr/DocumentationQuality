@@ -1,3 +1,4 @@
+Paragraph,Example
 Most implementations will specify a success handler:,"$.get( ""ajax/test.html"", function( data ) {"
 Most implementations will specify a success handler:,"$( "".result"" ).html( data );"
 Most implementations will specify a success handler:,"alert( ""Load was performed."" );"

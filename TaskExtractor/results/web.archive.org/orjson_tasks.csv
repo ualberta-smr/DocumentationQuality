@@ -1,3 +1,4 @@
+"Paragraph","Tasks"
 "orjson supports CPython 3.7, 3.8, 3.9, and 3.10. It distributes x86_64/amd64
 and aarch64/armv8 wheels for Linux and macOS. It distributes x86_64/amd64 wheels
 for Windows. orjson does not support PyPy. Releases follow semantic

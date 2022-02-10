@@ -1,3 +1,4 @@
+Paragraph,Example
 "Note: Stanford CoreNLP v.3.5+ requires Java 8, but works with Java 9/10/11 as well. If using Java 9/10/11, you need to add this Java flag to avoid errors (a CoreNLP library dependency uses the JAXB module that was deleted from the default libraries for Java 9+):",--add-modules java.se.ee
 The minimal command to run Stanford CoreNLP from the command line is:,"java -cp ""*"" edu.stanford.nlp.pipeline.StanfordCoreNLP -file input.txt"
 "Your command line has to load the code, libraries, and model jars that CoreNLP uses. These are all contained in JAR files (compressed archives with extension “.jar”) which come in the CoreNLP download or which can be downloaded on demand from Maven Central. The easiest way to make them available is with a command line like this, where /Users/me/corenlp/ should be changed to the path where you put CoreNLP:","java -cp ""/Users/me/corenlp/*"" edu.stanford.nlp.pipeline.StanfordCoreNLP -file inputFile"

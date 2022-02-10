@@ -1,59 +1,14 @@
 import errno
 import functools
 import os
-import subprocess
 import re
 import csv
 import html
 
+import util
 from fuzzywuzzy import fuzz
 from bs4 import BeautifulSoup
 from urllib.request import Request, urlopen
-
-
-HEADERS = {
-    'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) '
-                  'AppleWebKit/537.11 (KHTML, like Gecko) '
-                  'Chrome/23.0.1271.64 Safari/537.11',
-    'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-    'Accept-Charset': 'ISO-8859-1,utf-8;q=0.7,*;q=0.3',
-    'Accept-Encoding': 'none',
-    'Accept-Language': 'en-US,en;q=0.8',
-    'Connection': 'keep-alive'}
-
-
-def call_extractor(inp):
-    inp = inp.replace("’", "'")
-    result = subprocess.run(["java", "-jar", "StringToTasks.jar", inp.encode("utf-8").decode("utf-8")],
-                            stdout=subprocess.PIPE)
-    return result.stdout.decode("utf-8")
-
-
-def preprocess(raw_html):
-    code = re.compile(r"(?:<code|<pre).*?>(.*?)</(?:code|pre)>")
-    text = raw_html
-    if re.findall(code, text):
-        for code_term in re.findall(code, text):
-            text = re.sub(code, "<tt>" + code_term + "</tt>", text, 1)
-    # We want to replace all tags except <tt> and <h1-6>
-    replaceable = re.compile(r"<(?!/?t{2})(?!h[1-6]).*?>")
-    text = re.sub(replaceable, "", text)
-    return text
-
-
-def get_paragraphs_and_tasks(paragraphs, task_file):
-    tt = re.compile(r"</?tt>")
-    with open(task_file, "w", encoding="utf-8", newline="") as out_file:
-        writer = csv.writer(out_file, quoting=csv.QUOTE_ALL)
-        for paragraph in paragraphs:
-            if not paragraph.has_attr("class"):
-                text = preprocess(paragraph.prettify())
-                extracted = call_extractor(text)
-                if extracted:
-                    extracted = extracted.replace("\r\n", "\n")
-                    extracted = re.sub(tt, "", extracted)
-                    # Remove the trailing comma
-                    writer.writerow([paragraph.get_text().strip(), extracted[:-1]])
 
 
 def fuzzy_compare(potential, paragraph):
@@ -109,71 +64,39 @@ def link_code_examples_and_paragraphs(code_examples, paragraphs, link_file):
                     writer.writerow([paragraph, code.get_text().strip()])
 
 
-def filename_maker(url, ftype):
-    domain_regex = re.compile(r"(?:https?://)([\w.]+)/")
-    domain = re.search(domain_regex, url)[1]
-    filename = (url.split("/")[-1] if url.split("/")[-1] != "" else url.split("/")[-2])
-    if "." in filename:
-        filename = filename.split(".")[-2] + "_" + ftype + ".csv"
-    else:
-        filename = filename + "_" + ftype + ".csv"
-    return os.path.normpath("results/" + domain + "/" + filename)
-
-
-def extract_and_link(url):
-    p_file = extract_tasks(url)
-    # p_file = filename_maker(url, "tasks")
-    req = Request(url=url, headers=HEADERS)
-    content = html.unescape(urlopen(req).read().decode("utf-8"))
-    soup = BeautifulSoup(content, "html.parser")
-    code_examples = soup.find_all("code")
-    pre_examples = soup.find_all("pre")
-    if os.stat(p_file).st_size != 0:
-        with open(p_file, "r", encoding="utf-8", newline="") as p:
-            paragraphs = list(e[0] for e in list(csv.reader(p)))
-            link_pot = filename_maker(url, "links_pot")
+def link_tasks(page):
+    paragraph_file = util.make_filename_from_url(page, "tasks")
+    if os.path.exists(paragraph_file):
+        req = Request(url=page, headers=util.HEADERS)
+        content = html.unescape(urlopen(req).read().decode("utf-8"))
+        soup = BeautifulSoup(content, "html.parser")
+        code_examples = soup.find_all("code")
+        pre_examples = soup.find_all("pre")
+        with open(paragraph_file, "r", encoding="utf-8", newline="") as paragraphs:
+            paragraphs = list(paragraph[0] for paragraph in list(csv.reader(paragraphs)))
+            potential_links = util.make_filename_from_url(page, "links_pot")
             # Taken from: https://stackoverflow.com/questions/10840533/most-pythonic-way-to-delete-a-file-which-may-not-exist
             # Answer by User Matt, by Henry Tang, at 10:56 am MDT
             try:
-                os.remove(link_pot)
+                os.remove(potential_links)
             except OSError as e:
                 if e.errno != errno.ENOENT:
                     raise
-            link_code_examples_and_paragraphs(code_examples, paragraphs, link_pot)
-            link_code_examples_and_paragraphs(pre_examples, paragraphs, link_pot)
+            link_code_examples_and_paragraphs(code_examples, paragraphs, potential_links)
+            link_code_examples_and_paragraphs(pre_examples, paragraphs, potential_links)
         # Remove duplicates
-        if os.stat(link_pot).st_size != 0:
-            with open(link_pot, "r", encoding="utf-8", newline="") as potential, open(filename_maker(url, "links"), "w", encoding="utf-8", newline="") as final:
-                seen = set()
+        if os.stat(potential_links).st_size != 0:
+            with open(potential_links, "r", encoding="utf-8", newline="") as potential, open(util.make_filename_from_url(page, "links"), "w", encoding="utf-8", newline="") as final:
                 pot_reader = csv.reader(potential)
                 link_writer = csv.writer(final)
+                link_writer.writerow(["Paragraph", "Example"])
+                seen = set()
                 for line in pot_reader:
                     if line[1] not in seen:
                         seen.add(line[1])
                         link_writer.writerow(line)
-        os.remove(link_pot)
+        else:
+            print("Could not link examples and paragraphs")
+        os.remove(potential_links)
     else:
-        os.remove(p_file)
-
-
-# Extracts the paragraphs from the HTML and uses TaskExtractor to extract the tasks
-# Then returns the paragraphs that had extracted tasks
-def extract_tasks(url):
-    req = Request(url=url, headers=HEADERS)
-    content = html.unescape(urlopen(req).read().decode("utf-8"))
-    soup = BeautifulSoup(content, "html.parser")
-    filename = filename_maker(url, "tasks")
-    get_paragraphs_and_tasks(soup.find_all("p"), filename)
-    return filename
-
-
-def extract_paragraphs(url, out_file):
-    req = Request(url=url, headers=HEADERS)
-    content = html.unescape(urlopen(req).read().decode("utf-8"))
-    soup = BeautifulSoup(content, "html.parser")
-    paragraphs = soup.find_all("p")
-    with open(out_file, "w", encoding="utf-8", newline="") as out_file:
-        writer = csv.writer(out_file, quoting=csv.QUOTE_ALL)
-        for paragraph in paragraphs:
-            if len(paragraph[0].classes) == 0:
-                writer.writerow([paragraph.text().strip()])
+        print("No paragraphs for", page)

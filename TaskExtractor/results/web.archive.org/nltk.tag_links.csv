@@ -1,3 +1,4 @@
+Paragraph,Example
 "A processing interface for assigning a tag to each token in a list.
 Tags are case sensitive strings that identify some property of each
 token, such as its part of speech or its sense.",evaluate

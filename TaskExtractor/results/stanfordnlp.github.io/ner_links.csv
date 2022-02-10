@@ -1,3 +1,4 @@
+Paragraph,Example
 These are the default models that are run:,"# tags: LOCATION, ORGANIZATION, PERSON
 edu/stanford/nlp/models/ner/english.all.3class.distsim.crf.ser.gz
 # tags: DATE, LOCATION, MONEY, ORGANIZATION, PERCENT, PERSON, TIME
