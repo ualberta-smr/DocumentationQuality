@@ -3,6 +3,8 @@ import re
 import os
 import ast
 import csv
+import pprint
+import itertools
 
 from urllib.request import Request, urlopen
 from bs4 import BeautifulSoup
@@ -56,7 +58,7 @@ def get_documentation_examples(doc_url, url):
     for raw_example in raw_examples:
         example = raw_example.get_text()
         if "(" in example:
-            doc_examples.append(example)
+            doc_examples.append([example, url])
     return doc_examples
 
 
@@ -77,9 +79,9 @@ def get_source_files(repo_url):
     repo_regex = re.compile(r"(?<=/)[a-zA-Z.]+(?!/)$")
     repo_name = re.search(repo_regex, repo_url)[0][:-4]
     repo_dir = os.path.normpath("repos/" + repo_name)
-    if os.path.exists(repo_dir):
-        rmtree(repo_dir, onerror=rmtree_access_error_handler)
-    Repo.clone_from(repo_url, repo_dir)
+    # if os.path.exists(repo_dir):
+    #     rmtree(repo_dir, onerror=rmtree_access_error_handler)
+    # Repo.clone_from(repo_url, repo_dir)
     source_files = []
     src_dir = None
     # Only look at the top level directory in this loop
@@ -98,6 +100,31 @@ def get_source_files(repo_url):
             if EXTENSION in file and "test" not in file:
                 source_files.append(os.path.normpath(root + "/" + file))
     return source_files
+
+
+# NOT USED
+def get_public_methods(language, repo_url):
+    extension_finder(language)
+    source_files = get_source_files(repo_url)
+    code_defs = []
+    code_def = []
+    save_snippet = False
+    for src in source_files:
+        with open(src, encoding="utf-8") as file:
+            for line in file:
+                if re.search(FUNC_DEF, line):
+                    save_snippet = True
+                if save_snippet:
+                    code_def.append(line)
+                if ")" in line:
+                    save_snippet = False
+                    if code_def:
+                        code_defs.append(code_def.copy())
+                        code_def.clear()
+    for index, code_def in enumerate(code_defs):
+        code_defs[index] = "".join(code_def)
+
+    return code_defs
 
 
 def extract_python_ast_args(func_def, class_method):
@@ -167,27 +194,46 @@ def get_methods_and_classes(language, repo_url):
         if len(f) > 1:
             classes[f[0]] = {"source_file": functions[func]["source_file"]}
 
+    with open("functions.txt", "w") as temp:
+        PP = pprint.PrettyPrinter(indent=4, stream=temp)
+        PP.pprint(functions)
+    with open("classes.txt", "w") as temp:
+        PP = pprint.PrettyPrinter(indent=4, stream=temp)
+        PP.pprint(classes)
+
     return functions, classes
 
 
 def calculate_ratios(language, repo_name, repo_url, doc_url, pages):
     extension_finder(language)
     methods, classes = get_methods_and_classes(language, repo_url)
+    # with open("doc_examples.txt", "r") as temp:
+    #     doc_examples = list(e[0] for e in list(csv.reader(temp)))
     doc_examples = []
     for page in pages:
         try:
-            doc_examples.extend(get_documentation_examples(page))
+            doc_examples.extend(get_documentation_examples(doc_url, page))
         except:
             pass
+    with open("doc_examples.csv", "w", encoding="utf-8", newline="") as temp:
+        writer = csv.writer(temp, quoting=csv.QUOTE_MINIMAL)
+        for item in doc_examples:
+            writer.writerow(item)
     # Remove duplicates but retain order
-    doc_examples = list(dict.fromkeys(doc_examples))
+    doc_examples = list(doc_examples for doc_examples, _ in itertools.groupby(doc_examples))
+    with open("doc_examples_unique.csv", "w", encoding="utf-8", newline="") as temp:
+        writer = csv.writer(temp, quoting=csv.QUOTE_MINIMAL)
+        for item in doc_examples:
+            writer.writerow(item)
 
+    # return 1,1,1,1
     call_regex = re.compile(r"(?:\w+\.)?\w+(?=\()")
     method_calls = set()
     with open("results/" + repo_name + ".csv", "w", encoding="utf-8", newline="") as out:
         writer = csv.writer(out, quoting=csv.QUOTE_MINIMAL)
         writer.writerow(["Example", "Method", "Function", "Source", "Matched"])
-        for example in doc_examples:
+        for i, ex in enumerate(doc_examples):
+            example = ex[0]
             calls = re.findall(call_regex, example)
             for call in calls:
                 func_def = None
