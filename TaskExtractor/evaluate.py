@@ -12,8 +12,7 @@ def evaluate_tasks(truth, test, filename):
         truth_list = list(truth_reader)
         with open(test, "r", newline="", encoding="utf-8") as test_set:
             test_reader = csv.reader(test_set)
-            # TODO: For now there is no headers in the results csvs
-            # next(test_reader, None)
+            next(test_reader, None)
             test_list = list(test_reader)
             precision_total = 0
             test_total = 0

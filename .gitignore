@@ -1,4 +1,5 @@
 .idea/
 *.jar
 venv/
-MethodExtractor/repos/
+MethodLinker/repos/
+MethodLinker/.idea/

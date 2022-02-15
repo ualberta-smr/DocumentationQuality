@@ -1,3 +1,4 @@
+Paragraph,Example
 To install a wheel from PyPI:,"pip install --upgrade ""pip>=20.3"" # manylinux_x_y, universal2 wheel support
 pip install --upgrade orjson"
 "To serialize a subclass or arbitrary types, specify default as a

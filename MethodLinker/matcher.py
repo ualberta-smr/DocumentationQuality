@@ -1,41 +1,26 @@
 import html
 import re
 import os
-import ast
 import csv
-import pprint
-import itertools
 
+from MethodLinker.python_matcher import find_python_arguments
+from util import HEADERS
 from urllib.request import Request, urlopen
 from bs4 import BeautifulSoup
 from git import Repo
 from shutil import rmtree
 
 
-HEADERS = {
-    'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) '
-                  'AppleWebKit/537.11 (KHTML, like Gecko) '
-                  'Chrome/23.0.1271.64 Safari/537.11',
-    'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-    'Accept-Charset': 'ISO-8859-1,utf-8;q=0.7,*;q=0.3',
-    'Accept-Encoding': 'none',
-    'Accept-Language': 'en-US,en;q=0.8',
-    'Connection': 'keep-alive'}
-
 EXTENSION = None
-FUNC_DEF = None
 DEFAULT_VALUES = False
 
 
 def extension_finder(language):
     language = language.lower().strip()
     global EXTENSION
-    global FUNC_DEF
     global DEFAULT_VALUES
     if language == "python":
         EXTENSION = ".py"
-        # Accounts for both 2 and 4 space indents
-        FUNC_DEF = re.compile("(?:^|^ {2,4})def (?!_)")
         DEFAULT_VALUES = True
     elif language == "java":
         EXTENSION = ".java"
@@ -79,9 +64,9 @@ def get_source_files(repo_url):
     repo_regex = re.compile(r"(?<=/)[a-zA-Z.]+(?!/)$")
     repo_name = re.search(repo_regex, repo_url)[0][:-4]
     repo_dir = os.path.normpath("repos/" + repo_name)
-    # if os.path.exists(repo_dir):
-    #     rmtree(repo_dir, onerror=rmtree_access_error_handler)
-    # Repo.clone_from(repo_url, repo_dir)
+    if os.path.exists(repo_dir):
+        rmtree(repo_dir, onerror=rmtree_access_error_handler)
+    Repo.clone_from(repo_url, repo_dir)
     source_files = []
     src_dir = None
     # Only look at the top level directory in this loop
@@ -102,76 +87,6 @@ def get_source_files(repo_url):
     return source_files
 
 
-# NOT USED
-def get_public_methods(language, repo_url):
-    extension_finder(language)
-    source_files = get_source_files(repo_url)
-    code_defs = []
-    code_def = []
-    save_snippet = False
-    for src in source_files:
-        with open(src, encoding="utf-8") as file:
-            for line in file:
-                if re.search(FUNC_DEF, line):
-                    save_snippet = True
-                if save_snippet:
-                    code_def.append(line)
-                if ")" in line:
-                    save_snippet = False
-                    if code_def:
-                        code_defs.append(code_def.copy())
-                        code_def.clear()
-    for index, code_def in enumerate(code_defs):
-        code_defs[index] = "".join(code_def)
-
-    return code_defs
-
-
-def extract_python_ast_args(func_def, class_method):
-    params = func_def.args.args
-    defaults = func_def.args.defaults
-
-    params.reverse()
-    defaults.reverse()
-
-    optionals = []
-    # Find all the optional arguments
-    for args in zip(params, defaults):
-        optionals.append(args[0].arg)
-    # Find the required arguments
-    required = []
-    found = False
-    for arg in params:
-        for optional in optionals:
-            if arg.arg == optional:
-                found = True
-                break
-        if not found:
-            required.append(arg.arg)
-        found = False
-    # The ternary -1 accounts for the "self" parameter on class methods
-    return func_def.name, ((len(required) - 1 if class_method else len(required)), len(optionals))
-
-
-def find_python_arguments(source_file):
-    with open(source_file, "r", encoding="utf-8") as f:
-        a = ast.parse(f.read(), mode="exec")
-        functions = []
-        for file_item in a.body:
-            if type(file_item) is ast.ClassDef:
-                for class_item in file_item.body:
-                    if type(class_item) is ast.FunctionDef:
-                        # We ignore methods that start with "_" because they are
-                        # typically considered private methods
-                        if not class_item.name.startswith("_"):
-                            func_name, args = extract_python_ast_args(class_item, True)
-                            functions.append(((file_item.name + "." + func_name).lower(), args))
-            if type(file_item) is ast.FunctionDef:
-                if not file_item.name.startswith("_"):
-                    functions.append(extract_python_ast_args(file_item, False))
-        return functions
-
-
 def find_params(language, source_file):
     functions = []
     if language == "python":
@@ -181,52 +96,32 @@ def find_params(language, source_file):
 
 def get_methods_and_classes(language, repo_url):
     source_files = get_source_files(repo_url)
-    functions = {}
+    methods = {}
     for source_file in source_files:
         funcs = find_params(language, source_file)
         for func in funcs:
-            functions[func[0]] = {"source_file": source_file,
+            methods[func[0]] = {"source_file": source_file,
                                   "req_args": func[1][0],
                                   "opt_args": func[1][1]}
     classes = {}
-    for func in functions:
-        f = func.split(".")
+    for meth in methods:
+        f = meth.split(".")
         if len(f) > 1:
-            classes[f[0]] = {"source_file": functions[func]["source_file"]}
+            classes[f[0]] = {"source_file": methods[meth]["source_file"]}
 
-    with open("functions.txt", "w") as temp:
-        PP = pprint.PrettyPrinter(indent=4, stream=temp)
-        PP.pprint(functions)
-    with open("classes.txt", "w") as temp:
-        PP = pprint.PrettyPrinter(indent=4, stream=temp)
-        PP.pprint(classes)
-
-    return functions, classes
+    return methods, classes
 
 
 def calculate_ratios(language, repo_name, repo_url, doc_url, pages):
     extension_finder(language)
     methods, classes = get_methods_and_classes(language, repo_url)
-    # with open("doc_examples.txt", "r") as temp:
-    #     doc_examples = list(e[0] for e in list(csv.reader(temp)))
     doc_examples = []
     for page in pages:
         try:
             doc_examples.extend(get_documentation_examples(doc_url, page))
         except:
             pass
-    with open("doc_examples.csv", "w", encoding="utf-8", newline="") as temp:
-        writer = csv.writer(temp, quoting=csv.QUOTE_MINIMAL)
-        for item in doc_examples:
-            writer.writerow(item)
-    # Remove duplicates but retain order
-    doc_examples = list(doc_examples for doc_examples, _ in itertools.groupby(doc_examples))
-    with open("doc_examples_unique.csv", "w", encoding="utf-8", newline="") as temp:
-        writer = csv.writer(temp, quoting=csv.QUOTE_MINIMAL)
-        for item in doc_examples:
-            writer.writerow(item)
 
-    # return 1,1,1,1
     call_regex = re.compile(r"(?:\w+\.)?\w+(?=\()")
     method_calls = set()
     with open("results/" + repo_name + ".csv", "w", encoding="utf-8", newline="") as out:

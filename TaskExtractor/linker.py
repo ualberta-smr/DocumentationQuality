@@ -96,7 +96,7 @@ def link_tasks(page):
                         seen.add(line[1])
                         link_writer.writerow(line)
         else:
-            print("Could not link examples and paragraphs")
+            print("No potential example links found")
         os.remove(potential_links)
     else:
         print("No paragraphs for", page)
