@@ -2,6 +2,8 @@ import html
 import re
 import os
 import csv
+import pprint
+import itertools
 
 from MethodLinker.python_matcher import find_python_arguments
 from util import HEADERS
@@ -70,7 +72,7 @@ def get_source_files(repo_url):
     source_files = []
     src_dir = None
     # Only look at the top level directory in this loop
-    for root, dirs, files in os.walk(repo_dir):
+    for root, dirs, files in os.walk(repo_name):
         for dir_name in dirs:
             if dir_name == "src" or dir_name == repo_name:
                 src_dir = os.path.normpath(root + "/" + dir_name)
@@ -95,6 +97,7 @@ def find_params(language, source_file):
 
 
 def get_methods_and_classes(language, repo_url):
+    os.chdir("repos")
     source_files = get_source_files(repo_url)
     methods = {}
     for source_file in source_files:
@@ -108,13 +111,13 @@ def get_methods_and_classes(language, repo_url):
         f = meth.split(".")
         if len(f) > 1:
             classes[f[0]] = {"source_file": methods[meth]["source_file"]}
-
+    os.chdir("..")
     return methods, classes
 
 
 def calculate_ratios(language, repo_name, repo_url, doc_url, pages):
     extension_finder(language)
-    methods, classes = get_methods_and_classes(language, repo_url)
+    functions, classes = get_methods_and_classes(language, repo_url)
     doc_examples = []
     for page in pages:
         try:
@@ -126,32 +129,32 @@ def calculate_ratios(language, repo_name, repo_url, doc_url, pages):
     method_calls = set()
     with open("results/" + repo_name + ".csv", "w", encoding="utf-8", newline="") as out:
         writer = csv.writer(out, quoting=csv.QUOTE_MINIMAL)
-        writer.writerow(["Example", "Method", "Function", "Source", "Matched"])
+        writer.writerow(["Example", "Extracted Function", "Linked Function", "Source File", "Linked"])
         for i, ex in enumerate(doc_examples):
             example = ex[0]
             calls = re.findall(call_regex, example)
             for call in calls:
                 func_def = None
-                method = call.split("(")[0].lower()
-                if method not in methods:
-                    function_split = method.split(".")
+                function = call.split("(")[0].lower()
+                if function not in functions:
+                    function_split = function.split(".")
                     if len(function_split) > 1:
-                        if function_split[1] in methods:
-                            func_def = methods[function_split[1]]
+                        if function_split[1] in functions:
+                            func_def = functions[function_split[1]]
                 else:
-                    func_def = methods[method]
+                    func_def = functions[function]
                 if func_def:
-                    args_regex = re.compile(r"(?<=%s\()(?:.|\n)+?(?=\))" % method)
+                    args_regex = re.compile(r"(?<=%s\()(?:.|\n)+?(?=\))" % function)
                     args = re.search(args_regex, example)
                     try:
                         num_args = len(args[0].split(", "))
                     except TypeError:
                         num_args = 0
                     if func_def["req_args"] <= num_args <= (func_def["req_args"] + func_def["opt_args"]):
-                        method_calls.add((func_def["source_file"], method))
-                        writer.writerow([example, call, method, func_def["source_file"], "True"])
+                        method_calls.add((func_def["source_file"], function))
+                        writer.writerow([example, call, function, func_def["source_file"], "True"])
                     else:
-                        writer.writerow([example, call, method, func_def["source_file"], "False"])
+                        writer.writerow([example, call, function, func_def["source_file"], "False"])
                 else:
                     writer.writerow([example, call, "N/A", "N/A", "N/A"])
 
@@ -164,6 +167,4 @@ def calculate_ratios(language, repo_name, repo_url, doc_url, pages):
             if example[0].lower() in classes:
                 classes_count += 1
 
-    total_classes = len(classes)
-    total_methods = len(methods)
-    return example_count, total_methods, classes_count, total_classes
+    return example_count, len(functions), classes_count, len(classes)
