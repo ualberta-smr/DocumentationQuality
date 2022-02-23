@@ -93,5 +93,5 @@ if __name__ == '__main__':
     # task_extract_and_link("https://reactjs.org/docs/components-and-props.html")
 
     # api_methods_examples("python", "orjson", "https://github.com/ijl/orjson.git", "https://github.com/ijl/orjson")
-    api_methods_examples("python", "nltk", "https://github.com/nltk/nltk.git", "https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.html")
-    # api_methods_examples("python", "requests", "https://github.com/psf/requests.git", "https://docs.python-requests.org/en/latest/")
+    # api_methods_examples("python", "nltk", "https://github.com/nltk/nltk.git", "https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.html")
+    api_methods_examples("python", "requests", "https://github.com/psf/requests.git", "https://docs.python-requests.org/en/latest/")

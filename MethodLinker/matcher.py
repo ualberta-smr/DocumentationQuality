@@ -4,6 +4,7 @@ import os
 import csv
 import pprint
 import itertools
+import ast
 
 from MethodLinker.python_matcher import find_python_arguments
 from util import HEADERS
@@ -99,20 +100,20 @@ def find_params(language, source_file):
 def get_methods_and_classes(language, repo_url):
     os.chdir("repos")
     source_files = get_source_files(repo_url)
-    methods = {}
+    functions = {}
     for source_file in source_files:
         funcs = find_params(language, source_file)
         for func in funcs:
-            methods[func[0]] = {"source_file": source_file,
+            functions[func[0]] = {"source_file": source_file,
                                   "req_args": func[1][0],
                                   "opt_args": func[1][1]}
     classes = {}
-    for meth in methods:
-        f = meth.split(".")
+    for func in functions:
+        f = func.split(".")
         if len(f) > 1:
-            classes[f[0]] = {"source_file": methods[meth]["source_file"]}
+            classes[f[0]] = {"source_file": functions[func]["source_file"]}
     os.chdir("..")
-    return methods, classes
+    return functions, classes
 
 
 def calculate_ratios(language, repo_name, repo_url, doc_url, pages):
@@ -124,7 +125,8 @@ def calculate_ratios(language, repo_name, repo_url, doc_url, pages):
             doc_examples.extend(get_documentation_examples(doc_url, page))
         except:
             pass
-
+    # Remove duplicates but retain order
+    doc_examples = list(doc_examples for doc_examples, _ in itertools.groupby(doc_examples))
     call_regex = re.compile(r"(?:\w+\.)?\w+(?=\()")
     method_calls = set()
     with open("results/" + repo_name + ".csv", "w", encoding="utf-8", newline="") as out:
@@ -132,31 +134,47 @@ def calculate_ratios(language, repo_name, repo_url, doc_url, pages):
         writer.writerow(["Example", "Extracted Function", "Linked Function", "Source File", "Linked"])
         for i, ex in enumerate(doc_examples):
             example = ex[0]
-            calls = re.findall(call_regex, example)
+            found_calls = re.findall(call_regex, example)
+            calls = []
+            # Remove duplicate found calls
+            [calls.append(item) for item in found_calls if item not in calls]
             for call in calls:
                 func_def = None
                 function = call.split("(")[0].lower()
+                # Check if the function exists in our dictionary
                 if function not in functions:
                     function_split = function.split(".")
+                    # If not then maybe it does if we remove the first prefix
+                    # e.g., nltk.nltk.get -> nltk.get
                     if len(function_split) > 1:
                         if function_split[1] in functions:
                             func_def = functions[function_split[1]]
                 else:
                     func_def = functions[function]
                 if func_def:
-                    args_regex = re.compile(r"(?<=%s\()(?:.|\n)+?(?=\))" % function)
-                    args = re.search(args_regex, example)
-                    try:
-                        num_args = len(args[0].split(", "))
-                    except TypeError:
-                        num_args = 0
-                    if func_def["req_args"] <= num_args <= (func_def["req_args"] + func_def["opt_args"]):
-                        method_calls.add((func_def["source_file"], function))
-                        writer.writerow([example, call, function, func_def["source_file"], "True"])
-                    else:
-                        writer.writerow([example, call, function, func_def["source_file"], "False"])
+                    function_calls = re.findall(re.compile(r"%s\([a-zA-Z_:.,/\\ =(){}\'\"]*\)" % function.replace(".", "\.")), example)
+                    for function_call in function_calls:
+                        try:
+                            a = ast.parse(function_call)
+                            if type(a.body[0].value) is ast.Constant:
+                                num_args = 1
+                            elif hasattr(a.body[0].value, "keywords"):
+                                num_args = len(a.body[0].value.args) + len(a.body[0].value.keywords)
+                            else:
+                                num_args = len(a.body[0].value.args)
+                        except:
+                            num_args = 0
+                        if func_def["req_args"] <= num_args <= (func_def["req_args"] + func_def["opt_args"]):
+                            method_calls.add((func_def["source_file"], function))
+                            writer.writerow([example, call, function, func_def["source_file"], "True"])
+                        else:
+                            writer.writerow([example, call, function, func_def["source_file"], "False"])
                 else:
-                    writer.writerow([example, call, "N/A", "N/A", "N/A"])
+                    potential_class = call.split(".")[-1]
+                    if potential_class.lower() in classes:
+                        writer.writerow([example, potential_class, "__init__", classes[potential_class.lower()]["source_file"], "True"])
+                    else:
+                        writer.writerow([example, call, "N/A", "N/A", "N/A"])
 
     example_count = len(method_calls)
     classes_count = 0
