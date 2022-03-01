@@ -7,6 +7,7 @@ import itertools
 import ast
 
 from MethodLinker.python_matcher import find_python_arguments
+from MethodLinker.java_matcher import find_java_arguments
 from util import HEADERS
 from urllib.request import Request, urlopen
 from bs4 import BeautifulSoup
@@ -64,49 +65,61 @@ def rmtree_access_error_handler(func, path, exc_info):
 
 
 def get_source_files(repo_url):
-    repo_regex = re.compile(r"(?<=/)[a-zA-Z.]+(?!/)$")
+    repo_regex = re.compile(r"(?<=/)[a-zA-Z.-]+(?!/)$")
     repo_name = re.search(repo_regex, repo_url)[0][:-4]
-    repo_dir = os.path.normpath("repos/" + repo_name)
-    if os.path.exists(repo_dir):
-        rmtree(repo_dir, onerror=rmtree_access_error_handler)
-    Repo.clone_from(repo_url, repo_dir)
+    if os.path.exists(repo_name):
+        rmtree(repo_name, onerror=rmtree_access_error_handler)
+    Repo.clone_from(repo_url, repo_name)
     source_files = []
     src_dir = None
     # Only look at the top level directory in this loop
     for root, dirs, files in os.walk(repo_name):
         for dir_name in dirs:
-            if dir_name == "src" or dir_name == repo_name:
+            if dir_name.lower() == "src" or dir_name == repo_name:
                 src_dir = os.path.normpath(root + "/" + dir_name)
                 break
         for file in files:
-            if EXTENSION in file and "test" not in file:
+            if EXTENSION in file and "test" not in file.lower():
                 source_files.append(os.path.normpath(root + "/" + file))
         break
     # If we found a src directory, loop through all the files (subdirectory too)
     for root, dirs, files in os.walk(src_dir):
         for file in files:
-            if EXTENSION in file and "test" not in file:
+            if "test" in root:
+                break
+            if EXTENSION in file and "test" not in file.lower():
                 source_files.append(os.path.normpath(root + "/" + file))
     return source_files
 
 
-def find_params(language, source_file):
+def find_params(source_file):
     functions = []
-    if language == "python":
+    if EXTENSION == ".py":
         functions = find_python_arguments(source_file)
+    elif EXTENSION == ".java":
+        functions = find_java_arguments(source_file)
     return functions
 
 
-def get_methods_and_classes(language, repo_url):
+def get_functions(functions, source_file):
+    function_defs = find_params(source_file)
+    for function in function_defs:
+        if EXTENSION == ".py":
+            functions[function[0]] = {"source_file": source_file,
+                                      "req_args": function[1][0],
+                                      "opt_args": function[1][1]}
+        elif EXTENSION == ".java":
+            functions[function[0]] = {"source_file": source_file,
+                                      "req_args": function[1]}
+    return functions
+
+
+def get_methods_and_classes(repo_url):
     os.chdir("repos")
     source_files = get_source_files(repo_url)
     functions = {}
     for source_file in source_files:
-        funcs = find_params(language, source_file)
-        for func in funcs:
-            functions[func[0]] = {"source_file": source_file,
-                                  "req_args": func[1][0],
-                                  "opt_args": func[1][1]}
+        functions = get_functions(functions, source_file)
     classes = {}
     for func in functions:
         f = func.split(".")
@@ -118,7 +131,7 @@ def get_methods_and_classes(language, repo_url):
 
 def calculate_ratios(language, repo_name, repo_url, doc_url, pages):
     extension_finder(language)
-    functions, classes = get_methods_and_classes(language, repo_url)
+    functions, classes = get_methods_and_classes(repo_url)
     doc_examples = []
     for page in pages:
         try:

@@ -17,7 +17,7 @@ def find_python_arguments(source_file):
             if type(file_item) is ast.FunctionDef:
                 func_name, args = extract_python_ast_args(file_item, False)
                 functions.append(((source_file.split("\\")[0] + "." + func_name).lower(), args))
-        return functions
+    return functions
 
 
 def extract_python_ast_args(func_def, class_method):
