@@ -28,8 +28,8 @@ def evaluate_links(truth_file, test_file):
                                 correct += 1
                             else:
                                 result_writer.writerow([truth_row["example"], test_row["linked"], truth_row["function"], truth_row["source"], 0])
-    return [correct, len(test_list), correct/ len(test_list),
-            correct, len(truth_list), correct / len(truth_list)]
+    return [correct, len(test_list), correct/ len(test_list), # Precision
+            correct, len(truth_list), correct / len(truth_list)] # Recall
 
 
 if __name__ == '__main__':
