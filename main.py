@@ -46,14 +46,14 @@ def task_extract_and_link(url):
     if not os.path.exists(link_directory):
         os.mkdir(link_directory)
     # If checking single page, then comment out for loop
-    # for page in pages:
-    #     try:
-    #         extractor.extract_tasks(page)
-    #         linker.link_tasks(page)
-    #     except HTTPError:
-    #         pass
-    extractor.extract_tasks(url)
-    linker.link_tasks(url)
+    for page in pages:
+        try:
+            extractor.extract_tasks(page)
+            linker.link_tasks(page)
+        except HTTPError:
+            pass
+    # extractor.extract_tasks(url)
+    # linker.link_tasks(url)
     if not os.listdir(link_directory):
         os.rmdir(link_directory)
     os.chdir("..")
@@ -94,6 +94,7 @@ if __name__ == '__main__':
 
     # api_methods_examples("python", "orjson", "https://github.com/ijl/orjson.git", "https://github.com/ijl/orjson")
     # api_methods_examples("python", "nltk", "https://github.com/nltk/nltk.git", "https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.html")
-    api_methods_examples("python", "requests", "https://github.com/psf/requests.git", "https://docs.python-requests.org/en/latest/")
+    # api_methods_examples("python", "requests", "https://github.com/psf/requests.git", "https://docs.python-requests.org/en/latest/")
     # api_methods_examples("java", "json-java", "https://github.com/stleary/JSON-java.git", "https://github.com/stleary/JSON-java")
-    # api_methods_examples("java", "stanford-nlp", "https://github.com/stanfordnlp/CoreNLP.git", "https://stanfordnlp.github.io/CoreNLP/ner.html")
+    # api_methods_examples("java", "stanford-nlp", "https://github.com/stanfordnlp/CoreNLP.git", "https://stanfordnlp.github.io/CoreNLP")
+    api_methods_examples("javascript", "qunit", "https://github.com/qunitjs/qunit.git", "https://api.qunitjs.com/")

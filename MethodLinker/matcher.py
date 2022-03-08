@@ -10,6 +10,7 @@ from git import Repo
 
 from MethodLinker.java_matcher import *
 from MethodLinker.python_matcher import *
+from MethodLinker.javascript_matcher import *
 from util import HEADERS
 
 EXTENSION = None
@@ -25,6 +26,8 @@ def extension_finder(language):
         DEFAULT_VALUES = True
     elif language == "java":
         EXTENSION = ".java"
+    elif language == "javascript":
+        EXTENSION = ".js"
 
 
 def get_documentation_examples(doc_url, url):
@@ -76,7 +79,7 @@ def get_source_files(repo_url):
                 src_dir = os.path.normpath(root + "/" + dir_name)
                 break
         for file in files:
-            if EXTENSION in file and "test" not in file.lower():
+            if re.search(re.compile(EXTENSION + "$"), file) and "test" not in file.lower():
                 source_files.append(os.path.normpath(root + "/" + file))
         break
     # If we found a src directory, loop through all the files (subdirectory too)
@@ -84,7 +87,7 @@ def get_source_files(repo_url):
         for file in files:
             if "test" in root:
                 break
-            if EXTENSION in file and "test" not in file.lower():
+            if re.search(re.compile(EXTENSION + "$"), file) and "test" not in file.lower():
                 source_files.append(os.path.normpath(root + "/" + file))
     return source_files
 
@@ -95,6 +98,8 @@ def find_params(source_file):
         functions = find_python_arguments(source_file)
     elif EXTENSION == ".java":
         functions = find_java_arguments(source_file)
+    elif EXTENSION == ".js":
+        functions = find_javascript_arguments(source_file)
     return functions
 
 
@@ -105,7 +110,7 @@ def get_functions(functions, source_file):
             functions[function[0]] = {"source_file": source_file,
                                       "req_args": function[1][0],
                                       "opt_args": function[1][1]}
-        elif EXTENSION == ".java":
+        else:
             if function[0] in functions:
                 functions[function[0]]["req_args"].append(function[1])
             else:
@@ -145,12 +150,14 @@ def calculate_ratios(language, repo_name, repo_url, doc_url, pages):
         method_calls = python_match(repo_name, doc_examples, functions, classes)
     elif EXTENSION == ".java":
         method_calls = java_match(repo_name, doc_examples, functions, classes)
+    elif EXTENSION == ".js":
+        method_calls = javascript_match(repo_name, doc_examples, functions, classes)
 
     example_count = len(method_calls)
-    classes_count = 0
+    seen_classes = set()
     for examples in method_calls:
         example = examples[1].split(".")
         if example[0] in classes:
-            classes_count += 1
+            seen_classes.add(example[0])
 
-    return example_count, len(functions), classes_count, len(classes)
+    return example_count, len(functions), len(seen_classes), len(classes)
