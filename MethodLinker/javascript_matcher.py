@@ -123,5 +123,6 @@ def javascript_match(repo_name, examples, functions, classes):
                         writer.writerow([example, call,
                                          "\n".join(linked_methods),
                                          "\n".join(src_files), "False"])
-                    writer.writerow([example, call, "N/A", "N/A", "N/A"])
+                    else:
+                        writer.writerow([example, call, "N/A", "N/A", "N/A"])
     return method_calls
