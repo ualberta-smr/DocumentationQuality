@@ -31,7 +31,8 @@ def link_code_examples_and_paragraphs(code_examples, paragraphs, link_file):
             # exclude code/pre that is inline a (p)aragraph
             if example.parent.name != "p":
                 code = example
-                # Look for the closest parent with siblings of tag "p" or we reach a containing div
+                # Look for the closest parent with siblings of tag "p"
+                # or we reach a containing div
                 potential = False
                 within_section = True
                 while within_section:
@@ -40,24 +41,32 @@ def link_code_examples_and_paragraphs(code_examples, paragraphs, link_file):
                             if child.name == "p":
                                 potential = True
                                 break
-                            if child.name and re.match(re.compile("h[0-6]"), child.name):
+                            if child.name and re.match(re.compile("h[0-6]"),
+                                                       child.name):
                                 within_section = False
                         if potential:
                             break
                     example = example.parent
 
-                # Find the paragraph that is right above the code example not crossing a header
+                # Find the paragraph that is right above the code example
+                # not crossing a header
                 paragraph = None
                 for child in example.parent.children:
-                    # If the current child is a header then any potential paragraph previously should not be relevant
-                    if child.name and re.match(re.compile("h[0-6]"), child.name):
+                    # If the current child is a header then any potential
+                    # paragraph previously should not be relevant
+                    if child.name and re.match(re.compile("h[0-6]"),
+                                               child.name):
                         paragraph = None
-                    elif child.name == "p" and child.get_text() and child.get_text().count(" ") > 2:
-                        for i, ratio in enumerate(list(map(functools.partial(fuzzy_compare, child.get_text().strip()), paragraphs))):
+                    elif child.name == "p" and child.get_text() and \
+                            child.get_text().count(" ") > 2:
+                        for i, ratio in enumerate(list(map(
+                                functools.partial(fuzzy_compare,
+                                                  child.get_text().strip()),
+                                paragraphs))):
                             if ratio >= 95:
                                 paragraph = paragraphs[i]
-                    # If we reach the code example then break, since according to our heuristic,
-                    # explanations are not below examples
+                    # If we reach the code example then break, since according
+                    # to our heuristic, explanations are not below examples
                     if example == child:
                         break
                 if paragraph is not None:
@@ -72,8 +81,10 @@ def link_tasks(page):
         soup = BeautifulSoup(content, "html.parser")
         code_examples = soup.find_all("code")
         pre_examples = soup.find_all("pre")
-        with open(paragraph_file, "r", encoding="utf-8", newline="") as paragraphs:
-            paragraphs = list(paragraph[0] for paragraph in list(csv.reader(paragraphs)))
+        with open(paragraph_file, "r", encoding="utf-8",
+                  newline="") as paragraphs:
+            paragraphs = list(
+                paragraph[0] for paragraph in list(csv.reader(paragraphs)))
             potential_links = util.make_filename_from_url(page, "links_pot")
             # Taken from: https://stackoverflow.com/questions/10840533/most-pythonic-way-to-delete-a-file-which-may-not-exist
             # Answer by User Matt, by Henry Tang, at 10:56 am MDT
@@ -82,11 +93,16 @@ def link_tasks(page):
             except OSError as e:
                 if e.errno != errno.ENOENT:
                     raise
-            link_code_examples_and_paragraphs(code_examples, paragraphs, potential_links)
-            link_code_examples_and_paragraphs(pre_examples, paragraphs, potential_links)
+            link_code_examples_and_paragraphs(code_examples, paragraphs,
+                                              potential_links)
+            link_code_examples_and_paragraphs(pre_examples, paragraphs,
+                                              potential_links)
         # Remove duplicates
         if os.stat(potential_links).st_size != 0:
-            with open(potential_links, "r", encoding="utf-8", newline="") as potential, open(util.make_filename_from_url(page, "links"), "w", encoding="utf-8", newline="") as final:
+            with open(potential_links, "r", encoding="utf-8",
+                      newline="") as potential, \
+                    open(util.make_filename_from_url(page, "links"), "w",
+                         encoding="utf-8", newline="") as final:
                 pot_reader = csv.reader(potential)
                 link_writer = csv.writer(final)
                 link_writer.writerow(["Paragraph", "Example"])

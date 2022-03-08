@@ -45,7 +45,8 @@ def get_paragraphs_and_tasks(paragraphs, task_file):
                     extracted = extracted.replace("\r\n", "\n")
                     extracted = re.sub(tt, "", extracted)
                     # Remove the trailing comma
-                    writer.writerow([paragraph.get_text().strip(), extracted[:-1]])
+                    writer.writerow(
+                        [paragraph.get_text().strip(), extracted[:-1]])
     if os.stat(task_file).st_size == 0:
         os.remove(task_file)
 
