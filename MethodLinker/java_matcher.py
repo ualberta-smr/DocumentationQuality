@@ -12,27 +12,40 @@ def find_java_arguments(source_file):
                 if type(file_item) is javalang.tree.ClassDeclaration:
                     for method in file_item.body:
                         if type(method) is javalang.tree.ConstructorDeclaration:
-                            functions.append((file_item.name, len(method.parameters)))
+                            functions.append(
+                                (file_item.name, len(method.parameters)))
                         if type(method) is javalang.tree.MethodDeclaration:
                             if len(method.modifiers) > 0:
                                 for modifier in method.modifiers:
                                     if modifier == "public":
-                                        # NOTE: It may not be enough to get the number of parameters, may need to get type as well
-                                        # so when we try to match documentation examples we can check type of argument in doc example with type of parameter
+                                        # NOTE: It may not be enough to get the
+                                        # number of parameters, may need to get
+                                        # type as well. So when we try to match
+                                        # documentation examples we can check
+                                        # type of argument in doc example with
+                                        # type of parameter:
                                         # method.parameters[0].type.name
-                                        functions.append((file_item.name + "." + method.name, len(method.parameters)))
+                                        functions.append(
+                                            (file_item.name + "."
+                                             + method.name,
+                                             len(method.parameters)))
                                         break
         except Exception as e:
             pass
-            # print(e.description + " line " + str(e.at.position.line) + ", position" + str(e.at.position.column) + " " + source_file)
+            # print(e.description + " line " +
+            #       str(e.at.position.line) + ", position" +
+            #       str(e.at.position.column) + " " + source_file)
     return functions
 
 
 def java_match(repo_name, examples, functions, classes):
     method_calls = set()
-    with open("results/" + repo_name + ".csv", "w", encoding="utf-8", newline="") as out:
+    with open("results/" + repo_name + ".csv", "w", encoding="utf-8",
+              newline="") as out:
         writer = csv.writer(out, quoting=csv.QUOTE_MINIMAL)
-        writer.writerow(["Example", "Extracted Function", "Linked Function", "Source File", "Linked"])
+        writer.writerow(
+            ["Example", "Extracted Function", "Linked Function", "Source File",
+             "Linked"])
         call_regex = re.compile(r"(?:\w+\.)?\w+(?=\()")
         for ex in examples:
             example = ex[0]
@@ -50,7 +63,8 @@ def java_match(repo_name, examples, functions, classes):
                         potential_classes = set()
                         for key, _ in functions.items():
                             key_split = key.split(".")
-                            if len(key_split) > 1 and method_call == key_split[1]:
+                            if len(key_split) > 1 and \
+                                    method_call == key_split[1]:
                                 potential_classes.add(key_split[0])
                         potential_methods = set()
                         for cls in potential_classes:
@@ -65,14 +79,19 @@ def java_match(repo_name, examples, functions, classes):
                 else:
                     func_def = functions[potential_method]
                 if func_def:
-                    function_calls = re.findall(re.compile(r"%s\([a-zA-Z_:.,/\\ =(){}\'\"]*?\)" % call.replace(".", "\.")), example)
+                    function_calls = re.findall(re.compile(
+                        r"%s\([a-zA-Z_:.,/\\ =(){}\'\"]*?\)"
+                        % call.replace(".", "\.")), example)
                     for function_call in function_calls:
                         num_args = len(function_call.split(", "))
                         if num_args in func_def["req_args"]:
-                            method_calls.add((func_def["source_file"], potential_method))
-                            writer.writerow([example, call, potential_method, func_def["source_file"], "True"])
+                            method_calls.add(
+                                (func_def["source_file"], potential_method))
+                            writer.writerow([example, call, potential_method,
+                                             func_def["source_file"], "True"])
                         else:
-                            writer.writerow([example, call, potential_method, func_def["source_file"], "False"])
+                            writer.writerow([example, call, potential_method,
+                                             func_def["source_file"], "False"])
                 else:
                     if multiple_potential_methods:
                         linked_methods = []
@@ -86,7 +105,11 @@ def java_match(repo_name, examples, functions, classes):
                     else:
                         potential_class = call.split(".")[-1]
                         if potential_class in classes:
-                            writer.writerow([example, potential_class, potential_class, classes[potential_class]["source_file"], "True"])
+                            writer.writerow(
+                                [example, potential_class, potential_class,
+                                 classes[potential_class]["source_file"],
+                                 "True"])
                         else:
-                            writer.writerow([example, call, "N/A", "N/A", "N/A"])
+                            writer.writerow(
+                                [example, call, "N/A", "N/A", "N/A"])
     return method_calls

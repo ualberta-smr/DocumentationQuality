@@ -40,6 +40,7 @@ def find_javascript_arguments(source_file):
     with open(preprocessed_filename, "r", encoding="utf-8") as f:
         try:
             tree = esprima.parse(f.read())
+            private_function = re.compile("^_(?!_)")
             for item in tree.body:
                 if type(item) is esprima.nodes.ExpressionStatement or \
                         type(item) is esprima.nodes.AsyncFunctionExpression:
@@ -47,14 +48,14 @@ def find_javascript_arguments(source_file):
                     right = item.expression.right
                     if type(right) is esprima.nodes.FunctionExpression:
                         if left.property.name != "exports" and \
-                                not left.object.name.startswith("_"):
+                                not re.match(private_function, left.object.name):
                             functions.append((
                                              left.object.name + "."
                                              + left.property.name,
                                              len(right.params)))
                 elif type(item) is esprima.nodes.FunctionDeclaration or \
                         type(item) is esprima.nodes.AsyncFunctionDeclaration:
-                    if not item.id.name.startswith("_"):
+                    if not re.match(private_function, item.id.name):
                         functions.append((item.id.name, len(item.params)))
                 elif type(item) is esprima.nodes.ArrowFunctionExpression or \
                         type(item) is esprima.nodes.AsyncArrowFunctionExpression:
