@@ -1,7 +1,5 @@
 import html
 import itertools
-import os
-import pprint
 from shutil import rmtree
 from urllib.request import Request, urlopen
 
