@@ -48,11 +48,15 @@ def find_javascript_arguments(source_file):
                     right = item.expression.right
                     if type(right) is esprima.nodes.FunctionExpression:
                         if left.property.name != "exports" and \
-                                not re.match(private_function, left.object.name):
-                            functions.append((
-                                             left.object.name + "."
-                                             + left.property.name,
-                                             len(right.params)))
+                                not re.match(private_function, left.property.name):
+                            if type(left.object) is esprima.nodes.Identifier:
+                                functions.append((
+                                                 left.object.name + "." + left.property.name,
+                                                 len(right.params)))
+                            else:
+                                functions.append((
+                                                 left.object.object.name + left.object.property.name,
+                                                 len(right.params)))
                 elif type(item) is esprima.nodes.FunctionDeclaration or \
                         type(item) is esprima.nodes.AsyncFunctionDeclaration:
                     if not re.match(private_function, item.id.name):
@@ -62,6 +66,7 @@ def find_javascript_arguments(source_file):
                     print(preprocessed_filename)
                     print("New function type")
         except:
+            print(preprocessed_filename)
             print(traceback.format_exc())
     os.remove(preprocessed_filename)
     return functions
@@ -109,7 +114,7 @@ def javascript_match(repo_name, examples, functions, classes):
                             method_calls.add(
                                 (func_def["source_file"], potential_method))
                             writer.writerow([example, call, potential_method,
-                                 func_def["source_file"], "True"])
+                                             func_def["source_file"], "True"])
                         else:
                             writer.writerow([example, call, potential_method,
                                              func_def["source_file"], "False"])
