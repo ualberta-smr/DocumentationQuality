@@ -1,11 +1,12 @@
 import sys
 import os
 import csv
+import shutil
 
 
 def find_raw_csvs(library_name):
     file_dict = dict()
-    root = os.path.normpath("results/" + library_name)
+    root = os.path.normpath("TaskExtractor/results/" + library_name)
     for file in os.listdir(root):
         # NOTE: This can be hardcoded because we know 100% what the data is
         # Otherwise this is very bad practice. However, we know we need to
@@ -24,7 +25,7 @@ def find_raw_csvs(library_name):
     return file_dict
 
 
-def process(datafiles):
+def process(library_name, datafiles):
     file_dict = {}
     for key, value in datafiles.items():
         task_list, link_list = None, None
@@ -54,15 +55,17 @@ def process(datafiles):
                 paragraph = row[0]
                 if paragraph in file_dict:
                     file_dict[paragraph]["has_example"] = True
-        with open(os.path.normpath("processed/" + key + ".csv"), "w", encoding="utf-8", newline="") as out:
+        processed_file_name = os.path.normpath("TaskExtractor/processed/" + key + ".csv")
+        with open(processed_file_name, "w", encoding="utf-8", newline="") as out:
             writer = csv.writer(out, quoting=csv.QUOTE_MINIMAL)
-            writer.writerow(["library_name", "task", "has_example"])
+            writer.writerow(["library_name", "paragraph", "task", "has_example"])
             for key, value in file_dict.items():
                 for task in value["tasks"]:
-                    writer.writerow([key, task, value["has_example"] if "has_example" in value else False])
+                    writer.writerow([library_name, key, task, value["has_example"] if "has_example" in value else False])
+        shutil.copy(processed_file_name, "Webpages/mysite/overview/data/processed")
 
 
 if __name__ == '__main__':
     library_name = sys.argv[1]
     files = find_raw_csvs(library_name)
-    process(files)
+    process(library_name, files)
