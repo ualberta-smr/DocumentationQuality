@@ -11,11 +11,11 @@ from urllib.request import Request, urlopen
 
 # Extracts paragraphs from the HTML and uses TaskExtractor to extract the tasks
 # Then returns the paragraphs that had extracted tasks
-def extract_tasks(page):
+def extract_tasks(library_name, page):
     req = Request(url=page, headers=util.HEADERS)
     content = html.unescape(urlopen(req).read().decode("utf-8"))
     soup = BeautifulSoup(content, "html.parser")
-    filename = util.make_filename_from_url(page, "tasks")
+    filename = util.make_filename_from_url(library_name, page, "tasks")
     get_paragraphs_and_tasks(soup.find_all("p"), filename)
 
 

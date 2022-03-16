@@ -13,12 +13,12 @@ HEADERS = {
     'Connection': 'keep-alive'}
 
 
-def make_filename_from_url(url, ftype):
+def make_filename_from_url(library_name, url, ftype):
     parse = urlparse(url)
 
     filename = parse.path.split("/")[-1]
     if ".htm" in filename:
         filename = filename.rsplit(".", 1)[0]
     filename = filename + "_" + ftype + ".csv"
-    return os.path.normpath("results/" + parse.hostname + "/" + filename)
+    return os.path.normpath("results/" + library_name + "/" + filename)
 
