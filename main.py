@@ -1,7 +1,7 @@
 import html
 import re
 import os
-
+import mysql.connector
 
 import util
 from TaskExtractor import linker, extractor
@@ -61,17 +61,57 @@ def task_extract_and_link(library_name, url):
 
 def api_methods_examples(language, repo_name, repo_url, doc_url):
     os.chdir("MethodLinker")
-    _, pages = get_webpages(doc_url)
-    example_count, total_methods, classes_count, total_classes = matcher.calculate_ratios(language, repo_name, repo_url, doc_url, pages)
-    print("Methods found:", example_count)
+    pages = get_webpages(doc_url)
+    example_count, total_methods, classes_count, total_classes = matcher.calculate_ratios(
+        language, repo_name, repo_url, doc_url, pages)
+    add_or_update_method_record(repo_name,
+                                {"num_method_examples": example_count,
+                                 "num_methods": total_methods,
+                                 "num_class_examples": classes_count,
+                                 "num_classes": total_classes})
+    print("Methods found w/ examples:", example_count)
     print("Total methods:", total_methods)
-    print("Classes found:", classes_count)
+    print("Classes found w/ examples:", classes_count)
     print("Total classes:", total_classes)
     if total_methods > 0:
         print(example_count / total_methods)
     if total_classes > 0:
         print(classes_count / total_classes)
     os.chdir("..")
+
+
+def add_or_update_method_record(library_name, item_dict):
+    website_db = mysql.connector.connect(
+        host="localhost",
+        user="djangouser",
+        password="password",
+        database="task_data"
+    )
+    cursor = website_db.cursor()
+    column_names = []
+    values = []
+    for key, value in item_dict.items():
+        column_names.append(key)
+        values.append(str(value))
+    query = "SELECT * FROM overview_method WHERE library_name = '" + library_name + "';"
+    cursor.execute(query)
+    result = cursor.fetchall()
+    if result:
+        query = "UPDATE overview_method SET "
+        for i in range(len(column_names)):
+            query += column_names[i] + " = " + values[i] + ", "
+        query = query[:-2] + " WHERE library_name = '" + library_name + "'"
+    else:
+        query = "INSERT INTO overview_method (library_name, "
+        for column in column_names:
+            query += column + ", "
+        query = query[:-2] + ") VALUES ('" + library_name + "' ,"
+        for value in values:
+            query += value + ", "
+        query = query[:-2] + ");"
+    cursor.execute(query)
+    website_db.commit()
+    cursor.close()
 
 
 if __name__ == '__main__':

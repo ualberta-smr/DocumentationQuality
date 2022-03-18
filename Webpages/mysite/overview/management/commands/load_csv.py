@@ -1,4 +1,5 @@
 import csv
+import os
 
 from django.core.management import BaseCommand
 from django.utils import timezone
@@ -9,14 +10,14 @@ from overview.models import Task
 # Author: Sebastian Opałczyński
 # Taken by: Henry Tang at 14:48 MDT
 class Command(BaseCommand):
-    help = "Loads products and product categories from CSV file."
+    help = "Loads task data from CSV file."
 
     def add_arguments(self, parser):
         parser.add_argument("file_path", type=str)
 
     def handle(self, *args, **options):
         start_time = timezone.now()
-        file_path = options["file_path"]
+        file_path = os.path.normpath(options["file_path"])
         with open(file_path, "r", encoding="utf-8", newline="") as csv_file:
             data = csv.reader(csv_file)
             next(data, None)

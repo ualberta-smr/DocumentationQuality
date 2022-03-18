@@ -12,20 +12,22 @@ from MethodLinker.javascript_matcher import *
 from util import HEADERS
 
 EXTENSION = None
-DEFAULT_VALUES = False
+LANGUAGE = None
 
 
 def extension_finder(language):
     language = language.lower().strip()
     global EXTENSION
-    global DEFAULT_VALUES
+    global LANGUAGE
     if language == "python":
-        EXTENSION = ".py"
-        DEFAULT_VALUES = True
+        EXTENSION = re.compile(r"\.py$|\.pyi$")
+        LANGUAGE = "python"
     elif language == "java":
-        EXTENSION = ".java"
+        EXTENSION = re.compile(".java$")
+        LANGUAGE = "java"
     elif language == "javascript":
-        EXTENSION = ".js"
+        EXTENSION = re.compile(".js$")
+        LANGUAGE = "javascript"
 
 
 def get_documentation_examples(doc_url, url):
@@ -77,7 +79,7 @@ def get_source_files(repo_url):
                 src_dir = os.path.normpath(root + "/" + dir_name)
                 break
         for file in files:
-            if re.search(re.compile(EXTENSION + "$"), file) and "test" not in file.lower():
+            if re.search(EXTENSION, file) and "test" not in file.lower():
                 source_files.append(os.path.normpath(root + "/" + file))
         break
     # If we found a src directory, loop through all the files (subdirectory too)
@@ -85,18 +87,18 @@ def get_source_files(repo_url):
         for file in files:
             if "test" in root:
                 break
-            if re.search(re.compile(EXTENSION + "$"), file) and "test" not in file.lower():
+            if re.search(EXTENSION, file) and "test" not in file.lower():
                 source_files.append(os.path.normpath(root + "/" + file))
     return source_files
 
 
 def find_params(source_file):
     functions = []
-    if EXTENSION == ".py":
+    if LANGUAGE == "python":
         functions = find_python_arguments(source_file)
-    elif EXTENSION == ".java":
+    elif LANGUAGE == "java":
         functions = find_java_arguments(source_file)
-    elif EXTENSION == ".js":
+    elif LANGUAGE == "javascript":
         functions = find_javascript_arguments(source_file)
     return functions
 
@@ -104,7 +106,7 @@ def find_params(source_file):
 def get_functions(functions, source_file):
     function_defs = find_params(source_file)
     for function in function_defs:
-        if EXTENSION == ".py":
+        if LANGUAGE == "python":
             functions[function[0]] = {"source_file": source_file,
                                       "req_args": function[1][0],
                                       "opt_args": function[1][1]}
@@ -144,11 +146,11 @@ def calculate_ratios(language, repo_name, repo_url, doc_url, pages):
     # Remove duplicates but retain order
     doc_examples = list(doc_examples for doc_examples, _ in itertools.groupby(doc_examples))
     method_calls = set()
-    if EXTENSION == ".py":
+    if LANGUAGE == "python":
         method_calls = python_match(repo_name, doc_examples, functions, classes)
-    elif EXTENSION == ".java":
+    elif LANGUAGE == "java":
         method_calls = java_match(repo_name, doc_examples, functions, classes)
-    elif EXTENSION == ".js":
+    elif LANGUAGE == "javascript":
         method_calls = javascript_match(repo_name, doc_examples, functions, classes)
 
     example_count = len(method_calls)
