@@ -119,10 +119,10 @@ if __name__ == '__main__':
     # inp = "https://stanfordnlp.github.io/CoreNLP/index.html"
     # task_extract_and_link("CoreNLP", inp)
 
-    # # https://github.com/ijl/orjson
-    # task_extract_and_link("orjson", "http://web.archive.org/web/20210831032333/https://github.com/ijl/orjson")
-    # # https://github.com/stleary/JSON-java
-    # task_extract_and_link("JSON-java", "http://web.archive.org/web/20211017224709/https://github.com/stleary/JSON-java")
+    # https://github.com/ijl/orjson
+    task_extract_and_link("orjson", "http://web.archive.org/web/20210831032333/https://github.com/ijl/orjson")
+    # https://github.com/stleary/JSON-java
+    task_extract_and_link("JSON-java", "http://web.archive.org/web/20211017224709/https://github.com/stleary/JSON-java")
     # task_extract_and_link("CoreNLP", "https://stanfordnlp.github.io/CoreNLP/ner.html")
     # task_extract_and_link("CoreNLP", "https://stanfordnlp.github.io/CoreNLP/cmdline.html")
     # # https://www.nltk.org/api/nltk.parse.html
@@ -131,15 +131,33 @@ if __name__ == '__main__':
     # task_extract_and_link("NLTK", "https://web.archive.org/web/20210725152853/https://www.nltk.org/api/nltk.tag.html")
     # task_extract_and_link("jQuery", "https://api.jquery.com/jQuery.get")
     # task_extract_and_link("reactjs", "https://reactjs.org/docs/components-and-props.html")
-    task_extract_and_link("requests",
-                          "https://docs.python-requests.org/en/latest/")
+    # task_extract_and_link("requests", "https://docs.python-requests.org/en/latest/")
 
-    # api_methods_examples("python", "orjson", "https://github.com/ijl/orjson.git", "https://github.com/ijl/orjson/blob/master/README.md")
-    # api_methods_examples("python", "nltk", "https://github.com/nltk/nltk.git", "https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.html")
-    api_methods_examples("python", "requests",
-                         "https://github.com/psf/requests.git",
-                         "https://docs.python-requests.org/en/latest/")
-    # api_methods_examples("java", "json-java", "https://github.com/stleary/JSON-java.git", "https://github.com/stleary/JSON-java")
-    # api_methods_examples("java", "stanford-nlp", "https://github.com/stanfordnlp/CoreNLP.git", "https://stanfordnlp.github.io/CoreNLP")
-    # api_methods_examples("javascript", "qunit", "https://github.com/qunitjs/qunit.git", "https://api.qunitjs.com/")
-    # api_methods_examples("javascript", "jBinary", "https://github.com/jDataView/jBinary.git", "https://github.com/jDataView/jBinary/wiki")
+    # api_methods_examples("python",
+    #                      "orjson",
+    #                      "https://github.com/ijl/orjson.git",
+    #                      "https://github.com/ijl/orjson/blob/master/README.md")
+    # api_methods_examples("python",
+    #                      "nltk",
+    #                      "https://github.com/nltk/nltk.git",
+    #                      "https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.html")
+    # api_methods_examples("python",
+    #                      "requests",
+    #                      "https://github.com/psf/requests.git",
+    #                      "https://docs.python-requests.org/en/latest/")
+    # api_methods_examples("java",
+    #                      "json-java",
+    #                      "https://github.com/stleary/JSON-java.git",
+    #                      "https://github.com/stleary/JSON-java")
+    # api_methods_examples("java",
+    #                      "stanford-nlp",
+    #                      "https://github.com/stanfordnlp/CoreNLP.git",
+    #                      "https://stanfordnlp.github.io/CoreNLP")
+    # api_methods_examples("javascript",
+    #                      "qunit",
+    #                      "https://github.com/qunitjs/qunit.git",
+    #                      "https://api.qunitjs.com/")
+    # api_methods_examples("javascript",
+    #                      "jBinary",
+    #                      "https://github.com/jDataView/jBinary.git",
+    #                      "https://github.com/jDataView/jBinary/wiki")
