@@ -1,38 +1,227 @@
+{% load static %}
 <!doctype html>
 <html lang="en">
-  <head>
+<head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+          crossorigin="anonymous">
+    <!-- style.css -->
+    {% load static %}
+    <link rel="stylesheet" type="text/css"
+          href="{% static 'overview/styles.css' %}">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+            crossorigin="anonymous"></script>
+
+    {% load overview_extras %}
 
     <title>{{ library_name }}</title>
-  </head>
-  <body>
-    <h1>{{ library_name }}</h1>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-    <div class="container">
+</head>
+<body>
+<div class="container">
+    <h1 class="title-container">{{ library_name }}</h1>
+    <div class="metrics-container">
+        General Rating
         <div>
-            <p>List of Tasks</p>
-            <div class="d-flex justify-content-between align-items-center">
-               <ul>
-                    {% for task in task_list %}
-                        <li><a href="/polls/{{ question.id }}/">{{ task.task }}</a></li>
-                    {% endfor %}
-                </ul>
+            {% with ''|center:general_rating as range %}
+                {% for _ in range %}
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16"
+                         height="16"
+                            {# note the stroke and fill classes missing #}
+                         fill="currentColor" class="bi bi-star-fill"
+                         viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"></path>
+                    </svg>
+                {% endfor %}
+            {% endwith %}
+            {% with 5|subtract:general_rating as range %}
+                {% for _ in range %}
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16"
+                         height="16"
+                            {# note the stroke and fill classes here #}
+                         stroke="black"
+                         fill="white" class="bi bi-star-fill"
+                         viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"></path>
+                    </svg>
+                {% endfor %}
+            {% endwith %}
+        </div>
+    </div>
+    <div class="metrics-container">
+        {{ license }} License
+    </div>
+    <div class="metrics-container">
+        <div class="row">
+            <div class="col">
+                API methods with documentation code examples
+            </div>
+            <div class="col metrics-child">
+                {{ example_ratios.method_ratio }}
             </div>
         </div>
-
-        <div>
-            <p>API methods and classes in code examples</p>
-            <ul style="list-style-type:none;">
-                <li>{{ example_ratios.method_ratio }}</li>
-                <li>{{ example_ratios.class_ratio }}</li>
+        <div class="row">
+            <div class="col">
+                API classes with documentation code examples
+            </div>
+            <div class="col metrics-child">
+                {{ example_ratios.class_ratio }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <span data-bs-toggle="tooltip" data-bs-placement="top"
+                      title="Tooltip on top">
+                    Average readability of documentation text
+                </span>
+            </div>
+            <div class="col metrics-child">
+                {% with ''|center:text_readability as range %}
+                    {% for _ in range %}
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16"
+                             height="16"
+                                {# note the stroke and fill classes missing #}
+                             fill="currentColor" class="bi bi-star-fill"
+                             viewBox="0 0 16 16">
+                            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"></path>
+                        </svg>
+                    {% endfor %}
+                {% endwith %}
+                {% with 5|subtract:text_readability as range %}
+                    {% for _ in range %}
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16"
+                             height="16"
+                                {# note the stroke and fill classes here #}
+                             stroke="black"
+                             fill="white" class="bi bi-star-fill"
+                             viewBox="0 0 16 16">
+                            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"></path>
+                        </svg>
+                    {% endfor %}
+                {% endwith %}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                Average readability of code examples
+            </div>
+            <div class="col metrics-child">
+                {% with ''|center:code_readability as range %}
+                    {% for _ in range %}
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16"
+                             height="16"
+                                {# note the stroke and fill classes missing #}
+                             fill="currentColor" class="bi bi-star-fill"
+                             viewBox="0 0 16 16">
+                            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"></path>
+                        </svg>
+                    {% endfor %}
+                {% endwith %}
+                {% with 5|subtract:code_readability as range %}
+                    {% for _ in range %}
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16"
+                             height="16"
+                                {# note the stroke and fill classes here #}
+                             stroke="black"
+                             fill="white" class="bi bi-star-fill"
+                             viewBox="0 0 16 16">
+                            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"></path>
+                        </svg>
+                    {% endfor %}
+                {% endwith %}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                Documentation/Source code consistency
+            </div>
+            <div class="col metrics-child">
+                {% with ''|center:consistency as range %}
+                    {% for _ in range %}
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16"
+                             height="16"
+                                {# note the stroke and fill classes missing #}
+                             fill="currentColor" class="bi bi-star-fill"
+                             viewBox="0 0 16 16">
+                            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"></path>
+                        </svg>
+                    {% endfor %}
+                {% endwith %}
+                {% with 5|subtract:consistency as range %}
+                    {% for _ in range %}
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16"
+                             height="16"
+                                {# note the stroke and fill classes here #}
+                             stroke="black"
+                             fill="white" class="bi bi-star-fill"
+                             viewBox="0 0 16 16">
+                            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"></path>
+                        </svg>
+                    {% endfor %}
+                {% endwith %}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                Navigation Score
+            </div>
+            <div class="col metrics-child">
+                {% with ''|center:navigation as range %}
+                    {% for _ in range %}
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16"
+                             height="16"
+                                {# note the stroke and fill classes missing #}
+                             fill="currentColor" class="bi bi-star-fill"
+                             viewBox="0 0 16 16">
+                            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"></path>
+                        </svg>
+                    {% endfor %}
+                {% endwith %}
+                {% with 5|subtract:navigation as range %}
+                    {% for _ in range %}
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16"
+                             height="16"
+                                {# note the stroke and fill classes here #}
+                             stroke="black"
+                             fill="white" class="bi bi-star-fill"
+                             viewBox="0 0 16 16">
+                            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"></path>
+                        </svg>
+                    {% endfor %}
+                {% endwith %}
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="metrics-container">
+        <p>List of Tasks</p>
+        <div class="d-flex justify-content-between align-items-center">
+            <ul>
+                {% for task in task_list %}
+                    <li><a href="/polls/{{ question.id }}/">{{ task.task }}</a>
+                    </li>
+                {% endfor %}
             </ul>
         </div>
-
     </div>
-  </body>
+
+    <script>
+        {# Needs to be placed at the end to activate all the tooltips above#}
+        {# Taken from: https://getbootstrap.com/docs/5.0/components/tooltips/#examples #}
+        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+            return new bootstrap.Tooltip(tooltipTriggerEl)
+        })
+    </script>
+
+</div>
+</body>
 </html>

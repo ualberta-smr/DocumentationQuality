@@ -63,10 +63,17 @@ def preprocess(text):
 
 
 def call_extractor(inp):
-    inp = inp.replace("’", "'")
+    # This ensures the input is in UTF-8 encoding
+    inp = inp.encode("utf-8").decode("utf-8")
+    # However, since this uses the running OS to run the jar, the result
+    # from stdout may not be utf-8, in fact it's probably ISO-8859-1
     result = subprocess.run(["java",
                              "-jar",
                              "StringToTasks.jar",
-                             inp.encode("utf-8").decode("utf-8")],
+                             inp],
                             stdout=subprocess.PIPE)
-    return result.stdout.decode("utf-8")
+    # NOTE: As soon as every machine starts using UTF-8 inherently, we can
+    # change this decoding to be "utf-8" instead of "ISO-8859-1" which is
+    # assumed to be the most widely used encoding on Windows and Unix systems.
+    # https://en.wikipedia.org/wiki/ISO/IEC_8859-1
+    return result.stdout.decode("ISO-8859-1")
