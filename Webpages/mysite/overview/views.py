@@ -1,15 +1,15 @@
 from django.shortcuts import render
 from django.db.models import Count
-from .models import Task, Method
+from .models import Task, Library
 
 
 def _get_task_list(library_name):
     return Task.objects.filter(library_name=library_name).values(
-        "task").annotate(dcount=Count("task")).order_by("-dcount", "task")[:5]
+        "task", "has_example", "example_page").annotate(dcount=Count("task")).order_by("-dcount", "task")[:20]
 
 
 def _get_example_ratios(library_name):
-    library_data = Method.objects.filter(library_name=library_name).get()
+    library_data = Library.objects.filter(library_name=library_name).get()
     ratios = {
         "method_ratio": "Could not calculate method ratio",
         "class_ratio": "Could not calculate class ratio"

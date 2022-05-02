@@ -79,8 +79,10 @@ def java_match(repo_name, examples, functions, classes):
                 else:
                     func_def = functions[potential_method]
                 if func_def:
+                    # TODO: Will not catch foo(bar(0), bar(1)), will only get
+                    # foo(bar(0)
                     function_calls = re.findall(re.compile(
-                        r"%s\([a-zA-Z_:.,/\\ =(){}\'\"]*?\)"
+                        r"%s\([a-zA-Z0-9_:.,/\\ =(){}\'\"]*?\)"
                         % call.replace(".", "\.")), example)
                     for function_call in function_calls:
                         num_args = len(function_call.split(", "))

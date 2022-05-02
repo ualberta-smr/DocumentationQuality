@@ -59,28 +59,7 @@ def task_extract_and_link(library_name, url):
     os.chdir("..")
 
 
-def api_methods_examples(language, repo_name, repo_url, doc_url):
-    os.chdir("MethodLinker")
-    pages = get_webpages(doc_url)
-    example_count, total_methods, classes_count, total_classes = matcher.calculate_ratios(
-        language, repo_name, repo_url, doc_url, pages)
-    add_or_update_method_record(repo_name,
-                                {"num_method_examples": example_count,
-                                 "num_methods": total_methods,
-                                 "num_class_examples": classes_count,
-                                 "num_classes": total_classes})
-    print("Methods found w/ examples:", example_count)
-    print("Total methods:", total_methods)
-    print("Classes found w/ examples:", classes_count)
-    print("Total classes:", total_classes)
-    if total_methods > 0:
-        print(example_count / total_methods)
-    if total_classes > 0:
-        print(classes_count / total_classes)
-    os.chdir("..")
-
-
-def add_or_update_method_record(library_name, item_dict):
+def _add_or_update_method_record(item_dict):
     website_db = mysql.connector.connect(
         host="localhost",
         user="djangouser",
@@ -93,19 +72,19 @@ def add_or_update_method_record(library_name, item_dict):
     for key, value in item_dict.items():
         column_names.append(key)
         values.append(str(value))
-    query = "SELECT * FROM overview_method WHERE library_name = '" + library_name + "';"
+    query = "SELECT * FROM overview_library WHERE library_name = " + item_dict["library_name"] + ";"
     cursor.execute(query)
     result = cursor.fetchall()
     if result:
-        query = "UPDATE overview_method SET "
+        query = "UPDATE overview_library SET "
         for i in range(len(column_names)):
             query += column_names[i] + " = " + values[i] + ", "
-        query = query[:-2] + " WHERE library_name = '" + library_name + "'"
+        query = query[:-2] + " WHERE library_name = '" + item_dict["library_name"] + "'"
     else:
-        query = "INSERT INTO overview_method (library_name, "
+        query = "INSERT INTO overview_library ("
         for column in column_names:
             query += column + ", "
-        query = query[:-2] + ") VALUES ('" + library_name + "' ,"
+        query = query[:-2] + ") VALUES ("
         for value in values:
             query += value + ", "
         query = query[:-2] + ");"
@@ -114,15 +93,48 @@ def add_or_update_method_record(library_name, item_dict):
     cursor.close()
 
 
+def _get_description(repo_name, doc_url):
+    req = Request(url=doc_url, headers=util.HEADERS)
+    content = html.unescape(urlopen(req).read().decode("utf-8"))
+    soup = BeautifulSoup(content, "html.parser")
+    for p in soup.find_all(re.compile("^h[1-6]$")):
+        print(p)
+
+
+def api_methods_examples(language, repo_name, repo_url, doc_url):
+    os.chdir("MethodLinker")
+    pages = get_webpages(doc_url)
+    example_count, total_methods, classes_count, total_classes = matcher.calculate_ratios(
+        language, repo_name, repo_url, doc_url, pages)
+    _add_or_update_method_record(
+        {"library_name": "'" + repo_name + "'",
+         # "description": _get_description(repo_name, doc_url),
+         "gh_url": "'" + repo_url + "'",
+         "doc_url": "'" + doc_url + "'",
+         "num_method_examples": example_count,
+         "num_methods": total_methods,
+         "num_class_examples": classes_count,
+         "num_classes": total_classes})
+    print("Methods found w/ examples:", example_count)
+    print("Total methods:", total_methods)
+    print("Classes found w/ examples:", classes_count)
+    print("Total classes:", total_classes)
+    if total_methods > 0:
+        print(example_count / total_methods)
+    if total_classes > 0:
+        print(classes_count / total_classes)
+    os.chdir("..")
+
+
 if __name__ == '__main__':
     # Extract tasks and link code examples
     # inp = "https://stanfordnlp.github.io/CoreNLP/index.html"
     # task_extract_and_link("CoreNLP", inp)
 
-    # https://github.com/ijl/orjson
-    task_extract_and_link("orjson", "http://web.archive.org/web/20210831032333/https://github.com/ijl/orjson")
-    # https://github.com/stleary/JSON-java
-    task_extract_and_link("JSON-java", "http://web.archive.org/web/20211017224709/https://github.com/stleary/JSON-java")
+    # # https://github.com/ijl/orjson
+    # task_extract_and_link("orjson", "http://web.archive.org/web/20210831032333/https://github.com/ijl/orjson")
+    # # https://github.com/stleary/JSON-java
+    # task_extract_and_link("JSON-java", "http://web.archive.org/web/20211017224709/https://github.com/stleary/JSON-java")
     # task_extract_and_link("CoreNLP", "https://stanfordnlp.github.io/CoreNLP/ner.html")
     # task_extract_and_link("CoreNLP", "https://stanfordnlp.github.io/CoreNLP/cmdline.html")
     # # https://www.nltk.org/api/nltk.parse.html
@@ -149,10 +161,10 @@ if __name__ == '__main__':
     #                      "json-java",
     #                      "https://github.com/stleary/JSON-java.git",
     #                      "https://github.com/stleary/JSON-java")
-    # api_methods_examples("java",
-    #                      "stanford-nlp",
-    #                      "https://github.com/stanfordnlp/CoreNLP.git",
-    #                      "https://stanfordnlp.github.io/CoreNLP")
+    api_methods_examples("java",
+                         "stanford-nlp",
+                         "https://github.com/stanfordnlp/CoreNLP.git",
+                         "https://stanfordnlp.github.io/CoreNLP")
     # api_methods_examples("javascript",
     #                      "qunit",
     #                      "https://github.com/qunitjs/qunit.git",

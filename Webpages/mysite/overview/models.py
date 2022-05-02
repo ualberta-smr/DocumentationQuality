@@ -9,13 +9,16 @@ class Task(models.Model):
     paragraph = models.CharField(max_length=5000)
     task = models.CharField(max_length=100)
     has_example = models.BooleanField("has example")
+    example_page = models.CharField(max_length=100)
 
     def __str__(self):
         return self.task
 
 
-class Method(models.Model):
+class Library(models.Model):
     library_name = models.CharField(max_length=50)
+    gh_url = models.CharField(max_length=100)
+    doc_url = models.CharField(max_length=100)
     num_methods = models.IntegerField("number of methods")
     num_classes = models.IntegerField("number of classes")
     num_method_examples = models.IntegerField(

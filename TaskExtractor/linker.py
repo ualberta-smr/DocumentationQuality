@@ -107,11 +107,12 @@ def link_tasks(library_name, page):
                          encoding="utf-8", newline="") as final:
                 pot_reader = csv.reader(potential)
                 link_writer = csv.writer(final)
-                link_writer.writerow(["Paragraph", "Example"])
+                link_writer.writerow(["Paragraph", "Example", "Page"])
                 seen = set()
                 for line in pot_reader:
                     if line[1] not in seen:
                         seen.add(line[1])
+                        line.append(page)
                         link_writer.writerow(line)
         else:
             print("No potential example links found")

@@ -27,7 +27,8 @@ class Command(BaseCommand):
                     library_name=row[0],
                     paragraph=row[1],
                     task=row[2],
-                    has_example=row[3]
+                    has_example=row[3],
+                    example_page=row[4]
                 ))
                 if len(tasks) > 500:
                     Task.objects.bulk_create(tasks)

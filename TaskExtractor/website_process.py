@@ -55,13 +55,14 @@ def process(library_name, datafiles):
                 paragraph = row[0]
                 if paragraph in file_dict:
                     file_dict[paragraph]["has_example"] = True
+                    file_dict[paragraph]["example_page"] = row[-1]
         processed_file_name = os.path.normpath("TaskExtractor/processed/" + key + ".csv")
         with open(processed_file_name, "w", encoding="utf-8", newline="") as out:
             writer = csv.writer(out, quoting=csv.QUOTE_MINIMAL)
-            writer.writerow(["library_name", "paragraph", "task", "has_example"])
+            writer.writerow(["library_name", "paragraph", "task", "has_example", "example_page"])
             for key, value in file_dict.items():
                 for task in value["tasks"]:
-                    writer.writerow([library_name, key, task, value["has_example"] if "has_example" in value else False])
+                    writer.writerow([library_name, key, task, value["has_example"] if "has_example" in value else False, value["example_page"] if "example_page" in value else ""])
         shutil.copy(processed_file_name, "Webpages/mysite/overview/data/processed")
 
 
