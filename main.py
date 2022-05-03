@@ -39,21 +39,21 @@ def get_webpages(doc_home):
     return pages
 
 
-def task_extract_and_link(library_name, url):
+def task_extract_and_link(library_name, url, domain):
     pages = get_webpages(url)
     os.chdir("TaskExtractor")
     link_directory = os.path.normpath("results/" + library_name)
     if not os.path.exists(link_directory):
         os.mkdir(link_directory)
     # If checking single page, then comment out for loop
-    for page in pages:
-        try:
-            extractor.extract_tasks(library_name, page)
-            linker.link_tasks(library_name, page)
-        except HTTPError:
-            pass
-    # extractor.extract_tasks(library_name, url)
-    # linker.link_tasks(library_name, url)
+    # for page in pages:
+    #     try:
+    #         extractor.extract_tasks(library_name, page, domain)
+    #         linker.link_tasks(library_name, page)
+    #     except HTTPError:
+    #         pass
+    extractor.extract_tasks(library_name, url, domain)
+    linker.link_tasks(library_name, url)
     if not os.listdir(link_directory):
         os.rmdir(link_directory)
     os.chdir("..")
@@ -131,10 +131,10 @@ if __name__ == '__main__':
     # inp = "https://stanfordnlp.github.io/CoreNLP/index.html"
     # task_extract_and_link("CoreNLP", inp)
 
-    # # https://github.com/ijl/orjson
-    # task_extract_and_link("orjson", "http://web.archive.org/web/20210831032333/https://github.com/ijl/orjson")
-    # # https://github.com/stleary/JSON-java
-    # task_extract_and_link("JSON-java", "http://web.archive.org/web/20211017224709/https://github.com/stleary/JSON-java")
+    # https://github.com/ijl/orjson
+    task_extract_and_link("orjson", "http://web.archive.org/web/20210831032333/https://github.com/ijl/orjson", "json")
+    # https://github.com/stleary/JSON-java
+    task_extract_and_link("JSON-java", "http://web.archive.org/web/20211017224709/https://github.com/stleary/JSON-java", "json")
     # task_extract_and_link("CoreNLP", "https://stanfordnlp.github.io/CoreNLP/ner.html")
     # task_extract_and_link("CoreNLP", "https://stanfordnlp.github.io/CoreNLP/cmdline.html")
     # # https://www.nltk.org/api/nltk.parse.html
@@ -161,10 +161,10 @@ if __name__ == '__main__':
     #                      "json-java",
     #                      "https://github.com/stleary/JSON-java.git",
     #                      "https://github.com/stleary/JSON-java")
-    api_methods_examples("java",
-                         "stanford-nlp",
-                         "https://github.com/stanfordnlp/CoreNLP.git",
-                         "https://stanfordnlp.github.io/CoreNLP")
+    # api_methods_examples("java",
+    #                      "stanford-nlp",
+    #                      "https://github.com/stanfordnlp/CoreNLP.git",
+    #                      "https://stanfordnlp.github.io/CoreNLP")
     # api_methods_examples("javascript",
     #                      "qunit",
     #                      "https://github.com/qunitjs/qunit.git",

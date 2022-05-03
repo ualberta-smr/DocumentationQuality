@@ -7,16 +7,32 @@ import os
 import util
 from bs4 import BeautifulSoup
 from urllib.request import Request, urlopen
+from TaskExtractor.filters.json_filter import json_filter
 
 
 # Extracts paragraphs from the HTML and uses TaskExtractor to extract the tasks
 # Then returns the paragraphs that had extracted tasks
-def extract_tasks(library_name, page):
+def extract_tasks(library_name, page, domain):
     req = Request(url=page, headers=util.HEADERS)
     content = html.unescape(urlopen(req).read().decode("utf-8"))
     soup = BeautifulSoup(content, "html.parser")
     filename = util.make_filename_from_url(library_name, page, "tasks")
-    get_paragraphs_and_tasks(soup.find_all("p"), filename)
+    domain_filter = _get_domain_filter(domain)
+    get_paragraphs_and_tasks(soup.find_all("p"), filename, domain_filter)
+
+
+def _get_domain_filter(domain):
+    domain_filter = None
+    if domain == "json":
+        domain_filter = json_filter
+    # elif domain == "nlp":
+    #     pass
+    #     filter = nlp_filter
+    # elif domain == "jquery":
+    #     filter = jquery_filter
+    # elif domain == "react":
+    #     filter = react_filter
+    return domain_filter
 
 
 # Unused but provided to write to file all paragraphs extracted from page
@@ -32,7 +48,7 @@ def extract_paragraphs(page, out_file):
                 writer.writerow([paragraph.text().strip()])
 
 
-def get_paragraphs_and_tasks(paragraphs, task_file):
+def get_paragraphs_and_tasks(paragraphs, task_file, domain_filter):
     tt = re.compile(r"</?tt>")
     with open(task_file, "w", encoding="utf-8", newline="") as out_file:
         writer = csv.writer(out_file, quoting=csv.QUOTE_ALL)
@@ -44,9 +60,10 @@ def get_paragraphs_and_tasks(paragraphs, task_file):
                 if extracted:
                     extracted = extracted.replace("\r\n", "\n")
                     extracted = re.sub(tt, "", extracted)
-                    # Remove the trailing comma
-                    writer.writerow(
-                        [paragraph.get_text().strip(), extracted[:-1]])
+                    extracted = domain_filter(extracted)
+                    if extracted:
+                        writer.writerow(
+                            [paragraph.get_text().strip(), extracted])
     if os.stat(task_file).st_size == 0:
         os.remove(task_file)
 
