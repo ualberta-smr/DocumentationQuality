@@ -8,6 +8,7 @@ import util
 from bs4 import BeautifulSoup
 from urllib.request import Request, urlopen
 from TaskExtractor.filters.json_filter import json_filter
+from TaskExtractor.filters.nlp_filter import nlp_filter
 
 
 # Extracts paragraphs from the HTML and uses TaskExtractor to extract the tasks
@@ -17,22 +18,24 @@ def extract_tasks(library_name, page, domain):
     content = html.unescape(urlopen(req).read().decode("utf-8"))
     soup = BeautifulSoup(content, "html.parser")
     filename = util.make_filename_from_url(library_name, page, "tasks")
-    domain_filter = _get_domain_filter(domain)
-    get_paragraphs_and_tasks(soup.find_all("p"), filename, domain_filter)
+    property_file, domain_filter = _get_domain_specific(domain)
+    get_paragraphs_and_tasks(soup.find_all("p"), filename, property_file, domain_filter)
 
 
-def _get_domain_filter(domain):
+def _get_domain_specific(domain):
+    property_file = None
     domain_filter = None
     if domain == "json":
         domain_filter = json_filter
-    # elif domain == "nlp":
-    #     pass
-    #     filter = nlp_filter
+        property_file = "json.properties"
+    elif domain == "nlp":
+        domain_filter = nlp_filter
+        property_file = "nlp.properties"
     # elif domain == "jquery":
     #     filter = jquery_filter
     # elif domain == "react":
     #     filter = react_filter
-    return domain_filter
+    return property_file, domain_filter
 
 
 # Unused but provided to write to file all paragraphs extracted from page
@@ -48,19 +51,26 @@ def extract_paragraphs(page, out_file):
                 writer.writerow([paragraph.text().strip()])
 
 
-def get_paragraphs_and_tasks(paragraphs, task_file, domain_filter):
+def _clean_results(extracted):
+    extracted = extracted.replace("[", "").replace("]", "")
     tt = re.compile(r"</?tt>")
+    extracted = re.sub(tt, "", extracted)
+    extracted = extracted.replace("\r\n", "\n")
+    extracted = extracted.split("\n")
+    return "\n".join([task.strip() for task in extracted]).strip()
+
+
+def get_paragraphs_and_tasks(paragraphs, task_file, property_file, domain_filter):
     with open(task_file, "w", encoding="utf-8", newline="") as out_file:
         writer = csv.writer(out_file, quoting=csv.QUOTE_ALL)
         writer.writerow(["Paragraph", "Tasks"])
         for paragraph in paragraphs:
             if not paragraph.has_attr("class"):
                 text = preprocess(paragraph.prettify())
-                extracted = call_extractor(text)
+                extracted = call_extractor(text, property_file)
                 if extracted:
-                    extracted = extracted.replace("\r\n", "\n")
-                    extracted = re.sub(tt, "", extracted)
-                    extracted = domain_filter(extracted)
+                    extracted = _clean_results(extracted)
+                    # extracted = domain_filter(extracted)
                     if extracted:
                         writer.writerow(
                             [paragraph.get_text().strip(), extracted])
@@ -79,7 +89,7 @@ def preprocess(text):
     return text
 
 
-def call_extractor(inp):
+def call_extractor(inp, property_file):
     # This ensures the input is in UTF-8 encoding
     inp = inp.encode("utf-8").decode("utf-8")
     # However, since this uses the running OS to run the jar, the result
@@ -87,7 +97,8 @@ def call_extractor(inp):
     result = subprocess.run(["java",
                              "-jar",
                              "StringToTasks.jar",
-                             inp],
+                             inp,
+                             property_file],
                             stdout=subprocess.PIPE)
     # NOTE: As soon as every machine starts using UTF-8 inherently, we can
     # change this decoding to be "utf-8" instead of "ISO-8859-1" which is

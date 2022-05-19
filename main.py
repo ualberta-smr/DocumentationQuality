@@ -30,10 +30,10 @@ def get_webpages(doc_home):
         # not fragment means it does not have a "#"
         # We do not want links with "#" because they're likely redundant
         if parse.hostname is None:
-            if parse.path and not parse.fragment:
+            if parse.path and not parse.fragment and not parse.query:
                 url = re.match(re.compile(".+/"), doc_home)[0] + parse.path
                 pages.append(url)
-        elif parse.hostname == domain:
+        elif parse.hostname == domain and "#" not in href:
             pages.append(href)
     pages = list(dict.fromkeys(pages))
     return pages
@@ -79,7 +79,7 @@ def _add_or_update_method_record(item_dict):
         query = "UPDATE overview_library SET "
         for i in range(len(column_names)):
             query += column_names[i] + " = " + values[i] + ", "
-        query = query[:-2] + " WHERE library_name = '" + item_dict["library_name"] + "'"
+        query = query[:-2] + " WHERE library_name = " + item_dict["library_name"]
     else:
         query = "INSERT INTO overview_library ("
         for column in column_names:
@@ -131,12 +131,12 @@ if __name__ == '__main__':
     # inp = "https://stanfordnlp.github.io/CoreNLP/index.html"
     # task_extract_and_link("CoreNLP", inp)
 
-    # https://github.com/ijl/orjson
-    task_extract_and_link("orjson", "http://web.archive.org/web/20210831032333/https://github.com/ijl/orjson", "json")
-    # https://github.com/stleary/JSON-java
-    task_extract_and_link("JSON-java", "http://web.archive.org/web/20211017224709/https://github.com/stleary/JSON-java", "json")
-    # task_extract_and_link("CoreNLP", "https://stanfordnlp.github.io/CoreNLP/ner.html")
-    # task_extract_and_link("CoreNLP", "https://stanfordnlp.github.io/CoreNLP/cmdline.html")
+    # # https://github.com/ijl/orjson
+    # task_extract_and_link("orjson", "http://web.archive.org/web/20210831032333/https://github.com/ijl/orjson", "json")
+    # # https://github.com/stleary/JSON-java
+    # task_extract_and_link("JSON-java", "http://web.archive.org/web/20211017224709/https://github.com/stleary/JSON-java", "json")
+    # task_extract_and_link("CoreNLP", "https://stanfordnlp.github.io/CoreNLP/ner.html", "nlp")
+    # task_extract_and_link("CoreNLP", "https://stanfordnlp.github.io/CoreNLP/cmdline.html", "nlp")
     # # https://www.nltk.org/api/nltk.parse.html
     # task_extract_and_link("NLTK", "https://web.archive.org/web/20210417122335/https://www.nltk.org/api/nltk.parse.html")
     # # https://www.nltk.org/api/nltk.tag.html
@@ -145,10 +145,10 @@ if __name__ == '__main__':
     # task_extract_and_link("reactjs", "https://reactjs.org/docs/components-and-props.html")
     # task_extract_and_link("requests", "https://docs.python-requests.org/en/latest/")
 
-    # api_methods_examples("python",
-    #                      "orjson",
-    #                      "https://github.com/ijl/orjson.git",
-    #                      "https://github.com/ijl/orjson/blob/master/README.md")
+    api_methods_examples("python",
+                         "orjson",
+                         "https://github.com/ijl/orjson.git",
+                         "https://github.com/ijl/orjson/blob/master/README.md")
     # api_methods_examples("python",
     #                      "nltk",
     #                      "https://github.com/nltk/nltk.git",
