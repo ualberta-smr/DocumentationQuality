@@ -1,0 +1,1706 @@
+Example,Truth functions,Test functions,Linked functions,Source
+load(),['load'],"['N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A']",[]
+retrieve(),['retrieve'],"['N/A', 'N/A', 'N/A', 'N/A']",[]
+write(),['write'],"['N/A', 'N/A', 'N/A', 'N/A']",[]
+writestr(),['writestr'],"['N/A', 'N/A', 'N/A', 'N/A']",[]
+seek(),['seek'],"['N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A']",[]
+tell(),['tell'],"['N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A']",[]
+readline(),['readline'],"['N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A']",[]
+read(),['read'],"['N/A', 'N/A', 'N/A', 'N/A']",[]
+find(),['find'],"['N/A', 'N/A', 'N/A', 'N/A']",[]
+download(),['download'],"['N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A']",[]
+Downloader.default_download_dir(),['default_download_dir'],"['Downloader.default_download_dir', 'Downloader.default_download_dir', 'Downloader.default_download_dir', 'Downloader.default_download_dir']",[]
+default_download_dir(),['default_download_dir'],"['N/A', 'N/A', 'N/A', 'N/A']",[]
+_package_to_columns(),['_package_to_columns'],"['N/A', 'N/A', 'N/A', 'N/A']",[]
+unify(),['unify'],"['N/A', 'N/A', 'N/A', 'N/A']",[]
+walk(),['walk'],"['N/A', 'N/A', 'N/A', 'N/A']",[]
+cyclic(),['cyclic'],"['N/A', 'N/A', 'N/A', 'N/A']",[]
+freeze(),['freeze'],"['N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A']",[]
+equal_values(),['equal_values'],"['N/A', 'N/A', 'N/A', 'N/A']",[]
+copy(),['copy'],"['N/A', 'N/A', 'N/A', 'N/A']",[]
+nltk.featstruct.rename_variables(),['rename_variables'],"['N/A', 'N/A', 'N/A', 'N/A']",[]
+nltk.featstruct.retract_bindings(),['retract_bindings'],"['N/A', 'N/A', 'N/A', 'N/A']",[]
+nltk.featstruct.substitute_bindings(),['substitute_bindings'],"['N/A', 'N/A', 'N/A', 'N/A']",[]
+nltk.featstruct.find_variables(),['find_variables'],"['N/A', 'N/A', 'N/A', 'N/A']",[]
+FreqDist.N(),['N'],"['FreqDist.N', 'FreqDist.N', 'FreqDist.N', 'FreqDist.N']",[]
+FreqDist.B(),['B'],"['FreqDist.B', 'FreqDist.B', 'FreqDist.B', 'FreqDist.B']",[]
+bins-self.B(),['N/A'],"['N/A', 'N/A', 'N/A', 'N/A']",['N/A']
+self.B(),['N/A'],"['N/A', 'N/A', 'N/A', 'N/A']",['N/A']
+Counter.setdefault(),['N/A'],"['N/A', 'N/A', 'N/A', 'N/A']",['N/A']
+Counter.update(),['N/A'],"['N/A', 'N/A', 'N/A', 'N/A']",['N/A']
+self.prob(samp),['N/A'],"['N/A', 'N/A', 'N/A', 'N/A']",['N/A']
+log(p),['N/A'],"['N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A']",['N/A']
+log(2**(logx)+2**(logy)),['N/A'],"['N/A', 'N/A', 'N/A', 'N/A']",['N/A']
+findall(),['findall'],"['N/A', 'N/A', 'N/A', 'N/A']",[]
+fields(),['fields'],"['N/A', 'N/A', 'N/A', 'N/A']",[]
+decode(),['decode'],"['N/A', 'N/A', 'N/A', 'N/A']",[]
+StandardFormat.fields(),['fields'],"['StandardFormat.fields', 'StandardFormat.fields', 'StandardFormat.fields', 'StandardFormat.fields']",[]
+encode(),['encode'],"['N/A', 'N/A', 'N/A', 'N/A']",[]
+parents(),['parents'],"['N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A']",[]
+parent_indices(),['parent_indices'],"['N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A']",[]
+left_siblings(),['left_siblings'],"['N/A', 'N/A', 'N/A', 'N/A']",[]
+right_siblings(),['right_siblings'],"['N/A', 'N/A', 'N/A', 'N/A']",[]
+ptree.parent()[ptree.parent_index()] is ptree,"['parent', 'parent_index']","['N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A']",[]
+ptree.parent_index(),['parent_index'],"['N/A', 'N/A', 'N/A', 'N/A']",[]
+ptree.parent.index(ptree),['N/A'],"['N/A', 'N/A', 'N/A', 'N/A']",['N/A']
+index(),['N/A'],"['N/A', 'N/A', 'N/A', 'N/A']",['N/A']
+ptree.parent(),['ptree.parent'],"['N/A', 'N/A', 'N/A', 'N/A']",[]
+"Tree(label, children)",['Tree'],"['__init__', '__init__', '__init__', '__init__']",[]
+Tree.fromstring(s),['fromstring'],"['Tree.fromstring', 'Tree.fromstring', 'Tree.fromstring', 'Tree.fromstring']",[]
+tp=self.leaf_treeposition(i),['leaf_treeposition'],"['N/A', 'N/A', 'N/A', 'N/A']",[]
+self[tp]==self.leaves()[i],['leaves'],"['N/A', 'N/A', 'N/A', 'N/A']",[]
+self.leaves()[start:end],['N/A'],"['N/A', 'N/A', 'N/A', 'N/A']",['N/A']
+">>> download('treebank') 
+[nltk_data] Downloading package 'treebank'...
+[nltk_data]   Unzipping corpora/treebank.zip.
+",['download'],"['N/A', 'N/A', 'N/A', 'N/A']",[]
+">>> download('all-corpora') 
+[nltk_data] Downloading package 'abc'...
+[nltk_data]   Unzipping corpora/abc.zip.
+[nltk_data] Downloading package 'alpino'...
+[nltk_data]   Unzipping corpora/alpino.zip.
+  ...
+[nltk_data] Downloading package 'words'...
+[nltk_data]   Unzipping corpora/words.zip.
+",['download'],"['N/A', 'N/A', 'N/A', 'N/A']",[]
+">>> from nltk.featstruct import unify
+>>> unify(dict(x=1, y=dict()), dict(a='a', y=dict(b='b')))  
+{'y': {'b': 'b'}, 'x': 1, 'a': 'a'}
+",['unify'],"['N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A']",[]
+"def handler(s, position, reentrances, match): ...
+",['N/A'],"['N/A', 'N/A', 'N/A', 'N/A']",['N/A']
+">>> from nltk.featstruct import FeatStruct
+>>> FeatStruct('[a=?x]').unify(FeatStruct('[b=?x]'))
+[a=?x, b=?x2]
+",['unify'],"['__init__', 'N/A', '__init__', 'N/A', '__init__', 'N/A', '__init__', 'N/A']",[]
+">>> from nltk.probability import ConditionalFreqDist
+>>> from nltk.tokenize import word_tokenize
+>>> sent = ""the the the dog dog some other words that we do not care about""
+>>> cfdist = ConditionalFreqDist()
+>>> for word in word_tokenize(sent):
+...     condition = len(word)
+...     cfdist[condition][word] += 1
+","['word_tokenize', 'word_tokenize']","['__init__', 'N/A', 'N/A', '__init__', 'N/A', 'N/A', '__init__', 'N/A', 'N/A', '__init__', 'N/A', 'N/A']",[]
+">>> cfdist = ConditionalFreqDist((len(word), word) for word in word_tokenize(sent))
+","['__init__', 'word_tokenize']","['__init__', 'N/A', 'N/A', '__init__', 'N/A', 'N/A', '__init__', 'N/A', 'N/A', '__init__', 'N/A', 'N/A']",['__init__']
+">>> cfdist[3]
+FreqDist({'the': 3, 'dog': 2, 'not': 1})
+>>> cfdist[3].freq('the')
+0.5
+>>> cfdist[3]['dog']
+2
+","['__init__', 'freq']","['__init__', 'N/A', '__init__', 'N/A', '__init__', 'N/A', '__init__', 'N/A']",['__init__']
+">>> from nltk.corpus import brown
+>>> from nltk.probability import ConditionalFreqDist
+>>> from nltk.probability import ConditionalProbDist, ELEProbDist
+>>> cfdist = ConditionalFreqDist(brown.tagged_words()[:5000])
+>>> cpdist = ConditionalProbDist(cfdist, ELEProbDist, 10)
+>>> cpdist['passed'].max()
+'VBD'
+>>> cpdist['passed'].prob('VBD')
+0.423...
+","['ConditionalFreqDist', 'ConditionalProbDist', 'max', 'prob']","['__init__', 'N/A', '__init__', 'N/A', 'N/A', '__init__', 'N/A', '__init__', 'N/A', 'N/A', '__init__', 'N/A', '__init__', 'N/A', 'N/A', '__init__', 'N/A', '__init__', 'N/A', 'N/A']",[]
+">>> from nltk.tokenize import word_tokenize
+>>> from nltk.probability import FreqDist
+>>> sent = 'This is an example sentence'
+>>> fdist = FreqDist()
+>>> for word in word_tokenize(sent):
+...    fdist[word.lower()] += 1
+","['FreqDist', 'word_tokenize']","['__init__', 'N/A', 'N/A', '__init__', 'N/A', 'N/A', '__init__', 'N/A', 'N/A', '__init__', 'N/A', 'N/A']",[]
+">>> fdist = FreqDist(word.lower() for word in word_tokenize(sent))
+","['', 'word_tokenize']","['__init__', 'N/A', 'N/A', '__init__', 'N/A', 'N/A', '__init__', 'N/A', 'N/A', '__init__', 'N/A', 'N/A']",[]
+">>> from nltk.probability import ProbabilisticMixIn
+>>> class A:
+...     def __init__(self, x, y): self.data = (x,y)
+...
+>>> class ProbabilisticA(A, ProbabilisticMixIn):
+...     def __init__(self, x, y, **prob_kwarg):
+...         A.__init__(self, x, y)
+...         ProbabilisticMixIn.__init__(self, **prob_kwarg)
+",['ProbabilisticMixIn'],"['N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A']",[]
+">>> import nltk.corpus
+>>> from nltk.text import Text
+>>> moby = Text(nltk.corpus.gutenberg.words('melville-moby_dick.txt'))
+",['Text'],"['__init__', 'N/A', '__init__', 'N/A', '__init__', 'N/A', '__init__', 'N/A']",[]
+">>> from nltk.book import text4
+>>> text4.collocation_list()[:2]
+[('United', 'States'), ('fellow', 'citizens')]
+",['collocation'],"['N/A', 'N/A', 'N/A', 'N/A']",[]
+">>> from nltk.book import text4
+>>> text4.collocations() 
+United States; fellow citizens; four years; ...
+",['collocation'],"['N/A', 'N/A', 'N/A', 'N/A']",[]
+">>> print('hack'); from nltk.book import text1, text5, text9
+hack...
+>>> text5.findall(""<.*><.*>"")
+you rule bro; telling you bro; u twizted bro
+>>> text1.findall(""(<.*>)"")
+monied; nervous; dangerous; white; white; white; pious; queer; good;
+mature; white; Cape; great; wise; wise; butterless; white; fiendish;
+pale; furious; better; certain; complete; dismasted; younger; brave;
+brave; brave; brave
+>>> text9.findall(""{3,}"")
+thread through those; the thought that; that the thing; the thing
+that; that that thing; through these than through; them that the;
+through the thick; them that they; thought that the
+",['findall'],"['N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A']",[]
+">>> import nltk.corpus
+>>> from nltk.text import TextCollection
+>>> print('hack'); from nltk.book import text1, text2, text3
+hack...
+>>> gutenberg = TextCollection(nltk.corpus.gutenberg)
+>>> mytexts = TextCollection([text1, text2, text3])
+",['__init__'],"['N/A', '__init__', 'N/A', '__init__', 'N/A', '__init__', 'N/A', '__init__']",['__init__']
+"for parent_index in ptree.parent_indices(parent):
+    parent[parent_index] is ptree
+",['parent_indices'],"['N/A', 'N/A', 'N/A', 'N/A']",[]
+"for treepos in ptree.treepositions(root):
+    root[treepos] is ptree
+",['treepositions'],"['N/A', 'N/A', 'N/A', 'N/A']",[]
+">>> from nltk.tree import Tree
+>>> print(Tree(1, [2, Tree(3, [4]), 5]))
+(1 2 (3 4) 5)
+>>> vp = Tree('VP', [Tree('V', ['saw']),
+...                  Tree('NP', ['him'])])
+>>> s = Tree('S', [Tree('NP', ['I']), vp])
+>>> print(s)
+(S (NP I) (VP (V saw) (NP him)))
+>>> print(s[1])
+(VP (V saw) (NP him))
+>>> print(s[1,1])
+(NP him)
+>>> t = Tree.fromstring(""(S (NP I) (VP (V saw) (NP him)))"")
+>>> s == t
+True
+>>> t[1][1].set_label('X')
+>>> t[1][1].label()
+'X'
+>>> print(t)
+(S (NP I) (VP (V saw) (X him)))
+>>> t[0], t[1,1] = t[1,1], t[0]
+>>> print(t)
+(S (X him) (VP (V saw) (NP I)))
+","['__init__', 'fromstring']","['N/A', '__init__', 'Tree.fromstring', 'N/A', 'N/A', 'N/A', '__init__', 'Tree.fromstring', 'N/A', 'N/A', 'N/A', '__init__', 'Tree.fromstring', 'N/A', 'N/A', 'N/A', '__init__', 'Tree.fromstring', 'N/A', 'N/A']",['__init__']
+">>> len(t)
+2
+",['N/A'],"['N/A', 'N/A', 'N/A', 'N/A']",['N/A']
+">>> t = Tree.fromstring(""(S (NP (D the) (N dog)) (VP (V chased) (NP (D the) (N cat))))"")
+>>> print(t.flatten())
+(S the dog chased the cat)
+","['fromstring', 'flatten']","['Tree.fromstring', 'N/A', 'N/A', 'Tree.fromstring', 'N/A', 'N/A', 'Tree.fromstring', 'N/A', 'N/A', 'Tree.fromstring', 'N/A', 'N/A']",[]
+">>> t = Tree.fromstring(""(S (NP (D the) (N dog)) (VP (V chased) (NP (D the) (N cat))))"")
+>>> t.height()
+5
+>>> print(t[0,0])
+(D the)
+>>> t[0,0].height()
+2
+","['fromstring', 'height']","['Tree.fromstring', 'N/A', 'N/A', 'N/A', 'Tree.fromstring', 'N/A', 'N/A', 'N/A', 'Tree.fromstring', 'N/A', 'N/A', 'N/A', 'Tree.fromstring', 'N/A', 'N/A', 'N/A']",[]
+">>> t = Tree.fromstring('(S (NP (D the) (N dog)) (VP (V chased) (NP (D the) (N cat))))')
+>>> t.label()
+'S'
+","['fromstring', 'label']","['Tree.fromstring', 'N/A', 'Tree.fromstring', 'N/A', 'Tree.fromstring', 'N/A', 'Tree.fromstring', 'N/A']",[]
+">>> t = Tree.fromstring(""(S (NP (D the) (N dog)) (VP (V chased) (NP (D the) (N cat))))"")
+>>> t.leaves()
+['the', 'dog', 'chased', 'the', 'cat']
+","['fromstring', 'leaves']","['Tree.fromstring', 'N/A', 'Tree.fromstring', 'N/A', 'Tree.fromstring', 'N/A', 'Tree.fromstring', 'N/A']",[]
+">>> t = Tree.fromstring(""(S (NP (D the) (N dog)) (VP (V chased) (NP (D the) (N cat))))"")
+>>> t.pos()
+[('the', 'D'), ('dog', 'N'), ('chased', 'V'), ('the', 'D'), ('cat', 'N')]
+","['fromstring', 'pos']","['Tree.fromstring', 'N/A', 'Tree.fromstring', 'N/A', 'Tree.fromstring', 'N/A', 'Tree.fromstring', 'N/A']",[]
+">>> t = Tree.fromstring(""(S (NP (D the) (N dog)) (VP (V chased) (NP (D the) (N cat))))"")
+>>> t.productions()
+[S -> NP VP, NP -> D N, D -> 'the', N -> 'dog', VP -> V NP, V -> 'chased',
+NP -> D N, D -> 'the', N -> 'cat']
+","['fromstring', 'productions']","['Tree.fromstring', 'N/A', 'Tree.fromstring', 'N/A', 'Tree.fromstring', 'N/A', 'Tree.fromstring', 'N/A']",[]
+">>> t = Tree.fromstring(""(S (NP (D the) (N dog)) (VP (V chased) (NP (D the) (N cat))))"")
+>>> t.set_label(""T"")
+>>> print(t)
+(T (NP (D the) (N dog)) (VP (V chased) (NP (D the) (N cat))))
+","['fromstring', 'set_label']","['Tree.fromstring', 'N/A', 'N/A', 'Tree.fromstring', 'N/A', 'N/A', 'Tree.fromstring', 'N/A', 'N/A', 'Tree.fromstring', 'N/A', 'N/A']",[]
+">>> t = Tree.fromstring(""(S (NP (D the) (N dog)) (VP (V chased) (NP (D the) (N cat))))"")
+>>> for s in t.subtrees(lambda t: t.height() == 2):
+...     print(s)
+(D the)
+(N dog)
+(V chased)
+(D the)
+(N cat)
+","['fromstring', 'subtrees']","['Tree.fromstring', 'N/A', 'N/A', 'N/A', 'Tree.fromstring', 'N/A', 'N/A', 'N/A', 'Tree.fromstring', 'N/A', 'N/A', 'N/A', 'Tree.fromstring', 'N/A', 'N/A', 'N/A']",[]
+">>> t = Tree.fromstring(""(S (NP (D the) (N dog)) (VP (V chased) (NP (D the) (N cat))))"")
+>>> t.treepositions() 
+[(), (0,), (0, 0), (0, 0, 0), (0, 1), (0, 1, 0), (1,), (1, 0), (1, 0, 0), ...]
+>>> for pos in t.treepositions('leaves'):
+...     t[pos] = t[pos][::-1].upper()
+>>> print(t)
+(S (NP (D EHT) (N GOD)) (VP (V DESAHC) (NP (D EHT) (N TAC))))
+","['fromstring', 'treepositions']","['Tree.fromstring', 'N/A', 'N/A', 'N/A', 'Tree.fromstring', 'N/A', 'N/A', 'N/A', 'Tree.fromstring', 'N/A', 'N/A', 'N/A', 'Tree.fromstring', 'N/A', 'N/A', 'N/A']",[]
+">>> import nltk
+>>> from nltk.util import acyclic_depth_first as acyclic_tree
+>>> wn=nltk.corpus.wordnet
+>>> from pprint import pprint
+>>> pprint(acyclic_tree(wn.synset('dog.n.01'), lambda s:s.hypernyms(),cut_mark='...'))
+[Synset('dog.n.01'),
+ [Synset('canine.n.02'),
+  [Synset('carnivore.n.01'),
+   [Synset('placental.n.01'),
+    [Synset('mammal.n.01'),
+     [Synset('vertebrate.n.01'),
+      [Synset('chordate.n.01'),
+       [Synset('animal.n.01'),
+        [Synset('organism.n.01'),
+         [Synset('living_thing.n.01'),
+          [Synset('whole.n.02'),
+           [Synset('object.n.01'),
+            [Synset('physical_entity.n.01'),
+             [Synset('entity.n.01')]]]]]]]]]]]]],
+ [Synset('domestic_animal.n.01'), ""Cycle(Synset('animal.n.01'),-3,...)""]]
+",['acyclic_branches_depth_first'],"['N/A', 'N/A', 'N/A', 'N/A', '__init__', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', '__init__', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', '__init__', 'N/A']",[]
+">>> from nltk.util import bigrams
+>>> list(bigrams([1,2,3,4,5]))
+[(1, 2), (2, 3), (3, 4), (4, 5)]
+",['bigrams'],"['N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A']",[]
+">>> choose(4, 2)
+6
+>>> choose(6, 2)
+15
+",['choose'],"['N/A', 'N/A', 'N/A', 'N/A']",[]
+">>> sent = 'a b c'.split()
+",['N/A'],"['N/A', 'N/A']",['N/A']
+">>> list(everygrams(sent))
+[('a',), ('a', 'b'), ('a', 'b', 'c'), ('b',), ('b', 'c'), ('c',)]
+",['everygrams'],"['N/A', 'N/A', 'N/A', 'N/A']",[]
+">>> sorted(everygrams(sent), key=len)
+[('a',), ('b',), ('c',), ('a', 'b'), ('b', 'c'), ('a', 'b', 'c')]
+",['everygrams'],"['N/A', 'N/A', 'N/A', 'N/A']",[]
+">>> list(everygrams(sent, max_len=2))
+[('a',), ('a', 'b'), ('b',), ('b', 'c'), ('c',)]
+",['everygrams'],"['N/A', 'N/A', 'N/A', 'N/A']",[]
+">>> from nltk.util import flatten
+>>> flatten(1, 2, ['b', 'a' , ['c', 'd']], 3)
+[1, 2, 'b', 'a', 'c', 'd', 3]
+",['flatten'],"['N/A', 'N/A', 'N/A', 'N/A']",[]
+"locale.setlocale(locale.LC_ALL, '')
+",['N/A'],"['N/A', 'N/A', 'N/A', 'N/A']",['N/A']
+">>> from nltk.util import ngrams
+>>> list(ngrams([1,2,3,4,5], 3))
+[(1, 2, 3), (2, 3, 4), (3, 4, 5)]
+",['ngrams'],"['N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A']",[]
+">>> list(pad_sequence([1,2,3,4,5], 2, pad_left=True, pad_right=True, left_pad_symbol='', right_pad_symbol=''))
+['', 1, 2, 3, 4, 5, '']
+>>> list(pad_sequence([1,2,3,4,5], 2, pad_left=True, left_pad_symbol=''))
+['', 1, 2, 3, 4, 5]
+>>> list(pad_sequence([1,2,3,4,5], 2, pad_right=True, right_pad_symbol=''))
+[1, 2, 3, 4, 5, '']
+",['pad_sequence'],"['N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A']",[]
+">>> sent = ""Insurgents killed in ongoing fighting"".split()
+>>> list(skipgrams(sent, 2, 2))
+[('Insurgents', 'killed'), ('Insurgents', 'in'), ('Insurgents', 'ongoing'), ('killed', 'in'), ('killed', 'ongoing'), ('killed', 'fighting'), ('in', 'ongoing'), ('in', 'fighting'), ('ongoing', 'fighting')]
+>>> list(skipgrams(sent, 3, 2))
+[('Insurgents', 'killed', 'in'), ('Insurgents', 'killed', 'ongoing'), ('Insurgents', 'killed', 'fighting'), ('Insurgents', 'in', 'ongoing'), ('Insurgents', 'in', 'fighting'), ('Insurgents', 'ongoing', 'fighting'), ('killed', 'in', 'ongoing'), ('killed', 'in', 'fighting'), ('killed', 'ongoing', 'fighting'), ('in', 'ongoing', 'fighting')]
+",['skip_grams'],"['N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A']",[]
+">>> from nltk.util import trigrams
+>>> list(trigrams([1,2,3,4,5]))
+[(1, 2, 3), (2, 3, 4), (3, 4, 5)]
+",['trigrams'],"['N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A']",[]
+">>> import nltk
+>>> from nltk.util import unweighted_minimum_spanning_tree as mst
+>>> wn=nltk.corpus.wordnet
+>>> from pprint import pprint
+>>> pprint(mst(wn.synset('bound.a.01'), lambda s:s.also_sees()))
+[Synset('bound.a.01'),
+ [Synset('unfree.a.02'),
+  [Synset('confined.a.02')],
+  [Synset('dependent.a.01')],
+  [Synset('restricted.a.01'), [Synset('classified.a.02')]]]]
+",['unweighted_minimum_spanning_tree'],"['N/A', 'N/A', 'N/A', 'N/A', '__init__', 'N/A', 'N/A', 'N/A', 'N/A', '__init__', 'N/A', 'N/A', 'N/A', 'N/A', '__init__']",[]
+">>> lesk(['I', 'went', 'to', 'the', 'bank', 'to', 'deposit', 'money', '.'], 'bank', 'n')
+Synset('savings_bank.n.02')
+",['lesk'],"['N/A', '__init__', 'N/A', '__init__', 'N/A', '__init__', 'N/A', '__init__']",[]
+lexicon.fromstring( string>),['fromstring'],['N/A'],[]
+"parser = chart.CCGChartParser(, )",['__init__'],['__init__'],['__init__']
+parser.parse(.split()),['parse'],"['N/A', 'N/A']",[]
+chart.printCCGDerivation( tree extracted from list>),['printCCGDerivation'],['N/A'],[]
+apply(),"['apply', 'apply']","['N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A']",[]
+tokens[self.start():self.end()],"['N/A', 'N/A']","['N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A']","['N/A', 'N/A']"
+labels(),['labels'],"['N/A', 'N/A']",[]
+classify(),['classify'],"['N/A', 'N/A']",[]
+classify_many(),['classify_many'],"['N/A', 'N/A']",[]
+prob_classify(),['prob_classify'],"['N/A', 'N/A']",[]
+prob_classify_many(),['prob_classify_many'],"['N/A', 'N/A']",[]
+self.classify(),['classify_many'],"['N/A', 'N/A', 'N/A']",[]
+self.prob_classify(),['prob_classify_many'],"['N/A', 'N/A', 'N/A']",[]
+train(),['train'],"['N/A', 'N/A', 'N/A', 'N/A']",[]
+"is_unseen(fname, fval)",['N/A'],"['N/A', 'N/A']",['N/A']
+"self.encode(fs,l)",['encode'],"['N/A', 'N/A', 'N/A', 'N/A', 'N/A']",[]
+"encoding.encode(fs,l)",['encode'],['N/A'],[]
+"sum([val for (id,val) in vector])",['N/A'],['N/A'],['N/A']
+train_maxent_classifier(),['N/A'],['N/A'],['N/A']
+config_megam(),['config_megam'],['N/A'],[]
+"map(feature_func, toks)",['apply_features'],['N/A'],[]
+feature_func(),['N/A'],"['N/A', 'N/A']",['N/A']
+"|  joint_feat(fs, l) = { 1 if (l == label)
+|                      {
+|                      { 0 otherwise
+",['N/A'],['N/A'],['N/A']
+"                          dotprod(weights, encode(fs,label))
+prob(fs|label) = ---------------------------------------------------
+                 sum(dotprod(weights, encode(fs,l)) for l in labels)
+",['N/A'],"['N/A', 'N/A', 'N/A', 'N/A']",['N/A']
+"dotprod(a,b) = sum(x*y for (x,y) in zip(a,b))
+",['N/A'],"['N/A', 'N/A', 'N/A']",['N/A']
+"ffreq_empirical[i]
+       =
+SUM[fs,l] (classifier.prob_classify(fs).prob(l) *
+           feature_vector(fs,l)[i] *
+           exp(delta[i] * nf(feature_vector(fs,l))))
+",['N/A'],"['N/A', 'N/A', 'N/A', 'N/A', 'N/A']",['N/A']
+">>> from nltk.classify import megam
+>>> megam.config_megam() # pass path to megam if not found in PATH 
+[Found megam: ...]
+",['config_megam'],['N/A'],[]
+">>> def features(sentence):
+...     words = sentence.lower().split()
+...     return dict(('contains(%s)' % w, True) for w in words)
+",['N/A'],"['N/A', 'N/A', 'N/A', 'N/A', 'N/A']",['N/A']
+">>> positive_featuresets = map(features, sports_sentences)
+>>> unlabeled_featuresets = map(features, various_sentences)
+>>> classifier = PositiveNaiveBayesClassifier.train(positive_featuresets,
+...                                                 unlabeled_featuresets)
+",['train'],['N/A'],[]
+">>> classifier.classify(features('The cat is on the table'))
+False
+",['classify'],"['N/A', 'N/A']",[]
+">>> classifier.classify(features('My team lost the game'))
+True
+",['classify'],"['N/A', 'N/A']",[]
+">>> from sklearn.svm import LinearSVC
+>>> from nltk.classify.scikitlearn import SklearnClassifier
+>>> classif = SklearnClassifier(LinearSVC())
+",['__init__'],"['__init__', 'N/A']",['__init__']
+">>> from sklearn.feature_extraction.text import TfidfTransformer
+>>> from sklearn.feature_selection import SelectKBest, chi2
+>>> from sklearn.naive_bayes import MultinomialNB
+>>> from sklearn.pipeline import Pipeline
+>>> pipeline = Pipeline([('tfidf', TfidfTransformer()),
+...                      ('chi2', SelectKBest(chi2, k=1000)),
+...                      ('nb', MultinomialNB())])
+>>> classif = SklearnClassifier(pipeline)
+",['__init__'],"['N/A', 'N/A', 'N/A', 'N/A', '__init__']",['__init__']
+">>> from nltk.classify import Senna
+>>> pipeline = Senna('/usr/share/senna-v3.0', ['pos', 'chk', 'ner'])
+>>> sent = 'Dusseldorf is an international business center'.split()
+>>> [(token['word'], token['chk'], token['ner'], token['pos']) for token in pipeline.tag(sent)] 
+[('Dusseldorf', 'B-NP', 'B-LOC', 'NNP'), ('is', 'B-VP', 'O', 'VBZ'), ('an', 'B-NP', 'O', 'DT'),
+('international', 'I-NP', 'O', 'JJ'), ('business', 'I-NP', 'O', 'NN'), ('center', 'I-NP', 'O', 'NN')]
+",['__init__'],"['__init__', 'N/A', 'N/A']",['__init__']
+"[feature_func(tok) for tok in toks]
+",['N/A'],['N/A'],['N/A']
+"[(feature_func(tok), label) for (tok, label) in toks]
+",['N/A'],['N/A'],['N/A']
+">>> # Define a feature detector function.
+>>> def document_features(document):
+...     return dict([('contains-word(%s)' % w, True) for w in document])
+",['N/A'],"['N/A', 'N/A', 'N/A']",['N/A']
+">>> # Classify each Gutenberg document.
+>>> from nltk.corpus import gutenberg
+>>> for fileid in gutenberg.fileids(): 
+...     doc = gutenberg.words(fileid) 
+...     print(fileid, classifier.classify(document_features(doc))) 
+",['classify'],"['N/A', 'N/A', 'N/A', 'N/A', 'N/A']",[]
+">>> def wsd_features(sentence, index):
+...     featureset = {}
+...     for i in range(max(0, index-3), index):
+...         featureset['left-context(%s)' % sentence[i]] = True
+...     for i in range(index, max(index+3, len(sentence))):
+...         featureset['right-context(%s)' % sentence[i]] = True
+...     return featureset
+",['N/A'],"['N/A', 'N/A', 'N/A', 'N/A', 'N/A']",['N/A']
+nltk.corpus.brown.words(),['N/A'],"['N/A', 'N/A']",['N/A']
+">>> from nltk.corpus import brown
+>>> print("", "".join(brown.words()))
+The, Fulton, County, Grand, Jury, said, ...
+",['N/A'],"['N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A']",['N/A']
+get(),['N/A'],['N/A'],['N/A']
+insert(),['N/A'],['N/A'],['N/A']
+show_column(),['N/A'],['N/A'],['N/A']
+self.see(),['see'],['N/A'],[]
+hide_column(),['hide_column'],['N/A'],[]
+rowconfig(),['rowconfig'],['N/A'],[]
+columnconfig(),['columnconfig'],['N/A'],[]
+itemconfig(),['itemconfig'],['N/A'],[]
+grid(),['grid'],['N/A'],[]
+pack(),['pack'],['N/A'],[]
+bind(),['bind'],['N/A'],[]
+__getitem__(),['N/A'],['N/A'],['N/A']
+__setitem__(),['N/A'],['N/A'],['N/A']
+__nonzero__(),['N/A'],['N/A'],['N/A']
+MultiListbox.bind_to_columns(),['bind_to_columns'],['MultiListbox.bind_to_columns'],[]
+MultiListbox.bind_to_labels(),['bind_to_labels'],['MultiListbox.bind_to_labels'],[]
+MultiListbox.bind_to_listboxes(),['bind_to_listboxes'],['MultiListbox.bind_to_listboxes'],[]
+MultiListbox.columnconfigure(),['columnconfigure'],['MultiListbox.columnconfigure'],[]
+Tkinter.Frame.grid(),['N/A'],['N/A'],['N/A']
+MultiListbox.hide_column(),['hide_column'],['MultiListbox.hide_column'],[]
+MultiListbox.itemconfigure(),['itemconfigure'],['MultiListbox.itemconfigure'],[]
+Tkinter.Frame.pack(),['N/A'],['N/A'],['N/A']
+MultiListbox.rowconfigure(),['rowconfigure'],['MultiListbox.rowconfigure'],[]
+MultiListbox.select(),['select'],['MultiListbox.select'],[]
+table[table.selected_row()],['selected_row'],['N/A'],[]
+MultiListbox.show_column(),['show_column'],['MultiListbox.show_column'],[]
+sort_by(),['sort_by'],['N/A'],[]
+tree.children()[i1].children()[i2]....children()[in],['N/A'],"['N/A', 'N/A', 'N/A', 'N/A']",['N/A']
+parent.update(self),['N/A'],['N/A'],['N/A']
+">>> mlb = MultiListbox(master, 5)
+>>> mlb.configure(label_foreground='red')
+>>> mlb.configure(listbox_foreground='red')
+",['configure'],"['__init__', 'N/A']",[]
+">>> print(table[3, 'First Name'])
+John
+",['N/A'],['N/A'],['N/A']
+">>> from nltk.draw.util import TextWidget
+>>> cn = TextWidget(c, 'test', color='red')
+",['__init__'],['__init__'],[]
+Prover.prove(),['prove'],['Prover.prove'],[]
+readings(filter=True),['readings'],['N/A'],[]
+"s0 readings:
+
+s0-r1: some x.(boxer(x) & walk(x))
+s0-r0: some x.(boxerdog(x) & walk(x))
+",['N/A'],"['N/A', 'N/A', 'N/A']",['N/A']
+">>> align('θin', 'tenwis') 
+[[('θ', 't'), ('i', 'e'), ('n', 'n'), ('-', 'w'), ('-', 'i'), ('-', 's')]]
+",['align'],['N/A'],[]
+"bigram_score_fn(n_ii, (n_ix, n_xi), n_xx)
+",['N/A'],['N/A'],['N/A']
+"score_fn(count_of_ngram,
+         (count_of_n-1gram_1, ..., count_of_n-1gram_j),
+         (count_of_n-2gram_1, ..., count_of_n-2gram_k),
+         ...,
+         (count_of_1gram_1, ..., count_of_1gram_n),
+         count_of_total_words)
+",['N/A'],['N/A'],['N/A']
+"trigram_score_fn(n_iiii,
+                (n_iiix, n_iixi, n_ixii, n_xiii),
+                (n_iixx, n_ixix, n_ixxi, n_xixi, n_xxii, n_xiix),
+                (n_ixxx, n_xixx, n_xxix, n_xxxi),
+                n_all)
+",['N/A'],['N/A'],['N/A']
+"trigram_score_fn(n_iii,
+                 (n_iix, n_ixi, n_xii),
+                 (n_ixx, n_xix, n_xxi),
+                 n_xxx)
+",['N/A'],['N/A'],['N/A']
+">>> from nltk.metrics import ConfusionMatrix
+>>> ref  = 'DET NN VB DET JJ NN NN IN DET NN'.split()
+>>> test = 'DET VB VB DET NN NN NN IN DET NN'.split()
+>>> cm = ConfusionMatrix(ref, test)
+>>> print(cm['NN', 'NN'])
+3
+",['__init__'],"['N/A', '__init__', 'N/A']",['__init__']
+">>> from nltk.metrics import binary_distance
+>>> binary_distance(1,1)
+0.0
+",['binary_distance'],['N/A'],[]
+">>> binary_distance(1,3)
+1.0
+",['binary_distance'],['N/A'],[]
+">>> from nltk.metrics import interval_distance
+>>> interval_distance(1,10)
+81
+",['interval_distance'],['N/A'],[]
+">>> for (s1, s2), jscore, wscore, p in zip(winkler_examples, jaro_scores, winkler_scores, p_factors):
+...     assert round(jaro_similarity(s1, s2), 3) == jscore
+...     assert round(jaro_winkler_similarity(s1, s2, p=p), 3) == wscore
+","['jaro_similarity', 'jaro_winkler_similarity']","['N/A', 'N/A', 'N/A', 'N/A']",[]
+">>> for (s1, s2), jscore, wscore, p in zip(winkler_examples, jaro_scores, winkler_scores, p_factors):
+...     if (s1, s2) in [('JON', 'JAN'), ('1ST', 'IST')]:
+...         continue  # Skip bad examples from the paper.
+...     assert round(jaro_similarity(s1, s2), 3) == jscore
+...     assert round(jaro_winkler_similarity(s1, s2, p=p), 3) == wscore
+","['jaro_similarity', 'jaro_winkler_similarity']","['N/A', 'N/A', 'N/A', 'N/A']",[]
+">>> round(jaro_winkler_similarity('TANYA', 'TONYA', p=0.1, max_l=100), 3)
+0.88
+",['jaro_winkler_similarity'],"['N/A', 'N/A']",[]
+">>> from nltk.metrics import masi_distance
+>>> masi_distance(set([1, 2]), set([1, 2, 3, 4]))
+0.665
+",['masi_distance'],"['N/A', 'N/A']",[]
+">>> # Same examples as Kulyukin C++ implementation
+>>> ghd('1100100000', '1100010000', 1.0, 1.0, 0.5)
+0.5
+>>> ghd('1100100000', '1100000001', 1.0, 1.0, 0.5)
+2.0
+>>> ghd('011', '110', 1.0, 1.0, 0.5)
+1.0
+>>> ghd('1', '0', 1.0, 1.0, 0.5)
+1.0
+>>> ghd('111', '000', 1.0, 1.0, 0.5)
+3.0
+>>> ghd('000', '111', 1.0, 2.0, 0.5)
+6.0
+",['ghd'],['N/A'],[]
+">>> '%.2f' % pk('0100'*100, '1'*400, 2)
+'0.50'
+>>> '%.2f' % pk('0100'*100, '0'*400, 2)
+'0.50'
+>>> '%.2f' % pk('0100'*100, '0100'*100, 2)
+'0.00'
+",['pk'],['N/A'],[]
+">>> s1 = ""000100000010""
+>>> s2 = ""000010000100""
+>>> s3 = ""100000010000""
+>>> '%.2f' % windowdiff(s1, s1, 3)
+'0.00'
+>>> '%.2f' % windowdiff(s1, s2, 3)
+'0.30'
+>>> '%.2f' % windowdiff(s2, s3, 3)
+'0.80'
+",['windowdiff'],['N/A'],[]
+parse(),['parse'],"['N/A', 'N/A', 'N/A']",[]
+parse_sents(),['parse_sents'],['N/A'],[]
+grammar(),['grammar'],['N/A'],[]
+self.parse(),['parse'],['N/A'],[]
+bllipparser.RerankingParser.get_unified_model_parameters(),['N/A'],['N/A'],['N/A']
+bllipparser.RerankingParser.RerankingParser.load_parser_options(),['N/A'],['N/A'],['N/A']
+bllipparser.RerankingParser.RerankingParser.load_reranker_model(),['N/A'],['N/A'],['N/A']
+"chart.select(is_complete=True, start=0)",['select'],['N/A'],[]
+e.span()==span,['N/A'],"['N/A', 'N/A']",['N/A']
+e.start()==start,['N/A'],"['N/A', 'N/A']",['N/A']
+e.end()==end,['N/A'],"['N/A', 'N/A']",['N/A']
+e.length()==length,['N/A'],"['N/A', 'N/A']",['N/A']
+e.lhs()==lhs,['N/A'],"['N/A', 'N/A']",['N/A']
+e.rhs()==rhs,['N/A'],"['N/A', 'N/A']",['N/A']
+e.nextsym()==nextsym,['N/A'],"['N/A', 'N/A']",['N/A']
+e.dot()==dot,['N/A'],"['N/A', 'N/A']",['N/A']
+e.is_complete()==is_complete,['N/A'],"['N/A', 'N/A']",['N/A']
+e.is_incomplete()==is_incomplete,['N/A'],"['N/A', 'N/A']",['N/A']
+">>> dep_parser = CoreNLPDependencyParser(url='http://localhost:9000')
+",['__init__'],['__init__'],['__init__']
+">>> parse, = dep_parser.raw_parse(
+...     'The quick brown fox jumps over the lazy dog.'
+... )
+>>> print(parse.to_conll(4))  
+The     DT      4       det
+quick   JJ      4       amod
+brown   JJ      4       amod
+fox     NN      5       nsubj
+jumps   VBZ     0       ROOT
+over    IN      9       case
+the     DT      9       det
+lazy    JJ      9       amod
+dog     NN      5       nmod
+.       .       5       punct
+","['raw_parse', 'to_conll']","['N/A', 'N/A', 'N/A']",[]
+">>> print(parse.tree())  
+(jumps (fox The quick brown) (dog over the lazy) .)
+",['tree'],"['N/A', 'N/A']",[]
+">>> for governor, dep, dependent in parse.triples():
+...     print(governor, dep, dependent)  
+    ('jumps', 'VBZ') nsubj ('fox', 'NN')
+    ('fox', 'NN') det ('The', 'DT')
+    ('fox', 'NN') amod ('quick', 'JJ')
+    ('fox', 'NN') amod ('brown', 'JJ')
+    ('jumps', 'VBZ') nmod ('dog', 'NN')
+    ('dog', 'NN') case ('over', 'IN')
+    ('dog', 'NN') det ('the', 'DT')
+    ('dog', 'NN') amod ('lazy', 'JJ')
+    ('jumps', 'VBZ') punct ('.', '.')
+",['N/A'],"['N/A', 'N/A']",['N/A']
+">>> (parse_fox, ), (parse_dog, ) = dep_parser.raw_parse_sents(
+...     [
+...         'The quick brown fox jumps over the lazy dog.',
+...         'The quick grey wolf jumps over the lazy fox.',
+...     ]
+... )
+>>> print(parse_fox.to_conll(4))  
+The DT      4       det
+quick       JJ      4       amod
+brown       JJ      4       amod
+fox NN      5       nsubj
+jumps       VBZ     0       ROOT
+over        IN      9       case
+the DT      9       det
+lazy        JJ      9       amod
+dog NN      5       nmod
+.   .       5       punct
+","['raw_parse_sents', 'to_conll']","['N/A', 'N/A', 'N/A']",[]
+">>> print(parse_dog.to_conll(4))  
+The DT      4       det
+quick       JJ      4       amod
+grey        JJ      4       amod
+wolf        NN      5       nsubj
+jumps       VBZ     0       ROOT
+over        IN      9       case
+the DT      9       det
+lazy        JJ      9       amod
+fox NN      5       nmod
+.   .       5       punct
+",['to_conll'],"['N/A', 'N/A']",[]
+">>> (parse_dog, ), (parse_friends, ) = dep_parser.parse_sents(
+...     [
+...         ""I 'm a dog"".split(),
+...         ""This is my friends ' cat ( the tabby )"".split(),
+...     ]
+... )
+>>> print(parse_dog.to_conll(4))  
+I   PRP     4       nsubj
+'m  VBP     4       cop
+a   DT      4       det
+dog NN      0       ROOT
+","['parse_sents', 'to_conll']","['N/A', 'N/A', 'N/A', 'N/A']",[]
+">>> print(parse_friends.to_conll(4))  
+This        DT      6       nsubj
+is  VBZ     6       cop
+my  PRP$    4       nmod:poss
+friends     NNS     6       nmod:poss
+'   POS     4       case
+cat NN      0       ROOT
+-LRB-       -LRB-   9       punct
+the DT      9       det
+tabby       NN      6       appos
+-RRB-       -RRB-   9       punct
+",['to_conll'],"['N/A', 'N/A']",[]
+">>> parse_john, parse_mary, = dep_parser.parse_text(
+...     'John loves Mary. Mary walks.'
+... )
+",['parse_text'],['N/A'],[]
+">>> print(parse_john.to_conll(4))  
+John        NNP     2       nsubj
+loves       VBZ     0       ROOT
+Mary        NNP     2       dobj
+.   .       2       punct
+",['to_conll'],"['N/A', 'N/A']",[]
+">>> print(parse_mary.to_conll(4))  
+Mary        NNP     2       nsubj
+walks       VBZ     0       ROOT
+.   .       2       punct
+",['to_conll'],"['N/A', 'N/A']",[]
+">>> len(
+...     next(
+...         dep_parser.raw_parse(
+...             'Anhalt said children typically treat a 20-ounce soda bottle as one '
+...             'serving, while it actually contains 2 1/2 servings.'
+...         )
+...     ).nodes
+... )
+21
+",['raw_parse'],"['N/A', 'N/A', 'N/A']",[]
+">>> len(
+...     next(
+...         dep_parser.raw_parse('This is not going to crash: 01 111 555.')
+...     ).nodes
+... )
+10
+",['raw_parse'],"['N/A', 'N/A', 'N/A']",[]
+">>> print(
+...     next(
+...         dep_parser.raw_parse('The underscore _ should not simply disappear.')
+...     ).to_conll(4)
+... )  
+The         DT  3   det
+underscore  VBP 3   amod
+_           NN  7   nsubj
+should      MD  7   aux
+not         RB  7   neg
+simply      RB  7   advmod
+disappear   VB  0   ROOT
+.           .   7   punct
+","['raw_parse', 'to_conll']","['N/A', 'N/A', 'N/A', 'N/A']",[]
+">>> print(
+...     '\n'.join(
+...         next(
+...             dep_parser.raw_parse(
+...                 'for all of its insights into the dream world of teen life , and its electronic expression through '
+...                 'cyber culture , the film gives no quarter to anyone seeking to pull a cohesive story out of its 2 '
+...                 '1/2-hour running time .'
+...             )
+...         ).to_conll(4).split('\n')[-8:]
+...     )
+... )
+its PRP$    40      nmod:poss
+2 1/2       CD      40      nummod
+-   :       40      punct
+hour        NN      31      nmod
+running     VBG     42      amod
+time        NN      40      dep
+.   .       24      punct
+","['raw_parse', 'to_conll']","['N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A']",[]
+">>> parser = CoreNLPParser(url='http://localhost:9000')
+",['__init__'],"['__init__', '__init__']",['__init__']
+">>> next(
+...     parser.raw_parse('The quick brown fox jumps over the lazy dog.')
+... ).pretty_print()  
+                     ROOT
+                      |
+                      S
+       _______________|__________________________
+      |                         VP               |
+      |                _________|___             |
+      |               |             PP           |
+      |               |     ________|___         |
+      NP              |    |            NP       |
+  ____|__________     |    |     _______|____    |
+ DT   JJ    JJ   NN  VBZ   IN   DT      JJ   NN  .
+ |    |     |    |    |    |    |       |    |   |
+The quick brown fox jumps over the     lazy dog  .
+",['raw_parse'],"['N/A', 'N/A', 'N/A']",[]
+">>> (parse_fox, ), (parse_wolf, ) = parser.raw_parse_sents(
+...     [
+...         'The quick brown fox jumps over the lazy dog.',
+...         'The quick grey wolf jumps over the lazy fox.',
+...     ]
+... )
+",['raw_parse_sents'],['N/A'],[]
+">>> parse_fox.pretty_print()  
+                     ROOT
+                      |
+                      S
+       _______________|__________________________
+      |                         VP               |
+      |                _________|___             |
+      |               |             PP           |
+      |               |     ________|___         |
+      NP              |    |            NP       |
+  ____|__________     |    |     _______|____    |
+ DT   JJ    JJ   NN  VBZ   IN   DT      JJ   NN  .
+ |    |     |    |    |    |    |       |    |   |
+The quick brown fox jumps over the     lazy dog  .
+",['N/A'],['N/A'],['N/A']
+">>> parse_wolf.pretty_print()  
+                     ROOT
+                      |
+                      S
+       _______________|__________________________
+      |                         VP               |
+      |                _________|___             |
+      |               |             PP           |
+      |               |     ________|___         |
+      NP              |    |            NP       |
+  ____|_________      |    |     _______|____    |
+ DT   JJ   JJ   NN   VBZ   IN   DT      JJ   NN  .
+ |    |    |    |     |    |    |       |    |   |
+The quick grey wolf jumps over the     lazy fox  .
+",['N/A'],['N/A'],['N/A']
+">>> (parse_dog, ), (parse_friends, ) = parser.parse_sents(
+...     [
+...         ""I 'm a dog"".split(),
+...         ""This is my friends ' cat ( the tabby )"".split(),
+...     ]
+... )
+",['parse_sents'],"['N/A', 'N/A']",[]
+">>> parse_dog.pretty_print()  
+        ROOT
+         |
+         S
+  _______|____
+ |            VP
+ |    ________|___
+ NP  |            NP
+ |   |         ___|___
+PRP VBP       DT      NN
+ |   |        |       |
+ I   'm       a      dog
+",['N/A'],['N/A'],['N/A']
+">>> parse_friends.pretty_print()  
+     ROOT
+      |
+      S
+  ____|___________
+ |                VP
+ |     ___________|_____________
+ |    |                         NP
+ |    |                  _______|_________
+ |    |                 NP               PRN
+ |    |            _____|_______      ____|______________
+ NP   |           NP            |    |        NP         |
+ |    |     ______|_________    |    |     ___|____      |
+ DT  VBZ  PRP$   NNS       POS  NN -LRB-  DT       NN  -RRB-
+ |    |    |      |         |   |    |    |        |     |
+This  is   my  friends      '  cat -LRB- the     tabby -RRB-
+",['N/A'],['N/A'],['N/A']
+">>> parse_john, parse_mary, = parser.parse_text(
+...     'John loves Mary. Mary walks.'
+... )
+",['parse_text'],['N/A'],[]
+">>> parse_john.pretty_print()  
+      ROOT
+       |
+       S
+  _____|_____________
+ |          VP       |
+ |      ____|___     |
+ NP    |        NP   |
+ |     |        |    |
+NNP   VBZ      NNP   .
+ |     |        |    |
+John loves     Mary  .
+",['N/A'],['N/A'],['N/A']
+">>> parse_mary.pretty_print()  
+      ROOT
+       |
+       S
+  _____|____
+ NP    VP   |
+ |     |    |
+NNP   VBZ   .
+ |     |    |
+Mary walks  .
+",['N/A'],['N/A'],['N/A']
+">>> next(
+...     parser.raw_parse(
+...         'NASIRIYA, Iraq—Iraqi doctors who treated former prisoner of war '
+...         'Jessica Lynch have angrily dismissed claims made in her biography '
+...         'that she was raped by her Iraqi captors.'
+...     )
+... ).height()
+20
+",['raw_parse'],"['N/A', 'N/A', 'N/A']",[]
+">>> next(
+...     parser.raw_parse(
+...         ""The broader Standard & Poor's 500 Index <.SPX> was 0.46 points lower, or ""
+...         '0.05 percent, at 997.02.'
+...     )
+... ).height()
+9
+",['raw_parse'],"['N/A', 'N/A', 'N/A']",[]
+">>> parser = CoreNLPParser(url='http://localhost:9000', tagtype='ner')
+>>> tokens = 'Rami Eid is studying at Stony Brook University in NY'.split()
+>>> parser.tag(tokens)
+[('Rami', 'PERSON'), ('Eid', 'PERSON'), ('is', 'O'), ('studying', 'O'), ('at', 'O'), ('Stony', 'ORGANIZATION'),
+('Brook', 'ORGANIZATION'), ('University', 'ORGANIZATION'), ('in', 'O'), ('NY', 'O')]
+","['__init__', 'tag']","['__init__', 'N/A', 'N/A']",['__init__']
+">>> parser = CoreNLPParser(url='http://localhost:9000', tagtype='pos')
+>>> tokens = ""What is the airspeed of an unladen swallow ?"".split()
+>>> parser.tag(tokens)
+[('What', 'WP'), ('is', 'VBZ'), ('the', 'DT'),
+('airspeed', 'NN'), ('of', 'IN'), ('an', 'DT'),
+('unladen', 'JJ'), ('swallow', 'VB'), ('?', '.')]
+","['__init__', 'tag']","['__init__', 'N/A', 'N/A']",['__init__']
+">>> text = 'Good muffins cost $3.88\nin New York.  Please buy me\ntwo of them.\nThanks.'
+>>> list(parser.tokenize(text))
+['Good', 'muffins', 'cost', '$', '3.88', 'in', 'New', 'York', '.', 'Please', 'buy', 'me', 'two', 'of', 'them', '.', 'Thanks', '.']
+",['tokenize'],"['N/A', 'N/A']",[]
+">>> s = ""The colour of the wall is blue.""
+>>> list(
+...     parser.tokenize(
+...         'The colour of the wall is blue.',
+...             properties={'tokenize.options': 'americanize=true'},
+...     )
+... )
+['The', 'color', 'of', 'the', 'wall', 'is', 'blue', '.']
+",['tokenize'],"['N/A', 'N/A']",[]
+">>> dg = DependencyGraph(treebank_data)
+>>> dg.contains_cycle()
+False
+",['__init__'],"['__init__', 'N/A']",['__init__']
+">>> cyclic_dg = DependencyGraph()
+>>> top = {'word': None, 'deps': [1], 'rel': 'TOP', 'address': 0}
+>>> child1 = {'word': None, 'deps': [2], 'rel': 'NTOP', 'address': 1}
+>>> child2 = {'word': None, 'deps': [4], 'rel': 'NTOP', 'address': 2}
+>>> child3 = {'word': None, 'deps': [1], 'rel': 'NTOP', 'address': 3}
+>>> child4 = {'word': None, 'deps': [3], 'rel': 'NTOP', 'address': 4}
+>>> cyclic_dg.nodes = {
+...     0: top,
+...     1: child1,
+...     2: child2,
+...     3: child3,
+...     4: child4,
+... }
+>>> cyclic_dg.root = top
+",['__init__'],['__init__'],['__init__']
+">>> cyclic_dg.contains_cycle()
+[3, 1, 2, 4]
+",['contains_cycle'],['N/A'],[]
+">>> dg = DependencyGraph(
+...     'John N 2\n'
+...     'loves V 0\n'
+...     'Mary N 2'
+... )
+>>> print(dg.to_dot())
+digraph G{
+edge [dir=forward]
+node [shape=plaintext]
+
+0 [label=""0 (None)""]
+0 -> 2 [label=""ROOT""]
+1 [label=""1 (John)""]
+2 [label=""2 (loves)""]
+2 -> 1 [label=""""]
+2 -> 3 [label=""""]
+3 [label=""3 (Mary)""]
+}
+","['__init__', 'to_dot']","['__init__', 'N/A', 'N/A']",['__init__']
+">>> gold_sent = DependencyGraph(""""""
+... Pierre  NNP     2       NMOD
+... Vinken  NNP     8       SUB
+... ,       ,       2       P
+... 61      CD      5       NMOD
+... years   NNS     6       AMOD
+... old     JJ      2       NMOD
+... ,       ,       2       P
+... will    MD      0       ROOT
+... join    VB      8       VC
+... the     DT      11      NMOD
+... board   NN      9       OBJ
+... as      IN      9       VMOD
+... a       DT      15      NMOD
+... nonexecutive    JJ      15      NMOD
+... director        NN      12      PMOD
+... Nov.    NNP     9       VMOD
+... 29      CD      16      NMOD
+... .       .       9       VMOD
+... """""")
+",['__init__'],['__init__'],['__init__']
+">>> parsed_sent = DependencyGraph(""""""
+... Pierre  NNP     8       NMOD
+... Vinken  NNP     1       SUB
+... ,       ,       3       P
+... 61      CD      6       NMOD
+... years   NNS     6       AMOD
+... old     JJ      2       NMOD
+... ,       ,       3       AMOD
+... will    MD      0       ROOT
+... join    VB      8       VC
+... the     DT      11      AMOD
+... board   NN      9       OBJECT
+... as      IN      9       NMOD
+... a       DT      15      NMOD
+... nonexecutive    JJ      15      NMOD
+... director        NN      12      PMOD
+... Nov.    NNP     9       VMOD
+... 29      CD      16      NMOD
+... .       .       9       VMOD
+... """""")
+",['__init__'],['__init__'],['__init__']
+">>> de = DependencyEvaluator([parsed_sent],[gold_sent])
+>>> las, uas = de.eval()
+>>> las
+0.6...
+>>> uas
+0.8...
+>>> abs(uas - 0.8) < 0.00001
+True
+","['__init__', 'eval']","['__init__', 'N/A', 'N/A']",['__init__']
+">>> from nltk.parse import malt
+>>> # With MALT_PARSER and MALT_MODEL environment set.
+>>> mp = malt.MaltParser('maltparser-1.7.2', 'engmalt.linear-1.7.mco') 
+>>> mp.parse_one('I shot an elephant in my pajamas .'.split()).tree() 
+(shot I (elephant an) (in (pajamas my)) .)
+>>> # Without MALT_PARSER and MALT_MODEL environment.
+>>> mp = malt.MaltParser('/home/user/maltparser-1.7.2/', '/home/user/engmalt.linear-1.7.mco') 
+>>> mp.parse_one('I shot an elephant in my pajamas .'.split()).tree() 
+(shot I (elephant an) (in (pajamas my)) .)
+","['__init__', 'parse_one']","['__init__', 'N/A', 'N/A', 'N/A']",['__init__']
+">>> graphs = [DependencyGraph(entry) for entry in conll_data2.split('\n\n') if entry]
+>>> npp = ProbabilisticNonprojectiveParser()
+>>> npp.train(graphs, NaiveBayesDependencyScorer())
+>>> parses = npp.parse(['Cathy', 'zag', 'hen', 'zwaaien', '.'], ['N', 'V', 'Pron', 'Adj', 'N', 'Punc'])
+>>> len(list(parses))
+1
+",['__init__'],"['__init__', 'N/A', '__init__', 'N/A', '__init__', 'N/A', 'N/A', 'N/A']",['__init__']
+">>> class Scorer(DependencyScorerI):
+...     def train(self, graphs):
+...         pass
+...
+...     def score(self, graph):
+...         return [
+...             [[], [5],  [1],  [1]],
+...             [[], [],   [11], [4]],
+...             [[], [10], [],   [5]],
+...             [[], [8],  [8],  []],
+...         ]
+",['N/A'],"['N/A', 'N/A', 'N/A']",['N/A']
+">>> npp = ProbabilisticNonprojectiveParser()
+>>> npp.train([], Scorer())
+",['train'],"['__init__', 'N/A', 'N/A']",[]
+">>> parses = npp.parse(['v1', 'v2', 'v3'], [None, None, None])
+>>> len(list(parses))
+1
+",['parse'],"['N/A', 'N/A', 'N/A']",[]
+">>> ndp = NonprojectiveDependencyParser(grammar)
+>>> parses = ndp.parse(['the', 'man', 'in', 'the', 'corner', 'taught', 'his', 'dachshund', 'to', 'play', 'golf'])
+>>> len(list(parses))
+4
+",['__init__'],"['__init__', 'N/A', 'N/A', 'N/A']",['__init__']
+">>> graphs = [
+... DependencyGraph(entry) for entry in conll_data2.split('\n\n') if entry
+... ]
+",['__init__'],"['__init__', 'N/A']",['__init__']
+">>> ppdp = ProbabilisticProjectiveDependencyParser()
+>>> ppdp.train(graphs)
+",['train'],"['__init__', 'N/A']",[]
+">>> sent = ['Cathy', 'zag', 'hen', 'wild', 'zwaaien', '.']
+>>> list(ppdp.parse(sent))
+[Tree('zag', ['Cathy', 'hen', Tree('zwaaien', ['wild', '.'])])]
+",['parse'],"['N/A', 'N/A', '__init__']",[]
+">>> dep_parser=StanfordDependencyParser(
+...     model_path=""edu/stanford/nlp/models/lexparser/englishPCFG.ser.gz""
+... )
+",['__init__'],['__init__'],['__init__']
+">>> [parse.tree() for parse in dep_parser.raw_parse(""The quick brown fox jumps over the lazy dog."")] 
+[Tree('jumps', [Tree('fox', ['The', 'quick', 'brown']), Tree('dog', ['over', 'the', 'lazy'])])]
+","['tree', 'raw_parse']","['N/A', 'N/A', '__init__']",[]
+">>> [list(parse.triples()) for parse in dep_parser.raw_parse(""The quick brown fox jumps over the lazy dog."")] 
+[[((u'jumps', u'VBZ'), u'nsubj', (u'fox', u'NN')), ((u'fox', u'NN'), u'det', (u'The', u'DT')),
+((u'fox', u'NN'), u'amod', (u'quick', u'JJ')), ((u'fox', u'NN'), u'amod', (u'brown', u'JJ')),
+((u'jumps', u'VBZ'), u'nmod', (u'dog', u'NN')), ((u'dog', u'NN'), u'case', (u'over', u'IN')),
+((u'dog', u'NN'), u'det', (u'the', u'DT')), ((u'dog', u'NN'), u'amod', (u'lazy', u'JJ'))]]
+","['triples', 'raw_parse']","['N/A', 'N/A', 'N/A']",[]
+">>> sum([[parse.tree() for parse in dep_graphs] for dep_graphs in dep_parser.raw_parse_sents((
+...     ""The quick brown fox jumps over the lazy dog."",
+...     ""The quick grey wolf jumps over the lazy fox.""
+... ))], []) 
+[Tree('jumps', [Tree('fox', ['The', 'quick', 'brown']), Tree('dog', ['over', 'the', 'lazy'])]),
+Tree('jumps', [Tree('wolf', ['The', 'quick', 'grey']), Tree('fox', ['over', 'the', 'lazy'])])]
+","['tree', 'raw_parse']","['N/A', 'N/A', 'N/A', '__init__']",[]
+">>> sum([[parse.tree() for parse in dep_graphs] for dep_graphs in dep_parser.parse_sents((
+...     ""I 'm a dog"".split(),
+...     ""This is my friends ' cat ( the tabby )"".split(),
+... ))], []) 
+[Tree('dog', ['I', ""'m"", 'a']), Tree('cat', ['This', 'is', Tree('friends', ['my', ""'""]), Tree('tabby', ['the'])])]
+","['tree', 'parse_sents']","['N/A', 'N/A', 'N/A', 'N/A', '__init__']",[]
+">>> sum([[list(parse.triples()) for parse in dep_graphs] for dep_graphs in dep_parser.tagged_parse_sents((
+...     (
+...         (""The"", ""DT""),
+...         (""quick"", ""JJ""),
+...         (""brown"", ""JJ""),
+...         (""fox"", ""NN""),
+...         (""jumped"", ""VBD""),
+...         (""over"", ""IN""),
+...         (""the"", ""DT""),
+...         (""lazy"", ""JJ""),
+...         (""dog"", ""NN""),
+...         (""."", "".""),
+...     ),
+... ))],[]) 
+[[((u'jumped', u'VBD'), u'nsubj', (u'fox', u'NN')), ((u'fox', u'NN'), u'det', (u'The', u'DT')),
+((u'fox', u'NN'), u'amod', (u'quick', u'JJ')), ((u'fox', u'NN'), u'amod', (u'brown', u'JJ')),
+((u'jumped', u'VBD'), u'nmod', (u'dog', u'NN')), ((u'dog', u'NN'), u'case', (u'over', u'IN')),
+((u'dog', u'NN'), u'det', (u'the', u'DT')), ((u'dog', u'NN'), u'amod', (u'lazy', u'JJ'))]]
+","['triples', 'tagged_parse_sents']","['N/A', 'N/A', 'N/A', 'N/A']",[]
+">>> from nltk.parse.stanford import StanfordNeuralDependencyParser
+>>> dep_parser=StanfordNeuralDependencyParser(java_options='-mx4g')
+",['__init__'],['__init__'],['__init__']
+">>> [parse.tree() for parse in dep_parser.raw_parse(""The quick brown fox jumps over the lazy dog."")] 
+[Tree('jumps', [Tree('fox', ['The', 'quick', 'brown']), Tree('dog', ['over', 'the', 'lazy']), '.'])]
+","['tree', 'raw_parse']","['N/A', 'N/A', '__init__']",[]
+">>> [list(parse.triples()) for parse in dep_parser.raw_parse(""The quick brown fox jumps over the lazy dog."")] 
+[[((u'jumps', u'VBZ'), u'nsubj', (u'fox', u'NN')), ((u'fox', u'NN'), u'det',
+(u'The', u'DT')), ((u'fox', u'NN'), u'amod', (u'quick', u'JJ')), ((u'fox', u'NN'),
+u'amod', (u'brown', u'JJ')), ((u'jumps', u'VBZ'), u'nmod', (u'dog', u'NN')),
+((u'dog', u'NN'), u'case', (u'over', u'IN')), ((u'dog', u'NN'), u'det',
+(u'the', u'DT')), ((u'dog', u'NN'), u'amod', (u'lazy', u'JJ')), ((u'jumps', u'VBZ'),
+u'punct', (u'.', u'.'))]]
+","['triples', 'raw_parse']","['N/A', 'N/A', 'N/A']",[]
+">>> sum([[parse.tree() for parse in dep_graphs] for dep_graphs in dep_parser.raw_parse_sents((
+...     ""The quick brown fox jumps over the lazy dog."",
+...     ""The quick grey wolf jumps over the lazy fox.""
+... ))], []) 
+[Tree('jumps', [Tree('fox', ['The', 'quick', 'brown']), Tree('dog', ['over',
+'the', 'lazy']), '.']), Tree('jumps', [Tree('wolf', ['The', 'quick', 'grey']),
+Tree('fox', ['over', 'the', 'lazy']), '.'])]
+","['tree', 'raw_parse_sents']","['N/A', 'N/A', 'N/A', '__init__']",[]
+">>> sum([[parse.tree() for parse in dep_graphs] for dep_graphs in dep_parser.parse_sents((
+...     ""I 'm a dog"".split(),
+...     ""This is my friends ' cat ( the tabby )"".split(),
+... ))], []) 
+[Tree('dog', ['I', ""'m"", 'a']), Tree('cat', ['This', 'is', Tree('friends',
+['my', ""'""]), Tree('tabby', ['-LRB-', 'the', '-RRB-'])])]
+","['tree', 'raw_parse_sents']","['N/A', 'N/A', 'N/A', 'N/A', '__init__']",[]
+">>> parser=StanfordParser(
+...     model_path=""edu/stanford/nlp/models/lexparser/englishPCFG.ser.gz""
+... )
+",['__init__'],['__init__'],['__init__']
+">>> list(parser.raw_parse(""the quick brown fox jumps over the lazy dog"")) 
+[Tree('ROOT', [Tree('NP', [Tree('NP', [Tree('DT', ['the']), Tree('JJ', ['quick']), Tree('JJ', ['brown']),
+Tree('NN', ['fox'])]), Tree('NP', [Tree('NP', [Tree('NNS', ['jumps'])]), Tree('PP', [Tree('IN', ['over']),
+Tree('NP', [Tree('DT', ['the']), Tree('JJ', ['lazy']), Tree('NN', ['dog'])])])])])])]
+",['raw_parse'],"['N/A', 'N/A', '__init__']",[]
+">>> sum([list(dep_graphs) for dep_graphs in parser.raw_parse_sents((
+...     ""the quick brown fox jumps over the lazy dog"",
+...     ""the quick grey wolf jumps over the lazy fox""
+... ))], []) 
+[Tree('ROOT', [Tree('NP', [Tree('NP', [Tree('DT', ['the']), Tree('JJ', ['quick']), Tree('JJ', ['brown']),
+Tree('NN', ['fox'])]), Tree('NP', [Tree('NP', [Tree('NNS', ['jumps'])]), Tree('PP', [Tree('IN', ['over']),
+Tree('NP', [Tree('DT', ['the']), Tree('JJ', ['lazy']), Tree('NN', ['dog'])])])])])]), Tree('ROOT', [Tree('NP',
+[Tree('NP', [Tree('DT', ['the']), Tree('JJ', ['quick']), Tree('JJ', ['grey']), Tree('NN', ['wolf'])]), Tree('NP',
+[Tree('NP', [Tree('NNS', ['jumps'])]), Tree('PP', [Tree('IN', ['over']), Tree('NP', [Tree('DT', ['the']),
+Tree('JJ', ['lazy']), Tree('NN', ['fox'])])])])])])]
+",['raw_parse_sents'],"['N/A', 'N/A', 'N/A', '__init__']",[]
+">>> sum([list(dep_graphs) for dep_graphs in parser.parse_sents((
+...     ""I 'm a dog"".split(),
+...     ""This is my friends ' cat ( the tabby )"".split(),
+... ))], []) 
+[Tree('ROOT', [Tree('S', [Tree('NP', [Tree('PRP', ['I'])]), Tree('VP', [Tree('VBP', [""'m""]),
+Tree('NP', [Tree('DT', ['a']), Tree('NN', ['dog'])])])])]), Tree('ROOT', [Tree('S', [Tree('NP',
+[Tree('DT', ['This'])]), Tree('VP', [Tree('VBZ', ['is']), Tree('NP', [Tree('NP', [Tree('NP', [Tree('PRP$', ['my']),
+Tree('NNS', ['friends']), Tree('POS', [""'""])]), Tree('NN', ['cat'])]), Tree('PRN', [Tree('-LRB-', [Tree('', []),
+Tree('NP', [Tree('DT', ['the']), Tree('NN', ['tabby'])]), Tree('-RRB-', [])])])])])])])]
+",['parse_sents'],"['N/A', 'N/A', 'N/A', 'N/A', '__init__']",[]
+">>> sum([list(dep_graphs) for dep_graphs in parser.tagged_parse_sents((
+...     (
+...         (""The"", ""DT""),
+...         (""quick"", ""JJ""),
+...         (""brown"", ""JJ""),
+...         (""fox"", ""NN""),
+...         (""jumped"", ""VBD""),
+...         (""over"", ""IN""),
+...         (""the"", ""DT""),
+...         (""lazy"", ""JJ""),
+...         (""dog"", ""NN""),
+...         (""."", "".""),
+...     ),
+... ))],[]) 
+[Tree('ROOT', [Tree('S', [Tree('NP', [Tree('DT', ['The']), Tree('JJ', ['quick']), Tree('JJ', ['brown']),
+Tree('NN', ['fox'])]), Tree('VP', [Tree('VBD', ['jumped']), Tree('PP', [Tree('IN', ['over']), Tree('NP',
+[Tree('DT', ['the']), Tree('JJ', ['lazy']), Tree('NN', ['dog'])])])]), Tree('.', ['.'])])])]
+",['tagged_parse_sents'],"['N/A', 'N/A', 'N/A', '__init__']",[]
+">>> from nltk.parse import DependencyGraph, DependencyEvaluator
+>>> from nltk.parse.transitionparser import TransitionParser, Configuration, Transition
+>>> gold_sent = DependencyGraph(""""""
+... Economic  JJ     2      ATT
+... news  NN     3       SBJ
+... has       VBD       0       ROOT
+... little      JJ      5       ATT
+... effect   NN     3       OBJ
+... on     IN      5       ATT
+... financial       JJ       8       ATT
+... markets    NNS      6       PC
+... .    .      3       PU
+... """""")
+",['__init__'],['__init__'],['__init__']
+">>> conf = Configuration(gold_sent)
+",['__init__'],['__init__'],['__init__']
+">>> print(', '.join(conf.extract_features()))
+STK_0_POS_TOP, BUF_0_FORM_Economic, BUF_0_LEMMA_Economic, BUF_0_POS_JJ, BUF_1_FORM_news, BUF_1_POS_NN, BUF_2_POS_VBD, BUF_3_POS_JJ
+",['extract_features'],"['N/A', 'N/A', 'N/A']",[]
+">>> operation = Transition('arc-standard')
+>>> operation.shift(conf)
+>>> operation.left_arc(conf, ""ATT"")
+>>> operation.shift(conf)
+>>> operation.left_arc(conf,""SBJ"")
+>>> operation.shift(conf)
+>>> operation.shift(conf)
+>>> operation.left_arc(conf, ""ATT"")
+>>> operation.shift(conf)
+>>> operation.shift(conf)
+>>> operation.shift(conf)
+>>> operation.left_arc(conf, ""ATT"")
+","['__init__', 'shift', 'left_arc']","['__init__', 'N/A', 'N/A']",['__init__']
+">>> print(', '.join(conf.extract_features()))
+STK_0_FORM_on, STK_0_LEMMA_on, STK_0_POS_IN, STK_1_POS_NN, BUF_0_FORM_markets, BUF_0_LEMMA_markets, BUF_0_POS_NNS, BUF_1_FORM_., BUF_1_POS_., BUF_0_LDEP_ATT
+",['extract_features'],"['N/A', 'N/A', 'N/A']",[]
+">>> operation.right_arc(conf, ""PC"")
+>>> operation.right_arc(conf, ""ATT"")
+>>> operation.right_arc(conf, ""OBJ"")
+>>> operation.shift(conf)
+>>> operation.right_arc(conf, ""PU"")
+>>> operation.right_arc(conf, ""ROOT"")
+>>> operation.shift(conf)
+","['right_arc', 'shift']","['N/A', 'N/A']",[]
+">>> conf = Configuration(gold_sent)
+>>> operation = Transition('arc-eager')
+>>> operation.shift(conf)
+>>> operation.left_arc(conf,'ATT')
+>>> operation.shift(conf)
+>>> operation.left_arc(conf,'SBJ')
+>>> operation.right_arc(conf,'ROOT')
+>>> operation.shift(conf)
+>>> operation.left_arc(conf,'ATT')
+>>> operation.right_arc(conf,'OBJ')
+>>> operation.right_arc(conf,'ATT')
+>>> operation.shift(conf)
+>>> operation.left_arc(conf,'ATT')
+>>> operation.right_arc(conf,'PC')
+>>> operation.reduce(conf)
+>>> operation.reduce(conf)
+>>> operation.reduce(conf)
+>>> operation.right_arc(conf,'PU')
+>>> print(conf)
+Stack : [0, 3, 9]  Buffer : []   Arcs : [(2, 'ATT', 1), (3, 'SBJ', 2), (0, 'ROOT', 3), (5, 'ATT', 4), (3, 'OBJ', 5), (5, 'ATT', 6), (8, 'ATT', 7), (6, 'PC', 8), (3, 'PU', 9)]
+","['__init__', '__init__', 'shift', 'left_arc', 'right_arc', 'reduce']","['__init__', '__init__', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A']","['__init__', '__init__']"
+">>> parser_std = TransitionParser('arc-standard')
+>>> print(', '.join(parser_std._create_training_examples_arc_std([gold_sent], input_file)))
+ Number of training examples : 1
+ Number of valid (projective) examples : 1
+SHIFT, LEFTARC:ATT, SHIFT, LEFTARC:SBJ, SHIFT, SHIFT, LEFTARC:ATT, SHIFT, SHIFT, SHIFT, LEFTARC:ATT, RIGHTARC:PC, RIGHTARC:ATT, RIGHTARC:OBJ, SHIFT, RIGHTARC:PU, RIGHTARC:ROOT, SHIFT
+",['__init__'],"['__init__', 'N/A', 'N/A', 'N/A']",['__init__']
+">>> parser_std.train([gold_sent],'temp.arcstd.model', verbose=False)
+ Number of training examples : 1
+ Number of valid (projective) examples : 1
+>>> remove(input_file.name)
+",['train'],"['N/A', 'N/A']",[]
+">>> input_file = tempfile.NamedTemporaryFile(prefix='transition_parse.train', dir=tempfile.gettempdir(),delete=False)
+>>> parser_eager = TransitionParser('arc-eager')
+>>> print(', '.join(parser_eager._create_training_examples_arc_eager([gold_sent], input_file)))
+ Number of training examples : 1
+ Number of valid (projective) examples : 1
+SHIFT, LEFTARC:ATT, SHIFT, LEFTARC:SBJ, RIGHTARC:ROOT, SHIFT, LEFTARC:ATT, RIGHTARC:OBJ, RIGHTARC:ATT, SHIFT, LEFTARC:ATT, RIGHTARC:PC, REDUCE, REDUCE, REDUCE, RIGHTARC:PU
+",['__init__'],"['N/A', 'N/A', '__init__', 'N/A', 'N/A', 'N/A']",['__init__']
+">>> parser_eager.train([gold_sent],'temp.arceager.model', verbose=False)
+ Number of training examples : 1
+ Number of valid (projective) examples : 1
+",['train'],['N/A'],[]
+">>> remove(input_file.name)
+",['N/A'],['N/A'],['N/A']
+">>> from nltk import word_tokenize, pos_tag
+>>> text = ""This is a foobar sentence.""
+>>> for line in taggedsent_to_conll(pos_tag(word_tokenize(text))):
+...         print(line, end="""")
+    1       This    _       DT      DT      _       0       a       _       _
+    2       is      _       VBZ     VBZ     _       0       a       _       _
+    3       a       _       DT      DT      _       0       a       _       _
+    4       foobar  _       JJ      JJ      _       0       a       _       _
+    5       sentence        _       NN      NN      _       0       a       _       _
+    6       .               _       .       .       _       0       a       _       _
+","['taggedsent_to_conll', 'word_tokenize', 'pos_tag']","['N/A', 'N/A', 'N/A', 'N/A']",[]
+">>> from nltk import word_tokenize, sent_tokenize, pos_tag
+>>> text = ""This is a foobar sentence. Is that right?""
+>>> sentences = [pos_tag(word_tokenize(sent)) for sent in sent_tokenize(text)]
+>>> for line in taggedsents_to_conll(sentences):
+...     if line:
+...         print(line, end="""")
+1   This    _       DT      DT      _       0       a       _       _
+2   is      _       VBZ     VBZ     _       0       a       _       _
+3   a       _       DT      DT      _       0       a       _       _
+4   foobar  _       JJ      JJ      _       0       a       _       _
+5   sentence        _       NN      NN      _       0       a       _       _
+6   .               _       .       .       _       0       a       _       _
+
+
+1   Is      _       VBZ     VBZ     _       0       a       _       _
+2   that    _       IN      IN      _       0       a       _       _
+3   right   _       NN      NN      _       0       a       _       _
+4   ?       _       .       .       _       0       a       _       _
+
+","['taggedsents_to_conll', 'word_tokenize', 'sent_tokenize', 'pos_tag']","['N/A', 'N/A', 'N/A', 'N/A', 'N/A']",[]
+purge(),['purge'],['N/A'],[]
+clear(),['N/A'],['N/A'],['N/A']
+repr(),['N/A'],['N/A'],['N/A']
+"relsym(subjsym, objsym)",['N/A'],['N/A'],['N/A']
+"cities2table('cities.pl', 'city', 'city.db', verbose=True, setup=True)
+",['cities2table'],['N/A'],[]
+"bo(\P.all x.(man(x) -> P(x)),z1)
+",['N/A'],"['N/A', 'N/A', 'N/A']",['N/A']
+">>> from nltk.sem.evaluate import Assignment
+>>> dom = set(['u1', 'u2', 'u3', 'u4'])
+>>> g3 = Assignment(dom, [('x', 'u1'), ('y', 'u2')])
+>>> g3 == {'x': 'u1', 'y': 'u2'}
+True
+",['__init__'],"['N/A', '__init__']",['__init__']
+">>> print(g3)
+g[u1/x][u2/y]
+",['N/A'],['N/A'],['N/A']
+">>> dom = set(['u1', 'u2', 'u3', 'u4'])
+>>> g4 = Assignment(dom)
+>>> g4.add('x', 'u1')
+{'x': 'u1'}
+",['__init__'],"['N/A', '__init__', 'N/A']",['__init__']
+">>> g4.purge()
+>>> g4
+{}
+",['purge'],['N/A'],[]
+">>> from nltk.sem import Valuation, Model
+>>> v = [('adam', 'b1'), ('betty', 'g1'), ('fido', 'd1'),
+... ('girl', set(['g1', 'g2'])), ('boy', set(['b1', 'b2'])),
+... ('dog', set(['d1'])),
+... ('love', set([('b1', 'g1'), ('b2', 'g2'), ('g1', 'b1'), ('g2', 'b1')]))]
+>>> val = Valuation(v)
+>>> dom = val.domain
+>>> m = Model(dom, val)
+","['__init__', '__init__']","['N/A', '__init__', '__init__']","['__init__', '__init__']"
+">>> from nltk.stem import arlstem2
+>>> stemmer = ARLSTem2()
+>>> word = stemmer.stem('يعمل')
+>>> print(word)
+","['__init__', 'stem']","['__init__', 'N/A', 'N/A']",['__init__']
+">>> from nltk.stem.cistem import Cistem
+>>> stemmer = Cistem()
+>>> s1 = ""Speicherbehältern""
+>>> print(""('"" + stemmer.segment(s1)[0] + ""', '"" + stemmer.segment(s1)[1] + ""')"")
+('speicherbehält', 'ern')
+>>> s2 = ""Grenzpostens""
+>>> stemmer.segment(s2)
+('grenzpost', 'ens')
+>>> s3 = ""Ausgefeiltere""
+>>> stemmer.segment(s3)
+('ausgefeilt', 'ere')
+>>> stemmer = Cistem(True)
+>>> print(""('"" + stemmer.segment(s1)[0] + ""', '"" + stemmer.segment(s1)[1] + ""')"")
+('speicherbehäl', 'tern')
+>>> stemmer.segment(s2)
+('grenzpo', 'stens')
+>>> stemmer.segment(s3)
+('ausgefeil', 'tere')
+","['__init__', 'segment']","['__init__', 'N/A', 'N/A']",['__init__']
+">>> from nltk.stem.cistem import Cistem
+>>> stemmer = Cistem()
+>>> s1 = ""Speicherbehältern""
+>>> stemmer.stem(s1)
+'speicherbehalt'
+>>> s2 = ""Grenzpostens""
+>>> stemmer.stem(s2)
+'grenzpost'
+>>> s3 = ""Ausgefeiltere""
+>>> stemmer.stem(s3)
+'ausgefeilt'
+>>> stemmer = Cistem(True)
+>>> stemmer.stem(s1)
+'speicherbehal'
+>>> stemmer.stem(s2)
+'grenzpo'
+>>> stemmer.stem(s3)
+'ausgefeil'
+","['__init__', 'stem']","['__init__', 'N/A']",['__init__']
+">>> from nltk.stem.lancaster import LancasterStemmer
+>>> st = LancasterStemmer()
+>>> st.stem('maximum')     # Remove ""-um"" when word is intact
+'maxim'
+>>> st.stem('presumably')  # Don't remove ""-um"" when word is not intact
+'presum'
+>>> st.stem('multiply')    # No action taken if word ends with ""-ply""
+'multiply'
+>>> st.stem('provision')   # Replace ""-sion"" with ""-j"" to trigger ""j"" set of rules
+'provid'
+>>> st.stem('owed')        # Word starting with vowel must contain at least 2 letters
+'ow'
+>>> st.stem('ear')         # ditto
+'ear'
+>>> st.stem('saying')      # Words starting with consonant must contain at least 3
+'say'
+>>> st.stem('crying')      #     letters and one of those letters must be a vowel
+'cry'
+>>> st.stem('string')      # ditto
+'string'
+>>> st.stem('meant')       # ditto
+'meant'
+>>> st.stem('cement')      # ditto
+'cem'
+>>> st_pre = LancasterStemmer(strip_prefix_flag=True)
+>>> st_pre.stem('kilometer') # Test Prefix
+'met'
+>>> st_custom = LancasterStemmer(rule_tuple=(""ssen4>"", ""s1t.""))
+>>> st_custom.stem(""ness"") # Change s to t
+'nest'
+","['__init__', 'stem']","['__init__', 'N/A', 'N/A', 'N/A']",['__init__']
+">>> from nltk.stem import RegexpStemmer
+>>> st = RegexpStemmer('ing$|s$|e$|able$', min=4)
+>>> st.stem('cars')
+'car'
+>>> st.stem('mass')
+'mas'
+>>> st.stem('was')
+'was'
+>>> st.stem('bee')
+'bee'
+>>> st.stem('compute')
+'comput'
+>>> st.stem('advisable')
+'advis'
+","['__init__', 'stem']","['__init__', 'N/A']",['__init__']
+">>> from nltk.stem import RSLPStemmer
+>>> st = RSLPStemmer()
+>>> # opening lines of Erico Verissimo's ""Música ao Longe""
+>>> text = '''
+... Clarissa risca com giz no quadro-negro a paisagem que os alunos
+... devem copiar . Uma casinha de porta e janela , em cima duma
+... coxilha .'''
+>>> for token in text.split():
+...     print(st.stem(token))
+clariss risc com giz no quadro-negr a pais que os alun dev copi .
+uma cas de port e janel , em cim dum coxilh .
+","['__init__', 'stem']","['__init__', 'N/A', 'N/A', 'N/A']",['__init__']
+">>> from nltk.stem import SnowballStemmer
+>>> print("" "".join(SnowballStemmer.languages)) # See which languages are supported
+arabic danish dutch english finnish french german hungarian
+italian norwegian porter portuguese romanian russian
+spanish swedish
+>>> stemmer = SnowballStemmer(""german"") # Choose a language
+>>> stemmer.stem(""Autobahnen"") # Stem a word
+'autobahn'
+","['__init__', 'stem']","['N/A', 'N/A', '__init__', 'N/A']",['__init__']
+">>> from nltk.stem.snowball import GermanStemmer
+>>> stemmer = GermanStemmer()
+>>> stemmer.stem(""Autobahnen"")
+'autobahn'
+","['__init__', 'stem']","['__init__', 'N/A']",['__init__']
+">>> from nltk.stem import WordNetLemmatizer
+>>> wnl = WordNetLemmatizer()
+>>> print(wnl.lemmatize('dogs'))
+dog
+>>> print(wnl.lemmatize('churches'))
+church
+>>> print(wnl.lemmatize('aardwolves'))
+aardwolf
+>>> print(wnl.lemmatize('abaci'))
+abacus
+>>> print(wnl.lemmatize('hardrock'))
+hardrock
+","['__init__', 'lemmatize']","['__init__', 'N/A', 'N/A']",['__init__']
+tag(),['tag'],['N/A'],[]
+tag_sents(),['tag_sents'],['N/A'],[]
+self.tag(),['tag'],"['N/A', 'N/A']",[]
+transform(),['N/A'],['N/A'],['N/A']
+choose_tag(),['choose_tag'],"['N/A', 'N/A']",[]
+classifier(),['classifier'],"['N/A', 'N/A']",[]
+feature_detector(),['feature_detector'],['N/A'],[]
+_train(),['_train'],['N/A'],[]
+">>> backoff = RegexpTagger([
+... (r'^-?[0-9]+(.[0-9]+)?$', 'CD'),   # cardinal numbers
+... (r'(The|the|A|a|An|an)$', 'AT'),   # articles
+... (r'.*able$', 'JJ'),                # adjectives
+... (r'.*ness$', 'NN'),                # nouns formed from adjectives
+... (r'.*ly$', 'RB'),                  # adverbs
+... (r'.*s$', 'NNS'),                  # plural nouns
+... (r'.*ing$', 'VBG'),                # gerunds
+... (r'.*ed$', 'VBD'),                 # past tense verbs
+... (r'.*', 'NN')                      # nouns (default)
+... ])
+",['__init__'],['__init__'],['__init__']
+">>> baseline.evaluate(gold_data) 
+0.2450142...
+",['evaluate'],['N/A'],[]
+">>> tagger1 = tt.train(training_data, max_rules=10)
+TBL train (fast) (seqs: 100; tokens: 2417; tpls: 2; min score: 2; min acc: None)
+Finding initial useful rules...
+    Found 845 useful rules.
+
+           B      |
+   S   F   r   O  |        Score = Fixed - Broken
+   c   i   o   t  |  R     Fixed = num tags changed incorrect -> correct
+   o   x   k   h  |  u     Broken = num tags changed correct -> incorrect
+   r   e   e   e  |  l     Other = num tags changed incorrect -> incorrect
+   e   d   n   r  |  e
+------------------+-------------------------------------------------------
+ 132 132   0   0  | AT->DT if Pos:NN@[-1]
+  85  85   0   0  | NN->, if Pos:NN@[-1] & Word:,@[0]
+  69  69   0   0  | NN->. if Pos:NN@[-1] & Word:.@[0]
+  51  51   0   0  | NN->IN if Pos:NN@[-1] & Word:of@[0]
+  47  63  16 161  | NN->IN if Pos:NNS@[-1]
+  33  33   0   0  | NN->TO if Pos:NN@[-1] & Word:to@[0]
+  26  26   0   0  | IN->. if Pos:NNS@[-1] & Word:.@[0]
+  24  24   0   0  | IN->, if Pos:NNS@[-1] & Word:,@[0]
+  22  27   5  24  | NN->-NONE- if Pos:VBD@[-1]
+  17  17   0   0  | NN->CC if Pos:NN@[-1] & Word:and@[0]
+",['train'],['N/A'],[]
+">>> tagger1.rules()[1:3]
+(Rule('001', 'NN', ',', [(Pos([-1]),'NN'), (Word([0]),',')]), Rule('001', 'NN', '.', [(Pos([-1]),'NN'), (Word([0]),'.')]))
+",['rules'],"['N/A', '__init__', '__init__', '__init__']",[]
+">>> train_stats = tagger1.train_stats()
+>>> [train_stats[stat] for stat in ['initialerrors', 'finalerrors', 'rulescores']]
+[1775, 1269, [132, 85, 69, 51, 47, 33, 26, 24, 22, 17]]
+",['train_stats'],['N/A'],[]
+">>> tagger1.print_template_statistics(printunused=False)
+TEMPLATE STATISTICS (TRAIN)  2 templates, 10 rules)
+TRAIN (   2417 tokens) initial  1775 0.2656 final:  1269 0.4750
+#ID | Score (train) |  #Rules     | Template
+--------------------------------------------
+001 |   305   0.603 |   7   0.700 | Template(Pos([-1]),Word([0]))
+000 |   201   0.397 |   3   0.300 | Template(Pos([-1]))
+
+",['print_template_statistics'],"['N/A', '__init__', '__init__', '__init__']",[]
+">>> tagger1.evaluate(gold_data) 
+0.43996...
+",['evaluate'],['N/A'],[]
+">>> tagged, test_stats = tagger1.batch_tag_incremental(testing_data, gold_data)
+",['batch_tag_incremental'],['N/A'],[]
+">>> tagger2.evaluate(gold_data)  
+0.44159544...
+>>> tagger2.rules()[2:4]
+(Rule('001', 'NN', '.', [(Pos([-1]),'NN'), (Word([0]),'.')]), Rule('001', 'NN', 'IN', [(Pos([-1]),'NN'), (Word([0]),'of')]))
+","['evaluate', 'rules']","['N/A', 'N/A', '__init__', '__init__', '__init__']",[]
+">>> from nltk.tag import CRFTagger
+>>> ct = CRFTagger()
+",['__init__'],['__init__'],['__init__']
+">>> ct.train(train_data,'model.crf.tagger')
+>>> ct.tag_sents([['dog','is','good'], ['Cat','eat','meat']])
+[[('dog', 'Noun'), ('is', 'Verb'), ('good', 'Adj')], [('Cat', 'Noun'), ('eat', 'Verb'), ('meat', 'Noun')]]
+","['train', 'tag_sents']","['N/A', 'N/A']",[]
+">>> gold_sentences = [[('dog','Noun'),('is','Verb'),('good','Adj')] , [('Cat','Noun'),('eat','Verb'), ('meat','Noun')]]
+>>> ct.evaluate(gold_sentences)
+1.0
+",['evaluate'],['N/A'],[]
+"H(O) = - sum_S Pr(S | O) log Pr(S | O)
+",['N/A'],"['N/A', 'N/A']",['N/A']
+"H = - sum_S Pr(S | O) log [ Pr(S, O) / Z ]
+= log Z - sum_S Pr(S | O) log Pr(S, 0)
+= log Z - sum_S Pr(S | O) [ log Pr(S_0) + sum_t Pr(S_t | S_{t-1}) + sum_t Pr(O_t | S_t) ]
+",['N/A'],['N/A'],['N/A']
+"H = log Z - sum_s0 alpha_0(s0) beta_0(s0) / Z * log Pr(s0)
++ sum_t,si,sj alpha_t(si) Pr(sj | si) Pr(O_t+1 | sj) beta_t(sj) / Z * log Pr(sj | si)
++ sum_t,st alpha_t(st) beta_t(st) / Z * log Pr(O_t | st)
+",['N/A'],"['N/A', 'N/A', 'N/A', 'N/A', 'N/A']",['N/A']
+">>> from nltk.tag import HunposTagger
+>>> ht = HunposTagger('en_wsj.model')
+>>> ht.tag('What is the airspeed of an unladen swallow ?'.split())
+[('What', 'WP'), ('is', 'VBZ'), ('the', 'DT'), ('airspeed', 'NN'), ('of', 'IN'), ('an', 'DT'), ('unladen', 'NN'), ('swallow', 'VB'), ('?', '.')]
+>>> ht.close()
+","['__init__', 'tag', 'close']","['__init__', 'N/A', 'N/A', 'N/A']",['__init__']
+">>> with HunposTagger('en_wsj.model') as ht:
+...     ht.tag('What is the airspeed of an unladen swallow ?'.split())
+...
+[('What', 'WP'), ('is', 'VBZ'), ('the', 'DT'), ('airspeed', 'NN'), ('of', 'IN'), ('an', 'DT'), ('unladen', 'NN'), ('swallow', 'VB'), ('?', '.')]
+","['__init__', 'tag']","['__init__', 'N/A', 'N/A']",['__init__']
+">>> map_tag('en-ptb', 'universal', 'VBZ')
+'VERB'
+>>> map_tag('en-ptb', 'universal', 'VBP')
+'VERB'
+>>> map_tag('en-ptb', 'universal', '``')
+'.'
+",['map_tag'],['N/A'],[]
+">>> tagset_mapping('ru-rnc', 'universal') == {'!': '.', 'A': 'ADJ', 'C': 'CONJ', 'AD': 'ADV',            'NN': 'NOUN', 'VG': 'VERB', 'COMP': 'CONJ', 'NC': 'NUM', 'VP': 'VERB', 'P': 'ADP',            'IJ': 'X', 'V': 'VERB', 'Z': 'X', 'VI': 'VERB', 'YES_NO_SENT': 'X', 'PTCL': 'PRT'}
+True
+",['tagset_mapping'],['N/A'],[]
+">>> tagger = PerceptronTagger(load=False)
+",['__init__'],['__init__'],['__init__']
+">>> tagger.train([[('today','NN'),('is','VBZ'),('good','JJ'),('day','NN')],
+... [('yes','NNS'),('it','PRP'),('beautiful','JJ')]])
+",['train'],['N/A'],[]
+">>> tagger.tag(['today','is','a','beautiful','day'])
+[('today', 'NN'), ('is', 'PRP'), ('a', 'PRP'), ('beautiful', 'JJ'), ('day', 'NN')]
+",['tag'],['N/A'],[]
+">>> pretrain = PerceptronTagger()
+",['__init__'],['__init__'],['__init__']
+">>> pretrain.tag('The quick brown fox jumps over the lazy dog'.split())
+[('The', 'DT'), ('quick', 'JJ'), ('brown', 'NN'), ('fox', 'NN'), ('jumps', 'VBZ'), ('over', 'IN'), ('the', 'DT'), ('lazy', 'JJ'), ('dog', 'NN')]
+",['train'],"['N/A', 'N/A']",[]
+">>> pretrain.tag(""The red cat"".split())
+[('The', 'DT'), ('red', 'JJ'), ('cat', 'NN')]
+",['tag'],"['N/A', 'N/A']",[]
+">>> from nltk.tag import SennaTagger
+>>> tagger = SennaTagger('/usr/share/senna-v3.0')
+>>> tagger.tag('What is the airspeed of an unladen swallow ?'.split()) 
+[('What', 'WP'), ('is', 'VBZ'), ('the', 'DT'), ('airspeed', 'NN'),
+('of', 'IN'), ('an', 'DT'), ('unladen', 'NN'), ('swallow', 'NN'), ('?', '.')]
+","['__init__', 'tag']","['__init__', 'N/A', 'N/A']",['__init__']
+">>> from nltk.tag import SennaChunkTagger
+>>> chktagger = SennaChunkTagger('/usr/share/senna-v3.0')
+>>> chktagger.tag('What is the airspeed of an unladen swallow ?'.split()) 
+[('What', 'B-NP'), ('is', 'B-VP'), ('the', 'B-NP'), ('airspeed', 'I-NP'),
+('of', 'B-PP'), ('an', 'B-NP'), ('unladen', 'I-NP'), ('swallow', 'I-NP'),
+('?', 'O')]
+","['__init__', 'tag']","['__init__', 'N/A', 'N/A']",['__init__']
+">>> from nltk.tag import SennaNERTagger
+>>> nertagger = SennaNERTagger('/usr/share/senna-v3.0')
+>>> nertagger.tag('Shakespeare theatre was in London .'.split()) 
+[('Shakespeare', 'B-PER'), ('theatre', 'O'), ('was', 'O'), ('in', 'O'),
+('London', 'B-LOC'), ('.', 'O')]
+>>> nertagger.tag('UN headquarters are in NY , USA .'.split()) 
+[('UN', 'B-ORG'), ('headquarters', 'O'), ('are', 'O'), ('in', 'O'),
+('NY', 'B-LOC'), (',', 'O'), ('USA', 'B-LOC'), ('.', 'O')]
+","['__init__', 'tag']","['__init__', 'N/A', 'N/A']",['__init__']
+">>> from nltk.tag import SennaChunkTagger
+>>> chktagger = SennaChunkTagger('/usr/share/senna-v3.0')
+>>> sent = 'What is the airspeed of an unladen swallow ?'.split()
+>>> tagged_sent = chktagger.tag(sent) 
+>>> tagged_sent 
+[('What', 'B-NP'), ('is', 'B-VP'), ('the', 'B-NP'), ('airspeed', 'I-NP'),
+('of', 'B-PP'), ('an', 'B-NP'), ('unladen', 'I-NP'), ('swallow', 'I-NP'),
+('?', 'O')]
+>>> list(chktagger.bio_to_chunks(tagged_sent, chunk_type='NP')) 
+[('What', '0'), ('the airspeed', '2-3'), ('an unladen swallow', '5-6-7')]
+","['__init__', 'tag']","['__init__', 'N/A', 'N/A', 'N/A', 'N/A']",['__init__']
+"feature_detector(tokens, index, history) -> featureset
+",['feature_detector'],['N/A'],[]
+">>> from nltk.tag import DefaultTagger
+>>> default_tagger = DefaultTagger('NN')
+>>> list(default_tagger.tag('This is a test'.split()))
+[('This', 'NN'), ('is', 'NN'), ('a', 'NN'), ('test', 'NN')]
+","['__init__', 'tag']","['__init__', 'N/A', 'N/A', 'N/A']",['__init__']
+">>> from nltk.corpus import brown
+>>> from nltk.tag import RegexpTagger
+>>> test_sent = brown.sents(categories='news')[0]
+>>> regexp_tagger = RegexpTagger(
+...     [(r'^-?[0-9]+(.[0-9]+)?$', 'CD'),   # cardinal numbers
+...      (r'(The|the|A|a|An|an)$', 'AT'),   # articles
+...      (r'.*able$', 'JJ'),                # adjectives
+...      (r'.*ness$', 'NN'),                # nouns formed from adjectives
+...      (r'.*ly$', 'RB'),                  # adverbs
+...      (r'.*s$', 'NNS'),                  # plural nouns
+...      (r'.*ing$', 'VBG'),                # gerunds
+...      (r'.*ed$', 'VBD'),                 # past tense verbs
+...      (r'.*', 'NN')                      # nouns (default)
+... ])
+>>> regexp_tagger
+
+>>> regexp_tagger.tag(test_sent)
+[('The', 'AT'), ('Fulton', 'NN'), ('County', 'NN'), ('Grand', 'NN'), ('Jury', 'NN'),
+('said', 'NN'), ('Friday', 'NN'), ('an', 'AT'), ('investigation', 'NN'), ('of', 'NN'),
+(""Atlanta's"", 'NNS'), ('recent', 'NN'), ('primary', 'NN'), ('election', 'NN'),
+('produced', 'VBD'), ('``', 'NN'), ('no', 'NN'), ('evidence', 'NN'), (""''"", 'NN'),
+('that', 'NN'), ('any', 'NN'), ('irregularities', 'NNS'), ('took', 'NN'),
+('place', 'NN'), ('.', 'NN')]
+","['__init__', 'tag']","['N/A', '__init__', 'N/A']",['__init__']
+">>> from nltk.corpus import brown
+>>> from nltk.tag import UnigramTagger
+>>> test_sent = brown.sents(categories='news')[0]
+>>> unigram_tagger = UnigramTagger(brown.tagged_sents(categories='news')[:500])
+>>> for tok, tag in unigram_tagger.tag(test_sent):
+...     print(""({}, {}), "".format(tok, tag))
+(The, AT), (Fulton, NP-TL), (County, NN-TL), (Grand, JJ-TL),
+(Jury, NN-TL), (said, VBD), (Friday, NR), (an, AT),
+(investigation, NN), (of, IN), (Atlanta's, NP$), (recent, JJ),
+(primary, NN), (election, NN), (produced, VBD), (``, ``),
+(no, AT), (evidence, NN), ('', ''), (that, CS), (any, DTI),
+(irregularities, NNS), (took, VBD), (place, NN), (., .),
+","['__init__', 'tag']","['N/A', '__init__', 'N/A', 'N/A', 'N/A', 'N/A']",['__init__']
+">>> from nltk.tag import StanfordNERTagger
+>>> st = StanfordNERTagger('english.all.3class.distsim.crf.ser.gz') 
+>>> st.tag('Rami Eid is studying at Stony Brook University in NY'.split()) 
+[('Rami', 'PERSON'), ('Eid', 'PERSON'), ('is', 'O'), ('studying', 'O'),
+ ('at', 'O'), ('Stony', 'ORGANIZATION'), ('Brook', 'ORGANIZATION'),
+ ('University', 'ORGANIZATION'), ('in', 'O'), ('NY', 'LOCATION')]
+","['__init__', 'tag']","['__init__', 'N/A', 'N/A']",[]
+">>> from nltk.tag import StanfordPOSTagger
+>>> st = StanfordPOSTagger('english-bidirectional-distsim.tagger')
+>>> st.tag('What is the airspeed of an unladen swallow ?'.split())
+[('What', 'WP'), ('is', 'VBZ'), ('the', 'DT'), ('airspeed', 'NN'), ('of', 'IN'), ('an', 'DT'), ('unladen', 'JJ'), ('swallow', 'VB'), ('?', '.')]
+","['__init__', 'tag']","['__init__', 'N/A', 'N/A']",['__init__']
+">>> from nltk.tag.util import str2tuple
+>>> str2tuple('fly/NN')
+('fly', 'NN')
+",['str2tuple'],['N/A'],[]
+">>> from nltk.tag.util import tuple2str
+>>> tagged_token = ('fly', 'NN')
+>>> tuple2str(tagged_token)
+'fly/NN'
+",['tuple2str'],['N/A'],[]
+">>> from nltk.tag.util import untag
+>>> untag([('John', 'NNP'), ('saw', 'VBD'), ('Mary', 'NNP')])
+['John', 'saw', 'Mary']
+",['untag'],['N/A'],[]
+">>> from nltk import pos_tag, word_tokenize
+>>> pos_tag(word_tokenize(""John's big idea isn't all that bad.""))
+[('John', 'NNP'), (""'s"", 'POS'), ('big', 'JJ'), ('idea', 'NN'), ('is', 'VBZ'),
+(""n't"", 'RB'), ('all', 'PDT'), ('that', 'DT'), ('bad', 'JJ'), ('.', '.')]
+","['pos_tag', 'word_tokenize']","['N/A', 'N/A']",[]
+">>> pos_tag(word_tokenize(""Илья оторопел и дважды перечитал бумажку.""), lang='rus')    
+[('Илья', 'S'), ('оторопел', 'V'), ('и', 'CONJ'), ('дважды', 'ADV'), ('перечитал', 'V'),
+('бумажку', 'S'), ('.', 'NONLEX')]
+","['pos_tag', 'word_tokenize']","['N/A', 'N/A']",[]
+">>> from nltk.corpus import brown
+>>> from nltk.tag import UnigramTagger
+>>> tagger = UnigramTagger(brown.tagged_sents(categories='news')[:500])
+>>> sent = ['Mitchell', 'decried', 'the', 'high', 'rate', 'of', 'unemployment']
+>>> for word, tag in tagger.tag(sent):
+...     print(word, '->', tag)
+Mitchell -> NP
+decried -> None
+the -> AT
+high -> JJ
+rate -> NN
+of -> IN
+unemployment -> None
+","['__init__', 'tag']","['__init__', 'N/A', 'N/A', 'N/A']",['__init__']
+">>> tagger.evaluate(brown.tagged_sents(categories='news')[500:600])
+0.7...
+",['evaluate'],"['N/A', 'N/A']",[]
+">>> from nltk.tag import pos_tag
+>>> from nltk.tokenize import word_tokenize
+>>> pos_tag(word_tokenize(""John's big idea isn't all that bad.""))
+[('John', 'NNP'), (""'s"", 'POS'), ('big', 'JJ'), ('idea', 'NN'), ('is', 'VBZ'),
+(""n't"", 'RB'), ('all', 'PDT'), ('that', 'DT'), ('bad', 'JJ'), ('.', '.')]
+>>> pos_tag(word_tokenize(""John's big idea isn't all that bad.""), tagset='universal')
+[('John', 'NOUN'), (""'s"", 'PRT'), ('big', 'ADJ'), ('idea', 'NOUN'), ('is', 'VERB'),
+(""n't"", 'ADV'), ('all', 'DET'), ('that', 'DET'), ('bad', 'ADJ'), ('.', '.')]
+","['pos_tag', 'word_tokenize']","['N/A', 'N/A']",[]

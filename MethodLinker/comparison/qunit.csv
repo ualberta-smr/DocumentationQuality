@@ -1,0 +1,266 @@
+Example,Truth functions,Test functions,Linked functions,Source
+QUnit.module( name ),['createModule'],['module'],[]
+"QUnit.module( name, nested )",['createModule'],['module'],[]
+"QUnit.module( name, options )",['createModule'],['module'],[]
+"QUnit.module( name, options, nested )",['createModule'],['module'],[]
+QUnit.module.only(),"['only', 'only', 'only']","['module.only', 'module.only', 'module.only', 'module.only']",[]
+QUnit.module.skip(),"['skip', 'skip', 'skip']","['module.skip', 'module.skip', 'module.skip', 'module.skip']",[]
+QUnit.module.todo(),"['todo', 'todo', 'todo']","['module.todo', 'module.todo', 'module.todo', 'module.todo']",[]
+QUnit.module(),['createModule'],['module'],[]
+QUnit.test.only(),"['only', 'only', 'only']","['module.only', 'module.only', 'module.only']",[]
+QUnit.test.skip(),"['skip', 'skip', 'skip']","['module.skip', 'module.skip', 'module.skip']",[]
+QUnit.test.todo(),"['todo', 'todo', 'todo', 'todo']","['module.todo', 'module.todo', 'module.todo', 'module.todo']",[]
+QUnit.begin(),['begin'],['begin'],[]
+"QUnit.module('Group A');
+
+QUnit.test('basic test example 1', function (assert) {
+  assert.true(true, 'this is fine');
+});
+QUnit.test('basic test example 2', function (assert) {
+  assert.true(true, 'this is also fine');
+});
+
+QUnit.module('Group B');
+
+QUnit.test('basic test example 3', function (assert) {
+  assert.true(true, 'this is fine');
+});
+QUnit.test('basic test example 4', function (assert) {
+  assert.true(true, 'this is also fine');
+});
+",['test'],"['module', 'module', 'N/A', 'N/A', 'module', 'module', 'N/A', 'N/A']",[]
+"const { test } = QUnit;
+
+QUnit.module('My Group', hooks => {
+  // It is valid to call the same hook methods more than once.
+  hooks.beforeEach(assert => {
+    assert.ok(true, 'beforeEach called');
+  });
+
+  hooks.afterEach(assert => {
+    assert.ok(true, 'afterEach called');
+  });
+
+  test('with hooks', assert => {
+    // 1 x beforeEach
+    // 1 x afterEach
+    assert.expect(2);
+  });
+
+  QUnit.module('Nested Group', hooks => {
+    // This will run after the parent module's beforeEach hook
+    hooks.beforeEach(assert => {
+      assert.ok(true, 'nested beforeEach called');
+    });
+
+    // This will run before the parent module's afterEach
+    hooks.afterEach(assert => {
+      assert.ok(true, 'nested afterEach called');
+    });
+
+    test('with nested hooks', assert => {
+      // 2 x beforeEach (parent, current)
+      // 2 x afterEach (current, parent)
+      assert.expect(4);
+    });
+  });
+});
+","['module', 'test']","['N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A']",[]
+"QUnit.module('Machine Maker', {
+  beforeEach: function () {
+    this.maker = new Maker();
+    this.parts = ['wheels', 'motor', 'chassis'];
+  }
+});
+
+QUnit.test('makes a robot', function (assert) {
+  this.parts.push('arduino');
+  assert.equal(this.maker.build(this.parts), 'robot');
+  assert.deepEqual(this.maker.log, ['robot']);
+});
+
+QUnit.test('makes a car', function (assert) {
+  assert.equal(this.maker.build(this.parts), 'car');
+  this.maker.duplicate();
+  assert.deepEqual(this.maker.log, ['car', 'car']);
+});
+","['module', 'test']","['N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A']",[]
+"const { test } = QUnit;
+
+QUnit.module('Machine Maker', hooks => {
+  let maker;
+  let parts;
+  hooks.beforeEach(() => {
+    maker = new Maker();
+    parts = ['wheels', 'motor', 'chassis'];
+  });
+
+  test('makes a robot', assert => {
+    parts.push('arduino');
+    assert.equal(maker.build(parts), 'robot');
+    assert.deepEqual(maker.log, ['robot']);
+  });
+
+  test('makes a car', assert => {
+    assert.equal(maker.build(parts), 'car');
+    maker.duplicate();
+    assert.deepEqual(maker.log, ['car', 'car']);
+  });
+});
+",['module'],"['N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A']",[]
+"QUnit.module('Database connection', {
+  before: function () {
+    return new Promise(function (resolve, reject) {
+      DB.connect(function (err) {
+        if (err) {
+          reject(err);
+        } else {
+          resolve();
+        }
+      });
+    });
+  },
+  after: function () {
+    return new Promise(function (resolve, reject) {
+      DB.disconnect(function (err) {
+        if (err) {
+          reject(err);
+        } else {
+          resolve();
+        }
+      });
+    });
+  }
+});
+",['N/A'],"['N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A']",['N/A']
+QUnit.start(),['start'],['N/A'],[]
+QUnit.stop(),['N/A'],['N/A'],['N/A']
+"QUnit.config.autostart = false;
+
+require(
+  ['test/tests1.js', 'test/tests2.js'],
+  QUnit.start
+);
+",['start'],['N/A'],[]
+"QUnit.test( name, callback )",['test'],['N/A'],[]
+QUnit.test(),"['test', 'test', 'test', 'test']","['N/A', 'N/A', 'N/A', 'N/A']",[]
+"QUnit.test('Test with async-await', async assert => {
+  const a = await fetchSquare(2);
+  const b = await fetchSquare(3);
+
+  assert.equal(a, 4);
+  assert.equal(b, 9);
+  assert.equal(await fetchSquare(5), 25);
+});
+",['test'],"['N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A']",[]
+"function fetchSquare (x) {
+  return new Promise(function (resolve) {
+    setTimeout(function () {
+      resolve(x * x);
+    }, 1000);
+  });
+}
+
+QUnit.test('Test with Promise', function (assert) {
+  return fetchSquare(3).then(function (result) {
+    assert.equal(result, 9);
+  });
+});
+",['test'],"['N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A']",[]
+"QUnit.test.each( name, dataset, callback )",['each'],['N/A'],[]
+"QUnit.test.only.each( name, dataset, callback )",['only.each'],['N/A'],[]
+"QUnit.test.skip.each( name, dataset, callback )",['skip.each'],['N/A'],[]
+"QUnit.test.todo.each( name, dataset, callback )",['todo.each'],['N/A'],[]
+QUnit.test.each(),['each'],['N/A'],[]
+"function square (x) {
+  return x * x;
+}
+
+QUnit.test.each('square()', [
+  [2, 4],
+  [3, 9]
+], (assert, [value, expected]) => {
+  assert.equal(square(value), expected, `${value} squared`);
+});
+","['each', 'each']","['N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A']",[]
+"QUnit.test.each('isEven()', {
+  caseEven: [2, true],
+  caseNotEven: [3, false]
+}, (assert, [value, expected]) => {
+  assert.strictEqual(isEven(value), expected);
+});
+","['each', 'each']","['N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A']",[]
+each(),['each'],['N/A'],[]
+"function isEven (x) {
+  return x % 2 === 0;
+}
+
+async function isAsyncEven (x) {
+  return new Promise(resolve => {
+    resolve(isEven(x));
+  });
+}
+
+QUnit.test.each('isAsyncEven()', [2, 4], async (assert, data) => {
+  assert.true(await isAsyncEven(data), `${data} is even`);
+});
+",['each'],"['N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A']",[]
+"QUnit.test.only( name, callback )",['only'],['module.only'],[]
+"QUnit.only( name, callback )",['only'],['module.only'],[]
+QUnit.only(),"['only', 'only']","['module.only', 'module.only']",[]
+"QUnit.module('robot', hooks => {
+  let robot;
+  hooks.beforeEach(() => {
+    robot = new Robot();
+  });
+
+  QUnit.test('say()', assert => {
+    assert.true(robot.say('Hello'));
+  });
+
+  // Run only this test
+  // For example, you are working on changing this method.
+  QUnit.test.only('laser()', assert => {
+    assert.true(robot.laser());
+  });
+
+  QUnit.test('take()', assert => {
+    assert.true(robot.take(5));
+  });
+});
+","['test', 'only', 'test']","['N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'module.only', 'N/A', 'N/A', 'N/A', 'N/A']",[]
+"QUnit.test.skip( name, callback )",['skip'],['module.skip'],[]
+"QUnit.skip( name, callback )",['skip'],['module.skip'],[]
+QUnit.skip(),"['skip', 'skip']","['module.skip', 'module.skip']",[]
+"QUnit.module('robot', hooks => {
+  let robot;
+  hooks.beforeEach(() => {
+    robot = new Robot();
+  });
+
+  QUnit.test('say', assert => {
+    assert.strictEqual(robot.say(), 'Exterminate!');
+  });
+
+  // Robot does not yet have a laser() method yet, skip this test for now
+  QUnit.test.skip('laser', assert => {
+    assert.true(robot.laser());
+  });
+});
+","['test', 'skip']","['N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A']",[]
+"QUnit.test.todo( name, callback )",['todo'],['module.todo'],[]
+"QUnit.todo( name, callback )",['todo'],['module.todo'],[]
+QUnit.todo(),"['todo', 'todo']","['module.todo', 'module.todo']",[]
+"QUnit.module('Robot', hooks => {
+  let robot;
+  hooks.beforeEach(() => {
+    robot = new Robot();
+  });
+
+  // Robot is not yet finished, expect this is a todo test
+  QUnit.test.todo('fireLazer', assert => {
+    const result = robot.fireLazer();
+    assert.equal(result, ""I'm firing my lazer!"");
+  });
+});
+",['todo'],"['N/A', 'N/A', 'N/A', 'N/A']",[]

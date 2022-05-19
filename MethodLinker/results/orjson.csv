@@ -1,0 +1,1917 @@
+Example,Extracted Function,Linked Function,Source File,Matched
+load(),load,N/A,N/A,N/A
+dump(),dump,N/A,N/A,N/A
+dumps(),dumps,N/A,N/A,N/A
+"dumps(...) + ""\n""",dumps,N/A,N/A,N/A
+loads(),loads,N/A,N/A,N/A
+dataclasses.asdict(),dataclasses.asdict,N/A,N/A,N/A
+isoformat(),isoformat,N/A,N/A,N/A
+dumps(),dumps,N/A,N/A,N/A
+orjson.dumps(),orjson.dumps,dumps,orjson\orjson.pyi,False
+dumps(),dumps,N/A,N/A,N/A
+obj.tolist(),obj.tolist,N/A,N/A,N/A
+ndarray.tolist(),ndarray.tolist,N/A,N/A,N/A
+orjson.dumps(),orjson.dumps,dumps,orjson\orjson.pyi,False
+loads(),loads,N/A,N/A,N/A
+">>> import orjson, datetime, numpy
+>>> data = {
+    ""type"": ""job"",
+    ""created_at"": datetime.datetime(1970, 1, 1),
+    ""status"": ""🆗"",
+    ""payload"": numpy.array([[1, 2], [3, 4]]),
+}
+>>> orjson.dumps(data, option=orjson.OPT_NAIVE_UTC | orjson.OPT_SERIALIZE_NUMPY)
+b'{""type"":""job"",""created_at"":""1970-01-01T00:00:00+00:00"",""status"":""\xf0\x9f\x86\x97"",""payload"":[[1,2],[3,4]]}'
+>>> orjson.loads(_)
+{'type': 'job', 'created_at': '1970-01-01T00:00:00+00:00', 'status': '🆗', 'payload': [[1, 2], [3, 4]]}",datetime.datetime,N/A,N/A,N/A
+">>> import orjson, datetime, numpy
+>>> data = {
+    ""type"": ""job"",
+    ""created_at"": datetime.datetime(1970, 1, 1),
+    ""status"": ""🆗"",
+    ""payload"": numpy.array([[1, 2], [3, 4]]),
+}
+>>> orjson.dumps(data, option=orjson.OPT_NAIVE_UTC | orjson.OPT_SERIALIZE_NUMPY)
+b'{""type"":""job"",""created_at"":""1970-01-01T00:00:00+00:00"",""status"":""\xf0\x9f\x86\x97"",""payload"":[[1,2],[3,4]]}'
+>>> orjson.loads(_)
+{'type': 'job', 'created_at': '1970-01-01T00:00:00+00:00', 'status': '🆗', 'payload': [[1, 2], [3, 4]]}",numpy.array,N/A,N/A,N/A
+">>> import orjson, datetime, numpy
+>>> data = {
+    ""type"": ""job"",
+    ""created_at"": datetime.datetime(1970, 1, 1),
+    ""status"": ""🆗"",
+    ""payload"": numpy.array([[1, 2], [3, 4]]),
+}
+>>> orjson.dumps(data, option=orjson.OPT_NAIVE_UTC | orjson.OPT_SERIALIZE_NUMPY)
+b'{""type"":""job"",""created_at"":""1970-01-01T00:00:00+00:00"",""status"":""\xf0\x9f\x86\x97"",""payload"":[[1,2],[3,4]]}'
+>>> orjson.loads(_)
+{'type': 'job', 'created_at': '1970-01-01T00:00:00+00:00', 'status': '🆗', 'payload': [[1, 2], [3, 4]]}",orjson.dumps,dumps,orjson\orjson.pyi,True
+">>> import orjson, datetime, numpy
+>>> data = {
+    ""type"": ""job"",
+    ""created_at"": datetime.datetime(1970, 1, 1),
+    ""status"": ""🆗"",
+    ""payload"": numpy.array([[1, 2], [3, 4]]),
+}
+>>> orjson.dumps(data, option=orjson.OPT_NAIVE_UTC | orjson.OPT_SERIALIZE_NUMPY)
+b'{""type"":""job"",""created_at"":""1970-01-01T00:00:00+00:00"",""status"":""\xf0\x9f\x86\x97"",""payload"":[[1,2],[3,4]]}'
+>>> orjson.loads(_)
+{'type': 'job', 'created_at': '1970-01-01T00:00:00+00:00', 'status': '🆗', 'payload': [[1, 2], [3, 4]]}",orjson.loads,loads,orjson\orjson.pyi,True
+"def dumps(
+    __obj: Any,
+    default: Optional[Callable[[Any], Any]] = ...,
+    option: Optional[int] = ...,
+) -> bytes: ...",dumps,N/A,N/A,N/A
+">>> import orjson, decimal
+>>>
+def default(obj):
+    if isinstance(obj, decimal.Decimal):
+        return str(obj)
+    raise TypeError
+
+>>> orjson.dumps(decimal.Decimal(""0.0842389659712649442845""))
+JSONEncodeError: Type is not JSON serializable: decimal.Decimal
+>>> orjson.dumps(decimal.Decimal(""0.0842389659712649442845""), default=default)
+b'""0.0842389659712649442845""'
+>>> orjson.dumps({1, 2}, default=default)
+orjson.JSONEncodeError: Type is not JSON serializable: set",default,N/A,N/A,N/A
+">>> import orjson, decimal
+>>>
+def default(obj):
+    if isinstance(obj, decimal.Decimal):
+        return str(obj)
+    raise TypeError
+
+>>> orjson.dumps(decimal.Decimal(""0.0842389659712649442845""))
+JSONEncodeError: Type is not JSON serializable: decimal.Decimal
+>>> orjson.dumps(decimal.Decimal(""0.0842389659712649442845""), default=default)
+b'""0.0842389659712649442845""'
+>>> orjson.dumps({1, 2}, default=default)
+orjson.JSONEncodeError: Type is not JSON serializable: set",isinstance,N/A,N/A,N/A
+">>> import orjson, decimal
+>>>
+def default(obj):
+    if isinstance(obj, decimal.Decimal):
+        return str(obj)
+    raise TypeError
+
+>>> orjson.dumps(decimal.Decimal(""0.0842389659712649442845""))
+JSONEncodeError: Type is not JSON serializable: decimal.Decimal
+>>> orjson.dumps(decimal.Decimal(""0.0842389659712649442845""), default=default)
+b'""0.0842389659712649442845""'
+>>> orjson.dumps({1, 2}, default=default)
+orjson.JSONEncodeError: Type is not JSON serializable: set",str,N/A,N/A,N/A
+">>> import orjson, decimal
+>>>
+def default(obj):
+    if isinstance(obj, decimal.Decimal):
+        return str(obj)
+    raise TypeError
+
+>>> orjson.dumps(decimal.Decimal(""0.0842389659712649442845""))
+JSONEncodeError: Type is not JSON serializable: decimal.Decimal
+>>> orjson.dumps(decimal.Decimal(""0.0842389659712649442845""), default=default)
+b'""0.0842389659712649442845""'
+>>> orjson.dumps({1, 2}, default=default)
+orjson.JSONEncodeError: Type is not JSON serializable: set",decimal.Decimal,N/A,N/A,N/A
+">>> import orjson, json, rapidjson
+>>>
+def default(obj):
+    if isinstance(obj, decimal.Decimal):
+        return str(obj)
+
+>>> orjson.dumps({""set"":{1, 2}}, default=default)
+b'{""set"":null}'
+>>> json.dumps({""set"":{1, 2}}, default=default)
+'{""set"":null}'
+>>> rapidjson.dumps({""set"":{1, 2}}, default=default)
+'{""set"":null}'",default,N/A,N/A,N/A
+">>> import orjson, json, rapidjson
+>>>
+def default(obj):
+    if isinstance(obj, decimal.Decimal):
+        return str(obj)
+
+>>> orjson.dumps({""set"":{1, 2}}, default=default)
+b'{""set"":null}'
+>>> json.dumps({""set"":{1, 2}}, default=default)
+'{""set"":null}'
+>>> rapidjson.dumps({""set"":{1, 2}}, default=default)
+'{""set"":null}'",isinstance,N/A,N/A,N/A
+">>> import orjson, json, rapidjson
+>>>
+def default(obj):
+    if isinstance(obj, decimal.Decimal):
+        return str(obj)
+
+>>> orjson.dumps({""set"":{1, 2}}, default=default)
+b'{""set"":null}'
+>>> json.dumps({""set"":{1, 2}}, default=default)
+'{""set"":null}'
+>>> rapidjson.dumps({""set"":{1, 2}}, default=default)
+'{""set"":null}'",str,N/A,N/A,N/A
+">>> import orjson, json, rapidjson
+>>>
+def default(obj):
+    if isinstance(obj, decimal.Decimal):
+        return str(obj)
+
+>>> orjson.dumps({""set"":{1, 2}}, default=default)
+b'{""set"":null}'
+>>> json.dumps({""set"":{1, 2}}, default=default)
+'{""set"":null}'
+>>> rapidjson.dumps({""set"":{1, 2}}, default=default)
+'{""set"":null}'",json.dumps,N/A,N/A,N/A
+">>> import orjson, json, rapidjson
+>>>
+def default(obj):
+    if isinstance(obj, decimal.Decimal):
+        return str(obj)
+
+>>> orjson.dumps({""set"":{1, 2}}, default=default)
+b'{""set"":null}'
+>>> json.dumps({""set"":{1, 2}}, default=default)
+'{""set"":null}'
+>>> rapidjson.dumps({""set"":{1, 2}}, default=default)
+'{""set"":null}'",rapidjson.dumps,N/A,N/A,N/A
+">>> import orjson, datetime
+>>> orjson.dumps(
+        datetime.datetime(1970, 1, 1, 0, 0, 0),
+    )
+b'""1970-01-01T00:00:00""'
+>>> orjson.dumps(
+        datetime.datetime(1970, 1, 1, 0, 0, 0),
+        option=orjson.OPT_NAIVE_UTC,
+    )
+b'""1970-01-01T00:00:00+00:00""'",datetime.datetime,N/A,N/A,N/A
+">>> import orjson, datetime, uuid
+>>> orjson.dumps(
+        {uuid.UUID(""7202d115-7ff3-4c81-a7c1-2a1f067b1ece""): [1, 2, 3]},
+        option=orjson.OPT_NON_STR_KEYS,
+    )
+b'{""7202d115-7ff3-4c81-a7c1-2a1f067b1ece"":[1,2,3]}'
+>>> orjson.dumps(
+        {datetime.datetime(1970, 1, 1, 0, 0, 0): [1, 2, 3]},
+        option=orjson.OPT_NON_STR_KEYS | orjson.OPT_NAIVE_UTC,
+    )
+b'{""1970-01-01T00:00:00+00:00"":[1,2,3]}'",uuid.UUID,N/A,N/A,N/A
+">>> import orjson, datetime, uuid
+>>> orjson.dumps(
+        {uuid.UUID(""7202d115-7ff3-4c81-a7c1-2a1f067b1ece""): [1, 2, 3]},
+        option=orjson.OPT_NON_STR_KEYS,
+    )
+b'{""7202d115-7ff3-4c81-a7c1-2a1f067b1ece"":[1,2,3]}'
+>>> orjson.dumps(
+        {datetime.datetime(1970, 1, 1, 0, 0, 0): [1, 2, 3]},
+        option=orjson.OPT_NON_STR_KEYS | orjson.OPT_NAIVE_UTC,
+    )
+b'{""1970-01-01T00:00:00+00:00"":[1,2,3]}'",datetime.datetime,N/A,N/A,N/A
+">>> import orjson, datetime
+>>> orjson.dumps(
+    {""other"": 1, datetime.date(1970, 1, 5): 2, datetime.date(1970, 1, 3): 3},
+    option=orjson.OPT_NON_STR_KEYS | orjson.OPT_SORT_KEYS
+)
+b'{""1970-01-03"":3,""1970-01-05"":2,""other"":1}'",datetime.date,N/A,N/A,N/A
+">>> import orjson, datetime
+>>> orjson.dumps(
+        datetime.datetime(1970, 1, 1, 0, 0, 0, 1),
+    )
+b'""1970-01-01T00:00:00.000001""'
+>>> orjson.dumps(
+        datetime.datetime(1970, 1, 1, 0, 0, 0, 1),
+        option=orjson.OPT_OMIT_MICROSECONDS,
+    )
+b'""1970-01-01T00:00:00""'",datetime.datetime,N/A,N/A,N/A
+">>> import orjson, dataclasses
+>>>
+@dataclasses.dataclass
+class User:
+    id: str
+    name: str
+    password: str
+
+def default(obj):
+    if isinstance(obj, User):
+        return {""id"": obj.id, ""name"": obj.name}
+    raise TypeError
+
+>>> orjson.dumps(User(""3b1"", ""asd"", ""zxc""))
+b'{""id"":""3b1"",""name"":""asd"",""password"":""zxc""}'
+>>> orjson.dumps(User(""3b1"", ""asd"", ""zxc""), option=orjson.OPT_PASSTHROUGH_DATACLASS)
+TypeError: Type is not JSON serializable: User
+>>> orjson.dumps(
+        User(""3b1"", ""asd"", ""zxc""),
+        option=orjson.OPT_PASSTHROUGH_DATACLASS,
+        default=default,
+    )
+b'{""id"":""3b1"",""name"":""asd""}'",default,N/A,N/A,N/A
+">>> import orjson, dataclasses
+>>>
+@dataclasses.dataclass
+class User:
+    id: str
+    name: str
+    password: str
+
+def default(obj):
+    if isinstance(obj, User):
+        return {""id"": obj.id, ""name"": obj.name}
+    raise TypeError
+
+>>> orjson.dumps(User(""3b1"", ""asd"", ""zxc""))
+b'{""id"":""3b1"",""name"":""asd"",""password"":""zxc""}'
+>>> orjson.dumps(User(""3b1"", ""asd"", ""zxc""), option=orjson.OPT_PASSTHROUGH_DATACLASS)
+TypeError: Type is not JSON serializable: User
+>>> orjson.dumps(
+        User(""3b1"", ""asd"", ""zxc""),
+        option=orjson.OPT_PASSTHROUGH_DATACLASS,
+        default=default,
+    )
+b'{""id"":""3b1"",""name"":""asd""}'",isinstance,N/A,N/A,N/A
+">>> import orjson, dataclasses
+>>>
+@dataclasses.dataclass
+class User:
+    id: str
+    name: str
+    password: str
+
+def default(obj):
+    if isinstance(obj, User):
+        return {""id"": obj.id, ""name"": obj.name}
+    raise TypeError
+
+>>> orjson.dumps(User(""3b1"", ""asd"", ""zxc""))
+b'{""id"":""3b1"",""name"":""asd"",""password"":""zxc""}'
+>>> orjson.dumps(User(""3b1"", ""asd"", ""zxc""), option=orjson.OPT_PASSTHROUGH_DATACLASS)
+TypeError: Type is not JSON serializable: User
+>>> orjson.dumps(
+        User(""3b1"", ""asd"", ""zxc""),
+        option=orjson.OPT_PASSTHROUGH_DATACLASS,
+        default=default,
+    )
+b'{""id"":""3b1"",""name"":""asd""}'",User,N/A,N/A,N/A
+">>> import orjson, datetime
+>>>
+def default(obj):
+    if isinstance(obj, datetime.datetime):
+        return obj.strftime(""%a, %d %b %Y %H:%M:%S GMT"")
+    raise TypeError
+
+>>> orjson.dumps({""created_at"": datetime.datetime(1970, 1, 1)})
+b'{""created_at"":""1970-01-01T00:00:00""}'
+>>> orjson.dumps({""created_at"": datetime.datetime(1970, 1, 1)}, option=orjson.OPT_PASSTHROUGH_DATETIME)
+TypeError: Type is not JSON serializable: datetime.datetime
+>>> orjson.dumps(
+        {""created_at"": datetime.datetime(1970, 1, 1)},
+        option=orjson.OPT_PASSTHROUGH_DATETIME,
+        default=default,
+    )
+b'{""created_at"":""Thu, 01 Jan 1970 00:00:00 GMT""}'",default,N/A,N/A,N/A
+">>> import orjson, datetime
+>>>
+def default(obj):
+    if isinstance(obj, datetime.datetime):
+        return obj.strftime(""%a, %d %b %Y %H:%M:%S GMT"")
+    raise TypeError
+
+>>> orjson.dumps({""created_at"": datetime.datetime(1970, 1, 1)})
+b'{""created_at"":""1970-01-01T00:00:00""}'
+>>> orjson.dumps({""created_at"": datetime.datetime(1970, 1, 1)}, option=orjson.OPT_PASSTHROUGH_DATETIME)
+TypeError: Type is not JSON serializable: datetime.datetime
+>>> orjson.dumps(
+        {""created_at"": datetime.datetime(1970, 1, 1)},
+        option=orjson.OPT_PASSTHROUGH_DATETIME,
+        default=default,
+    )
+b'{""created_at"":""Thu, 01 Jan 1970 00:00:00 GMT""}'",isinstance,N/A,N/A,N/A
+">>> import orjson, datetime
+>>>
+def default(obj):
+    if isinstance(obj, datetime.datetime):
+        return obj.strftime(""%a, %d %b %Y %H:%M:%S GMT"")
+    raise TypeError
+
+>>> orjson.dumps({""created_at"": datetime.datetime(1970, 1, 1)})
+b'{""created_at"":""1970-01-01T00:00:00""}'
+>>> orjson.dumps({""created_at"": datetime.datetime(1970, 1, 1)}, option=orjson.OPT_PASSTHROUGH_DATETIME)
+TypeError: Type is not JSON serializable: datetime.datetime
+>>> orjson.dumps(
+        {""created_at"": datetime.datetime(1970, 1, 1)},
+        option=orjson.OPT_PASSTHROUGH_DATETIME,
+        default=default,
+    )
+b'{""created_at"":""Thu, 01 Jan 1970 00:00:00 GMT""}'",obj.strftime,N/A,N/A,N/A
+">>> import orjson, datetime
+>>>
+def default(obj):
+    if isinstance(obj, datetime.datetime):
+        return obj.strftime(""%a, %d %b %Y %H:%M:%S GMT"")
+    raise TypeError
+
+>>> orjson.dumps({""created_at"": datetime.datetime(1970, 1, 1)})
+b'{""created_at"":""1970-01-01T00:00:00""}'
+>>> orjson.dumps({""created_at"": datetime.datetime(1970, 1, 1)}, option=orjson.OPT_PASSTHROUGH_DATETIME)
+TypeError: Type is not JSON serializable: datetime.datetime
+>>> orjson.dumps(
+        {""created_at"": datetime.datetime(1970, 1, 1)},
+        option=orjson.OPT_PASSTHROUGH_DATETIME,
+        default=default,
+    )
+b'{""created_at"":""Thu, 01 Jan 1970 00:00:00 GMT""}'",datetime.datetime,N/A,N/A,N/A
+">>> import orjson
+>>>
+class Secret(str):
+    pass
+
+def default(obj):
+    if isinstance(obj, Secret):
+        return ""******""
+    raise TypeError
+
+>>> orjson.dumps(Secret(""zxc""))
+b'""zxc""'
+>>> orjson.dumps(Secret(""zxc""), option=orjson.OPT_PASSTHROUGH_SUBCLASS)
+TypeError: Type is not JSON serializable: Secret
+>>> orjson.dumps(Secret(""zxc""), option=orjson.OPT_PASSTHROUGH_SUBCLASS, default=default)
+b'""******""'",Secret,N/A,N/A,N/A
+">>> import orjson
+>>>
+class Secret(str):
+    pass
+
+def default(obj):
+    if isinstance(obj, Secret):
+        return ""******""
+    raise TypeError
+
+>>> orjson.dumps(Secret(""zxc""))
+b'""zxc""'
+>>> orjson.dumps(Secret(""zxc""), option=orjson.OPT_PASSTHROUGH_SUBCLASS)
+TypeError: Type is not JSON serializable: Secret
+>>> orjson.dumps(Secret(""zxc""), option=orjson.OPT_PASSTHROUGH_SUBCLASS, default=default)
+b'""******""'",default,N/A,N/A,N/A
+">>> import orjson
+>>>
+class Secret(str):
+    pass
+
+def default(obj):
+    if isinstance(obj, Secret):
+        return ""******""
+    raise TypeError
+
+>>> orjson.dumps(Secret(""zxc""))
+b'""zxc""'
+>>> orjson.dumps(Secret(""zxc""), option=orjson.OPT_PASSTHROUGH_SUBCLASS)
+TypeError: Type is not JSON serializable: Secret
+>>> orjson.dumps(Secret(""zxc""), option=orjson.OPT_PASSTHROUGH_SUBCLASS, default=default)
+b'""******""'",isinstance,N/A,N/A,N/A
+">>> import orjson
+>>>
+class Secret(str):
+    pass
+
+def default(obj):
+    if isinstance(obj, Secret):
+        return ""******""
+    raise TypeError
+
+>>> orjson.dumps(Secret(""zxc""))
+b'""zxc""'
+>>> orjson.dumps(Secret(""zxc""), option=orjson.OPT_PASSTHROUGH_SUBCLASS)
+TypeError: Type is not JSON serializable: Secret
+>>> orjson.dumps(Secret(""zxc""), option=orjson.OPT_PASSTHROUGH_SUBCLASS, default=default)
+b'""******""'",orjson.dumps,dumps,orjson\orjson.pyi,False
+">>> import orjson
+>>>
+class Secret(str):
+    pass
+
+def default(obj):
+    if isinstance(obj, Secret):
+        return ""******""
+    raise TypeError
+
+>>> orjson.dumps(Secret(""zxc""))
+b'""zxc""'
+>>> orjson.dumps(Secret(""zxc""), option=orjson.OPT_PASSTHROUGH_SUBCLASS)
+TypeError: Type is not JSON serializable: Secret
+>>> orjson.dumps(Secret(""zxc""), option=orjson.OPT_PASSTHROUGH_SUBCLASS, default=default)
+b'""******""'",orjson.dumps,dumps,orjson\orjson.pyi,False
+">>> import orjson
+>>>
+class Secret(str):
+    pass
+
+def default(obj):
+    if isinstance(obj, Secret):
+        return ""******""
+    raise TypeError
+
+>>> orjson.dumps(Secret(""zxc""))
+b'""zxc""'
+>>> orjson.dumps(Secret(""zxc""), option=orjson.OPT_PASSTHROUGH_SUBCLASS)
+TypeError: Type is not JSON serializable: Secret
+>>> orjson.dumps(Secret(""zxc""), option=orjson.OPT_PASSTHROUGH_SUBCLASS, default=default)
+b'""******""'",orjson.dumps,dumps,orjson\orjson.pyi,False
+">>> import orjson, datetime, zoneinfo
+>>> orjson.dumps(
+        datetime.datetime(1970, 1, 1, 0, 0, 0, tzinfo=zoneinfo.ZoneInfo(""UTC"")),
+    )
+b'""1970-01-01T00:00:00+00:00""'
+>>> orjson.dumps(
+        datetime.datetime(1970, 1, 1, 0, 0, 0, tzinfo=zoneinfo.ZoneInfo(""UTC"")),
+        option=orjson.OPT_UTC_Z
+    )
+b'""1970-01-01T00:00:00Z""'",datetime.datetime,N/A,N/A,N/A
+">>> import orjson, datetime, zoneinfo
+>>> orjson.dumps(
+        datetime.datetime(1970, 1, 1, 0, 0, 0, tzinfo=zoneinfo.ZoneInfo(""UTC"")),
+    )
+b'""1970-01-01T00:00:00+00:00""'
+>>> orjson.dumps(
+        datetime.datetime(1970, 1, 1, 0, 0, 0, tzinfo=zoneinfo.ZoneInfo(""UTC"")),
+        option=orjson.OPT_UTC_Z
+    )
+b'""1970-01-01T00:00:00Z""'",zoneinfo.ZoneInfo,N/A,N/A,N/A
+"def loads(__obj: Union[bytes, bytearray, memoryview, str]) -> Any: ...",loads,N/A,N/A,N/A
+">>> import dataclasses, orjson, typing
+
+@dataclasses.dataclass
+class Member:
+    id: int
+    active: bool = dataclasses.field(default=False)
+
+@dataclasses.dataclass
+class Object:
+    id: int
+    name: str
+    members: typing.List[Member]
+
+>>> orjson.dumps(Object(1, ""a"", [Member(1, True), Member(2)]))
+b'{""id"":1,""name"":""a"",""members"":[{""id"":1,""active"":true},{""id"":2,""active"":false}]}'",dataclasses.field,N/A,N/A,N/A
+">>> import dataclasses, orjson, typing
+
+@dataclasses.dataclass
+class Member:
+    id: int
+    active: bool = dataclasses.field(default=False)
+
+@dataclasses.dataclass
+class Object:
+    id: int
+    name: str
+    members: typing.List[Member]
+
+>>> orjson.dumps(Object(1, ""a"", [Member(1, True), Member(2)]))
+b'{""id"":1,""name"":""a"",""members"":[{""id"":1,""active"":true},{""id"":2,""active"":false}]}'",Object,N/A,N/A,N/A
+">>> import dataclasses, orjson, typing
+
+@dataclasses.dataclass
+class Member:
+    id: int
+    active: bool = dataclasses.field(default=False)
+
+@dataclasses.dataclass
+class Object:
+    id: int
+    name: str
+    members: typing.List[Member]
+
+>>> orjson.dumps(Object(1, ""a"", [Member(1, True), Member(2)]))
+b'{""id"":1,""name"":""a"",""members"":[{""id"":1,""active"":true},{""id"":2,""active"":false}]}'",Member,N/A,N/A,N/A
+">>> import orjson, datetime, zoneinfo
+>>> orjson.dumps(
+    datetime.datetime(2018, 12, 1, 2, 3, 4, 9, tzinfo=zoneinfo.ZoneInfo(""Australia/Adelaide""))
+)
+b'""2018-12-01T02:03:04.000009+10:30""'
+>>> orjson.dumps(
+    datetime.datetime(2100, 9, 1, 21, 55, 2).replace(tzinfo=zoneinfo.ZoneInfo(""UTC""))
+)
+b'""2100-09-01T21:55:02+00:00""'
+>>> orjson.dumps(
+    datetime.datetime(2100, 9, 1, 21, 55, 2)
+)
+b'""2100-09-01T21:55:02""'",datetime.datetime,N/A,N/A,N/A
+">>> import orjson, datetime, zoneinfo
+>>> orjson.dumps(
+    datetime.datetime(2018, 12, 1, 2, 3, 4, 9, tzinfo=zoneinfo.ZoneInfo(""Australia/Adelaide""))
+)
+b'""2018-12-01T02:03:04.000009+10:30""'
+>>> orjson.dumps(
+    datetime.datetime(2100, 9, 1, 21, 55, 2).replace(tzinfo=zoneinfo.ZoneInfo(""UTC""))
+)
+b'""2100-09-01T21:55:02+00:00""'
+>>> orjson.dumps(
+    datetime.datetime(2100, 9, 1, 21, 55, 2)
+)
+b'""2100-09-01T21:55:02""'",zoneinfo.ZoneInfo,N/A,N/A,N/A
+">>> import orjson, datetime, zoneinfo
+>>> orjson.dumps(
+    datetime.datetime(2018, 12, 1, 2, 3, 4, 9, tzinfo=zoneinfo.ZoneInfo(""Australia/Adelaide""))
+)
+b'""2018-12-01T02:03:04.000009+10:30""'
+>>> orjson.dumps(
+    datetime.datetime(2100, 9, 1, 21, 55, 2).replace(tzinfo=zoneinfo.ZoneInfo(""UTC""))
+)
+b'""2100-09-01T21:55:02+00:00""'
+>>> orjson.dumps(
+    datetime.datetime(2100, 9, 1, 21, 55, 2)
+)
+b'""2100-09-01T21:55:02""'",replace,N/A,N/A,N/A
+">>> import orjson, datetime
+>>> orjson.dumps(datetime.time(12, 0, 15, 290))
+b'""12:00:15.000290""'",datetime.time,N/A,N/A,N/A
+">>> import orjson, datetime
+>>> orjson.dumps(datetime.date(1900, 1, 2))
+b'""1900-01-02""'",datetime.date,N/A,N/A,N/A
+">>> import enum, datetime, orjson
+>>>
+class DatetimeEnum(enum.Enum):
+    EPOCH = datetime.datetime(1970, 1, 1, 0, 0, 0)
+>>> orjson.dumps(DatetimeEnum.EPOCH)
+b'""1970-01-01T00:00:00""'
+>>> orjson.dumps(DatetimeEnum.EPOCH, option=orjson.OPT_NAIVE_UTC)
+b'""1970-01-01T00:00:00+00:00""'",DatetimeEnum,N/A,N/A,N/A
+">>> import enum, datetime, orjson
+>>>
+class DatetimeEnum(enum.Enum):
+    EPOCH = datetime.datetime(1970, 1, 1, 0, 0, 0)
+>>> orjson.dumps(DatetimeEnum.EPOCH)
+b'""1970-01-01T00:00:00""'
+>>> orjson.dumps(DatetimeEnum.EPOCH, option=orjson.OPT_NAIVE_UTC)
+b'""1970-01-01T00:00:00+00:00""'",datetime.datetime,N/A,N/A,N/A
+">>> import enum, datetime, orjson
+>>>
+class DatetimeEnum(enum.Enum):
+    EPOCH = datetime.datetime(1970, 1, 1, 0, 0, 0)
+>>> orjson.dumps(DatetimeEnum.EPOCH)
+b'""1970-01-01T00:00:00""'
+>>> orjson.dumps(DatetimeEnum.EPOCH, option=orjson.OPT_NAIVE_UTC)
+b'""1970-01-01T00:00:00+00:00""'",orjson.dumps,dumps,orjson\orjson.pyi,True
+">>> import enum, datetime, orjson
+>>>
+class DatetimeEnum(enum.Enum):
+    EPOCH = datetime.datetime(1970, 1, 1, 0, 0, 0)
+>>> orjson.dumps(DatetimeEnum.EPOCH)
+b'""1970-01-01T00:00:00""'
+>>> orjson.dumps(DatetimeEnum.EPOCH, option=orjson.OPT_NAIVE_UTC)
+b'""1970-01-01T00:00:00+00:00""'",orjson.dumps,dumps,orjson\orjson.pyi,True
+">>> import enum, orjson
+>>>
+class Custom:
+    def __init__(self, val):
+        self.val = val
+
+def default(obj):
+    if isinstance(obj, Custom):
+        return obj.val
+    raise TypeError
+
+class CustomEnum(enum.Enum):
+    ONE = Custom(1)
+
+>>> orjson.dumps(CustomEnum.ONE, default=default)
+b'1'",__init__,N/A,N/A,N/A
+">>> import enum, orjson
+>>>
+class Custom:
+    def __init__(self, val):
+        self.val = val
+
+def default(obj):
+    if isinstance(obj, Custom):
+        return obj.val
+    raise TypeError
+
+class CustomEnum(enum.Enum):
+    ONE = Custom(1)
+
+>>> orjson.dumps(CustomEnum.ONE, default=default)
+b'1'",default,N/A,N/A,N/A
+">>> import enum, orjson
+>>>
+class Custom:
+    def __init__(self, val):
+        self.val = val
+
+def default(obj):
+    if isinstance(obj, Custom):
+        return obj.val
+    raise TypeError
+
+class CustomEnum(enum.Enum):
+    ONE = Custom(1)
+
+>>> orjson.dumps(CustomEnum.ONE, default=default)
+b'1'",isinstance,N/A,N/A,N/A
+">>> import enum, orjson
+>>>
+class Custom:
+    def __init__(self, val):
+        self.val = val
+
+def default(obj):
+    if isinstance(obj, Custom):
+        return obj.val
+    raise TypeError
+
+class CustomEnum(enum.Enum):
+    ONE = Custom(1)
+
+>>> orjson.dumps(CustomEnum.ONE, default=default)
+b'1'",CustomEnum,N/A,N/A,N/A
+">>> import enum, orjson
+>>>
+class Custom:
+    def __init__(self, val):
+        self.val = val
+
+def default(obj):
+    if isinstance(obj, Custom):
+        return obj.val
+    raise TypeError
+
+class CustomEnum(enum.Enum):
+    ONE = Custom(1)
+
+>>> orjson.dumps(CustomEnum.ONE, default=default)
+b'1'",Custom,N/A,N/A,N/A
+">>> import enum, orjson
+>>>
+class Custom:
+    def __init__(self, val):
+        self.val = val
+
+def default(obj):
+    if isinstance(obj, Custom):
+        return obj.val
+    raise TypeError
+
+class CustomEnum(enum.Enum):
+    ONE = Custom(1)
+
+>>> orjson.dumps(CustomEnum.ONE, default=default)
+b'1'",orjson.dumps,dumps,orjson\orjson.pyi,True
+">>> import orjson, ujson, rapidjson, json
+>>> orjson.dumps([float(""NaN""), float(""Infinity""), float(""-Infinity"")])
+b'[null,null,null]'
+>>> ujson.dumps([float(""NaN""), float(""Infinity""), float(""-Infinity"")])
+OverflowError: Invalid Inf value when encoding double
+>>> rapidjson.dumps([float(""NaN""), float(""Infinity""), float(""-Infinity"")])
+'[NaN,Infinity,-Infinity]'
+>>> json.dumps([float(""NaN""), float(""Infinity""), float(""-Infinity"")])
+'[NaN, Infinity, -Infinity]'",float,N/A,N/A,N/A
+">>> import orjson, ujson, rapidjson, json
+>>> orjson.dumps([float(""NaN""), float(""Infinity""), float(""-Infinity"")])
+b'[null,null,null]'
+>>> ujson.dumps([float(""NaN""), float(""Infinity""), float(""-Infinity"")])
+OverflowError: Invalid Inf value when encoding double
+>>> rapidjson.dumps([float(""NaN""), float(""Infinity""), float(""-Infinity"")])
+'[NaN,Infinity,-Infinity]'
+>>> json.dumps([float(""NaN""), float(""Infinity""), float(""-Infinity"")])
+'[NaN, Infinity, -Infinity]'",ujson.dumps,N/A,N/A,N/A
+">>> import orjson, ujson, rapidjson, json
+>>> orjson.dumps([float(""NaN""), float(""Infinity""), float(""-Infinity"")])
+b'[null,null,null]'
+>>> ujson.dumps([float(""NaN""), float(""Infinity""), float(""-Infinity"")])
+OverflowError: Invalid Inf value when encoding double
+>>> rapidjson.dumps([float(""NaN""), float(""Infinity""), float(""-Infinity"")])
+'[NaN,Infinity,-Infinity]'
+>>> json.dumps([float(""NaN""), float(""Infinity""), float(""-Infinity"")])
+'[NaN, Infinity, -Infinity]'",rapidjson.dumps,N/A,N/A,N/A
+">>> import orjson, ujson, rapidjson, json
+>>> orjson.dumps([float(""NaN""), float(""Infinity""), float(""-Infinity"")])
+b'[null,null,null]'
+>>> ujson.dumps([float(""NaN""), float(""Infinity""), float(""-Infinity"")])
+OverflowError: Invalid Inf value when encoding double
+>>> rapidjson.dumps([float(""NaN""), float(""Infinity""), float(""-Infinity"")])
+'[NaN,Infinity,-Infinity]'
+>>> json.dumps([float(""NaN""), float(""Infinity""), float(""-Infinity"")])
+'[NaN, Infinity, -Infinity]'",json.dumps,N/A,N/A,N/A
+">>> import orjson, numpy
+>>> orjson.dumps(
+        numpy.array([[1, 2, 3], [4, 5, 6]]),
+        option=orjson.OPT_SERIALIZE_NUMPY,
+)
+b'[[1,2,3],[4,5,6]]'",numpy.array,N/A,N/A,N/A
+">>> import orjson, numpy
+>>> orjson.dumps(
+        numpy.datetime64(""2021-01-01T00:00:00.172""),
+        option=orjson.OPT_SERIALIZE_NUMPY,
+)
+b'""2021-01-01T00:00:00.172000""'
+>>> orjson.dumps(
+        numpy.datetime64(""2021-01-01T00:00:00.172""),
+        option=(
+            orjson.OPT_SERIALIZE_NUMPY |
+            orjson.OPT_NAIVE_UTC |
+            orjson.OPT_OMIT_MICROSECONDS
+        ),
+)
+b'""2021-01-01T00:00:00+00:00""'",numpy.datetime64,N/A,N/A,N/A
+">>> import orjson, ujson, rapidjson, json
+>>> orjson.dumps('\ud800')
+JSONEncodeError: str is not valid UTF-8: surrogates not allowed
+>>> ujson.dumps('\ud800')
+UnicodeEncodeError: 'utf-8' codec ...
+>>> rapidjson.dumps('\ud800')
+UnicodeEncodeError: 'utf-8' codec ...
+>>> json.dumps('\ud800')
+'""\\ud800""'
+>>> orjson.loads('""\\ud800""')
+JSONDecodeError: unexpected end of hex escape at line 1 column 8: line 1 column 1 (char 0)
+>>> ujson.loads('""\\ud800""')
+''
+>>> rapidjson.loads('""\\ud800""')
+ValueError: Parse error at offset 1: The surrogate pair in string is invalid.
+>>> json.loads('""\\ud800""')
+'\ud800'",ujson.dumps,N/A,N/A,N/A
+">>> import orjson, ujson, rapidjson, json
+>>> orjson.dumps('\ud800')
+JSONEncodeError: str is not valid UTF-8: surrogates not allowed
+>>> ujson.dumps('\ud800')
+UnicodeEncodeError: 'utf-8' codec ...
+>>> rapidjson.dumps('\ud800')
+UnicodeEncodeError: 'utf-8' codec ...
+>>> json.dumps('\ud800')
+'""\\ud800""'
+>>> orjson.loads('""\\ud800""')
+JSONDecodeError: unexpected end of hex escape at line 1 column 8: line 1 column 1 (char 0)
+>>> ujson.loads('""\\ud800""')
+''
+>>> rapidjson.loads('""\\ud800""')
+ValueError: Parse error at offset 1: The surrogate pair in string is invalid.
+>>> json.loads('""\\ud800""')
+'\ud800'",rapidjson.dumps,N/A,N/A,N/A
+">>> import orjson, ujson, rapidjson, json
+>>> orjson.dumps('\ud800')
+JSONEncodeError: str is not valid UTF-8: surrogates not allowed
+>>> ujson.dumps('\ud800')
+UnicodeEncodeError: 'utf-8' codec ...
+>>> rapidjson.dumps('\ud800')
+UnicodeEncodeError: 'utf-8' codec ...
+>>> json.dumps('\ud800')
+'""\\ud800""'
+>>> orjson.loads('""\\ud800""')
+JSONDecodeError: unexpected end of hex escape at line 1 column 8: line 1 column 1 (char 0)
+>>> ujson.loads('""\\ud800""')
+''
+>>> rapidjson.loads('""\\ud800""')
+ValueError: Parse error at offset 1: The surrogate pair in string is invalid.
+>>> json.loads('""\\ud800""')
+'\ud800'",json.dumps,N/A,N/A,N/A
+">>> import orjson, ujson, rapidjson, json
+>>> orjson.dumps('\ud800')
+JSONEncodeError: str is not valid UTF-8: surrogates not allowed
+>>> ujson.dumps('\ud800')
+UnicodeEncodeError: 'utf-8' codec ...
+>>> rapidjson.dumps('\ud800')
+UnicodeEncodeError: 'utf-8' codec ...
+>>> json.dumps('\ud800')
+'""\\ud800""'
+>>> orjson.loads('""\\ud800""')
+JSONDecodeError: unexpected end of hex escape at line 1 column 8: line 1 column 1 (char 0)
+>>> ujson.loads('""\\ud800""')
+''
+>>> rapidjson.loads('""\\ud800""')
+ValueError: Parse error at offset 1: The surrogate pair in string is invalid.
+>>> json.loads('""\\ud800""')
+'\ud800'",ujson.loads,N/A,N/A,N/A
+">>> import orjson, ujson, rapidjson, json
+>>> orjson.dumps('\ud800')
+JSONEncodeError: str is not valid UTF-8: surrogates not allowed
+>>> ujson.dumps('\ud800')
+UnicodeEncodeError: 'utf-8' codec ...
+>>> rapidjson.dumps('\ud800')
+UnicodeEncodeError: 'utf-8' codec ...
+>>> json.dumps('\ud800')
+'""\\ud800""'
+>>> orjson.loads('""\\ud800""')
+JSONDecodeError: unexpected end of hex escape at line 1 column 8: line 1 column 1 (char 0)
+>>> ujson.loads('""\\ud800""')
+''
+>>> rapidjson.loads('""\\ud800""')
+ValueError: Parse error at offset 1: The surrogate pair in string is invalid.
+>>> json.loads('""\\ud800""')
+'\ud800'",rapidjson.loads,N/A,N/A,N/A
+">>> import orjson, ujson, rapidjson, json
+>>> orjson.dumps('\ud800')
+JSONEncodeError: str is not valid UTF-8: surrogates not allowed
+>>> ujson.dumps('\ud800')
+UnicodeEncodeError: 'utf-8' codec ...
+>>> rapidjson.dumps('\ud800')
+UnicodeEncodeError: 'utf-8' codec ...
+>>> json.dumps('\ud800')
+'""\\ud800""'
+>>> orjson.loads('""\\ud800""')
+JSONDecodeError: unexpected end of hex escape at line 1 column 8: line 1 column 1 (char 0)
+>>> ujson.loads('""\\ud800""')
+''
+>>> rapidjson.loads('""\\ud800""')
+ValueError: Parse error at offset 1: The surrogate pair in string is invalid.
+>>> json.loads('""\\ud800""')
+'\ud800'",json.loads,N/A,N/A,N/A
+">>> import orjson
+>>> orjson.loads(b'""\xed\xa0\x80""')
+JSONDecodeError: str is not valid UTF-8: surrogates not allowed
+>>> orjson.loads(b'""\xed\xa0\x80""'.decode(""utf-8"", ""replace""))
+'���'",decode,N/A,N/A,N/A
+">>> import orjson, uuid
+>>> orjson.dumps(uuid.UUID('f81d4fae-7dec-11d0-a765-00a0c91e6bf6'))
+b'""f81d4fae-7dec-11d0-a765-00a0c91e6bf6""'
+>>> orjson.dumps(uuid.uuid5(uuid.NAMESPACE_DNS, ""python.org""))
+b'""886313e1-3b8a-5372-9b90-0c9aee199e5d""'",uuid.UUID,N/A,N/A,N/A
+">>> import orjson, uuid
+>>> orjson.dumps(uuid.UUID('f81d4fae-7dec-11d0-a765-00a0c91e6bf6'))
+b'""f81d4fae-7dec-11d0-a765-00a0c91e6bf6""'
+>>> orjson.dumps(uuid.uuid5(uuid.NAMESPACE_DNS, ""python.org""))
+b'""886313e1-3b8a-5372-9b90-0c9aee199e5d""'",uuid.uuid5,N/A,N/A,N/A
+load(),load,N/A,N/A,N/A
+dump(),dump,N/A,N/A,N/A
+dumps(),dumps,N/A,N/A,N/A
+"dumps(...) + ""\n""",dumps,N/A,N/A,N/A
+loads(),loads,N/A,N/A,N/A
+dataclasses.asdict(),dataclasses.asdict,N/A,N/A,N/A
+isoformat(),isoformat,N/A,N/A,N/A
+dumps(),dumps,N/A,N/A,N/A
+orjson.dumps(),orjson.dumps,dumps,orjson\orjson.pyi,False
+dumps(),dumps,N/A,N/A,N/A
+obj.tolist(),obj.tolist,N/A,N/A,N/A
+ndarray.tolist(),ndarray.tolist,N/A,N/A,N/A
+orjson.dumps(),orjson.dumps,dumps,orjson\orjson.pyi,False
+loads(),loads,N/A,N/A,N/A
+">>> import orjson, datetime, numpy
+>>> data = {
+    ""type"": ""job"",
+    ""created_at"": datetime.datetime(1970, 1, 1),
+    ""status"": ""🆗"",
+    ""payload"": numpy.array([[1, 2], [3, 4]]),
+}
+>>> orjson.dumps(data, option=orjson.OPT_NAIVE_UTC | orjson.OPT_SERIALIZE_NUMPY)
+b'{""type"":""job"",""created_at"":""1970-01-01T00:00:00+00:00"",""status"":""\xf0\x9f\x86\x97"",""payload"":[[1,2],[3,4]]}'
+>>> orjson.loads(_)
+{'type': 'job', 'created_at': '1970-01-01T00:00:00+00:00', 'status': '🆗', 'payload': [[1, 2], [3, 4]]}",datetime.datetime,N/A,N/A,N/A
+">>> import orjson, datetime, numpy
+>>> data = {
+    ""type"": ""job"",
+    ""created_at"": datetime.datetime(1970, 1, 1),
+    ""status"": ""🆗"",
+    ""payload"": numpy.array([[1, 2], [3, 4]]),
+}
+>>> orjson.dumps(data, option=orjson.OPT_NAIVE_UTC | orjson.OPT_SERIALIZE_NUMPY)
+b'{""type"":""job"",""created_at"":""1970-01-01T00:00:00+00:00"",""status"":""\xf0\x9f\x86\x97"",""payload"":[[1,2],[3,4]]}'
+>>> orjson.loads(_)
+{'type': 'job', 'created_at': '1970-01-01T00:00:00+00:00', 'status': '🆗', 'payload': [[1, 2], [3, 4]]}",numpy.array,N/A,N/A,N/A
+">>> import orjson, datetime, numpy
+>>> data = {
+    ""type"": ""job"",
+    ""created_at"": datetime.datetime(1970, 1, 1),
+    ""status"": ""🆗"",
+    ""payload"": numpy.array([[1, 2], [3, 4]]),
+}
+>>> orjson.dumps(data, option=orjson.OPT_NAIVE_UTC | orjson.OPT_SERIALIZE_NUMPY)
+b'{""type"":""job"",""created_at"":""1970-01-01T00:00:00+00:00"",""status"":""\xf0\x9f\x86\x97"",""payload"":[[1,2],[3,4]]}'
+>>> orjson.loads(_)
+{'type': 'job', 'created_at': '1970-01-01T00:00:00+00:00', 'status': '🆗', 'payload': [[1, 2], [3, 4]]}",orjson.dumps,dumps,orjson\orjson.pyi,True
+">>> import orjson, datetime, numpy
+>>> data = {
+    ""type"": ""job"",
+    ""created_at"": datetime.datetime(1970, 1, 1),
+    ""status"": ""🆗"",
+    ""payload"": numpy.array([[1, 2], [3, 4]]),
+}
+>>> orjson.dumps(data, option=orjson.OPT_NAIVE_UTC | orjson.OPT_SERIALIZE_NUMPY)
+b'{""type"":""job"",""created_at"":""1970-01-01T00:00:00+00:00"",""status"":""\xf0\x9f\x86\x97"",""payload"":[[1,2],[3,4]]}'
+>>> orjson.loads(_)
+{'type': 'job', 'created_at': '1970-01-01T00:00:00+00:00', 'status': '🆗', 'payload': [[1, 2], [3, 4]]}",orjson.loads,loads,orjson\orjson.pyi,True
+"def dumps(
+    __obj: Any,
+    default: Optional[Callable[[Any], Any]] = ...,
+    option: Optional[int] = ...,
+) -> bytes: ...",dumps,N/A,N/A,N/A
+">>> import orjson, decimal
+>>>
+def default(obj):
+    if isinstance(obj, decimal.Decimal):
+        return str(obj)
+    raise TypeError
+
+>>> orjson.dumps(decimal.Decimal(""0.0842389659712649442845""))
+JSONEncodeError: Type is not JSON serializable: decimal.Decimal
+>>> orjson.dumps(decimal.Decimal(""0.0842389659712649442845""), default=default)
+b'""0.0842389659712649442845""'
+>>> orjson.dumps({1, 2}, default=default)
+orjson.JSONEncodeError: Type is not JSON serializable: set",default,N/A,N/A,N/A
+">>> import orjson, decimal
+>>>
+def default(obj):
+    if isinstance(obj, decimal.Decimal):
+        return str(obj)
+    raise TypeError
+
+>>> orjson.dumps(decimal.Decimal(""0.0842389659712649442845""))
+JSONEncodeError: Type is not JSON serializable: decimal.Decimal
+>>> orjson.dumps(decimal.Decimal(""0.0842389659712649442845""), default=default)
+b'""0.0842389659712649442845""'
+>>> orjson.dumps({1, 2}, default=default)
+orjson.JSONEncodeError: Type is not JSON serializable: set",isinstance,N/A,N/A,N/A
+">>> import orjson, decimal
+>>>
+def default(obj):
+    if isinstance(obj, decimal.Decimal):
+        return str(obj)
+    raise TypeError
+
+>>> orjson.dumps(decimal.Decimal(""0.0842389659712649442845""))
+JSONEncodeError: Type is not JSON serializable: decimal.Decimal
+>>> orjson.dumps(decimal.Decimal(""0.0842389659712649442845""), default=default)
+b'""0.0842389659712649442845""'
+>>> orjson.dumps({1, 2}, default=default)
+orjson.JSONEncodeError: Type is not JSON serializable: set",str,N/A,N/A,N/A
+">>> import orjson, decimal
+>>>
+def default(obj):
+    if isinstance(obj, decimal.Decimal):
+        return str(obj)
+    raise TypeError
+
+>>> orjson.dumps(decimal.Decimal(""0.0842389659712649442845""))
+JSONEncodeError: Type is not JSON serializable: decimal.Decimal
+>>> orjson.dumps(decimal.Decimal(""0.0842389659712649442845""), default=default)
+b'""0.0842389659712649442845""'
+>>> orjson.dumps({1, 2}, default=default)
+orjson.JSONEncodeError: Type is not JSON serializable: set",decimal.Decimal,N/A,N/A,N/A
+">>> import orjson, json, rapidjson
+>>>
+def default(obj):
+    if isinstance(obj, decimal.Decimal):
+        return str(obj)
+
+>>> orjson.dumps({""set"":{1, 2}}, default=default)
+b'{""set"":null}'
+>>> json.dumps({""set"":{1, 2}}, default=default)
+'{""set"":null}'
+>>> rapidjson.dumps({""set"":{1, 2}}, default=default)
+'{""set"":null}'",default,N/A,N/A,N/A
+">>> import orjson, json, rapidjson
+>>>
+def default(obj):
+    if isinstance(obj, decimal.Decimal):
+        return str(obj)
+
+>>> orjson.dumps({""set"":{1, 2}}, default=default)
+b'{""set"":null}'
+>>> json.dumps({""set"":{1, 2}}, default=default)
+'{""set"":null}'
+>>> rapidjson.dumps({""set"":{1, 2}}, default=default)
+'{""set"":null}'",isinstance,N/A,N/A,N/A
+">>> import orjson, json, rapidjson
+>>>
+def default(obj):
+    if isinstance(obj, decimal.Decimal):
+        return str(obj)
+
+>>> orjson.dumps({""set"":{1, 2}}, default=default)
+b'{""set"":null}'
+>>> json.dumps({""set"":{1, 2}}, default=default)
+'{""set"":null}'
+>>> rapidjson.dumps({""set"":{1, 2}}, default=default)
+'{""set"":null}'",str,N/A,N/A,N/A
+">>> import orjson, json, rapidjson
+>>>
+def default(obj):
+    if isinstance(obj, decimal.Decimal):
+        return str(obj)
+
+>>> orjson.dumps({""set"":{1, 2}}, default=default)
+b'{""set"":null}'
+>>> json.dumps({""set"":{1, 2}}, default=default)
+'{""set"":null}'
+>>> rapidjson.dumps({""set"":{1, 2}}, default=default)
+'{""set"":null}'",json.dumps,N/A,N/A,N/A
+">>> import orjson, json, rapidjson
+>>>
+def default(obj):
+    if isinstance(obj, decimal.Decimal):
+        return str(obj)
+
+>>> orjson.dumps({""set"":{1, 2}}, default=default)
+b'{""set"":null}'
+>>> json.dumps({""set"":{1, 2}}, default=default)
+'{""set"":null}'
+>>> rapidjson.dumps({""set"":{1, 2}}, default=default)
+'{""set"":null}'",rapidjson.dumps,N/A,N/A,N/A
+">>> import orjson, datetime
+>>> orjson.dumps(
+        datetime.datetime(1970, 1, 1, 0, 0, 0),
+    )
+b'""1970-01-01T00:00:00""'
+>>> orjson.dumps(
+        datetime.datetime(1970, 1, 1, 0, 0, 0),
+        option=orjson.OPT_NAIVE_UTC,
+    )
+b'""1970-01-01T00:00:00+00:00""'",datetime.datetime,N/A,N/A,N/A
+">>> import orjson, datetime, uuid
+>>> orjson.dumps(
+        {uuid.UUID(""7202d115-7ff3-4c81-a7c1-2a1f067b1ece""): [1, 2, 3]},
+        option=orjson.OPT_NON_STR_KEYS,
+    )
+b'{""7202d115-7ff3-4c81-a7c1-2a1f067b1ece"":[1,2,3]}'
+>>> orjson.dumps(
+        {datetime.datetime(1970, 1, 1, 0, 0, 0): [1, 2, 3]},
+        option=orjson.OPT_NON_STR_KEYS | orjson.OPT_NAIVE_UTC,
+    )
+b'{""1970-01-01T00:00:00+00:00"":[1,2,3]}'",uuid.UUID,N/A,N/A,N/A
+">>> import orjson, datetime, uuid
+>>> orjson.dumps(
+        {uuid.UUID(""7202d115-7ff3-4c81-a7c1-2a1f067b1ece""): [1, 2, 3]},
+        option=orjson.OPT_NON_STR_KEYS,
+    )
+b'{""7202d115-7ff3-4c81-a7c1-2a1f067b1ece"":[1,2,3]}'
+>>> orjson.dumps(
+        {datetime.datetime(1970, 1, 1, 0, 0, 0): [1, 2, 3]},
+        option=orjson.OPT_NON_STR_KEYS | orjson.OPT_NAIVE_UTC,
+    )
+b'{""1970-01-01T00:00:00+00:00"":[1,2,3]}'",datetime.datetime,N/A,N/A,N/A
+">>> import orjson, datetime
+>>> orjson.dumps(
+    {""other"": 1, datetime.date(1970, 1, 5): 2, datetime.date(1970, 1, 3): 3},
+    option=orjson.OPT_NON_STR_KEYS | orjson.OPT_SORT_KEYS
+)
+b'{""1970-01-03"":3,""1970-01-05"":2,""other"":1}'",datetime.date,N/A,N/A,N/A
+">>> import orjson, datetime
+>>> orjson.dumps(
+        datetime.datetime(1970, 1, 1, 0, 0, 0, 1),
+    )
+b'""1970-01-01T00:00:00.000001""'
+>>> orjson.dumps(
+        datetime.datetime(1970, 1, 1, 0, 0, 0, 1),
+        option=orjson.OPT_OMIT_MICROSECONDS,
+    )
+b'""1970-01-01T00:00:00""'",datetime.datetime,N/A,N/A,N/A
+">>> import orjson, dataclasses
+>>>
+@dataclasses.dataclass
+class User:
+    id: str
+    name: str
+    password: str
+
+def default(obj):
+    if isinstance(obj, User):
+        return {""id"": obj.id, ""name"": obj.name}
+    raise TypeError
+
+>>> orjson.dumps(User(""3b1"", ""asd"", ""zxc""))
+b'{""id"":""3b1"",""name"":""asd"",""password"":""zxc""}'
+>>> orjson.dumps(User(""3b1"", ""asd"", ""zxc""), option=orjson.OPT_PASSTHROUGH_DATACLASS)
+TypeError: Type is not JSON serializable: User
+>>> orjson.dumps(
+        User(""3b1"", ""asd"", ""zxc""),
+        option=orjson.OPT_PASSTHROUGH_DATACLASS,
+        default=default,
+    )
+b'{""id"":""3b1"",""name"":""asd""}'",default,N/A,N/A,N/A
+">>> import orjson, dataclasses
+>>>
+@dataclasses.dataclass
+class User:
+    id: str
+    name: str
+    password: str
+
+def default(obj):
+    if isinstance(obj, User):
+        return {""id"": obj.id, ""name"": obj.name}
+    raise TypeError
+
+>>> orjson.dumps(User(""3b1"", ""asd"", ""zxc""))
+b'{""id"":""3b1"",""name"":""asd"",""password"":""zxc""}'
+>>> orjson.dumps(User(""3b1"", ""asd"", ""zxc""), option=orjson.OPT_PASSTHROUGH_DATACLASS)
+TypeError: Type is not JSON serializable: User
+>>> orjson.dumps(
+        User(""3b1"", ""asd"", ""zxc""),
+        option=orjson.OPT_PASSTHROUGH_DATACLASS,
+        default=default,
+    )
+b'{""id"":""3b1"",""name"":""asd""}'",isinstance,N/A,N/A,N/A
+">>> import orjson, dataclasses
+>>>
+@dataclasses.dataclass
+class User:
+    id: str
+    name: str
+    password: str
+
+def default(obj):
+    if isinstance(obj, User):
+        return {""id"": obj.id, ""name"": obj.name}
+    raise TypeError
+
+>>> orjson.dumps(User(""3b1"", ""asd"", ""zxc""))
+b'{""id"":""3b1"",""name"":""asd"",""password"":""zxc""}'
+>>> orjson.dumps(User(""3b1"", ""asd"", ""zxc""), option=orjson.OPT_PASSTHROUGH_DATACLASS)
+TypeError: Type is not JSON serializable: User
+>>> orjson.dumps(
+        User(""3b1"", ""asd"", ""zxc""),
+        option=orjson.OPT_PASSTHROUGH_DATACLASS,
+        default=default,
+    )
+b'{""id"":""3b1"",""name"":""asd""}'",User,N/A,N/A,N/A
+">>> import orjson, datetime
+>>>
+def default(obj):
+    if isinstance(obj, datetime.datetime):
+        return obj.strftime(""%a, %d %b %Y %H:%M:%S GMT"")
+    raise TypeError
+
+>>> orjson.dumps({""created_at"": datetime.datetime(1970, 1, 1)})
+b'{""created_at"":""1970-01-01T00:00:00""}'
+>>> orjson.dumps({""created_at"": datetime.datetime(1970, 1, 1)}, option=orjson.OPT_PASSTHROUGH_DATETIME)
+TypeError: Type is not JSON serializable: datetime.datetime
+>>> orjson.dumps(
+        {""created_at"": datetime.datetime(1970, 1, 1)},
+        option=orjson.OPT_PASSTHROUGH_DATETIME,
+        default=default,
+    )
+b'{""created_at"":""Thu, 01 Jan 1970 00:00:00 GMT""}'",default,N/A,N/A,N/A
+">>> import orjson, datetime
+>>>
+def default(obj):
+    if isinstance(obj, datetime.datetime):
+        return obj.strftime(""%a, %d %b %Y %H:%M:%S GMT"")
+    raise TypeError
+
+>>> orjson.dumps({""created_at"": datetime.datetime(1970, 1, 1)})
+b'{""created_at"":""1970-01-01T00:00:00""}'
+>>> orjson.dumps({""created_at"": datetime.datetime(1970, 1, 1)}, option=orjson.OPT_PASSTHROUGH_DATETIME)
+TypeError: Type is not JSON serializable: datetime.datetime
+>>> orjson.dumps(
+        {""created_at"": datetime.datetime(1970, 1, 1)},
+        option=orjson.OPT_PASSTHROUGH_DATETIME,
+        default=default,
+    )
+b'{""created_at"":""Thu, 01 Jan 1970 00:00:00 GMT""}'",isinstance,N/A,N/A,N/A
+">>> import orjson, datetime
+>>>
+def default(obj):
+    if isinstance(obj, datetime.datetime):
+        return obj.strftime(""%a, %d %b %Y %H:%M:%S GMT"")
+    raise TypeError
+
+>>> orjson.dumps({""created_at"": datetime.datetime(1970, 1, 1)})
+b'{""created_at"":""1970-01-01T00:00:00""}'
+>>> orjson.dumps({""created_at"": datetime.datetime(1970, 1, 1)}, option=orjson.OPT_PASSTHROUGH_DATETIME)
+TypeError: Type is not JSON serializable: datetime.datetime
+>>> orjson.dumps(
+        {""created_at"": datetime.datetime(1970, 1, 1)},
+        option=orjson.OPT_PASSTHROUGH_DATETIME,
+        default=default,
+    )
+b'{""created_at"":""Thu, 01 Jan 1970 00:00:00 GMT""}'",obj.strftime,N/A,N/A,N/A
+">>> import orjson, datetime
+>>>
+def default(obj):
+    if isinstance(obj, datetime.datetime):
+        return obj.strftime(""%a, %d %b %Y %H:%M:%S GMT"")
+    raise TypeError
+
+>>> orjson.dumps({""created_at"": datetime.datetime(1970, 1, 1)})
+b'{""created_at"":""1970-01-01T00:00:00""}'
+>>> orjson.dumps({""created_at"": datetime.datetime(1970, 1, 1)}, option=orjson.OPT_PASSTHROUGH_DATETIME)
+TypeError: Type is not JSON serializable: datetime.datetime
+>>> orjson.dumps(
+        {""created_at"": datetime.datetime(1970, 1, 1)},
+        option=orjson.OPT_PASSTHROUGH_DATETIME,
+        default=default,
+    )
+b'{""created_at"":""Thu, 01 Jan 1970 00:00:00 GMT""}'",datetime.datetime,N/A,N/A,N/A
+">>> import orjson
+>>>
+class Secret(str):
+    pass
+
+def default(obj):
+    if isinstance(obj, Secret):
+        return ""******""
+    raise TypeError
+
+>>> orjson.dumps(Secret(""zxc""))
+b'""zxc""'
+>>> orjson.dumps(Secret(""zxc""), option=orjson.OPT_PASSTHROUGH_SUBCLASS)
+TypeError: Type is not JSON serializable: Secret
+>>> orjson.dumps(Secret(""zxc""), option=orjson.OPT_PASSTHROUGH_SUBCLASS, default=default)
+b'""******""'",Secret,N/A,N/A,N/A
+">>> import orjson
+>>>
+class Secret(str):
+    pass
+
+def default(obj):
+    if isinstance(obj, Secret):
+        return ""******""
+    raise TypeError
+
+>>> orjson.dumps(Secret(""zxc""))
+b'""zxc""'
+>>> orjson.dumps(Secret(""zxc""), option=orjson.OPT_PASSTHROUGH_SUBCLASS)
+TypeError: Type is not JSON serializable: Secret
+>>> orjson.dumps(Secret(""zxc""), option=orjson.OPT_PASSTHROUGH_SUBCLASS, default=default)
+b'""******""'",default,N/A,N/A,N/A
+">>> import orjson
+>>>
+class Secret(str):
+    pass
+
+def default(obj):
+    if isinstance(obj, Secret):
+        return ""******""
+    raise TypeError
+
+>>> orjson.dumps(Secret(""zxc""))
+b'""zxc""'
+>>> orjson.dumps(Secret(""zxc""), option=orjson.OPT_PASSTHROUGH_SUBCLASS)
+TypeError: Type is not JSON serializable: Secret
+>>> orjson.dumps(Secret(""zxc""), option=orjson.OPT_PASSTHROUGH_SUBCLASS, default=default)
+b'""******""'",isinstance,N/A,N/A,N/A
+">>> import orjson
+>>>
+class Secret(str):
+    pass
+
+def default(obj):
+    if isinstance(obj, Secret):
+        return ""******""
+    raise TypeError
+
+>>> orjson.dumps(Secret(""zxc""))
+b'""zxc""'
+>>> orjson.dumps(Secret(""zxc""), option=orjson.OPT_PASSTHROUGH_SUBCLASS)
+TypeError: Type is not JSON serializable: Secret
+>>> orjson.dumps(Secret(""zxc""), option=orjson.OPT_PASSTHROUGH_SUBCLASS, default=default)
+b'""******""'",orjson.dumps,dumps,orjson\orjson.pyi,False
+">>> import orjson
+>>>
+class Secret(str):
+    pass
+
+def default(obj):
+    if isinstance(obj, Secret):
+        return ""******""
+    raise TypeError
+
+>>> orjson.dumps(Secret(""zxc""))
+b'""zxc""'
+>>> orjson.dumps(Secret(""zxc""), option=orjson.OPT_PASSTHROUGH_SUBCLASS)
+TypeError: Type is not JSON serializable: Secret
+>>> orjson.dumps(Secret(""zxc""), option=orjson.OPT_PASSTHROUGH_SUBCLASS, default=default)
+b'""******""'",orjson.dumps,dumps,orjson\orjson.pyi,False
+">>> import orjson
+>>>
+class Secret(str):
+    pass
+
+def default(obj):
+    if isinstance(obj, Secret):
+        return ""******""
+    raise TypeError
+
+>>> orjson.dumps(Secret(""zxc""))
+b'""zxc""'
+>>> orjson.dumps(Secret(""zxc""), option=orjson.OPT_PASSTHROUGH_SUBCLASS)
+TypeError: Type is not JSON serializable: Secret
+>>> orjson.dumps(Secret(""zxc""), option=orjson.OPT_PASSTHROUGH_SUBCLASS, default=default)
+b'""******""'",orjson.dumps,dumps,orjson\orjson.pyi,False
+">>> import orjson, datetime, zoneinfo
+>>> orjson.dumps(
+        datetime.datetime(1970, 1, 1, 0, 0, 0, tzinfo=zoneinfo.ZoneInfo(""UTC"")),
+    )
+b'""1970-01-01T00:00:00+00:00""'
+>>> orjson.dumps(
+        datetime.datetime(1970, 1, 1, 0, 0, 0, tzinfo=zoneinfo.ZoneInfo(""UTC"")),
+        option=orjson.OPT_UTC_Z
+    )
+b'""1970-01-01T00:00:00Z""'",datetime.datetime,N/A,N/A,N/A
+">>> import orjson, datetime, zoneinfo
+>>> orjson.dumps(
+        datetime.datetime(1970, 1, 1, 0, 0, 0, tzinfo=zoneinfo.ZoneInfo(""UTC"")),
+    )
+b'""1970-01-01T00:00:00+00:00""'
+>>> orjson.dumps(
+        datetime.datetime(1970, 1, 1, 0, 0, 0, tzinfo=zoneinfo.ZoneInfo(""UTC"")),
+        option=orjson.OPT_UTC_Z
+    )
+b'""1970-01-01T00:00:00Z""'",zoneinfo.ZoneInfo,N/A,N/A,N/A
+"def loads(__obj: Union[bytes, bytearray, memoryview, str]) -> Any: ...",loads,N/A,N/A,N/A
+">>> import dataclasses, orjson, typing
+
+@dataclasses.dataclass
+class Member:
+    id: int
+    active: bool = dataclasses.field(default=False)
+
+@dataclasses.dataclass
+class Object:
+    id: int
+    name: str
+    members: typing.List[Member]
+
+>>> orjson.dumps(Object(1, ""a"", [Member(1, True), Member(2)]))
+b'{""id"":1,""name"":""a"",""members"":[{""id"":1,""active"":true},{""id"":2,""active"":false}]}'",dataclasses.field,N/A,N/A,N/A
+">>> import dataclasses, orjson, typing
+
+@dataclasses.dataclass
+class Member:
+    id: int
+    active: bool = dataclasses.field(default=False)
+
+@dataclasses.dataclass
+class Object:
+    id: int
+    name: str
+    members: typing.List[Member]
+
+>>> orjson.dumps(Object(1, ""a"", [Member(1, True), Member(2)]))
+b'{""id"":1,""name"":""a"",""members"":[{""id"":1,""active"":true},{""id"":2,""active"":false}]}'",Object,N/A,N/A,N/A
+">>> import dataclasses, orjson, typing
+
+@dataclasses.dataclass
+class Member:
+    id: int
+    active: bool = dataclasses.field(default=False)
+
+@dataclasses.dataclass
+class Object:
+    id: int
+    name: str
+    members: typing.List[Member]
+
+>>> orjson.dumps(Object(1, ""a"", [Member(1, True), Member(2)]))
+b'{""id"":1,""name"":""a"",""members"":[{""id"":1,""active"":true},{""id"":2,""active"":false}]}'",Member,N/A,N/A,N/A
+">>> import orjson, datetime, zoneinfo
+>>> orjson.dumps(
+    datetime.datetime(2018, 12, 1, 2, 3, 4, 9, tzinfo=zoneinfo.ZoneInfo(""Australia/Adelaide""))
+)
+b'""2018-12-01T02:03:04.000009+10:30""'
+>>> orjson.dumps(
+    datetime.datetime(2100, 9, 1, 21, 55, 2).replace(tzinfo=zoneinfo.ZoneInfo(""UTC""))
+)
+b'""2100-09-01T21:55:02+00:00""'
+>>> orjson.dumps(
+    datetime.datetime(2100, 9, 1, 21, 55, 2)
+)
+b'""2100-09-01T21:55:02""'",datetime.datetime,N/A,N/A,N/A
+">>> import orjson, datetime, zoneinfo
+>>> orjson.dumps(
+    datetime.datetime(2018, 12, 1, 2, 3, 4, 9, tzinfo=zoneinfo.ZoneInfo(""Australia/Adelaide""))
+)
+b'""2018-12-01T02:03:04.000009+10:30""'
+>>> orjson.dumps(
+    datetime.datetime(2100, 9, 1, 21, 55, 2).replace(tzinfo=zoneinfo.ZoneInfo(""UTC""))
+)
+b'""2100-09-01T21:55:02+00:00""'
+>>> orjson.dumps(
+    datetime.datetime(2100, 9, 1, 21, 55, 2)
+)
+b'""2100-09-01T21:55:02""'",zoneinfo.ZoneInfo,N/A,N/A,N/A
+">>> import orjson, datetime, zoneinfo
+>>> orjson.dumps(
+    datetime.datetime(2018, 12, 1, 2, 3, 4, 9, tzinfo=zoneinfo.ZoneInfo(""Australia/Adelaide""))
+)
+b'""2018-12-01T02:03:04.000009+10:30""'
+>>> orjson.dumps(
+    datetime.datetime(2100, 9, 1, 21, 55, 2).replace(tzinfo=zoneinfo.ZoneInfo(""UTC""))
+)
+b'""2100-09-01T21:55:02+00:00""'
+>>> orjson.dumps(
+    datetime.datetime(2100, 9, 1, 21, 55, 2)
+)
+b'""2100-09-01T21:55:02""'",replace,N/A,N/A,N/A
+">>> import orjson, datetime
+>>> orjson.dumps(datetime.time(12, 0, 15, 290))
+b'""12:00:15.000290""'",datetime.time,N/A,N/A,N/A
+">>> import orjson, datetime
+>>> orjson.dumps(datetime.date(1900, 1, 2))
+b'""1900-01-02""'",datetime.date,N/A,N/A,N/A
+">>> import enum, datetime, orjson
+>>>
+class DatetimeEnum(enum.Enum):
+    EPOCH = datetime.datetime(1970, 1, 1, 0, 0, 0)
+>>> orjson.dumps(DatetimeEnum.EPOCH)
+b'""1970-01-01T00:00:00""'
+>>> orjson.dumps(DatetimeEnum.EPOCH, option=orjson.OPT_NAIVE_UTC)
+b'""1970-01-01T00:00:00+00:00""'",DatetimeEnum,N/A,N/A,N/A
+">>> import enum, datetime, orjson
+>>>
+class DatetimeEnum(enum.Enum):
+    EPOCH = datetime.datetime(1970, 1, 1, 0, 0, 0)
+>>> orjson.dumps(DatetimeEnum.EPOCH)
+b'""1970-01-01T00:00:00""'
+>>> orjson.dumps(DatetimeEnum.EPOCH, option=orjson.OPT_NAIVE_UTC)
+b'""1970-01-01T00:00:00+00:00""'",datetime.datetime,N/A,N/A,N/A
+">>> import enum, datetime, orjson
+>>>
+class DatetimeEnum(enum.Enum):
+    EPOCH = datetime.datetime(1970, 1, 1, 0, 0, 0)
+>>> orjson.dumps(DatetimeEnum.EPOCH)
+b'""1970-01-01T00:00:00""'
+>>> orjson.dumps(DatetimeEnum.EPOCH, option=orjson.OPT_NAIVE_UTC)
+b'""1970-01-01T00:00:00+00:00""'",orjson.dumps,dumps,orjson\orjson.pyi,True
+">>> import enum, datetime, orjson
+>>>
+class DatetimeEnum(enum.Enum):
+    EPOCH = datetime.datetime(1970, 1, 1, 0, 0, 0)
+>>> orjson.dumps(DatetimeEnum.EPOCH)
+b'""1970-01-01T00:00:00""'
+>>> orjson.dumps(DatetimeEnum.EPOCH, option=orjson.OPT_NAIVE_UTC)
+b'""1970-01-01T00:00:00+00:00""'",orjson.dumps,dumps,orjson\orjson.pyi,True
+">>> import enum, orjson
+>>>
+class Custom:
+    def __init__(self, val):
+        self.val = val
+
+def default(obj):
+    if isinstance(obj, Custom):
+        return obj.val
+    raise TypeError
+
+class CustomEnum(enum.Enum):
+    ONE = Custom(1)
+
+>>> orjson.dumps(CustomEnum.ONE, default=default)
+b'1'",__init__,N/A,N/A,N/A
+">>> import enum, orjson
+>>>
+class Custom:
+    def __init__(self, val):
+        self.val = val
+
+def default(obj):
+    if isinstance(obj, Custom):
+        return obj.val
+    raise TypeError
+
+class CustomEnum(enum.Enum):
+    ONE = Custom(1)
+
+>>> orjson.dumps(CustomEnum.ONE, default=default)
+b'1'",default,N/A,N/A,N/A
+">>> import enum, orjson
+>>>
+class Custom:
+    def __init__(self, val):
+        self.val = val
+
+def default(obj):
+    if isinstance(obj, Custom):
+        return obj.val
+    raise TypeError
+
+class CustomEnum(enum.Enum):
+    ONE = Custom(1)
+
+>>> orjson.dumps(CustomEnum.ONE, default=default)
+b'1'",isinstance,N/A,N/A,N/A
+">>> import enum, orjson
+>>>
+class Custom:
+    def __init__(self, val):
+        self.val = val
+
+def default(obj):
+    if isinstance(obj, Custom):
+        return obj.val
+    raise TypeError
+
+class CustomEnum(enum.Enum):
+    ONE = Custom(1)
+
+>>> orjson.dumps(CustomEnum.ONE, default=default)
+b'1'",CustomEnum,N/A,N/A,N/A
+">>> import enum, orjson
+>>>
+class Custom:
+    def __init__(self, val):
+        self.val = val
+
+def default(obj):
+    if isinstance(obj, Custom):
+        return obj.val
+    raise TypeError
+
+class CustomEnum(enum.Enum):
+    ONE = Custom(1)
+
+>>> orjson.dumps(CustomEnum.ONE, default=default)
+b'1'",Custom,N/A,N/A,N/A
+">>> import enum, orjson
+>>>
+class Custom:
+    def __init__(self, val):
+        self.val = val
+
+def default(obj):
+    if isinstance(obj, Custom):
+        return obj.val
+    raise TypeError
+
+class CustomEnum(enum.Enum):
+    ONE = Custom(1)
+
+>>> orjson.dumps(CustomEnum.ONE, default=default)
+b'1'",orjson.dumps,dumps,orjson\orjson.pyi,True
+">>> import orjson, ujson, rapidjson, json
+>>> orjson.dumps([float(""NaN""), float(""Infinity""), float(""-Infinity"")])
+b'[null,null,null]'
+>>> ujson.dumps([float(""NaN""), float(""Infinity""), float(""-Infinity"")])
+OverflowError: Invalid Inf value when encoding double
+>>> rapidjson.dumps([float(""NaN""), float(""Infinity""), float(""-Infinity"")])
+'[NaN,Infinity,-Infinity]'
+>>> json.dumps([float(""NaN""), float(""Infinity""), float(""-Infinity"")])
+'[NaN, Infinity, -Infinity]'",float,N/A,N/A,N/A
+">>> import orjson, ujson, rapidjson, json
+>>> orjson.dumps([float(""NaN""), float(""Infinity""), float(""-Infinity"")])
+b'[null,null,null]'
+>>> ujson.dumps([float(""NaN""), float(""Infinity""), float(""-Infinity"")])
+OverflowError: Invalid Inf value when encoding double
+>>> rapidjson.dumps([float(""NaN""), float(""Infinity""), float(""-Infinity"")])
+'[NaN,Infinity,-Infinity]'
+>>> json.dumps([float(""NaN""), float(""Infinity""), float(""-Infinity"")])
+'[NaN, Infinity, -Infinity]'",ujson.dumps,N/A,N/A,N/A
+">>> import orjson, ujson, rapidjson, json
+>>> orjson.dumps([float(""NaN""), float(""Infinity""), float(""-Infinity"")])
+b'[null,null,null]'
+>>> ujson.dumps([float(""NaN""), float(""Infinity""), float(""-Infinity"")])
+OverflowError: Invalid Inf value when encoding double
+>>> rapidjson.dumps([float(""NaN""), float(""Infinity""), float(""-Infinity"")])
+'[NaN,Infinity,-Infinity]'
+>>> json.dumps([float(""NaN""), float(""Infinity""), float(""-Infinity"")])
+'[NaN, Infinity, -Infinity]'",rapidjson.dumps,N/A,N/A,N/A
+">>> import orjson, ujson, rapidjson, json
+>>> orjson.dumps([float(""NaN""), float(""Infinity""), float(""-Infinity"")])
+b'[null,null,null]'
+>>> ujson.dumps([float(""NaN""), float(""Infinity""), float(""-Infinity"")])
+OverflowError: Invalid Inf value when encoding double
+>>> rapidjson.dumps([float(""NaN""), float(""Infinity""), float(""-Infinity"")])
+'[NaN,Infinity,-Infinity]'
+>>> json.dumps([float(""NaN""), float(""Infinity""), float(""-Infinity"")])
+'[NaN, Infinity, -Infinity]'",json.dumps,N/A,N/A,N/A
+">>> import orjson, numpy
+>>> orjson.dumps(
+        numpy.array([[1, 2, 3], [4, 5, 6]]),
+        option=orjson.OPT_SERIALIZE_NUMPY,
+)
+b'[[1,2,3],[4,5,6]]'",numpy.array,N/A,N/A,N/A
+">>> import orjson, numpy
+>>> orjson.dumps(
+        numpy.datetime64(""2021-01-01T00:00:00.172""),
+        option=orjson.OPT_SERIALIZE_NUMPY,
+)
+b'""2021-01-01T00:00:00.172000""'
+>>> orjson.dumps(
+        numpy.datetime64(""2021-01-01T00:00:00.172""),
+        option=(
+            orjson.OPT_SERIALIZE_NUMPY |
+            orjson.OPT_NAIVE_UTC |
+            orjson.OPT_OMIT_MICROSECONDS
+        ),
+)
+b'""2021-01-01T00:00:00+00:00""'",numpy.datetime64,N/A,N/A,N/A
+">>> import orjson, ujson, rapidjson, json
+>>> orjson.dumps('\ud800')
+JSONEncodeError: str is not valid UTF-8: surrogates not allowed
+>>> ujson.dumps('\ud800')
+UnicodeEncodeError: 'utf-8' codec ...
+>>> rapidjson.dumps('\ud800')
+UnicodeEncodeError: 'utf-8' codec ...
+>>> json.dumps('\ud800')
+'""\\ud800""'
+>>> orjson.loads('""\\ud800""')
+JSONDecodeError: unexpected end of hex escape at line 1 column 8: line 1 column 1 (char 0)
+>>> ujson.loads('""\\ud800""')
+''
+>>> rapidjson.loads('""\\ud800""')
+ValueError: Parse error at offset 1: The surrogate pair in string is invalid.
+>>> json.loads('""\\ud800""')
+'\ud800'",ujson.dumps,N/A,N/A,N/A
+">>> import orjson, ujson, rapidjson, json
+>>> orjson.dumps('\ud800')
+JSONEncodeError: str is not valid UTF-8: surrogates not allowed
+>>> ujson.dumps('\ud800')
+UnicodeEncodeError: 'utf-8' codec ...
+>>> rapidjson.dumps('\ud800')
+UnicodeEncodeError: 'utf-8' codec ...
+>>> json.dumps('\ud800')
+'""\\ud800""'
+>>> orjson.loads('""\\ud800""')
+JSONDecodeError: unexpected end of hex escape at line 1 column 8: line 1 column 1 (char 0)
+>>> ujson.loads('""\\ud800""')
+''
+>>> rapidjson.loads('""\\ud800""')
+ValueError: Parse error at offset 1: The surrogate pair in string is invalid.
+>>> json.loads('""\\ud800""')
+'\ud800'",rapidjson.dumps,N/A,N/A,N/A
+">>> import orjson, ujson, rapidjson, json
+>>> orjson.dumps('\ud800')
+JSONEncodeError: str is not valid UTF-8: surrogates not allowed
+>>> ujson.dumps('\ud800')
+UnicodeEncodeError: 'utf-8' codec ...
+>>> rapidjson.dumps('\ud800')
+UnicodeEncodeError: 'utf-8' codec ...
+>>> json.dumps('\ud800')
+'""\\ud800""'
+>>> orjson.loads('""\\ud800""')
+JSONDecodeError: unexpected end of hex escape at line 1 column 8: line 1 column 1 (char 0)
+>>> ujson.loads('""\\ud800""')
+''
+>>> rapidjson.loads('""\\ud800""')
+ValueError: Parse error at offset 1: The surrogate pair in string is invalid.
+>>> json.loads('""\\ud800""')
+'\ud800'",json.dumps,N/A,N/A,N/A
+">>> import orjson, ujson, rapidjson, json
+>>> orjson.dumps('\ud800')
+JSONEncodeError: str is not valid UTF-8: surrogates not allowed
+>>> ujson.dumps('\ud800')
+UnicodeEncodeError: 'utf-8' codec ...
+>>> rapidjson.dumps('\ud800')
+UnicodeEncodeError: 'utf-8' codec ...
+>>> json.dumps('\ud800')
+'""\\ud800""'
+>>> orjson.loads('""\\ud800""')
+JSONDecodeError: unexpected end of hex escape at line 1 column 8: line 1 column 1 (char 0)
+>>> ujson.loads('""\\ud800""')
+''
+>>> rapidjson.loads('""\\ud800""')
+ValueError: Parse error at offset 1: The surrogate pair in string is invalid.
+>>> json.loads('""\\ud800""')
+'\ud800'",ujson.loads,N/A,N/A,N/A
+">>> import orjson, ujson, rapidjson, json
+>>> orjson.dumps('\ud800')
+JSONEncodeError: str is not valid UTF-8: surrogates not allowed
+>>> ujson.dumps('\ud800')
+UnicodeEncodeError: 'utf-8' codec ...
+>>> rapidjson.dumps('\ud800')
+UnicodeEncodeError: 'utf-8' codec ...
+>>> json.dumps('\ud800')
+'""\\ud800""'
+>>> orjson.loads('""\\ud800""')
+JSONDecodeError: unexpected end of hex escape at line 1 column 8: line 1 column 1 (char 0)
+>>> ujson.loads('""\\ud800""')
+''
+>>> rapidjson.loads('""\\ud800""')
+ValueError: Parse error at offset 1: The surrogate pair in string is invalid.
+>>> json.loads('""\\ud800""')
+'\ud800'",rapidjson.loads,N/A,N/A,N/A
+">>> import orjson, ujson, rapidjson, json
+>>> orjson.dumps('\ud800')
+JSONEncodeError: str is not valid UTF-8: surrogates not allowed
+>>> ujson.dumps('\ud800')
+UnicodeEncodeError: 'utf-8' codec ...
+>>> rapidjson.dumps('\ud800')
+UnicodeEncodeError: 'utf-8' codec ...
+>>> json.dumps('\ud800')
+'""\\ud800""'
+>>> orjson.loads('""\\ud800""')
+JSONDecodeError: unexpected end of hex escape at line 1 column 8: line 1 column 1 (char 0)
+>>> ujson.loads('""\\ud800""')
+''
+>>> rapidjson.loads('""\\ud800""')
+ValueError: Parse error at offset 1: The surrogate pair in string is invalid.
+>>> json.loads('""\\ud800""')
+'\ud800'",json.loads,N/A,N/A,N/A
+">>> import orjson
+>>> orjson.loads(b'""\xed\xa0\x80""')
+JSONDecodeError: str is not valid UTF-8: surrogates not allowed
+>>> orjson.loads(b'""\xed\xa0\x80""'.decode(""utf-8"", ""replace""))
+'���'",decode,N/A,N/A,N/A
+">>> import orjson, uuid
+>>> orjson.dumps(uuid.UUID('f81d4fae-7dec-11d0-a765-00a0c91e6bf6'))
+b'""f81d4fae-7dec-11d0-a765-00a0c91e6bf6""'
+>>> orjson.dumps(uuid.uuid5(uuid.NAMESPACE_DNS, ""python.org""))
+b'""886313e1-3b8a-5372-9b90-0c9aee199e5d""'",uuid.UUID,N/A,N/A,N/A
+">>> import orjson, uuid
+>>> orjson.dumps(uuid.UUID('f81d4fae-7dec-11d0-a765-00a0c91e6bf6'))
+b'""f81d4fae-7dec-11d0-a765-00a0c91e6bf6""'
+>>> orjson.dumps(uuid.uuid5(uuid.NAMESPACE_DNS, ""python.org""))
+b'""886313e1-3b8a-5372-9b90-0c9aee199e5d""'",uuid.uuid5,N/A,N/A,N/A
+"numpy.datetime64(""NaT"")",numpy.datetime64,N/A,N/A,N/A
+orjson.dumps(),orjson.dumps,dumps,orjson\orjson.pyi,False
+orjson.loads(),orjson.loads,loads,orjson\orjson.pyi,False
+orjson.dumps(),orjson.dumps,dumps,orjson\orjson.pyi,False
+numpy.empty(),numpy.empty,N/A,N/A,N/A
+orjson.dumps(),orjson.dumps,dumps,orjson\orjson.pyi,False
+help(),help,N/A,N/A,N/A
+orjson.dumps(),orjson.dumps,dumps,orjson\orjson.pyi,False
+numpy.float64(1.0),numpy.float64,N/A,N/A,N/A
+orjson.dumps(),orjson.dumps,dumps,orjson\orjson.pyi,False
+orjson.dumps(),orjson.dumps,dumps,orjson\orjson.pyi,False
+orjson.dumps({}),orjson.dumps,dumps,orjson\orjson.pyi,True
+orjson.dumps(obj={}),orjson.dumps,dumps,orjson\orjson.pyi,True
+help(),help,N/A,N/A,N/A
+orjson.dumps(),orjson.dumps,dumps,orjson\orjson.pyi,False
+orjson.loads(),orjson.loads,loads,orjson\orjson.pyi,False
+orjson.dumps(),orjson.dumps,dumps,orjson\orjson.pyi,False
+orjson.loads(),orjson.loads,loads,orjson\orjson.pyi,False
+orjson.dumps(),orjson.dumps,dumps,orjson\orjson.pyi,False
+orjson.loads(),orjson.loads,loads,orjson\orjson.pyi,False
+orjson.dumps(),orjson.dumps,dumps,orjson\orjson.pyi,False
+orjson.loads(),orjson.loads,loads,orjson\orjson.pyi,False
+orjson.dumps(),orjson.dumps,dumps,orjson\orjson.pyi,False
+"orjson.dumps(..., option=orjson.OPT_NAIVE_UTC)",orjson.dumps,dumps,orjson\orjson.pyi,True
+"orjson.dumps(..., option=orjson.OPT_STRICT_INTEGER)",orjson.dumps,dumps,orjson\orjson.pyi,True
+orjson.dumps(),orjson.dumps,dumps,orjson\orjson.pyi,False
+orjson.loads(),orjson.loads,loads,orjson\orjson.pyi,False
+realloc(),realloc,N/A,N/A,N/A
+"use cbindgen;
+use std::env;
+use std::path::Path;
+
+fn main() {
+    let crate_dir = env::var(""CARGO_MANIFEST_DIR"").unwrap();
+
+    let bindings = cbindgen::Builder::new()
+        .with_no_includes()
+        .with_language(cbindgen::Language::C)
+        .with_crate(crate_dir)
+        .generate()
+        .unwrap();
+    bindings.write_to_file(Path::new(""target"").join(""header.h""));
+}",main,N/A,N/A,N/A
+"use cbindgen;
+use std::env;
+use std::path::Path;
+
+fn main() {
+    let crate_dir = env::var(""CARGO_MANIFEST_DIR"").unwrap();
+
+    let bindings = cbindgen::Builder::new()
+        .with_no_includes()
+        .with_language(cbindgen::Language::C)
+        .with_crate(crate_dir)
+        .generate()
+        .unwrap();
+    bindings.write_to_file(Path::new(""target"").join(""header.h""));
+}",var,N/A,N/A,N/A
+"use cbindgen;
+use std::env;
+use std::path::Path;
+
+fn main() {
+    let crate_dir = env::var(""CARGO_MANIFEST_DIR"").unwrap();
+
+    let bindings = cbindgen::Builder::new()
+        .with_no_includes()
+        .with_language(cbindgen::Language::C)
+        .with_crate(crate_dir)
+        .generate()
+        .unwrap();
+    bindings.write_to_file(Path::new(""target"").join(""header.h""));
+}",unwrap,N/A,N/A,N/A
+"use cbindgen;
+use std::env;
+use std::path::Path;
+
+fn main() {
+    let crate_dir = env::var(""CARGO_MANIFEST_DIR"").unwrap();
+
+    let bindings = cbindgen::Builder::new()
+        .with_no_includes()
+        .with_language(cbindgen::Language::C)
+        .with_crate(crate_dir)
+        .generate()
+        .unwrap();
+    bindings.write_to_file(Path::new(""target"").join(""header.h""));
+}",new,N/A,N/A,N/A
+"use cbindgen;
+use std::env;
+use std::path::Path;
+
+fn main() {
+    let crate_dir = env::var(""CARGO_MANIFEST_DIR"").unwrap();
+
+    let bindings = cbindgen::Builder::new()
+        .with_no_includes()
+        .with_language(cbindgen::Language::C)
+        .with_crate(crate_dir)
+        .generate()
+        .unwrap();
+    bindings.write_to_file(Path::new(""target"").join(""header.h""));
+}",with_no_includes,N/A,N/A,N/A
+"use cbindgen;
+use std::env;
+use std::path::Path;
+
+fn main() {
+    let crate_dir = env::var(""CARGO_MANIFEST_DIR"").unwrap();
+
+    let bindings = cbindgen::Builder::new()
+        .with_no_includes()
+        .with_language(cbindgen::Language::C)
+        .with_crate(crate_dir)
+        .generate()
+        .unwrap();
+    bindings.write_to_file(Path::new(""target"").join(""header.h""));
+}",with_language,N/A,N/A,N/A
+"use cbindgen;
+use std::env;
+use std::path::Path;
+
+fn main() {
+    let crate_dir = env::var(""CARGO_MANIFEST_DIR"").unwrap();
+
+    let bindings = cbindgen::Builder::new()
+        .with_no_includes()
+        .with_language(cbindgen::Language::C)
+        .with_crate(crate_dir)
+        .generate()
+        .unwrap();
+    bindings.write_to_file(Path::new(""target"").join(""header.h""));
+}",with_crate,N/A,N/A,N/A
+"use cbindgen;
+use std::env;
+use std::path::Path;
+
+fn main() {
+    let crate_dir = env::var(""CARGO_MANIFEST_DIR"").unwrap();
+
+    let bindings = cbindgen::Builder::new()
+        .with_no_includes()
+        .with_language(cbindgen::Language::C)
+        .with_crate(crate_dir)
+        .generate()
+        .unwrap();
+    bindings.write_to_file(Path::new(""target"").join(""header.h""));
+}",generate,N/A,N/A,N/A
+"use cbindgen;
+use std::env;
+use std::path::Path;
+
+fn main() {
+    let crate_dir = env::var(""CARGO_MANIFEST_DIR"").unwrap();
+
+    let bindings = cbindgen::Builder::new()
+        .with_no_includes()
+        .with_language(cbindgen::Language::C)
+        .with_crate(crate_dir)
+        .generate()
+        .unwrap();
+    bindings.write_to_file(Path::new(""target"").join(""header.h""));
+}",bindings.write_to_file,N/A,N/A,N/A
+"use cbindgen;
+use std::env;
+use std::path::Path;
+
+fn main() {
+    let crate_dir = env::var(""CARGO_MANIFEST_DIR"").unwrap();
+
+    let bindings = cbindgen::Builder::new()
+        .with_no_includes()
+        .with_language(cbindgen::Language::C)
+        .with_crate(crate_dir)
+        .generate()
+        .unwrap();
+    bindings.write_to_file(Path::new(""target"").join(""header.h""));
+}",join,N/A,N/A,N/A

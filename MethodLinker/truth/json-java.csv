@@ -1,0 +1,56 @@
+Example,Page,Class,Function,Source File
+"javac -cp .;json-java.jar Test.java (Windows)
+javac -cp .:json-java.jar Test.java (Unix Systems)
+",https://github.com/stleary/JSON-java,N/A,N/A,N/A
+"import org.json.JSONObject;
+public class Test {
+    public static void main(String args[]){
+       JSONObject jo = new JSONObject(""{ \""abc\"" : \""def\"" }"");
+       System.out.println(jo.toString());
+    }
+}
+",https://github.com/stleary/JSON-java,N/A,N/A,N/A
+"java -cp .;json-java.jar Test (Windows)
+java -cp .:json-java.jar Test (Unix Systems)
+",https://github.com/stleary/JSON-java,N/A,N/A,N/A
+"javac -cp .;json-java.jar Test.java (Windows)
+javac -cp .:json-java.jar Test.java (Unix Systems)
+",https://github.com/stleary/JSON-java,N/A,N/A,N/A
+"import org.json.JSONObject;
+public class Test {
+    public static void main(String args[]){
+       JSONObject jo = new JSONObject(""{ \""abc\"" : \""def\"" }"");
+       System.out.println(jo.toString());
+    }
+}
+",https://github.com/stleary/JSON-java,N/A,N/A,N/A
+"java -cp .;json-java.jar Test (Windows)
+java -cp .:json-java.jar Test (Unix Systems)
+",https://github.com/stleary/JSON-java,N/A,N/A,N/A
+get(),https://github.com/stleary/JSON-java/blob/master/docs/NOTES.md,"JSONArray
+JSONObject",get,"JSON-java\src\main\java\org\json\JSONArray.java
+JSON-java\src\main\java\org\json\JSONObject.java"
+opt(),https://github.com/stleary/JSON-java/blob/master/docs/NOTES.md,"JSONArray
+JSONObject",opt,"JSON-java\src\main\java\org\json\JSONArray.java
+JSON-java\src\main\java\org\json\JSONObject.java"
+put(),https://github.com/stleary/JSON-java/blob/master/docs/NOTES.md,"JSONArray
+JSONObject",put,"JSON-java\src\main\java\org\json\JSONArray.java
+JSON-java\src\main\java\org\json\JSONObject.java"
+"SomeBean[] myArr = new SomeBean[]{ new SomeBean(1), new SomeBean(2) };
+// these will be wrapped
+JSONArray jArr = new JSONArray(myArr);
+// these will not be wrapped
+jArr.putAll(new SomeBean[]{ new SomeBean(3), new SomeBean(4) });",https://github.com/stleary/JSON-java/blob/master/docs/NOTES.md,JSONArray,putAll,JSON-java\src\main\java\org\json\JSONArray.java
+"SomeBean[] myArr = new SomeBean[]{ new SomeBean(1), new SomeBean(2) };
+JSONArray jArr = new JSONArray();
+// these will not be wrapped
+jArr.putAll(myArr);
+// these will not be wrapped
+jArr.putAll(new SomeBean[]{ new SomeBean(3), new SomeBean(4) });
+// our jArr is now consistent.",https://github.com/stleary/JSON-java/blob/master/docs/NOTES.md,JSONArray,putAll,JSON-java\src\main\java\org\json\JSONArray.java
+"SomeBean[] myArr = new SomeBean[]{ new SomeBean(1), new SomeBean(2) };
+// these will be wrapped
+JSONArray jArr = new JSONArray(myArr);
+// these will be wrapped
+jArr.putAll(new JSONArray(new SomeBean[]{ new SomeBean(3), new SomeBean(4) }));
+// our jArr is now consistent.",https://github.com/stleary/JSON-java/blob/master/docs/NOTES.md,JSONArray,putAll,JSON-java\src\main\java\org\json\JSONArray.java

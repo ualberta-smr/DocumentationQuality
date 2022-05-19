@@ -1,0 +1,905 @@
+Example,Extracted Function,Linked Function,Source File,Linked
+"var parser = new jParser(file, {
+  header: {
+    fileId: 'int32',
+    recordIndex: 'int32',
+    hash: ['array', 'uint32', 4],
+    fileName: ['string', 256],
+    version: 2,
+    flags: {
+      precisionFlag: 1,
+      marker: {
+       part1: 2,
+       part2: 2
+      }
+    },
+    _reserved: 1 // padding to 8*N bits
+  }
+});
+parser.parse('header');
+// {
+//   fileId: 42,
+//   recordIndex: 6002,
+//   hash: [4237894687, 3491173757, 3626834111, 2631772842],
+//   fileName: "".\\Resources\\Excel\\Items_Weapons.xls"",
+//   version: 3,
+//   flags: {
+//     precisionFlag: 1,
+//     marker: {
+//       part1: 2,
+//       part2: 0
+//     }
+//   },
+//   _reserved: 0
+// }",jParser,N/A,N/A,N/A
+"var parser = new jParser(file, {
+  header: {
+    fileId: 'int32',
+    recordIndex: 'int32',
+    hash: ['array', 'uint32', 4],
+    fileName: ['string', 256],
+    version: 2,
+    flags: {
+      precisionFlag: 1,
+      marker: {
+       part1: 2,
+       part2: 2
+      }
+    },
+    _reserved: 1 // padding to 8*N bits
+  }
+});
+parser.parse('header');
+// {
+//   fileId: 42,
+//   recordIndex: 6002,
+//   hash: [4237894687, 3491173757, 3626834111, 2631772842],
+//   fileName: "".\\Resources\\Excel\\Items_Weapons.xls"",
+//   version: 3,
+//   flags: {
+//     precisionFlag: 1,
+//     marker: {
+//       part1: 2,
+//       part2: 0
+//     }
+//   },
+//   _reserved: 0
+// }",parser.parse,N/A,N/A,N/A
+"float3: {
+  x: 'float32',
+  y: 'float32',
+  z: 'float32'
+},
+float4: ['array', 'float32', 4],
+hex32: function () {
+  return '0x' + this.parse('uint32').toString(16);
+},
+string0: function (length) {
+  return this.parse(['string', length]).replace(/\0+$/g, '');
+}",this.parse,N/A,N/A,N/A
+"float3: {
+  x: 'float32',
+  y: 'float32',
+  z: 'float32'
+},
+float4: ['array', 'float32', 4],
+hex32: function () {
+  return '0x' + this.parse('uint32').toString(16);
+},
+string0: function (length) {
+  return this.parse(['string', length]).replace(/\0+$/g, '');
+}",toString,N/A,N/A,N/A
+"float3: {
+  x: 'float32',
+  y: 'float32',
+  z: 'float32'
+},
+float4: ['array', 'float32', 4],
+hex32: function () {
+  return '0x' + this.parse('uint32').toString(16);
+},
+string0: function (length) {
+  return this.parse(['string', length]).replace(/\0+$/g, '');
+}",replace,N/A,N/A,N/A
+"entryHeader: {
+  start: 'int32',
+  count: 'int32'
+},
+
+entry: function (type) {
+  var that = this;
+  var header = this.parse('entryHeader');
+
+  var res = [];
+  this.seek(header.start, function () {
+    for (var i = 0; i < header.count; ++i) {
+      res.push(that.parse(type));
+    }
+  });
+  return res;
+},
+
+name: {
+ language: 'int32',
+ text: ['string', 256]
+},
+
+file: {
+  names: ['entry', 'name']
+}",this.parse,N/A,N/A,N/A
+"entryHeader: {
+  start: 'int32',
+  count: 'int32'
+},
+
+entry: function (type) {
+  var that = this;
+  var header = this.parse('entryHeader');
+
+  var res = [];
+  this.seek(header.start, function () {
+    for (var i = 0; i < header.count; ++i) {
+      res.push(that.parse(type));
+    }
+  });
+  return res;
+},
+
+name: {
+ language: 'int32',
+ text: ['string', 256]
+},
+
+file: {
+  names: ['entry', 'name']
+}",this.seek,proto.seek,jBinary\src\proto\position.js,True
+"entryHeader: {
+  start: 'int32',
+  count: 'int32'
+},
+
+entry: function (type) {
+  var that = this;
+  var header = this.parse('entryHeader');
+
+  var res = [];
+  this.seek(header.start, function () {
+    for (var i = 0; i < header.count; ++i) {
+      res.push(that.parse(type));
+    }
+  });
+  return res;
+},
+
+name: {
+ language: 'int32',
+ text: ['string', 256]
+},
+
+file: {
+  names: ['entry', 'name']
+}",res.push,N/A,N/A,N/A
+"entryHeader: {
+  start: 'int32',
+  count: 'int32'
+},
+
+entry: function (type) {
+  var that = this;
+  var header = this.parse('entryHeader');
+
+  var res = [];
+  this.seek(header.start, function () {
+    for (var i = 0; i < header.count; ++i) {
+      res.push(that.parse(type));
+    }
+  });
+  return res;
+},
+
+name: {
+ language: 'int32',
+ text: ['string', 256]
+},
+
+file: {
+  names: ['entry', 'name']
+}",that.parse,N/A,N/A,N/A
+"var fs = require('fs');
+var jParser = require('jParser');
+
+fs.readFile('file.bin', function (err, data) {
+  var parser = new jParser(data, {
+    magic: ['array', 'uint8', 4]
+  });
+  console.log(parser.parse('magic'));
+});",require,N/A,N/A,N/A
+"var fs = require('fs');
+var jParser = require('jParser');
+
+fs.readFile('file.bin', function (err, data) {
+  var parser = new jParser(data, {
+    magic: ['array', 'uint8', 4]
+  });
+  console.log(parser.parse('magic'));
+});",fs.readFile,N/A,N/A,N/A
+"var fs = require('fs');
+var jParser = require('jParser');
+
+fs.readFile('file.bin', function (err, data) {
+  var parser = new jParser(data, {
+    magic: ['array', 'uint8', 4]
+  });
+  console.log(parser.parse('magic'));
+});",jParser,N/A,N/A,N/A
+"var fs = require('fs');
+var jParser = require('jParser');
+
+fs.readFile('file.bin', function (err, data) {
+  var parser = new jParser(data, {
+    magic: ['array', 'uint8', 4]
+  });
+  console.log(parser.parse('magic'));
+});",console.log,N/A,N/A,N/A
+"var fs = require('fs');
+var jParser = require('jParser');
+
+fs.readFile('file.bin', function (err, data) {
+  var parser = new jParser(data, {
+    magic: ['array', 'uint8', 4]
+  });
+  console.log(parser.parse('magic'));
+});",parser.parse,N/A,N/A,N/A
+"<script src=""https://raw.github.com/vjeux/jDataView/master/jquery/jquery-1.7.1-binary-ajax.js"">script>
+<script src=""https://raw.github.com/vjeux/jDataView/master/src/jdataview.js"">script>
+<script src=""https://raw.github.com/vjeux/jParser/master/src/jparser.js"">script>
+
+<script>
+$.get('file.bin', function (data) {
+  var parser = new jParser(data, {
+    magic: ['array', 'uint8', 4]
+  });
+  console.log(parser.parse('magic'));
+}, 'dataview');
+script>",get,N/A,N/A,N/A
+"<script src=""https://raw.github.com/vjeux/jDataView/master/jquery/jquery-1.7.1-binary-ajax.js"">script>
+<script src=""https://raw.github.com/vjeux/jDataView/master/src/jdataview.js"">script>
+<script src=""https://raw.github.com/vjeux/jParser/master/src/jparser.js"">script>
+
+<script>
+$.get('file.bin', function (data) {
+  var parser = new jParser(data, {
+    magic: ['array', 'uint8', 4]
+  });
+  console.log(parser.parse('magic'));
+}, 'dataview');
+script>",jParser,N/A,N/A,N/A
+"<script src=""https://raw.github.com/vjeux/jDataView/master/jquery/jquery-1.7.1-binary-ajax.js"">script>
+<script src=""https://raw.github.com/vjeux/jDataView/master/src/jdataview.js"">script>
+<script src=""https://raw.github.com/vjeux/jParser/master/src/jparser.js"">script>
+
+<script>
+$.get('file.bin', function (data) {
+  var parser = new jParser(data, {
+    magic: ['array', 'uint8', 4]
+  });
+  console.log(parser.parse('magic'));
+}, 'dataview');
+script>",console.log,N/A,N/A,N/A
+"<script src=""https://raw.github.com/vjeux/jDataView/master/jquery/jquery-1.7.1-binary-ajax.js"">script>
+<script src=""https://raw.github.com/vjeux/jDataView/master/src/jdataview.js"">script>
+<script src=""https://raw.github.com/vjeux/jParser/master/src/jparser.js"">script>
+
+<script>
+$.get('file.bin', function (data) {
+  var parser = new jParser(data, {
+    magic: ['array', 'uint8', 4]
+  });
+  console.log(parser.parse('magic'));
+}, 'dataview');
+script>",parser.parse,N/A,N/A,N/A
+"new jBinary(data, typeSet)",jBinary,jBinary,jBinary\src\core.js,True
+"var b1 = new jBinary([0x05, 0x03, 0x7F, 0x1E]); // with default typeset
+var b2 = new jBinary(new jDataView(data, 5, 10, true), {
+  MetaName: ['string', 30]
+}); // with custom jDataView instance on data and typeset with custom type MetaName.
+var b3 = new jBinary(1024, typeSet); // jBinary on empty pre-allocated 1KB buffer with typeSet defined in variable",jDataView,N/A,N/A,N/A
+"read(type, offset = binary.tell())",read,N/A,N/A,N/A
+"read(type, offset = binary.tell())",binary.tell,proto.tell,jBinary\src\proto\position.js,False
+readAll(),readAll,N/A,N/A,N/A
+"write(type, data, offset = binary.tell())",write,N/A,N/A,N/A
+"write(type, data, offset = binary.tell())",binary.tell,proto.tell,jBinary\src\proto\position.js,False
+writeAll(data),writeAll,N/A,N/A,N/A
+tell(),tell,N/A,N/A,N/A
+"seek(position[, callback])",seek,N/A,N/A,N/A
+"skip(count[, callback])",skip,N/A,N/A,N/A
+"slice(start, end, forceCopy = false)",slice,N/A,N/A,N/A
+"as(typeSet, modifyOriginal = false)",as,N/A,N/A,N/A
+var currentPos = binary.tell();,binary.tell,proto.tell,jBinary\src\proto\position.js,False
+var binary = someExternalBinary.as(TAR); // casting external jBinary instance with no or with irrelevant typeset to TAR typeSet object (any operations including both data and pointer manipulations will affect both instances).,someExternalBinary.as,proto.as,jBinary\src\proto\as.js,False
+getType(type),getType,N/A,N/A,N/A
+getContext(filter),getContext,N/A,N/A,N/A
+"inContext(newContext, callback)",inContext,N/A,N/A,N/A
+"// Example:
+var currentContext = binary.getContext(); // current object that value belongs to
+var parentContext = binary.getContext(1); // one level up
+var contextWithID = binary.getContext('id'); // first context with ""id"" property (bubbling up)
+var contextWithID1 = binary.getContext(function (context) { return context.id === 1 }); // first context that matches custom condition",binary.getContext,proto.getContext,jBinary\src\proto\context.js,True
+"// Example:
+var currentContext = binary.getContext(); // current object that value belongs to
+var parentContext = binary.getContext(1); // one level up
+var contextWithID = binary.getContext('id'); // first context with ""id"" property (bubbling up)
+var contextWithID1 = binary.getContext(function (context) { return context.id === 1 }); // first context that matches custom condition",binary.getContext,proto.getContext,jBinary\src\proto\context.js,True
+"// Example:
+var currentContext = binary.getContext(); // current object that value belongs to
+var parentContext = binary.getContext(1); // one level up
+var contextWithID = binary.getContext('id'); // first context with ""id"" property (bubbling up)
+var contextWithID1 = binary.getContext(function (context) { return context.id === 1 }); // first context that matches custom condition",binary.getContext,proto.getContext,jBinary\src\proto\context.js,True
+"var fs = require('fs');
+var jBinary = require('jbinary');
+var typeSet = {
+  magic: ['array', 'uint8', 4]
+};
+
+jBinary.load('file.bin', typeSet, function (err, binary) {
+  console.log(binary.read('magic'));
+});",require,N/A,N/A,N/A
+"var fs = require('fs');
+var jBinary = require('jbinary');
+var typeSet = {
+  magic: ['array', 'uint8', 4]
+};
+
+jBinary.load('file.bin', typeSet, function (err, binary) {
+  console.log(binary.read('magic'));
+});",jBinary.load,N/A,N/A,N/A
+"var fs = require('fs');
+var jBinary = require('jbinary');
+var typeSet = {
+  magic: ['array', 'uint8', 4]
+};
+
+jBinary.load('file.bin', typeSet, function (err, binary) {
+  console.log(binary.read('magic'));
+});",console.log,N/A,N/A,N/A
+"var fs = require('fs');
+var jBinary = require('jbinary');
+var typeSet = {
+  magic: ['array', 'uint8', 4]
+};
+
+jBinary.load('file.bin', typeSet, function (err, binary) {
+  console.log(binary.read('magic'));
+});",binary.read,proto.read,jBinary\src\proto\props.js,False
+"<script src=""//jdataview.github.io/dist/jdataview.js"">script>
+<script src=""//jdataview.github.io/dist/jbinary.js"">script>
+
+<script>
+var typeSet = {
+  magic: ['array', 'uint8', 4]
+};
+
+jBinary.load('file.bin', typeSet, function (err, binary) {
+  console.log(binary.read('magic'));
+});
+script>",jBinary.load,N/A,N/A,N/A
+"<script src=""//jdataview.github.io/dist/jdataview.js"">script>
+<script src=""//jdataview.github.io/dist/jbinary.js"">script>
+
+<script>
+var typeSet = {
+  magic: ['array', 'uint8', 4]
+};
+
+jBinary.load('file.bin', typeSet, function (err, binary) {
+  console.log(binary.read('magic'));
+});
+script>",console.log,N/A,N/A,N/A
+"<script src=""//jdataview.github.io/dist/jdataview.js"">script>
+<script src=""//jdataview.github.io/dist/jbinary.js"">script>
+
+<script>
+var typeSet = {
+  magic: ['array', 'uint8', 4]
+};
+
+jBinary.load('file.bin', typeSet, function (err, binary) {
+  console.log(binary.read('magic'));
+});
+script>",binary.read,proto.read,jBinary\src\proto\props.js,False
+"// somewhere in config:
+require.config({
+  paths: {
+    jdataview: '//jdataview.github.io/dist/jdataview.js',
+    jbinary: '//jdataview.github.io/dist/jbinary.js',
+  }
+});
+
+// ...
+
+// in code:
+require(['jbinary'], function (jBinary) {
+  var typeSet = {
+    magic: ['array', 'uint8', 4]
+  };
+
+  jBinary.load('file.bin', typeSet, function (err, binary) {
+    console.log(binary.read('magic'));
+  });
+});",require.config,N/A,N/A,N/A
+"// somewhere in config:
+require.config({
+  paths: {
+    jdataview: '//jdataview.github.io/dist/jdataview.js',
+    jbinary: '//jdataview.github.io/dist/jbinary.js',
+  }
+});
+
+// ...
+
+// in code:
+require(['jbinary'], function (jBinary) {
+  var typeSet = {
+    magic: ['array', 'uint8', 4]
+  };
+
+  jBinary.load('file.bin', typeSet, function (err, binary) {
+    console.log(binary.read('magic'));
+  });
+});",require,N/A,N/A,N/A
+"// somewhere in config:
+require.config({
+  paths: {
+    jdataview: '//jdataview.github.io/dist/jdataview.js',
+    jbinary: '//jdataview.github.io/dist/jbinary.js',
+  }
+});
+
+// ...
+
+// in code:
+require(['jbinary'], function (jBinary) {
+  var typeSet = {
+    magic: ['array', 'uint8', 4]
+  };
+
+  jBinary.load('file.bin', typeSet, function (err, binary) {
+    console.log(binary.read('magic'));
+  });
+});",jBinary.load,N/A,N/A,N/A
+"// somewhere in config:
+require.config({
+  paths: {
+    jdataview: '//jdataview.github.io/dist/jdataview.js',
+    jbinary: '//jdataview.github.io/dist/jbinary.js',
+  }
+});
+
+// ...
+
+// in code:
+require(['jbinary'], function (jBinary) {
+  var typeSet = {
+    magic: ['array', 'uint8', 4]
+  };
+
+  jBinary.load('file.bin', typeSet, function (err, binary) {
+    console.log(binary.read('magic'));
+  });
+});",console.log,N/A,N/A,N/A
+"// somewhere in config:
+require.config({
+  paths: {
+    jdataview: '//jdataview.github.io/dist/jdataview.js',
+    jbinary: '//jdataview.github.io/dist/jbinary.js',
+  }
+});
+
+// ...
+
+// in code:
+require(['jbinary'], function (jBinary) {
+  var typeSet = {
+    magic: ['array', 'uint8', 4]
+  };
+
+  jBinary.load('file.bin', typeSet, function (err, binary) {
+    console.log(binary.read('magic'));
+  });
+});",binary.read,proto.read,jBinary\src\proto\props.js,False
+"jBinary.loadData(source, [callback])",jBinary.loadData,N/A,N/A,N/A
+"callback(error, data)",callback,N/A,N/A,N/A
+"jBinary.load(source, [typeSet], [callback])",jBinary.load,N/A,N/A,N/A
+"callback(error, data)",callback,N/A,N/A,N/A
+"saveAs(dest, mimeType = 'application/octet-stream', [callback])",saveAs,N/A,N/A,N/A
+"callback(error, data)",callback,N/A,N/A,N/A
+toURI(mimeType = 'application/octet-stream'),toURI,N/A,N/A,N/A
+"then(onFulfill, onReject)",then,N/A,N/A,N/A
+Promise.from(...),Promise.from,N/A,N/A,N/A
+Q(...),Q,N/A,N/A,N/A
+"fileInput.addEventListener('change', function () {
+  jBinary.loadData(fileInput.files[0]).then(function (data) {
+    if (error) {
+      return console.log(error);
+    }
+
+    // here you get data from  that you can use in jDataView/jBinary constructors
+  });
+});
+
+jBinary.load('sample.tar').then(function (binary) {
+  // here TAR format is auto-detected and used by `binary` (in the case you use it in combination with jBinary.Repo)
+  var tar = binary.readAll;
+
+  // ... more code ...
+
+  return binary.saveAs('new.tar'); // opens browser's ""Save as"" dialog or saves to disk if called from Node.js
+}).then(function () {
+  console.log('Processed and saved successfully!');
+}, function (err) {
+  console.error(err);
+});",fileInput.addEventListener,N/A,N/A,N/A
+"fileInput.addEventListener('change', function () {
+  jBinary.loadData(fileInput.files[0]).then(function (data) {
+    if (error) {
+      return console.log(error);
+    }
+
+    // here you get data from  that you can use in jDataView/jBinary constructors
+  });
+});
+
+jBinary.load('sample.tar').then(function (binary) {
+  // here TAR format is auto-detected and used by `binary` (in the case you use it in combination with jBinary.Repo)
+  var tar = binary.readAll;
+
+  // ... more code ...
+
+  return binary.saveAs('new.tar'); // opens browser's ""Save as"" dialog or saves to disk if called from Node.js
+}).then(function () {
+  console.log('Processed and saved successfully!');
+}, function (err) {
+  console.error(err);
+});",jBinary.loadData,N/A,N/A,N/A
+"fileInput.addEventListener('change', function () {
+  jBinary.loadData(fileInput.files[0]).then(function (data) {
+    if (error) {
+      return console.log(error);
+    }
+
+    // here you get data from  that you can use in jDataView/jBinary constructors
+  });
+});
+
+jBinary.load('sample.tar').then(function (binary) {
+  // here TAR format is auto-detected and used by `binary` (in the case you use it in combination with jBinary.Repo)
+  var tar = binary.readAll;
+
+  // ... more code ...
+
+  return binary.saveAs('new.tar'); // opens browser's ""Save as"" dialog or saves to disk if called from Node.js
+}).then(function () {
+  console.log('Processed and saved successfully!');
+}, function (err) {
+  console.error(err);
+});",then,N/A,N/A,N/A
+"fileInput.addEventListener('change', function () {
+  jBinary.loadData(fileInput.files[0]).then(function (data) {
+    if (error) {
+      return console.log(error);
+    }
+
+    // here you get data from  that you can use in jDataView/jBinary constructors
+  });
+});
+
+jBinary.load('sample.tar').then(function (binary) {
+  // here TAR format is auto-detected and used by `binary` (in the case you use it in combination with jBinary.Repo)
+  var tar = binary.readAll;
+
+  // ... more code ...
+
+  return binary.saveAs('new.tar'); // opens browser's ""Save as"" dialog or saves to disk if called from Node.js
+}).then(function () {
+  console.log('Processed and saved successfully!');
+}, function (err) {
+  console.error(err);
+});",console.log,N/A,N/A,N/A
+"fileInput.addEventListener('change', function () {
+  jBinary.loadData(fileInput.files[0]).then(function (data) {
+    if (error) {
+      return console.log(error);
+    }
+
+    // here you get data from  that you can use in jDataView/jBinary constructors
+  });
+});
+
+jBinary.load('sample.tar').then(function (binary) {
+  // here TAR format is auto-detected and used by `binary` (in the case you use it in combination with jBinary.Repo)
+  var tar = binary.readAll;
+
+  // ... more code ...
+
+  return binary.saveAs('new.tar'); // opens browser's ""Save as"" dialog or saves to disk if called from Node.js
+}).then(function () {
+  console.log('Processed and saved successfully!');
+}, function (err) {
+  console.error(err);
+});",jBinary.load,N/A,N/A,N/A
+"fileInput.addEventListener('change', function () {
+  jBinary.loadData(fileInput.files[0]).then(function (data) {
+    if (error) {
+      return console.log(error);
+    }
+
+    // here you get data from  that you can use in jDataView/jBinary constructors
+  });
+});
+
+jBinary.load('sample.tar').then(function (binary) {
+  // here TAR format is auto-detected and used by `binary` (in the case you use it in combination with jBinary.Repo)
+  var tar = binary.readAll;
+
+  // ... more code ...
+
+  return binary.saveAs('new.tar'); // opens browser's ""Save as"" dialog or saves to disk if called from Node.js
+}).then(function () {
+  console.log('Processed and saved successfully!');
+}, function (err) {
+  console.error(err);
+});",binary.saveAs,N/A,N/A,N/A
+"fileInput.addEventListener('change', function () {
+  jBinary.loadData(fileInput.files[0]).then(function (data) {
+    if (error) {
+      return console.log(error);
+    }
+
+    // here you get data from  that you can use in jDataView/jBinary constructors
+  });
+});
+
+jBinary.load('sample.tar').then(function (binary) {
+  // here TAR format is auto-detected and used by `binary` (in the case you use it in combination with jBinary.Repo)
+  var tar = binary.readAll;
+
+  // ... more code ...
+
+  return binary.saveAs('new.tar'); // opens browser's ""Save as"" dialog or saves to disk if called from Node.js
+}).then(function () {
+  console.log('Processed and saved successfully!');
+}, function (err) {
+  console.error(err);
+});",console.error,N/A,N/A,N/A
+"{
+  'jBinary.all': 'File',
+  'jBinary.littleEndian': true,
+
+  // declaring custom type by wrapping structure
+  DynamicArray: jBinary.Template({
+    setParams: function (itemType) {
+      this.baseType = {
+        // using built-in type
+        length: 'uint16',
+        // using complex built-in type with simple argument and argument from another field
+        values: ['array', itemType, 'length']
+      };
+    },
+    read: function () {
+      return this.baseRead().values;
+    },
+    write: function (values) {
+      this.baseWrite({
+        length: values.length,
+        values: values
+      });
+    }
+  }),
+
+  // declaring simple structure
+  FileItem: {
+    // using built-in type with argument
+    name: ['string0', 256],
+    // using another custom type with no arguments
+    content: 'DynamicArray'
+  },
+
+  // aliasing FileItem[] as type of entire File
+  File: ['array', 'FileItem']
+}",this.baseRead,N/A,N/A,N/A
+"{
+  'jBinary.all': 'File',
+  'jBinary.littleEndian': true,
+
+  // declaring custom type by wrapping structure
+  DynamicArray: jBinary.Template({
+    setParams: function (itemType) {
+      this.baseType = {
+        // using built-in type
+        length: 'uint16',
+        // using complex built-in type with simple argument and argument from another field
+        values: ['array', itemType, 'length']
+      };
+    },
+    read: function () {
+      return this.baseRead().values;
+    },
+    write: function (values) {
+      this.baseWrite({
+        length: values.length,
+        values: values
+      });
+    }
+  }),
+
+  // declaring simple structure
+  FileItem: {
+    // using built-in type with argument
+    name: ['string0', 256],
+    // using another custom type with no arguments
+    content: 'DynamicArray'
+  },
+
+  // aliasing FileItem[] as type of entire File
+  File: ['array', 'FileItem']
+}",this.baseWrite,N/A,N/A,N/A
+"string(@length, encoding = 'binary')",string,N/A,N/A,N/A
+"string0(@length, encoding = 'binary')",string0,N/A,N/A,N/A
+"const(baseType, value, strict = false)",const,N/A,N/A,N/A
+strict(readValue),strict,N/A,N/A,N/A
+"array(baseType, @length)",array,N/A,N/A,N/A
+"object(structure, proto = Object.prototype)",object,N/A,N/A,N/A
+extend(...object structures...),extend,extend,jBinary\src\utils.js,True
+"enum(baseType, matches)",enum,N/A,N/A,N/A
+bitfield(length),bitfield,N/A,N/A,N/A
+blob(@length),blob,N/A,N/A,N/A
+"binary(@length, typeSet = {})",binary,N/A,N/A,N/A
+"if(@condition, trueType, falseType)",if,N/A,N/A,N/A
+"if_not(@condition, falseType, trueType)",if_not,N/A,N/A,N/A
+skip(@length),skip,N/A,N/A,N/A
+callback(context),callback,N/A,N/A,N/A
+jBinary.Type(config),jBinary.Type,Type,jBinary\src\type.js,True
+read(context),read,N/A,N/A,N/A
+"write(data, context)",write,N/A,N/A,N/A
+setParams(...params...),setParams,N/A,N/A,N/A
+resolve(getType),resolve,N/A,N/A,N/A
+"toValue(value, allowResolve = true)",toValue,toValue,jBinary\src\utils.js,False
+"inherit(args, getType)",inherit,inherit,jBinary\src\utils.js,False
+createProperty(binary),createProperty,N/A,N/A,N/A
+"var binary = new jBinary([0x00, 0x03, 0x04, 0x05, 0x06, 0x07], {
+  DynamicArray: jBinary.Type({
+    params: ['itemType'],
+    resolve: function (getType) {
+      this.itemType = getType(this.itemType);
+    },
+    read: function () {
+      var length = this.binary.read('uint16');
+      return this.binary.read(['array', this.itemType, length]);
+    },
+    write: function (values) {
+      this.binary.write('uint16', values.length);
+      this.binary.write(['array', this.itemType], values);
+    }
+  }),
+
+  byteArray: ['DynamicArray', 'uint8']
+});
+
+var byteArray = binary.read('byteArray'); // [0x04, 0x05, 0x06]",getType,N/A,N/A,N/A
+"var binary = new jBinary([0x00, 0x03, 0x04, 0x05, 0x06, 0x07], {
+  DynamicArray: jBinary.Type({
+    params: ['itemType'],
+    resolve: function (getType) {
+      this.itemType = getType(this.itemType);
+    },
+    read: function () {
+      var length = this.binary.read('uint16');
+      return this.binary.read(['array', this.itemType, length]);
+    },
+    write: function (values) {
+      this.binary.write('uint16', values.length);
+      this.binary.write(['array', this.itemType], values);
+    }
+  }),
+
+  byteArray: ['DynamicArray', 'uint8']
+});
+
+var byteArray = binary.read('byteArray'); // [0x04, 0x05, 0x06]",binary.read,proto.read,jBinary\src\proto\props.js,False
+jBinary.Template(config),jBinary.Template,Template,jBinary\src\template.js,True
+getBaseType(context),getBaseType,N/A,N/A,N/A
+baseRead(),baseRead,N/A,N/A,N/A
+baseWrite(data),baseWrite,N/A,N/A,N/A
+"var binary = new jBinary([0x00, 0x03, 0x04, 0x05, 0x06, 0x07], {
+  DynamicArray: jBinary.Template({
+    setParams: function (itemType) {
+      this.baseType = {
+        length: 'uint16',
+        values: ['array', itemType, 'length']
+      };
+    },
+    read: function () {
+      return this.baseRead().values;
+    },
+    write: function (values) {
+      this.baseWrite({
+        length: values.length,
+        values: values
+      });
+    }
+  }),
+
+  byteArray: ['DynamicArray', 'uint8']
+});
+
+var byteArray = binary.read('byteArray'); // [0x04, 0x05, 0x06]",this.baseRead,N/A,N/A,N/A
+"var binary = new jBinary([0x00, 0x03, 0x04, 0x05, 0x06, 0x07], {
+  DynamicArray: jBinary.Template({
+    setParams: function (itemType) {
+      this.baseType = {
+        length: 'uint16',
+        values: ['array', itemType, 'length']
+      };
+    },
+    read: function () {
+      return this.baseRead().values;
+    },
+    write: function (values) {
+      this.baseWrite({
+        length: values.length,
+        values: values
+      });
+    }
+  }),
+
+  byteArray: ['DynamicArray', 'uint8']
+});
+
+var byteArray = binary.read('byteArray'); // [0x04, 0x05, 0x06]",this.baseWrite,N/A,N/A,N/A
+"var binary = new jBinary([0x00, 0x03, 0x04, 0x05, 0x06, 0x07], {
+  DynamicArray: jBinary.Template({
+    setParams: function (itemType) {
+      this.baseType = {
+        length: 'uint16',
+        values: ['array', itemType, 'length']
+      };
+    },
+    read: function () {
+      return this.baseRead().values;
+    },
+    write: function (values) {
+      this.baseWrite({
+        length: values.length,
+        values: values
+      });
+    }
+  }),
+
+  byteArray: ['DynamicArray', 'uint8']
+});
+
+var byteArray = binary.read('byteArray'); // [0x04, 0x05, 0x06]",binary.read,proto.read,jBinary\src\proto\props.js,False
+"jBinary.Repo('bmp', function (BMP) {
+  var binary = new jBinary(data, BMP);
+  // ...do whatever you want with `binary` or simply...
+  var data = binary.readAll();
+  // ...get entire file as parsed object in `data`
+});",jBinary.Repo,N/A,N/A,N/A
+"jBinary.Repo('bmp', function (BMP) {
+  var binary = new jBinary(data, BMP);
+  // ...do whatever you want with `binary` or simply...
+  var data = binary.readAll();
+  // ...get entire file as parsed object in `data`
+});",jBinary,jBinary,jBinary\src\core.js,True
+"jBinary.Repo('bmp', function (BMP) {
+  var binary = new jBinary(data, BMP);
+  // ...do whatever you want with `binary` or simply...
+  var data = binary.readAll();
+  // ...get entire file as parsed object in `data`
+});",binary.readAll,proto.readAll,jBinary\src\proto\props.js,False
+"jBinary.Repo(['tar', 'gzip'], function (TAR, GZIP) {
+  // your code goes here ;)
+});",jBinary.Repo,N/A,N/A,N/A
+"require(['jbinary.repo!tar', 'jbinary.repo!gzip'], function (TAR, GZIP) {
+  // you can put just the same code as in sample above
+});",require,N/A,N/A,N/A
