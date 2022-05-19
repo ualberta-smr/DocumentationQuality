@@ -45,7 +45,7 @@ def java_match(repo_name, examples, functions, classes):
         writer = csv.writer(out, quoting=csv.QUOTE_MINIMAL)
         writer.writerow(
             ["Example", "Extracted Function", "Linked Function", "Source File",
-             "Linked"])
+             "Matched"])
         call_regex = re.compile(r"(?:\w+\.)?\w+(?=\()")
         for ex in examples:
             example = ex[0]
@@ -82,7 +82,7 @@ def java_match(repo_name, examples, functions, classes):
                     # TODO: Will not catch foo(bar(0), bar(1)), will only get
                     # foo(bar(0)
                     function_calls = re.findall(re.compile(
-                        r"%s\([a-zA-Z0-9_:.,/\\ =(){}\'\"]*?\)"
+                        r"%s\([a-zA-Z0-9_:.,/\\ =(){}\'\"|]*?\)"
                         % call.replace(".", "\.")), example)
                     for function_call in function_calls:
                         num_args = len(function_call.split(", "))

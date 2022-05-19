@@ -64,7 +64,7 @@ def python_match(repo_name, examples, functions, classes):
         writer = csv.writer(out, quoting=csv.QUOTE_MINIMAL)
         writer.writerow(
             ["Example", "Extracted Function", "Linked Function", "Source File",
-             "Linked"])
+             "Matched"])
         call_regex = re.compile(r"(?:\w+\.)?\w+(?=\()")
         for ex in examples:
             example = ex[0]
@@ -86,7 +86,7 @@ def python_match(repo_name, examples, functions, classes):
                     func_def = functions[call]
                 if func_def:
                     function_calls = re.findall(re.compile(
-                        r"%s\([a-zA-Z_:.,/\\ =(){}\'\"]*?\)"
+                        r"%s\([a-zA-Z_:.,/\\ =(){}\'\"|]*?\)"
                         % call.replace(".", "\.")), example)
                     for function_call in function_calls:
                         try:
@@ -104,11 +104,15 @@ def python_match(repo_name, examples, functions, classes):
                                 func_def["req_args"] + func_def["opt_args"]):
                             method_calls.add((func_def["source_file"], call))
                             writer.writerow(
-                                [example, call, call, func_def["source_file"],
+                                [example, call, call.split(".")[1] if len(
+                                    call.split(".")) > 1 else call,
+                                 func_def["source_file"],
                                  "True"])
                         else:
                             writer.writerow(
-                                [example, call, call, func_def["source_file"],
+                                [example, call, call.split(".")[1] if len(
+                                    call.split(".")) > 1 else call,
+                                 func_def["source_file"],
                                  "False"])
                 else:
                     potential_class = call.split(".")[-1]

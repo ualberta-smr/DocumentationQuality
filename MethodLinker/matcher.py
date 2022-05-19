@@ -1,5 +1,6 @@
 import html
 import itertools
+import pprint
 from shutil import rmtree
 from urllib.request import Request, urlopen
 
@@ -67,9 +68,9 @@ def rmtree_access_error_handler(func, path, exc_info):
 def get_source_files(repo_url):
     repo_regex = re.compile(r"(?<=/)[a-zA-Z.-]+(?!/)$")
     repo_name = re.search(repo_regex, repo_url)[0][:-4]
-    if os.path.exists(repo_name):
-        rmtree(repo_name, onerror=rmtree_access_error_handler)
-    Repo.clone_from(repo_url, repo_name)
+    # if os.path.exists(repo_name):
+    #     rmtree(repo_name, onerror=rmtree_access_error_handler)
+    # Repo.clone_from(repo_url, repo_name)
     source_files = []
     src_dir = None
     # Only look at the top level directory in this loop
@@ -107,14 +108,14 @@ def get_functions(functions, source_file):
     function_defs = find_params(source_file)
     for function in function_defs:
         if LANGUAGE == "python":
-            functions[function[0]] = {"source_file": source_file,
+            functions[function[0]] = {"source_file": os.path.normpath(source_file),
                                       "req_args": function[1][0],
                                       "opt_args": function[1][1]}
         else:
             if function[0] in functions:
                 functions[function[0]]["req_args"].append(function[1])
             else:
-                functions[function[0]] = {"source_file": source_file,
+                functions[function[0]] = {"source_file": os.path.normpath(source_file),
                                           "req_args": [function[1]]}
     return functions
 
@@ -137,14 +138,33 @@ def get_methods_and_classes(repo_url):
 def calculate_ratios(language, repo_name, repo_url, doc_url, pages):
     extension_finder(language)
     functions, classes = get_methods_and_classes(repo_url)
+    with open("data/" + repo_name + "_methods.txt", "w") as temp:
+        PP = pprint.PrettyPrinter(indent=4, stream=temp)
+        PP.pprint(functions)
+    with open("data/" + repo_name + "_classes.txt", "w") as temp:
+        PP = pprint.PrettyPrinter(indent=4, stream=temp)
+        PP.pprint(classes)
+    # with open("doc_examples.txt", "r") as temp:
+    #     doc_examples = list(e[0] for e in list(csv.reader(temp)))
     doc_examples = []
     for page in pages:
         try:
             doc_examples.extend(get_documentation_examples(doc_url, page))
         except:
             pass
+
+    with open("data/" + repo_name + "_doc_examples.csv", "w", encoding="utf-8", newline="") as temp:
+        writer = csv.writer(temp, quoting=csv.QUOTE_MINIMAL)
+        for item in doc_examples:
+            writer.writerow(item)
     # Remove duplicates but retain order
     doc_examples = list(doc_examples for doc_examples, _ in itertools.groupby(doc_examples))
+    with open("data/" + repo_name + "_doc_examples_unique.csv", "w", encoding="utf-8", newline="") as temp:
+        writer = csv.writer(temp, quoting=csv.QUOTE_MINIMAL)
+        for item in doc_examples:
+            writer.writerow(item)
+
+    # return 1,1,1,1
     method_calls = set()
     if LANGUAGE == "python":
         method_calls = python_match(repo_name, doc_examples, functions, classes)
@@ -153,6 +173,7 @@ def calculate_ratios(language, repo_name, repo_url, doc_url, pages):
     elif LANGUAGE == "javascript":
         method_calls = javascript_match(repo_name, doc_examples, functions, classes)
 
+    # print(method_calls)
     example_count = len(method_calls)
     seen_classes = set()
     for examples in method_calls:

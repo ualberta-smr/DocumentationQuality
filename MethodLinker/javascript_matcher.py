@@ -79,7 +79,7 @@ def javascript_match(repo_name, examples, functions, classes):
         writer = csv.writer(out, quoting=csv.QUOTE_MINIMAL)
         writer.writerow(
             ["Example", "Extracted Function", "Linked Function", "Source File",
-             "Linked"])
+             "Matched"])
         call_regex = re.compile(r"(?:\w+\.)?\w+(?=\()")
         for ex in examples:
             example = ex[0]
@@ -106,7 +106,7 @@ def javascript_match(repo_name, examples, functions, classes):
                     func_def = functions[potential_method]
                 if func_def:
                     function_calls = re.findall(re.compile(
-                        r"%s\([a-zA-Z_:.,/\\ =(){}\'\"]*?\)"
+                        r"%s\([a-zA-Z_:.,/\\ =(){}\'\"|]*?\)"
                         % call.replace(".", "\.")), example)
                     for function_call in function_calls:
                         num_args = len(function_call.split(", "))
