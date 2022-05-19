@@ -42,7 +42,7 @@ def get_documentation_examples(doc_url, url):
             return []
     content = html.unescape(urlopen(req).read().decode("utf-8"))
     soup = BeautifulSoup(content, "html.parser")
-    raw_examples = soup.find_all("code") + soup.find_all("pre")
+    raw_examples = soup.find_all("pre")
     doc_examples = []
 
     for raw_example in raw_examples:
@@ -68,9 +68,9 @@ def rmtree_access_error_handler(func, path, exc_info):
 def get_source_files(repo_url):
     repo_regex = re.compile(r"(?<=/)[a-zA-Z.-]+(?!/)$")
     repo_name = re.search(repo_regex, repo_url)[0][:-4]
-    # if os.path.exists(repo_name):
-    #     rmtree(repo_name, onerror=rmtree_access_error_handler)
-    # Repo.clone_from(repo_url, repo_name)
+    # # if os.path.exists(repo_name):
+    # #     rmtree(repo_name, onerror=rmtree_access_error_handler)
+    # # Repo.clone_from(repo_url, repo_name)
     source_files = []
     src_dir = None
     # Only look at the top level directory in this loop

@@ -12,7 +12,7 @@ from bs4 import BeautifulSoup
 from MethodLinker import matcher
 
 
-def get_webpages(doc_home):
+def get_webpages(doc_home, repo_name):
     req = Request(url=doc_home, headers=util.HEADERS)
     content = html.unescape(urlopen(req).read().decode("utf-8"))
     soup = BeautifulSoup(content, "html.parser")
@@ -32,8 +32,9 @@ def get_webpages(doc_home):
         if parse.hostname is None:
             if parse.path and not parse.fragment and not parse.query:
                 url = re.match(re.compile(".+/"), doc_home)[0] + parse.path
-                pages.append(url)
-        elif parse.hostname == domain and "#" not in href:
+                if repo_name in url:
+                    pages.append(url)
+        elif parse.hostname == domain and "#" not in href and repo_name in href:
             pages.append(href)
     pages = list(dict.fromkeys(pages))
     return pages
@@ -103,7 +104,7 @@ def _get_description(repo_name, doc_url):
 
 def api_methods_examples(language, repo_name, repo_url, doc_url):
     os.chdir("MethodLinker")
-    pages = get_webpages(doc_url)
+    pages = get_webpages(doc_url, repo_name)
     example_count, total_methods, classes_count, total_classes = matcher.calculate_ratios(
         language, repo_name, repo_url, doc_url, pages)
     _add_or_update_method_record(
@@ -131,24 +132,24 @@ if __name__ == '__main__':
     # inp = "https://stanfordnlp.github.io/CoreNLP/index.html"
     # task_extract_and_link("CoreNLP", inp)
 
-    # # https://github.com/ijl/orjson
-    # task_extract_and_link("orjson", "http://web.archive.org/web/20210831032333/https://github.com/ijl/orjson", "json")
-    # # https://github.com/stleary/JSON-java
-    # task_extract_and_link("JSON-java", "http://web.archive.org/web/20211017224709/https://github.com/stleary/JSON-java", "json")
-    # task_extract_and_link("CoreNLP", "https://stanfordnlp.github.io/CoreNLP/ner.html", "nlp")
-    # task_extract_and_link("CoreNLP", "https://stanfordnlp.github.io/CoreNLP/cmdline.html", "nlp")
-    # # https://www.nltk.org/api/nltk.parse.html
-    # task_extract_and_link("NLTK", "https://web.archive.org/web/20210417122335/https://www.nltk.org/api/nltk.parse.html")
-    # # https://www.nltk.org/api/nltk.tag.html
-    # task_extract_and_link("NLTK", "https://web.archive.org/web/20210725152853/https://www.nltk.org/api/nltk.tag.html")
-    # task_extract_and_link("jQuery", "https://api.jquery.com/jQuery.get")
-    # task_extract_and_link("reactjs", "https://reactjs.org/docs/components-and-props.html")
-    # task_extract_and_link("requests", "https://docs.python-requests.org/en/latest/")
+    # https://github.com/ijl/orjson
+    task_extract_and_link("orjson", "http://web.archive.org/web/20210831032333/https://github.com/ijl/orjson", "json")
+    # https://github.com/stleary/JSON-java
+    task_extract_and_link("JSON-java", "http://web.archive.org/web/20211017224709/https://github.com/stleary/JSON-java", "json")
+    task_extract_and_link("CoreNLP", "https://stanfordnlp.github.io/CoreNLP/ner.html", "nlp")
+    task_extract_and_link("CoreNLP", "https://stanfordnlp.github.io/CoreNLP/cmdline.html", "nlp")
+    # https://www.nltk.org/api/nltk.parse.html
+    task_extract_and_link("NLTK", "https://web.archive.org/web/20210417122335/https://www.nltk.org/api/nltk.parse.html")
+    # https://www.nltk.org/api/nltk.tag.html
+    task_extract_and_link("NLTK", "https://web.archive.org/web/20210725152853/https://www.nltk.org/api/nltk.tag.html")
+    task_extract_and_link("jQuery", "https://api.jquery.com/jQuery.get")
+    task_extract_and_link("reactjs", "https://reactjs.org/docs/components-and-props.html")
+    task_extract_and_link("requests", "https://docs.python-requests.org/en/latest/")
 
-    api_methods_examples("python",
-                         "orjson",
-                         "https://github.com/ijl/orjson.git",
-                         "https://github.com/ijl/orjson/blob/master/README.md")
+    # api_methods_examples("python",
+    #                      "orjson",
+    #                      "https://github.com/ijl/orjson.git",
+    #                      "https://github.com/ijl/orjson/blob/master/README.md")
     # api_methods_examples("python",
     #                      "nltk",
     #                      "https://github.com/nltk/nltk.git",
@@ -162,7 +163,7 @@ if __name__ == '__main__':
     #                      "https://github.com/stleary/JSON-java.git",
     #                      "https://github.com/stleary/JSON-java")
     # api_methods_examples("java",
-    #                      "stanford-nlp",
+    #                      "CoreNLP",
     #                      "https://github.com/stanfordnlp/CoreNLP.git",
     #                      "https://stanfordnlp.github.io/CoreNLP")
     # api_methods_examples("javascript",

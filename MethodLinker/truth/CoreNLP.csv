@@ -579,7 +579,7 @@ Sentence sent = new Sentence(""Lucy is in the sky with diamonds."");
 List<String> nerTags = sent.nerTags();  // [PERSON, O, O, O, O, O, O, O]
 String firstPOSTag = sent.posTag(0);   // NNP
 ...
-",https://stanfordnlp.github.io/CoreNLP/simple.html,Sentence,posTags,CoreNLP/src/edu/stanford/nlp/simple/Sentence.java
+",https://stanfordnlp.github.io/CoreNLP/simple.html,Sentence,posTag,CoreNLP/src/edu/stanford/nlp/simple/Sentence.java
 "# Run the server using all jars in the current directory (e.g., the CoreNLP home directory)
 java -mx4g -cp ""*"" edu.stanford.nlp.pipeline.StanfordCoreNLPServer -port 9000 -timeout 15000
 ",https://stanfordnlp.github.io/CoreNLP/corenlp-server.html,N/A,N/A,N/A

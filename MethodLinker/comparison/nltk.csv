@@ -1,59 +1,8 @@
 Example,Truth functions,Test functions,Linked functions,Source
-load(),['load'],"['N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A']",[]
-retrieve(),['retrieve'],"['N/A', 'N/A', 'N/A', 'N/A']",[]
-write(),['write'],"['N/A', 'N/A', 'N/A', 'N/A']",[]
-writestr(),['writestr'],"['N/A', 'N/A', 'N/A', 'N/A']",[]
-seek(),['seek'],"['N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A']",[]
-tell(),['tell'],"['N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A']",[]
-readline(),['readline'],"['N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A']",[]
-read(),['read'],"['N/A', 'N/A', 'N/A', 'N/A']",[]
-find(),['find'],"['N/A', 'N/A', 'N/A', 'N/A']",[]
-download(),['download'],"['N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A']",[]
-Downloader.default_download_dir(),['default_download_dir'],"['Downloader.default_download_dir', 'Downloader.default_download_dir', 'Downloader.default_download_dir', 'Downloader.default_download_dir']",[]
-default_download_dir(),['default_download_dir'],"['N/A', 'N/A', 'N/A', 'N/A']",[]
-_package_to_columns(),['_package_to_columns'],"['N/A', 'N/A', 'N/A', 'N/A']",[]
-unify(),['unify'],"['N/A', 'N/A', 'N/A', 'N/A']",[]
-walk(),['walk'],"['N/A', 'N/A', 'N/A', 'N/A']",[]
-cyclic(),['cyclic'],"['N/A', 'N/A', 'N/A', 'N/A']",[]
-freeze(),['freeze'],"['N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A']",[]
-equal_values(),['equal_values'],"['N/A', 'N/A', 'N/A', 'N/A']",[]
-copy(),['copy'],"['N/A', 'N/A', 'N/A', 'N/A']",[]
-nltk.featstruct.rename_variables(),['rename_variables'],"['N/A', 'N/A', 'N/A', 'N/A']",[]
-nltk.featstruct.retract_bindings(),['retract_bindings'],"['N/A', 'N/A', 'N/A', 'N/A']",[]
-nltk.featstruct.substitute_bindings(),['substitute_bindings'],"['N/A', 'N/A', 'N/A', 'N/A']",[]
-nltk.featstruct.find_variables(),['find_variables'],"['N/A', 'N/A', 'N/A', 'N/A']",[]
-FreqDist.N(),['N'],"['FreqDist.N', 'FreqDist.N', 'FreqDist.N', 'FreqDist.N']",[]
-FreqDist.B(),['B'],"['FreqDist.B', 'FreqDist.B', 'FreqDist.B', 'FreqDist.B']",[]
-bins-self.B(),['N/A'],"['N/A', 'N/A', 'N/A', 'N/A']",['N/A']
-self.B(),['N/A'],"['N/A', 'N/A', 'N/A', 'N/A']",['N/A']
-Counter.setdefault(),['N/A'],"['N/A', 'N/A', 'N/A', 'N/A']",['N/A']
-Counter.update(),['N/A'],"['N/A', 'N/A', 'N/A', 'N/A']",['N/A']
-self.prob(samp),['N/A'],"['N/A', 'N/A', 'N/A', 'N/A']",['N/A']
-log(p),['N/A'],"['N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A']",['N/A']
-log(2**(logx)+2**(logy)),['N/A'],"['N/A', 'N/A', 'N/A', 'N/A']",['N/A']
-findall(),['findall'],"['N/A', 'N/A', 'N/A', 'N/A']",[]
-fields(),['fields'],"['N/A', 'N/A', 'N/A', 'N/A']",[]
-decode(),['decode'],"['N/A', 'N/A', 'N/A', 'N/A']",[]
-StandardFormat.fields(),['fields'],"['StandardFormat.fields', 'StandardFormat.fields', 'StandardFormat.fields', 'StandardFormat.fields']",[]
-encode(),['encode'],"['N/A', 'N/A', 'N/A', 'N/A']",[]
-parents(),['parents'],"['N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A']",[]
-parent_indices(),['parent_indices'],"['N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A']",[]
-left_siblings(),['left_siblings'],"['N/A', 'N/A', 'N/A', 'N/A']",[]
-right_siblings(),['right_siblings'],"['N/A', 'N/A', 'N/A', 'N/A']",[]
-ptree.parent()[ptree.parent_index()] is ptree,"['parent', 'parent_index']","['N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A']",[]
-ptree.parent_index(),['parent_index'],"['N/A', 'N/A', 'N/A', 'N/A']",[]
-ptree.parent.index(ptree),['N/A'],"['N/A', 'N/A', 'N/A', 'N/A']",['N/A']
-index(),['N/A'],"['N/A', 'N/A', 'N/A', 'N/A']",['N/A']
-ptree.parent(),['ptree.parent'],"['N/A', 'N/A', 'N/A', 'N/A']",[]
-"Tree(label, children)",['Tree'],"['__init__', '__init__', '__init__', '__init__']",[]
-Tree.fromstring(s),['fromstring'],"['Tree.fromstring', 'Tree.fromstring', 'Tree.fromstring', 'Tree.fromstring']",[]
-tp=self.leaf_treeposition(i),['leaf_treeposition'],"['N/A', 'N/A', 'N/A', 'N/A']",[]
-self[tp]==self.leaves()[i],['leaves'],"['N/A', 'N/A', 'N/A', 'N/A']",[]
-self.leaves()[start:end],['N/A'],"['N/A', 'N/A', 'N/A', 'N/A']",['N/A']
 ">>> download('treebank') 
 [nltk_data] Downloading package 'treebank'...
 [nltk_data]   Unzipping corpora/treebank.zip.
-",['download'],"['N/A', 'N/A', 'N/A', 'N/A']",[]
+",['download'],['N/A'],[]
 ">>> download('all-corpora') 
 [nltk_data] Downloading package 'abc'...
 [nltk_data]   Unzipping corpora/abc.zip.
@@ -62,17 +11,17 @@ self.leaves()[start:end],['N/A'],"['N/A', 'N/A', 'N/A', 'N/A']",['N/A']
   ...
 [nltk_data] Downloading package 'words'...
 [nltk_data]   Unzipping corpora/words.zip.
-",['download'],"['N/A', 'N/A', 'N/A', 'N/A']",[]
+",['download'],['N/A'],[]
 ">>> from nltk.featstruct import unify
 >>> unify(dict(x=1, y=dict()), dict(a='a', y=dict(b='b')))  
 {'y': {'b': 'b'}, 'x': 1, 'a': 'a'}
-",['unify'],"['N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A']",[]
+",['unify'],"['N/A', 'N/A']",[]
 "def handler(s, position, reentrances, match): ...
-",['N/A'],"['N/A', 'N/A', 'N/A', 'N/A']",['N/A']
+",['N/A'],['N/A'],['N/A']
 ">>> from nltk.featstruct import FeatStruct
 >>> FeatStruct('[a=?x]').unify(FeatStruct('[b=?x]'))
 [a=?x, b=?x2]
-",['unify'],"['__init__', 'N/A', '__init__', 'N/A', '__init__', 'N/A', '__init__', 'N/A']",[]
+",['unify'],"['__init__', 'N/A']",[]
 ">>> from nltk.probability import ConditionalFreqDist
 >>> from nltk.tokenize import word_tokenize
 >>> sent = ""the the the dog dog some other words that we do not care about""
@@ -80,16 +29,16 @@ self.leaves()[start:end],['N/A'],"['N/A', 'N/A', 'N/A', 'N/A']",['N/A']
 >>> for word in word_tokenize(sent):
 ...     condition = len(word)
 ...     cfdist[condition][word] += 1
-","['word_tokenize', 'word_tokenize']","['__init__', 'N/A', 'N/A', '__init__', 'N/A', 'N/A', '__init__', 'N/A', 'N/A', '__init__', 'N/A', 'N/A']",[]
+","['word_tokenize', 'word_tokenize']","['__init__', 'N/A', 'N/A']",[]
 ">>> cfdist = ConditionalFreqDist((len(word), word) for word in word_tokenize(sent))
-","['__init__', 'word_tokenize']","['__init__', 'N/A', 'N/A', '__init__', 'N/A', 'N/A', '__init__', 'N/A', 'N/A', '__init__', 'N/A', 'N/A']",['__init__']
+","['__init__', 'word_tokenize']","['__init__', 'N/A', 'N/A']",['__init__']
 ">>> cfdist[3]
 FreqDist({'the': 3, 'dog': 2, 'not': 1})
 >>> cfdist[3].freq('the')
 0.5
 >>> cfdist[3]['dog']
 2
-","['__init__', 'freq']","['__init__', 'N/A', '__init__', 'N/A', '__init__', 'N/A', '__init__', 'N/A']",['__init__']
+","['__init__', 'freq']","['__init__', 'N/A']",['__init__']
 ">>> from nltk.corpus import brown
 >>> from nltk.probability import ConditionalFreqDist
 >>> from nltk.probability import ConditionalProbDist, ELEProbDist
@@ -99,16 +48,16 @@ FreqDist({'the': 3, 'dog': 2, 'not': 1})
 'VBD'
 >>> cpdist['passed'].prob('VBD')
 0.423...
-","['ConditionalFreqDist', 'ConditionalProbDist', 'max', 'prob']","['__init__', 'N/A', '__init__', 'N/A', 'N/A', '__init__', 'N/A', '__init__', 'N/A', 'N/A', '__init__', 'N/A', '__init__', 'N/A', 'N/A', '__init__', 'N/A', '__init__', 'N/A', 'N/A']",[]
+","['ConditionalFreqDist', 'ConditionalProbDist', 'max', 'prob']","['__init__', 'N/A', '__init__', 'N/A', 'N/A']",[]
 ">>> from nltk.tokenize import word_tokenize
 >>> from nltk.probability import FreqDist
 >>> sent = 'This is an example sentence'
 >>> fdist = FreqDist()
 >>> for word in word_tokenize(sent):
 ...    fdist[word.lower()] += 1
-","['FreqDist', 'word_tokenize']","['__init__', 'N/A', 'N/A', '__init__', 'N/A', 'N/A', '__init__', 'N/A', 'N/A', '__init__', 'N/A', 'N/A']",[]
+","['FreqDist', 'word_tokenize']","['__init__', 'N/A', 'N/A']",[]
 ">>> fdist = FreqDist(word.lower() for word in word_tokenize(sent))
-","['', 'word_tokenize']","['__init__', 'N/A', 'N/A', '__init__', 'N/A', 'N/A', '__init__', 'N/A', 'N/A', '__init__', 'N/A', 'N/A']",[]
+","['', 'word_tokenize']","['__init__', 'N/A', 'N/A']",[]
 ">>> from nltk.probability import ProbabilisticMixIn
 >>> class A:
 ...     def __init__(self, x, y): self.data = (x,y)
@@ -117,19 +66,19 @@ FreqDist({'the': 3, 'dog': 2, 'not': 1})
 ...     def __init__(self, x, y, **prob_kwarg):
 ...         A.__init__(self, x, y)
 ...         ProbabilisticMixIn.__init__(self, **prob_kwarg)
-",['ProbabilisticMixIn'],"['N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A']",[]
+",['ProbabilisticMixIn'],"['N/A', 'N/A', 'N/A']",[]
 ">>> import nltk.corpus
 >>> from nltk.text import Text
 >>> moby = Text(nltk.corpus.gutenberg.words('melville-moby_dick.txt'))
-",['Text'],"['__init__', 'N/A', '__init__', 'N/A', '__init__', 'N/A', '__init__', 'N/A']",[]
+",['Text'],"['__init__', 'N/A']",[]
 ">>> from nltk.book import text4
 >>> text4.collocation_list()[:2]
 [('United', 'States'), ('fellow', 'citizens')]
-",['collocation'],"['N/A', 'N/A', 'N/A', 'N/A']",[]
+",['collocation'],['N/A'],[]
 ">>> from nltk.book import text4
 >>> text4.collocations() 
 United States; fellow citizens; four years; ...
-",['collocation'],"['N/A', 'N/A', 'N/A', 'N/A']",[]
+",['collocation'],['N/A'],[]
 ">>> print('hack'); from nltk.book import text1, text5, text9
 hack...
 >>> text5.findall(""<.*><.*>"")
@@ -143,20 +92,20 @@ brave; brave; brave
 thread through those; the thought that; that the thing; the thing
 that; that that thing; through these than through; them that the;
 through the thick; them that they; thought that the
-",['findall'],"['N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A']",[]
+",['findall'],"['N/A', 'N/A', 'N/A', 'N/A']",[]
 ">>> import nltk.corpus
 >>> from nltk.text import TextCollection
 >>> print('hack'); from nltk.book import text1, text2, text3
 hack...
 >>> gutenberg = TextCollection(nltk.corpus.gutenberg)
 >>> mytexts = TextCollection([text1, text2, text3])
-",['__init__'],"['N/A', '__init__', 'N/A', '__init__', 'N/A', '__init__', 'N/A', '__init__']",['__init__']
+",['__init__'],"['N/A', '__init__']",['__init__']
 "for parent_index in ptree.parent_indices(parent):
     parent[parent_index] is ptree
-",['parent_indices'],"['N/A', 'N/A', 'N/A', 'N/A']",[]
+",['parent_indices'],['N/A'],[]
 "for treepos in ptree.treepositions(root):
     root[treepos] is ptree
-",['treepositions'],"['N/A', 'N/A', 'N/A', 'N/A']",[]
+",['treepositions'],['N/A'],[]
 ">>> from nltk.tree import Tree
 >>> print(Tree(1, [2, Tree(3, [4]), 5]))
 (1 2 (3 4) 5)
@@ -180,14 +129,14 @@ True
 >>> t[0], t[1,1] = t[1,1], t[0]
 >>> print(t)
 (S (X him) (VP (V saw) (NP I)))
-","['__init__', 'fromstring']","['N/A', '__init__', 'Tree.fromstring', 'N/A', 'N/A', 'N/A', '__init__', 'Tree.fromstring', 'N/A', 'N/A', 'N/A', '__init__', 'Tree.fromstring', 'N/A', 'N/A', 'N/A', '__init__', 'Tree.fromstring', 'N/A', 'N/A']",['__init__']
+","['__init__', 'fromstring']","['N/A', '__init__', 'fromstring', 'N/A', 'N/A']","['__init__', 'fromstring']"
 ">>> len(t)
 2
-",['N/A'],"['N/A', 'N/A', 'N/A', 'N/A']",['N/A']
+",['N/A'],['N/A'],['N/A']
 ">>> t = Tree.fromstring(""(S (NP (D the) (N dog)) (VP (V chased) (NP (D the) (N cat))))"")
 >>> print(t.flatten())
 (S the dog chased the cat)
-","['fromstring', 'flatten']","['Tree.fromstring', 'N/A', 'N/A', 'Tree.fromstring', 'N/A', 'N/A', 'Tree.fromstring', 'N/A', 'N/A', 'Tree.fromstring', 'N/A', 'N/A']",[]
+","['fromstring', 'flatten']","['fromstring', 'N/A', 'N/A']",['fromstring']
 ">>> t = Tree.fromstring(""(S (NP (D the) (N dog)) (VP (V chased) (NP (D the) (N cat))))"")
 >>> t.height()
 5
@@ -195,29 +144,29 @@ True
 (D the)
 >>> t[0,0].height()
 2
-","['fromstring', 'height']","['Tree.fromstring', 'N/A', 'N/A', 'N/A', 'Tree.fromstring', 'N/A', 'N/A', 'N/A', 'Tree.fromstring', 'N/A', 'N/A', 'N/A', 'Tree.fromstring', 'N/A', 'N/A', 'N/A']",[]
+","['fromstring', 'height']","['fromstring', 'N/A', 'N/A', 'N/A']",['fromstring']
 ">>> t = Tree.fromstring('(S (NP (D the) (N dog)) (VP (V chased) (NP (D the) (N cat))))')
 >>> t.label()
 'S'
-","['fromstring', 'label']","['Tree.fromstring', 'N/A', 'Tree.fromstring', 'N/A', 'Tree.fromstring', 'N/A', 'Tree.fromstring', 'N/A']",[]
+","['fromstring', 'label']","['fromstring', 'N/A']",['fromstring']
 ">>> t = Tree.fromstring(""(S (NP (D the) (N dog)) (VP (V chased) (NP (D the) (N cat))))"")
 >>> t.leaves()
 ['the', 'dog', 'chased', 'the', 'cat']
-","['fromstring', 'leaves']","['Tree.fromstring', 'N/A', 'Tree.fromstring', 'N/A', 'Tree.fromstring', 'N/A', 'Tree.fromstring', 'N/A']",[]
+","['fromstring', 'leaves']","['fromstring', 'N/A']",['fromstring']
 ">>> t = Tree.fromstring(""(S (NP (D the) (N dog)) (VP (V chased) (NP (D the) (N cat))))"")
 >>> t.pos()
 [('the', 'D'), ('dog', 'N'), ('chased', 'V'), ('the', 'D'), ('cat', 'N')]
-","['fromstring', 'pos']","['Tree.fromstring', 'N/A', 'Tree.fromstring', 'N/A', 'Tree.fromstring', 'N/A', 'Tree.fromstring', 'N/A']",[]
+","['fromstring', 'pos']","['fromstring', 'N/A']",['fromstring']
 ">>> t = Tree.fromstring(""(S (NP (D the) (N dog)) (VP (V chased) (NP (D the) (N cat))))"")
 >>> t.productions()
 [S -> NP VP, NP -> D N, D -> 'the', N -> 'dog', VP -> V NP, V -> 'chased',
 NP -> D N, D -> 'the', N -> 'cat']
-","['fromstring', 'productions']","['Tree.fromstring', 'N/A', 'Tree.fromstring', 'N/A', 'Tree.fromstring', 'N/A', 'Tree.fromstring', 'N/A']",[]
+","['fromstring', 'productions']","['fromstring', 'N/A']",['fromstring']
 ">>> t = Tree.fromstring(""(S (NP (D the) (N dog)) (VP (V chased) (NP (D the) (N cat))))"")
 >>> t.set_label(""T"")
 >>> print(t)
 (T (NP (D the) (N dog)) (VP (V chased) (NP (D the) (N cat))))
-","['fromstring', 'set_label']","['Tree.fromstring', 'N/A', 'N/A', 'Tree.fromstring', 'N/A', 'N/A', 'Tree.fromstring', 'N/A', 'N/A', 'Tree.fromstring', 'N/A', 'N/A']",[]
+","['fromstring', 'set_label']","['fromstring', 'N/A', 'N/A']",['fromstring']
 ">>> t = Tree.fromstring(""(S (NP (D the) (N dog)) (VP (V chased) (NP (D the) (N cat))))"")
 >>> for s in t.subtrees(lambda t: t.height() == 2):
 ...     print(s)
@@ -226,7 +175,7 @@ NP -> D N, D -> 'the', N -> 'cat']
 (V chased)
 (D the)
 (N cat)
-","['fromstring', 'subtrees']","['Tree.fromstring', 'N/A', 'N/A', 'N/A', 'Tree.fromstring', 'N/A', 'N/A', 'N/A', 'Tree.fromstring', 'N/A', 'N/A', 'N/A', 'Tree.fromstring', 'N/A', 'N/A', 'N/A']",[]
+","['fromstring', 'subtrees']","['fromstring', 'N/A', 'N/A', 'N/A']",['fromstring']
 ">>> t = Tree.fromstring(""(S (NP (D the) (N dog)) (VP (V chased) (NP (D the) (N cat))))"")
 >>> t.treepositions() 
 [(), (0,), (0, 0), (0, 0, 0), (0, 1), (0, 1, 0), (1,), (1, 0), (1, 0, 0), ...]
@@ -234,7 +183,7 @@ NP -> D N, D -> 'the', N -> 'cat']
 ...     t[pos] = t[pos][::-1].upper()
 >>> print(t)
 (S (NP (D EHT) (N GOD)) (VP (V DESAHC) (NP (D EHT) (N TAC))))
-","['fromstring', 'treepositions']","['Tree.fromstring', 'N/A', 'N/A', 'N/A', 'Tree.fromstring', 'N/A', 'N/A', 'N/A', 'Tree.fromstring', 'N/A', 'N/A', 'N/A', 'Tree.fromstring', 'N/A', 'N/A', 'N/A']",[]
+","['fromstring', 'treepositions']","['fromstring', 'N/A', 'N/A', 'N/A']",['fromstring']
 ">>> import nltk
 >>> from nltk.util import acyclic_depth_first as acyclic_tree
 >>> wn=nltk.corpus.wordnet
@@ -255,54 +204,54 @@ NP -> D N, D -> 'the', N -> 'cat']
             [Synset('physical_entity.n.01'),
              [Synset('entity.n.01')]]]]]]]]]]]]],
  [Synset('domestic_animal.n.01'), ""Cycle(Synset('animal.n.01'),-3,...)""]]
-",['acyclic_branches_depth_first'],"['N/A', 'N/A', 'N/A', 'N/A', '__init__', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', '__init__', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', '__init__', 'N/A']",[]
+",['acyclic_branches_depth_first'],"['N/A', 'N/A', 'N/A', 'N/A', '__init__', 'N/A']",[]
 ">>> from nltk.util import bigrams
 >>> list(bigrams([1,2,3,4,5]))
 [(1, 2), (2, 3), (3, 4), (4, 5)]
-",['bigrams'],"['N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A']",[]
+",['bigrams'],"['N/A', 'N/A']",[]
 ">>> choose(4, 2)
 6
 >>> choose(6, 2)
 15
-",['choose'],"['N/A', 'N/A', 'N/A', 'N/A']",[]
+",['choose'],['N/A'],[]
 ">>> sent = 'a b c'.split()
-",['N/A'],"['N/A', 'N/A']",['N/A']
+",['N/A'],['N/A'],['N/A']
 ">>> list(everygrams(sent))
 [('a',), ('a', 'b'), ('a', 'b', 'c'), ('b',), ('b', 'c'), ('c',)]
-",['everygrams'],"['N/A', 'N/A', 'N/A', 'N/A']",[]
+",['everygrams'],"['N/A', 'N/A']",[]
 ">>> sorted(everygrams(sent), key=len)
 [('a',), ('b',), ('c',), ('a', 'b'), ('b', 'c'), ('a', 'b', 'c')]
-",['everygrams'],"['N/A', 'N/A', 'N/A', 'N/A']",[]
+",['everygrams'],"['N/A', 'N/A']",[]
 ">>> list(everygrams(sent, max_len=2))
 [('a',), ('a', 'b'), ('b',), ('b', 'c'), ('c',)]
-",['everygrams'],"['N/A', 'N/A', 'N/A', 'N/A']",[]
+",['everygrams'],"['N/A', 'N/A']",[]
 ">>> from nltk.util import flatten
 >>> flatten(1, 2, ['b', 'a' , ['c', 'd']], 3)
 [1, 2, 'b', 'a', 'c', 'd', 3]
-",['flatten'],"['N/A', 'N/A', 'N/A', 'N/A']",[]
+",['flatten'],['N/A'],[]
 "locale.setlocale(locale.LC_ALL, '')
-",['N/A'],"['N/A', 'N/A', 'N/A', 'N/A']",['N/A']
+",['N/A'],['N/A'],['N/A']
 ">>> from nltk.util import ngrams
 >>> list(ngrams([1,2,3,4,5], 3))
 [(1, 2, 3), (2, 3, 4), (3, 4, 5)]
-",['ngrams'],"['N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A']",[]
+",['ngrams'],"['N/A', 'N/A']",[]
 ">>> list(pad_sequence([1,2,3,4,5], 2, pad_left=True, pad_right=True, left_pad_symbol='', right_pad_symbol=''))
 ['', 1, 2, 3, 4, 5, '']
 >>> list(pad_sequence([1,2,3,4,5], 2, pad_left=True, left_pad_symbol=''))
 ['', 1, 2, 3, 4, 5]
 >>> list(pad_sequence([1,2,3,4,5], 2, pad_right=True, right_pad_symbol=''))
 [1, 2, 3, 4, 5, '']
-",['pad_sequence'],"['N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A']",[]
+",['pad_sequence'],"['N/A', 'N/A']",[]
 ">>> sent = ""Insurgents killed in ongoing fighting"".split()
 >>> list(skipgrams(sent, 2, 2))
 [('Insurgents', 'killed'), ('Insurgents', 'in'), ('Insurgents', 'ongoing'), ('killed', 'in'), ('killed', 'ongoing'), ('killed', 'fighting'), ('in', 'ongoing'), ('in', 'fighting'), ('ongoing', 'fighting')]
 >>> list(skipgrams(sent, 3, 2))
 [('Insurgents', 'killed', 'in'), ('Insurgents', 'killed', 'ongoing'), ('Insurgents', 'killed', 'fighting'), ('Insurgents', 'in', 'ongoing'), ('Insurgents', 'in', 'fighting'), ('Insurgents', 'ongoing', 'fighting'), ('killed', 'in', 'ongoing'), ('killed', 'in', 'fighting'), ('killed', 'ongoing', 'fighting'), ('in', 'ongoing', 'fighting')]
-",['skip_grams'],"['N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A']",[]
+",['skip_grams'],"['N/A', 'N/A', 'N/A']",[]
 ">>> from nltk.util import trigrams
 >>> list(trigrams([1,2,3,4,5]))
 [(1, 2, 3), (2, 3, 4), (3, 4, 5)]
-",['trigrams'],"['N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A']",[]
+",['trigrams'],"['N/A', 'N/A']",[]
 ">>> import nltk
 >>> from nltk.util import unweighted_minimum_spanning_tree as mst
 >>> wn=nltk.corpus.wordnet
@@ -313,32 +262,10 @@ NP -> D N, D -> 'the', N -> 'cat']
   [Synset('confined.a.02')],
   [Synset('dependent.a.01')],
   [Synset('restricted.a.01'), [Synset('classified.a.02')]]]]
-",['unweighted_minimum_spanning_tree'],"['N/A', 'N/A', 'N/A', 'N/A', '__init__', 'N/A', 'N/A', 'N/A', 'N/A', '__init__', 'N/A', 'N/A', 'N/A', 'N/A', '__init__']",[]
+",['unweighted_minimum_spanning_tree'],"['N/A', 'N/A', 'N/A', 'N/A', '__init__']",[]
 ">>> lesk(['I', 'went', 'to', 'the', 'bank', 'to', 'deposit', 'money', '.'], 'bank', 'n')
 Synset('savings_bank.n.02')
-",['lesk'],"['N/A', '__init__', 'N/A', '__init__', 'N/A', '__init__', 'N/A', '__init__']",[]
-lexicon.fromstring( string>),['fromstring'],['N/A'],[]
-"parser = chart.CCGChartParser(, )",['__init__'],['__init__'],['__init__']
-parser.parse(.split()),['parse'],"['N/A', 'N/A']",[]
-chart.printCCGDerivation( tree extracted from list>),['printCCGDerivation'],['N/A'],[]
-apply(),"['apply', 'apply']","['N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A']",[]
-tokens[self.start():self.end()],"['N/A', 'N/A']","['N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A']","['N/A', 'N/A']"
-labels(),['labels'],"['N/A', 'N/A']",[]
-classify(),['classify'],"['N/A', 'N/A']",[]
-classify_many(),['classify_many'],"['N/A', 'N/A']",[]
-prob_classify(),['prob_classify'],"['N/A', 'N/A']",[]
-prob_classify_many(),['prob_classify_many'],"['N/A', 'N/A']",[]
-self.classify(),['classify_many'],"['N/A', 'N/A', 'N/A']",[]
-self.prob_classify(),['prob_classify_many'],"['N/A', 'N/A', 'N/A']",[]
-train(),['train'],"['N/A', 'N/A', 'N/A', 'N/A']",[]
-"is_unseen(fname, fval)",['N/A'],"['N/A', 'N/A']",['N/A']
-"self.encode(fs,l)",['encode'],"['N/A', 'N/A', 'N/A', 'N/A', 'N/A']",[]
-"encoding.encode(fs,l)",['encode'],['N/A'],[]
-"sum([val for (id,val) in vector])",['N/A'],['N/A'],['N/A']
-train_maxent_classifier(),['N/A'],['N/A'],['N/A']
-config_megam(),['config_megam'],['N/A'],[]
-"map(feature_func, toks)",['apply_features'],['N/A'],[]
-feature_func(),['N/A'],"['N/A', 'N/A']",['N/A']
+",['lesk'],"['N/A', '__init__']",[]
 "|  joint_feat(fs, l) = { 1 if (l == label)
 |                      {
 |                      { 0 otherwise
@@ -416,40 +343,10 @@ True
 ...         featureset['right-context(%s)' % sentence[i]] = True
 ...     return featureset
 ",['N/A'],"['N/A', 'N/A', 'N/A', 'N/A', 'N/A']",['N/A']
-nltk.corpus.brown.words(),['N/A'],"['N/A', 'N/A']",['N/A']
 ">>> from nltk.corpus import brown
 >>> print("", "".join(brown.words()))
 The, Fulton, County, Grand, Jury, said, ...
-",['N/A'],"['N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A']",['N/A']
-get(),['N/A'],['N/A'],['N/A']
-insert(),['N/A'],['N/A'],['N/A']
-show_column(),['N/A'],['N/A'],['N/A']
-self.see(),['see'],['N/A'],[]
-hide_column(),['hide_column'],['N/A'],[]
-rowconfig(),['rowconfig'],['N/A'],[]
-columnconfig(),['columnconfig'],['N/A'],[]
-itemconfig(),['itemconfig'],['N/A'],[]
-grid(),['grid'],['N/A'],[]
-pack(),['pack'],['N/A'],[]
-bind(),['bind'],['N/A'],[]
-__getitem__(),['N/A'],['N/A'],['N/A']
-__setitem__(),['N/A'],['N/A'],['N/A']
-__nonzero__(),['N/A'],['N/A'],['N/A']
-MultiListbox.bind_to_columns(),['bind_to_columns'],['MultiListbox.bind_to_columns'],[]
-MultiListbox.bind_to_labels(),['bind_to_labels'],['MultiListbox.bind_to_labels'],[]
-MultiListbox.bind_to_listboxes(),['bind_to_listboxes'],['MultiListbox.bind_to_listboxes'],[]
-MultiListbox.columnconfigure(),['columnconfigure'],['MultiListbox.columnconfigure'],[]
-Tkinter.Frame.grid(),['N/A'],['N/A'],['N/A']
-MultiListbox.hide_column(),['hide_column'],['MultiListbox.hide_column'],[]
-MultiListbox.itemconfigure(),['itemconfigure'],['MultiListbox.itemconfigure'],[]
-Tkinter.Frame.pack(),['N/A'],['N/A'],['N/A']
-MultiListbox.rowconfigure(),['rowconfigure'],['MultiListbox.rowconfigure'],[]
-MultiListbox.select(),['select'],['MultiListbox.select'],[]
-table[table.selected_row()],['selected_row'],['N/A'],[]
-MultiListbox.show_column(),['show_column'],['MultiListbox.show_column'],[]
-sort_by(),['sort_by'],['N/A'],[]
-tree.children()[i1].children()[i2]....children()[in],['N/A'],"['N/A', 'N/A', 'N/A', 'N/A']",['N/A']
-parent.update(self),['N/A'],['N/A'],['N/A']
+",['N/A'],"['N/A', 'N/A', 'N/A']",['N/A']
 ">>> mlb = MultiListbox(master, 5)
 >>> mlb.configure(label_foreground='red')
 >>> mlb.configure(listbox_foreground='red')
@@ -460,8 +357,6 @@ John
 ">>> from nltk.draw.util import TextWidget
 >>> cn = TextWidget(c, 'test', color='red')
 ",['__init__'],['__init__'],[]
-Prover.prove(),['prove'],['Prover.prove'],[]
-readings(filter=True),['readings'],['N/A'],[]
 "s0 readings:
 
 s0-r1: some x.(boxer(x) & walk(x))
@@ -556,24 +451,6 @@ s0-r0: some x.(boxerdog(x) & walk(x))
 >>> '%.2f' % windowdiff(s2, s3, 3)
 '0.80'
 ",['windowdiff'],['N/A'],[]
-parse(),['parse'],"['N/A', 'N/A', 'N/A']",[]
-parse_sents(),['parse_sents'],['N/A'],[]
-grammar(),['grammar'],['N/A'],[]
-self.parse(),['parse'],['N/A'],[]
-bllipparser.RerankingParser.get_unified_model_parameters(),['N/A'],['N/A'],['N/A']
-bllipparser.RerankingParser.RerankingParser.load_parser_options(),['N/A'],['N/A'],['N/A']
-bllipparser.RerankingParser.RerankingParser.load_reranker_model(),['N/A'],['N/A'],['N/A']
-"chart.select(is_complete=True, start=0)",['select'],['N/A'],[]
-e.span()==span,['N/A'],"['N/A', 'N/A']",['N/A']
-e.start()==start,['N/A'],"['N/A', 'N/A']",['N/A']
-e.end()==end,['N/A'],"['N/A', 'N/A']",['N/A']
-e.length()==length,['N/A'],"['N/A', 'N/A']",['N/A']
-e.lhs()==lhs,['N/A'],"['N/A', 'N/A']",['N/A']
-e.rhs()==rhs,['N/A'],"['N/A', 'N/A']",['N/A']
-e.nextsym()==nextsym,['N/A'],"['N/A', 'N/A']",['N/A']
-e.dot()==dot,['N/A'],"['N/A', 'N/A']",['N/A']
-e.is_complete()==is_complete,['N/A'],"['N/A', 'N/A']",['N/A']
-e.is_incomplete()==is_incomplete,['N/A'],"['N/A', 'N/A']",['N/A']
 ">>> dep_parser = CoreNLPDependencyParser(url='http://localhost:9000')
 ",['__init__'],['__init__'],['__init__']
 ">>> parse, = dep_parser.raw_parse(
@@ -726,7 +603,7 @@ time        NN      40      dep
 .   .       24      punct
 ","['raw_parse', 'to_conll']","['N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A']",[]
 ">>> parser = CoreNLPParser(url='http://localhost:9000')
-",['__init__'],"['__init__', '__init__']",['__init__']
+",['__init__'],['__init__'],['__init__']
 ">>> next(
 ...     parser.raw_parse('The quick brown fox jumps over the lazy dog.')
 ... ).pretty_print()  
@@ -1274,10 +1151,6 @@ SHIFT, LEFTARC:ATT, SHIFT, LEFTARC:SBJ, RIGHTARC:ROOT, SHIFT, LEFTARC:ATT, RIGHT
 4   ?       _       .       .       _       0       a       _       _
 
 ","['taggedsents_to_conll', 'word_tokenize', 'sent_tokenize', 'pos_tag']","['N/A', 'N/A', 'N/A', 'N/A', 'N/A']",[]
-purge(),['purge'],['N/A'],[]
-clear(),['N/A'],['N/A'],['N/A']
-repr(),['N/A'],['N/A'],['N/A']
-"relsym(subjsym, objsym)",['N/A'],['N/A'],['N/A']
 "cities2table('cities.pl', 'city', 'city.db', verbose=True, setup=True)
 ",['cities2table'],['N/A'],[]
 "bo(\P.all x.(man(x) -> P(x)),z1)
@@ -1437,14 +1310,6 @@ abacus
 >>> print(wnl.lemmatize('hardrock'))
 hardrock
 ","['__init__', 'lemmatize']","['__init__', 'N/A', 'N/A']",['__init__']
-tag(),['tag'],['N/A'],[]
-tag_sents(),['tag_sents'],['N/A'],[]
-self.tag(),['tag'],"['N/A', 'N/A']",[]
-transform(),['N/A'],['N/A'],['N/A']
-choose_tag(),['choose_tag'],"['N/A', 'N/A']",[]
-classifier(),['classifier'],"['N/A', 'N/A']",[]
-feature_detector(),['feature_detector'],['N/A'],[]
-_train(),['_train'],['N/A'],[]
 ">>> backoff = RegexpTagger([
 ... (r'^-?[0-9]+(.[0-9]+)?$', 'CD'),   # cardinal numbers
 ... (r'(The|the|A|a|An|an)$', 'AT'),   # articles

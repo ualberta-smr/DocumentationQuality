@@ -1,0 +1,412 @@
+Example,Truth functions,Test functions,Linked functions,Source
+"import edu.stanford.nlp.pipeline.*;
+import java.util.*;
+
+public class BasicPipelineExample {
+
+    public static void main(String[] args) {
+
+        // creates a StanfordCoreNLP object, with POS tagging, lemmatization, NER, parsing, and coreference resolution
+        Properties props = new Properties();
+        props.setProperty(""annotators"", ""tokenize, ssplit, pos, lemma, ner, parse, dcoref"");
+        StanfordCoreNLP pipeline = new StanfordCoreNLP(props);
+
+        // read some text in the text variable
+        String text = ""..."";
+
+        // create an empty Annotation just with the given text
+        Annotation document = new Annotation(text);
+
+        // run all Annotators on this text
+        pipeline.annotate(document);
+
+    }
+
+}
+","['StanfordCoreNLP', 'annotate']","['N/A', 'N/A', 'N/A', 'StanfordCoreNLP', 'Annotation', 'StanfordCoreNLP.annotate']",['StanfordCoreNLP']
+"// build pipeline
+StanfordCoreNLP pipeline = new StanfordCoreNLP(
+	PropertiesUtils.asProperties(
+		""annotators"", ""tokenize,ssplit,pos,lemma,parse,natlog"",
+		""ssplit.isOneSentence"", ""true"",
+		""parse.model"", ""edu/stanford/nlp/models/srparser/englishSR.ser.gz"",
+		""tokenize.language"", ""en""));
+
+// read some text in the text variable
+String text = ... // Add your text here!
+Annotation document = new Annotation(text);
+
+// run all Annotators on this text
+pipeline.annotate(document);
+","['StanfordCoreNLP', 'annotate']","['Annotation', 'Util.annotate', 'StanfordCoreNLP.annotate']",[]
+"import edu.stanford.nlp.simple.*;
+
+Sentence sent = new Sentence(""Lucy is in the sky with diamonds."");
+List<String> nerTags = sent.nerTags();  // [PERSON, O, O, O, O, O, O, O]
+String firstPOSTag = sent.posTag(0);   // NNP
+...
+","['Sentence', 'Sentence', 'nerTags', 'posTag']","['Sentence', 'Sentence.nerTags', 'Sentence.posTag']","['Sentence', 'Sentence', 'Sentence.nerTags', 'Sentence.posTag']"
+"import edu.stanford.nlp.simple.*;
+
+public class SimpleCoreNLPDemo {
+    public static void main(String[] args) { 
+        // Create a document. No computation is done yet.
+        Document doc = new Document(""add your text here! It can contain multiple sentences."");
+        for (Sentence sent : doc.sentences()) {  // Will iterate over two sentences
+            // We're only asking for words -- no need to load any models yet
+            System.out.println(""The second word of the sentence '"" + sent + ""' is "" + sent.word(1));
+            // When we ask for the lemma, it will load and run the part of speech tagger
+            System.out.println(""The third lemma of the sentence '"" + sent + ""' is "" + sent.lemma(2));
+            // When we ask for the parse, it will load and run the parser
+            System.out.println(""The parse of the sentence '"" + sent + ""' is "" + sent.parse());
+            // ...
+        }
+    }
+}
+",['Document'],"['N/A', 'Document.sentences', 'N/A', 'Sentence.word', 'Sentence.lemma', 'Sentence.parse']",[]
+"Sentence sent = new Sentence(""your text should go here"");
+sent.algorithms().headOfSpan(new Span(0, 2));  // Should return 1
+","['Sentence', 'algorithms', 'headOfSpan']","['Sentence', 'Sentence.algorithms', 'N/A', 'Span']","['Sentence', 'Sentence.algorithms']"
+"// creates a StanfordCoreNLP object with POS tagging, lemmatization, NER, parsing, and coreference resolution
+Properties props = new Properties();
+props.setProperty(""annotators"", ""tokenize, ssplit, pos, lemma, ner, parse, dcoref"");
+StanfordCoreNLPClient pipeline = new StanfordCoreNLPClient(props, ""http://localhost"", 9000, 2);
+// read some text in the text variable
+String text = ... // Add your text here!
+// create an empty Annotation just with the given text
+Annotation document = new Annotation(text);
+// run all Annotators on this text
+pipeline.annotate(document);
+","['StanfordCoreNLPClient', 'Annotation', 'annotate']","['N/A', 'N/A', 'StanfordCoreNLPClient', 'Annotation', 'StanfordCoreNLPClient.annotate', 'StanfordCoreNLP.annotate']","['StanfordCoreNLPClient', 'Annotation']"
+"String text = ""La Universidad de Stanford se encuentra en Palo Alto."";
+StanfordCoreNLP pipeline = new StanfordCoreNLP(""spanish"");
+CoreDocument doc = pipeline.processToCoreDocument(text);
+","['StanfordCoreNLP', 'processToCoreDocument']","['StanfordCoreNLP', 'StanfordCoreNLP.processToCoreDocument']","['StanfordCoreNLP', 'StanfordCoreNLP.processToCoreDocument']"
+"package edu.stanford.nlp.examples;
+
+import edu.stanford.nlp.io.*;
+import edu.stanford.nlp.pipeline.*;
+
+import java.util.*;
+
+
+public class PipelineExample {
+
+    public static String text = ""Marie was born in Paris."";
+
+    public static void main(String[] args) {
+        // set up pipeline properties
+        Properties props = new Properties();
+        // set the list of annotators to run
+        props.setProperty(""annotators"", ""tokenize,ssplit,pos,lemma,ner,depparse"");
+        // build pipeline
+        StanfordCoreNLP pipeline = new StanfordCoreNLP(props);
+        // create a document object
+        CoreDocument document = pipeline.processToCoreDocument(text);
+    }
+
+}
+","['StanfordCoreNLP', 'processToCoreDocument']","['N/A', 'N/A', 'N/A', 'StanfordCoreNLP', 'StanfordCoreNLP.processToCoreDocument']","['StanfordCoreNLP', 'StanfordCoreNLP.processToCoreDocument']"
+"package edu.stanford.nlp.examples;
+
+import edu.stanford.nlp.ling.*;
+import edu.stanford.nlp.pipeline.*;
+
+import java.util.*;
+
+public class PipelineExample {
+
+  public static String text = ""Marie was born in Paris."";
+
+  public static void main(String[] args) {
+    // set up pipeline properties
+    Properties props = new Properties();
+    // set the list of annotators to run
+    props.setProperty(""annotators"", ""tokenize"");
+    // example of how to customize the PTBTokenizer (these are just random example settings!!)
+    props.setProperty(""tokenize.options"", ""splitHyphenated=false,americanize=false"");
+    // build pipeline
+    StanfordCoreNLP pipeline = new StanfordCoreNLP(props);
+    // create a document object
+    CoreDocument doc = new CoreDocument(text);
+    // annotate
+    pipeline.annotate(doc);
+    // display tokens
+    for (CoreLabel tok : doc.tokens()) {
+      System.out.println(String.format(""%s\t%d\t%d"", tok.word(), tok.beginPosition(), tok.endPosition()));
+    }
+  }
+}
+",['StanfordCoreNLP'],"['N/A', 'N/A', 'N/A', 'StanfordCoreNLP', 'CoreDocument', 'StanfordCoreNLP.annotate', 'CoreDocument.tokens', 'N/A', 'N/A', 'Token.word', 'CoreLabel.word', 'CoreLabel.beginPosition', 'Token.beginPosition', 'CoreLabel.endPosition', 'Token.endPosition']",['StanfordCoreNLP']
+"package edu.stanford.nlp.examples;
+
+import edu.stanford.nlp.pipeline.*;
+
+import java.util.*;
+
+public class SentenceSplittingExample {
+
+  public static String text = ""Hello world. Hello world again."";
+
+  public static void main(String[] args) {
+    // set up pipeline properties
+    Properties props = new Properties();
+    // set the list of annotators to run
+    props.setProperty(""annotators"", ""tokenize,ssplit"");
+    // build pipeline
+    StanfordCoreNLP pipeline = new StanfordCoreNLP(props);
+    // create a document object
+    CoreDocument doc = new CoreDocument(text);
+    // annotate
+    pipeline.annotate(doc);
+    // display sentences
+    for (CoreSentence sent : doc.sentences()) {
+        System.out.println(sent.text());
+    }
+  }
+}
+","['StanfordCoreNLP', 'CoreDocument']","['N/A', 'N/A', 'N/A', 'StanfordCoreNLP', 'CoreDocument', 'StanfordCoreNLP.annotate', 'CoreDocument.sentences', 'Document.sentences', 'N/A', 'CoreSentence.text', 'Document.text', 'Sentence.text', 'CoreDocument.text']","['StanfordCoreNLP', 'CoreDocument']"
+"package edu.stanford.nlp.examples;
+
+import edu.stanford.nlp.ling.*;
+import edu.stanford.nlp.pipeline.*;
+import edu.stanford.nlp.util.StringUtils;
+
+import java.util.*;
+
+public class MWTExpansionExample {
+
+  public static String text = ""Pude haber querido escribirlo."";
+
+  public static void main(String[] args) {
+    // set the list of annotators to run
+    Properties props = StringUtils.argsToProperties(""-props"", ""spanish"");
+    props.setProperty(""annotators"", ""tokenize,ssplit,mwt"");
+    // build pipeline
+    StanfordCoreNLP pipeline = new StanfordCoreNLP(props);
+    // create a document object
+    CoreDocument doc = new CoreDocument(text);
+    // annotate
+    pipeline.annotate(doc);
+    // display tokens
+    for (CoreLabel tok : doc.tokens()) {
+      System.out.println(String.format(""%s"", tok.word()));
+    }
+  }
+}
+","['argsToProperties', 'StanfordCoreNLP']","['N/A', 'N/A', 'StanfordCoreNLP', 'CoreDocument', 'Util.annotate', 'StanfordCoreNLP.annotate', 'CoreDocument.tokens', 'N/A', 'N/A', 'CoreLabel.word']",['StanfordCoreNLP']
+"package edu.stanford.nlp.examples;
+
+import edu.stanford.nlp.ling.*;
+import edu.stanford.nlp.pipeline.*;
+
+import java.util.*;
+
+public class POSTaggingExample {
+
+  public static String text = ""Marie was born in Paris."";
+
+  public static void main(String[] args) {
+    // set up pipeline properties
+    Properties props = new Properties();
+    // set the list of annotators to run
+    props.setProperty(""annotators"", ""tokenize,ssplit,pos"");
+    // build pipeline
+    StanfordCoreNLP pipeline = new StanfordCoreNLP(props);
+    // create a document object
+    CoreDocument document = pipeline.processToCoreDocument(text);
+    // display tokens
+    for (CoreLabel tok : document.tokens()) {
+      System.out.println(String.format(""%s\t%s"", tok.word(), tok.tag()));
+    }
+  }
+}
+","['StanfordCoreNLP', 'processToCoreDocument']","['N/A', 'N/A', 'N/A', 'StanfordCoreNLP', 'StanfordCoreNLP.processToCoreDocument', 'CoreDocument.tokens', 'N/A', 'N/A', 'CoreLabel.word', 'Tag.tag', 'CoreLabel.tag']","['StanfordCoreNLP', 'StanfordCoreNLP.processToCoreDocument']"
+"package edu.stanford.nlp.examples;
+
+import edu.stanford.nlp.ling.*;
+import edu.stanford.nlp.pipeline.*;
+
+import java.util.*;
+
+
+public class LemmatizingExample {
+
+  public static String text = ""Marie was born in Paris."";
+
+  public static void main(String[] args) {
+    // set up pipeline properties
+    Properties props = new Properties();
+    // set the list of annotators to run
+    props.setProperty(""annotators"", ""tokenize,ssplit,pos,lemma"");
+    // build pipeline
+    StanfordCoreNLP pipeline = new StanfordCoreNLP(props);
+    // create a document object
+    CoreDocument document = pipeline.processToCoreDocument(text);
+    // display tokens
+    for (CoreLabel tok : document.tokens()) {
+      System.out.println(String.format(""%s\t%s"", tok.word(), tok.lemma()));
+    }
+  }
+
+}
+","['StanfordCoreNLP', 'processToCoreDocument']","['N/A', 'N/A', 'N/A', 'StanfordCoreNLP', 'StanfordCoreNLP.processToCoreDocument', 'CoreDocument.tokens', 'N/A', 'N/A', 'CoreLabel.word', 'CoreLabel.lemma']","['StanfordCoreNLP', 'StanfordCoreNLP.processToCoreDocument']"
+"package edu.stanford.nlp.examples;
+
+import edu.stanford.nlp.pipeline.*;
+
+import java.util.Properties;
+import java.util.stream.Collectors;
+
+public class NERPipelineDemo {
+
+  public static void main(String[] args) {
+    // set up pipeline properties
+    Properties props = new Properties();
+    props.setProperty(""annotators"", ""tokenize,ssplit,pos,lemma,ner"");
+    // example customizations (these are commented out but you can uncomment them to see the results
+
+    // disable fine grained ner
+    // props.setProperty(""ner.applyFineGrained"", ""false"");
+
+    // customize fine grained ner
+    // props.setProperty(""ner.fine.regexner.mapping"", ""example.rules"");
+    // props.setProperty(""ner.fine.regexner.ignorecase"", ""true"");
+
+    // add additional rules, customize TokensRegexNER annotator
+    // props.setProperty(""ner.additional.regexner.mapping"", ""example.rules"");
+    // props.setProperty(""ner.additional.regexner.ignorecase"", ""true"");
+
+    // add 2 additional rules files ; set the first one to be case-insensitive
+    // props.setProperty(""ner.additional.regexner.mapping"", ""ignorecase=true,example_one.rules;example_two.rules"");
+
+    // set document date to be a specific date (other options are explained in the document date section)
+    // props.setProperty(""ner.docdate.useFixedDate"", ""2019-01-01"");
+
+    // only run rules based NER
+    // props.setProperty(""ner.rulesOnly"", ""true"");
+
+    // only run statistical NER
+    // props.setProperty(""ner.statisticalOnly"", ""true"");
+
+    // set up pipeline
+    StanfordCoreNLP pipeline = new StanfordCoreNLP(props);
+    // make an example document
+    CoreDocument doc = new CoreDocument(""Joe Smith is from Seattle."");
+    // annotate the document
+    pipeline.annotate(doc);
+    // view results
+    System.out.println(""---"");
+    System.out.println(""entities found"");
+    for (CoreEntityMention em : doc.entityMentions())
+      System.out.println(""\tdetected entity: \t""+em.text()+""\t""+em.entityType());
+    System.out.println(""---"");
+    System.out.println(""tokens and ner tags"");
+    String tokensAndNERTags = doc.tokens().stream().map(token -> ""(""+token.word()+"",""+token.ner()+"")"").collect(
+        Collectors.joining("" ""));
+    System.out.println(tokensAndNERTags);
+  }
+
+}
+
+","['StanfordCoreNLP', 'CoreDocument', 'entityMentions', 'tokens']","['N/A', 'N/A', 'N/A', 'StanfordCoreNLP', 'CoreDocument', 'StanfordCoreNLP.annotate', 'N/A', 'CoreDocument.entityMentions', 'Document.text', 'CoreEntityMention.text', 'CoreDocument.text', 'CoreEntityMention.entityType', 'CoreEntityMention.tokens', 'CoreDocument.tokens', 'N/A', 'N/A', 'Token.word', 'Token.ner', 'N/A', 'N/A']","['StanfordCoreNLP', 'CoreDocument', 'CoreDocument.entityMentions']"
+"package edu.stanford.nlp.examples;
+
+import edu.stanford.nlp.ling.*;
+import edu.stanford.nlp.pipeline.*;
+import java.util.*;
+
+public class NERConfidenceExample {
+
+    public static void main(String[] args) {
+        String exampleText = ""Joe Smith lives in California."";
+        Properties props = new Properties();
+        props.setProperty(""annotators"", ""tokenize,ssplit,pos,lemma,ner"");
+        StanfordCoreNLP pipeline = new StanfordCoreNLP(props);
+        CoreDocument document = new CoreDocument(exampleText);
+        pipeline.annotate(document);
+        // get confidences for entities
+        for (CoreEntityMention em : document.entityMentions()) {
+            System.out.println(em.text() + ""\t"" + em.entityTypeConfidences());
+        }
+        // get confidences for tokens
+        for (CoreLabel token : document.tokens()) {
+            System.out.println(token.word() + ""\t"" + token.get(CoreAnnotations.NamedEntityTagProbsAnnotation.class));
+        }
+    }
+}
+",['CoreDocument'],"['N/A', 'N/A', 'N/A', 'StanfordCoreNLP', 'CoreDocument', 'StanfordCoreNLP.annotate', 'CoreDocument.entityMentions', 'N/A', 'Document.text', 'CoreEntityMention.text', 'CoreDocument.text', 'CoreEntityMention.entityTypeConfidences', 'CoreEntityMention.tokens', 'CoreDocument.tokens', 'CoreLabel.word', 'N/A']",['CoreDocument']
+"import java.util.Properties;
+
+import edu.stanford.nlp.coref.CorefCoreAnnotations;
+import edu.stanford.nlp.coref.data.CorefChain;
+import edu.stanford.nlp.coref.data.Mention;
+import edu.stanford.nlp.ling.CoreAnnotations;
+import edu.stanford.nlp.pipeline.Annotation;
+import edu.stanford.nlp.pipeline.StanfordCoreNLP;
+import edu.stanford.nlp.util.CoreMap;
+
+public class CorefExample {
+  public static void main(String[] args) throws Exception {
+    Annotation document = new Annotation(""Barack Obama was born in Hawaii.  He is the president. Obama was elected in 2008."");
+    Properties props = new Properties();
+    props.setProperty(""annotators"", ""tokenize,ssplit,pos,lemma,ner,parse,coref"");
+    StanfordCoreNLP pipeline = new StanfordCoreNLP(props);
+    pipeline.annotate(document);
+    System.out.println(""---"");
+    System.out.println(""coref chains"");
+    for (CorefChain cc : document.get(CorefCoreAnnotations.CorefChainAnnotation.class).values()) {
+      System.out.println(""\t"" + cc);
+    }
+    for (CoreMap sentence : document.get(CoreAnnotations.SentencesAnnotation.class)) {
+      System.out.println(""---"");
+      System.out.println(""mentions"");
+      for (Mention m : sentence.get(CorefCoreAnnotations.CorefMentionsAnnotation.class)) {
+        System.out.println(""\t"" + m);
+       }
+    }
+  }
+}
+",['Annotation'],"['N/A', 'Annotation', 'N/A', 'N/A', 'StanfordCoreNLP', 'StanfordCoreNLP.annotate', 'N/A', 'N/A', 'N/A', 'N/A']",['Annotation']
+"import edu.stanford.nlp.ie.util.RelationTriple;
+import edu.stanford.nlp.simple.*;
+
+/** A demo illustrating how to call the OpenIE system programmatically.
+ */
+public class OpenIEDemo {
+
+  public static void main(String[] args) throws Exception {
+    // Create a CoreNLP document
+    Document doc = new Document(""Obama was born in Hawaii. He is our president."");
+
+    // Iterate over the sentences in the document
+    for (Sentence sent : doc.sentences()) {
+      // Iterate over the triples in the sentence
+      for (RelationTriple triple : sent.openieTriples()) {
+        // Print the triple
+        System.out.println(triple.confidence + ""\t"" +
+            triple.subjectLemmaGloss() + ""\t"" +
+            triple.relationLemmaGloss() + ""\t"" +
+            triple.objectLemmaGloss());
+      }
+    }
+  }
+}
+","['Document', 'sentences', 'openieTriples', 'subjectLemmaGloss', 'objectLemmaGloss']","['N/A', 'Document', 'Document.sentences', 'Sentence.openieTriples', 'N/A', 'RelationTriple.subjectLemmaGloss', 'RelationTriple.relationLemmaGloss', 'RelationTriple.objectLemmaGloss']","['Document.sentences', 'Sentence.openieTriples', 'RelationTriple.subjectLemmaGloss', 'RelationTriple.objectLemmaGloss']"
+"# rules for finding employment relations
+{ ruleType: ""tokens"", pattern: (([{ner:""PERSON""}]+) /works/ /for/ ([{ner:""ORGANIZATION""}]+)), 
+  result: Concat(""("", $$1.text, "","", ""works_for"", "","", $$2.text, "")"") } 
+
+{ ruleType: ""tokens"", pattern: (([{ner:""PERSON""}]+) /is/ /employed/ /at|by/ ([{ner:""ORGANIZATION""}]+)), 
+  result: Concat(""("", $$1.text, "","", ""works_for"", "","", $$2.text, "")"") } 
+",['N/A'],['N/A'],['N/A']
+"Exception in thread ""main"" java.lang.NoSuchMethodError: edu.stanford.nlp.tagger.maxent.TaggerConfig.getTaggerDataInputStream(Ljava/lang/String;)Ljava/io/DataInputStream;
+",['N/A'],['N/A'],['N/A']
+"Caused by: java.lang.NoSuchMethodError: edu.stanford.nlp.util.Generics.newHashMap()Ljava/util/Map;
+    at edu.stanford.nlp.pipeline.AnnotatorPool.(AnnotatorPool.java:27)
+    at edu.stanford.nlp.pipeline.StanfordCoreNLP.getDefaultAnnotatorPool(StanfordCoreNLP.java:305)
+",['N/A'],"['Generics.newHashMap', 'StanfordCoreNLP.getDefaultAnnotatorPool']",[]
+"AnnotationPipeline pipeline = buildPipeline();
+Annotation annotation = new Annotation(""It's like a topography that is made from cartography of me."");
+pipeline.annotate(annotation);
+","['Annotation', 'annotate']","['N/A', 'Annotation', 'AnnotationPipeline.annotate']","['Annotation', 'AnnotationPipeline.annotate']"

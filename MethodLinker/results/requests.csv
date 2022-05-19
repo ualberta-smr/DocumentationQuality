@@ -1,4 +1,4 @@
-Example,Extracted Function,Linked Function,Source File,Linked
+Example,Extracted Function,Linked Function,Source File,Matched
 ">>> r = requests.get('https://api.github.com/user', auth=('user', 'pass'))
 >>> r.status_code
 200
@@ -10,7 +10,7 @@ Example,Extracted Function,Linked Function,Source File,Linked
 '{""type"":""User""...'
 >>> r.json()
 {'private_gists': 419, 'total_private_repos': 77, ...}
-",requests.get,requests.get,requests\requests\api.py,False
+",requests.get,get,requests\requests\api.py,False
 ">>> r = requests.get('https://api.github.com/user', auth=('user', 'pass'))
 >>> r.status_code
 200
@@ -23,38 +23,33 @@ Example,Extracted Function,Linked Function,Source File,Linked
 >>> r.json()
 {'private_gists': 419, 'total_private_repos': 77, ...}
 ",r.json,N/A,N/A,N/A
-r.json(),r.json,N/A,N/A,N/A
-r.raise_for_status(),r.raise_for_status,N/A,N/A,N/A
-Response.raise_for_status(),Response.raise_for_status,Response.raise_for_status,requests\requests\models.py,True
-raise_for_status(),raise_for_status,N/A,N/A,N/A
-Response.raise_for_status(),Response.raise_for_status,Response.raise_for_status,requests\requests\models.py,True
 ">>> r = requests.get('https://api.github.com/events')
-",requests.get,requests.get,requests\requests\api.py,True
+",requests.get,get,requests\requests\api.py,True
 ">>> r = requests.post('https://httpbin.org/post', data={'key': 'value'})
-",requests.post,requests.post,requests\requests\api.py,True
+",requests.post,post,requests\requests\api.py,True
 ">>> r = requests.put('https://httpbin.org/put', data={'key': 'value'})
 >>> r = requests.delete('https://httpbin.org/delete')
 >>> r = requests.head('https://httpbin.org/get')
 >>> r = requests.options('https://httpbin.org/get')
-",requests.put,requests.put,requests\requests\api.py,True
+",requests.put,put,requests\requests\api.py,True
 ">>> r = requests.put('https://httpbin.org/put', data={'key': 'value'})
 >>> r = requests.delete('https://httpbin.org/delete')
 >>> r = requests.head('https://httpbin.org/get')
 >>> r = requests.options('https://httpbin.org/get')
-",requests.delete,requests.delete,requests\requests\api.py,True
+",requests.delete,delete,requests\requests\api.py,True
 ">>> r = requests.put('https://httpbin.org/put', data={'key': 'value'})
 >>> r = requests.delete('https://httpbin.org/delete')
 >>> r = requests.head('https://httpbin.org/get')
 >>> r = requests.options('https://httpbin.org/get')
-",requests.head,requests.head,requests\requests\api.py,True
+",requests.head,head,requests\requests\api.py,True
 ">>> r = requests.put('https://httpbin.org/put', data={'key': 'value'})
 >>> r = requests.delete('https://httpbin.org/delete')
 >>> r = requests.head('https://httpbin.org/get')
 >>> r = requests.options('https://httpbin.org/get')
-",requests.options,requests.options,requests\requests\api.py,True
+",requests.options,options,requests\requests\api.py,True
 ">>> payload = {'key1': 'value1', 'key2': 'value2'}
 >>> r = requests.get('https://httpbin.org/get', params=payload)
-",requests.get,requests.get,requests\requests\api.py,True
+",requests.get,get,requests\requests\api.py,True
 ">>> print(r.url)
 https://httpbin.org/get?key2=value2&key1=value1
 ",print,N/A,N/A,N/A
@@ -63,7 +58,7 @@ https://httpbin.org/get?key2=value2&key1=value1
 >>> r = requests.get('https://httpbin.org/get', params=payload)
 >>> print(r.url)
 https://httpbin.org/get?key1=value1&key2=value2&key2=value3
-",requests.get,requests.get,requests\requests\api.py,True
+",requests.get,get,requests\requests\api.py,True
 ">>> payload = {'key1': 'value1', 'key2': ['value2', 'value3']}
 
 >>> r = requests.get('https://httpbin.org/get', params=payload)
@@ -75,7 +70,7 @@ https://httpbin.org/get?key1=value1&key2=value2&key2=value3
 >>> r = requests.get('https://api.github.com/events')
 >>> r.text
 '[{""repository"":{""open_issues"":0,""url"":""https://github.com/...
-",requests.get,requests.get,requests\requests\api.py,True
+",requests.get,get,requests\requests\api.py,True
 ">>> from PIL import Image
 >>> from io import BytesIO
 
@@ -91,7 +86,7 @@ https://httpbin.org/get?key1=value1&key2=value2&key2=value3
 >>> r = requests.get('https://api.github.com/events')
 >>> r.json()
 [{'repository': {'open_issues': 0, 'url': 'https://github.com/...
-",requests.get,requests.get,requests\requests\api.py,True
+",requests.get,get,requests\requests\api.py,True
 ">>> import requests
 
 >>> r = requests.get('https://api.github.com/events')
@@ -105,7 +100,7 @@ https://httpbin.org/get?key1=value1&key2=value2&key2=value3
 
 >>> r.raw.read(10)
 '\x1f\x8b\x08\x00\x00\x00\x00\x00\x00\x03'
-",requests.get,requests.get,requests\requests\api.py,True
+",requests.get,get,requests\requests\api.py,True
 ">>> r = requests.get('https://api.github.com/events', stream=True)
 
 >>> r.raw
@@ -130,7 +125,7 @@ https://httpbin.org/get?key1=value1&key2=value2&key2=value3
 >>> headers = {'user-agent': 'my-app/0.0.1'}
 
 >>> r = requests.get(url, headers=headers)
-",requests.get,requests.get,requests\requests\api.py,True
+",requests.get,get,requests\requests\api.py,True
 ">>> payload = {'key1': 'value1', 'key2': 'value2'}
 
 >>> r = requests.post(""https://httpbin.org/post"", data=payload)
@@ -143,7 +138,7 @@ https://httpbin.org/get?key1=value1&key2=value2&key2=value3
   },
   ...
 }
-",requests.post,requests.post,requests\requests\api.py,True
+",requests.post,post,requests\requests\api.py,True
 ">>> payload = {'key1': 'value1', 'key2': 'value2'}
 
 >>> r = requests.post(""https://httpbin.org/post"", data=payload)
@@ -174,25 +169,7 @@ https://httpbin.org/get?key1=value1&key2=value2&key2=value3
 }
 >>> r1.text == r2.text
 True
-",requests.post,requests.post,requests\requests\api.py,True
-">>> payload_tuples = [('key1', 'value1'), ('key1', 'value2')]
->>> r1 = requests.post('https://httpbin.org/post', data=payload_tuples)
->>> payload_dict = {'key1': ['value1', 'value2']}
->>> r2 = requests.post('https://httpbin.org/post', data=payload_dict)
->>> print(r1.text)
-{
-  ...
-  ""form"": {
-    ""key1"": [
-      ""value1"",
-      ""value2""
-    ]
-  },
-  ...
-}
->>> r1.text == r2.text
-True
-",requests.post,requests.post,requests\requests\api.py,True
+",requests.post,post,requests\requests\api.py,True
 ">>> payload_tuples = [('key1', 'value1'), ('key1', 'value2')]
 >>> r1 = requests.post('https://httpbin.org/post', data=payload_tuples)
 >>> payload_dict = {'key1': ['value1', 'value2']}
@@ -217,7 +194,7 @@ True
 >>> payload = {'some': 'data'}
 
 >>> r = requests.post(url, data=json.dumps(payload))
-",requests.post,requests.post,requests\requests\api.py,False
+",requests.post,post,requests\requests\api.py,False
 ">>> import json
 
 >>> url = 'https://api.github.com/some/endpoint'
@@ -226,7 +203,7 @@ True
 >>> r = requests.post(url, data=json.dumps(payload))
 ",json.dumps,N/A,N/A,N/A
 ">>> r = requests.post(url, json=payload)
-",requests.post,requests.post,requests\requests\api.py,True
+",requests.post,post,requests\requests\api.py,True
 ">>> url = 'https://httpbin.org/post'
 >>> files = {'file': open('report.xls', 'rb')}
 
@@ -252,7 +229,7 @@ True
   },
   ...
 }
-",requests.post,requests.post,requests\requests\api.py,True
+",requests.post,post,requests\requests\api.py,True
 ">>> url = 'https://httpbin.org/post'
 >>> files = {'file': ('report.xls', open('report.xls', 'rb'), 'application/vnd.ms-excel', {'Expires': '0'})}
 
@@ -278,7 +255,7 @@ True
   },
   ...
 }
-",requests.post,requests.post,requests\requests\api.py,True
+",requests.post,post,requests\requests\api.py,True
 ">>> url = 'https://httpbin.org/post'
 >>> files = {'file': ('report.csv', 'some,data,to,send\nanother,row,to,send\n')}
 
@@ -291,11 +268,11 @@ True
   },
   ...
 }
-",requests.post,requests.post,requests\requests\api.py,True
+",requests.post,post,requests\requests\api.py,True
 ">>> r = requests.get('https://httpbin.org/get')
 >>> r.status_code
 200
-",requests.get,requests.get,requests\requests\api.py,True
+",requests.get,get,requests\requests\api.py,True
 ">>> bad_r = requests.get('https://httpbin.org/status/404')
 >>> bad_r.status_code
 404
@@ -320,7 +297,7 @@ None
 
 >>> r.cookies['example_cookie_name']
 'example_cookie_value'
-",requests.get,requests.get,requests\requests\api.py,True
+",requests.get,get,requests\requests\api.py,True
 ">>> url = 'https://httpbin.org/cookies'
 >>> cookies = dict(cookies_are='working')
 
@@ -334,7 +311,7 @@ None
 >>> r = requests.get(url, cookies=cookies)
 >>> r.text
 '{""cookies"": {""cookies_are"": ""working""}}'
-",requests.get,requests.get,requests\requests\api.py,True
+",requests.get,get,requests\requests\api.py,True
 ">>> jar = requests.cookies.RequestsCookieJar()
 >>> jar.set('tasty_cookie', 'yum', domain='httpbin.org', path='/cookies')
 >>> jar.set('gross_cookie', 'blech', domain='httpbin.org', path='/elsewhere')
@@ -358,7 +335,7 @@ None
 >>> r = requests.get(url, cookies=jar)
 >>> r.text
 '{""cookies"": {""tasty_cookie"": ""yum""}}'
-",requests.get,requests.get,requests\requests\api.py,True
+",requests.get,get,requests\requests\api.py,True
 ">>> r = requests.get('http://github.com/')
 
 >>> r.url
@@ -369,7 +346,7 @@ None
 
 >>> r.history
 []
-",requests.get,requests.get,requests\requests\api.py,True
+",requests.get,get,requests\requests\api.py,True
 ">>> r = requests.get('http://github.com/', allow_redirects=False)
 
 >>> r.status_code
@@ -377,7 +354,7 @@ None
 
 >>> r.history
 []
-",requests.get,requests.get,requests\requests\api.py,True
+",requests.get,get,requests\requests\api.py,True
 ">>> r = requests.head('http://github.com/', allow_redirects=True)
 
 >>> r.url
@@ -385,20 +362,12 @@ None
 
 >>> r.history
 []
-",requests.head,requests.head,requests\requests\api.py,True
+",requests.head,head,requests\requests\api.py,True
 ">>> requests.get('https://github.com/', timeout=0.001)
 Traceback (most recent call last):
   File """", line 1, in 
 requests.exceptions.Timeout: HTTPConnectionPool(host='github.com', port=80): Request timed out. (timeout=0.001)
 ",HTTPConnectionPool,N/A,N/A,N/A
-requests.get(),requests.get,requests.get,requests\requests\api.py,False
-Request.prepare(),Request.prepare,Request.prepare,requests\requests\models.py,True
-Session.prepare_request(),Session.prepare_request,Session.prepare_request,requests\requests\sessions.py,False
-Response.iter_content(),Response.iter_content,Response.iter_content,requests\requests\models.py,True
-Response.iter_lines(),Response.iter_lines,Response.iter_lines,requests\requests\models.py,True
-Response.iter_content(),Response.iter_content,Response.iter_content,requests\requests\models.py,True
-Response.iter_lines(),Response.iter_lines,Response.iter_lines,requests\requests\models.py,True
-Response.iter_content(),Response.iter_content,Response.iter_content,requests\requests\models.py,True
 "s = requests.Session()
 
 s.get('https://httpbin.org/cookies/set/sessioncookie/123456789')
@@ -481,7 +450,7 @@ print(r.text)
     s.get('https://httpbin.org/cookies/set/sessioncookie/123456789')
 ",s.get,N/A,N/A,N/A
 ">>> r = requests.get('https://en.wikipedia.org/wiki/Monty_Python')
-",requests.get,requests.get,requests\requests\api.py,True
+",requests.get,get,requests\requests\api.py,True
 "from requests import Request, Session
 
 s = Session()
@@ -792,43 +761,43 @@ print(resp.status_code)
 ",print,N/A,N/A,N/A
 ">>> requests.get('https://requestb.in')
 requests.exceptions.SSLError: hostname 'requestb.in' doesn't match either of '*.herokuapp.com', 'herokuapp.com'
-",requests.get,requests.get,requests\requests\api.py,True
+",requests.get,get,requests\requests\api.py,True
 ">>> requests.get('https://github.com')
 
-",requests.get,requests.get,requests\requests\api.py,True
+",requests.get,get,requests\requests\api.py,True
 ">>> requests.get('https://github.com', verify='/path/to/certfile')
-",requests.get,requests.get,requests\requests\api.py,True
+",requests.get,get,requests\requests\api.py,True
 "s = requests.Session()
 s.verify = '/path/to/certfile'
 ",Session,__init__,requests\requests\sessions.py,True
 ">>> requests.get('https://kennethreitz.org', verify=False)
 
-",requests.get,requests.get,requests\requests\api.py,True
+",requests.get,get,requests\requests\api.py,True
 ">>> requests.get('https://kennethreitz.org', cert=('/path/client.cert', '/path/client.key'))
 
-",requests.get,requests.get,requests\requests\api.py,False
+",requests.get,get,requests\requests\api.py,False
 "s = requests.Session()
 s.cert = '/path/client.cert'
 ",Session,__init__,requests\requests\sessions.py,True
 ">>> requests.get('https://kennethreitz.org', cert='/wrong_path/client.pem')
 SSLError: [Errno 336265225] _ssl.c:347: error:140B0009:SSL routines:SSL_CTX_use_PrivateKey_file:PEM lib
-",requests.get,requests.get,requests\requests\api.py,True
+",requests.get,get,requests\requests\api.py,True
 "tarball_url = 'https://github.com/psf/requests/tarball/main'
 r = requests.get(tarball_url, stream=True)
-",requests.get,requests.get,requests\requests\api.py,True
+",requests.get,get,requests\requests\api.py,True
 "if int(r.headers['content-length']) < TOO_LONG:
   content = r.content
   ...
 ",int,N/A,N/A,N/A
 "with requests.get('https://httpbin.org/get', stream=True) as r:
     # Do things with the response here.
-",requests.get,requests.get,requests\requests\api.py,True
+",requests.get,get,requests\requests\api.py,True
 "with open('massive-body', 'rb') as f:
     requests.post('http://some.url/streamed', data=f)
 ",open,N/A,N/A,N/A
 "with open('massive-body', 'rb') as f:
     requests.post('http://some.url/streamed', data=f)
-",requests.post,requests.post,requests\requests\api.py,True
+",requests.post,post,requests\requests\api.py,True
 "def gen():
     yield 'hi'
     yield 'there'
@@ -840,7 +809,7 @@ requests.post('http://some.url/chunked', data=gen())
     yield 'there'
 
 requests.post('http://some.url/chunked', data=gen())
-",requests.post,requests.post,requests\requests\api.py,False
+",requests.post,post,requests\requests\api.py,False
 ">>> url = 'https://httpbin.org/post'
 >>> multiple_files = [
 ...     ('images', ('foo.png', open('foo.png', 'rb'), 'image/png')),
@@ -866,7 +835,7 @@ requests.post('http://some.url/chunked', data=gen())
   'Content-Type': 'multipart/form-data; boundary=3131623adb2043caaeb5538cc7aa0b3a',
   ...
 }
-",requests.post,requests.post,requests\requests\api.py,True
+",requests.post,post,requests\requests\api.py,True
 "def print_url(r, *args, **kwargs):
     print(r.url)
 ",print_url,N/A,N/A,N/A
@@ -880,7 +849,7 @@ requests.post('http://some.url/chunked', data=gen())
 ">>> requests.get('https://httpbin.org/', hooks={'response': print_url})
 https://httpbin.org/
 
-",requests.get,requests.get,requests\requests\api.py,True
+",requests.get,get,requests\requests\api.py,True
 ">>> s = requests.Session()
 >>> s.hooks['response'].append(print_url)
 >>> s.get('https://httpbin.org/')
@@ -940,7 +909,7 @@ class PizzaAuth(AuthBase):
 ",__call__,N/A,N/A,N/A
 ">>> requests.get('http://pizzabin.org/admin', auth=PizzaAuth('kenneth'))
 
-",requests.get,requests.get,requests\requests\api.py,False
+",requests.get,get,requests\requests\api.py,False
 ">>> requests.get('http://pizzabin.org/admin', auth=PizzaAuth('kenneth'))
 
 ",PizzaAuth,N/A,N/A,N/A
@@ -1051,7 +1020,7 @@ proxies = {
 }
 
 requests.get('http://example.org', proxies=proxies)
-",requests.get,requests.get,requests\requests\api.py,True
+",requests.get,get,requests\requests\api.py,True
 "import requests
 
 proxies = {
@@ -1092,7 +1061,7 @@ $ export ALL_PROXY=""socks5://10.10.1.10:3434""
 $ python
 >>> import requests
 >>> requests.get('http://example.org')
-",requests.get,requests.get,requests\requests\api.py,True
+",requests.get,get,requests\requests\api.py,True
 "from requests.utils import DEFAULT_CA_BUNDLE_PATH
 print(DEFAULT_CA_BUNDLE_PATH)
 ",print,N/A,N/A,N/A
@@ -1102,7 +1071,7 @@ $ export https_proxy=""http://10.10.1.10:1080""
 $ python
 >>> import requests
 >>> requests.get('https://example.org')
-",requests.get,requests.get,requests\requests\api.py,True
+",requests.get,get,requests\requests\api.py,True
 ">>> if r.status_code == requests.codes.ok:
 ...     print(r.headers['content-type'])
 ...
@@ -1144,7 +1113,7 @@ makin' history
 ">>> verbs = requests.options(r.url)
 >>> verbs.status_code
 500
-",requests.options,requests.options,requests\requests\api.py,True
+",requests.options,options,requests\requests\api.py,True
 ">>> verbs = requests.options('http://a-good-website.com/api/cats')
 >>> print(verbs.headers['allow'])
 GET,HEAD,POST,OPTIONS
@@ -1225,7 +1194,7 @@ kennethreitz
 >>> r = requests.post(url=url, data=body)
 >>> r.status_code
 404
-",requests.post,requests.post,requests\requests\api.py,True
+",requests.post,post,requests\requests\api.py,True
 ">>> from requests.auth import HTTPBasicAuth
 >>> auth = HTTPBasicAuth('fake@example.com', 'not_a_real_password')
 
@@ -1247,7 +1216,7 @@ Sounds great! I'll get right on it.
 >>> content = r.json()
 >>> print(content['body'])
 Sounds great! I'll get right on it.
-",requests.post,requests.post,requests\requests\api.py,True
+",requests.post,post,requests\requests\api.py,True
 ">>> from requests.auth import HTTPBasicAuth
 >>> auth = HTTPBasicAuth('fake@example.com', 'not_a_real_password')
 
@@ -1299,20 +1268,20 @@ Sounds great! I'll get right on it.
 >>> r = requests.patch(url=url, data=body, auth=auth)
 >>> r.status_code
 200
-",requests.patch,requests.patch,requests\requests\api.py,True
+",requests.patch,patch,requests\requests\api.py,True
 ">>> r = requests.delete(url=url, auth=auth)
 >>> r.status_code
 204
 >>> r.headers['status']
 '204 No Content'
-",requests.delete,requests.delete,requests\requests\api.py,True
+",requests.delete,delete,requests\requests\api.py,True
 ">>> r = requests.head(url=url, auth=auth)
 >>> print(r.headers)
 ...
 'x-ratelimit-remaining': '4995'
 'x-ratelimit-limit': '5000'
 ...
-",requests.head,requests.head,requests\requests\api.py,True
+",requests.head,head,requests\requests\api.py,True
 ">>> r = requests.head(url=url, auth=auth)
 >>> print(r.headers)
 ...
@@ -1323,12 +1292,12 @@ Sounds great! I'll get right on it.
 ">>> r = requests.request('MKCOL', url, data=data)
 >>> r.status_code
 200 # Assuming your call was correct
-",requests.request,requests.request,requests\requests\api.py,True
+",requests.request,request,requests\requests\api.py,True
 ">>> url = 'https://api.github.com/users/kennethreitz/repos?page=1&per_page=10'
 >>> r = requests.head(url=url)
 >>> r.headers['link']
 '; rel=""next"", ; rel=""last""'
-",requests.head,requests.head,requests\requests\api.py,True
+",requests.head,head,requests\requests\api.py,True
 ">>> s = requests.Session()
 >>> s.mount('https://github.com/', MyAdapter())
 ",Session,__init__,requests\requests\sessions.py,True
@@ -1381,8 +1350,7 @@ class Ssl3HttpAdapter(HTTPAdapter):
             block=block, ssl_version=ssl.PROTOCOL_SSLv3)
 ",PoolManager,N/A,N/A,N/A
 "r = requests.get('https://github.com', timeout=None)
-",requests.get,requests.get,requests\requests\api.py,True
-__call__(),__call__,N/A,N/A,N/A
+",requests.get,get,requests\requests\api.py,True
 ">>> from requests.auth import HTTPBasicAuth
 >>> basic = HTTPBasicAuth('user', 'pass')
 >>> requests.get('https://httpbin.org/basic-auth/user/pass', auth=basic)
@@ -1392,7 +1360,7 @@ __call__(),__call__,N/A,N/A,N/A
 >>> url = 'https://httpbin.org/digest-auth/auth/user/pass'
 >>> requests.get(url, auth=HTTPDigestAuth('user', 'pass'))
 
-",requests.get,requests.get,requests\requests\api.py,False
+",requests.get,get,requests\requests\api.py,False
 ">>> from requests.auth import HTTPDigestAuth
 >>> url = 'https://httpbin.org/digest-auth/auth/user/pass'
 >>> requests.get(url, auth=HTTPDigestAuth('user', 'pass'))
@@ -1417,7 +1385,7 @@ __call__(),__call__,N/A,N/A,N/A
 
 >>> requests.get(url, auth=auth)
 
-",requests.get,requests.get,requests\requests\api.py,True
+",requests.get,get,requests\requests\api.py,True
 ">>> import requests
 >>> class MyAuth(requests.auth.AuthBase):
 ...     def __call__(self, r):
@@ -1447,13 +1415,12 @@ __call__(),__call__,N/A,N/A,N/A
 >>> url = 'https://httpbin.org/get'
 >>> requests.get(url, auth=MyAuth())
 
-",requests.get,requests.get,requests\requests\api.py,False
-dict(RequestsCookieJar),dict,N/A,N/A,N/A
+",requests.get,get,requests\requests\api.py,False
 ">>> import requests
 >>> req = requests.request('GET', 'https://httpbin.org/get')
 >>> req
 
-",requests.request,requests.request,requests\requests\api.py,True
+",requests.request,request,requests\requests\api.py,True
 ">>> import requests
 >>> s = requests.Session()
 >>> s.get('https://httpbin.org/get')
@@ -1540,7 +1507,7 @@ dict(RequestsCookieJar),dict,N/A,N/A,N/A
 "import requests
 r = requests.get('https://api.github.com/events')
 r.json()   # This *call* raises an exception if JSON decoding fails
-",requests.get,requests.get,requests\requests\api.py,True
+",requests.get,get,requests\requests\api.py,True
 "import requests
 r = requests.get('https://api.github.com/events')
 r.json()   # This *call* raises an exception if JSON decoding fails
@@ -1564,7 +1531,7 @@ r = s.get('https://httpbin.org/headers')
 r = requests.get('https://api.github.com/events', stream=True)
 for chunk in r.iter_content(8192):
     ...
-",requests.get,requests.get,requests\requests\api.py,True
+",requests.get,get,requests\requests\api.py,True
 "# in 0.x, passing prefetch=False would accomplish the same thing
 r = requests.get('https://api.github.com/events', stream=True)
 for chunk in r.iter_content(8192):
@@ -1669,7 +1636,7 @@ requests_log.setLevel(logging.DEBUG)
 requests_log.propagate = True
 
 requests.get('https://httpbin.org/headers')
-",requests.get,requests.get,requests\requests\api.py,True
+",requests.get,get,requests\requests\api.py,True
 "proxies = {
   ""http"": ""10.10.1.10:3128"",    # use http://10.10.1.10:3128 instead
 }
@@ -1677,4 +1644,4 @@ requests.get('https://httpbin.org/headers')
 # In requests 1.x, this was legal, in requests 2.x,
 #  this raises requests.exceptions.MissingSchema
 requests.get(""http://example.org"", proxies=proxies)
-",requests.get,requests.get,requests\requests\api.py,True
+",requests.get,get,requests\requests\api.py,True

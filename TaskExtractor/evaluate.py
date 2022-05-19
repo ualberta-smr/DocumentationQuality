@@ -194,12 +194,9 @@ if __name__ == '__main__':
                 test_file = os.path.join("results", file2)
                 if file == file2:
                     row = [file]
-                    if re.search(re.compile(r"(?<=_).+(?=\.)"), file)[
-                        0] == "tasks":
-                        row = [*row,
-                               *evaluate_tasks(truth_file, test_file, file)]
+                    if re.search(re.compile(r"(?<=_).+(?=\.)"), file)[0] == "tasks":
+                        row = [*row, *evaluate_tasks(truth_file, test_file, file)]
                     else:
-                        row = [*row,
-                               *evaluate_links(truth_file, test_file, file)]
+                        row = [*row, *evaluate_links(truth_file, test_file, file)]
                     writer.writerow(row)
                     break

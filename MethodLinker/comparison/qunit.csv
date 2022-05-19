@@ -1,16 +1,4 @@
 Example,Truth functions,Test functions,Linked functions,Source
-QUnit.module( name ),['createModule'],['module'],[]
-"QUnit.module( name, nested )",['createModule'],['module'],[]
-"QUnit.module( name, options )",['createModule'],['module'],[]
-"QUnit.module( name, options, nested )",['createModule'],['module'],[]
-QUnit.module.only(),"['only', 'only', 'only']","['module.only', 'module.only', 'module.only', 'module.only']",[]
-QUnit.module.skip(),"['skip', 'skip', 'skip']","['module.skip', 'module.skip', 'module.skip', 'module.skip']",[]
-QUnit.module.todo(),"['todo', 'todo', 'todo']","['module.todo', 'module.todo', 'module.todo', 'module.todo']",[]
-QUnit.module(),['createModule'],['module'],[]
-QUnit.test.only(),"['only', 'only', 'only']","['module.only', 'module.only', 'module.only']",[]
-QUnit.test.skip(),"['skip', 'skip', 'skip']","['module.skip', 'module.skip', 'module.skip']",[]
-QUnit.test.todo(),"['todo', 'todo', 'todo', 'todo']","['module.todo', 'module.todo', 'module.todo', 'module.todo']",[]
-QUnit.begin(),['begin'],['begin'],[]
 "QUnit.module('Group A');
 
 QUnit.test('basic test example 1', function (assert) {
@@ -28,7 +16,7 @@ QUnit.test('basic test example 3', function (assert) {
 QUnit.test('basic test example 4', function (assert) {
   assert.true(true, 'this is also fine');
 });
-",['test'],"['module', 'module', 'N/A', 'N/A', 'module', 'module', 'N/A', 'N/A']",[]
+",['test'],"['module', 'module', 'N/A', 'N/A']",[]
 "const { test } = QUnit;
 
 QUnit.module('My Group', hooks => {
@@ -65,7 +53,7 @@ QUnit.module('My Group', hooks => {
     });
   });
 });
-","['module', 'test']","['N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A']",[]
+","['module', 'test']","['N/A', 'N/A', 'N/A', 'N/A', 'N/A']",[]
 "QUnit.module('Machine Maker', {
   beforeEach: function () {
     this.maker = new Maker();
@@ -84,7 +72,7 @@ QUnit.test('makes a car', function (assert) {
   this.maker.duplicate();
   assert.deepEqual(this.maker.log, ['car', 'car']);
 });
-","['module', 'test']","['N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A']",[]
+","['module', 'test']","['N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A']",[]
 "const { test } = QUnit;
 
 QUnit.module('Machine Maker', hooks => {
@@ -107,7 +95,7 @@ QUnit.module('Machine Maker', hooks => {
     assert.deepEqual(maker.log, ['car', 'car']);
   });
 });
-",['module'],"['N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A']",[]
+",['module'],"['N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A']",[]
 "QUnit.module('Database connection', {
   before: function () {
     return new Promise(function (resolve, reject) {
@@ -132,9 +120,7 @@ QUnit.module('Machine Maker', hooks => {
     });
   }
 });
-",['N/A'],"['N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A']",['N/A']
-QUnit.start(),['start'],['N/A'],[]
-QUnit.stop(),['N/A'],['N/A'],['N/A']
+",['N/A'],"['N/A', 'N/A', 'N/A', 'N/A', 'N/A']",['N/A']
 "QUnit.config.autostart = false;
 
 require(
@@ -142,8 +128,6 @@ require(
   QUnit.start
 );
 ",['start'],['N/A'],[]
-"QUnit.test( name, callback )",['test'],['N/A'],[]
-QUnit.test(),"['test', 'test', 'test', 'test']","['N/A', 'N/A', 'N/A', 'N/A']",[]
 "QUnit.test('Test with async-await', async assert => {
   const a = await fetchSquare(2);
   const b = await fetchSquare(3);
@@ -152,7 +136,7 @@ QUnit.test(),"['test', 'test', 'test', 'test']","['N/A', 'N/A', 'N/A', 'N/A']",[
   assert.equal(b, 9);
   assert.equal(await fetchSquare(5), 25);
 });
-",['test'],"['N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A']",[]
+",['test'],"['N/A', 'N/A', 'N/A']",[]
 "function fetchSquare (x) {
   return new Promise(function (resolve) {
     setTimeout(function () {
@@ -166,12 +150,7 @@ QUnit.test('Test with Promise', function (assert) {
     assert.equal(result, 9);
   });
 });
-",['test'],"['N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A']",[]
-"QUnit.test.each( name, dataset, callback )",['each'],['N/A'],[]
-"QUnit.test.only.each( name, dataset, callback )",['only.each'],['N/A'],[]
-"QUnit.test.skip.each( name, dataset, callback )",['skip.each'],['N/A'],[]
-"QUnit.test.todo.each( name, dataset, callback )",['todo.each'],['N/A'],[]
-QUnit.test.each(),['each'],['N/A'],[]
+",['test'],"['N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A']",[]
 "function square (x) {
   return x * x;
 }
@@ -182,15 +161,14 @@ QUnit.test.each('square()', [
 ], (assert, [value, expected]) => {
   assert.equal(square(value), expected, `${value} squared`);
 });
-","['each', 'each']","['N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A']",[]
+","['each', 'each']","['N/A', 'N/A', 'N/A']",[]
 "QUnit.test.each('isEven()', {
   caseEven: [2, true],
   caseNotEven: [3, false]
 }, (assert, [value, expected]) => {
   assert.strictEqual(isEven(value), expected);
 });
-","['each', 'each']","['N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A']",[]
-each(),['each'],['N/A'],[]
+","['each', 'each']","['N/A', 'N/A', 'N/A']",[]
 "function isEven (x) {
   return x % 2 === 0;
 }
@@ -204,10 +182,7 @@ async function isAsyncEven (x) {
 QUnit.test.each('isAsyncEven()', [2, 4], async (assert, data) => {
   assert.true(await isAsyncEven(data), `${data} is even`);
 });
-",['each'],"['N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A']",[]
-"QUnit.test.only( name, callback )",['only'],['module.only'],[]
-"QUnit.only( name, callback )",['only'],['module.only'],[]
-QUnit.only(),"['only', 'only']","['module.only', 'module.only']",[]
+",['each'],"['N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A']",[]
 "QUnit.module('robot', hooks => {
   let robot;
   hooks.beforeEach(() => {
@@ -229,9 +204,6 @@ QUnit.only(),"['only', 'only']","['module.only', 'module.only']",[]
   });
 });
 ","['test', 'only', 'test']","['N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'module.only', 'N/A', 'N/A', 'N/A', 'N/A']",[]
-"QUnit.test.skip( name, callback )",['skip'],['module.skip'],[]
-"QUnit.skip( name, callback )",['skip'],['module.skip'],[]
-QUnit.skip(),"['skip', 'skip']","['module.skip', 'module.skip']",[]
 "QUnit.module('robot', hooks => {
   let robot;
   hooks.beforeEach(() => {
@@ -248,9 +220,6 @@ QUnit.skip(),"['skip', 'skip']","['module.skip', 'module.skip']",[]
   });
 });
 ","['test', 'skip']","['N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A']",[]
-"QUnit.test.todo( name, callback )",['todo'],['module.todo'],[]
-"QUnit.todo( name, callback )",['todo'],['module.todo'],[]
-QUnit.todo(),"['todo', 'todo']","['module.todo', 'module.todo']",[]
 "QUnit.module('Robot', hooks => {
   let robot;
   hooks.beforeEach(() => {

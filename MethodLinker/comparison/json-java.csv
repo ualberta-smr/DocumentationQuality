@@ -6,25 +6,4 @@ public class Test {
        System.out.println(jo.toString());
     }
 }
-","['N/A', 'N/A']","['N/A', 'JSONObject', 'N/A', 'JSONObject.toString', 'N/A', 'JSONObject', 'N/A', 'JSONObject.toString']","['N/A', 'N/A']"
-get(),['get'],['N/A'],[]
-opt(),['opt'],['N/A'],[]
-put(),['put'],['N/A'],[]
-"SomeBean[] myArr = new SomeBean[]{ new SomeBean(1), new SomeBean(2) };
-// these will be wrapped
-JSONArray jArr = new JSONArray(myArr);
-// these will not be wrapped
-jArr.putAll(new SomeBean[]{ new SomeBean(3), new SomeBean(4) });",['putAll'],"['N/A', 'JSONArray']",[]
-"SomeBean[] myArr = new SomeBean[]{ new SomeBean(1), new SomeBean(2) };
-JSONArray jArr = new JSONArray();
-// these will not be wrapped
-jArr.putAll(myArr);
-// these will not be wrapped
-jArr.putAll(new SomeBean[]{ new SomeBean(3), new SomeBean(4) });
-// our jArr is now consistent.",['putAll'],"['N/A', 'JSONArray', 'JSONArray.putAll']",[]
-"SomeBean[] myArr = new SomeBean[]{ new SomeBean(1), new SomeBean(2) };
-// these will be wrapped
-JSONArray jArr = new JSONArray(myArr);
-// these will be wrapped
-jArr.putAll(new JSONArray(new SomeBean[]{ new SomeBean(3), new SomeBean(4) }));
-// our jArr is now consistent.",['putAll'],"['N/A', 'JSONArray']",[]
+","['N/A', 'N/A']","['N/A', 'JSONObject', 'N/A', 'JSONObject.toString']","['N/A', 'N/A']"
