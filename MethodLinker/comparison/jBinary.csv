@@ -1,16 +1,32 @@
-Example,Truth functions,Test functions,Linked functions,Source
+Example,Truth functions,Test functions,Linked functions
 "var b1 = new jBinary([0x05, 0x03, 0x7F, 0x1E]); // with default typeset
 var b2 = new jBinary(new jDataView(data, 5, 10, true), {
   MetaName: ['string', 30]
 }); // with custom jDataView instance on data and typeset with custom type MetaName.
-var b3 = new jBinary(1024, typeSet); // jBinary on empty pre-allocated 1KB buffer with typeSet defined in variable",['jBinary'],['N/A'],[]
+var b3 = new jBinary(1024, typeSet); // jBinary on empty pre-allocated 1KB buffer with typeSet defined in variable",['jBinary'],"['jBinary', ('jDataView', 'N/A')]",['jBinary']
+"var firstInt = binary.read('uint32'); // uint32 value at offset 0
+var secondInt = binary.read('uint32'); // following uint32 value at offset 4
+var byteAtOffset100 = binary.read('uint8', 100); // uint8 value at custom position
+var thirdInt = binary.read('uint32'); // third uint32 value at offset 8 (since read operation with custom position didn't move internal pointer)",['read'],['proto.read'],['proto.read']
+"binary.write('uint32', 1); // writing uint32 value of 1 at offset 0
+binary.write('uint32', 2); // writing uint32 value of 2 at offset 4
+binary.write('uint8', 0xff, 100); // writing uint8 value of 255 at offset 100
+binary.write('uint32', 3); // writing uint32 value of 3 at offset 8",['write'],['proto.write'],['proto.write']
 var currentPos = binary.tell();,['tell'],['proto.tell'],['proto.tell']
+"binary.seek(100); // just went to offset 100
+var intAt200 = binary.seek(200, function () { return this.binary.read('int32') }); // go to offset 200, get int32 value there and return back to offset 100",['seek'],"['proto.seek', 'proto.read']",['proto.seek']
+"binary.skip(1); // just skip one byte we are not interested in
+var intAfter8 = binary.skip(8, function () { return this.binary.read('int32') }); // go 8 bytes forward, get int32 value there and return back",['skip'],"['proto.skip', 'proto.read']",['proto.skip']
+"var pointerSlice = binary.slice(10, 20); // now you can manipulate on this jBinary instance and all the changes will be mirrored to original binary's data, but with new bound check rules
+var copySlice = binary.slice(10, 20, true); // now you can manipulate on this jBinary instance as on absolutely new one and any data changes will stay isolated from original binary",['slice'],['proto.slice'],['proto.slice']
 var binary = someExternalBinary.as(TAR); // casting external jBinary instance with no or with irrelevant typeset to TAR typeSet object (any operations including both data and pointer manipulations will affect both instances).,['as'],['proto.as'],['proto.as']
+"// Example:
+var jbType = binary.getType(['string', 30]);",['getType'],['proto.getType'],['proto.getType']
 "// Example:
 var currentContext = binary.getContext(); // current object that value belongs to
 var parentContext = binary.getContext(1); // one level up
 var contextWithID = binary.getContext('id'); // first context with ""id"" property (bubbling up)
-var contextWithID1 = binary.getContext(function (context) { return context.id === 1 }); // first context that matches custom condition",['getContext'],"['proto.getContext', 'proto.getContext', 'proto.getContext']",['proto.getContext']
+var contextWithID1 = binary.getContext(function (context) { return context.id === 1 }); // first context that matches custom condition",['getContext'],['proto.getContext'],['proto.getContext']
 "var fs = require('fs');
 var jBinary = require('jbinary');
 var typeSet = {
@@ -19,7 +35,7 @@ var typeSet = {
 
 jBinary.load('file.bin', typeSet, function (err, binary) {
   console.log(binary.read('magic'));
-});",['load'],"['N/A', 'N/A', 'N/A', 'proto.read']",[]
+});",['load'],"[('require', 'N/A'), ('jBinary.load', 'N/A'), ('console.log', 'N/A'), 'proto.read']",[]
 "<script src=""//jdataview.github.io/dist/jdataview.js"">script>
 <script src=""//jdataview.github.io/dist/jbinary.js"">script>
 
@@ -31,7 +47,7 @@ var typeSet = {
 jBinary.load('file.bin', typeSet, function (err, binary) {
   console.log(binary.read('magic'));
 });
-script>",['load'],"['N/A', 'N/A', 'proto.read']",[]
+script>",['load'],"[('jBinary.load', 'N/A'), ('console.log', 'N/A'), 'proto.read']",[]
 "// somewhere in config:
 require.config({
   paths: {
@@ -51,7 +67,7 @@ require(['jbinary'], function (jBinary) {
   jBinary.load('file.bin', typeSet, function (err, binary) {
     console.log(binary.read('magic'));
   });
-});",['load'],"['N/A', 'N/A', 'N/A', 'N/A', 'proto.read']",[]
+});",['load'],"[('require.config', 'N/A'), ('require', 'N/A'), ('jBinary.load', 'N/A'), ('console.log', 'N/A'), 'proto.read']",[]
 "fileInput.addEventListener('change', function () {
   jBinary.loadData(fileInput.files[0]).then(function (data) {
     if (error) {
@@ -73,7 +89,7 @@ jBinary.load('sample.tar').then(function (binary) {
   console.log('Processed and saved successfully!');
 }, function (err) {
   console.error(err);
-});","['loadData', 'load', 'readAll', 'saveAs']","['N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A']",[]
+});","['loadData', 'load', 'readAll', 'saveAs']","[('fileInput.addEventListener', 'N/A'), ('jBinary.loadData', 'N/A'), ('then', 'N/A'), ('console.log', 'N/A'), ('jBinary.load', 'N/A'), ('binary.saveAs', 'N/A'), ('console.error', 'N/A')]",[]
 "{
   'jBinary.all': 'File',
   'jBinary.littleEndian': true,
@@ -109,7 +125,7 @@ jBinary.load('sample.tar').then(function (binary) {
 
   // aliasing FileItem[] as type of entire File
   File: ['array', 'FileItem']
-}",['Template'],"['N/A', 'N/A']",[]
+}",['Template'],"[('this.baseRead', 'N/A'), ('this.baseWrite', 'N/A')]",[]
 "var binary = new jBinary([0x00, 0x03, 0x04, 0x05, 0x06, 0x07], {
   DynamicArray: jBinary.Type({
     params: ['itemType'],
@@ -129,7 +145,7 @@ jBinary.load('sample.tar').then(function (binary) {
   byteArray: ['DynamicArray', 'uint8']
 });
 
-var byteArray = binary.read('byteArray'); // [0x04, 0x05, 0x06]","['jBinary', 'Type']","['N/A', 'proto.read']",[]
+var byteArray = binary.read('byteArray'); // [0x04, 0x05, 0x06]","['jBinary', 'Type']","[('getType', 'N/A'), 'proto.read', 'proto.write']",[]
 "var binary = new jBinary([0x00, 0x03, 0x04, 0x05, 0x06, 0x07], {
   DynamicArray: jBinary.Template({
     setParams: function (itemType) {
@@ -152,16 +168,16 @@ var byteArray = binary.read('byteArray'); // [0x04, 0x05, 0x06]","['jBinary', 'T
   byteArray: ['DynamicArray', 'uint8']
 });
 
-var byteArray = binary.read('byteArray'); // [0x04, 0x05, 0x06]","['jBinary', 'Template', 'baseRead', 'baseWrite', 'read']","['N/A', 'N/A', 'proto.read']",['proto.read']
+var byteArray = binary.read('byteArray'); // [0x04, 0x05, 0x06]","['jBinary', 'Template', 'baseRead', 'baseWrite', 'read']","[('this.baseRead', 'N/A'), ('this.baseWrite', 'N/A'), 'proto.read']",['proto.read']
 "jBinary.Repo('bmp', function (BMP) {
   var binary = new jBinary(data, BMP);
   // ...do whatever you want with `binary` or simply...
   var data = binary.readAll();
   // ...get entire file as parsed object in `data`
-});","['jBinary', 'readAll']","['N/A', 'jBinary', 'proto.readAll']","['jBinary', 'proto.readAll']"
+});","['jBinary', 'readAll']","[('jBinary.Repo', 'N/A'), 'jBinary', 'proto.readAll']","['jBinary', 'proto.readAll']"
 "jBinary.Repo(['tar', 'gzip'], function (TAR, GZIP) {
   // your code goes here ;)
-});",['N/A'],['N/A'],['N/A']
+});",[''],"[('jBinary.Repo', 'N/A')]",[]
 "require(['jbinary.repo!tar', 'jbinary.repo!gzip'], function (TAR, GZIP) {
   // you can put just the same code as in sample above
-});",['N/A'],['N/A'],['N/A']
+});",[''],"[('require', 'N/A')]",[]

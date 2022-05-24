@@ -31,10 +31,10 @@ def get_webpages(doc_home, repo_name):
         # We do not want links with "#" because they're likely redundant
         if parse.hostname is None:
             if parse.path and not parse.fragment and not parse.query:
-                url = re.match(re.compile(".+/"), doc_home)[0] + parse.path
-                if repo_name in url:
+                url = re.match(re.compile(".+"), doc_home)[0] + parse.path
+                if repo_name.strip().lower() in url.strip().lower():
                     pages.append(url)
-        elif parse.hostname == domain and "#" not in href and repo_name in href:
+        elif parse.hostname == domain and "#" not in href and repo_name.strip().lower() in href.strip().lower():
             pages.append(href)
     pages = list(dict.fromkeys(pages))
     return pages
@@ -132,45 +132,46 @@ if __name__ == '__main__':
     # inp = "https://stanfordnlp.github.io/CoreNLP/index.html"
     # task_extract_and_link("CoreNLP", inp)
 
-    # https://github.com/ijl/orjson
-    task_extract_and_link("orjson", "http://web.archive.org/web/20210831032333/https://github.com/ijl/orjson", "json")
-    # https://github.com/stleary/JSON-java
-    task_extract_and_link("JSON-java", "http://web.archive.org/web/20211017224709/https://github.com/stleary/JSON-java", "json")
-    task_extract_and_link("CoreNLP", "https://stanfordnlp.github.io/CoreNLP/ner.html", "nlp")
-    task_extract_and_link("CoreNLP", "https://stanfordnlp.github.io/CoreNLP/cmdline.html", "nlp")
-    # https://www.nltk.org/api/nltk.parse.html
-    task_extract_and_link("NLTK", "https://web.archive.org/web/20210417122335/https://www.nltk.org/api/nltk.parse.html")
-    # https://www.nltk.org/api/nltk.tag.html
-    task_extract_and_link("NLTK", "https://web.archive.org/web/20210725152853/https://www.nltk.org/api/nltk.tag.html")
-    task_extract_and_link("jQuery", "https://api.jquery.com/jQuery.get")
-    task_extract_and_link("reactjs", "https://reactjs.org/docs/components-and-props.html")
-    task_extract_and_link("requests", "https://docs.python-requests.org/en/latest/")
+    # # https://github.com/ijl/orjson
+    # task_extract_and_link("orjson", "http://web.archive.org/web/20210831032333/https://github.com/ijl/orjson", "json")
+    # # https://github.com/stleary/JSON-java
+    # task_extract_and_link("JSON-java", "http://web.archive.org/web/20211017224709/https://github.com/stleary/JSON-java", "json")
+    # task_extract_and_link("CoreNLP", "https://stanfordnlp.github.io/CoreNLP/ner.html", "nlp")
+    # task_extract_and_link("CoreNLP", "https://stanfordnlp.github.io/CoreNLP/cmdline.html", "nlp")
+    # # https://www.nltk.org/api/nltk.parse.html
+    # task_extract_and_link("NLTK", "https://web.archive.org/web/20210417122335/https://www.nltk.org/api/nltk.parse.html", nlp)
+    # # https://www.nltk.org/api/nltk.tag.html
+    # task_extract_and_link("NLTK", "https://web.archive.org/web/20210725152853/https://www.nltk.org/api/nltk.tag.html", nlp)
+    # TODO: CREATE DOMAIN SPECIFIC LISTS FOR BELOW
+    # task_extract_and_link("jQuery", "https://api.jquery.com/jQuery.get")
+    # task_extract_and_link("reactjs", "https://reactjs.org/docs/components-and-props.html")
+    # task_extract_and_link("requests", "https://web.archive.org/web/20220505163814/https://docs.python-requests.org/en/latest/")
 
-    # api_methods_examples("python",
-    #                      "orjson",
-    #                      "https://github.com/ijl/orjson.git",
-    #                      "https://github.com/ijl/orjson/blob/master/README.md")
-    # api_methods_examples("python",
-    #                      "nltk",
-    #                      "https://github.com/nltk/nltk.git",
-    #                      "https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.html")
-    # api_methods_examples("python",
-    #                      "requests",
-    #                      "https://github.com/psf/requests.git",
-    #                      "https://docs.python-requests.org/en/latest/")
-    # api_methods_examples("java",
-    #                      "json-java",
-    #                      "https://github.com/stleary/JSON-java.git",
-    #                      "https://github.com/stleary/JSON-java")
-    # api_methods_examples("java",
-    #                      "CoreNLP",
-    #                      "https://github.com/stanfordnlp/CoreNLP.git",
-    #                      "https://stanfordnlp.github.io/CoreNLP")
-    # api_methods_examples("javascript",
-    #                      "qunit",
-    #                      "https://github.com/qunitjs/qunit.git",
-    #                      "https://api.qunitjs.com/")
-    # api_methods_examples("javascript",
-    #                      "jBinary",
-    #                      "https://github.com/jDataView/jBinary.git",
-    #                      "https://github.com/jDataView/jBinary/wiki")
+    api_methods_examples("python",
+                         "orjson",
+                         "https://github.com/ijl/orjson.git",
+                         "http://web.archive.org/web/20210831032333/https://github.com/ijl/orjson")
+    api_methods_examples("python",
+                         "nltk",
+                         "https://github.com/nltk/nltk.git",
+                         "https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.html")
+    api_methods_examples("python",
+                         "requests",
+                         "https://github.com/psf/requests.git",
+                         "https://docs.python-requests.org/en/latest/")
+    api_methods_examples("java",
+                         "json-java",
+                         "https://github.com/stleary/JSON-java.git",
+                         "http://web.archive.org/web/20211017224709/https://github.com/stleary/JSON-java")
+    api_methods_examples("java",
+                         "CoreNLP",
+                         "https://github.com/stanfordnlp/CoreNLP.git",
+                         "https://stanfordnlp.github.io/CoreNLP")
+    api_methods_examples("javascript",
+                         "qunit",
+                         "https://github.com/qunitjs/qunit.git",
+                         "https://api.qunitjs.com/")
+    api_methods_examples("javascript",
+                         "jBinary",
+                         "https://github.com/jDataView/jBinary.git",
+                         "https://github.com/jDataView/jBinary/wiki")

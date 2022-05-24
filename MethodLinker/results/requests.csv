@@ -282,6 +282,16 @@ Traceback (most recent call last):
   File ""requests/models.py"", line 832, in raise_for_status
     raise http_error
 requests.exceptions.HTTPError: 404 Client Error
+",requests.get,get,requests\requests\api.py,True
+">>> bad_r = requests.get('https://httpbin.org/status/404')
+>>> bad_r.status_code
+404
+
+>>> bad_r.raise_for_status()
+Traceback (most recent call last):
+  File ""requests/models.py"", line 832, in raise_for_status
+    raise http_error
+requests.exceptions.HTTPError: 404 Client Error
 ",bad_r.raise_for_status,N/A,N/A,N/A
 ">>> r.raise_for_status()
 None
@@ -363,6 +373,11 @@ None
 >>> r.history
 []
 ",requests.head,head,requests\requests\api.py,True
+">>> requests.get('https://github.com/', timeout=0.001)
+Traceback (most recent call last):
+  File """", line 1, in 
+requests.exceptions.Timeout: HTTPConnectionPool(host='github.com', port=80): Request timed out. (timeout=0.001)
+",requests.get,get,requests\requests\api.py,True
 ">>> requests.get('https://github.com/', timeout=0.001)
 Traceback (most recent call last):
   File """", line 1, in 
@@ -850,6 +865,10 @@ requests.post('http://some.url/chunked', data=gen())
 https://httpbin.org/
 
 ",requests.get,get,requests\requests\api.py,True
+">>> r = requests.get('https://httpbin.org/', hooks={'response': [print_url, record_hook]})
+>>> r.hook_called
+True
+",requests.get,get,requests\requests\api.py,True
 ">>> s = requests.Session()
 >>> s.hooks['response'].append(print_url)
 >>> s.get('https://httpbin.org/')
@@ -924,6 +943,18 @@ for line in r.iter_lines():
     if line:
         decoded_line = line.decode('utf-8')
         print(json.loads(decoded_line))
+",requests.get,get,requests\requests\api.py,True
+"import json
+import requests
+
+r = requests.get('https://httpbin.org/stream/20', stream=True)
+
+for line in r.iter_lines():
+
+    # filter out keep-alive new lines
+    if line:
+        decoded_line = line.decode('utf-8')
+        print(json.loads(decoded_line))
 ",r.iter_lines,N/A,N/A,N/A
 "import json
 import requests
@@ -961,6 +992,15 @@ for line in r.iter_lines():
         decoded_line = line.decode('utf-8')
         print(json.loads(decoded_line))
 ",json.loads,N/A,N/A,N/A
+"r = requests.get('https://httpbin.org/stream/20', stream=True)
+
+if r.encoding is None:
+    r.encoding = 'utf-8'
+
+for line in r.iter_lines(decode_unicode=True):
+    if line:
+        print(json.loads(line))
+",requests.get,get,requests\requests\api.py,True
 "r = requests.get('https://httpbin.org/stream/20', stream=True)
 
 if r.encoding is None:
@@ -1072,6 +1112,9 @@ $ python
 >>> import requests
 >>> requests.get('https://example.org')
 ",requests.get,get,requests\requests\api.py,True
+">>> import requests
+>>> r = requests.get('https://api.github.com/repos/psf/requests/git/commits/a050faf084662f3a352dd1a941f2c7c9f886d4ad')
+",requests.get,get,requests\requests\api.py,True
 ">>> if r.status_code == requests.codes.ok:
 ...     print(r.headers['content-type'])
 ...
@@ -1118,6 +1161,18 @@ makin' history
 >>> print(verbs.headers['allow'])
 GET,HEAD,POST,OPTIONS
 ",print,N/A,N/A,N/A
+">>> r = requests.get('https://api.github.com/repos/psf/requests/issues/482')
+>>> r.status_code
+200
+
+>>> issue = json.loads(r.text)
+
+>>> print(issue['title'])
+Feature any http verb in docs
+
+>>> print(issue['comments'])
+3
+",requests.get,get,requests\requests\api.py,True
 ">>> r = requests.get('https://api.github.com/repos/psf/requests/issues/482')
 >>> r.status_code
 200
@@ -1349,6 +1404,10 @@ class Ssl3HttpAdapter(HTTPAdapter):
             num_pools=connections, maxsize=maxsize,
             block=block, ssl_version=ssl.PROTOCOL_SSLv3)
 ",PoolManager,N/A,N/A,N/A
+"r = requests.get('https://github.com', timeout=5)
+",requests.get,get,requests\requests\api.py,True
+"r = requests.get('https://github.com', timeout=(3.05, 27))
+",requests.get,get,requests\requests\api.py,False
 "r = requests.get('https://github.com', timeout=None)
 ",requests.get,get,requests\requests\api.py,True
 ">>> from requests.auth import HTTPBasicAuth

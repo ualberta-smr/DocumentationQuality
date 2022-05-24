@@ -34,24 +34,6 @@ QUnit.test('basic test example 3', function (assert) {
 QUnit.test('basic test example 4', function (assert) {
   assert.true(true, 'this is also fine');
 });
-",QUnit.module,module,qunit\src\module.js,False
-"QUnit.module('Group A');
-
-QUnit.test('basic test example 1', function (assert) {
-  assert.true(true, 'this is fine');
-});
-QUnit.test('basic test example 2', function (assert) {
-  assert.true(true, 'this is also fine');
-});
-
-QUnit.module('Group B');
-
-QUnit.test('basic test example 3', function (assert) {
-  assert.true(true, 'this is fine');
-});
-QUnit.test('basic test example 4', function (assert) {
-  assert.true(true, 'this is also fine');
-});
 ",QUnit.test,N/A,N/A,N/A
 "QUnit.module('Group A');
 
@@ -71,26 +53,6 @@ QUnit.test('basic test example 4', function (assert) {
   assert.true(true, 'this is also fine');
 });
 ",assert.true,N/A,N/A,N/A
-"const { test } = QUnit;
-
-QUnit.module('Group A');
-
-test('basic test example', assert => {
-  assert.true(true, 'this is fine');
-});
-test('basic test example 2', assert => {
-  assert.true(true, 'this is also fine');
-});
-
-QUnit.module('Group B');
-
-test('basic test example 3', assert => {
-  assert.true(true, 'this is fine');
-});
-test('basic test example 4', assert => {
-  assert.true(true, 'this is also fine');
-});
-",QUnit.module,module,qunit\src\module.js,False
 "const { test } = QUnit;
 
 QUnit.module('Group A');

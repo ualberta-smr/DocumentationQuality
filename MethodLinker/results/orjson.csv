@@ -99,6 +99,19 @@ JSONEncodeError: Type is not JSON serializable: decimal.Decimal
 >>> orjson.dumps(decimal.Decimal(""0.0842389659712649442845""), default=default)
 b'""0.0842389659712649442845""'
 >>> orjson.dumps({1, 2}, default=default)
+orjson.JSONEncodeError: Type is not JSON serializable: set",orjson.dumps,dumps,orjson\orjson.pyi,False
+">>> import orjson, decimal
+>>>
+def default(obj):
+    if isinstance(obj, decimal.Decimal):
+        return str(obj)
+    raise TypeError
+
+>>> orjson.dumps(decimal.Decimal(""0.0842389659712649442845""))
+JSONEncodeError: Type is not JSON serializable: decimal.Decimal
+>>> orjson.dumps(decimal.Decimal(""0.0842389659712649442845""), default=default)
+b'""0.0842389659712649442845""'
+>>> orjson.dumps({1, 2}, default=default)
 orjson.JSONEncodeError: Type is not JSON serializable: set",decimal.Decimal,N/A,N/A,N/A
 ">>> import orjson, json, rapidjson
 >>>
@@ -147,6 +160,18 @@ b'{""set"":null}'
 >>> json.dumps({""set"":{1, 2}}, default=default)
 '{""set"":null}'
 >>> rapidjson.dumps({""set"":{1, 2}}, default=default)
+'{""set"":null}'",orjson.dumps,dumps,orjson\orjson.pyi,True
+">>> import orjson, json, rapidjson
+>>>
+def default(obj):
+    if isinstance(obj, decimal.Decimal):
+        return str(obj)
+
+>>> orjson.dumps({""set"":{1, 2}}, default=default)
+b'{""set"":null}'
+>>> json.dumps({""set"":{1, 2}}, default=default)
+'{""set"":null}'
+>>> rapidjson.dumps({""set"":{1, 2}}, default=default)
 '{""set"":null}'",json.dumps,N/A,N/A,N/A
 ">>> import orjson, json, rapidjson
 >>>
@@ -160,6 +185,29 @@ b'{""set"":null}'
 '{""set"":null}'
 >>> rapidjson.dumps({""set"":{1, 2}}, default=default)
 '{""set"":null}'",rapidjson.dumps,N/A,N/A,N/A
+">>> import orjson
+>>> orjson.dumps([])
+b""[]""
+>>> orjson.dumps([], option=orjson.OPT_APPEND_NEWLINE)
+b""[]\n""",orjson.dumps,dumps,orjson\orjson.pyi,True
+">>> import orjson
+>>> orjson.dumps({""a"": ""b"", ""c"": {""d"": True}, ""e"": [1, 2]})
+b'{""a"":""b"",""c"":{""d"":true},""e"":[1,2]}'
+>>> orjson.dumps(
+    {""a"": ""b"", ""c"": {""d"": True}, ""e"": [1, 2]},
+    option=orjson.OPT_INDENT_2
+)
+b'{\n  ""a"": ""b"",\n  ""c"": {\n    ""d"": true\n  },\n  ""e"": [\n    1,\n    2\n  ]\n}'",orjson.dumps,dumps,orjson\orjson.pyi,True
+">>> import orjson, datetime
+>>> orjson.dumps(
+        datetime.datetime(1970, 1, 1, 0, 0, 0),
+    )
+b'""1970-01-01T00:00:00""'
+>>> orjson.dumps(
+        datetime.datetime(1970, 1, 1, 0, 0, 0),
+        option=orjson.OPT_NAIVE_UTC,
+    )
+b'""1970-01-01T00:00:00+00:00""'",orjson.dumps,dumps,orjson\orjson.pyi,False
 ">>> import orjson, datetime
 >>> orjson.dumps(
         datetime.datetime(1970, 1, 1, 0, 0, 0),
@@ -170,6 +218,17 @@ b'""1970-01-01T00:00:00""'
         option=orjson.OPT_NAIVE_UTC,
     )
 b'""1970-01-01T00:00:00+00:00""'",datetime.datetime,N/A,N/A,N/A
+">>> import orjson, datetime, uuid
+>>> orjson.dumps(
+        {uuid.UUID(""7202d115-7ff3-4c81-a7c1-2a1f067b1ece""): [1, 2, 3]},
+        option=orjson.OPT_NON_STR_KEYS,
+    )
+b'{""7202d115-7ff3-4c81-a7c1-2a1f067b1ece"":[1,2,3]}'
+>>> orjson.dumps(
+        {datetime.datetime(1970, 1, 1, 0, 0, 0): [1, 2, 3]},
+        option=orjson.OPT_NON_STR_KEYS | orjson.OPT_NAIVE_UTC,
+    )
+b'{""1970-01-01T00:00:00+00:00"":[1,2,3]}'",orjson.dumps,dumps,orjson\orjson.pyi,False
 ">>> import orjson, datetime, uuid
 >>> orjson.dumps(
         {uuid.UUID(""7202d115-7ff3-4c81-a7c1-2a1f067b1ece""): [1, 2, 3]},
@@ -197,7 +256,23 @@ b'{""1970-01-01T00:00:00+00:00"":[1,2,3]}'",datetime.datetime,N/A,N/A,N/A
     {""other"": 1, datetime.date(1970, 1, 5): 2, datetime.date(1970, 1, 3): 3},
     option=orjson.OPT_NON_STR_KEYS | orjson.OPT_SORT_KEYS
 )
+b'{""1970-01-03"":3,""1970-01-05"":2,""other"":1}'",orjson.dumps,dumps,orjson\orjson.pyi,False
+">>> import orjson, datetime
+>>> orjson.dumps(
+    {""other"": 1, datetime.date(1970, 1, 5): 2, datetime.date(1970, 1, 3): 3},
+    option=orjson.OPT_NON_STR_KEYS | orjson.OPT_SORT_KEYS
+)
 b'{""1970-01-03"":3,""1970-01-05"":2,""other"":1}'",datetime.date,N/A,N/A,N/A
+">>> import orjson, datetime
+>>> orjson.dumps(
+        datetime.datetime(1970, 1, 1, 0, 0, 0, 1),
+    )
+b'""1970-01-01T00:00:00.000001""'
+>>> orjson.dumps(
+        datetime.datetime(1970, 1, 1, 0, 0, 0, 1),
+        option=orjson.OPT_OMIT_MICROSECONDS,
+    )
+b'""1970-01-01T00:00:00""'",orjson.dumps,dumps,orjson\orjson.pyi,False
 ">>> import orjson, datetime
 >>> orjson.dumps(
         datetime.datetime(1970, 1, 1, 0, 0, 0, 1),
@@ -254,6 +329,29 @@ TypeError: Type is not JSON serializable: User
         default=default,
     )
 b'{""id"":""3b1"",""name"":""asd""}'",isinstance,N/A,N/A,N/A
+">>> import orjson, dataclasses
+>>>
+@dataclasses.dataclass
+class User:
+    id: str
+    name: str
+    password: str
+
+def default(obj):
+    if isinstance(obj, User):
+        return {""id"": obj.id, ""name"": obj.name}
+    raise TypeError
+
+>>> orjson.dumps(User(""3b1"", ""asd"", ""zxc""))
+b'{""id"":""3b1"",""name"":""asd"",""password"":""zxc""}'
+>>> orjson.dumps(User(""3b1"", ""asd"", ""zxc""), option=orjson.OPT_PASSTHROUGH_DATACLASS)
+TypeError: Type is not JSON serializable: User
+>>> orjson.dumps(
+        User(""3b1"", ""asd"", ""zxc""),
+        option=orjson.OPT_PASSTHROUGH_DATACLASS,
+        default=default,
+    )
+b'{""id"":""3b1"",""name"":""asd""}'",orjson.dumps,dumps,orjson\orjson.pyi,False
 ">>> import orjson, dataclasses
 >>>
 @dataclasses.dataclass
@@ -344,6 +442,23 @@ TypeError: Type is not JSON serializable: datetime.datetime
         option=orjson.OPT_PASSTHROUGH_DATETIME,
         default=default,
     )
+b'{""created_at"":""Thu, 01 Jan 1970 00:00:00 GMT""}'",orjson.dumps,dumps,orjson\orjson.pyi,False
+">>> import orjson, datetime
+>>>
+def default(obj):
+    if isinstance(obj, datetime.datetime):
+        return obj.strftime(""%a, %d %b %Y %H:%M:%S GMT"")
+    raise TypeError
+
+>>> orjson.dumps({""created_at"": datetime.datetime(1970, 1, 1)})
+b'{""created_at"":""1970-01-01T00:00:00""}'
+>>> orjson.dumps({""created_at"": datetime.datetime(1970, 1, 1)}, option=orjson.OPT_PASSTHROUGH_DATETIME)
+TypeError: Type is not JSON serializable: datetime.datetime
+>>> orjson.dumps(
+        {""created_at"": datetime.datetime(1970, 1, 1)},
+        option=orjson.OPT_PASSTHROUGH_DATETIME,
+        default=default,
+    )
 b'{""created_at"":""Thu, 01 Jan 1970 00:00:00 GMT""}'",datetime.datetime,N/A,N/A,N/A
 ">>> import orjson
 >>>
@@ -409,26 +524,31 @@ b'""zxc""'
 TypeError: Type is not JSON serializable: Secret
 >>> orjson.dumps(Secret(""zxc""), option=orjson.OPT_PASSTHROUGH_SUBCLASS, default=default)
 b'""******""'",orjson.dumps,dumps,orjson\orjson.pyi,False
-">>> import orjson, datetime, zoneinfo
+">>> import orjson
+>>> orjson.dumps({""b"": 1, ""c"": 2, ""a"": 3})
+b'{""b"":1,""c"":2,""a"":3}'
+>>> orjson.dumps({""b"": 1, ""c"": 2, ""a"": 3}, option=orjson.OPT_SORT_KEYS)
+b'{""a"":3,""b"":1,""c"":2}'",orjson.dumps,dumps,orjson\orjson.pyi,True
+">>> import orjson, datetime
 >>> orjson.dumps(
-        datetime.datetime(1970, 1, 1, 0, 0, 0, tzinfo=zoneinfo.ZoneInfo(""UTC"")),
+        datetime.datetime(1970, 1, 1, 0, 0, 0, tzinfo=datetime.timezone.utc),
     )
 b'""1970-01-01T00:00:00+00:00""'
 >>> orjson.dumps(
-        datetime.datetime(1970, 1, 1, 0, 0, 0, tzinfo=zoneinfo.ZoneInfo(""UTC"")),
+        datetime.datetime(1970, 1, 1, 0, 0, 0, tzinfo=datetime.timezone.utc),
+        option=orjson.OPT_UTC_Z
+    )
+b'""1970-01-01T00:00:00Z""'",orjson.dumps,dumps,orjson\orjson.pyi,False
+">>> import orjson, datetime
+>>> orjson.dumps(
+        datetime.datetime(1970, 1, 1, 0, 0, 0, tzinfo=datetime.timezone.utc),
+    )
+b'""1970-01-01T00:00:00+00:00""'
+>>> orjson.dumps(
+        datetime.datetime(1970, 1, 1, 0, 0, 0, tzinfo=datetime.timezone.utc),
         option=orjson.OPT_UTC_Z
     )
 b'""1970-01-01T00:00:00Z""'",datetime.datetime,N/A,N/A,N/A
-">>> import orjson, datetime, zoneinfo
->>> orjson.dumps(
-        datetime.datetime(1970, 1, 1, 0, 0, 0, tzinfo=zoneinfo.ZoneInfo(""UTC"")),
-    )
-b'""1970-01-01T00:00:00+00:00""'
->>> orjson.dumps(
-        datetime.datetime(1970, 1, 1, 0, 0, 0, tzinfo=zoneinfo.ZoneInfo(""UTC"")),
-        option=orjson.OPT_UTC_Z
-    )
-b'""1970-01-01T00:00:00Z""'",zoneinfo.ZoneInfo,N/A,N/A,N/A
 "def loads(__obj: Union[bytes, bytearray, memoryview, str]) -> Any: ...",loads,N/A,N/A,N/A
 ">>> import dataclasses, orjson, typing
 
@@ -445,6 +565,21 @@ class Object:
 
 >>> orjson.dumps(Object(1, ""a"", [Member(1, True), Member(2)]))
 b'{""id"":1,""name"":""a"",""members"":[{""id"":1,""active"":true},{""id"":2,""active"":false}]}'",dataclasses.field,N/A,N/A,N/A
+">>> import dataclasses, orjson, typing
+
+@dataclasses.dataclass
+class Member:
+    id: int
+    active: bool = dataclasses.field(default=False)
+
+@dataclasses.dataclass
+class Object:
+    id: int
+    name: str
+    members: typing.List[Member]
+
+>>> orjson.dumps(Object(1, ""a"", [Member(1, True), Member(2)]))
+b'{""id"":1,""name"":""a"",""members"":[{""id"":1,""active"":true},{""id"":2,""active"":false}]}'",orjson.dumps,dumps,orjson\orjson.pyi,False
 ">>> import dataclasses, orjson, typing
 
 @dataclasses.dataclass
@@ -477,46 +612,78 @@ class Object:
 b'{""id"":1,""name"":""a"",""members"":[{""id"":1,""active"":true},{""id"":2,""active"":false}]}'",Member,N/A,N/A,N/A
 ">>> import orjson, datetime, zoneinfo
 >>> orjson.dumps(
-    datetime.datetime(2018, 12, 1, 2, 3, 4, 9, tzinfo=zoneinfo.ZoneInfo(""Australia/Adelaide""))
+    datetime.datetime(2018, 12, 1, 2, 3, 4, 9, tzinfo=zoneinfo.ZoneInfo('Australia/Adelaide'))
 )
 b'""2018-12-01T02:03:04.000009+10:30""'
 >>> orjson.dumps(
-    datetime.datetime(2100, 9, 1, 21, 55, 2).replace(tzinfo=zoneinfo.ZoneInfo(""UTC""))
+    datetime.datetime.fromtimestamp(4123518902).replace(tzinfo=datetime.timezone.utc)
 )
 b'""2100-09-01T21:55:02+00:00""'
 >>> orjson.dumps(
-    datetime.datetime(2100, 9, 1, 21, 55, 2)
+    datetime.datetime.fromtimestamp(4123518902)
+)
+b'""2100-09-01T21:55:02""'",orjson.dumps,dumps,orjson\orjson.pyi,False
+">>> import orjson, datetime, zoneinfo
+>>> orjson.dumps(
+    datetime.datetime(2018, 12, 1, 2, 3, 4, 9, tzinfo=zoneinfo.ZoneInfo('Australia/Adelaide'))
+)
+b'""2018-12-01T02:03:04.000009+10:30""'
+>>> orjson.dumps(
+    datetime.datetime.fromtimestamp(4123518902).replace(tzinfo=datetime.timezone.utc)
+)
+b'""2100-09-01T21:55:02+00:00""'
+>>> orjson.dumps(
+    datetime.datetime.fromtimestamp(4123518902)
 )
 b'""2100-09-01T21:55:02""'",datetime.datetime,N/A,N/A,N/A
 ">>> import orjson, datetime, zoneinfo
 >>> orjson.dumps(
-    datetime.datetime(2018, 12, 1, 2, 3, 4, 9, tzinfo=zoneinfo.ZoneInfo(""Australia/Adelaide""))
+    datetime.datetime(2018, 12, 1, 2, 3, 4, 9, tzinfo=zoneinfo.ZoneInfo('Australia/Adelaide'))
 )
 b'""2018-12-01T02:03:04.000009+10:30""'
 >>> orjson.dumps(
-    datetime.datetime(2100, 9, 1, 21, 55, 2).replace(tzinfo=zoneinfo.ZoneInfo(""UTC""))
+    datetime.datetime.fromtimestamp(4123518902).replace(tzinfo=datetime.timezone.utc)
 )
 b'""2100-09-01T21:55:02+00:00""'
 >>> orjson.dumps(
-    datetime.datetime(2100, 9, 1, 21, 55, 2)
+    datetime.datetime.fromtimestamp(4123518902)
 )
 b'""2100-09-01T21:55:02""'",zoneinfo.ZoneInfo,N/A,N/A,N/A
 ">>> import orjson, datetime, zoneinfo
 >>> orjson.dumps(
-    datetime.datetime(2018, 12, 1, 2, 3, 4, 9, tzinfo=zoneinfo.ZoneInfo(""Australia/Adelaide""))
+    datetime.datetime(2018, 12, 1, 2, 3, 4, 9, tzinfo=zoneinfo.ZoneInfo('Australia/Adelaide'))
 )
 b'""2018-12-01T02:03:04.000009+10:30""'
 >>> orjson.dumps(
-    datetime.datetime(2100, 9, 1, 21, 55, 2).replace(tzinfo=zoneinfo.ZoneInfo(""UTC""))
+    datetime.datetime.fromtimestamp(4123518902).replace(tzinfo=datetime.timezone.utc)
 )
 b'""2100-09-01T21:55:02+00:00""'
 >>> orjson.dumps(
-    datetime.datetime(2100, 9, 1, 21, 55, 2)
+    datetime.datetime.fromtimestamp(4123518902)
+)
+b'""2100-09-01T21:55:02""'",datetime.fromtimestamp,N/A,N/A,N/A
+">>> import orjson, datetime, zoneinfo
+>>> orjson.dumps(
+    datetime.datetime(2018, 12, 1, 2, 3, 4, 9, tzinfo=zoneinfo.ZoneInfo('Australia/Adelaide'))
+)
+b'""2018-12-01T02:03:04.000009+10:30""'
+>>> orjson.dumps(
+    datetime.datetime.fromtimestamp(4123518902).replace(tzinfo=datetime.timezone.utc)
+)
+b'""2100-09-01T21:55:02+00:00""'
+>>> orjson.dumps(
+    datetime.datetime.fromtimestamp(4123518902)
 )
 b'""2100-09-01T21:55:02""'",replace,N/A,N/A,N/A
 ">>> import orjson, datetime
 >>> orjson.dumps(datetime.time(12, 0, 15, 290))
+b'""12:00:15.000290""'",orjson.dumps,dumps,orjson\orjson.pyi,False
+">>> import orjson, datetime
+>>> orjson.dumps(datetime.time(12, 0, 15, 290))
 b'""12:00:15.000290""'",datetime.time,N/A,N/A,N/A
+">>> import orjson, datetime
+>>> orjson.dumps(datetime.date(1900, 1, 2))
+b'""1900-01-02""'",orjson.dumps,dumps,orjson\orjson.pyi,False
 ">>> import orjson, datetime
 >>> orjson.dumps(datetime.date(1900, 1, 2))
 b'""1900-01-02""'",datetime.date,N/A,N/A,N/A
@@ -648,6 +815,15 @@ OverflowError: Invalid Inf value when encoding double
 >>> rapidjson.dumps([float(""NaN""), float(""Infinity""), float(""-Infinity"")])
 '[NaN,Infinity,-Infinity]'
 >>> json.dumps([float(""NaN""), float(""Infinity""), float(""-Infinity"")])
+'[NaN, Infinity, -Infinity]'",orjson.dumps,dumps,orjson\orjson.pyi,False
+">>> import orjson, ujson, rapidjson, json
+>>> orjson.dumps([float(""NaN""), float(""Infinity""), float(""-Infinity"")])
+b'[null,null,null]'
+>>> ujson.dumps([float(""NaN""), float(""Infinity""), float(""-Infinity"")])
+OverflowError: Invalid Inf value when encoding double
+>>> rapidjson.dumps([float(""NaN""), float(""Infinity""), float(""-Infinity"")])
+'[NaN,Infinity,-Infinity]'
+>>> json.dumps([float(""NaN""), float(""Infinity""), float(""-Infinity"")])
 '[NaN, Infinity, -Infinity]'",float,N/A,N/A,N/A
 ">>> import orjson, ujson, rapidjson, json
 >>> orjson.dumps([float(""NaN""), float(""Infinity""), float(""-Infinity"")])
@@ -676,6 +852,19 @@ OverflowError: Invalid Inf value when encoding double
 '[NaN,Infinity,-Infinity]'
 >>> json.dumps([float(""NaN""), float(""Infinity""), float(""-Infinity"")])
 '[NaN, Infinity, -Infinity]'",json.dumps,N/A,N/A,N/A
+">>> import orjson
+>>> orjson.dumps(9007199254740992)
+b'9007199254740992'
+>>> orjson.dumps(9007199254740992, option=orjson.OPT_STRICT_INTEGER)
+JSONEncodeError: Integer exceeds 53-bit range
+>>> orjson.dumps(-9007199254740992, option=orjson.OPT_STRICT_INTEGER)
+JSONEncodeError: Integer exceeds 53-bit range",orjson.dumps,dumps,orjson\orjson.pyi,True
+">>> import orjson, numpy
+>>> orjson.dumps(
+        numpy.array([[1, 2, 3], [4, 5, 6]]),
+        option=orjson.OPT_SERIALIZE_NUMPY,
+)
+b'[[1,2,3],[4,5,6]]'",orjson.dumps,dumps,orjson\orjson.pyi,False
 ">>> import orjson, numpy
 >>> orjson.dumps(
         numpy.array([[1, 2, 3], [4, 5, 6]]),
@@ -697,6 +886,23 @@ b'""2021-01-01T00:00:00.172000""'
         ),
 )
 b'""2021-01-01T00:00:00+00:00""'",numpy.datetime64,N/A,N/A,N/A
+">>> import orjson, ujson, rapidjson, json
+>>> orjson.dumps('\ud800')
+JSONEncodeError: str is not valid UTF-8: surrogates not allowed
+>>> ujson.dumps('\ud800')
+UnicodeEncodeError: 'utf-8' codec ...
+>>> rapidjson.dumps('\ud800')
+UnicodeEncodeError: 'utf-8' codec ...
+>>> json.dumps('\ud800')
+'""\\ud800""'
+>>> orjson.loads('""\\ud800""')
+JSONDecodeError: unexpected end of hex escape at line 1 column 8: line 1 column 1 (char 0)
+>>> ujson.loads('""\\ud800""')
+''
+>>> rapidjson.loads('""\\ud800""')
+ValueError: Parse error at offset 1: The surrogate pair in string is invalid.
+>>> json.loads('""\\ud800""')
+'\ud800'",orjson.dumps,dumps,orjson\orjson.pyi,True
 ">>> import orjson, ujson, rapidjson, json
 >>> orjson.dumps('\ud800')
 JSONEncodeError: str is not valid UTF-8: surrogates not allowed
@@ -764,6 +970,23 @@ JSONDecodeError: unexpected end of hex escape at line 1 column 8: line 1 column 
 >>> rapidjson.loads('""\\ud800""')
 ValueError: Parse error at offset 1: The surrogate pair in string is invalid.
 >>> json.loads('""\\ud800""')
+'\ud800'",orjson.loads,loads,orjson\orjson.pyi,True
+">>> import orjson, ujson, rapidjson, json
+>>> orjson.dumps('\ud800')
+JSONEncodeError: str is not valid UTF-8: surrogates not allowed
+>>> ujson.dumps('\ud800')
+UnicodeEncodeError: 'utf-8' codec ...
+>>> rapidjson.dumps('\ud800')
+UnicodeEncodeError: 'utf-8' codec ...
+>>> json.dumps('\ud800')
+'""\\ud800""'
+>>> orjson.loads('""\\ud800""')
+JSONDecodeError: unexpected end of hex escape at line 1 column 8: line 1 column 1 (char 0)
+>>> ujson.loads('""\\ud800""')
+''
+>>> rapidjson.loads('""\\ud800""')
+ValueError: Parse error at offset 1: The surrogate pair in string is invalid.
+>>> json.loads('""\\ud800""')
 '\ud800'",ujson.loads,N/A,N/A,N/A
 ">>> import orjson, ujson, rapidjson, json
 >>> orjson.dumps('\ud800')
@@ -803,7 +1026,17 @@ ValueError: Parse error at offset 1: The surrogate pair in string is invalid.
 >>> orjson.loads(b'""\xed\xa0\x80""')
 JSONDecodeError: str is not valid UTF-8: surrogates not allowed
 >>> orjson.loads(b'""\xed\xa0\x80""'.decode(""utf-8"", ""replace""))
+'���'",orjson.loads,loads,orjson\orjson.pyi,True
+">>> import orjson
+>>> orjson.loads(b'""\xed\xa0\x80""')
+JSONDecodeError: str is not valid UTF-8: surrogates not allowed
+>>> orjson.loads(b'""\xed\xa0\x80""'.decode(""utf-8"", ""replace""))
 '���'",decode,N/A,N/A,N/A
+">>> import orjson, uuid
+>>> orjson.dumps(uuid.UUID('f81d4fae-7dec-11d0-a765-00a0c91e6bf6'))
+b'""f81d4fae-7dec-11d0-a765-00a0c91e6bf6""'
+>>> orjson.dumps(uuid.uuid5(uuid.NAMESPACE_DNS, ""python.org""))
+b'""886313e1-3b8a-5372-9b90-0c9aee199e5d""'",orjson.dumps,dumps,orjson\orjson.pyi,False
 ">>> import orjson, uuid
 >>> orjson.dumps(uuid.UUID('f81d4fae-7dec-11d0-a765-00a0c91e6bf6'))
 b'""f81d4fae-7dec-11d0-a765-00a0c91e6bf6""'
@@ -814,3 +1047,69 @@ b'""886313e1-3b8a-5372-9b90-0c9aee199e5d""'",uuid.UUID,N/A,N/A,N/A
 b'""f81d4fae-7dec-11d0-a765-00a0c91e6bf6""'
 >>> orjson.dumps(uuid.uuid5(uuid.NAMESPACE_DNS, ""python.org""))
 b'""886313e1-3b8a-5372-9b90-0c9aee199e5d""'",uuid.uuid5,N/A,N/A,N/A
+"def loads(__obj: Union[bytes, bytearray, str]) -> Any: ...",loads,N/A,N/A,N/A
+">>> import orjson, datetime, pendulum
+>>> orjson.dumps(
+    datetime.datetime(2018, 12, 1, 2, 3, 4, 9, tzinfo=pendulum.timezone('Australia/Adelaide'))
+)
+b'""2018-12-01T02:03:04.000009+10:30""'
+>>> orjson.dumps(
+    datetime.datetime.fromtimestamp(4123518902).replace(tzinfo=datetime.timezone.utc)
+)
+b'""2100-09-01T21:55:02+00:00""'
+>>> orjson.dumps(
+    datetime.datetime.fromtimestamp(4123518902)
+)
+b'""2100-09-01T21:55:02""'",orjson.dumps,dumps,orjson\orjson.pyi,False
+">>> import orjson, datetime, pendulum
+>>> orjson.dumps(
+    datetime.datetime(2018, 12, 1, 2, 3, 4, 9, tzinfo=pendulum.timezone('Australia/Adelaide'))
+)
+b'""2018-12-01T02:03:04.000009+10:30""'
+>>> orjson.dumps(
+    datetime.datetime.fromtimestamp(4123518902).replace(tzinfo=datetime.timezone.utc)
+)
+b'""2100-09-01T21:55:02+00:00""'
+>>> orjson.dumps(
+    datetime.datetime.fromtimestamp(4123518902)
+)
+b'""2100-09-01T21:55:02""'",datetime.datetime,N/A,N/A,N/A
+">>> import orjson, datetime, pendulum
+>>> orjson.dumps(
+    datetime.datetime(2018, 12, 1, 2, 3, 4, 9, tzinfo=pendulum.timezone('Australia/Adelaide'))
+)
+b'""2018-12-01T02:03:04.000009+10:30""'
+>>> orjson.dumps(
+    datetime.datetime.fromtimestamp(4123518902).replace(tzinfo=datetime.timezone.utc)
+)
+b'""2100-09-01T21:55:02+00:00""'
+>>> orjson.dumps(
+    datetime.datetime.fromtimestamp(4123518902)
+)
+b'""2100-09-01T21:55:02""'",pendulum.timezone,N/A,N/A,N/A
+">>> import orjson, datetime, pendulum
+>>> orjson.dumps(
+    datetime.datetime(2018, 12, 1, 2, 3, 4, 9, tzinfo=pendulum.timezone('Australia/Adelaide'))
+)
+b'""2018-12-01T02:03:04.000009+10:30""'
+>>> orjson.dumps(
+    datetime.datetime.fromtimestamp(4123518902).replace(tzinfo=datetime.timezone.utc)
+)
+b'""2100-09-01T21:55:02+00:00""'
+>>> orjson.dumps(
+    datetime.datetime.fromtimestamp(4123518902)
+)
+b'""2100-09-01T21:55:02""'",datetime.fromtimestamp,N/A,N/A,N/A
+">>> import orjson, datetime, pendulum
+>>> orjson.dumps(
+    datetime.datetime(2018, 12, 1, 2, 3, 4, 9, tzinfo=pendulum.timezone('Australia/Adelaide'))
+)
+b'""2018-12-01T02:03:04.000009+10:30""'
+>>> orjson.dumps(
+    datetime.datetime.fromtimestamp(4123518902).replace(tzinfo=datetime.timezone.utc)
+)
+b'""2100-09-01T21:55:02+00:00""'
+>>> orjson.dumps(
+    datetime.datetime.fromtimestamp(4123518902)
+)
+b'""2100-09-01T21:55:02""'",replace,N/A,N/A,N/A

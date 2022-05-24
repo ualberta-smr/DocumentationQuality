@@ -1,4 +1,4 @@
-Example,Truth functions,Test functions,Linked functions,Source
+Example,Truth functions,Test functions,Linked functions
 ">>> r = requests.get('https://api.github.com/user', auth=('user', 'pass'))
 >>> r.status_code
 200
@@ -9,63 +9,50 @@ Example,Truth functions,Test functions,Linked functions,Source
 >>> r.text
 '{""type"":""User""...'
 >>> r.json()
-{'private_gists': 419, 'total_private_repos': 77, ...}
-","['get', 'json']","['get', 'N/A']",['get']
-">>> r = requests.get('https://api.github.com/events')
-",['get'],['get'],['get']
-">>> r = requests.post('https://httpbin.org/post', data={'key': 'value'})
-",['post'],['post'],['post']
+{'private_gists': 419, 'total_private_repos': 77, ...}","['get', 'json']","['get', ('r.json', 'N/A')]",['get']
+>>> r = requests.get('https://api.github.com/events'),['get'],['get'],['get']
+">>> r = requests.post('https://httpbin.org/post', data={'key': 'value'})",['post'],['post'],['post']
 ">>> r = requests.put('https://httpbin.org/put', data={'key': 'value'})
 >>> r = requests.delete('https://httpbin.org/delete')
 >>> r = requests.head('https://httpbin.org/get')
->>> r = requests.options('https://httpbin.org/get')
-","['put', 'delete', 'head', 'options']","['put', 'delete', 'head', 'options']","['put', 'delete', 'head', 'options']"
+>>> r = requests.options('https://httpbin.org/get')","['put', 'delete', 'head', 'options']","['put', 'delete', 'head', 'options']","['put', 'delete', 'head', 'options']"
 ">>> payload = {'key1': 'value1', 'key2': 'value2'}
->>> r = requests.get('https://httpbin.org/get', params=payload)
-",['get'],['get'],['get']
+>>> r = requests.get('https://httpbin.org/get', params=payload)",['get'],['get'],['get']
 ">>> print(r.url)
-https://httpbin.org/get?key2=value2&key1=value1
-",['N/A'],['N/A'],['N/A']
+https://httpbin.org/get?key2=value2&key1=value1",[''],"[('print', 'N/A')]",[]
 ">>> payload = {'key1': 'value1', 'key2': ['value2', 'value3']}
 
 >>> r = requests.get('https://httpbin.org/get', params=payload)
 >>> print(r.url)
-https://httpbin.org/get?key1=value1&key2=value2&key2=value3
-",['get'],"['get', 'N/A']",['get']
+https://httpbin.org/get?key1=value1&key2=value2&key2=value3",['get'],"['get', ('print', 'N/A')]",['get']
 ">>> import requests
 
 >>> r = requests.get('https://api.github.com/events')
 >>> r.text
-'[{""repository"":{""open_issues"":0,""url"":""https://github.com/...
-","['get', 'text']",['get'],['get']
+'[{""repository"":{""open_issues"":0,""url"":""https://github.com/...","['get', 'text']",['get'],['get']
 ">>> from PIL import Image
 >>> from io import BytesIO
 
->>> i = Image.open(BytesIO(r.content))
-",['content'],"['N/A', 'N/A']",[]
+>>> i = Image.open(BytesIO(r.content))",['content'],"[('Image.open', 'N/A'), ('BytesIO', 'N/A')]",[]
 ">>> import requests
 
 >>> r = requests.get('https://api.github.com/events')
 >>> r.json()
-[{'repository': {'open_issues': 0, 'url': 'https://github.com/...
-","['get', 'json']","['get', 'N/A']",['get']
+[{'repository': {'open_issues': 0, 'url': 'https://github.com/...","['get', 'json']","['get', ('r.json', 'N/A')]",['get']
 ">>> r = requests.get('https://api.github.com/events', stream=True)
 
 >>> r.raw
 
 
 >>> r.raw.read(10)
-'\x1f\x8b\x08\x00\x00\x00\x00\x00\x00\x03'
-",['get'],"['get', 'N/A']",['get']
+'\x1f\x8b\x08\x00\x00\x00\x00\x00\x00\x03'",['get'],"['get', ('raw.read', 'N/A')]",['get']
 "with open(filename, 'wb') as fd:
     for chunk in r.iter_content(chunk_size=128):
-        fd.write(chunk)
-",['iter_content'],"['N/A', 'N/A', 'N/A']",[]
+        fd.write(chunk)",['iter_content'],"[('open', 'N/A'), ('r.iter_content', 'N/A'), ('fd.write', 'N/A')]",[]
 ">>> url = 'https://api.github.com/some/endpoint'
 >>> headers = {'user-agent': 'my-app/0.0.1'}
 
->>> r = requests.get(url, headers=headers)
-",['get'],['get'],['get']
+>>> r = requests.get(url, headers=headers)",['get'],['get'],['get']
 ">>> payload = {'key1': 'value1', 'key2': 'value2'}
 
 >>> r = requests.post(""https://httpbin.org/post"", data=payload)
@@ -77,8 +64,7 @@ https://httpbin.org/get?key1=value1&key2=value2&key2=value3
     ""key1"": ""value1""
   },
   ...
-}
-",['post'],"['post', 'N/A']",['post']
+}",['post'],"['post', ('print', 'N/A')]",['post']
 ">>> payload_tuples = [('key1', 'value1'), ('key1', 'value2')]
 >>> r1 = requests.post('https://httpbin.org/post', data=payload_tuples)
 >>> payload_dict = {'key1': ['value1', 'value2']}
@@ -95,17 +81,14 @@ https://httpbin.org/get?key1=value1&key2=value2&key2=value3
   ...
 }
 >>> r1.text == r2.text
-True
-",['post'],"['post', 'N/A']",['post']
+True",['post'],"['post', ('print', 'N/A')]",['post']
 ">>> import json
 
 >>> url = 'https://api.github.com/some/endpoint'
 >>> payload = {'some': 'data'}
 
->>> r = requests.post(url, data=json.dumps(payload))
-",['post'],"['post', 'N/A']",['post']
-">>> r = requests.post(url, json=payload)
-",['post'],['post'],['post']
+>>> r = requests.post(url, data=json.dumps(payload))",['post'],"['post', ('json.dumps', 'N/A')]",['post']
+">>> r = requests.post(url, json=payload)",['post'],['post'],['post']
 ">>> url = 'https://httpbin.org/post'
 >>> files = {'file': open('report.xls', 'rb')}
 
@@ -117,8 +100,7 @@ True
     ""file"": """"
   },
   ...
-}
-","['post', 'text']","['N/A', 'post']",['post']
+}","['post', 'text']","[('open', 'N/A'), 'post']",['post']
 ">>> url = 'https://httpbin.org/post'
 >>> files = {'file': ('report.xls', open('report.xls', 'rb'), 'application/vnd.ms-excel', {'Expires': '0'})}
 
@@ -130,8 +112,7 @@ True
     ""file"": """"
   },
   ...
-}
-","['post', 'text']","['N/A', 'post']",['post']
+}","['post', 'text']","[('open', 'N/A'), 'post']",['post']
 ">>> url = 'https://httpbin.org/post'
 >>> files = {'file': ('report.csv', 'some,data,to,send\nanother,row,to,send\n')}
 
@@ -143,12 +124,10 @@ True
     ""file"": ""some,data,to,send\\nanother,row,to,send\\n""
   },
   ...
-}
-","['post', 'text']",['post'],['post']
+}","['post', 'text']",['post'],['post']
 ">>> r = requests.get('https://httpbin.org/get')
 >>> r.status_code
-200
-",['get'],['get'],['get']
+200",['get'],['get'],['get']
 ">>> bad_r = requests.get('https://httpbin.org/status/404')
 >>> bad_r.status_code
 404
@@ -157,38 +136,32 @@ True
 Traceback (most recent call last):
   File ""requests/models.py"", line 832, in raise_for_status
     raise http_error
-requests.exceptions.HTTPError: 404 Client Error
-","['get', 'raise_for_status']",['N/A'],[]
+requests.exceptions.HTTPError: 404 Client Error","['get', 'raise_for_status']","['get', ('bad_r.raise_for_status', 'N/A')]",['get']
 ">>> r.raise_for_status()
-None
-",['raise_for_status'],['N/A'],[]
+None",['raise_for_status'],"[('r.raise_for_status', 'N/A')]",[]
 ">>> r.headers['Content-Type']
 'application/json'
 
 >>> r.headers.get('content-type')
-'application/json'
-",['get'],['N/A'],[]
+'application/json'",['get'],"[('headers.get', 'N/A')]",[]
 ">>> url = 'http://example.com/some/cookie/setting/url'
 >>> r = requests.get(url)
 
 >>> r.cookies['example_cookie_name']
-'example_cookie_value'
-",['get'],['get'],['get']
+'example_cookie_value'",['get'],['get'],['get']
 ">>> url = 'https://httpbin.org/cookies'
 >>> cookies = dict(cookies_are='working')
 
 >>> r = requests.get(url, cookies=cookies)
 >>> r.text
-'{""cookies"": {""cookies_are"": ""working""}}'
-","['get', 'text']","['N/A', 'get']",['get']
+'{""cookies"": {""cookies_are"": ""working""}}'","['get', 'text']","[('dict', 'N/A'), 'get']",['get']
 ">>> jar = requests.cookies.RequestsCookieJar()
 >>> jar.set('tasty_cookie', 'yum', domain='httpbin.org', path='/cookies')
 >>> jar.set('gross_cookie', 'blech', domain='httpbin.org', path='/elsewhere')
 >>> url = 'https://httpbin.org/cookies'
 >>> r = requests.get(url, cookies=jar)
 >>> r.text
-'{""cookies"": {""tasty_cookie"": ""yum""}}'
-","['set', 'get', 'text']","['__init__', 'N/A', 'get']",['get']
+'{""cookies"": {""tasty_cookie"": ""yum""}}'","['set', 'get', 'text']","['__init__', ('jar.set', 'N/A'), 'get']",['get']
 ">>> r = requests.get('http://github.com/')
 
 >>> r.url
@@ -198,44 +171,38 @@ None
 200
 
 >>> r.history
-[]
-",['get'],['get'],['get']
+[]",['get'],['get'],['get']
 ">>> r = requests.get('http://github.com/', allow_redirects=False)
 
 >>> r.status_code
 301
 
 >>> r.history
-[]
-",['get'],['get'],['get']
+[]",['get'],['get'],['get']
 ">>> r = requests.head('http://github.com/', allow_redirects=True)
 
 >>> r.url
 'https://github.com/'
 
 >>> r.history
-[]
-",['head'],['head'],['head']
+[]",['head'],['head'],['head']
 ">>> requests.get('https://github.com/', timeout=0.001)
 Traceback (most recent call last):
   File """", line 1, in 
-requests.exceptions.Timeout: HTTPConnectionPool(host='github.com', port=80): Request timed out. (timeout=0.001)
-",['get'],['N/A'],[]
+requests.exceptions.Timeout: HTTPConnectionPool(host='github.com', port=80): Request timed out. (timeout=0.001)",['get'],"['get', ('HTTPConnectionPool', 'N/A')]",['get']
 "s = requests.Session()
 
 s.get('https://httpbin.org/cookies/set/sessioncookie/123456789')
 r = s.get('https://httpbin.org/cookies')
 
 print(r.text)
-# '{""cookies"": {""sessioncookie"": ""123456789""}}'
-","['__init__', 'get', 'text']","['__init__', 'N/A', 'N/A']",['__init__']
+# '{""cookies"": {""sessioncookie"": ""123456789""}}'","['__init__', 'get', 'text']","['__init__', ('s.get', 'N/A'), ('print', 'N/A')]",['__init__']
 "s = requests.Session()
 s.auth = ('user', 'pass')
 s.headers.update({'x-test': 'true'})
 
 # both 'x-test' and 'x-test2' are sent
-s.get('https://httpbin.org/headers', headers={'x-test2': 'true'})
-","['__init__', 'get']","['__init__', 'N/A', 'N/A']",['__init__']
+s.get('https://httpbin.org/headers', headers={'x-test2': 'true'})","['__init__', 'get']","['__init__', ('headers.update', 'N/A'), ('s.get', 'N/A')]",['__init__']
 "s = requests.Session()
 
 r = s.get('https://httpbin.org/cookies', cookies={'from-my': 'browser'})
@@ -244,13 +211,10 @@ print(r.text)
 
 r = s.get('https://httpbin.org/cookies')
 print(r.text)
-# '{""cookies"": {}}'
-","['__init__', 'get', 'text']","['__init__', 'N/A', 'N/A']",['__init__']
+# '{""cookies"": {}}'","['__init__', 'get', 'text']","['__init__', ('s.get', 'N/A'), ('print', 'N/A')]",['__init__']
 "with requests.Session() as s:
-    s.get('https://httpbin.org/cookies/set/sessioncookie/123456789')
-","['__init__', 'get']","['__init__', 'N/A']",['__init__']
-">>> r = requests.get('https://en.wikipedia.org/wiki/Monty_Python')
-",['get'],['get'],['get']
+    s.get('https://httpbin.org/cookies/set/sessioncookie/123456789')","['__init__', 'get']","['__init__', ('s.get', 'N/A')]",['__init__']
+>>> r = requests.get('https://en.wikipedia.org/wiki/Monty_Python'),['get'],['get'],['get']
 "from requests import Request, Session
 
 s = Session()
@@ -272,8 +236,7 @@ resp = s.send(prepped,
     timeout=timeout
 )
 
-print(resp.status_code)
-","['__init__', '__init__', 'prepare']","['__init__', '__init__', 'N/A', 'N/A', 'N/A']","['__init__', '__init__']"
+print(resp.status_code)","['__init__', '__init__', 'prepare']","['__init__', '__init__', ('req.prepare', 'N/A'), ('s.send', 'N/A'), ('print', 'N/A')]","['__init__', '__init__']"
 "from requests import Request, Session
 
 s = Session()
@@ -295,8 +258,7 @@ resp = s.send(prepped,
     timeout=timeout
 )
 
-print(resp.status_code)
-","['__init__', '__init__', 'prepare_request', 'send']","['__init__', '__init__', 'N/A', 'N/A', 'N/A']","['__init__', '__init__']"
+print(resp.status_code)","['__init__', '__init__', 'prepare_request', 'send']","['__init__', '__init__', ('s.prepare_request', 'N/A'), ('s.send', 'N/A'), ('print', 'N/A')]","['__init__', '__init__']"
 "from requests import Request, Session
 
 s = Session()
@@ -308,50 +270,33 @@ prepped = s.prepare_request(req)
 settings = s.merge_environment_settings(prepped.url, {}, None, None, None)
 resp = s.send(prepped, **settings)
 
-print(resp.status_code)
-","['__init__', '__init__', 'prepare_request', 'merge_environment_settings', 'send']","['__init__', '__init__', 'N/A', 'N/A', 'N/A', 'N/A']","['__init__', '__init__']"
+print(resp.status_code)","['__init__', '__init__', 'prepare_request', 'merge_environment_settings', 'send']","['__init__', '__init__', ('s.prepare_request', 'N/A'), ('s.merge_environment_settings', 'N/A'), ('s.send', 'N/A'), ('print', 'N/A')]","['__init__', '__init__']"
 ">>> requests.get('https://requestb.in')
-requests.exceptions.SSLError: hostname 'requestb.in' doesn't match either of '*.herokuapp.com', 'herokuapp.com'
-",['get'],['get'],['get']
-">>> requests.get('https://github.com')
-
-",['get'],['get'],['get']
-">>> requests.get('https://github.com', verify='/path/to/certfile')
-",['get'],['get'],['get']
+requests.exceptions.SSLError: hostname 'requestb.in' doesn't match either of '*.herokuapp.com', 'herokuapp.com'",['get'],['get'],['get']
+>>> requests.get('https://github.com'),['get'],['get'],['get']
+">>> requests.get('https://github.com', verify='/path/to/certfile')",['get'],['get'],['get']
 "s = requests.Session()
-s.verify = '/path/to/certfile'
-",['__init__'],['__init__'],['__init__']
-">>> requests.get('https://kennethreitz.org', verify=False)
-
-",['get'],['get'],['get']
-">>> requests.get('https://kennethreitz.org', cert=('/path/client.cert', '/path/client.key'))
-
-",['get'],['get'],['get']
+s.verify = '/path/to/certfile'",['__init__'],['__init__'],['__init__']
+">>> requests.get('https://kennethreitz.org', verify=False)",['get'],['get'],['get']
+">>> requests.get('https://kennethreitz.org', cert=('/path/client.cert', '/path/client.key'))",['get'],['get'],['get']
 "s = requests.Session()
-s.cert = '/path/client.cert'
-",['__init__'],['__init__'],['__init__']
+s.cert = '/path/client.cert'",['__init__'],['__init__'],['__init__']
 ">>> requests.get('https://kennethreitz.org', cert='/wrong_path/client.pem')
-SSLError: [Errno 336265225] _ssl.c:347: error:140B0009:SSL routines:SSL_CTX_use_PrivateKey_file:PEM lib
-",['get'],['get'],['get']
+SSLError: [Errno 336265225] _ssl.c:347: error:140B0009:SSL routines:SSL_CTX_use_PrivateKey_file:PEM lib",['get'],['get'],['get']
 "tarball_url = 'https://github.com/psf/requests/tarball/main'
-r = requests.get(tarball_url, stream=True)
-",['get'],['get'],['get']
+r = requests.get(tarball_url, stream=True)",['get'],['get'],['get']
 "if int(r.headers['content-length']) < TOO_LONG:
   content = r.content
-  ...
-",['N/A'],['N/A'],['N/A']
+  ...",[''],"[('int', 'N/A')]",[]
 "with requests.get('https://httpbin.org/get', stream=True) as r:
-    # Do things with the response here.
-",['get'],['get'],['get']
+    # Do things with the response here.",['get'],['get'],['get']
 "with open('massive-body', 'rb') as f:
-    requests.post('http://some.url/streamed', data=f)
-",['post'],"['N/A', 'post']",['post']
+    requests.post('http://some.url/streamed', data=f)",['post'],"[('open', 'N/A'), 'post']",['post']
 "def gen():
     yield 'hi'
     yield 'there'
 
-requests.post('http://some.url/chunked', data=gen())
-",['post'],"['N/A', 'post']",['post']
+requests.post('http://some.url/chunked', data=gen())",['post'],"[('gen', 'N/A'), 'post']",['post']
 ">>> url = 'https://httpbin.org/post'
 >>> multiple_files = [
 ...     ('images', ('foo.png', open('foo.png', 'rb'), 'image/png')),
@@ -363,25 +308,21 @@ requests.post('http://some.url/chunked', data=gen())
   'files': {'images': 'data:image/png;base64,iVBORw ....'}
   'Content-Type': 'multipart/form-data; boundary=3131623adb2043caaeb5538cc7aa0b3a',
   ...
-}
-","['post', 'text']","['N/A', 'post']",['post']
+}","['post', 'text']","[('open', 'N/A'), 'post']",['post']
 "def print_url(r, *args, **kwargs):
-    print(r.url)
-",['N/A'],"['N/A', 'N/A']",['N/A']
+    print(r.url)",[''],"[('print_url', 'N/A'), ('print', 'N/A')]",[]
 "def record_hook(r, *args, **kwargs):
     r.hook_called = True
-    return r
-",['N/A'],['N/A'],['N/A']
+    return r",[''],"[('record_hook', 'N/A')]",[]
 ">>> requests.get('https://httpbin.org/', hooks={'response': print_url})
-https://httpbin.org/
-
-",['get'],['get'],['get']
+https://httpbin.org/",['get'],['get'],['get']
+">>> r = requests.get('https://httpbin.org/', hooks={'response': [print_url, record_hook]})
+>>> r.hook_called
+True",['get'],['get'],['get']
 ">>> s = requests.Session()
 >>> s.hooks['response'].append(print_url)
 >>> s.get('https://httpbin.org/')
- https://httpbin.org/
- 
-","['__init__', 'get']","['__init__', 'N/A', 'N/A']",['__init__']
+ https://httpbin.org/","['__init__', 'get']","['__init__', ('append', 'N/A'), ('s.get', 'N/A')]",['__init__']
 "from requests.auth import AuthBase
 
 class PizzaAuth(AuthBase):
@@ -393,11 +334,8 @@ class PizzaAuth(AuthBase):
     def __call__(self, r):
         # modify and return the request
         r.headers['X-Pizza'] = self.username
-        return r
-",['N/A'],"['N/A', 'N/A', 'N/A']",['N/A']
-">>> requests.get('http://pizzabin.org/admin', auth=PizzaAuth('kenneth'))
-
-",['get'],"['get', 'N/A']",[]
+        return r",[''],"[('PizzaAuth', 'N/A'), ('__init__', 'N/A'), ('__call__', 'N/A')]",[]
+">>> requests.get('http://pizzabin.org/admin', auth=PizzaAuth('kenneth'))",['get'],"['get', ('PizzaAuth', 'N/A')]",[]
 "import json
 import requests
 
@@ -408,8 +346,7 @@ for line in r.iter_lines():
     # filter out keep-alive new lines
     if line:
         decoded_line = line.decode('utf-8')
-        print(json.loads(decoded_line))
-","['get', 'iter_lines']","['N/A', 'N/A', 'N/A', 'N/A']",[]
+        print(json.loads(decoded_line))","['get', 'iter_lines']","['get', ('r.iter_lines', 'N/A'), ('line.decode', 'N/A'), ('print', 'N/A'), ('json.loads', 'N/A')]",[]
 "r = requests.get('https://httpbin.org/stream/20', stream=True)
 
 if r.encoding is None:
@@ -417,16 +354,14 @@ if r.encoding is None:
 
 for line in r.iter_lines(decode_unicode=True):
     if line:
-        print(json.loads(line))
-","['get', 'iter_lines']","['N/A', 'N/A', 'N/A']",[]
+        print(json.loads(line))","['get', 'iter_lines']","['get', ('r.iter_lines', 'N/A'), ('print', 'N/A'), ('json.loads', 'N/A')]",[]
 "lines = r.iter_lines()
 # Save the first line for later or just skip it
 
 first_line = next(lines)
 
 for line in lines:
-    print(line)
-",['iter_lines'],"['N/A', 'N/A', 'N/A']",[]
+    print(line)",['iter_lines'],"[('r.iter_lines', 'N/A'), ('next', 'N/A'), ('print', 'N/A')]",[]
 "import requests
 
 proxies = {
@@ -434,8 +369,7 @@ proxies = {
   'https': 'http://10.10.1.10:1080',
 }
 
-requests.get('http://example.org', proxies=proxies)
-",['get'],['get'],[]
+requests.get('http://example.org', proxies=proxies)",['get'],['get'],[]
 "import requests
 
 proxies = {
@@ -445,31 +379,28 @@ proxies = {
 session = requests.Session()
 session.proxies.update(proxies)
 
-session.get('http://example.org')
-","['__init__', 'get']","['__init__', 'N/A', 'N/A']",['__init__']
+session.get('http://example.org')","['__init__', 'get']","['__init__', ('proxies.update', 'N/A'), ('session.get', 'N/A')]",['__init__']
 "$ export HTTP_PROXY=""http://10.10.1.10:3128""
 $ export HTTPS_PROXY=""http://10.10.1.10:1080""
 $ export ALL_PROXY=""socks5://10.10.1.10:3434""
 
 $ python
 >>> import requests
->>> requests.get('http://example.org')
-",['get'],['get'],[]
+>>> requests.get('http://example.org')",['get'],['get'],[]
 "from requests.utils import DEFAULT_CA_BUNDLE_PATH
-print(DEFAULT_CA_BUNDLE_PATH)
-",['N/A'],['N/A'],['N/A']
+print(DEFAULT_CA_BUNDLE_PATH)",[''],"[('print', 'N/A')]",[]
 "$ export curl_ca_bundle=""/usr/local/myproxy_info/cacert.pem""
 $ export https_proxy=""http://10.10.1.10:1080""
 
 $ python
 >>> import requests
->>> requests.get('https://example.org')
-",['get'],['get'],[]
+>>> requests.get('https://example.org')",['get'],['get'],[]
+">>> import requests
+>>> r = requests.get('https://api.github.com/repos/psf/requests/git/commits/a050faf084662f3a352dd1a941f2c7c9f886d4ad')",['get'],['get'],[]
 ">>> if r.status_code == requests.codes.ok:
 ...     print(r.headers['content-type'])
 ...
-application/json; charset=utf-8
-",['N/A'],['N/A'],['N/A']
+application/json; charset=utf-8",[''],"[('print', 'N/A')]",[]
 ">>> commit_data = r.json()
 
 >>> print(commit_data.keys())
@@ -479,16 +410,13 @@ application/json; charset=utf-8
 {'date': '2012-05-10T11:10:50-07:00', 'email': 'me@kennethreitz.com', 'name': 'Kenneth Reitz'}
 
 >>> print(commit_data['message'])
-makin' history
-",['json'],"['N/A', 'N/A', 'N/A']",[]
+makin' history",['json'],"[('r.json', 'N/A'), ('print', 'N/A'), ('commit_data.keys', 'N/A')]",[]
 ">>> verbs = requests.options(r.url)
 >>> verbs.status_code
-500
-",['options'],['options'],['options']
+500",['options'],['options'],['options']
 ">>> verbs = requests.options('http://a-good-website.com/api/cats')
 >>> print(verbs.headers['allow'])
-GET,HEAD,POST,OPTIONS
-",['options'],['N/A'],[]
+GET,HEAD,POST,OPTIONS",['options'],"[('print', 'N/A')]",[]
 ">>> r = requests.get('https://api.github.com/repos/psf/requests/issues/482')
 >>> r.status_code
 200
@@ -499,8 +427,7 @@ GET,HEAD,POST,OPTIONS
 Feature any http verb in docs
 
 >>> print(issue['comments'])
-3
-",['get'],"['N/A', 'N/A']",[]
+3",['get'],"['get', ('json.loads', 'N/A'), ('print', 'N/A')]",['get']
 ">>> r = requests.get(r.url + '/comments')
 >>> r.status_code
 200
@@ -511,18 +438,15 @@ Feature any http verb in docs
 ['body', 'url', 'created_at', 'updated_at', 'user', 'id']
 
 >>> print(comments[2]['body'])
-Probably in the ""advanced"" section
-",['get'],"['N/A', 'N/A', 'N/A']",[]
+Probably in the ""advanced"" section",['get'],"[('r.json', 'N/A'), ('print', 'N/A'), ('keys', 'N/A')]",[]
 ">>> print(comments[2]['user']['login'])
-kennethreitz
-",['N/A'],['N/A'],['N/A']
+kennethreitz",[''],"[('print', 'N/A')]",[]
 ">>> body = json.dumps({u""body"": u""Sounds great! I'll get right on it!""})
 >>> url = u""https://api.github.com/repos/psf/requests/issues/482/comments""
 
 >>> r = requests.post(url=url, data=body)
 >>> r.status_code
-404
-",['post'],"['N/A', 'post']",['post']
+404",['post'],"[('json.dumps', 'N/A'), 'post']",['post']
 ">>> from requests.auth import HTTPBasicAuth
 >>> auth = HTTPBasicAuth('fake@example.com', 'not_a_real_password')
 
@@ -532,8 +456,7 @@ kennethreitz
 
 >>> content = r.json()
 >>> print(content['body'])
-Sounds great! I'll get right on it.
-","['post', 'json']","['__init__', 'post', 'N/A', 'N/A']",['post']
+Sounds great! I'll get right on it.","['post', 'json']","['__init__', 'post', ('r.json', 'N/A'), ('print', 'N/A')]",['post']
 ">>> print(content[u""id""])
 5804413
 
@@ -542,33 +465,27 @@ Sounds great! I'll get right on it.
 
 >>> r = requests.patch(url=url, data=body, auth=auth)
 >>> r.status_code
-200
-",['patch'],"['N/A', 'N/A', 'patch']",['patch']
+200",['patch'],"[('print', 'N/A'), ('json.dumps', 'N/A'), 'patch']",['patch']
 ">>> r = requests.delete(url=url, auth=auth)
 >>> r.status_code
 204
 >>> r.headers['status']
-'204 No Content'
-",['delete'],['delete'],['delete']
+'204 No Content'",['delete'],['delete'],['delete']
 ">>> r = requests.head(url=url, auth=auth)
 >>> print(r.headers)
 ...
 'x-ratelimit-remaining': '4995'
 'x-ratelimit-limit': '5000'
-...
-",['head'],"['head', 'N/A']",['head']
+...",['head'],"['head', ('print', 'N/A')]",['head']
 ">>> r = requests.request('MKCOL', url, data=data)
 >>> r.status_code
-200 # Assuming your call was correct
-",['request'],['request'],['request']
+200 # Assuming your call was correct",['request'],['request'],['request']
 ">>> url = 'https://api.github.com/users/kennethreitz/repos?page=1&per_page=10'
 >>> r = requests.head(url=url)
 >>> r.headers['link']
-'; rel=""next"", ; rel=""last""'
-",['head'],['head'],['head']
+'; rel=""next"", ; rel=""last""'",['head'],['head'],['head']
 ">>> s = requests.Session()
->>> s.mount('https://github.com/', MyAdapter())
-","['__init__', 'mount']","['__init__', 'N/A', 'N/A']",['__init__']
+>>> s.mount('https://github.com/', MyAdapter())","['__init__', 'mount']","['__init__', ('s.mount', 'N/A'), ('MyAdapter', 'N/A')]",['__init__']
 "import ssl
 from urllib3.poolmanager import PoolManager
 
@@ -581,20 +498,16 @@ class Ssl3HttpAdapter(HTTPAdapter):
     def init_poolmanager(self, connections, maxsize, block=False):
         self.poolmanager = PoolManager(
             num_pools=connections, maxsize=maxsize,
-            block=block, ssl_version=ssl.PROTOCOL_SSLv3)
-",['N/A'],"['N/A', 'N/A', 'N/A']",['N/A']
-"r = requests.get('https://github.com', timeout=None)
-",['get'],['get'],['get']
+            block=block, ssl_version=ssl.PROTOCOL_SSLv3)",[''],"[('Ssl3HttpAdapter', 'N/A'), ('init_poolmanager', 'N/A'), ('PoolManager', 'N/A')]",[]
+"r = requests.get('https://github.com', timeout=5)",['get'],['get'],['get']
+"r = requests.get('https://github.com', timeout=(3.05, 27))",['get'],['get'],['get']
+"r = requests.get('https://github.com', timeout=None)",['get'],['get'],['get']
 ">>> from requests.auth import HTTPBasicAuth
 >>> basic = HTTPBasicAuth('user', 'pass')
->>> requests.get('https://httpbin.org/basic-auth/user/pass', auth=basic)
-
-","['__init__', 'get']",['__init__'],['__init__']
+>>> requests.get('https://httpbin.org/basic-auth/user/pass', auth=basic)","['__init__', 'get']",['__init__'],['__init__']
 ">>> from requests.auth import HTTPDigestAuth
 >>> url = 'https://httpbin.org/digest-auth/auth/user/pass'
->>> requests.get(url, auth=HTTPDigestAuth('user', 'pass'))
-
-","['__init__', 'get']","['get', '__init__']","['__init__', 'get']"
+>>> requests.get(url, auth=HTTPDigestAuth('user', 'pass'))","['__init__', 'get']","['get', '__init__']","['__init__', 'get']"
 ">>> import requests
 >>> from requests_oauthlib import OAuth1
 
@@ -602,9 +515,7 @@ class Ssl3HttpAdapter(HTTPAdapter):
 >>> auth = OAuth1('YOUR_APP_KEY', 'YOUR_APP_SECRET',
 ...               'USER_OAUTH_TOKEN', 'USER_OAUTH_TOKEN_SECRET')
 
->>> requests.get(url, auth=auth)
-
-",['get'],"['N/A', 'get']",['get']
+>>> requests.get(url, auth=auth)",['get'],"[('OAuth1', 'N/A'), 'get']",['get']
 ">>> import requests
 >>> class MyAuth(requests.auth.AuthBase):
 ...     def __call__(self, r):
@@ -612,28 +523,18 @@ class Ssl3HttpAdapter(HTTPAdapter):
 ...         return r
 ...
 >>> url = 'https://httpbin.org/get'
->>> requests.get(url, auth=MyAuth())
-
-",['get'],"['N/A', 'N/A', 'get']",['get']
+>>> requests.get(url, auth=MyAuth())",['get'],"[('MyAuth', 'N/A'), ('__call__', 'N/A'), 'get']",['get']
 ">>> import requests
 >>> req = requests.request('GET', 'https://httpbin.org/get')
->>> req
-
-",['request'],['request'],['request']
+>>> req",['request'],['request'],['request']
 ">>> import requests
 >>> s = requests.Session()
->>> s.get('https://httpbin.org/get')
-
-","['__init__', 'get']","['__init__', 'N/A']",['__init__']
+>>> s.get('https://httpbin.org/get')","['__init__', 'get']","['__init__', ('s.get', 'N/A')]",['__init__']
 ">>> with requests.Session() as s:
-...     s.get('https://httpbin.org/get')
-
-","['__init__', 'get']","['__init__', 'N/A']",['__init__']
+...     s.get('https://httpbin.org/get')","['__init__', 'get']","['__init__', ('s.get', 'N/A')]",['__init__']
 ">>> import requests
 >>> req = requests.Request('GET', 'https://httpbin.org/get')
->>> req.prepare()
-
-","['__init__', 'prepare']","['__init__', 'N/A']",['__init__']
+>>> req.prepare()","['__init__', 'prepare']","['__init__', ('req.prepare', 'N/A')]",['__init__']
 ">>> import requests
 >>> req = requests.Request('GET', 'https://httpbin.org/get')
 >>> r = req.prepare()
@@ -641,28 +542,22 @@ class Ssl3HttpAdapter(HTTPAdapter):
 
 
 >>> s = requests.Session()
->>> s.send(r)
-
-","['__init__', 'prepare', '__init__', 'send']","['__init__', 'N/A', '__init__', 'N/A']","['__init__', '__init__']"
+>>> s.send(r)","['__init__', 'prepare', '__init__', 'send']","['__init__', ('req.prepare', 'N/A'), '__init__', ('s.send', 'N/A')]","['__init__', '__init__']"
 ">>> import requests
 >>> s = requests.Session()
 >>> a = requests.adapters.HTTPAdapter(max_retries=3)
->>> s.mount('http://', a)
-","['__init__', '__init__', 'mount']","['__init__', '__init__', 'N/A']","['__init__', '__init__']"
+>>> s.mount('http://', a)","['__init__', '__init__', 'mount']","['__init__', '__init__', ('s.mount', 'N/A')]","['__init__', '__init__']"
 "import requests
 r = requests.get('https://api.github.com/events')
-r.json()   # This *call* raises an exception if JSON decoding fails
-","['get', 'json']","['get', 'N/A']",['get']
+r.json()   # This *call* raises an exception if JSON decoding fails","['get', 'json']","['get', ('r.json', 'N/A')]",['get']
 "s = requests.Session()    # formerly, session took parameters
 s.auth = auth
 s.headers.update(headers)
-r = s.get('https://httpbin.org/headers')
-","['__init__', 'get']","['__init__', 'N/A', 'N/A']",['__init__']
+r = s.get('https://httpbin.org/headers')","['__init__', 'get']","['__init__', ('headers.update', 'N/A'), ('s.get', 'N/A')]",['__init__']
 "# in 0.x, passing prefetch=False would accomplish the same thing
 r = requests.get('https://api.github.com/events', stream=True)
 for chunk in r.iter_content(8192):
-    ...
-","['get', 'iter_content']","['get', 'N/A']",['get']
+    ...","['get', 'iter_content']","['get', ('r.iter_content', 'N/A')]",['get']
 "import requests
 import logging
 
@@ -681,13 +576,11 @@ requests_log = logging.getLogger(""urllib3"")
 requests_log.setLevel(logging.DEBUG)
 requests_log.propagate = True
 
-requests.get('https://httpbin.org/headers')
-",['get'],"['N/A', 'N/A', 'N/A', 'N/A', 'get']",['get']
+requests.get('https://httpbin.org/headers')",['get'],"[('logging.basicConfig', 'N/A'), ('logging.getLogger', 'N/A'), ('setLevel', 'N/A'), ('requests_log.setLevel', 'N/A'), 'get']",['get']
 "proxies = {
   ""http"": ""10.10.1.10:3128"",    # use http://10.10.1.10:3128 instead
 }
 
 # In requests 1.x, this was legal, in requests 2.x,
 #  this raises requests.exceptions.MissingSchema
-requests.get(""http://example.org"", proxies=proxies)
-",['get'],['get'],['get']
+requests.get(""http://example.org"", proxies=proxies)",['get'],['get'],['get']

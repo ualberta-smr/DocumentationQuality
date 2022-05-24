@@ -1,4 +1,4 @@
-Example,Truth functions,Test functions,Linked functions,Source
+Example,Truth functions,Test functions,Linked functions
 ">>> import orjson, datetime, numpy
 >>> data = {
     ""type"": ""job"",
@@ -9,12 +9,12 @@ Example,Truth functions,Test functions,Linked functions,Source
 >>> orjson.dumps(data, option=orjson.OPT_NAIVE_UTC | orjson.OPT_SERIALIZE_NUMPY)
 b'{""type"":""job"",""created_at"":""1970-01-01T00:00:00+00:00"",""status"":""\xf0\x9f\x86\x97"",""payload"":[[1,2],[3,4]]}'
 >>> orjson.loads(_)
-{'type': 'job', 'created_at': '1970-01-01T00:00:00+00:00', 'status': '🆗', 'payload': [[1, 2], [3, 4]]}","['dumps', 'loads']","['N/A', 'N/A', 'dumps', 'loads']","['dumps', 'loads']"
+{'type': 'job', 'created_at': '1970-01-01T00:00:00+00:00', 'status': '🆗', 'payload': [[1, 2], [3, 4]]}","['dumps', 'loads']","[('datetime.datetime', 'N/A'), ('numpy.array', 'N/A'), 'dumps', 'loads']","['dumps', 'loads']"
 "def dumps(
     __obj: Any,
     default: Optional[Callable[[Any], Any]] = ...,
     option: Optional[int] = ...,
-) -> bytes: ...",['dumps'],['N/A'],[]
+) -> bytes: ...",['dumps'],"[('dumps', 'N/A')]",[]
 ">>> import orjson, decimal
 >>>
 def default(obj):
@@ -27,7 +27,7 @@ JSONEncodeError: Type is not JSON serializable: decimal.Decimal
 >>> orjson.dumps(decimal.Decimal(""0.0842389659712649442845""), default=default)
 b'""0.0842389659712649442845""'
 >>> orjson.dumps({1, 2}, default=default)
-orjson.JSONEncodeError: Type is not JSON serializable: set",['dumps'],"['N/A', 'N/A', 'N/A', 'N/A']",[]
+orjson.JSONEncodeError: Type is not JSON serializable: set",['dumps'],"[('default', 'N/A'), ('isinstance', 'N/A'), ('str', 'N/A'), 'dumps', ('decimal.Decimal', 'N/A')]",['dumps']
 ">>> import orjson, json, rapidjson
 >>>
 def default(obj):
@@ -39,7 +39,20 @@ b'{""set"":null}'
 >>> json.dumps({""set"":{1, 2}}, default=default)
 '{""set"":null}'
 >>> rapidjson.dumps({""set"":{1, 2}}, default=default)
-'{""set"":null}'",['dumps'],"['N/A', 'N/A', 'N/A', 'N/A', 'N/A']",[]
+'{""set"":null}'",['dumps'],"[('default', 'N/A'), ('isinstance', 'N/A'), ('str', 'N/A'), 'dumps', ('json.dumps', 'N/A'), ('rapidjson.dumps', 'N/A')]",['dumps']
+">>> import orjson
+>>> orjson.dumps([])
+b""[]""
+>>> orjson.dumps([], option=orjson.OPT_APPEND_NEWLINE)
+b""[]\n""",['dumps'],['dumps'],['dumps']
+">>> import orjson
+>>> orjson.dumps({""a"": ""b"", ""c"": {""d"": True}, ""e"": [1, 2]})
+b'{""a"":""b"",""c"":{""d"":true},""e"":[1,2]}'
+>>> orjson.dumps(
+    {""a"": ""b"", ""c"": {""d"": True}, ""e"": [1, 2]},
+    option=orjson.OPT_INDENT_2
+)
+b'{\n  ""a"": ""b"",\n  ""c"": {\n    ""d"": true\n  },\n  ""e"": [\n    1,\n    2\n  ]\n}'",['dumps'],['dumps'],['dumps']
 ">>> import orjson, datetime
 >>> orjson.dumps(
         datetime.datetime(1970, 1, 1, 0, 0, 0),
@@ -49,7 +62,7 @@ b'""1970-01-01T00:00:00""'
         datetime.datetime(1970, 1, 1, 0, 0, 0),
         option=orjson.OPT_NAIVE_UTC,
     )
-b'""1970-01-01T00:00:00+00:00""'",['dumps'],['N/A'],[]
+b'""1970-01-01T00:00:00+00:00""'",['dumps'],"['dumps', ('datetime.datetime', 'N/A')]",['dumps']
 ">>> import orjson, datetime, uuid
 >>> orjson.dumps(
         {uuid.UUID(""7202d115-7ff3-4c81-a7c1-2a1f067b1ece""): [1, 2, 3]},
@@ -60,13 +73,13 @@ b'{""7202d115-7ff3-4c81-a7c1-2a1f067b1ece"":[1,2,3]}'
         {datetime.datetime(1970, 1, 1, 0, 0, 0): [1, 2, 3]},
         option=orjson.OPT_NON_STR_KEYS | orjson.OPT_NAIVE_UTC,
     )
-b'{""1970-01-01T00:00:00+00:00"":[1,2,3]}'",['dumps'],"['N/A', 'N/A']",[]
+b'{""1970-01-01T00:00:00+00:00"":[1,2,3]}'",['dumps'],"['dumps', ('uuid.UUID', 'N/A'), ('datetime.datetime', 'N/A')]",['dumps']
 ">>> import orjson, datetime
 >>> orjson.dumps(
     {""other"": 1, datetime.date(1970, 1, 5): 2, datetime.date(1970, 1, 3): 3},
     option=orjson.OPT_NON_STR_KEYS | orjson.OPT_SORT_KEYS
 )
-b'{""1970-01-03"":3,""1970-01-05"":2,""other"":1}'",['dumps'],['N/A'],[]
+b'{""1970-01-03"":3,""1970-01-05"":2,""other"":1}'",['dumps'],"['dumps', ('datetime.date', 'N/A')]",['dumps']
 ">>> import orjson, datetime
 >>> orjson.dumps(
         datetime.datetime(1970, 1, 1, 0, 0, 0, 1),
@@ -76,7 +89,7 @@ b'""1970-01-01T00:00:00.000001""'
         datetime.datetime(1970, 1, 1, 0, 0, 0, 1),
         option=orjson.OPT_OMIT_MICROSECONDS,
     )
-b'""1970-01-01T00:00:00""'",['dumps'],['N/A'],[]
+b'""1970-01-01T00:00:00""'",['dumps'],"['dumps', ('datetime.datetime', 'N/A')]",['dumps']
 ">>> import orjson, dataclasses
 >>>
 @dataclasses.dataclass
@@ -99,7 +112,7 @@ TypeError: Type is not JSON serializable: User
         option=orjson.OPT_PASSTHROUGH_DATACLASS,
         default=default,
     )
-b'{""id"":""3b1"",""name"":""asd""}'",['dumps'],"['N/A', 'N/A', 'N/A']",[]
+b'{""id"":""3b1"",""name"":""asd""}'",['dumps'],"[('default', 'N/A'), ('isinstance', 'N/A'), 'dumps', ('User', 'N/A')]",['dumps']
 ">>> import orjson, datetime
 >>>
 def default(obj):
@@ -116,7 +129,7 @@ TypeError: Type is not JSON serializable: datetime.datetime
         option=orjson.OPT_PASSTHROUGH_DATETIME,
         default=default,
     )
-b'{""created_at"":""Thu, 01 Jan 1970 00:00:00 GMT""}'",['dumps'],"['N/A', 'N/A', 'N/A', 'N/A']",[]
+b'{""created_at"":""Thu, 01 Jan 1970 00:00:00 GMT""}'",['dumps'],"[('default', 'N/A'), ('isinstance', 'N/A'), ('obj.strftime', 'N/A'), 'dumps', ('datetime.datetime', 'N/A')]",['dumps']
 ">>> import orjson
 >>>
 class Secret(str):
@@ -132,18 +145,13 @@ b'""zxc""'
 >>> orjson.dumps(Secret(""zxc""), option=orjson.OPT_PASSTHROUGH_SUBCLASS)
 TypeError: Type is not JSON serializable: Secret
 >>> orjson.dumps(Secret(""zxc""), option=orjson.OPT_PASSTHROUGH_SUBCLASS, default=default)
-b'""******""'",['dumps'],"['N/A', 'N/A', 'N/A', 'dumps']",['dumps']
-">>> import orjson, datetime, zoneinfo
->>> orjson.dumps(
-        datetime.datetime(1970, 1, 1, 0, 0, 0, tzinfo=zoneinfo.ZoneInfo(""UTC"")),
-    )
-b'""1970-01-01T00:00:00+00:00""'
->>> orjson.dumps(
-        datetime.datetime(1970, 1, 1, 0, 0, 0, tzinfo=zoneinfo.ZoneInfo(""UTC"")),
-        option=orjson.OPT_UTC_Z
-    )
-b'""1970-01-01T00:00:00Z""'",['dumps'],"['N/A', 'N/A']",[]
-"def loads(__obj: Union[bytes, bytearray, memoryview, str]) -> Any: ...",['loads'],['N/A'],[]
+b'""******""'",['dumps'],"[('Secret', 'N/A'), ('default', 'N/A'), ('isinstance', 'N/A'), 'dumps']",['dumps']
+">>> import orjson
+>>> orjson.dumps({""b"": 1, ""c"": 2, ""a"": 3})
+b'{""b"":1,""c"":2,""a"":3}'
+>>> orjson.dumps({""b"": 1, ""c"": 2, ""a"": 3}, option=orjson.OPT_SORT_KEYS)
+b'{""a"":3,""b"":1,""c"":2}'",['dumps'],['dumps'],['dumps']
+"def loads(__obj: Union[bytes, bytearray, memoryview, str]) -> Any: ...",['loads'],"[('loads', 'N/A')]",[]
 ">>> import dataclasses, orjson, typing
 
 @dataclasses.dataclass
@@ -158,26 +166,13 @@ class Object:
     members: typing.List[Member]
 
 >>> orjson.dumps(Object(1, ""a"", [Member(1, True), Member(2)]))
-b'{""id"":1,""name"":""a"",""members"":[{""id"":1,""active"":true},{""id"":2,""active"":false}]}'",['dumps'],"['N/A', 'N/A', 'N/A']",[]
-">>> import orjson, datetime, zoneinfo
->>> orjson.dumps(
-    datetime.datetime(2018, 12, 1, 2, 3, 4, 9, tzinfo=zoneinfo.ZoneInfo(""Australia/Adelaide""))
-)
-b'""2018-12-01T02:03:04.000009+10:30""'
->>> orjson.dumps(
-    datetime.datetime(2100, 9, 1, 21, 55, 2).replace(tzinfo=zoneinfo.ZoneInfo(""UTC""))
-)
-b'""2100-09-01T21:55:02+00:00""'
->>> orjson.dumps(
-    datetime.datetime(2100, 9, 1, 21, 55, 2)
-)
-b'""2100-09-01T21:55:02""'",['dumps'],"['N/A', 'N/A', 'N/A']",[]
+b'{""id"":1,""name"":""a"",""members"":[{""id"":1,""active"":true},{""id"":2,""active"":false}]}'",['dumps'],"[('dataclasses.field', 'N/A'), 'dumps', ('Object', 'N/A'), ('Member', 'N/A')]",['dumps']
 ">>> import orjson, datetime
 >>> orjson.dumps(datetime.time(12, 0, 15, 290))
-b'""12:00:15.000290""'",['dumps'],['N/A'],[]
+b'""12:00:15.000290""'",['dumps'],"['dumps', ('datetime.time', 'N/A')]",['dumps']
 ">>> import orjson, datetime
 >>> orjson.dumps(datetime.date(1900, 1, 2))
-b'""1900-01-02""'",['dumps'],['N/A'],[]
+b'""1900-01-02""'",['dumps'],"['dumps', ('datetime.date', 'N/A')]",['dumps']
 ">>> import enum, datetime, orjson
 >>>
 class DatetimeEnum(enum.Enum):
@@ -185,7 +180,7 @@ class DatetimeEnum(enum.Enum):
 >>> orjson.dumps(DatetimeEnum.EPOCH)
 b'""1970-01-01T00:00:00""'
 >>> orjson.dumps(DatetimeEnum.EPOCH, option=orjson.OPT_NAIVE_UTC)
-b'""1970-01-01T00:00:00+00:00""'",['dumps'],"['N/A', 'N/A', 'dumps']",['dumps']
+b'""1970-01-01T00:00:00+00:00""'",['dumps'],"[('DatetimeEnum', 'N/A'), ('datetime.datetime', 'N/A'), 'dumps']",['dumps']
 ">>> import enum, orjson
 >>>
 class Custom:
@@ -201,7 +196,7 @@ class CustomEnum(enum.Enum):
     ONE = Custom(1)
 
 >>> orjson.dumps(CustomEnum.ONE, default=default)
-b'1'",['dumps'],"['N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'dumps']",['dumps']
+b'1'",['dumps'],"[('__init__', 'N/A'), ('default', 'N/A'), ('isinstance', 'N/A'), ('CustomEnum', 'N/A'), ('Custom', 'N/A'), 'dumps']",['dumps']
 ">>> import orjson, ujson, rapidjson, json
 >>> orjson.dumps([float(""NaN""), float(""Infinity""), float(""-Infinity"")])
 b'[null,null,null]'
@@ -210,13 +205,20 @@ OverflowError: Invalid Inf value when encoding double
 >>> rapidjson.dumps([float(""NaN""), float(""Infinity""), float(""-Infinity"")])
 '[NaN,Infinity,-Infinity]'
 >>> json.dumps([float(""NaN""), float(""Infinity""), float(""-Infinity"")])
-'[NaN, Infinity, -Infinity]'",['dumps'],"['N/A', 'N/A', 'N/A', 'N/A']",[]
+'[NaN, Infinity, -Infinity]'",['dumps'],"['dumps', ('float', 'N/A'), ('ujson.dumps', 'N/A'), ('rapidjson.dumps', 'N/A'), ('json.dumps', 'N/A')]",['dumps']
+">>> import orjson
+>>> orjson.dumps(9007199254740992)
+b'9007199254740992'
+>>> orjson.dumps(9007199254740992, option=orjson.OPT_STRICT_INTEGER)
+JSONEncodeError: Integer exceeds 53-bit range
+>>> orjson.dumps(-9007199254740992, option=orjson.OPT_STRICT_INTEGER)
+JSONEncodeError: Integer exceeds 53-bit range",['dumps'],['dumps'],['dumps']
 ">>> import orjson, numpy
 >>> orjson.dumps(
         numpy.array([[1, 2, 3], [4, 5, 6]]),
         option=orjson.OPT_SERIALIZE_NUMPY,
 )
-b'[[1,2,3],[4,5,6]]'",['dumps'],['N/A'],[]
+b'[[1,2,3],[4,5,6]]'",['dumps'],"['dumps', ('numpy.array', 'N/A')]",['dumps']
 ">>> import orjson, numpy
 >>> orjson.dumps(
         numpy.datetime64(""2021-01-01T00:00:00.172""),
@@ -231,7 +233,7 @@ b'""2021-01-01T00:00:00.172000""'
             orjson.OPT_OMIT_MICROSECONDS
         ),
 )
-b'""2021-01-01T00:00:00+00:00""'",['dumps'],['N/A'],[]
+b'""2021-01-01T00:00:00+00:00""'",['dumps'],"[('numpy.datetime64', 'N/A')]",[]
 ">>> import orjson, ujson, rapidjson, json
 >>> orjson.dumps('\ud800')
 JSONEncodeError: str is not valid UTF-8: surrogates not allowed
@@ -248,14 +250,14 @@ JSONDecodeError: unexpected end of hex escape at line 1 column 8: line 1 column 
 >>> rapidjson.loads('""\\ud800""')
 ValueError: Parse error at offset 1: The surrogate pair in string is invalid.
 >>> json.loads('""\\ud800""')
-'\ud800'","['dumps', 'loads']","['N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A']",[]
+'\ud800'","['dumps', 'loads']","['dumps', ('ujson.dumps', 'N/A'), ('rapidjson.dumps', 'N/A'), ('json.dumps', 'N/A'), 'loads', ('ujson.loads', 'N/A'), ('rapidjson.loads', 'N/A'), ('json.loads', 'N/A')]","['dumps', 'loads']"
 ">>> import orjson
 >>> orjson.loads(b'""\xed\xa0\x80""')
 JSONDecodeError: str is not valid UTF-8: surrogates not allowed
 >>> orjson.loads(b'""\xed\xa0\x80""'.decode(""utf-8"", ""replace""))
-'���'",['loads'],['N/A'],[]
+'���'",['loads'],"['loads', ('decode', 'N/A')]",['loads']
 ">>> import orjson, uuid
 >>> orjson.dumps(uuid.UUID('f81d4fae-7dec-11d0-a765-00a0c91e6bf6'))
 b'""f81d4fae-7dec-11d0-a765-00a0c91e6bf6""'
 >>> orjson.dumps(uuid.uuid5(uuid.NAMESPACE_DNS, ""python.org""))
-b'""886313e1-3b8a-5372-9b90-0c9aee199e5d""'",['dumps'],"['N/A', 'N/A']",[]
+b'""886313e1-3b8a-5372-9b90-0c9aee199e5d""'",['dumps'],"['dumps', ('uuid.UUID', 'N/A'), ('uuid.uuid5', 'N/A')]",['dumps']

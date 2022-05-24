@@ -19,8 +19,7 @@ def evaluate_tasks(truth, test, filename):
             recall_total = 0
             truth_total = 0
             seen = set()
-            with open(os.path.normpath(os.path.join("comparison", filename)),
-                      "w", encoding="utf-8", newline="") as out_file:
+            with open(os.path.normpath(filename), "w", encoding="utf-8", newline="") as out_file:
                 task_writer = csv.writer(out_file, quoting=csv.QUOTE_MINIMAL)
                 task_writer.writerow(
                     ["Paragraph", "Ground truth tasks", "Program tasks",
@@ -116,8 +115,7 @@ def evaluate_links(truth, test, filename):
             precision_total = 0
             recall_total = 0
             seen = set()
-            with open(os.path.normpath(os.path.join("comparison", filename)),
-                      "w", encoding="utf-8", newline="") as out_file:
+            with open(os.path.normpath(filename), "w", encoding="utf-8", newline="") as out_file:
                 link_writer = csv.writer(out_file, quoting=csv.QUOTE_MINIMAL)
                 link_writer.writerow(
                     ["Paragraph", "Ground Truth link", "Program link",
@@ -177,10 +175,8 @@ def evaluate_links(truth, test, filename):
 
 
 if __name__ == '__main__':
-    # x = evaluate_tasks("truth/orjson_tasks.csv", "results/orjson_tasks.csv",
-    #                    "orjson_tasks.csv")
-    # y = evaluate_links("truth/parse_links.csv", "results/parse_links.csv",
-    #                    "parse_links.csv")
+    # x = evaluate_tasks("truth/orjson_tasks.csv", "results/orjson/orjson_tasks.csv", "comparison/orjson_tasks.csv")
+    # y = evaluate_links("truth/orjson_links.csv", "results/orjson/orjson_links.csv", "comparison/orjson_links.csv")
     # print(x, y)
     with open(os.path.normpath("comparison/totals.csv"), "w", encoding="utf-8",
               newline="") as out_file:
@@ -190,13 +186,15 @@ if __name__ == '__main__':
              "Precision", "Correct truth tasks", "Total truth tasks", "Recall"])
         for file in os.listdir("truth"):
             truth_file = os.path.join("truth", file)
-            for file2 in os.listdir("results"):
-                test_file = os.path.join("results", file2)
-                if file == file2:
-                    row = [file]
-                    if re.search(re.compile(r"(?<=_).+(?=\.)"), file)[0] == "tasks":
-                        row = [*row, *evaluate_tasks(truth_file, test_file, file)]
-                    else:
-                        row = [*row, *evaluate_links(truth_file, test_file, file)]
-                    writer.writerow(row)
-                    break
+            for root, dirs, files in os.walk("results"):
+                if files:
+                    for file2 in files:
+                        test_file = os.path.join(root, file)
+                        if file == file2:
+                            row = [file]
+                            if re.search(re.compile(r"(?<=_).+(?=\.)"), file)[0] == "tasks":
+                                row = [*row, *evaluate_tasks(truth_file, test_file, file)]
+                            else:
+                                row = [*row, *evaluate_links(truth_file, test_file, file)]
+                            writer.writerow(row)
+                            break

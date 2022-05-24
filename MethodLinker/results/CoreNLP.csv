@@ -852,13 +852,13 @@ public class BasicPipelineExample {
 
 }
 
-",document.tokens,"CoreEntityMention.tokens
-CoreSentence.tokens
-Sentence.tokens
-CoreDocument.tokens","CoreNLP\src\edu\stanford\nlp\pipeline\CoreEntityMention.java
-CoreNLP\src\edu\stanford\nlp\pipeline\CoreSentence.java
-CoreNLP\src\edu\stanford\nlp\simple\Sentence.java
-CoreNLP\src\edu\stanford\nlp\pipeline\CoreDocument.java",False
+",document.tokens,"Sentence.tokens
+CoreDocument.tokens
+CoreEntityMention.tokens
+CoreSentence.tokens","CoreNLP\src\edu\stanford\nlp\simple\Sentence.java
+CoreNLP\src\edu\stanford\nlp\pipeline\CoreDocument.java
+CoreNLP\src\edu\stanford\nlp\pipeline\CoreEntityMention.java
+CoreNLP\src\edu\stanford\nlp\pipeline\CoreSentence.java",False
 "import edu.stanford.nlp.coref.data.CorefChain;
 import edu.stanford.nlp.ling.*;
 import edu.stanford.nlp.ie.util.*;
@@ -1224,11 +1224,11 @@ public class BasicPipelineExample {
 
 }
 
-",document.sentences,"CoreDocument.sentences
-Document.sentences
-CoreQuote.sentences","CoreNLP\src\edu\stanford\nlp\pipeline\CoreDocument.java
-CoreNLP\src\edu\stanford\nlp\simple\Document.java
-CoreNLP\src\edu\stanford\nlp\pipeline\CoreQuote.java",False
+",document.sentences,"Document.sentences
+CoreQuote.sentences
+CoreDocument.sentences","CoreNLP\src\edu\stanford\nlp\simple\Document.java
+CoreNLP\src\edu\stanford\nlp\pipeline\CoreQuote.java
+CoreNLP\src\edu\stanford\nlp\pipeline\CoreDocument.java",False
 "import edu.stanford.nlp.coref.data.CorefChain;
 import edu.stanford.nlp.ling.*;
 import edu.stanford.nlp.ie.util.*;
@@ -1472,9 +1472,9 @@ public class BasicPipelineExample {
 
 }
 
-",sentence.posTags,"Sentence.posTags
-CoreSentence.posTags","CoreNLP\src\edu\stanford\nlp\simple\Sentence.java
-CoreNLP\src\edu\stanford\nlp\pipeline\CoreSentence.java",False
+",sentence.posTags,"CoreSentence.posTags
+Sentence.posTags","CoreNLP\src\edu\stanford\nlp\pipeline\CoreSentence.java
+CoreNLP\src\edu\stanford\nlp\simple\Sentence.java",False
 "import edu.stanford.nlp.coref.data.CorefChain;
 import edu.stanford.nlp.ling.*;
 import edu.stanford.nlp.ie.util.*;
@@ -2208,9 +2208,9 @@ public class BasicPipelineExample {
 
 }
 
-",sentence.entityMentions,"CoreSentence.entityMentions
-CoreDocument.entityMentions","CoreNLP\src\edu\stanford\nlp\pipeline\CoreSentence.java
-CoreNLP\src\edu\stanford\nlp\pipeline\CoreDocument.java",False
+",sentence.entityMentions,"CoreDocument.entityMentions
+CoreSentence.entityMentions","CoreNLP\src\edu\stanford\nlp\pipeline\CoreDocument.java
+CoreNLP\src\edu\stanford\nlp\pipeline\CoreSentence.java",False
 "import edu.stanford.nlp.coref.data.CorefChain;
 import edu.stanford.nlp.ling.*;
 import edu.stanford.nlp.ie.util.*;
@@ -3064,128 +3064,6 @@ public class BasicPipelineExample {
 
 }
 
-",quote.speaker,CoreQuote.speaker,CoreNLP\src\edu\stanford\nlp\pipeline\CoreQuote.java,False
-"import edu.stanford.nlp.coref.data.CorefChain;
-import edu.stanford.nlp.ling.*;
-import edu.stanford.nlp.ie.util.*;
-import edu.stanford.nlp.pipeline.*;
-import edu.stanford.nlp.semgraph.*;
-import edu.stanford.nlp.trees.*;
-import java.util.*;
-
-
-public class BasicPipelineExample {
-
-  public static String text = ""Joe Smith was born in California. "" +
-      ""In 2017, he went to Paris, France in the summer. "" +
-      ""His flight left at 3:00pm on July 10th, 2017. "" +
-      ""After eating some escargot for the first time, Joe said, \""That was delicious!\"" "" +
-      ""He sent a postcard to his sister Jane Smith. "" +
-      ""After hearing about Joe's trip, Jane decided she might go to France one day."";
-
-  public static void main(String[] args) {
-    // set up pipeline properties
-    Properties props = new Properties();
-    // set the list of annotators to run
-    props.setProperty(""annotators"", ""tokenize,ssplit,pos,lemma,ner,parse,depparse,coref,kbp,quote"");
-    // set a property for an annotator, in this case the coref annotator is being set to use the neural algorithm
-    props.setProperty(""coref.algorithm"", ""neural"");
-    // build pipeline
-    StanfordCoreNLP pipeline = new StanfordCoreNLP(props);
-    // create a document object
-    CoreDocument document = new CoreDocument(text);
-    // annnotate the document
-    pipeline.annotate(document);
-    // examples
-
-    // 10th token of the document
-    CoreLabel token = document.tokens().get(10);
-    System.out.println(""Example: token"");
-    System.out.println(token);
-    System.out.println();
-
-    // text of the first sentence
-    String sentenceText = document.sentences().get(0).text();
-    System.out.println(""Example: sentence"");
-    System.out.println(sentenceText);
-    System.out.println();
-
-    // second sentence
-    CoreSentence sentence = document.sentences().get(1);
-
-    // list of the part-of-speech tags for the second sentence
-    List<String> posTags = sentence.posTags();
-    System.out.println(""Example: pos tags"");
-    System.out.println(posTags);
-    System.out.println();
-
-    // list of the ner tags for the second sentence
-    List<String> nerTags = sentence.nerTags();
-    System.out.println(""Example: ner tags"");
-    System.out.println(nerTags);
-    System.out.println();
-
-    // constituency parse for the second sentence
-    Tree constituencyParse = sentence.constituencyParse();
-    System.out.println(""Example: constituency parse"");
-    System.out.println(constituencyParse);
-    System.out.println();
-
-    // dependency parse for the second sentence
-    SemanticGraph dependencyParse = sentence.dependencyParse();
-    System.out.println(""Example: dependency parse"");
-    System.out.println(dependencyParse);
-    System.out.println();
-
-    // kbp relations found in fifth sentence
-    List<RelationTriple> relations =
-        document.sentences().get(4).relations();
-    System.out.println(""Example: relation"");
-    System.out.println(relations.get(0));
-    System.out.println();
-
-    // entity mentions in the second sentence
-    List<CoreEntityMention> entityMentions = sentence.entityMentions();
-    System.out.println(""Example: entity mentions"");
-    System.out.println(entityMentions);
-    System.out.println();
-
-    // coreference between entity mentions
-    CoreEntityMention originalEntityMention = document.sentences().get(3).entityMentions().get(1);
-    System.out.println(""Example: original entity mention"");
-    System.out.println(originalEntityMention);
-    System.out.println(""Example: canonical entity mention"");
-    System.out.println(originalEntityMention.canonicalEntityMention().get());
-    System.out.println();
-
-    // get document wide coref info
-    Map<Integer, CorefChain> corefChains = document.corefChains();
-    System.out.println(""Example: coref chains for document"");
-    System.out.println(corefChains);
-    System.out.println();
-
-    // get quotes in document
-    List<CoreQuote> quotes = document.quotes();
-    CoreQuote quote = quotes.get(0);
-    System.out.println(""Example: quote"");
-    System.out.println(quote);
-    System.out.println();
-
-    // original speaker of quote
-    // note that quote.speaker() returns an Optional
-    System.out.println(""Example: original speaker of quote"");
-    System.out.println(quote.speaker().get());
-    System.out.println();
-
-    // canonical speaker of quote
-    System.out.println(""Example: canonical speaker of quote"");
-    System.out.println(quote.canonicalSpeaker().get());
-    System.out.println();
-
-  }
-
-}
-
 ",quote.canonicalSpeaker,CoreQuote.canonicalSpeaker,CoreNLP\src\edu\stanford\nlp\pipeline\CoreQuote.java,False
 "import edu.stanford.nlp.pipeline.*;
 import java.util.*;
@@ -3366,9 +3244,9 @@ Annotation document = new Annotation(text);
 
 // run all Annotators on this text
 pipeline.annotate(document);
-",pipeline.annotate,"Util.annotate
-StanfordCoreNLP.annotate","CoreNLP\src\edu\stanford\nlp\naturalli\Util.java
-CoreNLP\src\edu\stanford\nlp\pipeline\StanfordCoreNLP.java",False
+",pipeline.annotate,"StanfordCoreNLP.annotate
+Util.annotate","CoreNLP\src\edu\stanford\nlp\pipeline\StanfordCoreNLP.java
+CoreNLP\src\edu\stanford\nlp\naturalli\Util.java",False
 "// these are all the sentences in this document
 // a CoreMap is essentially a Map that uses class objects as keys and has values with custom types
 List<CoreMap> sentences = document.get(SentencesAnnotation.class);
@@ -4257,10 +4135,10 @@ public class CustomLemmaAnnotator implements Annotator {
   }
   
 }
-",token.word,"Token.word
-CoreLabel.word
-Sentence.word","CoreNLP\src\edu\stanford\nlp\simple\Token.java
-CoreNLP\src\edu\stanford\nlp\ling\CoreLabel.java
+",token.word,"CoreLabel.word
+Token.word
+Sentence.word","CoreNLP\src\edu\stanford\nlp\ling\CoreLabel.java
+CoreNLP\src\edu\stanford\nlp\simple\Token.java
 CoreNLP\src\edu\stanford\nlp\simple\Sentence.java",False
 "package edu.stanford.nlp.examples;
 
@@ -4859,9 +4737,9 @@ public class PipelineExample {
     }
   }
 }
-",tok.word,"Token.word
-CoreLabel.word","CoreNLP\src\edu\stanford\nlp\simple\Token.java
-CoreNLP\src\edu\stanford\nlp\ling\CoreLabel.java",False
+",tok.word,"CoreLabel.word
+Token.word","CoreNLP\src\edu\stanford\nlp\ling\CoreLabel.java
+CoreNLP\src\edu\stanford\nlp\simple\Token.java",False
 "package edu.stanford.nlp.examples;
 
 import edu.stanford.nlp.ling.*;
@@ -4892,9 +4770,9 @@ public class PipelineExample {
     }
   }
 }
-",tok.beginPosition,"CoreLabel.beginPosition
-Token.beginPosition","CoreNLP\src\edu\stanford\nlp\ling\CoreLabel.java
-CoreNLP\src\edu\stanford\nlp\simple\Token.java",False
+",tok.beginPosition,"Token.beginPosition
+CoreLabel.beginPosition","CoreNLP\src\edu\stanford\nlp\simple\Token.java
+CoreNLP\src\edu\stanford\nlp\ling\CoreLabel.java",False
 "package edu.stanford.nlp.examples;
 
 import edu.stanford.nlp.ling.*;
@@ -5089,9 +4967,117 @@ public class ForumPostExample {
     }
   }
 }
-",pipeline.annotate,"Util.annotate
-StanfordCoreNLP.annotate","CoreNLP\src\edu\stanford\nlp\naturalli\Util.java
-CoreNLP\src\edu\stanford\nlp\pipeline\StanfordCoreNLP.java",False
+",Annotation,Annotation,CoreNLP\src\edu\stanford\nlp\pipeline\Annotation.java,True
+"package edu.stanford.nlp.examples;
+
+import edu.stanford.nlp.ling.*;
+import edu.stanford.nlp.io.*;
+import edu.stanford.nlp.pipeline.*;
+import edu.stanford.nlp.util.*;
+
+import java.util.*;
+import java.util.stream.Collectors;
+
+
+public class ForumPostExample {
+
+  public static void main(String args[]) {
+    // properties
+    Properties props = StringUtils.argsToProperties(""-props"", args[0]);
+    // set up pipeline
+    StanfordCoreNLP pipeline = new StanfordCoreNLP(props);
+    // set up document
+    Annotation testDocument = new Annotation(IOUtils.stringFromFile(args[1]));
+    // annotate document
+    pipeline.annotate(testDocument);
+    // print out the forum posts
+    for (CoreMap discussionForumPost : testDocument.get(CoreAnnotations.SectionsAnnotation.class)) {
+      System.err.println(""---"");
+      System.err.println(""author: "" + discussionForumPost.get(CoreAnnotations.AuthorAnnotation.class));
+      System.err.println(""date: "" +
+          discussionForumPost.get(CoreAnnotations.SectionDateAnnotation.class));
+      System.err.println(""char begin: "" +
+          discussionForumPost.get(CoreAnnotations.CharacterOffsetBeginAnnotation.class));
+      System.err.println(""char end: "" +
+          discussionForumPost.get(CoreAnnotations.CharacterOffsetEndAnnotation.class));
+      System.err.println(""author start offset: "" +
+          discussionForumPost.get(CoreAnnotations.SectionAuthorCharacterOffsetBeginAnnotation.class));
+      System.err.println(""author end offset: "" +
+          discussionForumPost.get(CoreAnnotations.SectionAuthorCharacterOffsetEndAnnotation.class));
+      System.err.println(""section start tag: "" +
+          discussionForumPost.get(CoreAnnotations.SectionTagAnnotation.class));
+      // print out the sentences
+      System.err.println(""sentences: "");
+      for (CoreMap sentence : discussionForumPost.get(CoreAnnotations.SentencesAnnotation.class)) {
+        System.err.println(""\t***"");
+        boolean sentenceQuoted = (sentence.get(CoreAnnotations.QuotedAnnotation.class) != null) &&
+            sentence.get(CoreAnnotations.QuotedAnnotation.class);
+        String sentenceAuthor = sentence.get(CoreAnnotations.AuthorAnnotation.class);
+        String potentialQuoteText = sentenceQuoted ? ""(QUOTING: ""+sentenceAuthor+"")"" : """" ;
+        System.err.println(""\t"" + potentialQuoteText + "" "" +
+            sentence.get(CoreAnnotations.TokensAnnotation.class).stream().
+            map(token -> token.word()).collect(Collectors.joining("" "")));
+      }
+    }
+  }
+}
+",IOUtils.stringFromFile,IOUtils.stringFromFile,CoreNLP\src\edu\stanford\nlp\io\IOUtils.java,True
+"package edu.stanford.nlp.examples;
+
+import edu.stanford.nlp.ling.*;
+import edu.stanford.nlp.io.*;
+import edu.stanford.nlp.pipeline.*;
+import edu.stanford.nlp.util.*;
+
+import java.util.*;
+import java.util.stream.Collectors;
+
+
+public class ForumPostExample {
+
+  public static void main(String args[]) {
+    // properties
+    Properties props = StringUtils.argsToProperties(""-props"", args[0]);
+    // set up pipeline
+    StanfordCoreNLP pipeline = new StanfordCoreNLP(props);
+    // set up document
+    Annotation testDocument = new Annotation(IOUtils.stringFromFile(args[1]));
+    // annotate document
+    pipeline.annotate(testDocument);
+    // print out the forum posts
+    for (CoreMap discussionForumPost : testDocument.get(CoreAnnotations.SectionsAnnotation.class)) {
+      System.err.println(""---"");
+      System.err.println(""author: "" + discussionForumPost.get(CoreAnnotations.AuthorAnnotation.class));
+      System.err.println(""date: "" +
+          discussionForumPost.get(CoreAnnotations.SectionDateAnnotation.class));
+      System.err.println(""char begin: "" +
+          discussionForumPost.get(CoreAnnotations.CharacterOffsetBeginAnnotation.class));
+      System.err.println(""char end: "" +
+          discussionForumPost.get(CoreAnnotations.CharacterOffsetEndAnnotation.class));
+      System.err.println(""author start offset: "" +
+          discussionForumPost.get(CoreAnnotations.SectionAuthorCharacterOffsetBeginAnnotation.class));
+      System.err.println(""author end offset: "" +
+          discussionForumPost.get(CoreAnnotations.SectionAuthorCharacterOffsetEndAnnotation.class));
+      System.err.println(""section start tag: "" +
+          discussionForumPost.get(CoreAnnotations.SectionTagAnnotation.class));
+      // print out the sentences
+      System.err.println(""sentences: "");
+      for (CoreMap sentence : discussionForumPost.get(CoreAnnotations.SentencesAnnotation.class)) {
+        System.err.println(""\t***"");
+        boolean sentenceQuoted = (sentence.get(CoreAnnotations.QuotedAnnotation.class) != null) &&
+            sentence.get(CoreAnnotations.QuotedAnnotation.class);
+        String sentenceAuthor = sentence.get(CoreAnnotations.AuthorAnnotation.class);
+        String potentialQuoteText = sentenceQuoted ? ""(QUOTING: ""+sentenceAuthor+"")"" : """" ;
+        System.err.println(""\t"" + potentialQuoteText + "" "" +
+            sentence.get(CoreAnnotations.TokensAnnotation.class).stream().
+            map(token -> token.word()).collect(Collectors.joining("" "")));
+      }
+    }
+  }
+}
+",pipeline.annotate,"StanfordCoreNLP.annotate
+Util.annotate","CoreNLP\src\edu\stanford\nlp\pipeline\StanfordCoreNLP.java
+CoreNLP\src\edu\stanford\nlp\naturalli\Util.java",False
 "package edu.stanford.nlp.examples;
 
 import edu.stanford.nlp.ling.*;
@@ -5775,9 +5761,9 @@ public class SentenceSplittingExample {
     }
   }
 }
-",doc.sentences,"CoreDocument.sentences
-Document.sentences","CoreNLP\src\edu\stanford\nlp\pipeline\CoreDocument.java
-CoreNLP\src\edu\stanford\nlp\simple\Document.java",False
+",doc.sentences,"Document.sentences
+CoreDocument.sentences","CoreNLP\src\edu\stanford\nlp\simple\Document.java
+CoreNLP\src\edu\stanford\nlp\pipeline\CoreDocument.java",False
 "package edu.stanford.nlp.examples;
 
 import edu.stanford.nlp.pipeline.*;
@@ -5833,13 +5819,13 @@ public class SentenceSplittingExample {
     }
   }
 }
-",sent.text,"CoreSentence.text
-Document.text
+",sent.text,"CoreDocument.text
+CoreSentence.text
 Sentence.text
-CoreDocument.text","CoreNLP\src\edu\stanford\nlp\pipeline\CoreSentence.java
-CoreNLP\src\edu\stanford\nlp\simple\Document.java
+Document.text","CoreNLP\src\edu\stanford\nlp\pipeline\CoreDocument.java
+CoreNLP\src\edu\stanford\nlp\pipeline\CoreSentence.java
 CoreNLP\src\edu\stanford\nlp\simple\Sentence.java
-CoreNLP\src\edu\stanford\nlp\pipeline\CoreDocument.java",False
+CoreNLP\src\edu\stanford\nlp\simple\Document.java",False
 "package edu.stanford.nlp.examples;
 
 import edu.stanford.nlp.ling.*;
@@ -5984,9 +5970,9 @@ public class MWTExpansionExample {
     }
   }
 }
-",pipeline.annotate,"Util.annotate
-StanfordCoreNLP.annotate","CoreNLP\src\edu\stanford\nlp\naturalli\Util.java
-CoreNLP\src\edu\stanford\nlp\pipeline\StanfordCoreNLP.java",False
+",pipeline.annotate,"StanfordCoreNLP.annotate
+Util.annotate","CoreNLP\src\edu\stanford\nlp\pipeline\StanfordCoreNLP.java
+CoreNLP\src\edu\stanford\nlp\naturalli\Util.java",False
 "package edu.stanford.nlp.examples;
 
 import edu.stanford.nlp.ling.*;
@@ -7195,11 +7181,11 @@ public class NERPipelineDemo {
 
 }
 
-",em.text,"Document.text
-CoreEntityMention.text
-CoreDocument.text","CoreNLP\src\edu\stanford\nlp\simple\Document.java
-CoreNLP\src\edu\stanford\nlp\pipeline\CoreEntityMention.java
-CoreNLP\src\edu\stanford\nlp\pipeline\CoreDocument.java",False
+",em.text,"CoreDocument.text
+Document.text
+CoreEntityMention.text","CoreNLP\src\edu\stanford\nlp\pipeline\CoreDocument.java
+CoreNLP\src\edu\stanford\nlp\simple\Document.java
+CoreNLP\src\edu\stanford\nlp\pipeline\CoreEntityMention.java",False
 "package edu.stanford.nlp.examples;
 
 import edu.stanford.nlp.pipeline.*;
@@ -7907,11 +7893,11 @@ public class NERConfidenceExample {
         }
     }
 }
-",em.text,"Document.text
-CoreEntityMention.text
-CoreDocument.text","CoreNLP\src\edu\stanford\nlp\simple\Document.java
-CoreNLP\src\edu\stanford\nlp\pipeline\CoreEntityMention.java
-CoreNLP\src\edu\stanford\nlp\pipeline\CoreDocument.java",False
+",em.text,"CoreDocument.text
+Document.text
+CoreEntityMention.text","CoreNLP\src\edu\stanford\nlp\pipeline\CoreDocument.java
+CoreNLP\src\edu\stanford\nlp\simple\Document.java
+CoreNLP\src\edu\stanford\nlp\pipeline\CoreEntityMention.java",False
 "package edu.stanford.nlp.examples;
 
 import edu.stanford.nlp.ling.*;
@@ -8659,13 +8645,13 @@ public class ConstituentExample {
     }
   }
 }
-",constituent.toString,"Constituent.toString
-Tree.toString
-Annotation.toString
-Sentence.toString","CoreNLP\src\edu\stanford\nlp\trees\Constituent.java
-CoreNLP\src\edu\stanford\nlp\trees\Tree.java
-CoreNLP\src\edu\stanford\nlp\pipeline\Annotation.java
-CoreNLP\src\edu\stanford\nlp\simple\Sentence.java",False
+",constituent.toString,"Tree.toString
+Constituent.toString
+Sentence.toString
+Annotation.toString","CoreNLP\src\edu\stanford\nlp\trees\Tree.java
+CoreNLP\src\edu\stanford\nlp\trees\Constituent.java
+CoreNLP\src\edu\stanford\nlp\simple\Sentence.java
+CoreNLP\src\edu\stanford\nlp\pipeline\Annotation.java",False
 "package edu.stanford.nlp.examples;
 
 import edu.stanford.nlp.ling.CoreAnnotations;
@@ -10167,13 +10153,13 @@ public class SUTimeBasicExample {
         }
     }
 }
-",cem.text,"Timex.text
+",cem.text,"CoreDocument.text
 Document.text
-CoreEntityMention.text
-CoreDocument.text","CoreNLP\src\edu\stanford\nlp\time\Timex.java
+Timex.text
+CoreEntityMention.text","CoreNLP\src\edu\stanford\nlp\pipeline\CoreDocument.java
 CoreNLP\src\edu\stanford\nlp\simple\Document.java
-CoreNLP\src\edu\stanford\nlp\pipeline\CoreEntityMention.java
-CoreNLP\src\edu\stanford\nlp\pipeline\CoreDocument.java",False
+CoreNLP\src\edu\stanford\nlp\time\Timex.java
+CoreNLP\src\edu\stanford\nlp\pipeline\CoreEntityMention.java",False
 "package edu.stanford.nlp.examples;
 
 import edu.stanford.nlp.pipeline.*;
@@ -11721,107 +11707,9 @@ public class TokensRegexDemo {
   }
 
 }
-",Annotation,Annotation,CoreNLP\src\edu\stanford\nlp\pipeline\Annotation.java,True
-"package edu.stanford.nlp.examples;
-
-import edu.stanford.nlp.io.IOUtils;
-import edu.stanford.nlp.ling.*;
-import edu.stanford.nlp.ling.tokensregex.*;
-import edu.stanford.nlp.pipeline.*;
-import edu.stanford.nlp.util.*;
-import java.util.List;
-import java.util.Properties;
-import java.util.regex.*;
-
-public class TokensRegexDemo {
-
-  // My custom tokens
-  public static class MyTokensAnnotation implements CoreAnnotation<List extends CoreMap>> {
-    @Override
-    public Class<List extends CoreMap>> getType() {
-      return ErasureUtils.<Class<List extends CoreMap>>> uncheckedCast(List.class);
-    }
-  }
-
-  // My custom type
-  public static class MyTypeAnnotation implements CoreAnnotation<String> {
-    @Override
-    public Class<String> getType() {
-      return ErasureUtils.<Class<String>> uncheckedCast(String.class);
-    }
-  }
-
-  // My custom value
-  public static class MyValueAnnotation implements CoreAnnotation<String> {
-    @Override
-    public Class<String> getType() {
-      return ErasureUtils.<Class<String>> uncheckedCast(String.class);
-    }
-  }
-
-  public static void main(String[] args) {
-
-    // load settings from the command line
-    Properties props = StringUtils.argsToProperties(args);
-
-    // get the text to process
-
-    // load sentences
-    String exampleSentences = IOUtils.stringFromFile(props.getProperty(""inputText""));
-
-    // build pipeline to get sentences and do basic tagging
-    Properties pipelineProps = new Properties();
-    pipelineProps.setProperty(""annotators"", props.getProperty(""annotators""));
-    pipelineProps.setProperty(""ner.applyFineGrained"", ""false"");
-    pipelineProps.setProperty(""ssplit.eolonly"", ""true"");
-    StanfordCoreNLP pipeline = new StanfordCoreNLP(pipelineProps);
-
-    // get sentences
-    Annotation exampleSentencesAnnotation = new Annotation(exampleSentences);
-    pipeline.annotate(exampleSentencesAnnotation);
-
-    // set up the TokensRegex pipeline
-
-    // get the rules files
-    String[] rulesFiles = props.getProperty(""rulesFiles"").split("","");
-
-    // set up an environment with reasonable defaults
-    Env env = TokenSequencePattern.getNewEnv();
-    // set to case insensitive
-    env.setDefaultStringMatchFlags(NodePattern.CASE_INSENSITIVE | Pattern.UNICODE_CASE);
-    env.setDefaultStringPatternFlags(Pattern.CASE_INSENSITIVE | Pattern.UNICODE_CASE);
-
-    // build the CoreMapExpressionExtractor
-    CoreMapExpressionExtractor
-        extractor = CoreMapExpressionExtractor.createExtractorFromFiles(env, rulesFiles);
-
-    // for each sentence in the input text, run the TokensRegex pipeline
-    int sentNum = 0;
-    for (CoreMap sentence : exampleSentencesAnnotation.get(CoreAnnotations.SentencesAnnotation.class)) {
-      System.out.println(""---"");
-      System.out.println(""sentence number: ""+sentNum);
-      System.out.println(""sentence text: ""+sentence.get(CoreAnnotations.TextAnnotation.class));
-      sentNum++;
-      List<MatchedExpression> matchedExpressions = extractor.extractExpressions(sentence);
-      // print out the results of the rules actions
-      for (CoreLabel token : sentence.get(CoreAnnotations.TokensAnnotation.class)) {
-        System.out.println(token.word() + ""\t"" + token.tag() + ""\t"" + token.ner());
-      }
-      // print out the matched expressions
-      for (MatchedExpression me : matchedExpressions) {
-        System.out.println(""matched expression: ""+me.getText());
-        System.out.println(""matched expression value: ""+me.getValue());
-        System.out.println(""matched expression char offsets: ""+me.getCharOffsets());
-        System.out.println(""matched expression tokens:"" +
-            me.getAnnotation().get(CoreAnnotations.TokensAnnotation.class));
-      }
-    }
-  }
-
-}
-",pipeline.annotate,"Util.annotate
-StanfordCoreNLP.annotate","CoreNLP\src\edu\stanford\nlp\naturalli\Util.java
-CoreNLP\src\edu\stanford\nlp\pipeline\StanfordCoreNLP.java",False
+",pipeline.annotate,"StanfordCoreNLP.annotate
+Util.annotate","CoreNLP\src\edu\stanford\nlp\pipeline\StanfordCoreNLP.java
+CoreNLP\src\edu\stanford\nlp\naturalli\Util.java",False
 "package edu.stanford.nlp.examples;
 
 import edu.stanford.nlp.io.IOUtils;
@@ -12703,104 +12591,6 @@ public class TokensRegexDemo {
   }
 
 }
-",sentence.get,Env.get,CoreNLP\src\edu\stanford\nlp\ling\tokensregex\Env.java,True
-"package edu.stanford.nlp.examples;
-
-import edu.stanford.nlp.io.IOUtils;
-import edu.stanford.nlp.ling.*;
-import edu.stanford.nlp.ling.tokensregex.*;
-import edu.stanford.nlp.pipeline.*;
-import edu.stanford.nlp.util.*;
-import java.util.List;
-import java.util.Properties;
-import java.util.regex.*;
-
-public class TokensRegexDemo {
-
-  // My custom tokens
-  public static class MyTokensAnnotation implements CoreAnnotation<List extends CoreMap>> {
-    @Override
-    public Class<List extends CoreMap>> getType() {
-      return ErasureUtils.<Class<List extends CoreMap>>> uncheckedCast(List.class);
-    }
-  }
-
-  // My custom type
-  public static class MyTypeAnnotation implements CoreAnnotation<String> {
-    @Override
-    public Class<String> getType() {
-      return ErasureUtils.<Class<String>> uncheckedCast(String.class);
-    }
-  }
-
-  // My custom value
-  public static class MyValueAnnotation implements CoreAnnotation<String> {
-    @Override
-    public Class<String> getType() {
-      return ErasureUtils.<Class<String>> uncheckedCast(String.class);
-    }
-  }
-
-  public static void main(String[] args) {
-
-    // load settings from the command line
-    Properties props = StringUtils.argsToProperties(args);
-
-    // get the text to process
-
-    // load sentences
-    String exampleSentences = IOUtils.stringFromFile(props.getProperty(""inputText""));
-
-    // build pipeline to get sentences and do basic tagging
-    Properties pipelineProps = new Properties();
-    pipelineProps.setProperty(""annotators"", props.getProperty(""annotators""));
-    pipelineProps.setProperty(""ner.applyFineGrained"", ""false"");
-    pipelineProps.setProperty(""ssplit.eolonly"", ""true"");
-    StanfordCoreNLP pipeline = new StanfordCoreNLP(pipelineProps);
-
-    // get sentences
-    Annotation exampleSentencesAnnotation = new Annotation(exampleSentences);
-    pipeline.annotate(exampleSentencesAnnotation);
-
-    // set up the TokensRegex pipeline
-
-    // get the rules files
-    String[] rulesFiles = props.getProperty(""rulesFiles"").split("","");
-
-    // set up an environment with reasonable defaults
-    Env env = TokenSequencePattern.getNewEnv();
-    // set to case insensitive
-    env.setDefaultStringMatchFlags(NodePattern.CASE_INSENSITIVE | Pattern.UNICODE_CASE);
-    env.setDefaultStringPatternFlags(Pattern.CASE_INSENSITIVE | Pattern.UNICODE_CASE);
-
-    // build the CoreMapExpressionExtractor
-    CoreMapExpressionExtractor
-        extractor = CoreMapExpressionExtractor.createExtractorFromFiles(env, rulesFiles);
-
-    // for each sentence in the input text, run the TokensRegex pipeline
-    int sentNum = 0;
-    for (CoreMap sentence : exampleSentencesAnnotation.get(CoreAnnotations.SentencesAnnotation.class)) {
-      System.out.println(""---"");
-      System.out.println(""sentence number: ""+sentNum);
-      System.out.println(""sentence text: ""+sentence.get(CoreAnnotations.TextAnnotation.class));
-      sentNum++;
-      List<MatchedExpression> matchedExpressions = extractor.extractExpressions(sentence);
-      // print out the results of the rules actions
-      for (CoreLabel token : sentence.get(CoreAnnotations.TokensAnnotation.class)) {
-        System.out.println(token.word() + ""\t"" + token.tag() + ""\t"" + token.ner());
-      }
-      // print out the matched expressions
-      for (MatchedExpression me : matchedExpressions) {
-        System.out.println(""matched expression: ""+me.getText());
-        System.out.println(""matched expression value: ""+me.getValue());
-        System.out.println(""matched expression char offsets: ""+me.getCharOffsets());
-        System.out.println(""matched expression tokens:"" +
-            me.getAnnotation().get(CoreAnnotations.TokensAnnotation.class));
-      }
-    }
-  }
-
-}
 ",extractor.extractExpressions,CoreMapExpressionExtractor.extractExpressions,CoreNLP\src\edu\stanford\nlp\ling\tokensregex\CoreMapExpressionExtractor.java,True
 "package edu.stanford.nlp.examples;
 
@@ -12899,10 +12689,10 @@ public class TokensRegexDemo {
   }
 
 }
-",token.word,"Token.word
-CoreLabel.word
-Sentence.word","CoreNLP\src\edu\stanford\nlp\simple\Token.java
-CoreNLP\src\edu\stanford\nlp\ling\CoreLabel.java
+",token.word,"CoreLabel.word
+Token.word
+Sentence.word","CoreNLP\src\edu\stanford\nlp\ling\CoreLabel.java
+CoreNLP\src\edu\stanford\nlp\simple\Token.java
 CoreNLP\src\edu\stanford\nlp\simple\Sentence.java",False
 "package edu.stanford.nlp.examples;
 
@@ -13001,9 +12791,9 @@ public class TokensRegexDemo {
   }
 
 }
-",token.tag,"CoreLabel.tag
-Token.tag","CoreNLP\src\edu\stanford\nlp\ling\CoreLabel.java
-CoreNLP\src\edu\stanford\nlp\simple\Token.java",False
+",token.tag,"Token.tag
+CoreLabel.tag","CoreNLP\src\edu\stanford\nlp\simple\Token.java
+CoreNLP\src\edu\stanford\nlp\ling\CoreLabel.java",False
 "package edu.stanford.nlp.examples;
 
 import edu.stanford.nlp.io.IOUtils;
@@ -13299,13 +13089,13 @@ public class TokensRegexDemo {
   }
 
 }
-",me.getValue,"CoreMapExpressionExtractor.getValue
-Token.getValue
+",me.getValue,"MatchedExpression.getValue
 Match.getValue
-MatchedExpression.getValue","CoreNLP\src\edu\stanford\nlp\ling\tokensregex\CoreMapExpressionExtractor.java
-CoreNLP\src\edu\stanford\nlp\ling\tokensregex\parser\Token.java
+CoreMapExpressionExtractor.getValue
+Token.getValue","CoreNLP\src\edu\stanford\nlp\ling\tokensregex\MatchedExpression.java
 CoreNLP\src\edu\stanford\nlp\ling\tokensregex\matcher\Match.java
-CoreNLP\src\edu\stanford\nlp\ling\tokensregex\MatchedExpression.java",False
+CoreNLP\src\edu\stanford\nlp\ling\tokensregex\CoreMapExpressionExtractor.java
+CoreNLP\src\edu\stanford\nlp\ling\tokensregex\parser\Token.java",False
 "package edu.stanford.nlp.examples;
 
 import edu.stanford.nlp.io.IOUtils;
@@ -13935,11 +13725,11 @@ public class TokensRegexAnnotatorDemo {
     }
   }
 }
-",pipeline.annotate,"Util.annotate
+",pipeline.annotate,"TokensRegexAnnotator.annotate
 StanfordCoreNLP.annotate
-TokensRegexAnnotator.annotate","CoreNLP\src\edu\stanford\nlp\naturalli\Util.java
+Util.annotate","CoreNLP\src\edu\stanford\nlp\pipeline\TokensRegexAnnotator.java
 CoreNLP\src\edu\stanford\nlp\pipeline\StanfordCoreNLP.java
-CoreNLP\src\edu\stanford\nlp\pipeline\TokensRegexAnnotator.java",False
+CoreNLP\src\edu\stanford\nlp\naturalli\Util.java",False
 "package edu.stanford.nlp.examples;
 
 import edu.stanford.nlp.ling.*;
@@ -14131,10 +13921,10 @@ public class TokensRegexAnnotatorDemo {
     }
   }
 }
-",token.word,"Token.word
-CoreLabel.word
-Sentence.word","CoreNLP\src\edu\stanford\nlp\simple\Token.java
-CoreNLP\src\edu\stanford\nlp\ling\CoreLabel.java
+",token.word,"CoreLabel.word
+Token.word
+Sentence.word","CoreNLP\src\edu\stanford\nlp\ling\CoreLabel.java
+CoreNLP\src\edu\stanford\nlp\simple\Token.java
 CoreNLP\src\edu\stanford\nlp\simple\Sentence.java",False
 "package edu.stanford.nlp.examples;
 
@@ -14528,61 +14318,6 @@ matched expression tokens:[-LRB--1, 5-2, +-3, 5-4, -RRB--5, +-6, 5-7]
     return pl;
   }
 ",pl.addAnnotator,AnnotationPipeline.addAnnotator,CoreNLP\src\edu\stanford\nlp\pipeline\AnnotationPipeline.java,True
-"  public AnnotationPipeline buildPipeline() {
-    AnnotationPipeline pl = new AnnotationPipeline();
-    pl.addAnnotator(new TokenizerAnnotator(false));
-    pl.addAnnotator(new WordsToSentencesAnnotator(false));
-    pl.addAnnotator(new POSTaggerAnnotator(false));
-    pl.addAnnotator(new MorphaAnnotator(false));
-    pl.addAnnotator(new TimeAnnotator(""sutime"", props));
-    pl.addAnnotator(new PhraseAnnotator(phrasesFile, false));
-    return pl;
-  }
-",pl.addAnnotator,AnnotationPipeline.addAnnotator,CoreNLP\src\edu\stanford\nlp\pipeline\AnnotationPipeline.java,True
-"  public AnnotationPipeline buildPipeline() {
-    AnnotationPipeline pl = new AnnotationPipeline();
-    pl.addAnnotator(new TokenizerAnnotator(false));
-    pl.addAnnotator(new WordsToSentencesAnnotator(false));
-    pl.addAnnotator(new POSTaggerAnnotator(false));
-    pl.addAnnotator(new MorphaAnnotator(false));
-    pl.addAnnotator(new TimeAnnotator(""sutime"", props));
-    pl.addAnnotator(new PhraseAnnotator(phrasesFile, false));
-    return pl;
-  }
-",pl.addAnnotator,AnnotationPipeline.addAnnotator,CoreNLP\src\edu\stanford\nlp\pipeline\AnnotationPipeline.java,True
-"  public AnnotationPipeline buildPipeline() {
-    AnnotationPipeline pl = new AnnotationPipeline();
-    pl.addAnnotator(new TokenizerAnnotator(false));
-    pl.addAnnotator(new WordsToSentencesAnnotator(false));
-    pl.addAnnotator(new POSTaggerAnnotator(false));
-    pl.addAnnotator(new MorphaAnnotator(false));
-    pl.addAnnotator(new TimeAnnotator(""sutime"", props));
-    pl.addAnnotator(new PhraseAnnotator(phrasesFile, false));
-    return pl;
-  }
-",pl.addAnnotator,AnnotationPipeline.addAnnotator,CoreNLP\src\edu\stanford\nlp\pipeline\AnnotationPipeline.java,True
-"  public AnnotationPipeline buildPipeline() {
-    AnnotationPipeline pl = new AnnotationPipeline();
-    pl.addAnnotator(new TokenizerAnnotator(false));
-    pl.addAnnotator(new WordsToSentencesAnnotator(false));
-    pl.addAnnotator(new POSTaggerAnnotator(false));
-    pl.addAnnotator(new MorphaAnnotator(false));
-    pl.addAnnotator(new TimeAnnotator(""sutime"", props));
-    pl.addAnnotator(new PhraseAnnotator(phrasesFile, false));
-    return pl;
-  }
-",pl.addAnnotator,AnnotationPipeline.addAnnotator,CoreNLP\src\edu\stanford\nlp\pipeline\AnnotationPipeline.java,False
-"  public AnnotationPipeline buildPipeline() {
-    AnnotationPipeline pl = new AnnotationPipeline();
-    pl.addAnnotator(new TokenizerAnnotator(false));
-    pl.addAnnotator(new WordsToSentencesAnnotator(false));
-    pl.addAnnotator(new POSTaggerAnnotator(false));
-    pl.addAnnotator(new MorphaAnnotator(false));
-    pl.addAnnotator(new TimeAnnotator(""sutime"", props));
-    pl.addAnnotator(new PhraseAnnotator(phrasesFile, false));
-    return pl;
-  }
-",pl.addAnnotator,AnnotationPipeline.addAnnotator,CoreNLP\src\edu\stanford\nlp\pipeline\AnnotationPipeline.java,False
 "  public AnnotationPipeline buildPipeline() {
     AnnotationPipeline pl = new AnnotationPipeline();
     pl.addAnnotator(new TokenizerAnnotator(false));
