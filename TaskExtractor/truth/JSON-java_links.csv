@@ -1,33 +1,33 @@
-Paragraphs,Example
-Build the class files from the package root directory src/main/java,javac org/json/*.java
-Create the jar file in the current directory,jar cf json-java.jar org/json/*.class
-Compile a program that uses the jar (see example code below),javac -cp .;json-java.jar Test.java 
+Paragraphs,Examples,Tasks
+Build the class files from the package root directory src/main/java,javac org/json/*.java,FALSE
+Create the jar file in the current directory,jar cf json-java.jar org/json/*.class,FALSE
+Compile a program that uses the jar (see example code below),javac -cp .;json-java.jar Test.java ,TRUE
 Test file contents,"import org.json.JSONObject;
 public class Test {
     public static void main(String args[]){
        JSONObject jo = new JSONObject(""{ \""abc\"" : \""def\"" }"");
        System.out.println(jo.toString());
     }
-}"
-Execute the Test file,java -cp .;json-java.jar Test
-Expected output,"{""abc"":""def""}"
-Execute the test suite with Maven:,mvn clean test
-Execute the test suite with Gradlew:,gradlew clean build test
+}",FALSE
+Execute the Test file,java -cp .;json-java.jar Test,TRUE
+Expected output,"{""abc"":""def""}",FALSE
+Execute the test suite with Maven:,mvn clean test,TRUE
+Execute the test suite with Gradlew:,gradlew clean build test,TRUE
 "For example, code like this will create a mixed JSONArray, some items wrapped, others not:","SomeBean[] myArr = new SomeBean[]{ new SomeBean(1), new SomeBean(2) };
 // these will be wrapped
 JSONArray jArr = new JSONArray(myArr);
 // these will not be wrapped
-jArr.putAll(new SomeBean[]{ new SomeBean(3), new SomeBean(4) });"
+jArr.putAll(new SomeBean[]{ new SomeBean(3), new SomeBean(4) });",FALSE
 "For structure consistency, it would be recommended that the above code is changed to look like 1 of 2 ways.","SomeBean[] myArr = new SomeBean[]{ new SomeBean(1), new SomeBean(2) };
 JSONArray jArr = new JSONArray();
 // these will not be wrapped
 jArr.putAll(myArr);
 // these will not be wrapped
 jArr.putAll(new SomeBean[]{ new SomeBean(3), new SomeBean(4) });
-// our jArr is now consistent."
+// our jArr is now consistent.",FALSE
 "For structure consistency, it would be recommended that the above code is changed to look like 1 of 2 ways.","SomeBean[] myArr = new SomeBean[]{ new SomeBean(1), new SomeBean(2) };
 // these will be wrapped
 JSONArray jArr = new JSONArray(myArr);
 // these will be wrapped
 jArr.putAll(new JSONArray(new SomeBean[]{ new SomeBean(3), new SomeBean(4) }));
-// our jArr is now consistent."
+// our jArr is now consistent.",FALSE

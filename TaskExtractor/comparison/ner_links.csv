@@ -1,4 +1,4 @@
-Paragraph,Ground Truth link,Program link,Partial ratio
+Paragraph,Ground Truth link,Program link,Has Tasks,Partial ratio
 These are the default models that are run:,"# tags: location, organization, person
 edu/stanford/nlp/models/ner/english.all.3class.distsim.crf.ser.gz
 # tags: date, location, money, organization, percent, person, time
@@ -9,513 +9,9 @@ edu/stanford/nlp/models/ner/english.all.3class.distsim.crf.ser.gz
 # tags: date, location, money, organization, percent, person, time
 edu/stanford/nlp/models/ner/english.muc.7class.distsim.crf.ser.gz
 # location, misc, organization, person
-edu/stanford/nlp/models/ner/english.conll.4class.distsim.crf.ser.gz",99
-"means to match the token “Los” followed by the token “Angeles”, and label them both as CITY, provided they have a current NER tag of O, LOCATION, or MISC.","los angeles	city	location,misc	1.0",bachelor of (arts|science)	degree	misc	1.0,45
-"If you want to run a series of TokensRegex rules before entity building, you can also specify a set of TokensRegex rules. A TokensRegexAnnotator sub-annotator will be called. It has the name ner.additional.tokensregex.","java -xmx5g edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.additional.tokensregex.rules example.rules -file example.txt -outputformat text","java -xmx5g edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.additional.tokensregex.rules example.rules -file example.txt -outputformat text",100
-There a variety of ways to customize an NER pipeline. Below are some example commands.,"# run default ner
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -file example.txt -outputformat text","# run default ner
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -file example.txt -outputformat text",100
-There a variety of ways to customize an NER pipeline. Below are some example commands.,"# run default ner
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -file example.txt -outputformat text","# only run rules based ner (numeric classifiers, sutime, tokensregexner, tokensregex)
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.rulesonly -file example.txt",72
-There a variety of ways to customize an NER pipeline. Below are some example commands.,"# run default ner
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -file example.txt -outputformat text","# only run statistical ner
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.statisticalonly -file example.txt",82
-There a variety of ways to customize an NER pipeline. Below are some example commands.,"# run default ner
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -file example.txt -outputformat text","# shut off numeric classifiers
-# note that in this case ner no longer requires pos or lemma
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,ner -ner.applynumericclassifiers false -file example.txt -outputformat text",70
-There a variety of ways to customize an NER pipeline. Below are some example commands.,"# run default ner
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -file example.txt -outputformat text","# shut off sutime
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.usesutime false -file example.txt -outputformat text",88
-There a variety of ways to customize an NER pipeline. Below are some example commands.,"# run default ner
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -file example.txt -outputformat text","# specify doc date for each document to be 2019-01-01
-# other options for setting doc date specified below
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.docdate.usefixeddate 2019-01-01 -file example.txt",63
-There a variety of ways to customize an NER pipeline. Below are some example commands.,"# run default ner
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -file example.txt -outputformat text","# shut off fine grained ner
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.applyfinegrained false -file example.txt -outputformat text",85
-There a variety of ways to customize an NER pipeline. Below are some example commands.,"# run default ner
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -file example.txt -outputformat text","# run fine-grained ner with a custom rules file
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.fine.regexner.mapping custom.rules -file example.txt -outputformat text",80
-There a variety of ways to customize an NER pipeline. Below are some example commands.,"# run default ner
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -file example.txt -outputformat text","# run fine-grained ner with two custom rules files
-# the first rules file caseless.rules should be case-insensitive, the second rules file uses default options
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.fine.regexner.mapping ""ignorecase=true,caseless.rules;cased.rules"" -file example.txt -outputformat text",59
-There a variety of ways to customize an NER pipeline. Below are some example commands.,"# run default ner
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -file example.txt -outputformat text","# add additional rules to run after fine-grained ner
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.additional.regexner.mapping additional.rules -file example.txt -outputformat text",77
-There a variety of ways to customize an NER pipeline. Below are some example commands.,"# run default ner
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -file example.txt -outputformat text","# run tokens regex rules
-java -xmx5g edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.additional.tokensregex.rules example.rules -file example.txt -outputformat text",78
-There a variety of ways to customize an NER pipeline. Below are some example commands.,"# run default ner
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -file example.txt -outputformat text","# don't build entity mentions
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.buildentitymentions false -file example.txt -outputformat text",83
-There a variety of ways to customize an NER pipeline. Below are some example commands.,"# only run rules based ner (numeric classifiers, sutime, tokensregexner, tokensregex)
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.rulesonly -file example.txt ","# run default ner
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -file example.txt -outputformat text",72
-There a variety of ways to customize an NER pipeline. Below are some example commands.,"# only run rules based ner (numeric classifiers, sutime, tokensregexner, tokensregex)
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.rulesonly -file example.txt ","# only run rules based ner (numeric classifiers, sutime, tokensregexner, tokensregex)
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.rulesonly -file example.txt",100
-There a variety of ways to customize an NER pipeline. Below are some example commands.,"# only run rules based ner (numeric classifiers, sutime, tokensregexner, tokensregex)
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.rulesonly -file example.txt ","# only run statistical ner
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.statisticalonly -file example.txt",78
-There a variety of ways to customize an NER pipeline. Below are some example commands.,"# only run rules based ner (numeric classifiers, sutime, tokensregexner, tokensregex)
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.rulesonly -file example.txt ","# shut off numeric classifiers
-# note that in this case ner no longer requires pos or lemma
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,ner -ner.applynumericclassifiers false -file example.txt -outputformat text",69
-There a variety of ways to customize an NER pipeline. Below are some example commands.,"# only run rules based ner (numeric classifiers, sutime, tokensregexner, tokensregex)
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.rulesonly -file example.txt ","# shut off sutime
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.usesutime false -file example.txt -outputformat text",72
-There a variety of ways to customize an NER pipeline. Below are some example commands.,"# only run rules based ner (numeric classifiers, sutime, tokensregexner, tokensregex)
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.rulesonly -file example.txt ","# specify doc date for each document to be 2019-01-01
-# other options for setting doc date specified below
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.docdate.usefixeddate 2019-01-01 -file example.txt",66
-There a variety of ways to customize an NER pipeline. Below are some example commands.,"# only run rules based ner (numeric classifiers, sutime, tokensregexner, tokensregex)
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.rulesonly -file example.txt ","# shut off fine grained ner
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.applyfinegrained false -file example.txt -outputformat text",71
-There a variety of ways to customize an NER pipeline. Below are some example commands.,"# only run rules based ner (numeric classifiers, sutime, tokensregexner, tokensregex)
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.rulesonly -file example.txt ","# run fine-grained ner with a custom rules file
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.fine.regexner.mapping custom.rules -file example.txt -outputformat text",71
-There a variety of ways to customize an NER pipeline. Below are some example commands.,"# only run rules based ner (numeric classifiers, sutime, tokensregexner, tokensregex)
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.rulesonly -file example.txt ","# run fine-grained ner with two custom rules files
-# the first rules file caseless.rules should be case-insensitive, the second rules file uses default options
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.fine.regexner.mapping ""ignorecase=true,caseless.rules;cased.rules"" -file example.txt -outputformat text",61
-There a variety of ways to customize an NER pipeline. Below are some example commands.,"# only run rules based ner (numeric classifiers, sutime, tokensregexner, tokensregex)
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.rulesonly -file example.txt ","# add additional rules to run after fine-grained ner
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.additional.regexner.mapping additional.rules -file example.txt -outputformat text",70
-There a variety of ways to customize an NER pipeline. Below are some example commands.,"# only run rules based ner (numeric classifiers, sutime, tokensregexner, tokensregex)
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.rulesonly -file example.txt ","# run tokens regex rules
-java -xmx5g edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.additional.tokensregex.rules example.rules -file example.txt -outputformat text",68
-There a variety of ways to customize an NER pipeline. Below are some example commands.,"# only run rules based ner (numeric classifiers, sutime, tokensregexner, tokensregex)
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.rulesonly -file example.txt ","# don't build entity mentions
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.buildentitymentions false -file example.txt -outputformat text",73
-There a variety of ways to customize an NER pipeline. Below are some example commands.,"# only run statistical ner
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.statisticalonly -file example.txt ","# run default ner
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -file example.txt -outputformat text",82
-There a variety of ways to customize an NER pipeline. Below are some example commands.,"# only run statistical ner
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.statisticalonly -file example.txt ","# only run rules based ner (numeric classifiers, sutime, tokensregexner, tokensregex)
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.rulesonly -file example.txt",78
-There a variety of ways to customize an NER pipeline. Below are some example commands.,"# only run statistical ner
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.statisticalonly -file example.txt ","# only run statistical ner
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.statisticalonly -file example.txt",99
-There a variety of ways to customize an NER pipeline. Below are some example commands.,"# only run statistical ner
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.statisticalonly -file example.txt ","# shut off numeric classifiers
-# note that in this case ner no longer requires pos or lemma
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,ner -ner.applynumericclassifiers false -file example.txt -outputformat text",68
-There a variety of ways to customize an NER pipeline. Below are some example commands.,"# only run statistical ner
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.statisticalonly -file example.txt ","# shut off sutime
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.usesutime false -file example.txt -outputformat text",82
-There a variety of ways to customize an NER pipeline. Below are some example commands.,"# only run statistical ner
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.statisticalonly -file example.txt ","# specify doc date for each document to be 2019-01-01
-# other options for setting doc date specified below
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.docdate.usefixeddate 2019-01-01 -file example.txt",69
-There a variety of ways to customize an NER pipeline. Below are some example commands.,"# only run statistical ner
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.statisticalonly -file example.txt ","# shut off fine grained ner
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.applyfinegrained false -file example.txt -outputformat text",80
-There a variety of ways to customize an NER pipeline. Below are some example commands.,"# only run statistical ner
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.statisticalonly -file example.txt ","# run fine-grained ner with a custom rules file
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.fine.regexner.mapping custom.rules -file example.txt -outputformat text",75
-There a variety of ways to customize an NER pipeline. Below are some example commands.,"# only run statistical ner
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.statisticalonly -file example.txt ","# run fine-grained ner with two custom rules files
-# the first rules file caseless.rules should be case-insensitive, the second rules file uses default options
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.fine.regexner.mapping ""ignorecase=true,caseless.rules;cased.rules"" -file example.txt -outputformat text",58
-There a variety of ways to customize an NER pipeline. Below are some example commands.,"# only run statistical ner
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.statisticalonly -file example.txt ","# add additional rules to run after fine-grained ner
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.additional.regexner.mapping additional.rules -file example.txt -outputformat text",75
-There a variety of ways to customize an NER pipeline. Below are some example commands.,"# only run statistical ner
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.statisticalonly -file example.txt ","# run tokens regex rules
-java -xmx5g edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.additional.tokensregex.rules example.rules -file example.txt -outputformat text",74
-There a variety of ways to customize an NER pipeline. Below are some example commands.,"# only run statistical ner
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.statisticalonly -file example.txt ","# don't build entity mentions
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.buildentitymentions false -file example.txt -outputformat text",80
-There a variety of ways to customize an NER pipeline. Below are some example commands.,"# shut off numeric classifiers
-# note that in this case ner no longer requires pos or lemma
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,ner -ner.applynumericclassifiers false -file example.txt -outputformat text","# run default ner
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -file example.txt -outputformat text",70
-There a variety of ways to customize an NER pipeline. Below are some example commands.,"# shut off numeric classifiers
-# note that in this case ner no longer requires pos or lemma
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,ner -ner.applynumericclassifiers false -file example.txt -outputformat text","# only run rules based ner (numeric classifiers, sutime, tokensregexner, tokensregex)
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.rulesonly -file example.txt",68
-There a variety of ways to customize an NER pipeline. Below are some example commands.,"# shut off numeric classifiers
-# note that in this case ner no longer requires pos or lemma
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,ner -ner.applynumericclassifiers false -file example.txt -outputformat text","# only run statistical ner
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.statisticalonly -file example.txt",67
-There a variety of ways to customize an NER pipeline. Below are some example commands.,"# shut off numeric classifiers
-# note that in this case ner no longer requires pos or lemma
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,ner -ner.applynumericclassifiers false -file example.txt -outputformat text","# shut off numeric classifiers
-# note that in this case ner no longer requires pos or lemma
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,ner -ner.applynumericclassifiers false -file example.txt -outputformat text",100
-There a variety of ways to customize an NER pipeline. Below are some example commands.,"# shut off numeric classifiers
-# note that in this case ner no longer requires pos or lemma
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,ner -ner.applynumericclassifiers false -file example.txt -outputformat text","# shut off sutime
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.usesutime false -file example.txt -outputformat text",74
-There a variety of ways to customize an NER pipeline. Below are some example commands.,"# shut off numeric classifiers
-# note that in this case ner no longer requires pos or lemma
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,ner -ner.applynumericclassifiers false -file example.txt -outputformat text","# specify doc date for each document to be 2019-01-01
-# other options for setting doc date specified below
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.docdate.usefixeddate 2019-01-01 -file example.txt",62
-There a variety of ways to customize an NER pipeline. Below are some example commands.,"# shut off numeric classifiers
-# note that in this case ner no longer requires pos or lemma
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,ner -ner.applynumericclassifiers false -file example.txt -outputformat text","# shut off fine grained ner
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.applyfinegrained false -file example.txt -outputformat text",78
-There a variety of ways to customize an NER pipeline. Below are some example commands.,"# shut off numeric classifiers
-# note that in this case ner no longer requires pos or lemma
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,ner -ner.applynumericclassifiers false -file example.txt -outputformat text","# run fine-grained ner with a custom rules file
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.fine.regexner.mapping custom.rules -file example.txt -outputformat text",73
-There a variety of ways to customize an NER pipeline. Below are some example commands.,"# shut off numeric classifiers
-# note that in this case ner no longer requires pos or lemma
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,ner -ner.applynumericclassifiers false -file example.txt -outputformat text","# run fine-grained ner with two custom rules files
-# the first rules file caseless.rules should be case-insensitive, the second rules file uses default options
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.fine.regexner.mapping ""ignorecase=true,caseless.rules;cased.rules"" -file example.txt -outputformat text",65
-There a variety of ways to customize an NER pipeline. Below are some example commands.,"# shut off numeric classifiers
-# note that in this case ner no longer requires pos or lemma
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,ner -ner.applynumericclassifiers false -file example.txt -outputformat text","# add additional rules to run after fine-grained ner
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.additional.regexner.mapping additional.rules -file example.txt -outputformat text",69
-There a variety of ways to customize an NER pipeline. Below are some example commands.,"# shut off numeric classifiers
-# note that in this case ner no longer requires pos or lemma
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,ner -ner.applynumericclassifiers false -file example.txt -outputformat text","# run tokens regex rules
-java -xmx5g edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.additional.tokensregex.rules example.rules -file example.txt -outputformat text",68
-There a variety of ways to customize an NER pipeline. Below are some example commands.,"# shut off numeric classifiers
-# note that in this case ner no longer requires pos or lemma
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,ner -ner.applynumericclassifiers false -file example.txt -outputformat text","# don't build entity mentions
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.buildentitymentions false -file example.txt -outputformat text",73
-There a variety of ways to customize an NER pipeline. Below are some example commands.,"# shut off sutime
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.usesutime false -file example.txt -outputformat text","# run default ner
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -file example.txt -outputformat text",88
-There a variety of ways to customize an NER pipeline. Below are some example commands.,"# shut off sutime
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.usesutime false -file example.txt -outputformat text","# only run rules based ner (numeric classifiers, sutime, tokensregexner, tokensregex)
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.rulesonly -file example.txt",72
-There a variety of ways to customize an NER pipeline. Below are some example commands.,"# shut off sutime
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.usesutime false -file example.txt -outputformat text","# only run statistical ner
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.statisticalonly -file example.txt",81
-There a variety of ways to customize an NER pipeline. Below are some example commands.,"# shut off sutime
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.usesutime false -file example.txt -outputformat text","# shut off numeric classifiers
-# note that in this case ner no longer requires pos or lemma
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,ner -ner.applynumericclassifiers false -file example.txt -outputformat text",75
-There a variety of ways to customize an NER pipeline. Below are some example commands.,"# shut off sutime
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.usesutime false -file example.txt -outputformat text","# shut off sutime
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.usesutime false -file example.txt -outputformat text",100
-There a variety of ways to customize an NER pipeline. Below are some example commands.,"# shut off sutime
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.usesutime false -file example.txt -outputformat text","# specify doc date for each document to be 2019-01-01
-# other options for setting doc date specified below
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.docdate.usefixeddate 2019-01-01 -file example.txt",67
-There a variety of ways to customize an NER pipeline. Below are some example commands.,"# shut off sutime
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.usesutime false -file example.txt -outputformat text","# shut off fine grained ner
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.applyfinegrained false -file example.txt -outputformat text",90
-There a variety of ways to customize an NER pipeline. Below are some example commands.,"# shut off sutime
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.usesutime false -file example.txt -outputformat text","# run fine-grained ner with a custom rules file
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.fine.regexner.mapping custom.rules -file example.txt -outputformat text",80
-There a variety of ways to customize an NER pipeline. Below are some example commands.,"# shut off sutime
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.usesutime false -file example.txt -outputformat text","# run fine-grained ner with two custom rules files
-# the first rules file caseless.rules should be case-insensitive, the second rules file uses default options
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.fine.regexner.mapping ""ignorecase=true,caseless.rules;cased.rules"" -file example.txt -outputformat text",62
-There a variety of ways to customize an NER pipeline. Below are some example commands.,"# shut off sutime
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.usesutime false -file example.txt -outputformat text","# add additional rules to run after fine-grained ner
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.additional.regexner.mapping additional.rules -file example.txt -outputformat text",78
-There a variety of ways to customize an NER pipeline. Below are some example commands.,"# shut off sutime
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.usesutime false -file example.txt -outputformat text","# run tokens regex rules
-java -xmx5g edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.additional.tokensregex.rules example.rules -file example.txt -outputformat text",80
-There a variety of ways to customize an NER pipeline. Below are some example commands.,"# shut off sutime
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.usesutime false -file example.txt -outputformat text","# don't build entity mentions
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.buildentitymentions false -file example.txt -outputformat text",88
-There a variety of ways to customize an NER pipeline. Below are some example commands.,"# specify doc date for each document to be 2019-01-01
-# other options for setting doc date specified below
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.docdate.usefixeddate 2019-01-01 -file example.txt","# run default ner
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -file example.txt -outputformat text",63
-There a variety of ways to customize an NER pipeline. Below are some example commands.,"# specify doc date for each document to be 2019-01-01
-# other options for setting doc date specified below
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.docdate.usefixeddate 2019-01-01 -file example.txt","# only run rules based ner (numeric classifiers, sutime, tokensregexner, tokensregex)
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.rulesonly -file example.txt",66
-There a variety of ways to customize an NER pipeline. Below are some example commands.,"# specify doc date for each document to be 2019-01-01
-# other options for setting doc date specified below
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.docdate.usefixeddate 2019-01-01 -file example.txt","# only run statistical ner
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.statisticalonly -file example.txt",69
-There a variety of ways to customize an NER pipeline. Below are some example commands.,"# specify doc date for each document to be 2019-01-01
-# other options for setting doc date specified below
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.docdate.usefixeddate 2019-01-01 -file example.txt","# shut off numeric classifiers
-# note that in this case ner no longer requires pos or lemma
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,ner -ner.applynumericclassifiers false -file example.txt -outputformat text",62
-There a variety of ways to customize an NER pipeline. Below are some example commands.,"# specify doc date for each document to be 2019-01-01
-# other options for setting doc date specified below
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.docdate.usefixeddate 2019-01-01 -file example.txt","# shut off sutime
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.usesutime false -file example.txt -outputformat text",67
-There a variety of ways to customize an NER pipeline. Below are some example commands.,"# specify doc date for each document to be 2019-01-01
-# other options for setting doc date specified below
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.docdate.usefixeddate 2019-01-01 -file example.txt","# specify doc date for each document to be 2019-01-01
-# other options for setting doc date specified below
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.docdate.usefixeddate 2019-01-01 -file example.txt",100
-There a variety of ways to customize an NER pipeline. Below are some example commands.,"# specify doc date for each document to be 2019-01-01
-# other options for setting doc date specified below
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.docdate.usefixeddate 2019-01-01 -file example.txt","# shut off fine grained ner
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.applyfinegrained false -file example.txt -outputformat text",67
-There a variety of ways to customize an NER pipeline. Below are some example commands.,"# specify doc date for each document to be 2019-01-01
-# other options for setting doc date specified below
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.docdate.usefixeddate 2019-01-01 -file example.txt","# run fine-grained ner with a custom rules file
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.fine.regexner.mapping custom.rules -file example.txt -outputformat text",65
-There a variety of ways to customize an NER pipeline. Below are some example commands.,"# specify doc date for each document to be 2019-01-01
-# other options for setting doc date specified below
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.docdate.usefixeddate 2019-01-01 -file example.txt","# run fine-grained ner with two custom rules files
-# the first rules file caseless.rules should be case-insensitive, the second rules file uses default options
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.fine.regexner.mapping ""ignorecase=true,caseless.rules;cased.rules"" -file example.txt -outputformat text",59
-There a variety of ways to customize an NER pipeline. Below are some example commands.,"# specify doc date for each document to be 2019-01-01
-# other options for setting doc date specified below
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.docdate.usefixeddate 2019-01-01 -file example.txt","# add additional rules to run after fine-grained ner
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.additional.regexner.mapping additional.rules -file example.txt -outputformat text",66
-There a variety of ways to customize an NER pipeline. Below are some example commands.,"# specify doc date for each document to be 2019-01-01
-# other options for setting doc date specified below
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.docdate.usefixeddate 2019-01-01 -file example.txt","# run tokens regex rules
-java -xmx5g edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.additional.tokensregex.rules example.rules -file example.txt -outputformat text",63
-There a variety of ways to customize an NER pipeline. Below are some example commands.,"# specify doc date for each document to be 2019-01-01
-# other options for setting doc date specified below
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.docdate.usefixeddate 2019-01-01 -file example.txt","# don't build entity mentions
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.buildentitymentions false -file example.txt -outputformat text",65
-There a variety of ways to customize an NER pipeline. Below are some example commands.,"# shut off fine grained ner
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.applyfinegrained false -file example.txt -outputformat text","# run default ner
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -file example.txt -outputformat text",85
-There a variety of ways to customize an NER pipeline. Below are some example commands.,"# shut off fine grained ner
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.applyfinegrained false -file example.txt -outputformat text","# only run rules based ner (numeric classifiers, sutime, tokensregexner, tokensregex)
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.rulesonly -file example.txt",71
-There a variety of ways to customize an NER pipeline. Below are some example commands.,"# shut off fine grained ner
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.applyfinegrained false -file example.txt -outputformat text","# only run statistical ner
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.statisticalonly -file example.txt",79
-There a variety of ways to customize an NER pipeline. Below are some example commands.,"# shut off fine grained ner
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.applyfinegrained false -file example.txt -outputformat text","# shut off numeric classifiers
-# note that in this case ner no longer requires pos or lemma
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,ner -ner.applynumericclassifiers false -file example.txt -outputformat text",78
-There a variety of ways to customize an NER pipeline. Below are some example commands.,"# shut off fine grained ner
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.applyfinegrained false -file example.txt -outputformat text","# shut off sutime
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.usesutime false -file example.txt -outputformat text",90
-There a variety of ways to customize an NER pipeline. Below are some example commands.,"# shut off fine grained ner
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.applyfinegrained false -file example.txt -outputformat text","# specify doc date for each document to be 2019-01-01
-# other options for setting doc date specified below
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.docdate.usefixeddate 2019-01-01 -file example.txt",67
-There a variety of ways to customize an NER pipeline. Below are some example commands.,"# shut off fine grained ner
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.applyfinegrained false -file example.txt -outputformat text","# shut off fine grained ner
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.applyfinegrained false -file example.txt -outputformat text",100
-There a variety of ways to customize an NER pipeline. Below are some example commands.,"# shut off fine grained ner
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.applyfinegrained false -file example.txt -outputformat text","# run fine-grained ner with a custom rules file
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.fine.regexner.mapping custom.rules -file example.txt -outputformat text",84
-There a variety of ways to customize an NER pipeline. Below are some example commands.,"# shut off fine grained ner
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.applyfinegrained false -file example.txt -outputformat text","# run fine-grained ner with two custom rules files
-# the first rules file caseless.rules should be case-insensitive, the second rules file uses default options
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.fine.regexner.mapping ""ignorecase=true,caseless.rules;cased.rules"" -file example.txt -outputformat text",64
-There a variety of ways to customize an NER pipeline. Below are some example commands.,"# shut off fine grained ner
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.applyfinegrained false -file example.txt -outputformat text","# add additional rules to run after fine-grained ner
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.additional.regexner.mapping additional.rules -file example.txt -outputformat text",83
-There a variety of ways to customize an NER pipeline. Below are some example commands.,"# shut off fine grained ner
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.applyfinegrained false -file example.txt -outputformat text","# run tokens regex rules
-java -xmx5g edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.additional.tokensregex.rules example.rules -file example.txt -outputformat text",80
-There a variety of ways to customize an NER pipeline. Below are some example commands.,"# shut off fine grained ner
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.applyfinegrained false -file example.txt -outputformat text","# don't build entity mentions
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.buildentitymentions false -file example.txt -outputformat text",84
-There a variety of ways to customize an NER pipeline. Below are some example commands.,"# run fine-grained ner with a custom rules file
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.fine.regexner.mapping custom.rules -file example.txt -outputformat text","# run default ner
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -file example.txt -outputformat text",80
-There a variety of ways to customize an NER pipeline. Below are some example commands.,"# run fine-grained ner with a custom rules file
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.fine.regexner.mapping custom.rules -file example.txt -outputformat text","# only run rules based ner (numeric classifiers, sutime, tokensregexner, tokensregex)
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.rulesonly -file example.txt",71
-There a variety of ways to customize an NER pipeline. Below are some example commands.,"# run fine-grained ner with a custom rules file
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.fine.regexner.mapping custom.rules -file example.txt -outputformat text","# only run statistical ner
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.statisticalonly -file example.txt",74
-There a variety of ways to customize an NER pipeline. Below are some example commands.,"# run fine-grained ner with a custom rules file
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.fine.regexner.mapping custom.rules -file example.txt -outputformat text","# shut off numeric classifiers
-# note that in this case ner no longer requires pos or lemma
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,ner -ner.applynumericclassifiers false -file example.txt -outputformat text",73
-There a variety of ways to customize an NER pipeline. Below are some example commands.,"# run fine-grained ner with a custom rules file
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.fine.regexner.mapping custom.rules -file example.txt -outputformat text","# shut off sutime
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.usesutime false -file example.txt -outputformat text",80
-There a variety of ways to customize an NER pipeline. Below are some example commands.,"# run fine-grained ner with a custom rules file
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.fine.regexner.mapping custom.rules -file example.txt -outputformat text","# specify doc date for each document to be 2019-01-01
-# other options for setting doc date specified below
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.docdate.usefixeddate 2019-01-01 -file example.txt",65
-There a variety of ways to customize an NER pipeline. Below are some example commands.,"# run fine-grained ner with a custom rules file
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.fine.regexner.mapping custom.rules -file example.txt -outputformat text","# shut off fine grained ner
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.applyfinegrained false -file example.txt -outputformat text",84
-There a variety of ways to customize an NER pipeline. Below are some example commands.,"# run fine-grained ner with a custom rules file
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.fine.regexner.mapping custom.rules -file example.txt -outputformat text","# run fine-grained ner with a custom rules file
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.fine.regexner.mapping custom.rules -file example.txt -outputformat text",100
-There a variety of ways to customize an NER pipeline. Below are some example commands.,"# run fine-grained ner with a custom rules file
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.fine.regexner.mapping custom.rules -file example.txt -outputformat text","# run fine-grained ner with two custom rules files
-# the first rules file caseless.rules should be case-insensitive, the second rules file uses default options
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.fine.regexner.mapping ""ignorecase=true,caseless.rules;cased.rules"" -file example.txt -outputformat text",75
-There a variety of ways to customize an NER pipeline. Below are some example commands.,"# run fine-grained ner with a custom rules file
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.fine.regexner.mapping custom.rules -file example.txt -outputformat text","# add additional rules to run after fine-grained ner
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.additional.regexner.mapping additional.rules -file example.txt -outputformat text",83
-There a variety of ways to customize an NER pipeline. Below are some example commands.,"# run fine-grained ner with a custom rules file
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.fine.regexner.mapping custom.rules -file example.txt -outputformat text","# run tokens regex rules
-java -xmx5g edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.additional.tokensregex.rules example.rules -file example.txt -outputformat text",79
-There a variety of ways to customize an NER pipeline. Below are some example commands.,"# run fine-grained ner with a custom rules file
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.fine.regexner.mapping custom.rules -file example.txt -outputformat text","# don't build entity mentions
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.buildentitymentions false -file example.txt -outputformat text",79
-There a variety of ways to customize an NER pipeline. Below are some example commands.,"# run fine-grained ner with two custom rules files
-# the first rules file caseless.rules should be case-insensitive, the second rules file uses default options
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.fine.regexner.mapping ""ignorecase=true,caseless.rules;cased.rules"" -file example.txt -outputformat text","# run default ner
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -file example.txt -outputformat text",59
-There a variety of ways to customize an NER pipeline. Below are some example commands.,"# run fine-grained ner with two custom rules files
-# the first rules file caseless.rules should be case-insensitive, the second rules file uses default options
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.fine.regexner.mapping ""ignorecase=true,caseless.rules;cased.rules"" -file example.txt -outputformat text","# only run rules based ner (numeric classifiers, sutime, tokensregexner, tokensregex)
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.rulesonly -file example.txt",61
-There a variety of ways to customize an NER pipeline. Below are some example commands.,"# run fine-grained ner with two custom rules files
-# the first rules file caseless.rules should be case-insensitive, the second rules file uses default options
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.fine.regexner.mapping ""ignorecase=true,caseless.rules;cased.rules"" -file example.txt -outputformat text","# only run statistical ner
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.statisticalonly -file example.txt",58
-There a variety of ways to customize an NER pipeline. Below are some example commands.,"# run fine-grained ner with two custom rules files
-# the first rules file caseless.rules should be case-insensitive, the second rules file uses default options
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.fine.regexner.mapping ""ignorecase=true,caseless.rules;cased.rules"" -file example.txt -outputformat text","# shut off numeric classifiers
-# note that in this case ner no longer requires pos or lemma
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,ner -ner.applynumericclassifiers false -file example.txt -outputformat text",65
-There a variety of ways to customize an NER pipeline. Below are some example commands.,"# run fine-grained ner with two custom rules files
-# the first rules file caseless.rules should be case-insensitive, the second rules file uses default options
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.fine.regexner.mapping ""ignorecase=true,caseless.rules;cased.rules"" -file example.txt -outputformat text","# shut off sutime
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.usesutime false -file example.txt -outputformat text",61
-There a variety of ways to customize an NER pipeline. Below are some example commands.,"# run fine-grained ner with two custom rules files
-# the first rules file caseless.rules should be case-insensitive, the second rules file uses default options
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.fine.regexner.mapping ""ignorecase=true,caseless.rules;cased.rules"" -file example.txt -outputformat text","# specify doc date for each document to be 2019-01-01
-# other options for setting doc date specified below
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.docdate.usefixeddate 2019-01-01 -file example.txt",59
-There a variety of ways to customize an NER pipeline. Below are some example commands.,"# run fine-grained ner with two custom rules files
-# the first rules file caseless.rules should be case-insensitive, the second rules file uses default options
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.fine.regexner.mapping ""ignorecase=true,caseless.rules;cased.rules"" -file example.txt -outputformat text","# shut off fine grained ner
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.applyfinegrained false -file example.txt -outputformat text",64
-There a variety of ways to customize an NER pipeline. Below are some example commands.,"# run fine-grained ner with two custom rules files
-# the first rules file caseless.rules should be case-insensitive, the second rules file uses default options
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.fine.regexner.mapping ""ignorecase=true,caseless.rules;cased.rules"" -file example.txt -outputformat text","# run fine-grained ner with a custom rules file
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.fine.regexner.mapping custom.rules -file example.txt -outputformat text",74
-There a variety of ways to customize an NER pipeline. Below are some example commands.,"# run fine-grained ner with two custom rules files
-# the first rules file caseless.rules should be case-insensitive, the second rules file uses default options
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.fine.regexner.mapping ""ignorecase=true,caseless.rules;cased.rules"" -file example.txt -outputformat text","# run fine-grained ner with two custom rules files
-# the first rules file caseless.rules should be case-insensitive, the second rules file uses default options
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.fine.regexner.mapping ""ignorecase=true,caseless.rules;cased.rules"" -file example.txt -outputformat text",100
-There a variety of ways to customize an NER pipeline. Below are some example commands.,"# run fine-grained ner with two custom rules files
-# the first rules file caseless.rules should be case-insensitive, the second rules file uses default options
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.fine.regexner.mapping ""ignorecase=true,caseless.rules;cased.rules"" -file example.txt -outputformat text","# add additional rules to run after fine-grained ner
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.additional.regexner.mapping additional.rules -file example.txt -outputformat text",68
-There a variety of ways to customize an NER pipeline. Below are some example commands.,"# run fine-grained ner with two custom rules files
-# the first rules file caseless.rules should be case-insensitive, the second rules file uses default options
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.fine.regexner.mapping ""ignorecase=true,caseless.rules;cased.rules"" -file example.txt -outputformat text","# run tokens regex rules
-java -xmx5g edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.additional.tokensregex.rules example.rules -file example.txt -outputformat text",63
-There a variety of ways to customize an NER pipeline. Below are some example commands.,"# run fine-grained ner with two custom rules files
-# the first rules file caseless.rules should be case-insensitive, the second rules file uses default options
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.fine.regexner.mapping ""ignorecase=true,caseless.rules;cased.rules"" -file example.txt -outputformat text","# don't build entity mentions
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.buildentitymentions false -file example.txt -outputformat text",64
-There a variety of ways to customize an NER pipeline. Below are some example commands.,"# add additional rules to run after fine-grained ner
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.additional.regexner.mapping additional.rules -file example.txt -outputformat text","# run default ner
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -file example.txt -outputformat text",77
-There a variety of ways to customize an NER pipeline. Below are some example commands.,"# add additional rules to run after fine-grained ner
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.additional.regexner.mapping additional.rules -file example.txt -outputformat text","# only run rules based ner (numeric classifiers, sutime, tokensregexner, tokensregex)
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.rulesonly -file example.txt",70
-There a variety of ways to customize an NER pipeline. Below are some example commands.,"# add additional rules to run after fine-grained ner
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.additional.regexner.mapping additional.rules -file example.txt -outputformat text","# only run statistical ner
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.statisticalonly -file example.txt",75
-There a variety of ways to customize an NER pipeline. Below are some example commands.,"# add additional rules to run after fine-grained ner
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.additional.regexner.mapping additional.rules -file example.txt -outputformat text","# shut off numeric classifiers
-# note that in this case ner no longer requires pos or lemma
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,ner -ner.applynumericclassifiers false -file example.txt -outputformat text",69
-There a variety of ways to customize an NER pipeline. Below are some example commands.,"# add additional rules to run after fine-grained ner
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.additional.regexner.mapping additional.rules -file example.txt -outputformat text","# shut off sutime
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.usesutime false -file example.txt -outputformat text",78
-There a variety of ways to customize an NER pipeline. Below are some example commands.,"# add additional rules to run after fine-grained ner
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.additional.regexner.mapping additional.rules -file example.txt -outputformat text","# specify doc date for each document to be 2019-01-01
-# other options for setting doc date specified below
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.docdate.usefixeddate 2019-01-01 -file example.txt",66
-There a variety of ways to customize an NER pipeline. Below are some example commands.,"# add additional rules to run after fine-grained ner
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.additional.regexner.mapping additional.rules -file example.txt -outputformat text","# shut off fine grained ner
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.applyfinegrained false -file example.txt -outputformat text",83
-There a variety of ways to customize an NER pipeline. Below are some example commands.,"# add additional rules to run after fine-grained ner
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.additional.regexner.mapping additional.rules -file example.txt -outputformat text","# run fine-grained ner with a custom rules file
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.fine.regexner.mapping custom.rules -file example.txt -outputformat text",83
-There a variety of ways to customize an NER pipeline. Below are some example commands.,"# add additional rules to run after fine-grained ner
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.additional.regexner.mapping additional.rules -file example.txt -outputformat text","# run fine-grained ner with two custom rules files
-# the first rules file caseless.rules should be case-insensitive, the second rules file uses default options
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.fine.regexner.mapping ""ignorecase=true,caseless.rules;cased.rules"" -file example.txt -outputformat text",68
-There a variety of ways to customize an NER pipeline. Below are some example commands.,"# add additional rules to run after fine-grained ner
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.additional.regexner.mapping additional.rules -file example.txt -outputformat text","# add additional rules to run after fine-grained ner
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.additional.regexner.mapping additional.rules -file example.txt -outputformat text",100
-There a variety of ways to customize an NER pipeline. Below are some example commands.,"# add additional rules to run after fine-grained ner
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.additional.regexner.mapping additional.rules -file example.txt -outputformat text","# run tokens regex rules
-java -xmx5g edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.additional.tokensregex.rules example.rules -file example.txt -outputformat text",80
-There a variety of ways to customize an NER pipeline. Below are some example commands.,"# add additional rules to run after fine-grained ner
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.additional.regexner.mapping additional.rules -file example.txt -outputformat text","# don't build entity mentions
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.buildentitymentions false -file example.txt -outputformat text",79
-There a variety of ways to customize an NER pipeline. Below are some example commands.,"# run tokens regex rules
-java -xmx5g edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.additional.tokensregex.rules example.rules -file example.txt -outputformat text","# run default ner
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -file example.txt -outputformat text",78
-There a variety of ways to customize an NER pipeline. Below are some example commands.,"# run tokens regex rules
-java -xmx5g edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.additional.tokensregex.rules example.rules -file example.txt -outputformat text","# only run rules based ner (numeric classifiers, sutime, tokensregexner, tokensregex)
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.rulesonly -file example.txt",68
-There a variety of ways to customize an NER pipeline. Below are some example commands.,"# run tokens regex rules
-java -xmx5g edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.additional.tokensregex.rules example.rules -file example.txt -outputformat text","# only run statistical ner
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.statisticalonly -file example.txt",74
-There a variety of ways to customize an NER pipeline. Below are some example commands.,"# run tokens regex rules
-java -xmx5g edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.additional.tokensregex.rules example.rules -file example.txt -outputformat text","# shut off numeric classifiers
-# note that in this case ner no longer requires pos or lemma
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,ner -ner.applynumericclassifiers false -file example.txt -outputformat text",68
-There a variety of ways to customize an NER pipeline. Below are some example commands.,"# run tokens regex rules
-java -xmx5g edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.additional.tokensregex.rules example.rules -file example.txt -outputformat text","# shut off sutime
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.usesutime false -file example.txt -outputformat text",80
-There a variety of ways to customize an NER pipeline. Below are some example commands.,"# run tokens regex rules
-java -xmx5g edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.additional.tokensregex.rules example.rules -file example.txt -outputformat text","# specify doc date for each document to be 2019-01-01
-# other options for setting doc date specified below
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.docdate.usefixeddate 2019-01-01 -file example.txt",63
-There a variety of ways to customize an NER pipeline. Below are some example commands.,"# run tokens regex rules
-java -xmx5g edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.additional.tokensregex.rules example.rules -file example.txt -outputformat text","# shut off fine grained ner
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.applyfinegrained false -file example.txt -outputformat text",80
-There a variety of ways to customize an NER pipeline. Below are some example commands.,"# run tokens regex rules
-java -xmx5g edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.additional.tokensregex.rules example.rules -file example.txt -outputformat text","# run fine-grained ner with a custom rules file
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.fine.regexner.mapping custom.rules -file example.txt -outputformat text",79
-There a variety of ways to customize an NER pipeline. Below are some example commands.,"# run tokens regex rules
-java -xmx5g edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.additional.tokensregex.rules example.rules -file example.txt -outputformat text","# run fine-grained ner with two custom rules files
-# the first rules file caseless.rules should be case-insensitive, the second rules file uses default options
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.fine.regexner.mapping ""ignorecase=true,caseless.rules;cased.rules"" -file example.txt -outputformat text",63
-There a variety of ways to customize an NER pipeline. Below are some example commands.,"# run tokens regex rules
-java -xmx5g edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.additional.tokensregex.rules example.rules -file example.txt -outputformat text","# add additional rules to run after fine-grained ner
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.additional.regexner.mapping additional.rules -file example.txt -outputformat text",80
-There a variety of ways to customize an NER pipeline. Below are some example commands.,"# run tokens regex rules
-java -xmx5g edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.additional.tokensregex.rules example.rules -file example.txt -outputformat text","# run tokens regex rules
-java -xmx5g edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.additional.tokensregex.rules example.rules -file example.txt -outputformat text",100
-There a variety of ways to customize an NER pipeline. Below are some example commands.,"# run tokens regex rules
-java -xmx5g edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.additional.tokensregex.rules example.rules -file example.txt -outputformat text","# don't build entity mentions
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.buildentitymentions false -file example.txt -outputformat text",78
-There a variety of ways to customize an NER pipeline. Below are some example commands.,"# don't build entity mentions
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.buildentitymentions false -file example.txt -outputformat text","# run default ner
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -file example.txt -outputformat text",83
-There a variety of ways to customize an NER pipeline. Below are some example commands.,"# don't build entity mentions
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.buildentitymentions false -file example.txt -outputformat text","# only run rules based ner (numeric classifiers, sutime, tokensregexner, tokensregex)
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.rulesonly -file example.txt",73
-There a variety of ways to customize an NER pipeline. Below are some example commands.,"# don't build entity mentions
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.buildentitymentions false -file example.txt -outputformat text","# only run statistical ner
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.statisticalonly -file example.txt",79
-There a variety of ways to customize an NER pipeline. Below are some example commands.,"# don't build entity mentions
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.buildentitymentions false -file example.txt -outputformat text","# shut off numeric classifiers
-# note that in this case ner no longer requires pos or lemma
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,ner -ner.applynumericclassifiers false -file example.txt -outputformat text",73
-There a variety of ways to customize an NER pipeline. Below are some example commands.,"# don't build entity mentions
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.buildentitymentions false -file example.txt -outputformat text","# shut off sutime
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.usesutime false -file example.txt -outputformat text",88
-There a variety of ways to customize an NER pipeline. Below are some example commands.,"# don't build entity mentions
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.buildentitymentions false -file example.txt -outputformat text","# specify doc date for each document to be 2019-01-01
-# other options for setting doc date specified below
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.docdate.usefixeddate 2019-01-01 -file example.txt",66
-There a variety of ways to customize an NER pipeline. Below are some example commands.,"# don't build entity mentions
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.buildentitymentions false -file example.txt -outputformat text","# shut off fine grained ner
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.applyfinegrained false -file example.txt -outputformat text",84
-There a variety of ways to customize an NER pipeline. Below are some example commands.,"# don't build entity mentions
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.buildentitymentions false -file example.txt -outputformat text","# run fine-grained ner with a custom rules file
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.fine.regexner.mapping custom.rules -file example.txt -outputformat text",79
-There a variety of ways to customize an NER pipeline. Below are some example commands.,"# don't build entity mentions
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.buildentitymentions false -file example.txt -outputformat text","# run fine-grained ner with two custom rules files
-# the first rules file caseless.rules should be case-insensitive, the second rules file uses default options
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.fine.regexner.mapping ""ignorecase=true,caseless.rules;cased.rules"" -file example.txt -outputformat text",64
-There a variety of ways to customize an NER pipeline. Below are some example commands.,"# don't build entity mentions
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.buildentitymentions false -file example.txt -outputformat text","# add additional rules to run after fine-grained ner
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.additional.regexner.mapping additional.rules -file example.txt -outputformat text",79
-There a variety of ways to customize an NER pipeline. Below are some example commands.,"# don't build entity mentions
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.buildentitymentions false -file example.txt -outputformat text","# run tokens regex rules
-java -xmx5g edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.additional.tokensregex.rules example.rules -file example.txt -outputformat text",78
-There a variety of ways to customize an NER pipeline. Below are some example commands.,"# don't build entity mentions
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.buildentitymentions false -file example.txt -outputformat text","# don't build entity mentions
-java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.buildentitymentions false -file example.txt -outputformat text",100
+edu/stanford/nlp/models/ner/english.conll.4class.distsim.crf.ser.gz",FALSE,99
+"means to match the token “Los” followed by the token “Angeles”, and label them both as CITY, provided they have a current NER tag of O, LOCATION, or MISC.","los angeles	city	location,misc	1.0",bachelor of (arts|science)	degree	misc	1.0,FALSE,45
+"If you want to run a series of TokensRegex rules before entity building, you can also specify a set of TokensRegex rules. A TokensRegexAnnotator sub-annotator will be called. It has the name ner.additional.tokensregex.","java -xmx5g edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.additional.tokensregex.rules example.rules -file example.txt -outputformat text","java -xmx5g edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.additional.tokensregex.rules example.rules -file example.txt -outputformat text",FALSE,100
 Below is code for accessing these confidences.,"package edu.stanford.nlp.examples;
 
 import edu.stanford.nlp.ling.*;
@@ -564,7 +60,7 @@ public class nerconfidenceexample {
             system.out.println(token.word() + ""\t"" + token.get(coreannotations.namedentitytagprobsannotation.class));
         }
     }
-}",99
+}",FALSE,99
 The training process can be customized using a properties file. Here is an example properties file for training an English model(ner.model.props):,"# location of training data
 trainfilelist = /path/to/conll.3class.train
 # location of test data
@@ -661,18 +157,45 @@ useqn = true
 qnsize = 25
 
 # makes it go faster
-featurediffthresh=0.05",97
+featurediffthresh=0.05",FALSE,97
 The tags set by this phase include:,"cause_of_death, city, country, criminal_charge, email, handle,
-ideology, nationality, religion, state_or_province, title, url"
-"means to match the token “Bachelor”, then the token “of”, and finally either the token “Arts” or “Science”.",bachelor of (arts|science)	degree	misc	1.0
-"As an example, this is the default ner.fine.regexner.mapping setting:","ignorecase=true,validpospattern=^(nn|jj).*,edu/stanford/nlp/models/kbp/english/gazetteers/regexner_caseless.tab;edu/stanford/nlp/models/kbp/english/gazetteers/regexner_cased.tab"
+ideology, nationality, religion, state_or_province, title, url",,FALSE
+"means to match the token “Bachelor”, then the token “of”, and finally either the token “Arts” or “Science”.",bachelor of (arts|science)	degree	misc	1.0,,FALSE
+"As an example, this is the default ner.fine.regexner.mapping setting:","ignorecase=true,validpospattern=^(nn|jj).*,edu/stanford/nlp/models/kbp/english/gazetteers/regexner_caseless.tab;edu/stanford/nlp/models/kbp/english/gazetteers/regexner_cased.tab",,FALSE
 The two rules files are:,"edu/stanford/nlp/models/kbp/english/gazetteers/regexner_caseless.tab
-edu/stanford/nlp/models/kbp/english/gazetteers/regexner_cased.tab"
+edu/stanford/nlp/models/kbp/english/gazetteers/regexner_cased.tab",,FALSE
 Your rules file might look like this /path/to/sports_teams.rules,"boston red sox       sports_team     organization,misc       1
 denver broncos       sports_team     organization,misc       1
 detroit red wings    sports_team     organization,misc       1
 los angeles lakers   sports_team     organization,misc       1
-"
+",,FALSE
+There a variety of ways to customize an NER pipeline. Below are some example commands.,"# run default ner
+java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -file example.txt -outputformat text",,FALSE
+There a variety of ways to customize an NER pipeline. Below are some example commands.,"# only run rules based ner (numeric classifiers, sutime, tokensregexner, tokensregex)
+java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.rulesonly -file example.txt ",,FALSE
+There a variety of ways to customize an NER pipeline. Below are some example commands.,"# only run statistical ner
+java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.statisticalonly -file example.txt ",,FALSE
+There a variety of ways to customize an NER pipeline. Below are some example commands.,"# shut off numeric classifiers
+# note that in this case ner no longer requires pos or lemma
+java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,ner -ner.applynumericclassifiers false -file example.txt -outputformat text",,FALSE
+There a variety of ways to customize an NER pipeline. Below are some example commands.,"# shut off sutime
+java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.usesutime false -file example.txt -outputformat text",,FALSE
+There a variety of ways to customize an NER pipeline. Below are some example commands.,"# specify doc date for each document to be 2019-01-01
+# other options for setting doc date specified below
+java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.docdate.usefixeddate 2019-01-01 -file example.txt",,FALSE
+There a variety of ways to customize an NER pipeline. Below are some example commands.,"# shut off fine grained ner
+java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.applyfinegrained false -file example.txt -outputformat text",,FALSE
+There a variety of ways to customize an NER pipeline. Below are some example commands.,"# run fine-grained ner with a custom rules file
+java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.fine.regexner.mapping custom.rules -file example.txt -outputformat text",,FALSE
+There a variety of ways to customize an NER pipeline. Below are some example commands.,"# run fine-grained ner with two custom rules files
+# the first rules file caseless.rules should be case-insensitive, the second rules file uses default options
+java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.fine.regexner.mapping ""ignorecase=true,caseless.rules;cased.rules"" -file example.txt -outputformat text",,FALSE
+There a variety of ways to customize an NER pipeline. Below are some example commands.,"# add additional rules to run after fine-grained ner
+java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.additional.regexner.mapping additional.rules -file example.txt -outputformat text",,FALSE
+There a variety of ways to customize an NER pipeline. Below are some example commands.,"# run tokens regex rules
+java -xmx5g edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.additional.tokensregex.rules example.rules -file example.txt -outputformat text",,FALSE
+There a variety of ways to customize an NER pipeline. Below are some example commands.,"# don't build entity mentions
+java -xmx4g -cp ""*"" edu.stanford.nlp.pipeline.stanfordcorenlp -annotators tokenize,ssplit,pos,lemma,ner -ner.buildentitymentions false -file example.txt -outputformat text",,FALSE
 ,"package edu.stanford.nlp.examples;
 
 import edu.stanford.nlp.pipeline.*;
@@ -731,9 +254,9 @@ public class nerpipelinedemo {
 
 }
 
-"
+",,FALSE
 the entity Los Angeles would be assigned the LOCATION tag with a confidence of .992.,"{word: 'los', 'tag': 'location', 'prob': .992} 
-{word: 'angeles', 'tag': 'location', 'prob': .999}"
+{word: 'angeles', 'tag': 'location', 'prob': .999}",,FALSE
 The train/dev/test data files should be in the following format:,"joe    person
 smith  person
 lives  o
@@ -748,19 +271,18 @@ live    o
 in    o
 oregon    location
 .    o
-"
-Here is the command for starting the training process (make sure your CLASSPATH is set up to include all of the Stanford CoreNLP jars):,"java -xmx2g -cp ""*"" edu.stanford.nlp.ie.crf.crfclassifier -prop ner.model.props"
-NOTE: applying these rules will significantly slow down the tagging process.,,"cause_of_death, city, country, criminal_charge, email, handle,
-ideology, nationality, religion, state_or_province, title, url"
-"The first column is the tokens pattern, the second column is the NER tag to apply, the third is the types of NER tags that can be overwritten, and the fourth is a priority used for tie-breaking if two rules match a sequence.",,"los angeles	city	location,misc	1.0"
-The ner.fine.regexner.mapping property allows one to specify a set of rules files and additional properties for each rules file.,,;
-The ner.fine.regexner.mapping property allows one to specify a set of rules files and additional properties for each rules file.,,"ignorecase=true,validpospattern=^(nn|jj).*,edu/stanford/nlp/models/kbp/english/gazetteers/regexner_caseless.tab;edu/stanford/nlp/models/kbp/english/gazetteers/regexner_cased.tab"
+",,FALSE
+Here is the command for starting the training process (make sure your CLASSPATH is set up to include all of the Stanford CoreNLP jars):,"java -xmx2g -cp ""*"" edu.stanford.nlp.ie.crf.crfclassifier -prop ner.model.props",,FALSE
+Paragraph,,example,FALSE
+The TokensRegexNERAnnotator runs TokensRegex rules. You can review all of the settings for a TokensRegexNERAnnotator here.,,"cause_of_death, city, country, criminal_charge, email, handle,
+ideology, nationality, religion, state_or_province, title, url",FALSE
+"The first column is the tokens pattern, the second column is the NER tag to apply, the third is the types of NER tags that can be overwritten, and the fourth is a priority used for tie-breaking if two rules match a sequence.",,"los angeles	city	location,misc	1.0",FALSE
+The ner.fine.regexner.mapping property allows one to specify a set of rules files and additional properties for each rules file.,,"ignorecase=true,validpospattern=^(nn|jj).*,edu/stanford/nlp/models/kbp/english/gazetteers/regexner_caseless.tab;edu/stanford/nlp/models/kbp/english/gazetteers/regexner_cased.tab",FALSE
 The ner.fine.regexner.mapping property allows one to specify a set of rules files and additional properties for each rules file.,,"edu/stanford/nlp/models/kbp/english/gazetteers/regexner_caseless.tab
-edu/stanford/nlp/models/kbp/english/gazetteers/regexner_cased.tab"
+edu/stanford/nlp/models/kbp/english/gazetteers/regexner_cased.tab",FALSE
 "For instance, suppose you want to match sports teams after the previous NER steps have been run.",,"boston red sox       sports_team     organization,misc       1
 denver broncos       sports_team     organization,misc       1
 detroit red wings    sports_team     organization,misc       1
-los angeles lakers   sports_team     organization,misc       1"
+los angeles lakers   sports_team     organization,misc       1",FALSE
 The following example shows how to access label confidences for tokens and entities. Each token stores the probability of its NER label given by the CRF that was used to assign the label in the CoreAnnotations.NamedEntityTagProbsAnnotation.class. Each entity mention contains the probability of the token with the lowest label probability in its span. For example if Los Angeles had the following probabilities:,,"{word: 'los', 'tag': 'location', 'prob': .992} 
-{word: 'angeles', 'tag': 'location', 'prob': .999}"
-"The standard training data sets used for PERSON/LOCATION/ORGANIZATION/MISC must be purchased from the LDC, we do not distribute them.",,"java -xmx2g -cp ""*"" edu.stanford.nlp.ie.crf.crfclassifier -prop ner.model.props"
+{word: 'angeles', 'tag': 'location', 'prob': .999}",FALSE

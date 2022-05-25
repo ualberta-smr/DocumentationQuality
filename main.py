@@ -41,20 +41,20 @@ def get_webpages(doc_home, repo_name):
 
 
 def task_extract_and_link(library_name, url, domain):
-    pages = get_webpages(url)
+    pages = get_webpages(url, library_name)
     os.chdir("TaskExtractor")
     link_directory = os.path.normpath("results/" + library_name)
     if not os.path.exists(link_directory):
         os.mkdir(link_directory)
     # If checking single page, then comment out for loop
-    # for page in pages:
-    #     try:
-    #         extractor.extract_tasks(library_name, page, domain)
-    #         linker.link_tasks(library_name, page)
-    #     except HTTPError:
-    #         pass
-    extractor.extract_tasks(library_name, url, domain)
-    linker.link_tasks(library_name, url)
+    for page in pages:
+        try:
+            extractor.extract_tasks(library_name, page, domain)
+            linker.link_tasks(library_name, page)
+        except HTTPError:
+            pass
+    # extractor.extract_tasks(library_name, url, domain)
+    # linker.link_tasks(library_name, url)
     if not os.listdir(link_directory):
         os.rmdir(link_directory)
     os.chdir("..")
@@ -139,12 +139,12 @@ if __name__ == '__main__':
     # task_extract_and_link("CoreNLP", "https://stanfordnlp.github.io/CoreNLP/ner.html", "nlp")
     # task_extract_and_link("CoreNLP", "https://stanfordnlp.github.io/CoreNLP/cmdline.html", "nlp")
     # # https://www.nltk.org/api/nltk.parse.html
-    # task_extract_and_link("NLTK", "https://web.archive.org/web/20210417122335/https://www.nltk.org/api/nltk.parse.html", nlp)
+    # task_extract_and_link("NLTK", "https://web.archive.org/web/20210417122335/https://www.nltk.org/api/nltk.parse.html", "nlp")
     # # https://www.nltk.org/api/nltk.tag.html
-    # task_extract_and_link("NLTK", "https://web.archive.org/web/20210725152853/https://www.nltk.org/api/nltk.tag.html", nlp)
-    # TODO: CREATE DOMAIN SPECIFIC LISTS FOR BELOW
-    # task_extract_and_link("jQuery", "https://api.jquery.com/jQuery.get")
-    # task_extract_and_link("reactjs", "https://reactjs.org/docs/components-and-props.html")
+    # task_extract_and_link("NLTK", "https://web.archive.org/web/20210725152853/https://www.nltk.org/api/nltk.tag.html", "nlp")
+    # task_extract_and_link("jQuery", "https://api.jquery.com/jQuery.get", "dom_manipulation")
+    # task_extract_and_link("reactjs", "https://reactjs.org/docs/components-and-props.html", "dom_manipulation")
+
     # task_extract_and_link("requests", "https://web.archive.org/web/20220505163814/https://docs.python-requests.org/en/latest/")
 
     api_methods_examples("python",
@@ -158,7 +158,7 @@ if __name__ == '__main__':
     api_methods_examples("python",
                          "requests",
                          "https://github.com/psf/requests.git",
-                         "https://docs.python-requests.org/en/latest/")
+                         "https://web.archive.org/web/20220505163814/https://docs.python-requests.org/en/latest/")
     api_methods_examples("java",
                          "json-java",
                          "https://github.com/stleary/JSON-java.git",

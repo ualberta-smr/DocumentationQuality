@@ -65,7 +65,7 @@ Serialize datetime.datetime objects without a tzinfo as UTC. This has no effect 
 "This option is compatible with orjson.OPT_SORT_KEYS. If sorting is used, note the sort is unstable and will be unpredictable for duplicate keys.", 
 "This measures serializing 589KiB of JSON comprising a list of 100 dict in which each dict has both 365 randomly-sorted int keys representing epoch timestamps as well as one str key and the value for each key is a single integer. In str keys, the keys were converted to str before serialization, and orjson still specifes option=orjson.OPT_NON_STR_KEYS (which is always somewhat slower).", 
 ujson is blank for sorting because it segfaults. json is blank because it raises TypeError on attempting to sort before converting all keys to str. rapidjson is blank because it does not support non-str keys. This can be reproduced using the pynonstr script.,
-Do not serialize the microsecond field on datetime.datetime and datetime.time instances.,Do not serialize microsecond field
+Do not serialize the microsecond field on datetime.datetime and datetime.time instances.,
 Passthrough dataclasses.dataclass instances to default. This allows customizing their output but is much slower.,"Passthrough dataclasses.dataclass
 Customize output "
 "Passthrough datetime.datetime, datetime.date, and datetime.time instances to default. This allows serializing datetimes to a custom format, e.g., HTTP dates:",Serialize datetimes to custom format
@@ -96,7 +96,6 @@ orjson serializes instances of dataclasses.dataclass natively. It serializes ins
 "This measures serializing 555KiB of JSON, orjson natively and other libraries using default to serialize the output of dataclasses.asdict(). This can be reproduced using the pydataclass script.",Serialize dataclasses.asdict()
 "Dataclasses are serialized as maps, with every attribute serialized and in the order given on class definition:",Serialize Dataclasses as maps
 "Users may wish to control how dataclass instances are serialized, e.g., to not serialize an attribute or to change the name of an attribute when serialized. orjson may implement support using the metadata mapping on field attributes, e.g., field(metadata={json_serialize: False}), if use cases are clear.","Control dataclass instance serialization 
-Do not serialize attribute
 Change attribute name when serialized"
 "orjson serializes datetime.datetime objects to RFC 3339 format, e.g., 1970-01-01T00:00:00+00:00. This is a subset of ISO 8601 and compatible with isoformat() in the standard library.",
 "datetime.datetime supports instances with a tzinfo that is None, datetime.timezone.utc, a timezone instance from the python3.9+ zoneinfo module, or a timezone instance from the third-party pendulum, pytz, or dateutil/arrow libraries.",

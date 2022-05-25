@@ -118,7 +118,7 @@ def evaluate_links(truth, test, filename):
             with open(os.path.normpath(filename), "w", encoding="utf-8", newline="") as out_file:
                 link_writer = csv.writer(out_file, quoting=csv.QUOTE_MINIMAL)
                 link_writer.writerow(
-                    ["Paragraph", "Ground Truth link", "Program link",
+                    ["Paragraph", "Ground Truth link", "Program link", "Has Tasks",
                      "Partial ratio"])
                 for truth_row in truth_list:
                     truth_row = list(map(lambda i: i.strip("\""), truth_row))
@@ -136,7 +136,7 @@ def evaluate_links(truth, test, filename):
                                                    test_row[1].lower()))
                             link_writer.writerow(
                                 [truth_row[0], truth_row[1].lower(),
-                                 test_row[1].lower(), pr])
+                                 test_row[1].lower(), truth_row[2] if len(truth_row) > 2 else "FALSE",  pr])
                             if pr >= 95:
                                 recall_total += 1
                                 precision_total += 1
@@ -149,7 +149,7 @@ def evaluate_links(truth, test, filename):
                             break
                     if not in_seen:
                         link_writer.writerow(
-                            [truth_row[0], truth_row[1].lower()])
+                            [truth_row[0], truth_row[1].lower(), "", truth_row[2] if len(truth_row) > 2 else "FALSE"])
                     in_seen = False
                 for test_row in test_list:
                     test_row = list(map(lambda i: i.strip("\""), test_row))
@@ -158,7 +158,7 @@ def evaluate_links(truth, test, filename):
                             in_seen = True
                     if not in_seen:
                         link_writer.writerow(
-                            [test_row[0], "", test_row[1].lower()])
+                            [test_row[0], "", test_row[1].lower(), truth_row[2] if len(truth_row) > 2 else "FALSE"])
                     in_seen = False
                 try:
                     # print("Precision:", precision_total, "/", len(test_list),
@@ -193,8 +193,8 @@ if __name__ == '__main__':
                         if file == file2:
                             row = [file]
                             if re.search(re.compile(r"(?<=_).+(?=\.)"), file)[0] == "tasks":
-                                row = [*row, *evaluate_tasks(truth_file, test_file, file)]
+                                row = [*row, *evaluate_tasks(truth_file, test_file, os.path.normpath(os.path.join("comparison", file)))]
                             else:
-                                row = [*row, *evaluate_links(truth_file, test_file, file)]
+                                row = [*row, *evaluate_links(truth_file, test_file, os.path.normpath(os.path.join("comparison", file)))]
                             writer.writerow(row)
                             break

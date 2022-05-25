@@ -9,6 +9,7 @@ from bs4 import BeautifulSoup
 from urllib.request import Request, urlopen
 from TaskExtractor.filters.json_filter import json_filter
 from TaskExtractor.filters.nlp_filter import nlp_filter
+from TaskExtractor.filters.dom_manipulation_filter import dom_manipulation_filter
 
 
 # Extracts paragraphs from the HTML and uses TaskExtractor to extract the tasks
@@ -23,14 +24,17 @@ def extract_tasks(library_name, page, domain):
 
 
 def _get_domain_specific(domain):
-    property_file = None
+    property_file = "properties/config.properties"
     domain_filter = None
     if domain == "json":
         domain_filter = json_filter
-        property_file = "json.properties"
+        property_file = "properties/json.properties"
     elif domain == "nlp":
         domain_filter = nlp_filter
-        property_file = "nlp.properties"
+        property_file = "properties/nlp.properties"
+    elif domain == "dom_manipulation":
+        domain_filter = dom_manipulation_filter
+        property_file = "properties/dom_manipulation.properties"
     # elif domain == "jquery":
     #     filter = jquery_filter
     # elif domain == "react":
@@ -70,7 +74,8 @@ def get_paragraphs_and_tasks(paragraphs, task_file, property_file, domain_filter
                 extracted = call_extractor(text, property_file)
                 if extracted:
                     extracted = _clean_results(extracted)
-                    # extracted = domain_filter(extracted)
+                    # if domain_filter:
+                    #     extracted = domain_filter(extracted)
                     if extracted:
                         writer.writerow(
                             [paragraph.get_text().strip(), extracted])
