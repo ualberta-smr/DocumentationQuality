@@ -176,7 +176,7 @@ This lets us simplify Comment even further:,"function comment(props) {
 "In contrast, this function is impure because it changes its own input:","function withdraw(account, amount) {
   account.total -= amount;
 }",,FALSE
-Paragraph,,example,FALSE
+Paragraph,,example,Page
 We recommend naming props from the component’s own point of view rather than the context in which it is being used.,,"function comment(props) {
   return (
     <div classname=""comment"">
@@ -193,7 +193,7 @@ We recommend naming props from the component’s own point of view rather than t
       div>
     div>
   );
-}",FALSE
+}",https://reactjs.org/docs/components-and-props.html
 "Such functions are called “pure” because they do not attempt to change their inputs, and always return the same result for the same inputs.",,"function withdraw(account, amount) {
   account.total -= amount;
-}",FALSE
+}",https://reactjs.org/docs/components-and-props.html

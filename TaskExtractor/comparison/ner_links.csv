@@ -273,16 +273,16 @@ oregon    location
 .    o
 ",,FALSE
 Here is the command for starting the training process (make sure your CLASSPATH is set up to include all of the Stanford CoreNLP jars):,"java -xmx2g -cp ""*"" edu.stanford.nlp.ie.crf.crfclassifier -prop ner.model.props",,FALSE
-Paragraph,,example,FALSE
+Paragraph,,example,Page
 The TokensRegexNERAnnotator runs TokensRegex rules. You can review all of the settings for a TokensRegexNERAnnotator here.,,"cause_of_death, city, country, criminal_charge, email, handle,
-ideology, nationality, religion, state_or_province, title, url",FALSE
-"The first column is the tokens pattern, the second column is the NER tag to apply, the third is the types of NER tags that can be overwritten, and the fourth is a priority used for tie-breaking if two rules match a sequence.",,"los angeles	city	location,misc	1.0",FALSE
-The ner.fine.regexner.mapping property allows one to specify a set of rules files and additional properties for each rules file.,,"ignorecase=true,validpospattern=^(nn|jj).*,edu/stanford/nlp/models/kbp/english/gazetteers/regexner_caseless.tab;edu/stanford/nlp/models/kbp/english/gazetteers/regexner_cased.tab",FALSE
+ideology, nationality, religion, state_or_province, title, url",https://stanfordnlp.github.io/CoreNLP/ner.html
+"The first column is the tokens pattern, the second column is the NER tag to apply, the third is the types of NER tags that can be overwritten, and the fourth is a priority used for tie-breaking if two rules match a sequence.",,"los angeles	city	location,misc	1.0",https://stanfordnlp.github.io/CoreNLP/ner.html
+The ner.fine.regexner.mapping property allows one to specify a set of rules files and additional properties for each rules file.,,"ignorecase=true,validpospattern=^(nn|jj).*,edu/stanford/nlp/models/kbp/english/gazetteers/regexner_caseless.tab;edu/stanford/nlp/models/kbp/english/gazetteers/regexner_cased.tab",https://stanfordnlp.github.io/CoreNLP/ner.html
 The ner.fine.regexner.mapping property allows one to specify a set of rules files and additional properties for each rules file.,,"edu/stanford/nlp/models/kbp/english/gazetteers/regexner_caseless.tab
-edu/stanford/nlp/models/kbp/english/gazetteers/regexner_cased.tab",FALSE
+edu/stanford/nlp/models/kbp/english/gazetteers/regexner_cased.tab",https://stanfordnlp.github.io/CoreNLP/ner.html
 "For instance, suppose you want to match sports teams after the previous NER steps have been run.",,"boston red sox       sports_team     organization,misc       1
 denver broncos       sports_team     organization,misc       1
 detroit red wings    sports_team     organization,misc       1
-los angeles lakers   sports_team     organization,misc       1",FALSE
+los angeles lakers   sports_team     organization,misc       1",https://stanfordnlp.github.io/CoreNLP/ner.html
 The following example shows how to access label confidences for tokens and entities. Each token stores the probability of its NER label given by the CRF that was used to assign the label in the CoreAnnotations.NamedEntityTagProbsAnnotation.class. Each entity mention contains the probability of the token with the lowest label probability in its span. For example if Los Angeles had the following probabilities:,,"{word: 'los', 'tag': 'location', 'prob': .992} 
-{word: 'angeles', 'tag': 'location', 'prob': .999}",FALSE
+{word: 'angeles', 'tag': 'location', 'prob': .999}",https://stanfordnlp.github.io/CoreNLP/ner.html

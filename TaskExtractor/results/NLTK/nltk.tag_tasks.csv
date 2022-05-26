@@ -1,0 +1,640 @@
+"Paragraph","Tasks"
+"History is littered with hundreds of conflicts over the future of a community, group, location or business that were ""resolved"" when one of the parties stepped ahead and destroyed what was there. With the original point of contention destroyed, the debates would fall to the wayside. Archive Team believes that by duplicated condemned data, the conversation and debate can continue, as well as the richness and insight gained by keeping the materials. Our projects have ranged in size from a single volunteer downloading the data to a small-but-critical site, to over 100 volunteers stepping forward to acquire terabytes of user-created data to save for future generations.
+
+The main site for Archive Team is at archiveteam.org and contains up to the date information on various projects, manifestos, plans and walkthroughs.
+
+This collection contains the output of many Archive Team projects, both ongoing and completed. Thanks to the generous providing of disk space by the Internet Archive, multi-terabyte datasets can be made available, as well as in use by the Wayback Machine, providing a path back to lost websites and work. 
+
+Our collection has grown to the point of having sub-collections for the type of data we acquire. If you are seeking to browse the contents of these collections, the Wayback Machine is the best first stop. Otherwise, you are free to dig into the stacks to see what you may find.
+
+The Archive Team Panic Downloads are full pulldowns of currently extant websites, meant to serve as emergency backups for needed sites that are in danger of closing, or which will be missed dearly if suddenly lost due to hard drive crashes or server failures.","resolve community
+resolve location
+resolve business
+resolve group
+download data to small-but-critical site
+acquire terabytes of user-created data
+save  for future generations
+provide path to lost websites
+provide path to work
+acquire data"
+"The main site for Archive Team is at archiveteam.org and contains up to the date information on various projects, manifestos, plans and walkthroughs.
+
+This collection contains the output of many Archive Team projects, both ongoing and completed. Thanks to the generous providing of disk space by the Internet Archive, multi-terabyte datasets can be made available, as well as in use by the Wayback Machine, providing a path back to lost websites and work. 
+
+Our collection has grown to the point of having sub-collections for the type of data we acquire. If you are seeking to browse the contents of these collections, the Wayback Machine is the best first stop. Otherwise, you are free to dig into the stacks to see what you may find.
+
+The Archive Team Panic Downloads are full pulldowns of currently extant websites, meant to serve as emergency backups for needed sites that are in danger of closing, or which will be missed dearly if suddenly lost due to hard drive crashes or server failures.","provide path to lost websites
+provide path to work
+acquire data"
+"This collection contains the output of many Archive Team projects, both ongoing and completed. Thanks to the generous providing of disk space by the Internet Archive, multi-terabyte datasets can be made available, as well as in use by the Wayback Machine, providing a path back to lost websites and work. 
+
+Our collection has grown to the point of having sub-collections for the type of data we acquire. If you are seeking to browse the contents of these collections, the Wayback Machine is the best first stop. Otherwise, you are free to dig into the stacks to see what you may find.
+
+The Archive Team Panic Downloads are full pulldowns of currently extant websites, meant to serve as emergency backups for needed sites that are in danger of closing, or which will be missed dearly if suddenly lost due to hard drive crashes or server failures.","provide path to lost websites
+provide path to work
+acquire data"
+"Our collection has grown to the point of having sub-collections for the type of data we acquire. If you are seeking to browse the contents of these collections, the Wayback Machine is the best first stop. Otherwise, you are free to dig into the stacks to see what you may find.
+
+The Archive Team Panic Downloads are full pulldowns of currently extant websites, meant to serve as emergency backups for needed sites that are in danger of closing, or which will be missed dearly if suddenly lost due to hard drive crashes or server failures.","acquire data"
+"To use ArchiveBot, drop by #archivebot on EFNet. To interact with ArchiveBot, you issue commands by typing it into the channel. Note you will need channel operator permissions in order to issue archiving jobs. The dashboard shows the sites being downloaded currently.
+
+There is a dashboard running for the archivebot process at http://www.archivebot.com.
+
+ArchiveBot's source code can be found at https://github.com/ArchiveTeam/ArchiveBot.","use ArchiveBot
+show sites
+run  for archivebot process"
+"There is a dashboard running for the archivebot process at http://www.archivebot.com.
+
+ArchiveBot's source code can be found at https://github.com/ArchiveTeam/ArchiveBot.","run  for archivebot process"
+"Interface for tagging each token in a sentence with supplementary
+information, such as its part of speech.","tag  in sentence"
+"A processing interface for assigning a tag to each token in a list.
+Tags are case sensitive strings that identify some property of each
+token, such as its part of speech or its sense.","assign tag
+identify property such_as part
+identify case sensitive strings such_as part"
+"Score the accuracy of the tagger against the gold standard.
+Strip the tags from the gold standard text, retag it using
+the tagger, then compute the accuracy score.","use tagger
+compute accuracy score"
+"Determine the most appropriate tag sequence for the given
+token sequence, and return a corresponding list of tagged
+tokens.  A tagged token is encoded as a tuple (token, tag).","determine appropriate tag sequence for given token sequence
+return corresponding list of tagged tokens
+encode tagged token as tuple"
+"return [self.tag(sent) for sent in sentences]","return  self.tag(sent)
+send  in sentences"
+"Brill’s transformational rule-based tagger.  Brill taggers use an
+initial tagger (such as tag.DefaultTagger) to assign an initial
+tag sequence to a text; and then apply an ordered list of
+transformational rules to correct the tags of individual tokens.
+These transformation rules are specified by the TagRule
+interface.","use initial tagger
+assign initial tag sequence to text
+specify transformation rules"
+"Brill taggers can be created directly, from an initial tagger and
+a list of transformational rules; but more often, Brill taggers
+are created by learning rules from a training corpus, using one
+of the TaggerTrainers available.","learn rules from training corpus
+create brill taggers from initial tagger
+create brill taggers from list
+create brill taggers"
+"Tags by applying each rule to the entire corpus (rather than all rules to a
+single sequence). The point is to collect statistics on the test set for
+individual rules.","set  for individual rules"
+"NOTE: This is inefficient (does not build any index, so will traverse the entire
+corpus N times for N rules) – usually you would not care about statistics for
+individual rules and thus use batch_tag() instead","use batch_tag()"
+"Print a list of all templates, ranked according to efficiency.","print list of templates"
+"If test_stats is available, the templates are ranked according to their
+relative contribution (summed for all rules created from a given template,
+weighted by score) to the performance on the test set. If no test_stats, then
+statistics collected during training are used instead. There is also
+an unweighted measure (just counting the rules). This is less informative,
+though, as many low-score rules will appear towards end of training.","use statistics"
+"printunused (bool) – if True, print a list of all unused templates","print list of unused templates"
+"Return the ordered list of  transformation rules that this tagger has learnt","order list of transformation rules"
+"the ordered list of transformation rules that correct the initial tagging","order list of transformation rules"
+"Determine the most appropriate tag sequence for the given
+token sequence, and return a corresponding list of tagged
+tokens.  A tagged token is encoded as a tuple (token, tag).","determine appropriate tag sequence for given token sequence
+return corresponding list of tagged tokens
+encode tagged token as tuple"
+"Return a named statistic collected during training, or a dictionary of all
+available statistics if no name given","return named statistic of available statistics
+return dictionary of available statistics"
+"Print the available template sets in this demo, with a short description”","set  with short description
+set  in demo"
+"Trains the Brill tagger on the corpus train_sents,
+producing at most max_rules transformations, each of which
+reduces the net number of errors in the corpus by at least
+min_score, and each of which has accuracy not lower than
+min_acc.","produce  at most max_rules transformations"
+"#templates
+>>> Template._cleartemplates() #clear any templates created in earlier tests
+>>> templates = [Template(Pos([-1])), Template(Pos([-1]), Word([0]))]","create  in tests &gt; &gt; &gt; templates"
+"S   F   r   O  |        Score = Fixed - Broken
+c   i   o   t  |  R     Fixed = num tags changed incorrect -> correct
+o   x   k   h  |  u     Broken = num tags changed correct -> incorrect
+r   e   e   e  |  l     Other = num tags changed incorrect -> incorrect
+e   d   n   r  |  e","change broken c i o t"
+"the learned tagger","learn tagger"
+"A module for POS tagging using CRFSuite","use CRFSuite"
+"A module for POS tagging using CRFSuite https://pypi.python.org/pypi/python-crfsuite","use CRFSuite https://pypi.python.org/pypi/python-crfsuite"
+"Train a new model using ``train’’ function","use train "
+"Use the pre-trained model which is set via ``set_model_file’’ function","use pre-trained model
+set pre-trained model via set_model_file function"
+"Train a new model using ``train’’ function","use train "
+"Use the pre-trained model which is set via ``set_model_file’’ function","use pre-trained model
+set pre-trained model via set_model_file function"
+"Train the CRF tagger using CRFSuite
+:params train_data : is the list of annotated sentences.
+:type train_data : list (list(tuple(str,str)))
+:params model_file : the model will be saved to this file.","use CRFSuite
+save model to file"
+"Hidden Markov Models (HMMs) largely used to assign the correct label sequence
+to sequential data or assess the probability of a given label and data
+sequence. These models are finite state machines characterised by a number of
+states, transitions between these states, and output symbols emitted while in
+each state. The HMM is an extension to the Markov chain, where each state
+corresponds deterministically to a given event. In the HMM the observation is
+a probabilistic function of the state. HMMs share the Markov chain’s
+assumption, being that the probability of transition from one state to another
+only depends on the current state - i.e. the series of states that led to the
+current state are not used. They are also time invariant.","assign correct label sequence to sequential data
+share assumption"
+"To ground this discussion, take a common NLP application, part-of-speech (POS)
+tagging. An HMM is desirable for this task as the highest probability tag
+sequence can be calculated for a given sequence of word forms. This differs
+from other tagging techniques which often tag each word individually, seeking
+to optimise each individual tagging greedily without regard to the optimal
+combination of tags for a larger unit, such as a sentence. The HMM does this
+with the Viterbi algorithm, which efficiently computes the optimal path
+through the graph given the sequence of words forms.","calculate highest probability for given sequence
+tag word such_as sentence
+tag other tagging techniques such_as sentence
+compute optimal path through graph
+compute Viterbi algorithm through graph"
+"In POS tagging the states usually have a 1:1 correspondence with the tag
+alphabet - i.e. each state represents a single tag. The output observation
+alphabet is the set of word forms (the lexicon), and the remaining three
+parameters are derived by a training regime. With this information the
+probability of a given sentence can be easily derived, by simply summing the
+probability of each distinct path through the model. Similarly, the highest
+probability tagging sequence can be derived with the Viterbi algorithm,
+yielding a state sequence which can be mapped into a tag sequence.","tag sequence"
+"This discussion assumes that the HMM has been trained. This is probably the
+most difficult task with the model, and requires either MLE estimates of the
+parameters or unsupervised learning using the Baum-Welch algorithm, a variant
+of EM.","use baum-welch algorithm"
+"For more information, please consult the source code for this module,
+which includes extensive demonstration code.","include extensive demonstration code
+include module"
+"Hidden Markov model class, a generative model for labelling sequence data.
+These models define the joint probability of a sequence of symbols and
+their labels (state transitions) as the product of the starting state
+probability, the probability of each state transition, and the probability
+of each observation being generated from each state. This is described in
+more detail in the module documentation.","define probability as product
+define probability of observation
+define probability of sequence
+define probability of state transition
+define joint probability as product
+define joint probability of observation
+define joint probability of sequence
+define joint probability of state transition
+define probability as product
+define probability of observation
+define probability of sequence
+define probability of state transition
+define labels as product
+define labels of observation
+define labels of sequence
+define labels of state transition"
+"This implementation is based on the HMM description in Chapter 8, Huang,
+Acero and Hon, Spoken Language Processing and includes an extension for
+training shallow HMM parsers or specialized HMMs as in Molina et.
+al, 2002.  A specialized HMM modifies training data by applying a
+specialization function to create a new training set that is more
+appropriate for sequential tagging with an HMM.  A typical use case is
+chunking.","include extension for training
+modify training data by applying
+create new training set
+tag  with HMM"
+"outputs (ConditionalProbDistI) – output probabilities; Pr(o_k | s_i) is the probability
+of emitting symbol k when entering state i","enter state i."
+"Returns the state sequence of the optimal (most probable) path through
+the HMM. Uses the Viterbi algorithm to calculate this part by dynamic
+programming.","return state sequence through HMM
+return state sequence of optimal path
+calculate part by dynamic programming"
+"Returns the state sequence of the optimal (most probable) path through
+the HMM. Uses the Viterbi algorithm to calculate this part by dynamic
+programming.  This uses a simple, direct method, and is included for
+teaching purposes.","return state sequence through HMM
+return state sequence of optimal path
+calculate part by dynamic programming
+use simple direct method
+include  for teaching purposes"
+"Returns the entropy over labellings of the given sequence. This is
+given by:","return entropy over labellings"
+"The order of summation for the log terms can be flipped, allowing
+dynamic programming to be used to calculate the entropy. Specifically,
+we use the forward and backward probabilities (alpha, beta) giving:","calculate entropy"
+"This simply uses alpha and beta to find the probabilities of partial
+sequences, constrained to include the given state(s) at some point in
+time.","include given state at point"
+"Returns the log-probability of the given symbol sequence. If the
+sequence is labelled, then returns the joint log-probability of the
+symbol, state sequence. Otherwise, uses the forward algorithm to find
+the log-probability over all label sequences.","return log-probability of given symbol sequence
+return joint log-probability of symbol
+use forward algorithm"
+"Returns the pointwise entropy over the possible states at each
+position in the chain, given the observation sequence.","return pointwise entropy over possible states"
+"Returns the probability of the given symbol sequence. If the sequence
+is labelled, then returns the joint probability of the symbol, state
+sequence. Otherwise, uses the forward algorithm to find the
+probability over all label sequences.","return probability of given symbol sequence
+return joint probability of symbol
+use forward algorithm"
+"Randomly sample the HMM to generate a sentence of a given length. This
+samples the prior distribution then the observation distribution and
+transition distribution for each subsequent observation and state.
+This will mostly generate unintelligible garbage, but can provide some
+amusement.","provide amusement"
+"verbose (bool) – boolean flag indicating whether training should be
+verbose or include printed output","include printed output"
+"Train a new HiddenMarkovModelTagger using the given labeled and
+unlabeled training instances. Testing will be performed if test
+instances are provided.","use given labeled
+use unlabeled training instances
+perform testing
+provide test instances"
+"verbose (bool) – boolean flag indicating whether training should be
+verbose or include printed output","include printed output"
+"Algorithms for learning HMM parameters from training data. These include
+both supervised learning (MLE) and unsupervised learning (Baum-Welch).","learn HMM parameters from training data
+include supervised learning"
+"Creates an HMM trainer to induce an HMM with the given states and
+output symbol alphabet. A supervised and unsupervised training
+method may be used. If either of the states or symbols are not given,
+these may be derived from supervised training.","use supervised unsupervised training method"
+"Trains the HMM using both (or either of) supervised and unsupervised
+techniques.","use supervised unsupervised techniques"
+"kwargs – additional arguments to pass to the training methods","pass  to training methods"
+"estimator – a function taking
+a FreqDist and a number of bins and returning a CProbDistI;
+otherwise a MLE estimate is used","return cprobdisti
+use MLE estimate"
+"Trains the HMM using the Baum-Welch algorithm to maximise the
+probability of the data sequence. This is a variant of the EM
+algorithm, and is unsupervised in that it doesn’t need the state
+sequences for the symbols. The code is based on ‘A Tutorial on Hidden
+Markov Models and Selected Applications in Speech Recognition’,
+Lawrence Rabiner, IEEE, 1989.","use baum-welch algorithm"
+"kwargs may include following parameters:","include following parameters"
+"This class communicates with the hunpos-tag binary via pipes. When the
+tagger object is no longer needed, the close() method should be called to
+free system resources. The class supports the context manager interface; if
+used in a with statement, the close() method is invoked automatically:","call close() method to free system resources
+support context manager interface"
+"Interface for converting POS tags from various treebanks
+to the universal tagset of Petrov, Das, & McDonald.","convert POS tags from various treebanks
+convert POS tags to universal tagset"
+"Retrieve the mapping dictionary between tagsets.","retrieve mapping dictionary between tagsets"
+"Dot-product the features and current weights and return the best label.","return best label"
+"Save the pickled model weights.","save pickled model weights"
+"Update the feature weights.","update feature weights"
+"Use the pretrain model (the default constructor)","use pretrain model"
+"Normalization used in pre-processing.
+- All words are lower cased
+- Groups of digits of length 4 are represented as !YEAR;
+- Other digits are represented as !DIGITS","use  in pre-processing"
+"Tag tokenized sentences.
+:params tokens: list of word
+:type tokens: list(str)","tokenize sentences"
+"Train a model from sentences, and save it at save_loc. nr_iter
+controls the number of Perceptron training iterations.","save  at save_loc"
+"save_loc – If not None, saves a pickled model in this location.","save pickled model in location"
+"SennaTagger will automatically search for executable file specified in SENNA environment variable","search  for executable file
+specify  in SENNA environment variable"
+"Applies the tag method over a list of sentences. This method will return
+for each sentence a list of tuples of (word, tag).","return list of tuples
+return list for sentence"
+"Applies the tag method over a list of sentences. This method will return
+for each sentence a list of tuples of (word, tag).","return list of tuples
+return list for sentence"
+"Applies the tag method over a list of sentences. This method will return
+for each sentence a list of tuples of (word, tag).","return list of tuples
+return list for sentence"
+"Classes for tagging sentences sequentially, left to right.  The
+abstract base class SequentialBackoffTagger serves as the base
+class for all the taggers in this module.  Tagging of individual words
+is performed by the method choose_tag(), which is defined by
+subclasses of SequentialBackoffTagger.  If a tagger is unable to
+determine a tag for the specified token, then its backoff tagger is
+consulted instead.  Any SequentialBackoffTagger may serve as a
+backoff tagger for any other SequentialBackoffTagger.","tag sentences
+perform tagging of individual words
+define method choose_tag()
+determine tag for specified token"
+"A tagger that chooses a token’s tag based on a leading or trailing
+substring of its word string.  (It is important to note that these
+substrings are not necessarily “true” morphological affixes).  In
+particular, a fixed-length substring of the word is looked up in a
+table, and the corresponding tag is returned.  Affix taggers are
+typically constructed by training them on a tagged corpus.","choose tag
+choose tagger
+return corresponding tag"
+"affix_length – The length of the affixes that should be
+considered during training and tagging.  Use negative
+numbers for suffixes.","use negative numbers for suffixes"
+"min_stem_length – Any words whose length is less than
+min_stem_length+abs(affix_length) will be assigned a
+tag of None by this tagger.","assign tag of None
+assign min_stem_length + abs(affix_length) of None"
+"A tagger that chooses a token’s tag based its word string and on
+the preceding words’ tag.  In particular, a tuple consisting
+of the previous tag and the word is looked up in a table, and
+the corresponding tag is returned.","choose token s tag
+choose tagger
+return corresponding tag"
+"backoff (TaggerI) – Another tagger which this tagger will consult when it is
+unable to tag a word","tag word"
+"Return the feature detector that this tagger uses to generate
+featuresets for its classifier.  The feature detector is a
+function with the signature:","return feature detector"
+"A sequential tagger that uses a classifier to choose the tag for
+each token in a sentence.  The featureset input for the classifier
+is generated by a feature detector function:","use classifier
+choose tag"
+"Where tokens is the list of unlabeled tokens in the sentence;
+index is the index of the token for which feature detection
+should be performed; and history is list of the tags for all
+tokens before index.","perform detection of tags
+perform index of tags
+perform list of tags"
+"classifier – The classifier that should be used by the
+tagger.  This is only useful if you want to manually
+construct the classifier; normally, you would use train
+instead.","use classifier
+use train"
+"backoff – A backoff tagger, used if this tagger is
+unable to determine a tag for a given token.","determine tag for given token"
+"Decide which tag should be used for the specified token, and
+return that tag.  If this tagger is unable to determine a tag
+for the specified token, return None – do not consult
+the backoff tagger.  This method should be overridden by
+subclasses of SequentialBackoffTagger.","use tag for specified token
+return tag
+determine tag for specified token
+return None
+override method"
+"tokens (list) – The list of words that are being tagged.","tag words"
+"index (int) – The index of the word whose tag should be
+returned.","return tag
+return word"
+"Return the classifier that this tagger uses to choose a tag
+for each word in a sentence.  The input for this classifier is
+generated using this tagger’s feature detector.
+See feature_detector()","return classifier
+choose tag for word
+use feature detector"
+"Return the feature detector that this tagger uses to generate
+featuresets for its classifier.  The feature detector is a
+function with the signature:","return feature detector"
+"An abstract base class for sequential backoff taggers that choose
+a tag for a token based on the value of its “context”.  Different
+subclasses are used to define different contexts.","choose tag
+choose sequential backoff taggers
+define different contexts
+use different subclasses"
+"A ContextTagger chooses the tag for a token by calculating the
+token’s context, and looking up the corresponding tag in a table.
+This table can be constructed manually; or it can be automatically
+constructed based on a training corpus, using the _train()
+factory method.","choose tag by looking
+choose tag by calculating
+calculate context
+use _ train() factory method"
+"Decide which tag should be used for the specified token, and
+return that tag.  If this tagger is unable to determine a tag
+for the specified token, return None – do not consult
+the backoff tagger.  This method should be overridden by
+subclasses of SequentialBackoffTagger.","use tag for specified token
+return tag
+determine tag for specified token
+return None
+override method"
+"tokens (list) – The list of words that are being tagged.","tag words"
+"index (int) – The index of the word whose tag should be
+returned.","return tag
+return word"
+"The number of entries in the table used by this
+tagger to map from contexts to tags.","use  by tagger
+use  from contexts"
+"A tagger that assigns the same tag to every token.","assign same tag"
+"This tagger is recommended as a backoff tagger, in cases where
+a more powerful tagger is unable to assign a tag to the word
+(e.g. because the word was not seen during training).","assign tag to word"
+"Decide which tag should be used for the specified token, and
+return that tag.  If this tagger is unable to determine a tag
+for the specified token, return None – do not consult
+the backoff tagger.  This method should be overridden by
+subclasses of SequentialBackoffTagger.","use tag for specified token
+return tag
+determine tag for specified token
+return None
+override method"
+"tokens (list) – The list of words that are being tagged.","tag words"
+"index (int) – The index of the word whose tag should be
+returned.","return tag
+return word"
+"A tagger that chooses a token’s tag based on its word string and
+on the preceding n word’s tags.  In particular, a tuple
+(tags[i-n:i-1], words[i]) is looked up in a table, and the
+corresponding tag is returned.  N-gram taggers are typically
+trained on a tagged corpus.","choose tag
+choose tagger
+return corresponding tag"
+"Train a new NgramTagger using the given training data or
+the supplied model.  In particular, construct a new tagger
+whose table maps from each context (tag[i-n:i-1], word[i])
+to the most frequent tag for that context.  But exclude any
+contexts that are already tagged perfectly by the backoff
+tagger.","use given training data
+use supplied model
+exclude contexts
+tag contexts"
+"cutoff – If the most likely tag for a context occurs
+fewer than cutoff times, then exclude it from the
+context-to-tag table for the new tagger.","exclude  from context-to-tag table"
+"The RegexpTagger assigns tags to tokens by comparing their
+word strings to a series of regular expressions.  The following tagger
+uses word suffixes to make guesses about the correct Brown Corpus part
+of speech tag:","assign tags by comparing
+assign tags to tokens
+compare word strings to series"
+"regexps (list(tuple(str, str))) – A list of (regexp, tag) pairs, each of
+which indicates that a word matching regexp should
+be tagged with tag.  The pairs will be evalutated in
+order.  If none of the regexps match a word, then the
+optional backoff tagger is invoked, else it is
+assigned the tag None.","tag word matching regexp with tag
+match word
+assign tag none"
+"Decide which tag should be used for the specified token, and
+return that tag.  If this tagger is unable to determine a tag
+for the specified token, return None – do not consult
+the backoff tagger.  This method should be overridden by
+subclasses of SequentialBackoffTagger.","use tag for specified token
+return tag
+determine tag for specified token
+return None
+override method"
+"tokens (list) – The list of words that are being tagged.","tag words"
+"index (int) – The index of the word whose tag should be
+returned.","return tag
+return word"
+"An abstract base class for taggers that tags words sequentially,
+left to right.  Tagging of individual words is performed by the
+choose_tag() method, which should be defined by subclasses.  If
+a tagger is unable to determine a tag for the specified token,
+then its backoff tagger is consulted.","perform tagging of individual words
+define choose_tag() method
+determine tag for specified token"
+"Decide which tag should be used for the specified token, and
+return that tag.  If this tagger is unable to determine a tag
+for the specified token, return None – do not consult
+the backoff tagger.  This method should be overridden by
+subclasses of SequentialBackoffTagger.","use tag for specified token
+return tag
+determine tag for specified token
+return None
+override method"
+"tokens (list) – The list of words that are being tagged.","tag words"
+"index (int) – The index of the word whose tag should be
+returned.","return tag
+return word"
+"Determine the most appropriate tag sequence for the given
+token sequence, and return a corresponding list of tagged
+tokens.  A tagged token is encoded as a tuple (token, tag).","determine appropriate tag sequence for given token sequence
+return corresponding list of tagged tokens
+encode tagged token as tuple"
+"Determine an appropriate tag for the specified token, and
+return that tag.  If this tagger is unable to determine a tag
+for the specified token, then its backoff tagger is consulted.","determine appropriate tag for specified token
+return tag
+determine tag for specified token"
+"tokens (list) – The list of words that are being tagged.","tag words"
+"index (int) – The index of the word whose tag should be
+returned.","return tag
+return word"
+"A tagger that chooses a token’s tag based its word string and on
+the preceding two words’ tags.  In particular, a tuple consisting
+of the previous two tags and the word is looked up in a table, and
+the corresponding tag is returned.","choose token s tag
+choose tagger
+return corresponding tag"
+"backoff (TaggerI) – Another tagger which this tagger will consult when it is
+unable to tag a word","tag word"
+"The UnigramTagger finds the most likely tag for each word in a training
+corpus, and then uses that information to assign tags to new tokens.","use information
+assign tags to new tokens"
+"backoff (TaggerI) – Another tagger which this tagger will consult when it is
+unable to tag a word","tag word"
+"Tagger models need to be downloaded from https://nlp.stanford.edu/software
+and the STANFORD_MODELS environment variable set (a colon-separated
+list of paths).","download  from https://nlp.stanford.edu/software
+download  from STANFORD_MODELS environment variable set"
+"(optionally) the path to the stanford tagger jar file. If not specified here,
+then this jar file must be specified in the CLASSPATH envinroment variable.","specify jar file in CLASSPATH envinroment variable"
+"(optionally) the path to the stanford tagger jar file. If not specified here,
+then this jar file must be specified in the CLASSPATH envinroment variable.","specify jar file in CLASSPATH envinroment variable"
+"_cmd property: A property that returns the command that will be
+executed.","return command
+return property
+execute command"
+"_SEPARATOR: Class constant that represents that character that
+is used to separate the tokens from their tags.","use character"
+"Determine the most appropriate tag sequence for the given
+token sequence, and return a corresponding list of tagged
+tokens.  A tagged token is encoded as a tuple (token, tag).","determine appropriate tag sequence for given token sequence
+return corresponding list of tagged tokens
+encode tagged token as tuple"
+"return [self.tag(sent) for sent in sentences]","return  self.tag(sent)
+send  in sentences"
+"It is possible to provide an untrained POS tagger to
+create tags for unknown words, see __init__ function","provide untrained POS tagger
+create tags for unknown words"
+"However it still produces good results if the training
+data and testing data are separated on all punctuation eg: [,.?!]","produce good results"
+"Function provided to process text that is unsegmented","process text"
+"TnT uses a second order Markov model to produce tags for
+a sequence of input, specifically:","produce tags for sequence"
+"The set of possible tags for a given word is derived
+from the training data. It is the set of all tags
+that exact word has been assigned.","assign exact word"
+"To speed up and get more precision, we can use log addition
+to instead multiplication, specifically:","get more precision
+use log addition"
+"A beam search is used to limit the memory usage of the algorithm.
+The degree of the beam can be changed using N in the initialization.
+N represents the maximum number of possible solutions to maintain
+while tagging.","limit memory usage of algorithm
+use beam search
+use n in initialization
+change degree of beam"
+"It is possible to differentiate the tags which are assigned to
+capitalized words. However this does not result in a significant
+gain in the accuracy of the results.","differentiate tags
+assign tags to capitalized words"
+"Calls recursive function ‘_tagword’
+to produce a list of tags","produce list of tags"
+"Associates the sequence of returned tags
+with the correct words in the input sequence","return tags with correct words
+return tags in input sequence"
+"returns a list of (word, tag) tuples","return list of tuples"
+"Invokes tag(sent) function for each sentence
+compiles the results into a list of tagged sentences
+each tagged sentence is a list of (word, tag) tuples","compile results into list"
+"Uses a set of tagged data to train the tagger.
+If an unknown word tagger is specified,
+it is trained on the same data.","use set of tagged data
+specify unknown word tagger"
+"Basic method for tokenizing input into sentences
+for this tagger:","tokenize input into sentences"
+"raw (bool) – boolean flag marking the input data
+as a list of words or a list of tagged words","mark input data as list
+mark input data as list"
+"Given the string representation of a tagged token, return the
+corresponding tuple representation.  The rightmost occurrence of
+sep in s will be used to divide s into a word string and
+a tag string.  If sep does not occur in s, return (s, None).","return corresponding tuple representation
+divide  into word string
+divide  into tag string
+use rightmost occurrence of sep"
+"sep (str) – The separator string used to separate word strings
+from tags.","use  from tags
+use  to separate word strings"
+"Given the tuple representation of a tagged token, return the
+corresponding string representation.  This representation is
+formed by concatenating the token’s word string, followed by the
+separator, followed by the token’s tag.  (If the tag is None,
+then just return the bare word string.)","return corresponding string representation"
+"sep (str) – The separator string used to separate word strings
+from tags.","use  from tags
+use  to separate word strings"
+"Given a tagged sentence, return an untagged version of that
+sentence.  I.e., return a list containing the first element
+of each tuple in tagged_sentence.","return untagged version of sentence
+return list"
+"A “tag” is a case-sensitive string that specifies some property of a token,
+such as its part of speech.  Tagged tokens are encoded as tuples
+(tag, token).  For example, the following tagged token combines
+the word 'fly' with a noun part of speech tag ('NN'):","specify property such_as part
+specify case-sensitive string such_as part
+encode tagged tokens as tuples"
+"An off-the-shelf tagger is available for English. It uses the Penn Treebank tagset:","use Penn treebank tagset"
+"A Russian tagger is also available if you specify lang=”rus”. It uses
+the Russian National Corpus tagset:","use Russian national Corpus tagset"
+"This package defines several taggers, which take a list of tokens,
+assign a tag to each one, and return the resulting list of tagged tokens.
+Most of the taggers are built automatically based on a training corpus.
+For example, the unigram tagger tags each word w by checking what
+the most frequent tag for w was in a training corpus:","define several taggers
+assign tag
+assign several taggers
+return resulting list of tagged tokens
+return several taggers of tagged tokens
+tag word w by checking"
+"Note that words that the tagger has not seen during training receive a tag
+of None.","receive tag of none"
+"We evaluate a tagger on data that was not seen during training:","evaluate tagger on data"
+"Use NLTK’s currently recommended part of speech tagger to
+tag the given list of tokens.","tag given list of tokens"
+"NB. Use pos_tag_sents() for efficient tagging of more than one sentence.","use pos_tag_sents() for efficient tagging"
+"tokens (list(str)) – Sequence of tokens to be tagged","tag sequence of tokens"
+"Use NLTK’s currently recommended part of speech tagger to tag the
+given list of sentences, each consisting of a list of tokens.","tag given list of sentences"

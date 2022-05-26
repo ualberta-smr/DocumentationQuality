@@ -1,0 +1,95 @@
+Paragraph,Example,Page
+These are the default models that are run:,"# tags: LOCATION, ORGANIZATION, PERSON
+edu/stanford/nlp/models/ner/english.all.3class.distsim.crf.ser.gz
+# tags: DATE, LOCATION, MONEY, ORGANIZATION, PERCENT, PERSON, TIME
+edu/stanford/nlp/models/ner/english.muc.7class.distsim.crf.ser.gz
+# LOCATION, MISC, ORGANIZATION, PERSON
+edu/stanford/nlp/models/ner/english.conll.4class.distsim.crf.ser.gz",https://stanfordnlp.github.io/CoreNLP/ner.html
+The TokensRegexNERAnnotator runs TokensRegex rules. You can review all of the settings for a TokensRegexNERAnnotator here.,"CAUSE_OF_DEATH, CITY, COUNTRY, CRIMINAL_CHARGE, EMAIL, HANDLE,
+IDEOLOGY, NATIONALITY, RELIGION, STATE_OR_PROVINCE, TITLE, URL",https://stanfordnlp.github.io/CoreNLP/ner.html
+"The first column is the tokens pattern, the second column is the NER tag to apply, the third is the types of NER tags that can be overwritten, and the fourth is a priority used for tie-breaking if two rules match a sequence.","Los Angeles	CITY	LOCATION,MISC	1.0",https://stanfordnlp.github.io/CoreNLP/ner.html
+"means to match the token “Los” followed by the token “Angeles”, and label them both as CITY, provided they have a current NER tag of O, LOCATION, or MISC.",Bachelor of (Arts|Science)	DEGREE	MISC	1.0,https://stanfordnlp.github.io/CoreNLP/ner.html
+The ner.fine.regexner.mapping property allows one to specify a set of rules files and additional properties for each rules file.,"ignorecase=true,validpospattern=^(NN|JJ).*,edu/stanford/nlp/models/kbp/english/gazetteers/regexner_caseless.tab;edu/stanford/nlp/models/kbp/english/gazetteers/regexner_cased.tab",https://stanfordnlp.github.io/CoreNLP/ner.html
+The ner.fine.regexner.mapping property allows one to specify a set of rules files and additional properties for each rules file.,"edu/stanford/nlp/models/kbp/english/gazetteers/regexner_caseless.tab
+edu/stanford/nlp/models/kbp/english/gazetteers/regexner_cased.tab",https://stanfordnlp.github.io/CoreNLP/ner.html
+"For instance, suppose you want to match sports teams after the previous NER steps have been run.","Boston Red Sox       SPORTS_TEAM     ORGANIZATION,MISC       1
+Denver Broncos       SPORTS_TEAM     ORGANIZATION,MISC       1
+Detroit Red Wings    SPORTS_TEAM     ORGANIZATION,MISC       1
+Los Angeles Lakers   SPORTS_TEAM     ORGANIZATION,MISC       1",https://stanfordnlp.github.io/CoreNLP/ner.html
+"If you want to run a series of TokensRegex rules before entity building, you can also specify a set of TokensRegex rules. A TokensRegexAnnotator sub-annotator will be called. It has the name ner.additional.tokensregex.","java -Xmx5g edu.stanford.nlp.pipeline.StanfordCoreNLP -annotators tokenize,ssplit,pos,lemma,ner -ner.additional.tokensregex.rules example.rules -file example.txt -outputFormat text",https://stanfordnlp.github.io/CoreNLP/ner.html
+The following example shows how to access label confidences for tokens and entities. Each token stores the probability of its NER label given by the CRF that was used to assign the label in the CoreAnnotations.NamedEntityTagProbsAnnotation.class. Each entity mention contains the probability of the token with the lowest label probability in its span. For example if Los Angeles had the following probabilities:,"{word: 'Los', 'tag': 'LOCATION', 'prob': .992} 
+{word: 'Angeles', 'tag': 'LOCATION', 'prob': .999}",https://stanfordnlp.github.io/CoreNLP/ner.html
+Below is code for accessing these confidences.,"package edu.stanford.nlp.examples;
+
+import edu.stanford.nlp.ling.*;
+import edu.stanford.nlp.pipeline.*;
+import java.util.*;
+
+public class NERConfidenceExample {
+
+    public static void main(String[] args) {
+        String exampleText = ""Joe Smith lives in California."";
+        Properties props = new Properties();
+        props.setProperty(""annotators"", ""tokenize,ssplit,pos,lemma,ner"");
+        StanfordCoreNLP pipeline = new StanfordCoreNLP(props);
+        CoreDocument document = new CoreDocument(exampleText);
+        pipeline.annotate(document);
+        // get confidences for entities
+        for (CoreEntityMention em : document.entityMentions()) {
+            System.out.println(em.text() + ""\t"" + em.entityTypeConfidences());
+        }
+        // get confidences for tokens
+        for (CoreLabel token : document.tokens()) {
+            System.out.println(token.word() + ""\t"" + token.get(CoreAnnotations.NamedEntityTagProbsAnnotation.class));
+        }
+    }
+}",https://stanfordnlp.github.io/CoreNLP/ner.html
+The training process can be customized using a properties file. Here is an example properties file for training an English model(ner.model.props):,"# location of training data
+trainFileList = /path/to/conll.3class.train
+# location of test data
+testFile = /path/to/all.3class.test
+# where to store the saved model
+serializeTo = ner.model.ser.gz
+
+type = crf
+
+wordFunction = edu.stanford.nlp.process.AmericanizeFunction
+
+useDistSim = false
+
+# establish the data file format
+map = word=0,answer=1
+
+saveFeatureIndexToDisk = true
+
+useClassFeature=true
+useWord=true
+useNGrams=true
+noMidNGrams=true
+maxNGramLeng=6
+usePrev=true
+useNext=true
+useLongSequences=true
+useSequences=true
+usePrevSequences=true
+maxLeft=1
+useTypeSeqs=true
+useTypeSeqs2=true
+useTypeySequences=true
+useOccurrencePatterns=true
+useLastRealWord=true
+useNextRealWord=true
+normalize=true
+wordShape=chris2useLC
+useDisjunctive=true
+disjunctionWidth=5
+
+readerAndWriter=edu.stanford.nlp.sequences.ColumnDocumentReaderAndWriter
+
+useObservedSequencesOnly=true
+
+useQN = true
+QNsize = 25
+
+# makes it go faster
+featureDiffThresh=0.05",https://stanfordnlp.github.io/CoreNLP/ner.html

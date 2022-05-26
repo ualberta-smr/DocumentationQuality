@@ -41,16 +41,16 @@ jsonarray jarr = new jsonarray(myarr);
 // these will be wrapped
 jarr.putall(new jsonarray(new somebean[]{ new somebean(3), new somebean(4) }));
 // our jarr is now consistent.",,FALSE
-Paragraph,,example,FALSE
-"The org.json package can be built from the command line, Maven, and Gradle. The unit tests can be executed from Maven, Gradle, or individually in an IDE e.g. Eclipse.",,javac org/json/*.java,FALSE
-"The org.json package can be built from the command line, Maven, and Gradle. The unit tests can be executed from Maven, Gradle, or individually in an IDE e.g. Eclipse.",,jar cf json-java.jar org/json/*.class,FALSE
+Paragraph,,example,Page
+"The org.json package can be built from the command line, Maven, and Gradle. The unit tests can be executed from Maven, Gradle, or individually in an IDE e.g. Eclipse.",,javac org/json/*.java,http://web.archive.org/web/20211017224709/https://github.com/stleary/JSON-java
+"The org.json package can be built from the command line, Maven, and Gradle. The unit tests can be executed from Maven, Gradle, or individually in an IDE e.g. Eclipse.",,jar cf json-java.jar org/json/*.class,http://web.archive.org/web/20211017224709/https://github.com/stleary/JSON-java
 "Recent pull requests added a new method putAll on the JSONArray. The putAll method
 works similarly to other put methods in that it does not call JSONObject.wrap for items
 added. This can lead to inconsistent object representation in JSONArray structures.",,"somebean[] myarr = new somebean[]{ new somebean(1), new somebean(2) };
 // these will be wrapped
 jsonarray jarr = new jsonarray(myarr);
 // these will not be wrapped
-jarr.putall(new somebean[]{ new somebean(3), new somebean(4) });",FALSE
+jarr.putall(new somebean[]{ new somebean(3), new somebean(4) });",http://web.archive.org/web/20211017224709/https://github.com/stleary/JSON-java
 "Recent pull requests added a new method putAll on the JSONArray. The putAll method
 works similarly to other put methods in that it does not call JSONObject.wrap for items
 added. This can lead to inconsistent object representation in JSONArray structures.",,"somebean[] myarr = new somebean[]{ new somebean(1), new somebean(2) };
@@ -59,7 +59,7 @@ jsonarray jarr = new jsonarray();
 jarr.putall(myarr);
 // these will not be wrapped
 jarr.putall(new somebean[]{ new somebean(3), new somebean(4) });
-// our jarr is now consistent.",FALSE
+// our jarr is now consistent.",http://web.archive.org/web/20211017224709/https://github.com/stleary/JSON-java
 "Recent pull requests added a new method putAll on the JSONArray. The putAll method
 works similarly to other put methods in that it does not call JSONObject.wrap for items
 added. This can lead to inconsistent object representation in JSONArray structures.",,"somebean[] myarr = new somebean[]{ new somebean(1), new somebean(2) };
@@ -67,7 +67,7 @@ added. This can lead to inconsistent object representation in JSONArray structur
 jsonarray jarr = new jsonarray(myarr);
 // these will be wrapped
 jarr.putall(new jsonarray(new somebean[]{ new somebean(3), new somebean(4) }));
-// our jarr is now consistent.",FALSE
+// our jarr is now consistent.",http://web.archive.org/web/20211017224709/https://github.com/stleary/JSON-java
 "JSON-java releases can be found by searching the Maven repository for groupId ""org.json""
 and artifactId ""json"". For example:
 https://search.maven.org/search?q=g:org.json%20AND%20a:json&core=gav",,"20210307    recent commits and potentially breaking fix to jsonpointer
@@ -99,4 +99,4 @@ contains the latest code as of 7 aug 2016
 20151123    jsonobject and jsonarray initialization with generics. contains the latest code as of 23 nov 2015.
 
 20150729    checkpoint for maven central repository release. contains the latest code
-as of 29 july 2015.",FALSE
+as of 29 july 2015.",http://web.archive.org/web/20211017224709/https://github.com/stleary/JSON-java

@@ -114,6 +114,7 @@ def evaluate_links(truth, test, filename):
             test_list = list(test_reader)
             precision_total = 0
             recall_total = 0
+            paragraphs_with_tasks = 0
             seen = set()
             with open(os.path.normpath(filename), "w", encoding="utf-8", newline="") as out_file:
                 link_writer = csv.writer(out_file, quoting=csv.QUOTE_MINIMAL)
@@ -137,6 +138,8 @@ def evaluate_links(truth, test, filename):
                             link_writer.writerow(
                                 [truth_row[0], truth_row[1].lower(),
                                  test_row[1].lower(), truth_row[2] if len(truth_row) > 2 else "FALSE",  pr])
+                            if len(truth_row) > 2 and truth_row[2] == "TRUE":
+                                paragraphs_with_tasks += 1
                             if pr >= 95:
                                 recall_total += 1
                                 precision_total += 1
@@ -148,6 +151,8 @@ def evaluate_links(truth, test, filename):
                             in_seen = True
                             break
                     if not in_seen:
+                        if len(truth_row) > 2 and truth_row[2] == "TRUE":
+                            paragraphs_with_tasks += 1
                         link_writer.writerow(
                             [truth_row[0], truth_row[1].lower(), "", truth_row[2] if len(truth_row) > 2 else "FALSE"])
                     in_seen = False
@@ -158,17 +163,20 @@ def evaluate_links(truth, test, filename):
                             in_seen = True
                     if not in_seen:
                         link_writer.writerow(
-                            [test_row[0], "", test_row[1].lower(), truth_row[2] if len(truth_row) > 2 else "FALSE"])
+                            [test_row[0], "", test_row[1].lower(), test_row[2] if len(test_row) > 2 else "FALSE"])
                     in_seen = False
                 try:
                     # print("Precision:", precision_total, "/", len(test_list),
                     #       "=", precision_total / len(test_list))
                     # print("Recall", recall_total, "/", len(truth_list), "=",
                     #       recall_total / len(truth_list))
-                    return [precision_total, len(test_list),
-                            round(precision_total / len(test_list), 2),
-                            recall_total, len(truth_list),
-                            round(recall_total / len(truth_list), 2)]
+                    row = [precision_total, len(test_list), round(precision_total / len(test_list), 2),
+                            recall_total, len(truth_list), round(recall_total / len(truth_list), 2)]
+                    if paragraphs_with_tasks > 0:
+                        row.append(paragraphs_with_tasks)
+                        row.append(round(precision_total / paragraphs_with_tasks, 2))
+                        row.append(round(recall_total / paragraphs_with_tasks, 2))
+                    return row
                 except ZeroDivisionError:
                     # print("No code example links")
                     return ["N/A"] * 6
@@ -182,8 +190,10 @@ if __name__ == '__main__':
               newline="") as out_file:
         writer = csv.writer(out_file, quoting=csv.QUOTE_MINIMAL)
         writer.writerow(
-            ["File", "Correct extracted tasks", "Total extracted tasks",
-             "Precision", "Correct truth tasks", "Total truth tasks", "Recall"])
+            ["File",
+             "Correct extracted tasks/linked code examples", "Total extracted tasks/linked code examples", "Precision",
+             "Correct truth tasks/code examples", "Total truth tasks/code examples", "Recall",
+             "Total paragraphs with tasks", "Precision", "Recall"])
         for file in os.listdir("truth"):
             truth_file = os.path.join("truth", file)
             for root, dirs, files in os.walk("results"):
