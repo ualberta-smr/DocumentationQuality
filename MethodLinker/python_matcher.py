@@ -51,7 +51,10 @@ def _extract_python_ast_args(func_def, class_method):
         optionals.append(func_def.args.kwarg.arg)
     # Remove the self parameter from class methods
     if class_method:
-        required.remove("self")
+        try:
+            required.remove("self")
+        except ValueError:
+            pass
     return func_def.name, required, optionals
 
 
@@ -88,10 +91,18 @@ def _find_args(example):
                     list_args.append(arg.id)
             if list_args:
                 if hasattr(a.body[0].value.func, "value"):
-                    parse = (a.body[0].value.func.value.id + "." + a.body[0].value.func.attr, list_args)
+                    temp = []
+                    for part in ast.walk(a.body[0].value.func):
+                        if hasattr(part, "id"):
+                            temp.append(part.id)
+                        elif hasattr(part, "attr"):
+                            temp.append(part.attr)
+                    temp.reverse()
+                    parse = (".".join(temp), list_args)
                 else:
                     parse = (a.body[0].value.func.id, list_args)
         except:
+            print(example)
             print(traceback.format_exc())
     return parse
 
@@ -101,35 +112,36 @@ def _find_func_def(call, functions, classes):
     matched_methods = []
     potential_classes = []
     name = call[0]
-    if call[0] in functions:
-        func_def = functions[name]
-    elif call[0].split(".")[-1] in functions:
-        name = call[0].split(".")[-1]
-        func_def = functions[name]
-    elif call[0].split(".")[-1] in classes:
-        name = call[0].split(".")[-1] + ".__init__"
-        if name in functions:
+    if call[0]:
+        if call[0] in functions:
             func_def = functions[name]
+        elif call[0].split(".")[-1] in functions:
+            name = call[0].split(".")[-1]
+            func_def = functions[name]
+        elif call[0].split(".")[-1] in classes:
+            name = call[0].split(".")[-1] + ".__init__"
+            if name in functions:
+                func_def = functions[name]
+            else:
+                potential_classes.append(name)
         else:
-            potential_classes.append(name)
-    else:
-        potential_methods = []
-        for key, value in functions.items():
-            potential = key.split(".")[-1]
-            if call[0].split(".")[-1] == potential:
-                potential_methods.append((key, value))
-        if potential_methods:
-            for po in potential_methods:
-                potential = po[1]
-                arg_count = 0
-                for arg in call[1]:
-                    if arg in potential["req_args"] or arg in potential["opt_args"]:
-                        arg_count += 1
-                if arg_count == len(call[1]):
-                    matched_methods.append(po)
-        for key, _ in classes.items():
-            if call[0].split(".")[-1].lower() == key.lower():
-                potential_classes.append(key)
+            potential_methods = []
+            for key, value in functions.items():
+                potential = key.split(".")[-1]
+                if call[0].split(".")[-1] == potential:
+                    potential_methods.append((key, value))
+            if potential_methods:
+                for po in potential_methods:
+                    potential = po[1]
+                    arg_count = 0
+                    for arg in call[1]:
+                        if arg in potential["req_args"] or arg in potential["opt_args"]:
+                            arg_count += 1
+                    if arg_count == len(call[1]):
+                        matched_methods.append(po)
+            for key, _ in classes.items():
+                if call[0].split(".")[-1].lower() == key.lower():
+                    potential_classes.append(key)
 
     return name, func_def, matched_methods, potential_classes
 
