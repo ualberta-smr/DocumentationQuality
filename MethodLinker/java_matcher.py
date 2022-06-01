@@ -59,8 +59,7 @@ def java_match(repo_name, examples, functions, classes):
                     potential_classes = set()
                     for key, _ in functions.items():
                         key_split = key.split(".")
-                        if len(key_split) > 1 and \
-                                method_call == key_split[1]:
+                        if len(key_split) > 1 and method_call == key_split[1]:
                             potential_classes.add(key_split[0])
                     for cls in potential_classes:
                         if cls in example:

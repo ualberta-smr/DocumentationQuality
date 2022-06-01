@@ -31,6 +31,35 @@ def extension_finder(language):
         LANGUAGE = "javascript"
 
 
+# Retrieves only html <code> tags because we don't want examples
+# we just want to see if there source code is reflected in the documentation
+# so we need to find the signatures in the documentation
+def get_documentation_signatures(doc_url, url):
+    try:
+        req = Request(url=url, headers=HEADERS)
+    except ValueError:
+        try:
+            url = re.match(re.compile(".+/"), doc_url)[0] + url
+            req = Request(url=url, headers=HEADERS)
+        except ValueError:
+            return []
+    content = html.unescape(urlopen(req).read().decode("utf-8"))
+    soup = BeautifulSoup(content, "html.parser")
+    dts = soup.find_all("dt")
+    descriptions = []
+
+    for description in dts:
+        desc = []
+        for child in description.children:
+            if child.name != "a":
+                desc.append(child.get_text())
+        description = "".join(desc).strip()
+        if "(" in description:
+            descriptions.append([description, url])
+    return descriptions
+
+
+# Retrieves only html <pre> tags to get code examples
 def get_documentation_examples(doc_url, url):
     try:
         req = Request(url=url, headers=HEADERS)
@@ -109,8 +138,8 @@ def get_functions(functions, source_file):
     for function in function_defs:
         if LANGUAGE == "python":
             functions[function[0]] = {"source_file": os.path.normpath(source_file),
-                                      "req_args": function[1][0],
-                                      "opt_args": function[1][1]}
+                                      "req_args": function[1],
+                                      "opt_args": function[2]}
         else:
             if function[0] in functions:
                 functions[function[0]]["req_args"].append(function[1])
@@ -135,7 +164,7 @@ def get_methods_and_classes(repo_url):
     return functions, classes
 
 
-def calculate_ratios(language, repo_name, repo_url, doc_url, pages):
+def calculate_ratios(language, repo_name, repo_url, doc_url, pages, examples):
     extension_finder(language)
     functions, classes = get_methods_and_classes(repo_url)
     with open("data/" + repo_name + "_methods.txt", "w") as temp:
@@ -149,7 +178,10 @@ def calculate_ratios(language, repo_name, repo_url, doc_url, pages):
     doc_examples = []
     for page in pages:
         try:
-            doc_examples.extend(get_documentation_examples(doc_url, page))
+            if examples:
+                doc_examples.extend(get_documentation_examples(doc_url, page))
+            else:
+                doc_examples.extend(get_documentation_signatures(doc_url, page))
         except:
             pass
 
@@ -164,10 +196,12 @@ def calculate_ratios(language, repo_name, repo_url, doc_url, pages):
         for item in doc_examples:
             writer.writerow(item)
 
-    # return 1,1,1,1
     method_calls = set()
     if LANGUAGE == "python":
-        method_calls = python_match(repo_name, doc_examples, functions, classes)
+        if examples:
+            method_calls = python_match_examples(repo_name, doc_examples, functions, classes)
+        else:
+            method_calls = python_match_signatures(repo_name, doc_examples, functions, classes)
     elif LANGUAGE == "java":
         method_calls = java_match(repo_name, doc_examples, functions, classes)
     elif LANGUAGE == "javascript":

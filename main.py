@@ -94,6 +94,7 @@ def _add_or_update_method_record(item_dict):
     cursor.close()
 
 
+# TODO: Get a description/summary of the library, like google does
 def _get_description(repo_name, doc_url):
     req = Request(url=doc_url, headers=util.HEADERS)
     content = html.unescape(urlopen(req).read().decode("utf-8"))
@@ -102,11 +103,11 @@ def _get_description(repo_name, doc_url):
         print(p)
 
 
-def api_methods_examples(language, repo_name, repo_url, doc_url):
+def api_methods_examples(language, repo_name, repo_url, doc_url, examples):
     os.chdir("MethodLinker")
     pages = get_webpages(doc_url, repo_name)
     example_count, total_methods, classes_count, total_classes = matcher.calculate_ratios(
-        language, repo_name, repo_url, doc_url, pages)
+        language, repo_name, repo_url, doc_url, pages, examples)
     _add_or_update_method_record(
         {"library_name": "'" + repo_name + "'",
          # "description": _get_description(repo_name, doc_url),
@@ -116,14 +117,14 @@ def api_methods_examples(language, repo_name, repo_url, doc_url):
          "num_methods": total_methods,
          "num_class_examples": classes_count,
          "num_classes": total_classes})
-    print("Methods found w/ examples:", example_count)
-    print("Total methods:", total_methods)
-    print("Classes found w/ examples:", classes_count)
-    print("Total classes:", total_classes)
-    if total_methods > 0:
-        print(example_count / total_methods)
-    if total_classes > 0:
-        print(classes_count / total_classes)
+    # print("Methods found w/ examples:", example_count)
+    # print("Total methods:", total_methods)
+    # print("Classes found w/ examples:", classes_count)
+    # print("Total classes:", total_classes)
+    # if total_methods > 0:
+    #     print(example_count / total_methods)
+    # if total_classes > 0:
+    #     print(classes_count / total_classes)
     os.chdir("..")
 
 
@@ -138,40 +139,47 @@ if __name__ == '__main__':
     # task_extract_and_link("JSON-java", "http://web.archive.org/web/20211017224709/https://github.com/stleary/JSON-java", "json")
     # task_extract_and_link("CoreNLP", "https://stanfordnlp.github.io/CoreNLP/ner.html", "nlp")
     # task_extract_and_link("CoreNLP", "https://stanfordnlp.github.io/CoreNLP/cmdline.html", "nlp")
-    # https://www.nltk.org/api/nltk.parse.html
-    task_extract_and_link("NLTK", "https://web.archive.org/web/20210417122335/https://www.nltk.org/api/nltk.parse.html", "nlp")
-    # https://www.nltk.org/api/nltk.tag.html
-    task_extract_and_link("NLTK", "https://web.archive.org/web/20210725152853/https://www.nltk.org/api/nltk.tag.html", "nlp")
-    task_extract_and_link("jQuery", "https://api.jquery.com/jQuery.get", "dom_manipulation")
+    # # https://www.nltk.org/api/nltk.parse.html
+    # task_extract_and_link("NLTK", "https://web.archive.org/web/20210417122335/https://www.nltk.org/api/nltk.parse.html", "nlp")
+    # # https://www.nltk.org/api/nltk.tag.html
+    # task_extract_and_link("NLTK", "https://web.archive.org/web/20210725152853/https://www.nltk.org/api/nltk.tag.html", "nlp")
+    # task_extract_and_link("jQuery", "https://api.jquery.com/jQuery.get", "dom_manipulation")
     # task_extract_and_link("reactjs", "https://reactjs.org/docs/components-and-props.html", "dom_manipulation")
 
     # task_extract_and_link("requests", "https://web.archive.org/web/20220505163814/https://docs.python-requests.org/en/latest/")
 
-    # api_methods_examples("python",
-    #                      "orjson",
-    #                      "https://github.com/ijl/orjson.git",
-    #                      "http://web.archive.org/web/20210831032333/https://github.com/ijl/orjson")
+    api_methods_examples("python",
+                         "orjson",
+                         "https://github.com/ijl/orjson.git",
+                         "http://web.archive.org/web/20210831032333/https://github.com/ijl/orjson",
+                         False)
     # api_methods_examples("python",
     #                      "nltk",
     #                      "https://github.com/nltk/nltk.git",
-    #                      "https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.html")
+    #                      "https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.html",
+    #                      True)
     # api_methods_examples("python",
     #                      "requests",
     #                      "https://github.com/psf/requests.git",
-    #                      "https://web.archive.org/web/20220505163814/https://docs.python-requests.org/en/latest/")
+    #                      "https://web.archive.org/web/20220505163814/https://docs.python-requests.org/en/latest/",
+    #                      False)
     # api_methods_examples("java",
     #                      "json-java",
     #                      "https://github.com/stleary/JSON-java.git",
-    #                      "http://web.archive.org/web/20211017224709/https://github.com/stleary/JSON-java")
+    #                      "http://web.archive.org/web/20211017224709/https://github.com/stleary/JSON-java",
+    #                      True)
     # api_methods_examples("java",
     #                      "CoreNLP",
     #                      "https://github.com/stanfordnlp/CoreNLP.git",
-    #                      "https://stanfordnlp.github.io/CoreNLP")
+    #                      "https://stanfordnlp.github.io/CoreNLP",
+    #                      True)
     # api_methods_examples("javascript",
     #                      "qunit",
     #                      "https://github.com/qunitjs/qunit.git",
-    #                      "https://api.qunitjs.com/")
+    #                      "https://api.qunitjs.com/",
+    #                      True)
     # api_methods_examples("javascript",
     #                      "jBinary",
     #                      "https://github.com/jDataView/jBinary.git",
-    #                      "https://github.com/jDataView/jBinary/wiki")
+    #                      "https://github.com/jDataView/jBinary/wiki",
+    #                      True)
