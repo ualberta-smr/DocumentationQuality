@@ -213,7 +213,17 @@ def python_match_examples(repo_name, examples, functions, classes):
                     r"%s\([a-zA-Z0-9_:.,/\\ =(){}\'\"|\[\]\n]*?\)"
                     % call.replace(".", "\.")), example)
                 for function_call in function_calls:
-                    num_args = len(_find_args(function_call)[1])
+                    try:
+                        a = ast.parse(function_call)
+                        if type(a.body[0].value) is ast.Constant:
+                            num_args = 1
+                        elif hasattr(a.body[0].value, "keywords"):
+                            num_args = len(a.body[0].value.args) + len(
+                                a.body[0].value.keywords)
+                        else:
+                            num_args = len(a.body[0].value.args)
+                    except:
+                        num_args = 0
                     if len(func_def["req_args"]) <= num_args <= (sys.maxsize if "kwargs" in func_def["opt_args"] else (len(func_def["req_args"]) + len(func_def["opt_args"]))):
                         method_calls.add((func_def["source_file"], call))
                         links.append(
