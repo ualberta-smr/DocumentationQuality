@@ -1,6 +1,8 @@
 import html
 import itertools
 import pprint
+import traceback
+import urllib.error
 from shutil import rmtree
 from urllib.request import Request, urlopen
 
@@ -45,7 +47,7 @@ def get_documentation_signatures(doc_url, url):
             return []
     content = html.unescape(urlopen(req).read().decode("utf-8"))
     soup = BeautifulSoup(content, "html.parser")
-    dts = soup.find_all("dt")
+    dts = soup.find_all("dt") + soup.find_all("code")
     descriptions = []
 
     for description in dts:
@@ -182,8 +184,15 @@ def calculate_ratios(language, repo_name, repo_url, doc_url, pages, examples):
                 doc_examples.extend(get_documentation_examples(doc_url, page))
             else:
                 doc_examples.extend(get_documentation_signatures(doc_url, page))
+        except urllib.error.HTTPError as e:
+            if e.code == 404:
+                pass
+            else:
+                print(page)
+                print(traceback.format_exc())
         except:
-            pass
+            print(page)
+            print(traceback.format_exc())
 
     with open("data/" + repo_name + "_doc_examples.csv", "w", encoding="utf-8", newline="") as temp:
         writer = csv.writer(temp, quoting=csv.QUOTE_MINIMAL)
@@ -203,7 +212,10 @@ def calculate_ratios(language, repo_name, repo_url, doc_url, pages, examples):
         else:
             method_calls = python_match_signatures(repo_name, doc_examples, functions, classes)
     elif LANGUAGE == "java":
-        method_calls = java_match(repo_name, doc_examples, functions, classes)
+        if examples:
+            method_calls = java_match_examples(repo_name, doc_examples, functions, classes)
+        else:
+            method_calls = java_match_signatures(repo_name, doc_examples, functions, classes)
     elif LANGUAGE == "javascript":
         method_calls = javascript_match(repo_name, doc_examples, functions, classes)
 
