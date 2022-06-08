@@ -86,10 +86,10 @@ def java_match_signatures(repo_name, examples, functions, classes):
                             count += 1
                     if count == len(func_def["req_args"]):
                         method_calls.add((func_def["source_file"], potential_method))
-                        links.append([example, (call, args), (potential_method, func_def["req_args"]), func_def["source_file"], True])
+                        links.append([example, (call, args), (potential_method, func_def["req_args"]), ex[1], True])
                     else:
                         links.append([example, (call, args), (potential_method, func_def["req_args"]),
-                                      func_def["source_file"], "False"])
+                                      ex[1], False])
             else:
                 if multiple_potential_methods:
                     linked_methods = []
@@ -99,7 +99,7 @@ def java_match_signatures(repo_name, examples, functions, classes):
                         src_files.append(functions[method]["source_file"])
                     links.append(
                         [example, call, linked_methods,
-                         "\n".join(src_files), "False"])
+                         "\n".join(src_files), False])
                 else:
                     potential_class = call.split(".")[-1]
                     if potential_class in classes:
@@ -116,7 +116,7 @@ def java_match_signatures(repo_name, examples, functions, classes):
         writer = csv.writer(out, quoting=csv.QUOTE_MINIMAL)
         writer.writerow(
             ["Example", "Extracted Function", "Linked Function",
-             "Source File",
+             "Page",
              "Matched"])
         for link in links:
             if (link[0], link[3]) not in seen:

@@ -147,7 +147,7 @@ def get_functions(functions, source_file):
                 functions[function[0]]["req_args"].append(function[1])
             else:
                 functions[function[0]] = {"source_file": os.path.normpath(source_file),
-                                          "req_args": [function[1]]}
+                                          "req_args": function[1]}
     return functions
 
 
@@ -217,8 +217,10 @@ def calculate_ratios(language, repo_name, repo_url, doc_url, pages, examples):
         else:
             method_calls = java_match_signatures(repo_name, doc_examples, functions, classes)
     elif LANGUAGE == "javascript":
-        method_calls = javascript_match(repo_name, doc_examples, functions, classes)
-
+        if examples:
+            method_calls = javascript_match_examples(repo_name, doc_examples, functions, classes)
+        else:
+            method_calls = javascript_match_signatures(repo_name, doc_examples, functions, classes)
     # print(method_calls)
     example_count = len(method_calls)
     seen_classes = set()

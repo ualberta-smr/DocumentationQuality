@@ -190,7 +190,7 @@ def python_match_signatures(repo_name, examples, functions, classes):
               newline="") as out:
         writer = csv.writer(out, quoting=csv.QUOTE_MINIMAL)
         writer.writerow(
-            ["Example", "Extracted Function", "Linked Function", "Source File", "Matched"])
+            ["Example", "Extracted Function", "Linked Function", "Page", "Matched"])
         for link in links:
             if (link[0], link[3]) not in seen:
                 writer.writerow(link)
