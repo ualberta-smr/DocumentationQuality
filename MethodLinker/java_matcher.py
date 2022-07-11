@@ -86,10 +86,9 @@ def java_match_signatures(repo_name, examples, functions, classes):
                             count += 1
                     if count == len(func_def["req_args"]):
                         method_calls.add((func_def["source_file"], potential_method))
-                        links.append([example, (call, args), (potential_method, func_def["req_args"]), ex[1], True])
+                        links.append([example, (call, ",".join(args)), (potential_method, str(func_def["req_args"])), func_def["source_file"], True])
                     else:
-                        links.append([example, (call, args), (potential_method, func_def["req_args"]),
-                                      ex[1], False])
+                        links.append([example, (call, ",".join(args)), (potential_method, str(func_def["req_args"])), func_def["source_file"], False])
             else:
                 if multiple_potential_methods:
                     linked_methods = []
@@ -97,27 +96,19 @@ def java_match_signatures(repo_name, examples, functions, classes):
                     for method in potential_methods:
                         linked_methods.append(method)
                         src_files.append(functions[method]["source_file"])
-                    links.append(
-                        [example, call, linked_methods,
-                         "\n".join(src_files), False])
+                    links.append([example, call, ",".join(linked_methods), "\n".join(src_files), False])
                 else:
                     potential_class = call.split(".")[-1]
                     if potential_class in classes:
-                        links.append(
-                            [example, potential_class, potential_class,
-                             classes[potential_class]["source_file"],
-                             "True"])
+                        links.append([example, potential_class, potential_class, classes[potential_class]["source_file"], "True"])
                     else:
-                        links.append(
-                            [example, call, "N/A", "N/A", "N/A"])
+                        links.append([example, call, "N/A", "N/A", "N/A"])
     seen = set()
-    with open("results/" + repo_name + "_signatures.csv", "w", encoding="utf-8",
+    with open("results/signatures/" + repo_name + ".csv", "w", encoding="utf-8",
               newline="") as out:
         writer = csv.writer(out, quoting=csv.QUOTE_MINIMAL)
         writer.writerow(
-            ["Example", "Extracted Function", "Linked Function",
-             "Page",
-             "Matched"])
+            ["Example", "Extracted Signature", "Linked Signature", "Source file", "Matched"])
         for link in links:
             if (link[0], link[3]) not in seen:
                 writer.writerow(link)
@@ -196,7 +187,7 @@ def java_match_examples(repo_name, examples, functions, classes):
                         links.append(
                             [example, call, "N/A", "N/A", "N/A"])
     seen = set()
-    with open("results/" + repo_name + ".csv", "w", encoding="utf-8",
+    with open("results/examples/" + repo_name + ".csv", "w", encoding="utf-8",
               newline="") as out:
         writer = csv.writer(out, quoting=csv.QUOTE_MINIMAL)
         writer.writerow(

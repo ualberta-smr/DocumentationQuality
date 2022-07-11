@@ -1,0 +1,116 @@
+Example,Extracted Function,Linked Function,Source File,Matched
+r.json(),"(None, [])",N/A,N/A,False
+r.raise_for_status(),"(None, [])",N/A,N/A,False
+Response.raise_for_status(),"(None, [])",N/A,N/A,False
+raise_for_status(),"(None, [])",N/A,N/A,False
+requests.get(),"(None, [])",N/A,N/A,False
+Request.prepare(),"(None, [])",N/A,N/A,False
+Session.prepare_request(),"(None, [])",N/A,N/A,False
+Response.iter_content(),"(None, [])",N/A,N/A,False
+Response.iter_lines(),"(None, [])",N/A,N/A,False
+"(form_field_name, file_info)","(None, [])",N/A,N/A,False
+__call__(),"(None, [])",N/A,N/A,False
+:   -   Response.__nonzero__ (false if bad HTTP Status),"(None, [])",N/A,N/A,False
+"requests.request(method, url, **kwargs)","('requests.request', ['method', 'url', 'kwargs'])","('requests.request', ['url', 'method', 'kwargs'])",requests\requests\api.py,True
+"requests.head(url, **kwargs)","('requests.head', ['url', 'kwargs'])","('requests.head', ['url', 'kwargs'])",requests\requests\api.py,True
+"requests.get(url, params=None, **kwargs)","('requests.get', ['url', 'params', 'kwargs'])","('requests.get', ['url', 'params', 'kwargs'])",requests\requests\api.py,True
+"requests.post(url, data=None, json=None, **kwargs)","('requests.post', ['url', 'data', 'json', 'kwargs'])","('requests.post', ['url', 'json', 'data', 'kwargs'])",requests\requests\api.py,True
+"requests.put(url, data=None, **kwargs)","('requests.put', ['url', 'data', 'kwargs'])","('requests.put', ['url', 'data', 'kwargs'])",requests\requests\api.py,True
+"requests.patch(url, data=None, **kwargs)","('requests.patch', ['url', 'data', 'kwargs'])","('requests.patch', ['url', 'data', 'kwargs'])",requests\requests\api.py,True
+"requests.delete(url, **kwargs)","('requests.delete', ['url', 'kwargs'])","('requests.delete', ['url', 'kwargs'])",requests\requests\api.py,True
+"exception requests.RequestException(*args, **kwargs)","('requests.RequestException', ['args', 'kwargs'])","('RequestException.__init__', ['kwargs'])",requests\requests\exceptions.py,True
+"exception requests.ConnectionError(*args, **kwargs)","('requests.ConnectionError', ['args', 'kwargs'])",N/A,N/A,False
+"exception requests.HTTPError(*args, **kwargs)","('requests.HTTPError', ['args', 'kwargs'])",N/A,N/A,False
+"exception requests.URLRequired(*args, **kwargs)","('requests.URLRequired', ['args', 'kwargs'])",N/A,N/A,False
+"exception requests.TooManyRedirects(*args, **kwargs)","('requests.TooManyRedirects', ['args', 'kwargs'])",N/A,N/A,False
+"exception requests.ConnectTimeout(*args, **kwargs)","('requests.ConnectTimeout', ['args', 'kwargs'])",N/A,N/A,False
+"exception requests.ReadTimeout(*args, **kwargs)","('requests.ReadTimeout', ['args', 'kwargs'])",N/A,N/A,False
+"exception requests.Timeout(*args, **kwargs)","('requests.Timeout', ['args', 'kwargs'])",N/A,N/A,False
+close(),"(None, [])",N/A,N/A,False
+"delete(url, **kwargs)","('delete', ['url', 'kwargs'])","[('requests.delete', ['url', 'kwargs']), ('Session.delete', ['url', 'kwargs'])]",N/A,False
+"get(url, **kwargs)","('get', ['url', 'kwargs'])","[('requests.get', ['url', 'params', 'kwargs']), ('Session.get', ['url', 'kwargs'])]",N/A,False
+get_adapter(url),"('get_adapter', ['url'])","('Session.get_adapter', ['url'])",requests\requests\sessions.py,True
+get_redirect_target(resp),"('get_redirect_target', ['resp'])","('SessionRedirectMixin.get_redirect_target', ['resp'])",requests\requests\sessions.py,True
+"head(url, **kwargs)","('head', ['url', 'kwargs'])","[('requests.head', ['url', 'kwargs']), ('Session.head', ['url', 'kwargs'])]",N/A,False
+"merge_environment_settings(url, proxies, stream, verify, cert)","('merge_environment_settings', ['url', 'proxies', 'stream', 'verify', 'cert'])","('Session.merge_environment_settings', ['cert', 'verify', 'stream', 'proxies', 'url'])",requests\requests\sessions.py,True
+"mount(prefix, adapter)","('mount', ['prefix', 'adapter'])","('Session.mount', ['adapter', 'prefix'])",requests\requests\sessions.py,True
+"options(url, **kwargs)","('options', ['url', 'kwargs'])","[('requests.options', ['url', 'kwargs']), ('Session.options', ['url', 'kwargs'])]",N/A,False
+"patch(url, data=None, **kwargs)","('patch', ['url', 'data', 'kwargs'])","[('requests.patch', ['url', 'data', 'kwargs']), ('Session.patch', ['url', 'data', 'kwargs'])]",N/A,False
+"post(url, data=None, json=None, **kwargs)","('post', ['url', 'data', 'json', 'kwargs'])","[('requests.post', ['url', 'json', 'data', 'kwargs']), ('Session.post', ['url', 'json', 'data', 'kwargs'])]",N/A,False
+prepare_request(request),"('prepare_request', ['request'])","('Session.prepare_request', ['request'])",requests\requests\sessions.py,True
+"put(url, data=None, **kwargs)","('put', ['url', 'data', 'kwargs'])","[('requests.put', ['url', 'data', 'kwargs']), ('Session.put', ['url', 'data', 'kwargs'])]",N/A,False
+"rebuild_auth(prepared_request, response)","('rebuild_auth', ['prepared_request', 'response'])","('SessionRedirectMixin.rebuild_auth', ['response', 'prepared_request'])",requests\requests\sessions.py,True
+"rebuild_method(prepared_request, response)","('rebuild_method', ['prepared_request', 'response'])","('SessionRedirectMixin.rebuild_method', ['response', 'prepared_request'])",requests\requests\sessions.py,True
+"rebuild_proxies(prepared_request, proxies)","('rebuild_proxies', ['prepared_request', 'proxies'])","('SessionRedirectMixin.rebuild_proxies', ['proxies', 'prepared_request'])",requests\requests\sessions.py,True
+"request(method, url, params=None, data=None, headers=None, cookies=None, files=None, auth=None, timeout=None, allow_redirects=True, proxies=None, hooks=None, stream=None, verify=None, cert=None, json=None)","('request', ['method', 'url', 'params', 'data', 'headers', 'cookies', 'files', 'auth', 'timeout', 'allow_redirects', 'proxies', 'hooks', 'stream', 'verify', 'cert', 'json'])","('Session.request', ['url', 'method', 'json', 'cert', 'verify', 'stream', 'hooks', 'proxies', 'allow_redirects', 'timeout', 'auth', 'files', 'cookies', 'headers', 'data', 'params'])",requests\requests\sessions.py,True
+"resolve_redirects(resp, req, stream=False, timeout=None, verify=True, cert=None, proxies=None, yield_requests=False, **adapter_kwargs)","('resolve_redirects', ['resp', 'req', 'stream', 'timeout', 'verify', 'cert', 'proxies', 'yield_requests', 'adapter_kwargs'])","('SessionRedirectMixin.resolve_redirects', ['req', 'resp', 'yield_requests', 'proxies', 'cert', 'verify', 'timeout', 'stream', 'adapter_kwargs'])",requests\requests\sessions.py,True
+"send(request, **kwargs)","('send', ['request', 'kwargs'])","('Session.send', ['request', 'kwargs'])",requests\requests\sessions.py,True
+"should_strip_auth(old_url, new_url)","('should_strip_auth', ['old_url', 'new_url'])","('SessionRedirectMixin.should_strip_auth', ['new_url', 'old_url'])",requests\requests\sessions.py,True
+"class requests.Request(method=None, url=None, headers=None, files=None, data=None, params=None, auth=None, cookies=None, hooks=None, json=None)","('requests.Request', ['method', 'url', 'headers', 'files', 'data', 'params', 'auth', 'cookies', 'hooks', 'json'])","('Request.__init__', ['json', 'hooks', 'cookies', 'auth', 'params', 'data', 'files', 'headers', 'url', 'method'])",requests\requests\models.py,True
+"deregister_hook(event, hook)","('deregister_hook', ['event', 'hook'])","('RequestHooksMixin.deregister_hook', ['hook', 'event'])",requests\requests\models.py,True
+prepare(),"(None, [])",N/A,N/A,False
+"register_hook(event, hook)","('register_hook', ['event', 'hook'])","('RequestHooksMixin.register_hook', ['hook', 'event'])",requests\requests\models.py,True
+"iter_content(chunk_size=1, decode_unicode=False)","('iter_content', ['chunk_size', 'decode_unicode'])","('Response.iter_content', ['decode_unicode', 'chunk_size'])",requests\requests\models.py,True
+"iter_lines(chunk_size=512, decode_unicode=False, delimiter=None)","('iter_lines', ['chunk_size', 'decode_unicode', 'delimiter'])","('Response.iter_lines', ['delimiter', 'decode_unicode', 'chunk_size'])",requests\requests\models.py,True
+json(**kwargs),"('json', ['kwargs'])","('Response.json', ['kwargs'])",requests\requests\models.py,True
+"prepare(method=None, url=None, headers=None, files=None, data=None, params=None, auth=None, cookies=None, hooks=None, json=None)","('prepare', ['method', 'url', 'headers', 'files', 'data', 'params', 'auth', 'cookies', 'hooks', 'json'])","('PreparedRequest.prepare', ['json', 'hooks', 'cookies', 'auth', 'params', 'data', 'files', 'headers', 'url', 'method'])",requests\requests\models.py,True
+"prepare_auth(auth, url='')","('prepare_auth', ['auth', 'url'])","('PreparedRequest.prepare_auth', ['auth', 'url'])",requests\requests\models.py,True
+"prepare_body(data, files, json=None)","('prepare_body', ['data', 'files', 'json'])","('PreparedRequest.prepare_body', ['files', 'data', 'json'])",requests\requests\models.py,True
+prepare_content_length(body),"('prepare_content_length', ['body'])","('PreparedRequest.prepare_content_length', ['body'])",requests\requests\models.py,True
+prepare_cookies(cookies),"('prepare_cookies', ['cookies'])","('PreparedRequest.prepare_cookies', ['cookies'])",requests\requests\models.py,True
+prepare_headers(headers),"('prepare_headers', ['headers'])","('PreparedRequest.prepare_headers', ['headers'])",requests\requests\models.py,True
+prepare_hooks(hooks),"('prepare_hooks', ['hooks'])","('PreparedRequest.prepare_hooks', ['hooks'])",requests\requests\models.py,True
+prepare_method(method),"('prepare_method', ['method'])","('PreparedRequest.prepare_method', ['method'])",requests\requests\models.py,True
+"prepare_url(url, params)","('prepare_url', ['url', 'params'])","('PreparedRequest.prepare_url', ['params', 'url'])",requests\requests\models.py,True
+"send(request, stream=False, timeout=None, verify=True, cert=None, proxies=None)","('send', ['request', 'stream', 'timeout', 'verify', 'cert', 'proxies'])","[('BaseAdapter.send', ['request', 'proxies', 'cert', 'verify', 'timeout', 'stream']), ('HTTPAdapter.send', ['request', 'proxies', 'cert', 'verify', 'timeout', 'stream'])]",N/A,False
+"class requests.adapters.HTTPAdapter(pool_connections=10, pool_maxsize=10, max_retries=0, pool_block=False)","('requests.adapters.HTTPAdapter', ['pool_connections', 'pool_maxsize', 'max_retries', 'pool_block'])","('HTTPAdapter.__init__', ['pool_block', 'max_retries', 'pool_maxsize', 'pool_connections'])",requests\requests\adapters.py,True
+"add_headers(request, **kwargs)","('add_headers', ['request', 'kwargs'])","('HTTPAdapter.add_headers', ['request', 'kwargs'])",requests\requests\adapters.py,True
+"build_response(req, resp)","('build_response', ['req', 'resp'])","('HTTPAdapter.build_response', ['resp', 'req'])",requests\requests\adapters.py,True
+"cert_verify(conn, url, verify, cert)","('cert_verify', ['conn', 'url', 'verify', 'cert'])","('HTTPAdapter.cert_verify', ['cert', 'verify', 'url', 'conn'])",requests\requests\adapters.py,True
+"get_connection(url, proxies=None)","('get_connection', ['url', 'proxies'])","('HTTPAdapter.get_connection', ['url', 'proxies'])",requests\requests\adapters.py,True
+"init_poolmanager(connections, maxsize, block=False, **pool_kwargs)","('init_poolmanager', ['connections', 'maxsize', 'block', 'pool_kwargs'])","('HTTPAdapter.init_poolmanager', ['maxsize', 'connections', 'block', 'pool_kwargs'])",requests\requests\adapters.py,True
+proxy_headers(proxy),"('proxy_headers', ['proxy'])","('HTTPAdapter.proxy_headers', ['proxy'])",requests\requests\adapters.py,True
+"proxy_manager_for(proxy, **proxy_kwargs)","('proxy_manager_for', ['proxy', 'proxy_kwargs'])","('HTTPAdapter.proxy_manager_for', ['proxy', 'proxy_kwargs'])",requests\requests\adapters.py,True
+"request_url(request, proxies)","('request_url', ['request', 'proxies'])","('HTTPAdapter.request_url', ['proxies', 'request'])",requests\requests\adapters.py,True
+"class requests.auth.HTTPBasicAuth(username, password)","('requests.auth.HTTPBasicAuth', ['username', 'password'])","('HTTPBasicAuth.__init__', ['password', 'username'])",requests\requests\auth.py,True
+"class requests.auth.HTTPProxyAuth(username, password)","('requests.auth.HTTPProxyAuth', ['username', 'password'])",['HTTPProxyAuth.__init__'],N/A,False
+"class requests.auth.HTTPDigestAuth(username, password)","('requests.auth.HTTPDigestAuth', ['username', 'password'])","('HTTPDigestAuth.__init__', ['password', 'username'])",requests\requests\auth.py,True
+requests.utils.get_encodings_from_content(content),"('requests.utils.get_encodings_from_content', ['content'])","('requests.get_encodings_from_content', ['content'])",requests\requests\utils.py,True
+requests.utils.get_encoding_from_headers(headers),"('requests.utils.get_encoding_from_headers', ['headers'])","('requests.get_encoding_from_headers', ['headers'])",requests\requests\utils.py,True
+requests.utils.get_unicode_from_response(r),"('requests.utils.get_unicode_from_response', ['r'])","('requests.get_unicode_from_response', ['r'])",requests\requests\utils.py,True
+requests.utils.dict_from_cookiejar(cj),"('requests.utils.dict_from_cookiejar', ['cj'])","('requests.dict_from_cookiejar', ['cj'])",requests\requests\utils.py,True
+"requests.utils.add_dict_to_cookiejar(cj, cookie_dict)","('requests.utils.add_dict_to_cookiejar', ['cj', 'cookie_dict'])","('requests.add_dict_to_cookiejar', ['cookie_dict', 'cj'])",requests\requests\utils.py,True
+"requests.cookies.cookiejar_from_dict(cookie_dict, cookiejar=None, overwrite=True)","('requests.cookies.cookiejar_from_dict', ['cookie_dict', 'cookiejar', 'overwrite'])","('requests.cookiejar_from_dict', ['cookie_dict', 'overwrite', 'cookiejar'])",requests\requests\cookies.py,True
+class requests.cookies.RequestsCookieJar(policy=None),"('requests.cookies.RequestsCookieJar', ['policy'])",['RequestsCookieJar.__init__'],N/A,False
+add_cookie_header(request),"('add_cookie_header', ['request'])",N/A,N/A,False
+"clear(domain=None, path=None, name=None)","('clear', ['domain', 'path', 'name'])",N/A,N/A,False
+clear_expired_cookies(),"(None, [])",N/A,N/A,False
+clear_session_cookies(),"(None, [])",N/A,N/A,False
+copy(),"(None, [])",N/A,N/A,False
+"extract_cookies(response, request)","('extract_cookies', ['response', 'request'])",N/A,N/A,False
+"get(name, default=None, domain=None, path=None)","('get', ['name', 'default', 'domain', 'path'])","('RequestsCookieJar.get', ['name', 'path', 'domain', 'default'])",requests\requests\cookies.py,True
+"get_dict(domain=None, path=None)","('get_dict', ['domain', 'path'])","('RequestsCookieJar.get_dict', ['path', 'domain'])",requests\requests\cookies.py,True
+get_policy(),"(None, [])",N/A,N/A,False
+items(),"(None, [])",N/A,N/A,False
+iteritems(),"(None, [])",N/A,N/A,False
+iterkeys(),"(None, [])",N/A,N/A,False
+itervalues(),"(None, [])",N/A,N/A,False
+keys(),"(None, [])",N/A,N/A,False
+list_domains(),"(None, [])",N/A,N/A,False
+list_paths(),"(None, [])",N/A,N/A,False
+"make_cookies(response, request)","('make_cookies', ['response', 'request'])",N/A,N/A,False
+multiple_domains(),"(None, [])",N/A,N/A,False
+"pop(k[, d]) → v, remove specified key and return the corresponding value.","(None, [])",N/A,N/A,False
+"popitem() → (k, v), remove and return some (key, value) pair","(None, [])",N/A,N/A,False
+"set(name, value, **kwargs)","('set', ['name', 'value', 'kwargs'])","('RequestsCookieJar.set', ['value', 'name', 'kwargs'])",requests\requests\cookies.py,True
+"set_cookie(cookie, *args, **kwargs)","('set_cookie', ['cookie', 'args', 'kwargs'])",N/A,N/A,False
+"set_cookie_if_ok(cookie, request)","('set_cookie_if_ok', ['cookie', 'request'])",N/A,N/A,False
+"setdefault(k[, d]) → D.get(k,d), also set D[k]=d if k not in D","(None, [])",N/A,N/A,False
+update(other),"('update', ['other'])","('RequestsCookieJar.update', ['other'])",requests\requests\cookies.py,True
+values(),"(None, [])",N/A,N/A,False
+with_traceback(),"(None, [])",N/A,N/A,False
+"('filename', fileobj)","(None, [])",N/A,N/A,False
+"('filename', fileobj, 'content_type')","(None, [])",N/A,N/A,False
+"('filename', fileobj, 'content_type', custom_headers)","(None, [])",N/A,N/A,False
+"[(key, value)]","(None, [])",N/A,N/A,False
+dict(RequestsCookieJar),"('dict', ['RequestsCookieJar'])",N/A,N/A,False

@@ -125,7 +125,17 @@ jBinary.load('sample.tar').then(function (binary) {
 
   // aliasing FileItem[] as type of entire File
   File: ['array', 'FileItem']
-}",['Template'],"[('this.baseRead', 'N/A'), ('this.baseWrite', 'N/A')]",[]
+}",['Template'],"['Template', ('this.baseRead', 'N/A'), ('this.baseWrite', 'N/A')]",['Template']
+"binary.read({
+  count: 'uint32',
+  bytes: ['array', 'uint8', 'count']
+});",['read'],['proto.read'],['proto.read']
+"binary.read({
+  recordSize: 'uint32',
+  data: ['array', 'uint8', function (context) {
+    return context.recordSize - 4; // total size except `size` field itself
+  }]
+});",['read'],['proto.read'],['proto.read']
 "var binary = new jBinary([0x00, 0x03, 0x04, 0x05, 0x06, 0x07], {
   DynamicArray: jBinary.Type({
     params: ['itemType'],
@@ -145,7 +155,7 @@ jBinary.load('sample.tar').then(function (binary) {
   byteArray: ['DynamicArray', 'uint8']
 });
 
-var byteArray = binary.read('byteArray'); // [0x04, 0x05, 0x06]","['jBinary', 'Type']","[('getType', 'N/A'), 'proto.read', 'proto.write']",[]
+var byteArray = binary.read('byteArray'); // [0x04, 0x05, 0x06]","['jBinary', 'Type']","['jBinary', 'Type', ('getType', 'N/A'), 'proto.read', 'proto.write']","['jBinary', 'Type']"
 "var binary = new jBinary([0x00, 0x03, 0x04, 0x05, 0x06, 0x07], {
   DynamicArray: jBinary.Template({
     setParams: function (itemType) {
@@ -168,7 +178,7 @@ var byteArray = binary.read('byteArray'); // [0x04, 0x05, 0x06]","['jBinary', 'T
   byteArray: ['DynamicArray', 'uint8']
 });
 
-var byteArray = binary.read('byteArray'); // [0x04, 0x05, 0x06]","['jBinary', 'Template', 'baseRead', 'baseWrite', 'read']","[('this.baseRead', 'N/A'), ('this.baseWrite', 'N/A'), 'proto.read']",['proto.read']
+var byteArray = binary.read('byteArray'); // [0x04, 0x05, 0x06]","['jBinary', 'Template', 'baseRead', 'baseWrite', 'read']","['jBinary', 'Template', ('this.baseRead', 'N/A'), ('this.baseWrite', 'N/A'), 'proto.read']","['jBinary', 'Template', 'proto.read']"
 "jBinary.Repo('bmp', function (BMP) {
   var binary = new jBinary(data, BMP);
   // ...do whatever you want with `binary` or simply...

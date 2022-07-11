@@ -1,0 +1,83 @@
+Example,Extracted Function,Linked Function,Source File,Matched
+"new jBinary(data, typeSet)","('jBinary', [{
+    type: ""Identifier"",
+    name: ""data""
+}, {
+    type: ""Identifier"",
+    name: ""typeSet""
+}])","('jBinary', ['view', 'typeSet'])",jBinary\src\core.js,False
+"read(type, offset = binary.tell())",read,N/A,N/A,N/A
+"read(type, offset = binary.tell())","('binary.tell', [])","('proto.tell', [])",jBinary\src\proto\position.js,True
+readAll(),readAll,N/A,N/A,N/A
+"write(type, data, offset = binary.tell())",write,N/A,N/A,N/A
+"write(type, data, offset = binary.tell())","('binary.tell', [])","('proto.tell', [])",jBinary\src\proto\position.js,True
+writeAll(data),writeAll,N/A,N/A,N/A
+tell(),tell,N/A,N/A,N/A
+"seek(position[, callback])",seek,N/A,N/A,N/A
+"skip(count[, callback])",skip,N/A,N/A,N/A
+"slice(start, end, forceCopy = false)",slice,N/A,N/A,N/A
+"as(typeSet, modifyOriginal = false)",as,N/A,N/A,N/A
+getType(type),getType,N/A,N/A,N/A
+getContext(filter),getContext,N/A,N/A,N/A
+"inContext(newContext, callback)",inContext,N/A,N/A,N/A
+"jBinary.loadData(source, [callback])",jBinary.loadData,N/A,N/A,N/A
+"callback(error, data)",callback,N/A,N/A,N/A
+"jBinary.load(source, [typeSet], [callback])",jBinary.load,N/A,N/A,N/A
+"saveAs(dest, mimeType = 'application/octet-stream', [callback])",saveAs,N/A,N/A,N/A
+toURI(mimeType = 'application/octet-stream'),toURI,N/A,N/A,N/A
+"then(onFulfill, onReject)",then,N/A,N/A,N/A
+Promise.from(...),Promise.from,N/A,N/A,N/A
+Q(...),Q,N/A,N/A,N/A
+"string(@length, encoding = 'binary')",string,N/A,N/A,N/A
+"string0(@length, encoding = 'binary')",string0,N/A,N/A,N/A
+"const(baseType, value, strict = false)",const,N/A,N/A,N/A
+strict(readValue),strict,N/A,N/A,N/A
+"array(baseType, @length)",array,N/A,N/A,N/A
+"object(structure, proto = Object.prototype)",object,N/A,N/A,N/A
+"enum(baseType, matches)",enum,N/A,N/A,N/A
+bitfield(length),bitfield,N/A,N/A,N/A
+blob(@length),blob,N/A,N/A,N/A
+"binary(@length, typeSet = {})",binary,N/A,N/A,N/A
+"if(@condition, trueType, falseType)",if,N/A,N/A,N/A
+"if_not(@condition, falseType, trueType)",if_not,N/A,N/A,N/A
+skip(@length),skip,N/A,N/A,N/A
+callback(context),callback,N/A,N/A,N/A
+jBinary.Type(config),"('jBinary.Type', [{
+    type: ""Identifier"",
+    name: ""config""
+}])","('Type', ['config'])",jBinary\src\type.js,False
+read(context),read,N/A,N/A,N/A
+"write(data, context)",write,N/A,N/A,N/A
+setParams(...params...),setParams,N/A,N/A,N/A
+resolve(getType),resolve,N/A,N/A,N/A
+"toValue(value, allowResolve = true)","('toValue', [{
+    type: ""Identifier"",
+    name: ""value""
+}, {
+    type: ""AssignmentExpression"",
+    operator: ""="",
+    left: {
+        type: ""Identifier"",
+        name: ""allowResolve""
+    },
+    right: {
+        type: ""Literal"",
+        value: True,
+        raw: ""true""
+    }
+}])","('toValue', ['obj', 'binary', 'value'])",jBinary\src\utils.js,False
+"inherit(args, getType)","('inherit', [{
+    type: ""Identifier"",
+    name: ""args""
+}, {
+    type: ""Identifier"",
+    name: ""getType""
+}])","('inherit', ['obj'])",jBinary\src\utils.js,False
+createProperty(binary),createProperty,N/A,N/A,N/A
+jBinary.Template(config),"('jBinary.Template', [{
+    type: ""Identifier"",
+    name: ""config""
+}])","('Template', ['config'])",jBinary\src\template.js,False
+getBaseType(context),getBaseType,N/A,N/A,N/A
+baseRead(),baseRead,N/A,N/A,N/A
+baseWrite(data),baseWrite,N/A,N/A,N/A

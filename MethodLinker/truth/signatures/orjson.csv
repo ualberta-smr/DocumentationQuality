@@ -1,0 +1,119 @@
+Code,Signature,Linked,Source File,Page
+load(),load(),,,http://web.archive.org/web/20210831032333/https://github.com/ijl/orjson
+dump(),dump(),,,http://web.archive.org/web/20210831032333/https://github.com/ijl/orjson
+dumps(),dumps(),dumps(),orjson/orjson.pyi,http://web.archive.org/web/20210831032333/https://github.com/ijl/orjson
+"dumps(...) + ""\n""",,,,http://web.archive.org/web/20210831032333/https://github.com/ijl/orjson
+loads(),loads(),loads(),orjson/orjson.pyi,http://web.archive.org/web/20210831032333/https://github.com/ijl/orjson
+dataclasses.asdict(),dataclasses.asdict(),,,http://web.archive.org/web/20210831032333/https://github.com/ijl/orjson
+"field(metadata={""json_serialize"": False})","field(metadata={""json_serialize"": False})",,,http://web.archive.org/web/20210831032333/https://github.com/ijl/orjson
+isoformat(),isoformat(),,,http://web.archive.org/web/20210831032333/https://github.com/ijl/orjson
+dumps(),dumps(),dumps(),orjson/orjson.pyi,http://web.archive.org/web/20210831032333/https://github.com/ijl/orjson
+orjson.dumps(),orjson.dumps(),dumps(),orjson/orjson.pyi,http://web.archive.org/web/20210831032333/https://github.com/ijl/orjson
+dumps(),dumps(),dumps(),orjson/orjson.pyi,http://web.archive.org/web/20210831032333/https://github.com/ijl/orjson
+obj.tolist(),obj.tolist(),,,http://web.archive.org/web/20210831032333/https://github.com/ijl/orjson
+"(50000, 100)",,,,http://web.archive.org/web/20210831032333/https://github.com/ijl/orjson
+"(100000, 100)",,,,http://web.archive.org/web/20210831032333/https://github.com/ijl/orjson
+"(100000, 200)",,,,http://web.archive.org/web/20210831032333/https://github.com/ijl/orjson
+ndarray.tolist(),ndarray.tolist(),,,http://web.archive.org/web/20210831032333/https://github.com/ijl/orjson
+orjson.dumps(),orjson.dumps(),dumps(),orjson/orjson.pyi,http://web.archive.org/web/20210831032333/https://github.com/ijl/orjson
+loads(),loads(),loads(),orjson/orjson.pyi,http://web.archive.org/web/20210831032333/https://github.com/ijl/orjson
+load(),load(),,,http://web.archive.org/web/20210228072553/https://github.com/ijl/orjson
+dump(),dump(),,,http://web.archive.org/web/20210228072553/https://github.com/ijl/orjson
+dumps(),dumps(),dumps(),orjson/orjson.pyi,http://web.archive.org/web/20210228072553/https://github.com/ijl/orjson
+"dumps(...) + ""\n""",,,,http://web.archive.org/web/20210228072553/https://github.com/ijl/orjson
+loads(),loads(),loads(),orjson/orjson.pyi,http://web.archive.org/web/20210228072553/https://github.com/ijl/orjson
+dataclasses.asdict(),dataclasses.asdict(),,,http://web.archive.org/web/20210228072553/https://github.com/ijl/orjson
+"field(metadata={""json_serialize"": False})","field(metadata={""json_serialize"": False})",,,http://web.archive.org/web/20210228072553/https://github.com/ijl/orjson
+isoformat(),isoformat(),,,http://web.archive.org/web/20210228072553/https://github.com/ijl/orjson
+dumps(),dumps(),dumps(),orjson/orjson.pyi,http://web.archive.org/web/20210228072553/https://github.com/ijl/orjson
+orjson.dumps(),orjson.dumps(),dumps(),orjson/orjson.pyi,http://web.archive.org/web/20210228072553/https://github.com/ijl/orjson
+dumps(),dumps(),dumps(),orjson/orjson.pyi,http://web.archive.org/web/20210228072553/https://github.com/ijl/orjson
+obj.tolist(),obj.tolist(),,,http://web.archive.org/web/20210228072553/https://github.com/ijl/orjson
+"(50000, 100)",,,,http://web.archive.org/web/20210228072553/https://github.com/ijl/orjson
+"(100000, 100)",,,,http://web.archive.org/web/20210228072553/https://github.com/ijl/orjson
+"(100000, 200)",,,,http://web.archive.org/web/20210228072553/https://github.com/ijl/orjson
+ndarray.tolist(),ndarray.tolist(),,,http://web.archive.org/web/20210228072553/https://github.com/ijl/orjson
+orjson.dumps(),orjson.dumps(),dumps(),orjson/orjson.pyi,http://web.archive.org/web/20210228072553/https://github.com/ijl/orjson
+loads(),loads(),loads(),orjson/orjson.pyi,http://web.archive.org/web/20210228072553/https://github.com/ijl/orjson
+load(),load(),,,http://web.archive.org/web/20211109214841/https://github.com/ijl/orjson
+dump(),dump(),,,http://web.archive.org/web/20211109214841/https://github.com/ijl/orjson
+dumps(),dumps(),dumps(),orjson/orjson.pyi,http://web.archive.org/web/20211109214841/https://github.com/ijl/orjson
+"dumps(...) + ""\n""",,,,http://web.archive.org/web/20211109214841/https://github.com/ijl/orjson
+loads(),loads(),loads(),orjson/orjson.pyi,http://web.archive.org/web/20211109214841/https://github.com/ijl/orjson
+dataclasses.asdict(),dataclasses.asdict(),,,http://web.archive.org/web/20211109214841/https://github.com/ijl/orjson
+"field(metadata={""json_serialize"": False})","field(metadata={""json_serialize"": False})",,,http://web.archive.org/web/20211109214841/https://github.com/ijl/orjson
+isoformat(),isoformat(),,,http://web.archive.org/web/20211109214841/https://github.com/ijl/orjson
+dumps(),dumps(),dumps(),orjson/orjson.pyi,http://web.archive.org/web/20211109214841/https://github.com/ijl/orjson
+orjson.dumps(),orjson.dumps(),dumps(),orjson/orjson.pyi,http://web.archive.org/web/20211109214841/https://github.com/ijl/orjson
+dumps(),dumps(),dumps(),orjson/orjson.pyi,http://web.archive.org/web/20211109214841/https://github.com/ijl/orjson
+obj.tolist(),obj.tolist(),,,http://web.archive.org/web/20211109214841/https://github.com/ijl/orjson
+"(50000, 100)",,,,http://web.archive.org/web/20211109214841/https://github.com/ijl/orjson
+"(100000, 100)",,,,http://web.archive.org/web/20211109214841/https://github.com/ijl/orjson
+"(100000, 200)",,,,http://web.archive.org/web/20211109214841/https://github.com/ijl/orjson
+ndarray.tolist(),ndarray.tolist(),,,http://web.archive.org/web/20211109214841/https://github.com/ijl/orjson
+orjson.dumps(),orjson.dumps(),dumps(),orjson/orjson.pyi,http://web.archive.org/web/20211109214841/https://github.com/ijl/orjson
+loads(),loads(),loads(),orjson/orjson.pyi,http://web.archive.org/web/20211109214841/https://github.com/ijl/orjson
+load(),load(),,,http://web.archive.org/web/20210806123038/https://github.com/ijl/orjson
+dump(),dump(),,,http://web.archive.org/web/20210806123038/https://github.com/ijl/orjson
+dumps(),dumps(),dumps(),orjson/orjson.pyi,http://web.archive.org/web/20210806123038/https://github.com/ijl/orjson
+"dumps(...) + ""\n""",,,,http://web.archive.org/web/20210806123038/https://github.com/ijl/orjson
+loads(),loads(),loads(),orjson/orjson.pyi,http://web.archive.org/web/20210806123038/https://github.com/ijl/orjson
+dataclasses.asdict(),dataclasses.asdict(),,,http://web.archive.org/web/20210806123038/https://github.com/ijl/orjson
+"field(metadata={""json_serialize"": False})","field(metadata={""json_serialize"": False})",,,http://web.archive.org/web/20210806123038/https://github.com/ijl/orjson
+isoformat(),isoformat(),,,http://web.archive.org/web/20210806123038/https://github.com/ijl/orjson
+dumps(),dumps(),,,http://web.archive.org/web/20210806123038/https://github.com/ijl/orjson
+orjson.dumps(),orjson.dumps(),,,http://web.archive.org/web/20210806123038/https://github.com/ijl/orjson
+dumps(),dumps(),,,http://web.archive.org/web/20210806123038/https://github.com/ijl/orjson
+obj.tolist(),obj.tolist(),,,http://web.archive.org/web/20210806123038/https://github.com/ijl/orjson
+"(50000, 100)",,,,http://web.archive.org/web/20210806123038/https://github.com/ijl/orjson
+"(100000, 100)",,,,http://web.archive.org/web/20210806123038/https://github.com/ijl/orjson
+"(100000, 200)",,,,http://web.archive.org/web/20210806123038/https://github.com/ijl/orjson
+ndarray.tolist(),ndarray.tolist(),,,http://web.archive.org/web/20210806123038/https://github.com/ijl/orjson
+orjson.dumps(),orjson.dumps(),,,http://web.archive.org/web/20210806123038/https://github.com/ijl/orjson
+loads(),loads(),loads(),orjson/orjson.pyi,http://web.archive.org/web/20210806123038/https://github.com/ijl/orjson
+load(),load(),,,http://web.archive.org/web/20200806114537/https://github.com/ijl/orjson
+dump(),dump(),,,http://web.archive.org/web/20200806114537/https://github.com/ijl/orjson
+dumps(),dumps(),dumps(),orjson/orjson.pyi,http://web.archive.org/web/20200806114537/https://github.com/ijl/orjson
+"dumps(...) + ""\n""",,,,http://web.archive.org/web/20200806114537/https://github.com/ijl/orjson
+loads(),loads(),,,http://web.archive.org/web/20200806114537/https://github.com/ijl/orjson
+dataclasses.asdict(),dataclasses.asdict(),,,http://web.archive.org/web/20200806114537/https://github.com/ijl/orjson
+"field(metadata={""json_serialize"": False})","field(metadata={""json_serialize"": False})",,,http://web.archive.org/web/20200806114537/https://github.com/ijl/orjson
+isoformat(),isoformat(),,,http://web.archive.org/web/20200806114537/https://github.com/ijl/orjson
+dumps(),dumps(),dumps(),orjson/orjson.pyi,http://web.archive.org/web/20200806114537/https://github.com/ijl/orjson
+orjson.dumps(),orjson.dumps(),dumps(),orjson/orjson.pyi,http://web.archive.org/web/20200806114537/https://github.com/ijl/orjson
+dumps(),dumps(),dumps(),orjson/orjson.pyi,http://web.archive.org/web/20200806114537/https://github.com/ijl/orjson
+numpy.float64(1),numpy.float64(1),,,http://web.archive.org/web/20200806114537/https://github.com/ijl/orjson
+obj.tolist(),obj.tolist(),,,http://web.archive.org/web/20200806114537/https://github.com/ijl/orjson
+"(50000, 100)",,,,http://web.archive.org/web/20200806114537/https://github.com/ijl/orjson
+"(100000, 100)",,,,http://web.archive.org/web/20200806114537/https://github.com/ijl/orjson
+"(100000, 200)",,,,http://web.archive.org/web/20200806114537/https://github.com/ijl/orjson
+ndarray.tolist(),ndarray.tolist(),,,http://web.archive.org/web/20200806114537/https://github.com/ijl/orjson
+orjson.dumps(),orjson.dumps(),dumps(),orjson/orjson.pyi,http://web.archive.org/web/20200806114537/https://github.com/ijl/orjson
+loads(),loads(),loads(),orjson/orjson.pyi,http://web.archive.org/web/20200806114537/https://github.com/ijl/orjson
+orjson.dumps(),orjson.dumps(),dumps(),orjson/orjson.pyi,http://web.archive.org/web/20210831032333/https://github.com/ijl/orjson/blob/master/CHANGELOG.md
+orjson.loads(),orjson.loads(),loads(),orjson/orjson.pyi,http://web.archive.org/web/20210831032333/https://github.com/ijl/orjson/blob/master/CHANGELOG.md
+orjson.dumps(),orjson.dumps(),dumps(),orjson/orjson.pyi,http://web.archive.org/web/20210831032333/https://github.com/ijl/orjson/blob/master/CHANGELOG.md
+numpy.empty(),numpy.empty(),,,http://web.archive.org/web/20210831032333/https://github.com/ijl/orjson/blob/master/CHANGELOG.md
+orjson.dumps(),orjson.dumps(),dumps(),orjson/orjson.pyi,http://web.archive.org/web/20210831032333/https://github.com/ijl/orjson/blob/master/CHANGELOG.md
+help(),help(),,,http://web.archive.org/web/20210831032333/https://github.com/ijl/orjson/blob/master/CHANGELOG.md
+orjson.dumps(),orjson.dumps(),dumps(),orjson/orjson.pyi,http://web.archive.org/web/20210831032333/https://github.com/ijl/orjson/blob/master/CHANGELOG.md
+numpy.float64(1.0),numpy.float64(1.0),,,http://web.archive.org/web/20210831032333/https://github.com/ijl/orjson/blob/master/CHANGELOG.md
+orjson.dumps(),orjson.dumps(),dumps(),orjson/orjson.pyi,http://web.archive.org/web/20210831032333/https://github.com/ijl/orjson/blob/master/CHANGELOG.md
+"orjson.dumps(..., **{})","orjson.dumps(..., **{})",,,http://web.archive.org/web/20210831032333/https://github.com/ijl/orjson/blob/master/CHANGELOG.md
+orjson.dumps(),orjson.dumps(),dumps(),orjson/orjson.pyi,http://web.archive.org/web/20210831032333/https://github.com/ijl/orjson/blob/master/CHANGELOG.md
+orjson.dumps({}),orjson.dumps({}),,,http://web.archive.org/web/20210831032333/https://github.com/ijl/orjson/blob/master/CHANGELOG.md
+orjson.dumps(obj={}),orjson.dumps(obj={}),,,http://web.archive.org/web/20210831032333/https://github.com/ijl/orjson/blob/master/CHANGELOG.md
+help(),help(),,,http://web.archive.org/web/20210831032333/https://github.com/ijl/orjson/blob/master/CHANGELOG.md
+orjson.dumps(),orjson.dumps(),dumps(),orjson/orjson.pyi,http://web.archive.org/web/20210831032333/https://github.com/ijl/orjson/blob/master/CHANGELOG.md
+orjson.loads(),orjson.loads(),loads(),orjson/orjson.pyi,http://web.archive.org/web/20210831032333/https://github.com/ijl/orjson/blob/master/CHANGELOG.md
+orjson.dumps(),orjson.dumps(),dumps(),orjson/orjson.pyi,http://web.archive.org/web/20210831032333/https://github.com/ijl/orjson/blob/master/CHANGELOG.md
+orjson.loads(),orjson.loads(),loads(),orjson/orjson.pyi,http://web.archive.org/web/20210831032333/https://github.com/ijl/orjson/blob/master/CHANGELOG.md
+orjson.dumps(),orjson.dumps(),dumps(),orjson/orjson.pyi,http://web.archive.org/web/20210831032333/https://github.com/ijl/orjson/blob/master/CHANGELOG.md
+orjson.loads(),orjson.loads(),loads(),orjson/orjson.pyi,http://web.archive.org/web/20210831032333/https://github.com/ijl/orjson/blob/master/CHANGELOG.md
+orjson.dumps(),orjson.dumps(),dumps(),orjson/orjson.pyi,http://web.archive.org/web/20210831032333/https://github.com/ijl/orjson/blob/master/CHANGELOG.md
+orjson.loads(),orjson.loads(),loads(),orjson/orjson.pyi,http://web.archive.org/web/20210831032333/https://github.com/ijl/orjson/blob/master/CHANGELOG.md
+orjson.dumps(),orjson.dumps(),dumps(),orjson/orjson.pyi,http://web.archive.org/web/20210831032333/https://github.com/ijl/orjson/blob/master/CHANGELOG.md
+"orjson.dumps(..., option=orjson.OPT_NAIVE_UTC)",,,,http://web.archive.org/web/20210831032333/https://github.com/ijl/orjson/blob/master/CHANGELOG.md
+"orjson.dumps(..., option=orjson.OPT_STRICT_INTEGER)",,,,http://web.archive.org/web/20210831032333/https://github.com/ijl/orjson/blob/master/CHANGELOG.md
+orjson.dumps(),orjson.dumps(),dumps(),orjson/orjson.pyi,http://web.archive.org/web/20210831032333/https://github.com/ijl/orjson/blob/master/CHANGELOG.md
+orjson.loads(),orjson.loads(),loads(),orjson/orjson.pyi,http://web.archive.org/web/20210831032333/https://github.com/ijl/orjson/blob/master/CHANGELOG.md

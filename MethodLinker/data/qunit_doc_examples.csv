@@ -1,4 +1,18 @@
-Example,Truth functions,Test functions,Linked functions
+QUnit.module( name ),https://api.qunitjs.com//QUnit/module/
+"QUnit.module( name, nested )",https://api.qunitjs.com//QUnit/module/
+"QUnit.module( name, options )",https://api.qunitjs.com//QUnit/module/
+"QUnit.module( name, options, nested )",https://api.qunitjs.com//QUnit/module/
+QUnit.module.only(),https://api.qunitjs.com//QUnit/module/
+QUnit.module.skip(),https://api.qunitjs.com//QUnit/module/
+QUnit.module.todo(),https://api.qunitjs.com//QUnit/module/
+QUnit.module(),https://api.qunitjs.com//QUnit/module/
+QUnit.test.only(),https://api.qunitjs.com//QUnit/module/
+QUnit.test.skip(),https://api.qunitjs.com//QUnit/module/
+QUnit.test.todo(),https://api.qunitjs.com//QUnit/module/
+QUnit.begin(),https://api.qunitjs.com//QUnit/module/
+QUnit.module.only(),https://api.qunitjs.com//QUnit/module/
+QUnit.module.skip(),https://api.qunitjs.com//QUnit/module/
+QUnit.module.todo(),https://api.qunitjs.com//QUnit/module/
 "QUnit.module('Group A');
 
 QUnit.test('basic test example 1', function (assert) {
@@ -15,7 +29,7 @@ QUnit.test('basic test example 3', function (assert) {
 });
 QUnit.test('basic test example 4', function (assert) {
   assert.true(true, 'this is also fine');
-});","['module', 'test']","['module', ('QUnit.test', 'N/A'), ('assert.true', 'N/A')]",['module']
+});",https://api.qunitjs.com//QUnit/module/
 "const { test } = QUnit;
 
 QUnit.module('Group A');
@@ -34,7 +48,21 @@ test('basic test example 3', assert => {
 });
 test('basic test example 4', assert => {
   assert.true(true, 'this is also fine');
-});","['module', 'test', 'module', 'test']","['module', ('test', 'N/A'), ('assert.true', 'N/A')]","['module', 'module']"
+});",https://api.qunitjs.com//QUnit/module/
+"QUnit.module('module A', {
+  before: function () {
+    // prepare something once for all tests
+  },
+  beforeEach: function () {
+    // prepare something before each test
+  },
+  afterEach: function () {
+    // clean up after each test
+  },
+  after: function () {
+    // clean up once after all tests are done
+  }
+});",https://api.qunitjs.com//QUnit/module/
 "const { test } = QUnit;
 
 QUnit.module('Group A', hooks => {
@@ -55,7 +83,7 @@ QUnit.module('Group B', hooks => {
   test('basic test example 4', assert => {
     assert.true(true, 'this is also fine');
   });
-});","['module', 'test']","[('test', 'N/A'), ('assert.true', 'N/A')]",[]
+});",https://api.qunitjs.com//QUnit/module/
 "const { test } = QUnit;
 
 QUnit.module('My Group', hooks => {
@@ -91,7 +119,7 @@ QUnit.module('My Group', hooks => {
       assert.expect(4);
     });
   });
-});","['module', 'test']","[('hooks.beforeEach', 'N/A'), ('assert.ok', 'N/A'), ('hooks.afterEach', 'N/A'), ('test', 'N/A'), ('assert.expect', 'N/A')]",[]
+});",https://api.qunitjs.com//QUnit/module/
 "QUnit.module('Machine Maker', {
   beforeEach: function () {
     this.maker = new Maker();
@@ -109,7 +137,7 @@ QUnit.test('makes a car', function (assert) {
   assert.equal(this.maker.build(this.parts), 'car');
   this.maker.duplicate();
   assert.deepEqual(this.maker.log, ['car', 'car']);
-});","['module', 'test']","[('Maker', 'N/A'), ('QUnit.test', 'N/A'), ('parts.push', 'N/A'), ('assert.equal', 'N/A'), ('maker.build', 'N/A'), ('assert.deepEqual', 'N/A'), ('maker.duplicate', 'N/A')]",[]
+});",https://api.qunitjs.com//QUnit/module/
 "const { test } = QUnit;
 
 QUnit.module('Machine Maker', hooks => {
@@ -129,7 +157,7 @@ QUnit.module('Machine Maker', hooks => {
     this.maker.duplicate();
     assert.deepEqual(this.maker.log, ['car', 'car']);
   });
-});","['module', 'test']","[('hooks.beforeEach', 'N/A'), ('Maker', 'N/A'), ('test', 'N/A'), ('parts.push', 'N/A'), ('assert.equal', 'N/A'), ('maker.build', 'N/A'), ('assert.deepEqual', 'N/A'), ('maker.duplicate', 'N/A')]",[]
+});",https://api.qunitjs.com//QUnit/module/
 "const { test } = QUnit;
 
 QUnit.module('Machine Maker', hooks => {
@@ -151,7 +179,7 @@ QUnit.module('Machine Maker', hooks => {
     maker.duplicate();
     assert.deepEqual(maker.log, ['car', 'car']);
   });
-});","['module', 'test']","[('hooks.beforeEach', 'N/A'), ('Maker', 'N/A'), ('test', 'N/A'), ('parts.push', 'N/A'), ('assert.equal', 'N/A'), ('maker.build', 'N/A'), ('assert.deepEqual', 'N/A'), ('maker.duplicate', 'N/A')]",[]
+});",https://api.qunitjs.com//QUnit/module/
 "QUnit.module('Database connection', {
   before: function () {
     return new Promise(function (resolve, reject) {
@@ -175,7 +203,8 @@ QUnit.module('Machine Maker', hooks => {
       });
     });
   }
-});",[''],"[('Promise', 'N/A'), ('DB.connect', 'N/A'), ('reject', 'N/A'), ('resolve', 'N/A'), ('DB.disconnect', 'N/A')]",[]
+});",https://api.qunitjs.com//QUnit/module/
+QUnit.module.only(),https://api.qunitjs.com//QUnit/module/
 "QUnit.module('Robot', hooks => {
   // ...
 });
@@ -207,7 +236,8 @@ QUnit.module.only('Android', hooks => {
   });
 
   // ...
-});","['module', 'only', 'test']","[('hooks.beforeEach', 'N/A'), ('Android', 'N/A'), ('QUnit.test', 'N/A'), ('assert.strictEqual', 'N/A'), ('android.hello', 'N/A'), ('android.loadConversationData', 'N/A'), ('android.answer', 'N/A')]",[]
+});",https://api.qunitjs.com//QUnit/module/
+QUnit.module.skip(),https://api.qunitjs.com//QUnit/module/
 "QUnit.module('Robot', hooks => {
   // ...
 });
@@ -233,7 +263,8 @@ QUnit.module.skip('Android', hooks => {
   });
 
   // ...
-});","['module', 'skip', 'test']","[('hooks.beforeEach', 'N/A'), ('Android', 'N/A'), ('QUnit.test', 'N/A'), ('assert.strictEqual', 'N/A'), ('android.hello', 'N/A'), ('android.answer', 'N/A')]",[]
+});",https://api.qunitjs.com//QUnit/module/
+QUnit.module.todo(),https://api.qunitjs.com//QUnit/module/
 "QUnit.module.todo('Robot', hooks => {
   let robot;
   hooks.beforeEach(() => {
@@ -252,13 +283,22 @@ QUnit.module.skip('Android', hooks => {
   });
 
   // ...
-});","['todo', 'test']","[('hooks.beforeEach', 'N/A'), ('Robot', 'N/A'), ('QUnit.test', 'N/A'), ('assert.strictEqual', 'N/A'), ('robot.say', 'N/A'), ('robot.moveArmTo', 'N/A'), ('assert.deepEqual', 'N/A'), ('robot.getPosition', 'N/A')]",[]
+});",https://api.qunitjs.com//QUnit/module/
+QUnit.start(),https://api.qunitjs.com//QUnit/start/
+QUnit.start(),https://api.qunitjs.com//QUnit/start/
+QUnit.stop(),https://api.qunitjs.com//QUnit/start/
 "QUnit.config.autostart = false;
 
 require(
   ['test/tests1.js', 'test/tests2.js'],
   QUnit.start
-);",['start'],"[('require', 'N/A')]",[]
+);",https://api.qunitjs.com//QUnit/start/
+"QUnit.test( name, callback )",https://api.qunitjs.com//QUnit/test/
+QUnit.test(),https://api.qunitjs.com//QUnit/test/
+QUnit.test(),https://api.qunitjs.com//QUnit/test/
+QUnit.test.only(),https://api.qunitjs.com//QUnit/test/
+QUnit.test.skip(),https://api.qunitjs.com//QUnit/test/
+QUnit.test.todo(),https://api.qunitjs.com//QUnit/test/
 "function square (x) {
   return x * x;
 }
@@ -266,7 +306,7 @@ require(
 QUnit.test('square()', assert => {
   assert.equal(square(2), 4, 'square(2)');
   assert.equal(square(3), 9, 'square(3)');
-});",['test'],"[('QUnit.test', 'N/A'), ('square', 'N/A'), ('assert.equal', 'N/A')]",[]
+});",https://api.qunitjs.com//QUnit/test/
 "QUnit.test('Test with async-await', async assert => {
   const a = await fetchSquare(2);
   const b = await fetchSquare(3);
@@ -274,7 +314,7 @@ QUnit.test('square()', assert => {
   assert.equal(a, 4);
   assert.equal(b, 9);
   assert.equal(await fetchSquare(5), 25);
-});",['test'],"[('QUnit.test', 'N/A'), ('fetchSquare', 'N/A'), ('assert.equal', 'N/A')]",[]
+});",https://api.qunitjs.com//QUnit/test/
 "function fetchSquare (x) {
   return new Promise(function (resolve) {
     setTimeout(function () {
@@ -287,14 +327,20 @@ QUnit.test('Test with Promise', function (assert) {
   return fetchSquare(3).then(function (result) {
     assert.equal(result, 9);
   });
-});",['test'],"[('Promise', 'N/A'), ('setTimeout', 'N/A'), ('resolve', 'N/A'), ('QUnit.test', 'N/A'), ('fetchSquare', 'N/A'), ('then', 'N/A'), ('assert.equal', 'N/A')]",[]
+});",https://api.qunitjs.com//QUnit/test/
+"QUnit.test.each( name, dataset, callback )",https://api.qunitjs.com//QUnit/test.each/
+"QUnit.test.only.each( name, dataset, callback )",https://api.qunitjs.com//QUnit/test.each/
+"QUnit.test.skip.each( name, dataset, callback )",https://api.qunitjs.com//QUnit/test.each/
+"QUnit.test.todo.each( name, dataset, callback )",https://api.qunitjs.com//QUnit/test.each/
+QUnit.test.each(),https://api.qunitjs.com//QUnit/test.each/
+QUnit.test(),https://api.qunitjs.com//QUnit/test.each/
 "function isEven (x) {
   return x % 2 === 0;
 }
 
 QUnit.test.each('isEven()', [2, 4, 6], (assert, data) => {
   assert.true(isEven(data), `${data} is even`);
-});","['each', 'each']","[('test.each', 'N/A'), ('isEven', 'N/A'), ('assert.true', 'N/A')]",[]
+});",https://api.qunitjs.com//QUnit/test.each/
 "function square (x) {
   return x * x;
 }
@@ -304,41 +350,45 @@ QUnit.test.each('square()', [
   [3, 9]
 ], (assert, [value, expected]) => {
   assert.equal(square(value), expected, `${value} squared`);
-});","['each', 'each']","[('test.each', 'N/A'), ('square', 'N/A'), ('assert.equal', 'N/A')]",[]
+});",https://api.qunitjs.com//QUnit/test.each/
 "QUnit.test.each('isEven()', {
   caseEven: [2, true],
   caseNotEven: [3, false]
 }, (assert, [value, expected]) => {
   assert.strictEqual(isEven(value), expected);
-});","['each', 'each']","[('test.each', 'N/A'), ('isEven', 'N/A'), ('assert.strictEqual', 'N/A')]",[]
+});",https://api.qunitjs.com//QUnit/test.each/
+each(),https://api.qunitjs.com//QUnit/test.each/
 "function isEven (x) {
   return x % 2 === 0;
 }
 
 async function isAsyncEven (x) {
-  return new Promise(resolve => {
-    resolve(isEven(x));
-  });
+  return isEven(x);
 }
 
 QUnit.test.each('isAsyncEven()', [2, 4], async (assert, data) => {
   assert.true(await isAsyncEven(data), `${data} is even`);
-});",['each'],"[('Promise', 'N/A'), ('resolve', 'N/A'), ('isEven', 'N/A'), ('test.each', 'N/A'), ('isAsyncEven', 'N/A'), ('assert.true', 'N/A')]",[]
+});",https://api.qunitjs.com//QUnit/test.each/
 "function isEven (x) {
   return x % 2 === 0;
 }
 
 function isAsyncEven (x) {
-  return new Promise(function (resolve) {
-    resolve(isEven(x));
-  });
+  return Promise.resolve(isEven(x));
 }
 
-QUnit.test.each('isAsyncEven()', [2, 4], (assert, value) => {
-  return isAsyncEven(value).then((result) => {
-    assert.true(result, `${value} is even`);
+QUnit.test.each('isAsyncEven()', [2, 4], function (assert, data) {
+  return isAsyncEven(data).then(function (result) {
+    assert.true(result, data + ' is even');
   });
-});",['each'],"[('Promise', 'N/A'), ('resolve', 'N/A'), ('isEven', 'N/A'), ('test.each', 'N/A'), ('isAsyncEven', 'N/A'), ('then', 'N/A'), ('assert.true', 'N/A')]",[]
+});",https://api.qunitjs.com//QUnit/test.each/
+"QUnit.test.only( name, callback )",https://api.qunitjs.com//QUnit/test.only/
+"QUnit.only( name, callback )",https://api.qunitjs.com//QUnit/test.only/
+QUnit.module.only(),https://api.qunitjs.com//QUnit/test.only/
+QUnit.only(),https://api.qunitjs.com//QUnit/test.only/
+QUnit.test.only(),https://api.qunitjs.com//QUnit/test.only/
+QUnit.only(),https://api.qunitjs.com//QUnit/test.only/
+QUnit.only(),https://api.qunitjs.com//QUnit/test.only/
 "QUnit.module('robot', hooks => {
   let robot;
   hooks.beforeEach(() => {
@@ -358,7 +408,15 @@ QUnit.test.each('isAsyncEven()', [2, 4], (assert, value) => {
   QUnit.test('take()', assert => {
     assert.true(robot.take(5));
   });
-});","['test', 'only', 'test']","[('hooks.beforeEach', 'N/A'), ('Robot', 'N/A'), ('QUnit.test', 'N/A'), ('say', 'N/A'), ('assert.true', 'N/A'), ('robot.say', 'N/A'), 'module.only', ('laser', 'N/A'), ('robot.laser', 'N/A'), ('take', 'N/A'), ('robot.take', 'N/A')]",[]
+});",https://api.qunitjs.com//QUnit/test.only/
+"QUnit.test.skip( name, callback )",https://api.qunitjs.com//QUnit/test.skip/
+"QUnit.skip( name, callback )",https://api.qunitjs.com//QUnit/test.skip/
+QUnit.test(),https://api.qunitjs.com//QUnit/test.skip/
+QUnit.module.skip(),https://api.qunitjs.com//QUnit/test.skip/
+QUnit.skip(),https://api.qunitjs.com//QUnit/test.skip/
+QUnit.test.skip(),https://api.qunitjs.com//QUnit/test.skip/
+QUnit.skip(),https://api.qunitjs.com//QUnit/test.skip/
+QUnit.skip(),https://api.qunitjs.com//QUnit/test.skip/
 "QUnit.module('robot', hooks => {
   let robot;
   hooks.beforeEach(() => {
@@ -373,7 +431,16 @@ QUnit.test.each('isAsyncEven()', [2, 4], (assert, value) => {
   QUnit.test.skip('laser', assert => {
     assert.true(robot.laser());
   });
-});","['test', 'skip']","[('hooks.beforeEach', 'N/A'), ('Robot', 'N/A'), ('QUnit.test', 'N/A'), ('assert.strictEqual', 'N/A'), ('robot.say', 'N/A'), ('laser', 'N/A'), ('assert.true', 'N/A'), ('robot.laser', 'N/A')]",[]
+});",https://api.qunitjs.com//QUnit/test.skip/
+"QUnit.test.todo( name, callback )",https://api.qunitjs.com//QUnit/test.todo/
+"QUnit.todo( name, callback )",https://api.qunitjs.com//QUnit/test.todo/
+QUnit.test.todo(),https://api.qunitjs.com//QUnit/test.todo/
+QUnit.test(),https://api.qunitjs.com//QUnit/test.todo/
+QUnit.module.todo(),https://api.qunitjs.com//QUnit/test.todo/
+QUnit.todo(),https://api.qunitjs.com//QUnit/test.todo/
+QUnit.test.todo(),https://api.qunitjs.com//QUnit/test.todo/
+QUnit.todo(),https://api.qunitjs.com//QUnit/test.todo/
+QUnit.todo(),https://api.qunitjs.com//QUnit/test.todo/
 "QUnit.module('Robot', hooks => {
   let robot;
   hooks.beforeEach(() => {
@@ -385,4 +452,20 @@ QUnit.test.each('isAsyncEven()', [2, 4], (assert, value) => {
     const result = robot.fireLazer();
     assert.equal(result, ""I'm firing my lazer!"");
   });
-});",['todo'],"[('hooks.beforeEach', 'N/A'), ('Robot', 'N/A'), ('robot.fireLazer', 'N/A'), ('assert.equal', 'N/A')]",[]
+});",https://api.qunitjs.com//QUnit/test.todo/
+"// Implicit global
+// Supported everywhere, including old browsers. (But not ES strict mode.)
+QUnit = {
+  config: {
+    autostart: false,
+    maxDepth: 12
+  }
+};
+
+// Browser global
+// For all browsers (including strict mode and old browsers)
+window.QUnit = { /* .. */ };
+
+// Isomorphic global
+// For modern browsers, SpiderMonkey, and Node.js (incl. strict mode).
+globalThis.QUnit = { /* .. */ };",https://api.qunitjs.com//config/

@@ -1,0 +1,6 @@
+Repo,Correct,Total test,Precision,Correct,Total truth,Recall
+CoreNLP,0,200,0.0,0,83,0.0
+jBinary,0,0,0,0,0,0
+orjson,0,24,0.0,0,118,0.0
+qunit,18,56,0.32142857142857145,18,76,0.23684210526315788
+requests,44,115,0.3826086956521739,44,236,0.1864406779661017

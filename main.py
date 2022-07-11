@@ -148,38 +148,38 @@ if __name__ == '__main__':
 
     # task_extract_and_link("requests", "https://web.archive.org/web/20220505163814/https://docs.python-requests.org/en/latest/")
 
-    # api_methods_examples("python",
-    #                      "orjson",
-    #                      "https://github.com/ijl/orjson.git",
-    #                      "http://web.archive.org/web/20210831032333/https://github.com/ijl/orjson",
-    #                      False)
-    # api_methods_examples("python",
-    #                      "nltk",
-    #                      "https://github.com/nltk/nltk.git",
-    #                      "https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.html",
-    #                      False)
-    # api_methods_examples("python",
-    #                      "requests",
-    #                      "https://github.com/psf/requests.git",
-    #                      "https://web.archive.org/web/20220505163814/https://docs.python-requests.org/en/latest/",
-    #                      False)
-    # api_methods_examples("java",
-    #                      "json-java",
-    #                      "https://github.com/stleary/JSON-java.git",
-    #                      "https://github.com/stleary/JSON-java",
-    #                      False)
-    # api_methods_examples("java",
-    #                      "CoreNLP",
-    #                      "https://github.com/stanfordnlp/CoreNLP.git",
-    #                      "https://stanfordnlp.github.io/CoreNLP",
-    #                      False)
+    api_methods_examples("python",
+                         "orjson",
+                         "https://github.com/ijl/orjson.git",
+                         "http://web.archive.org/web/20210831032333/https://github.com/ijl/orjson",
+                         False)
+    api_methods_examples("python",
+                         "nltk",
+                         "https://github.com/nltk/nltk.git",
+                         "https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.html",
+                         False)
+    api_methods_examples("python",
+                         "requests",
+                         "https://github.com/psf/requests.git",
+                         "https://web.archive.org/web/20220505163814/https://docs.python-requests.org/en/latest/",
+                         False)
+    api_methods_examples("java",
+                         "json-java",
+                         "https://github.com/stleary/JSON-java.git",
+                         "https://github.com/stleary/JSON-java",
+                         False)
+    api_methods_examples("java",
+                         "CoreNLP",
+                         "https://github.com/stanfordnlp/CoreNLP.git",
+                         "https://stanfordnlp.github.io/CoreNLP",
+                         False)
     api_methods_examples("javascript",
                          "qunit",
                          "https://github.com/qunitjs/qunit.git",
                          "https://api.qunitjs.com/",
                          False)
-    # api_methods_examples("javascript",
-    #                      "jBinary",
-    #                      "https://github.com/jDataView/jBinary.git",
-    #                      "https://github.com/jDataView/jBinary/wiki",
-    #                      True)
+    api_methods_examples("javascript",
+                         "jBinary",
+                         "https://github.com/jDataView/jBinary.git",
+                         "https://github.com/jDataView/jBinary/wiki",
+                         False)

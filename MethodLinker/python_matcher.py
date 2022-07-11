@@ -158,39 +158,41 @@ def python_match_signatures(repo_name, examples, functions, classes):
             link.append(call)
             if func_def:
                 method_calls.add((func_def["source_file"], call[0]))
-                link.append((name, func_def))
-                link.append(ex[1])
+                link.append((name, func_def["req_args"] + func_def["opt_args"]))
+                link.append(func_def["source_file"] if func_def["source_file"] else "N/A")
                 link.append(True)
             elif len(matched_methods) == 1:
-                method_calls.add((matched_methods[0][1]["source_file"],
-                                  matched_methods[0][0]))
-                link.append(matched_methods[0])
-                link.append(ex[1])
+                method_calls.add((matched_methods[0][1]["source_file"], matched_methods[0][0]))
+                link.append((matched_methods[0][0], matched_methods[0][1]["req_args"] + matched_methods[0][1]["opt_args"]))
+                link.append(matched_methods[0][1]["source_file"])
                 link.append(True)
             elif len(matched_methods) > 1:
-                link.append(matched_methods)
-                link.append(ex[1])
+                methods = []
+                for match in matched_methods:
+                    methods.append((match[0], match[1]["req_args"] + match[1]["opt_args"]))
+                link.append(methods)
+                link.append("N/A")
                 link.append(False)
             elif len(potential_classes) > 0:
                 link.append(potential_classes)
-                link.append(ex[1])
+                link.append("N/A")
                 link.append(False)
             else:
                 link.append("N/A")
-                link.append(ex[1])
+                link.append("N/A")
                 link.append(False)
         else:
             link.append("N/A")
             link.append("N/A")
-            link.append(ex[1])
+            link.append("N/A")
             link.append("N/A")
         links.append(link)
     seen = set()
-    with open("results/" + repo_name + "_signatures.csv", "w", encoding="utf-8",
+    with open("results/signatures/" + repo_name + ".csv", "w", encoding="utf-8",
               newline="") as out:
         writer = csv.writer(out, quoting=csv.QUOTE_MINIMAL)
         writer.writerow(
-            ["Example", "Extracted Function", "Linked Function", "Page", "Matched"])
+            ["Example", "Extracted Function", "Linked Function", "Source File", "Matched"])
         for link in links:
             if (link[0], link[3]) not in seen:
                 writer.writerow(link)
@@ -258,7 +260,7 @@ def python_match_examples(repo_name, examples, functions, classes):
                 else:
                     links.append([example, call, "N/A", "N/A", "N/A"])
     seen = set()
-    with open("results/" + repo_name + ".csv", "w", encoding="utf-8",
+    with open("results/examples/" + repo_name + ".csv", "w", encoding="utf-8",
               newline="") as out:
         writer = csv.writer(out, quoting=csv.QUOTE_MINIMAL)
         writer.writerow(

@@ -113,9 +113,9 @@ def javascript_match_signatures(repo_name, examples, functions, classes):
                                 arg_count += 1
                         if arg_count == len(func_def["req_args"]):
                             method_calls.add((func_def["source_file"], potential_method))
-                            links.append([example, (call, args), (potential_method, func_def["req_args"]), ex[1], True])
+                            links.append([example, (call, args), (potential_method, func_def["req_args"]), func_def["source_file"], True])
                         else:
-                            links.append([example, (call, args), (potential_method, func_def["req_args"]), ex[1], False])
+                            links.append([example, (call, args), (potential_method, func_def["req_args"]), func_def["source_file"], False])
                     except:
                         print(call)
                         print(function_calls)
@@ -133,13 +133,11 @@ def javascript_match_signatures(repo_name, examples, functions, classes):
                 else:
                     links.append([example, call, "N/A", "N/A", "N/A"])
     seen = set()
-    with open("results/" + repo_name + "_signatures.csv", "w", encoding="utf-8",
+    with open("results/signatures/" + repo_name + ".csv", "w", encoding="utf-8",
               newline="") as out:
         writer = csv.writer(out, quoting=csv.QUOTE_MINIMAL)
         writer.writerow(
-            ["Example", "Extracted Function", "Linked Function",
-             "Page",
-             "Matched"])
+            ["Example", "Extracted Function", "Linked Function", "Source File", "Matched"])
         for link in links:
             if (link[0], link[3]) not in seen:
                 writer.writerow(link)
@@ -198,7 +196,7 @@ def javascript_match_examples(repo_name, examples, functions, classes):
                 else:
                     links.append([example, call, "N/A", "N/A", "N/A"])
     seen = set()
-    with open("results/" + repo_name + ".csv", "w", encoding="utf-8",
+    with open("results/examples/" + repo_name + ".csv", "w", encoding="utf-8",
               newline="") as out:
         writer = csv.writer(out, quoting=csv.QUOTE_MINIMAL)
         writer.writerow(

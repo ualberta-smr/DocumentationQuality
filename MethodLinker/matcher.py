@@ -167,6 +167,12 @@ def get_methods_and_classes(repo_url):
 
 
 def calculate_ratios(language, repo_name, repo_url, doc_url, pages, examples):
+    if not os.path.isdir("results"):
+        os.mkdir("results")
+    if not os.path.isdir(os.path.normpath("results/examples")):
+        os.mkdir(os.path.normpath("results/examples"))
+    if not os.path.isdir(os.path.normpath("results/signatures")):
+        os.mkdir(os.path.normpath("results/signatures"))
     extension_finder(language)
     functions, classes = get_methods_and_classes(repo_url)
     with open("data/" + repo_name + "_methods.txt", "w") as temp:

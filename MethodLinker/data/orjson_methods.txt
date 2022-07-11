@@ -1,0 +1,6 @@
+{   'orjson.dumps': {   'opt_args': ['option', 'default'],
+                        'req_args': ['__obj'],
+                        'source_file': 'orjson\\orjson.pyi'},
+    'orjson.loads': {   'opt_args': [],
+                        'req_args': ['__obj'],
+                        'source_file': 'orjson\\orjson.pyi'}}
