@@ -486,7 +486,7 @@ public class BasicPipelineExample {
 
 }
 
-",StanfordCoreNLP,StanfordCoreNLP,CoreNLP\src\edu\stanford\nlp\pipeline\StanfordCoreNLP.java,True
+",StanfordCoreNLP,StanfordCoreNLP,CoreNLP\src\edu\stanford\nlp\pipeline\StanfordCoreNLP.java,False
 "import edu.stanford.nlp.coref.data.CorefChain;
 import edu.stanford.nlp.ling.*;
 import edu.stanford.nlp.ie.util.*;
@@ -608,7 +608,7 @@ public class BasicPipelineExample {
 
 }
 
-",CoreDocument,CoreDocument,CoreNLP\src\edu\stanford\nlp\pipeline\CoreDocument.java,True
+",CoreDocument,CoreDocument,CoreNLP\src\edu\stanford\nlp\pipeline\CoreDocument.java,False
 "import edu.stanford.nlp.coref.data.CorefChain;
 import edu.stanford.nlp.ling.*;
 import edu.stanford.nlp.ie.util.*;
@@ -730,7 +730,7 @@ public class BasicPipelineExample {
 
 }
 
-",pipeline.annotate,StanfordCoreNLP.annotate,CoreNLP\src\edu\stanford\nlp\pipeline\StanfordCoreNLP.java,True
+",pipeline.annotate,StanfordCoreNLP.annotate,CoreNLP\src\edu\stanford\nlp\pipeline\StanfordCoreNLP.java,False
 "import edu.stanford.nlp.coref.data.CorefChain;
 import edu.stanford.nlp.ling.*;
 import edu.stanford.nlp.ie.util.*;
@@ -853,12 +853,12 @@ public class BasicPipelineExample {
 }
 
 ",document.tokens,"Sentence.tokens
-CoreSentence.tokens
+CoreDocument.tokens
 CoreEntityMention.tokens
-CoreDocument.tokens","CoreNLP\src\edu\stanford\nlp\simple\Sentence.java
-CoreNLP\src\edu\stanford\nlp\pipeline\CoreSentence.java
+CoreSentence.tokens","CoreNLP\src\edu\stanford\nlp\simple\Sentence.java
+CoreNLP\src\edu\stanford\nlp\pipeline\CoreDocument.java
 CoreNLP\src\edu\stanford\nlp\pipeline\CoreEntityMention.java
-CoreNLP\src\edu\stanford\nlp\pipeline\CoreDocument.java",False
+CoreNLP\src\edu\stanford\nlp\pipeline\CoreSentence.java",False
 "import edu.stanford.nlp.coref.data.CorefChain;
 import edu.stanford.nlp.ling.*;
 import edu.stanford.nlp.ie.util.*;
@@ -1224,10 +1224,10 @@ public class BasicPipelineExample {
 
 }
 
-",document.sentences,"CoreQuote.sentences
-Document.sentences
-CoreDocument.sentences","CoreNLP\src\edu\stanford\nlp\pipeline\CoreQuote.java
-CoreNLP\src\edu\stanford\nlp\simple\Document.java
+",document.sentences,"Document.sentences
+CoreQuote.sentences
+CoreDocument.sentences","CoreNLP\src\edu\stanford\nlp\simple\Document.java
+CoreNLP\src\edu\stanford\nlp\pipeline\CoreQuote.java
 CoreNLP\src\edu\stanford\nlp\pipeline\CoreDocument.java",False
 "import edu.stanford.nlp.coref.data.CorefChain;
 import edu.stanford.nlp.ling.*;
@@ -1472,9 +1472,9 @@ public class BasicPipelineExample {
 
 }
 
-",sentence.posTags,"CoreSentence.posTags
-Sentence.posTags","CoreNLP\src\edu\stanford\nlp\pipeline\CoreSentence.java
-CoreNLP\src\edu\stanford\nlp\simple\Sentence.java",False
+",sentence.posTags,"Sentence.posTags
+CoreSentence.posTags","CoreNLP\src\edu\stanford\nlp\simple\Sentence.java
+CoreNLP\src\edu\stanford\nlp\pipeline\CoreSentence.java",False
 "import edu.stanford.nlp.coref.data.CorefChain;
 import edu.stanford.nlp.ling.*;
 import edu.stanford.nlp.ie.util.*;
@@ -1596,9 +1596,9 @@ public class BasicPipelineExample {
 
 }
 
-",sentence.nerTags,"CoreSentence.nerTags
-Sentence.nerTags","CoreNLP\src\edu\stanford\nlp\pipeline\CoreSentence.java
-CoreNLP\src\edu\stanford\nlp\simple\Sentence.java",False
+",sentence.nerTags,"Sentence.nerTags
+CoreSentence.nerTags","CoreNLP\src\edu\stanford\nlp\simple\Sentence.java
+CoreNLP\src\edu\stanford\nlp\pipeline\CoreSentence.java",False
 "import edu.stanford.nlp.coref.data.CorefChain;
 import edu.stanford.nlp.ling.*;
 import edu.stanford.nlp.ie.util.*;
@@ -3164,7 +3164,7 @@ public class BasicPipelineExample {
     }
 
 }
-",StanfordCoreNLP,StanfordCoreNLP,CoreNLP\src\edu\stanford\nlp\pipeline\StanfordCoreNLP.java,True
+",StanfordCoreNLP,StanfordCoreNLP,CoreNLP\src\edu\stanford\nlp\pipeline\StanfordCoreNLP.java,False
 "import edu.stanford.nlp.pipeline.*;
 import java.util.*;
 
@@ -3189,7 +3189,7 @@ public class BasicPipelineExample {
     }
 
 }
-",Annotation,Annotation,CoreNLP\src\edu\stanford\nlp\pipeline\Annotation.java,True
+",Annotation,Annotation,CoreNLP\src\edu\stanford\nlp\pipeline\Annotation.java,False
 "import edu.stanford.nlp.pipeline.*;
 import java.util.*;
 
@@ -3214,7 +3214,7 @@ public class BasicPipelineExample {
     }
 
 }
-",pipeline.annotate,StanfordCoreNLP.annotate,CoreNLP\src\edu\stanford\nlp\pipeline\StanfordCoreNLP.java,True
+",pipeline.annotate,StanfordCoreNLP.annotate,CoreNLP\src\edu\stanford\nlp\pipeline\StanfordCoreNLP.java,False
 "// build pipeline
 StanfordCoreNLP pipeline = new StanfordCoreNLP(
 	PropertiesUtils.asProperties(
@@ -3229,7 +3229,7 @@ Annotation document = new Annotation(text);
 
 // run all Annotators on this text
 pipeline.annotate(document);
-",Annotation,Annotation,CoreNLP\src\edu\stanford\nlp\pipeline\Annotation.java,True
+",Annotation,Annotation,CoreNLP\src\edu\stanford\nlp\pipeline\Annotation.java,False
 "// build pipeline
 StanfordCoreNLP pipeline = new StanfordCoreNLP(
 	PropertiesUtils.asProperties(
@@ -3244,9 +3244,9 @@ Annotation document = new Annotation(text);
 
 // run all Annotators on this text
 pipeline.annotate(document);
-",pipeline.annotate,"StanfordCoreNLP.annotate
-Util.annotate","CoreNLP\src\edu\stanford\nlp\pipeline\StanfordCoreNLP.java
-CoreNLP\src\edu\stanford\nlp\naturalli\Util.java",False
+",pipeline.annotate,"Util.annotate
+StanfordCoreNLP.annotate","CoreNLP\src\edu\stanford\nlp\naturalli\Util.java
+CoreNLP\src\edu\stanford\nlp\pipeline\StanfordCoreNLP.java",False
 "// these are all the sentences in this document
 // a CoreMap is essentially a Map that uses class objects as keys and has values with custom types
 List<CoreMap> sentences = document.get(SentencesAnnotation.class);
@@ -3373,21 +3373,21 @@ Sentence sent = new Sentence(""Lucy is in the sky with diamonds."");
 List<String> nerTags = sent.nerTags();  // [PERSON, O, O, O, O, O, O, O]
 String firstPOSTag = sent.posTag(0);   // NNP
 ...
-",Sentence,Sentence,CoreNLP\src\edu\stanford\nlp\simple\Sentence.java,True
+",Sentence,Sentence,CoreNLP\src\edu\stanford\nlp\simple\Sentence.java,False
 "import edu.stanford.nlp.simple.*;
 
 Sentence sent = new Sentence(""Lucy is in the sky with diamonds."");
 List<String> nerTags = sent.nerTags();  // [PERSON, O, O, O, O, O, O, O]
 String firstPOSTag = sent.posTag(0);   // NNP
 ...
-",sent.nerTags,Sentence.nerTags,CoreNLP\src\edu\stanford\nlp\simple\Sentence.java,True
+",sent.nerTags,Sentence.nerTags,CoreNLP\src\edu\stanford\nlp\simple\Sentence.java,False
 "import edu.stanford.nlp.simple.*;
 
 Sentence sent = new Sentence(""Lucy is in the sky with diamonds."");
 List<String> nerTags = sent.nerTags();  // [PERSON, O, O, O, O, O, O, O]
 String firstPOSTag = sent.posTag(0);   // NNP
 ...
-",sent.posTag,Sentence.posTag,CoreNLP\src\edu\stanford\nlp\simple\Sentence.java,True
+",sent.posTag,Sentence.posTag,CoreNLP\src\edu\stanford\nlp\simple\Sentence.java,False
 "import edu.stanford.nlp.simple.*;
 
 public class SimpleCoreNLPDemo {
@@ -3423,7 +3423,7 @@ public class SimpleCoreNLPDemo {
         }
     }
 }
-",doc.sentences,Document.sentences,CoreNLP\src\edu\stanford\nlp\simple\Document.java,True
+",doc.sentences,Document.sentences,CoreNLP\src\edu\stanford\nlp\simple\Document.java,False
 "import edu.stanford.nlp.simple.*;
 
 public class SimpleCoreNLPDemo {
@@ -3459,7 +3459,7 @@ public class SimpleCoreNLPDemo {
         }
     }
 }
-",sent.word,Sentence.word,CoreNLP\src\edu\stanford\nlp\simple\Sentence.java,True
+",sent.word,Sentence.word,CoreNLP\src\edu\stanford\nlp\simple\Sentence.java,False
 "import edu.stanford.nlp.simple.*;
 
 public class SimpleCoreNLPDemo {
@@ -3477,7 +3477,7 @@ public class SimpleCoreNLPDemo {
         }
     }
 }
-",sent.lemma,Sentence.lemma,CoreNLP\src\edu\stanford\nlp\simple\Sentence.java,True
+",sent.lemma,Sentence.lemma,CoreNLP\src\edu\stanford\nlp\simple\Sentence.java,False
 "import edu.stanford.nlp.simple.*;
 
 public class SimpleCoreNLPDemo {
@@ -3495,10 +3495,10 @@ public class SimpleCoreNLPDemo {
         }
     }
 }
-",sent.parse,Sentence.parse,CoreNLP\src\edu\stanford\nlp\simple\Sentence.java,True
+",sent.parse,Sentence.parse,CoreNLP\src\edu\stanford\nlp\simple\Sentence.java,False
 "Sentence sent = new Sentence(""your text should go here"");
 sent.algorithms().headOfSpan(new Span(0, 2));  // Should return 1
-",Sentence,Sentence,CoreNLP\src\edu\stanford\nlp\simple\Sentence.java,True
+",Sentence,Sentence,CoreNLP\src\edu\stanford\nlp\simple\Sentence.java,False
 "Sentence sent = new Sentence(""your text should go here"");
 sent.algorithms().headOfSpan(new Span(0, 2));  // Should return 1
 ",sent.algorithms,Sentence.algorithms,CoreNLP\src\edu\stanford\nlp\simple\Sentence.java,False
@@ -3507,7 +3507,7 @@ sent.algorithms().headOfSpan(new Span(0, 2));  // Should return 1
 ",headOfSpan,N/A,N/A,N/A
 "Sentence sent = new Sentence(""your text should go here"");
 sent.algorithms().headOfSpan(new Span(0, 2));  // Should return 1
-",Span,Span,CoreNLP\src\edu\stanford\nlp\ie\machinereading\structure\Span.java,True
+",Span,Span,CoreNLP\src\edu\stanford\nlp\ie\machinereading\structure\Span.java,False
 "import requests
 print(requests.post('http://[::]:9000/?properties={""annotators"":""tokenize,ssplit,pos"",""outputFormat"":""json""}', data = {'data':'The quick brown fox jumped over the lazy dog.'}).text)
 ",print,N/A,N/A,N/A
@@ -3546,7 +3546,7 @@ String text = ... // Add your text here!
 Annotation document = new Annotation(text);
 // run all Annotators on this text
 pipeline.annotate(document);
-",StanfordCoreNLPClient,StanfordCoreNLPClient,CoreNLP\src\edu\stanford\nlp\pipeline\StanfordCoreNLPClient.java,True
+",StanfordCoreNLPClient,StanfordCoreNLPClient,CoreNLP\src\edu\stanford\nlp\pipeline\StanfordCoreNLPClient.java,False
 "// creates a StanfordCoreNLP object with POS tagging, lemmatization, NER, parsing, and coreference resolution
 Properties props = new Properties();
 props.setProperty(""annotators"", ""tokenize, ssplit, pos, lemma, ner, parse, dcoref"");
@@ -3557,7 +3557,7 @@ String text = ... // Add your text here!
 Annotation document = new Annotation(text);
 // run all Annotators on this text
 pipeline.annotate(document);
-",Annotation,Annotation,CoreNLP\src\edu\stanford\nlp\pipeline\Annotation.java,True
+",Annotation,Annotation,CoreNLP\src\edu\stanford\nlp\pipeline\Annotation.java,False
 "// creates a StanfordCoreNLP object with POS tagging, lemmatization, NER, parsing, and coreference resolution
 Properties props = new Properties();
 props.setProperty(""annotators"", ""tokenize, ssplit, pos, lemma, ner, parse, dcoref"");
@@ -3568,17 +3568,17 @@ String text = ... // Add your text here!
 Annotation document = new Annotation(text);
 // run all Annotators on this text
 pipeline.annotate(document);
-",pipeline.annotate,"StanfordCoreNLP.annotate
-StanfordCoreNLPClient.annotate","CoreNLP\src\edu\stanford\nlp\pipeline\StanfordCoreNLP.java
-CoreNLP\src\edu\stanford\nlp\pipeline\StanfordCoreNLPClient.java",False
+",pipeline.annotate,"StanfordCoreNLPClient.annotate
+StanfordCoreNLP.annotate","CoreNLP\src\edu\stanford\nlp\pipeline\StanfordCoreNLPClient.java
+CoreNLP\src\edu\stanford\nlp\pipeline\StanfordCoreNLP.java",False
 "String text = ""La Universidad de Stanford se encuentra en Palo Alto."";
 StanfordCoreNLP pipeline = new StanfordCoreNLP(""spanish"");
 CoreDocument doc = pipeline.processToCoreDocument(text);
-",StanfordCoreNLP,StanfordCoreNLP,CoreNLP\src\edu\stanford\nlp\pipeline\StanfordCoreNLP.java,True
+",StanfordCoreNLP,StanfordCoreNLP,CoreNLP\src\edu\stanford\nlp\pipeline\StanfordCoreNLP.java,False
 "String text = ""La Universidad de Stanford se encuentra en Palo Alto."";
 StanfordCoreNLP pipeline = new StanfordCoreNLP(""spanish"");
 CoreDocument doc = pipeline.processToCoreDocument(text);
-",pipeline.processToCoreDocument,StanfordCoreNLP.processToCoreDocument,CoreNLP\src\edu\stanford\nlp\pipeline\StanfordCoreNLP.java,True
+",pipeline.processToCoreDocument,StanfordCoreNLP.processToCoreDocument,CoreNLP\src\edu\stanford\nlp\pipeline\StanfordCoreNLP.java,False
 "package edu.stanford.nlp.examples;
 
 import edu.stanford.nlp.io.*;
@@ -3678,7 +3678,7 @@ public class PipelineExample {
     }
 
 }
-",StanfordCoreNLP,StanfordCoreNLP,CoreNLP\src\edu\stanford\nlp\pipeline\StanfordCoreNLP.java,True
+",StanfordCoreNLP,StanfordCoreNLP,CoreNLP\src\edu\stanford\nlp\pipeline\StanfordCoreNLP.java,False
 "package edu.stanford.nlp.examples;
 
 import edu.stanford.nlp.io.*;
@@ -3703,7 +3703,7 @@ public class PipelineExample {
     }
 
 }
-",pipeline.processToCoreDocument,StanfordCoreNLP.processToCoreDocument,CoreNLP\src\edu\stanford\nlp\pipeline\StanfordCoreNLP.java,True
+",pipeline.processToCoreDocument,StanfordCoreNLP.processToCoreDocument,CoreNLP\src\edu\stanford\nlp\pipeline\StanfordCoreNLP.java,False
 "package edu.stanford.nlp.examples;
 
 import edu.stanford.nlp.ling.*;
@@ -3847,7 +3847,7 @@ public class CustomLemmaAnnotator implements Annotator {
   }
   
 }
-",IOUtils.linesFromFile,IOUtils.linesFromFile,CoreNLP\src\edu\stanford\nlp\io\IOUtils.java,True
+",IOUtils.linesFromFile,IOUtils.linesFromFile,CoreNLP\src\edu\stanford\nlp\io\IOUtils.java,False
 "package edu.stanford.nlp.examples;
 
 import edu.stanford.nlp.ling.*;
@@ -4551,7 +4551,7 @@ public class PipelineExample {
     }
   }
 }
-",StanfordCoreNLP,StanfordCoreNLP,CoreNLP\src\edu\stanford\nlp\pipeline\StanfordCoreNLP.java,True
+",StanfordCoreNLP,StanfordCoreNLP,CoreNLP\src\edu\stanford\nlp\pipeline\StanfordCoreNLP.java,False
 "package edu.stanford.nlp.examples;
 
 import edu.stanford.nlp.ling.*;
@@ -4582,7 +4582,7 @@ public class PipelineExample {
     }
   }
 }
-",CoreDocument,CoreDocument,CoreNLP\src\edu\stanford\nlp\pipeline\CoreDocument.java,True
+",CoreDocument,CoreDocument,CoreNLP\src\edu\stanford\nlp\pipeline\CoreDocument.java,False
 "package edu.stanford.nlp.examples;
 
 import edu.stanford.nlp.ling.*;
@@ -4613,7 +4613,7 @@ public class PipelineExample {
     }
   }
 }
-",pipeline.annotate,StanfordCoreNLP.annotate,CoreNLP\src\edu\stanford\nlp\pipeline\StanfordCoreNLP.java,True
+",pipeline.annotate,StanfordCoreNLP.annotate,CoreNLP\src\edu\stanford\nlp\pipeline\StanfordCoreNLP.java,False
 "package edu.stanford.nlp.examples;
 
 import edu.stanford.nlp.ling.*;
@@ -4770,9 +4770,9 @@ public class PipelineExample {
     }
   }
 }
-",tok.beginPosition,"CoreLabel.beginPosition
-Token.beginPosition","CoreNLP\src\edu\stanford\nlp\ling\CoreLabel.java
-CoreNLP\src\edu\stanford\nlp\simple\Token.java",False
+",tok.beginPosition,"Token.beginPosition
+CoreLabel.beginPosition","CoreNLP\src\edu\stanford\nlp\simple\Token.java
+CoreNLP\src\edu\stanford\nlp\ling\CoreLabel.java",False
 "package edu.stanford.nlp.examples;
 
 import edu.stanford.nlp.ling.*;
@@ -4803,9 +4803,9 @@ public class PipelineExample {
     }
   }
 }
-",tok.endPosition,"Token.endPosition
-CoreLabel.endPosition","CoreNLP\src\edu\stanford\nlp\simple\Token.java
-CoreNLP\src\edu\stanford\nlp\ling\CoreLabel.java",False
+",tok.endPosition,"CoreLabel.endPosition
+Token.endPosition","CoreNLP\src\edu\stanford\nlp\ling\CoreLabel.java
+CoreNLP\src\edu\stanford\nlp\simple\Token.java",False
 "package edu.stanford.nlp.examples;
 
 import edu.stanford.nlp.ling.*;
@@ -4913,7 +4913,7 @@ public class ForumPostExample {
     }
   }
 }
-",StanfordCoreNLP,StanfordCoreNLP,CoreNLP\src\edu\stanford\nlp\pipeline\StanfordCoreNLP.java,True
+",StanfordCoreNLP,StanfordCoreNLP,CoreNLP\src\edu\stanford\nlp\pipeline\StanfordCoreNLP.java,False
 "package edu.stanford.nlp.examples;
 
 import edu.stanford.nlp.ling.*;
@@ -4967,7 +4967,7 @@ public class ForumPostExample {
     }
   }
 }
-",Annotation,Annotation,CoreNLP\src\edu\stanford\nlp\pipeline\Annotation.java,True
+",Annotation,Annotation,CoreNLP\src\edu\stanford\nlp\pipeline\Annotation.java,False
 "package edu.stanford.nlp.examples;
 
 import edu.stanford.nlp.ling.*;
@@ -5021,7 +5021,7 @@ public class ForumPostExample {
     }
   }
 }
-",IOUtils.stringFromFile,IOUtils.stringFromFile,CoreNLP\src\edu\stanford\nlp\io\IOUtils.java,True
+",IOUtils.stringFromFile,IOUtils.stringFromFile,CoreNLP\src\edu\stanford\nlp\io\IOUtils.java,False
 "package edu.stanford.nlp.examples;
 
 import edu.stanford.nlp.ling.*;
@@ -5075,9 +5075,9 @@ public class ForumPostExample {
     }
   }
 }
-",pipeline.annotate,"StanfordCoreNLP.annotate
-Util.annotate","CoreNLP\src\edu\stanford\nlp\pipeline\StanfordCoreNLP.java
-CoreNLP\src\edu\stanford\nlp\naturalli\Util.java",False
+",pipeline.annotate,"Util.annotate
+StanfordCoreNLP.annotate","CoreNLP\src\edu\stanford\nlp\naturalli\Util.java
+CoreNLP\src\edu\stanford\nlp\pipeline\StanfordCoreNLP.java",False
 "package edu.stanford.nlp.examples;
 
 import edu.stanford.nlp.ling.*;
@@ -5677,7 +5677,7 @@ public class SentenceSplittingExample {
     }
   }
 }
-",StanfordCoreNLP,StanfordCoreNLP,CoreNLP\src\edu\stanford\nlp\pipeline\StanfordCoreNLP.java,True
+",StanfordCoreNLP,StanfordCoreNLP,CoreNLP\src\edu\stanford\nlp\pipeline\StanfordCoreNLP.java,False
 "package edu.stanford.nlp.examples;
 
 import edu.stanford.nlp.pipeline.*;
@@ -5705,7 +5705,7 @@ public class SentenceSplittingExample {
     }
   }
 }
-",CoreDocument,CoreDocument,CoreNLP\src\edu\stanford\nlp\pipeline\CoreDocument.java,True
+",CoreDocument,CoreDocument,CoreNLP\src\edu\stanford\nlp\pipeline\CoreDocument.java,False
 "package edu.stanford.nlp.examples;
 
 import edu.stanford.nlp.pipeline.*;
@@ -5733,7 +5733,7 @@ public class SentenceSplittingExample {
     }
   }
 }
-",pipeline.annotate,StanfordCoreNLP.annotate,CoreNLP\src\edu\stanford\nlp\pipeline\StanfordCoreNLP.java,True
+",pipeline.annotate,StanfordCoreNLP.annotate,CoreNLP\src\edu\stanford\nlp\pipeline\StanfordCoreNLP.java,False
 "package edu.stanford.nlp.examples;
 
 import edu.stanford.nlp.pipeline.*;
@@ -5761,9 +5761,9 @@ public class SentenceSplittingExample {
     }
   }
 }
-",doc.sentences,"CoreDocument.sentences
-Document.sentences","CoreNLP\src\edu\stanford\nlp\pipeline\CoreDocument.java
-CoreNLP\src\edu\stanford\nlp\simple\Document.java",False
+",doc.sentences,"Document.sentences
+CoreDocument.sentences","CoreNLP\src\edu\stanford\nlp\simple\Document.java
+CoreNLP\src\edu\stanford\nlp\pipeline\CoreDocument.java",False
 "package edu.stanford.nlp.examples;
 
 import edu.stanford.nlp.pipeline.*;
@@ -5819,13 +5819,13 @@ public class SentenceSplittingExample {
     }
   }
 }
-",sent.text,"CoreSentence.text
+",sent.text,"Document.text
+Sentence.text
 CoreDocument.text
-Document.text
-Sentence.text","CoreNLP\src\edu\stanford\nlp\pipeline\CoreSentence.java
+CoreSentence.text","CoreNLP\src\edu\stanford\nlp\simple\Document.java
+CoreNLP\src\edu\stanford\nlp\simple\Sentence.java
 CoreNLP\src\edu\stanford\nlp\pipeline\CoreDocument.java
-CoreNLP\src\edu\stanford\nlp\simple\Document.java
-CoreNLP\src\edu\stanford\nlp\simple\Sentence.java",False
+CoreNLP\src\edu\stanford\nlp\pipeline\CoreSentence.java",False
 "package edu.stanford.nlp.examples;
 
 import edu.stanford.nlp.ling.*;
@@ -5912,7 +5912,7 @@ public class MWTExpansionExample {
     }
   }
 }
-",StanfordCoreNLP,StanfordCoreNLP,CoreNLP\src\edu\stanford\nlp\pipeline\StanfordCoreNLP.java,True
+",StanfordCoreNLP,StanfordCoreNLP,CoreNLP\src\edu\stanford\nlp\pipeline\StanfordCoreNLP.java,False
 "package edu.stanford.nlp.examples;
 
 import edu.stanford.nlp.ling.*;
@@ -5941,7 +5941,7 @@ public class MWTExpansionExample {
     }
   }
 }
-",CoreDocument,CoreDocument,CoreNLP\src\edu\stanford\nlp\pipeline\CoreDocument.java,True
+",CoreDocument,CoreDocument,CoreNLP\src\edu\stanford\nlp\pipeline\CoreDocument.java,False
 "package edu.stanford.nlp.examples;
 
 import edu.stanford.nlp.ling.*;
@@ -5970,9 +5970,9 @@ public class MWTExpansionExample {
     }
   }
 }
-",pipeline.annotate,"StanfordCoreNLP.annotate
-Util.annotate","CoreNLP\src\edu\stanford\nlp\pipeline\StanfordCoreNLP.java
-CoreNLP\src\edu\stanford\nlp\naturalli\Util.java",False
+",pipeline.annotate,"Util.annotate
+StanfordCoreNLP.annotate","CoreNLP\src\edu\stanford\nlp\naturalli\Util.java
+CoreNLP\src\edu\stanford\nlp\pipeline\StanfordCoreNLP.java",False
 "package edu.stanford.nlp.examples;
 
 import edu.stanford.nlp.ling.*;
@@ -6196,7 +6196,7 @@ public class POSTaggingExample {
     }
   }
 }
-",StanfordCoreNLP,StanfordCoreNLP,CoreNLP\src\edu\stanford\nlp\pipeline\StanfordCoreNLP.java,True
+",StanfordCoreNLP,StanfordCoreNLP,CoreNLP\src\edu\stanford\nlp\pipeline\StanfordCoreNLP.java,False
 "package edu.stanford.nlp.examples;
 
 import edu.stanford.nlp.ling.*;
@@ -6223,7 +6223,7 @@ public class POSTaggingExample {
     }
   }
 }
-",pipeline.processToCoreDocument,StanfordCoreNLP.processToCoreDocument,CoreNLP\src\edu\stanford\nlp\pipeline\StanfordCoreNLP.java,True
+",pipeline.processToCoreDocument,StanfordCoreNLP.processToCoreDocument,CoreNLP\src\edu\stanford\nlp\pipeline\StanfordCoreNLP.java,False
 "package edu.stanford.nlp.examples;
 
 import edu.stanford.nlp.ling.*;
@@ -6358,9 +6358,9 @@ public class POSTaggingExample {
     }
   }
 }
-",tok.tag,"Tag.tag
-CoreLabel.tag","CoreNLP\src\edu\stanford\nlp\ling\Tag.java
-CoreNLP\src\edu\stanford\nlp\ling\CoreLabel.java",False
+",tok.tag,"CoreLabel.tag
+Tag.tag","CoreNLP\src\edu\stanford\nlp\ling\CoreLabel.java
+CoreNLP\src\edu\stanford\nlp\ling\Tag.java",False
 "package edu.stanford.nlp.examples;
 
 import edu.stanford.nlp.ling.*;
@@ -6476,7 +6476,7 @@ public class LemmatizingExample {
   }
 
 }
-",StanfordCoreNLP,StanfordCoreNLP,CoreNLP\src\edu\stanford\nlp\pipeline\StanfordCoreNLP.java,True
+",StanfordCoreNLP,StanfordCoreNLP,CoreNLP\src\edu\stanford\nlp\pipeline\StanfordCoreNLP.java,False
 "package edu.stanford.nlp.examples;
 
 import edu.stanford.nlp.ling.*;
@@ -6505,7 +6505,7 @@ public class LemmatizingExample {
   }
 
 }
-",pipeline.processToCoreDocument,StanfordCoreNLP.processToCoreDocument,CoreNLP\src\edu\stanford\nlp\pipeline\StanfordCoreNLP.java,True
+",pipeline.processToCoreDocument,StanfordCoreNLP.processToCoreDocument,CoreNLP\src\edu\stanford\nlp\pipeline\StanfordCoreNLP.java,False
 "package edu.stanford.nlp.examples;
 
 import edu.stanford.nlp.ling.*;
@@ -6886,7 +6886,7 @@ public class NERPipelineDemo {
 
 }
 
-",StanfordCoreNLP,StanfordCoreNLP,CoreNLP\src\edu\stanford\nlp\pipeline\StanfordCoreNLP.java,True
+",StanfordCoreNLP,StanfordCoreNLP,CoreNLP\src\edu\stanford\nlp\pipeline\StanfordCoreNLP.java,False
 "package edu.stanford.nlp.examples;
 
 import edu.stanford.nlp.pipeline.*;
@@ -6945,7 +6945,7 @@ public class NERPipelineDemo {
 
 }
 
-",CoreDocument,CoreDocument,CoreNLP\src\edu\stanford\nlp\pipeline\CoreDocument.java,True
+",CoreDocument,CoreDocument,CoreNLP\src\edu\stanford\nlp\pipeline\CoreDocument.java,False
 "package edu.stanford.nlp.examples;
 
 import edu.stanford.nlp.pipeline.*;
@@ -7004,7 +7004,7 @@ public class NERPipelineDemo {
 
 }
 
-",pipeline.annotate,StanfordCoreNLP.annotate,CoreNLP\src\edu\stanford\nlp\pipeline\StanfordCoreNLP.java,True
+",pipeline.annotate,StanfordCoreNLP.annotate,CoreNLP\src\edu\stanford\nlp\pipeline\StanfordCoreNLP.java,False
 "package edu.stanford.nlp.examples;
 
 import edu.stanford.nlp.pipeline.*;
@@ -7181,11 +7181,11 @@ public class NERPipelineDemo {
 
 }
 
-",em.text,"CoreDocument.text
-CoreEntityMention.text
-Document.text","CoreNLP\src\edu\stanford\nlp\pipeline\CoreDocument.java
-CoreNLP\src\edu\stanford\nlp\pipeline\CoreEntityMention.java
-CoreNLP\src\edu\stanford\nlp\simple\Document.java",False
+",em.text,"CoreEntityMention.text
+Document.text
+CoreDocument.text","CoreNLP\src\edu\stanford\nlp\pipeline\CoreEntityMention.java
+CoreNLP\src\edu\stanford\nlp\simple\Document.java
+CoreNLP\src\edu\stanford\nlp\pipeline\CoreDocument.java",False
 "package edu.stanford.nlp.examples;
 
 import edu.stanford.nlp.pipeline.*;
@@ -7303,9 +7303,9 @@ public class NERPipelineDemo {
 
 }
 
-",doc.tokens,"CoreEntityMention.tokens
-CoreDocument.tokens","CoreNLP\src\edu\stanford\nlp\pipeline\CoreEntityMention.java
-CoreNLP\src\edu\stanford\nlp\pipeline\CoreDocument.java",False
+",doc.tokens,"CoreDocument.tokens
+CoreEntityMention.tokens","CoreNLP\src\edu\stanford\nlp\pipeline\CoreDocument.java
+CoreNLP\src\edu\stanford\nlp\pipeline\CoreEntityMention.java",False
 "package edu.stanford.nlp.examples;
 
 import edu.stanford.nlp.pipeline.*;
@@ -7763,7 +7763,7 @@ public class NERConfidenceExample {
         }
     }
 }
-",StanfordCoreNLP,StanfordCoreNLP,CoreNLP\src\edu\stanford\nlp\pipeline\StanfordCoreNLP.java,True
+",StanfordCoreNLP,StanfordCoreNLP,CoreNLP\src\edu\stanford\nlp\pipeline\StanfordCoreNLP.java,False
 "package edu.stanford.nlp.examples;
 
 import edu.stanford.nlp.ling.*;
@@ -7789,7 +7789,7 @@ public class NERConfidenceExample {
         }
     }
 }
-",CoreDocument,CoreDocument,CoreNLP\src\edu\stanford\nlp\pipeline\CoreDocument.java,True
+",CoreDocument,CoreDocument,CoreNLP\src\edu\stanford\nlp\pipeline\CoreDocument.java,False
 "package edu.stanford.nlp.examples;
 
 import edu.stanford.nlp.ling.*;
@@ -7815,7 +7815,7 @@ public class NERConfidenceExample {
         }
     }
 }
-",pipeline.annotate,StanfordCoreNLP.annotate,CoreNLP\src\edu\stanford\nlp\pipeline\StanfordCoreNLP.java,True
+",pipeline.annotate,StanfordCoreNLP.annotate,CoreNLP\src\edu\stanford\nlp\pipeline\StanfordCoreNLP.java,False
 "package edu.stanford.nlp.examples;
 
 import edu.stanford.nlp.ling.*;
@@ -7893,11 +7893,11 @@ public class NERConfidenceExample {
         }
     }
 }
-",em.text,"CoreDocument.text
-CoreEntityMention.text
-Document.text","CoreNLP\src\edu\stanford\nlp\pipeline\CoreDocument.java
-CoreNLP\src\edu\stanford\nlp\pipeline\CoreEntityMention.java
-CoreNLP\src\edu\stanford\nlp\simple\Document.java",False
+",em.text,"CoreEntityMention.text
+Document.text
+CoreDocument.text","CoreNLP\src\edu\stanford\nlp\pipeline\CoreEntityMention.java
+CoreNLP\src\edu\stanford\nlp\simple\Document.java
+CoreNLP\src\edu\stanford\nlp\pipeline\CoreDocument.java",False
 "package edu.stanford.nlp.examples;
 
 import edu.stanford.nlp.ling.*;
@@ -7949,9 +7949,9 @@ public class NERConfidenceExample {
         }
     }
 }
-",document.tokens,"CoreEntityMention.tokens
-CoreDocument.tokens","CoreNLP\src\edu\stanford\nlp\pipeline\CoreEntityMention.java
-CoreNLP\src\edu\stanford\nlp\pipeline\CoreDocument.java",False
+",document.tokens,"CoreDocument.tokens
+CoreEntityMention.tokens","CoreNLP\src\edu\stanford\nlp\pipeline\CoreDocument.java
+CoreNLP\src\edu\stanford\nlp\pipeline\CoreEntityMention.java",False
 "package edu.stanford.nlp.examples;
 
 import edu.stanford.nlp.ling.*;
@@ -8163,7 +8163,7 @@ public class ConstituentExample {
     }
   }
 }
-",StanfordCoreNLP,StanfordCoreNLP,CoreNLP\src\edu\stanford\nlp\pipeline\StanfordCoreNLP.java,True
+",StanfordCoreNLP,StanfordCoreNLP,CoreNLP\src\edu\stanford\nlp\pipeline\StanfordCoreNLP.java,False
 "package edu.stanford.nlp.examples;
 
 import edu.stanford.nlp.ling.CoreAnnotations;
@@ -8203,7 +8203,7 @@ public class ConstituentExample {
     }
   }
 }
-",Annotation,Annotation,CoreNLP\src\edu\stanford\nlp\pipeline\Annotation.java,True
+",Annotation,Annotation,CoreNLP\src\edu\stanford\nlp\pipeline\Annotation.java,False
 "package edu.stanford.nlp.examples;
 
 import edu.stanford.nlp.ling.CoreAnnotations;
@@ -8243,7 +8243,7 @@ public class ConstituentExample {
     }
   }
 }
-",pipeline.annotate,StanfordCoreNLP.annotate,CoreNLP\src\edu\stanford\nlp\pipeline\StanfordCoreNLP.java,True
+",pipeline.annotate,StanfordCoreNLP.annotate,CoreNLP\src\edu\stanford\nlp\pipeline\StanfordCoreNLP.java,False
 "package edu.stanford.nlp.examples;
 
 import edu.stanford.nlp.ling.CoreAnnotations;
@@ -8403,7 +8403,7 @@ public class ConstituentExample {
     }
   }
 }
-",tree.constituents,Tree.constituents,CoreNLP\src\edu\stanford\nlp\trees\Tree.java,True
+",tree.constituents,Tree.constituents,CoreNLP\src\edu\stanford\nlp\trees\Tree.java,False
 "package edu.stanford.nlp.examples;
 
 import edu.stanford.nlp.ling.CoreAnnotations;
@@ -8483,9 +8483,9 @@ public class ConstituentExample {
     }
   }
 }
-",constituent.label,"Tree.label
-Constituent.label","CoreNLP\src\edu\stanford\nlp\trees\Tree.java
-CoreNLP\src\edu\stanford\nlp\trees\Constituent.java",False
+",constituent.label,"Constituent.label
+Tree.label","CoreNLP\src\edu\stanford\nlp\trees\Constituent.java
+CoreNLP\src\edu\stanford\nlp\trees\Tree.java",False
 "package edu.stanford.nlp.examples;
 
 import edu.stanford.nlp.ling.CoreAnnotations;
@@ -8645,13 +8645,13 @@ public class ConstituentExample {
     }
   }
 }
-",constituent.toString,"Tree.toString
-Annotation.toString
+",constituent.toString,"Sentence.toString
+Tree.toString
 Constituent.toString
-Sentence.toString","CoreNLP\src\edu\stanford\nlp\trees\Tree.java
-CoreNLP\src\edu\stanford\nlp\pipeline\Annotation.java
+Annotation.toString","CoreNLP\src\edu\stanford\nlp\simple\Sentence.java
+CoreNLP\src\edu\stanford\nlp\trees\Tree.java
 CoreNLP\src\edu\stanford\nlp\trees\Constituent.java
-CoreNLP\src\edu\stanford\nlp\simple\Sentence.java",False
+CoreNLP\src\edu\stanford\nlp\pipeline\Annotation.java",False
 "package edu.stanford.nlp.examples;
 
 import edu.stanford.nlp.ling.CoreAnnotations;
@@ -8691,7 +8691,7 @@ public class ConstituentExample {
     }
   }
 }
-",tree.getLeaves,Tree.getLeaves,CoreNLP\src\edu\stanford\nlp\trees\Tree.java,True
+",tree.getLeaves,Tree.getLeaves,CoreNLP\src\edu\stanford\nlp\trees\Tree.java,False
 "package edu.stanford.nlp.examples;
 
 import edu.stanford.nlp.ling.CoreAnnotations;
@@ -8875,7 +8875,7 @@ public class CorefExample {
     }
   }
 }
-",Annotation,Annotation,CoreNLP\src\edu\stanford\nlp\pipeline\Annotation.java,True
+",Annotation,Annotation,CoreNLP\src\edu\stanford\nlp\pipeline\Annotation.java,False
 "import java.util.Properties;
 
 import edu.stanford.nlp.coref.CorefCoreAnnotations;
@@ -8971,7 +8971,7 @@ public class CorefExample {
     }
   }
 }
-",StanfordCoreNLP,StanfordCoreNLP,CoreNLP\src\edu\stanford\nlp\pipeline\StanfordCoreNLP.java,True
+",StanfordCoreNLP,StanfordCoreNLP,CoreNLP\src\edu\stanford\nlp\pipeline\StanfordCoreNLP.java,False
 "import java.util.Properties;
 
 import edu.stanford.nlp.coref.CorefCoreAnnotations;
@@ -9003,7 +9003,7 @@ public class CorefExample {
     }
   }
 }
-",pipeline.annotate,StanfordCoreNLP.annotate,CoreNLP\src\edu\stanford\nlp\pipeline\StanfordCoreNLP.java,True
+",pipeline.annotate,StanfordCoreNLP.annotate,CoreNLP\src\edu\stanford\nlp\pipeline\StanfordCoreNLP.java,False
 "import java.util.Properties;
 
 import edu.stanford.nlp.coref.CorefCoreAnnotations;
@@ -9291,7 +9291,7 @@ public class OpenIEDemo {
     }
   }
 }
-",StanfordCoreNLP,StanfordCoreNLP,CoreNLP\src\edu\stanford\nlp\pipeline\StanfordCoreNLP.java,True
+",StanfordCoreNLP,StanfordCoreNLP,CoreNLP\src\edu\stanford\nlp\pipeline\StanfordCoreNLP.java,False
 "import edu.stanford.nlp.ie.util.RelationTriple;
 import edu.stanford.nlp.ling.CoreAnnotations;
 import edu.stanford.nlp.pipeline.Annotation;
@@ -9331,7 +9331,7 @@ public class OpenIEDemo {
     }
   }
 }
-",Annotation,Annotation,CoreNLP\src\edu\stanford\nlp\pipeline\Annotation.java,True
+",Annotation,Annotation,CoreNLP\src\edu\stanford\nlp\pipeline\Annotation.java,False
 "import edu.stanford.nlp.ie.util.RelationTriple;
 import edu.stanford.nlp.ling.CoreAnnotations;
 import edu.stanford.nlp.pipeline.Annotation;
@@ -9371,7 +9371,7 @@ public class OpenIEDemo {
     }
   }
 }
-",pipeline.annotate,StanfordCoreNLP.annotate,CoreNLP\src\edu\stanford\nlp\pipeline\StanfordCoreNLP.java,True
+",pipeline.annotate,StanfordCoreNLP.annotate,CoreNLP\src\edu\stanford\nlp\pipeline\StanfordCoreNLP.java,False
 "import edu.stanford.nlp.ie.util.RelationTriple;
 import edu.stanford.nlp.ling.CoreAnnotations;
 import edu.stanford.nlp.pipeline.Annotation;
@@ -9661,7 +9661,7 @@ public class OpenIEDemo {
     }
   }
 }
-",Document,Document,CoreNLP\src\edu\stanford\nlp\coref\data\Document.java,True
+",Document,Document,CoreNLP\src\edu\stanford\nlp\coref\data\Document.java,False
 "import edu.stanford.nlp.ie.util.RelationTriple;
 import edu.stanford.nlp.simple.*;
 
@@ -9686,7 +9686,7 @@ public class OpenIEDemo {
     }
   }
 }
-",doc.sentences,Document.sentences,CoreNLP\src\edu\stanford\nlp\simple\Document.java,True
+",doc.sentences,Document.sentences,CoreNLP\src\edu\stanford\nlp\simple\Document.java,False
 "import edu.stanford.nlp.ie.util.RelationTriple;
 import edu.stanford.nlp.simple.*;
 
@@ -9711,7 +9711,7 @@ public class OpenIEDemo {
     }
   }
 }
-",sent.openieTriples,Sentence.openieTriples,CoreNLP\src\edu\stanford\nlp\simple\Sentence.java,True
+",sent.openieTriples,Sentence.openieTriples,CoreNLP\src\edu\stanford\nlp\simple\Sentence.java,False
 "import edu.stanford.nlp.ie.util.RelationTriple;
 import edu.stanford.nlp.simple.*;
 
@@ -9963,7 +9963,7 @@ public class SUTimeBasicExample {
         }
     }
 }
-",StanfordCoreNLP,StanfordCoreNLP,CoreNLP\src\edu\stanford\nlp\pipeline\StanfordCoreNLP.java,True
+",StanfordCoreNLP,StanfordCoreNLP,CoreNLP\src\edu\stanford\nlp\pipeline\StanfordCoreNLP.java,False
 "package edu.stanford.nlp.examples;
 
 import edu.stanford.nlp.pipeline.*;
@@ -10001,7 +10001,7 @@ public class SUTimeBasicExample {
         }
     }
 }
-",CoreDocument,CoreDocument,CoreNLP\src\edu\stanford\nlp\pipeline\CoreDocument.java,True
+",CoreDocument,CoreDocument,CoreNLP\src\edu\stanford\nlp\pipeline\CoreDocument.java,False
 "package edu.stanford.nlp.examples;
 
 import edu.stanford.nlp.pipeline.*;
@@ -10039,7 +10039,7 @@ public class SUTimeBasicExample {
         }
     }
 }
-",pipeline.annotate,StanfordCoreNLP.annotate,CoreNLP\src\edu\stanford\nlp\pipeline\StanfordCoreNLP.java,True
+",pipeline.annotate,StanfordCoreNLP.annotate,CoreNLP\src\edu\stanford\nlp\pipeline\StanfordCoreNLP.java,False
 "package edu.stanford.nlp.examples;
 
 import edu.stanford.nlp.pipeline.*;
@@ -10153,13 +10153,13 @@ public class SUTimeBasicExample {
         }
     }
 }
-",cem.text,"Timex.text
+",cem.text,"CoreEntityMention.text
+Document.text
 CoreDocument.text
-CoreEntityMention.text
-Document.text","CoreNLP\src\edu\stanford\nlp\time\Timex.java
+Timex.text","CoreNLP\src\edu\stanford\nlp\pipeline\CoreEntityMention.java
+CoreNLP\src\edu\stanford\nlp\simple\Document.java
 CoreNLP\src\edu\stanford\nlp\pipeline\CoreDocument.java
-CoreNLP\src\edu\stanford\nlp\pipeline\CoreEntityMention.java
-CoreNLP\src\edu\stanford\nlp\simple\Document.java",False
+CoreNLP\src\edu\stanford\nlp\time\Timex.java",False
 "package edu.stanford.nlp.examples;
 
 import edu.stanford.nlp.pipeline.*;
@@ -11021,7 +11021,7 @@ public class TokensRegexDemo {
   }
 
 }
-",StringUtils.argsToProperties,StringUtils.argsToProperties,CoreNLP\src\edu\stanford\nlp\util\StringUtils.java,True
+",StringUtils.argsToProperties,StringUtils.argsToProperties,CoreNLP\src\edu\stanford\nlp\util\StringUtils.java,False
 "package edu.stanford.nlp.examples;
 
 import edu.stanford.nlp.io.IOUtils;
@@ -11119,7 +11119,7 @@ public class TokensRegexDemo {
   }
 
 }
-",IOUtils.stringFromFile,IOUtils.stringFromFile,CoreNLP\src\edu\stanford\nlp\io\IOUtils.java,True
+",IOUtils.stringFromFile,IOUtils.stringFromFile,CoreNLP\src\edu\stanford\nlp\io\IOUtils.java,False
 "package edu.stanford.nlp.examples;
 
 import edu.stanford.nlp.io.IOUtils;
@@ -11511,7 +11511,7 @@ public class TokensRegexDemo {
   }
 
 }
-",StanfordCoreNLP,StanfordCoreNLP,CoreNLP\src\edu\stanford\nlp\pipeline\StanfordCoreNLP.java,True
+",StanfordCoreNLP,StanfordCoreNLP,CoreNLP\src\edu\stanford\nlp\pipeline\StanfordCoreNLP.java,False
 "package edu.stanford.nlp.examples;
 
 import edu.stanford.nlp.io.IOUtils;
@@ -11609,7 +11609,7 @@ public class TokensRegexDemo {
   }
 
 }
-",Annotation,Annotation,CoreNLP\src\edu\stanford\nlp\pipeline\Annotation.java,True
+",Annotation,Annotation,CoreNLP\src\edu\stanford\nlp\pipeline\Annotation.java,False
 "package edu.stanford.nlp.examples;
 
 import edu.stanford.nlp.io.IOUtils;
@@ -11707,9 +11707,9 @@ public class TokensRegexDemo {
   }
 
 }
-",pipeline.annotate,"StanfordCoreNLP.annotate
-Util.annotate","CoreNLP\src\edu\stanford\nlp\pipeline\StanfordCoreNLP.java
-CoreNLP\src\edu\stanford\nlp\naturalli\Util.java",False
+",pipeline.annotate,"Util.annotate
+StanfordCoreNLP.annotate","CoreNLP\src\edu\stanford\nlp\naturalli\Util.java
+CoreNLP\src\edu\stanford\nlp\pipeline\StanfordCoreNLP.java",False
 "package edu.stanford.nlp.examples;
 
 import edu.stanford.nlp.io.IOUtils;
@@ -12003,7 +12003,7 @@ public class TokensRegexDemo {
   }
 
 }
-",env.setDefaultStringMatchFlags,Env.setDefaultStringMatchFlags,CoreNLP\src\edu\stanford\nlp\ling\tokensregex\Env.java,True
+",env.setDefaultStringMatchFlags,Env.setDefaultStringMatchFlags,CoreNLP\src\edu\stanford\nlp\ling\tokensregex\Env.java,False
 "package edu.stanford.nlp.examples;
 
 import edu.stanford.nlp.io.IOUtils;
@@ -12101,7 +12101,7 @@ public class TokensRegexDemo {
   }
 
 }
-",env.setDefaultStringPatternFlags,Env.setDefaultStringPatternFlags,CoreNLP\src\edu\stanford\nlp\ling\tokensregex\Env.java,True
+",env.setDefaultStringPatternFlags,Env.setDefaultStringPatternFlags,CoreNLP\src\edu\stanford\nlp\ling\tokensregex\Env.java,False
 "package edu.stanford.nlp.examples;
 
 import edu.stanford.nlp.io.IOUtils;
@@ -12199,7 +12199,7 @@ public class TokensRegexDemo {
   }
 
 }
-",CoreMapExpressionExtractor.createExtractorFromFiles,CoreMapExpressionExtractor.createExtractorFromFiles,CoreNLP\src\edu\stanford\nlp\ling\tokensregex\CoreMapExpressionExtractor.java,True
+",CoreMapExpressionExtractor.createExtractorFromFiles,CoreMapExpressionExtractor.createExtractorFromFiles,CoreNLP\src\edu\stanford\nlp\ling\tokensregex\CoreMapExpressionExtractor.java,False
 "package edu.stanford.nlp.examples;
 
 import edu.stanford.nlp.io.IOUtils;
@@ -12297,7 +12297,7 @@ public class TokensRegexDemo {
   }
 
 }
-",exampleSentencesAnnotation.get,Env.get,CoreNLP\src\edu\stanford\nlp\ling\tokensregex\Env.java,True
+",exampleSentencesAnnotation.get,Env.get,CoreNLP\src\edu\stanford\nlp\ling\tokensregex\Env.java,False
 "package edu.stanford.nlp.examples;
 
 import edu.stanford.nlp.io.IOUtils;
@@ -12493,7 +12493,7 @@ public class TokensRegexDemo {
   }
 
 }
-",sentence.get,Env.get,CoreNLP\src\edu\stanford\nlp\ling\tokensregex\Env.java,True
+",sentence.get,Env.get,CoreNLP\src\edu\stanford\nlp\ling\tokensregex\Env.java,False
 "package edu.stanford.nlp.examples;
 
 import edu.stanford.nlp.io.IOUtils;
@@ -12591,7 +12591,7 @@ public class TokensRegexDemo {
   }
 
 }
-",extractor.extractExpressions,CoreMapExpressionExtractor.extractExpressions,CoreNLP\src\edu\stanford\nlp\ling\tokensregex\CoreMapExpressionExtractor.java,True
+",extractor.extractExpressions,CoreMapExpressionExtractor.extractExpressions,CoreNLP\src\edu\stanford\nlp\ling\tokensregex\CoreMapExpressionExtractor.java,False
 "package edu.stanford.nlp.examples;
 
 import edu.stanford.nlp.io.IOUtils;
@@ -12891,9 +12891,9 @@ public class TokensRegexDemo {
   }
 
 }
-",token.ner,"CoreLabel.ner
-Token.ner","CoreNLP\src\edu\stanford\nlp\ling\CoreLabel.java
-CoreNLP\src\edu\stanford\nlp\simple\Token.java",False
+",token.ner,"Token.ner
+CoreLabel.ner","CoreNLP\src\edu\stanford\nlp\simple\Token.java
+CoreNLP\src\edu\stanford\nlp\ling\CoreLabel.java",False
 "package edu.stanford.nlp.examples;
 
 import edu.stanford.nlp.io.IOUtils;
@@ -13089,13 +13089,13 @@ public class TokensRegexDemo {
   }
 
 }
-",me.getValue,"CoreMapExpressionExtractor.getValue
+",me.getValue,"Match.getValue
+MatchedExpression.getValue
 Token.getValue
-Match.getValue
-MatchedExpression.getValue","CoreNLP\src\edu\stanford\nlp\ling\tokensregex\CoreMapExpressionExtractor.java
+CoreMapExpressionExtractor.getValue","CoreNLP\src\edu\stanford\nlp\ling\tokensregex\matcher\Match.java
+CoreNLP\src\edu\stanford\nlp\ling\tokensregex\MatchedExpression.java
 CoreNLP\src\edu\stanford\nlp\ling\tokensregex\parser\Token.java
-CoreNLP\src\edu\stanford\nlp\ling\tokensregex\matcher\Match.java
-CoreNLP\src\edu\stanford\nlp\ling\tokensregex\MatchedExpression.java",False
+CoreNLP\src\edu\stanford\nlp\ling\tokensregex\CoreMapExpressionExtractor.java",False
 "package edu.stanford.nlp.examples;
 
 import edu.stanford.nlp.io.IOUtils;
@@ -13677,7 +13677,7 @@ public class TokensRegexAnnotatorDemo {
     }
   }
 }
-",StanfordCoreNLP,StanfordCoreNLP,CoreNLP\src\edu\stanford\nlp\pipeline\StanfordCoreNLP.java,True
+",StanfordCoreNLP,StanfordCoreNLP,CoreNLP\src\edu\stanford\nlp\pipeline\StanfordCoreNLP.java,False
 "package edu.stanford.nlp.examples;
 
 import edu.stanford.nlp.ling.*;
@@ -13725,11 +13725,11 @@ public class TokensRegexAnnotatorDemo {
     }
   }
 }
-",pipeline.annotate,"StanfordCoreNLP.annotate
-Util.annotate
-TokensRegexAnnotator.annotate","CoreNLP\src\edu\stanford\nlp\pipeline\StanfordCoreNLP.java
-CoreNLP\src\edu\stanford\nlp\naturalli\Util.java
-CoreNLP\src\edu\stanford\nlp\pipeline\TokensRegexAnnotator.java",False
+",pipeline.annotate,"Util.annotate
+TokensRegexAnnotator.annotate
+StanfordCoreNLP.annotate","CoreNLP\src\edu\stanford\nlp\naturalli\Util.java
+CoreNLP\src\edu\stanford\nlp\pipeline\TokensRegexAnnotator.java
+CoreNLP\src\edu\stanford\nlp\pipeline\StanfordCoreNLP.java",False
 "package edu.stanford.nlp.examples;
 
 import edu.stanford.nlp.ling.*;
@@ -13973,9 +13973,9 @@ public class TokensRegexAnnotatorDemo {
     }
   }
 }
-",token.ner,"CoreLabel.ner
-Token.ner","CoreNLP\src\edu\stanford\nlp\ling\CoreLabel.java
-CoreNLP\src\edu\stanford\nlp\simple\Token.java",False
+",token.ner,"Token.ner
+CoreLabel.ner","CoreNLP\src\edu\stanford\nlp\simple\Token.java
+CoreNLP\src\edu\stanford\nlp\ling\CoreLabel.java",False
 "{ ruleType: ""tokens"", pattern: ([{word:""I""}] [{word:/like|love/} & {tag:""VBP""}] ([{word:""pizza""}])), action: Annotate($1, ner, ""FOOD""), result: ""PIZZA"" }
 
 ",Annotate,N/A,N/A,N/A
@@ -14280,7 +14280,7 @@ matched expression tokens:[-LRB--1, 5-2, +-3, 5-4, -RRB--5, +-6, 5-7]
 "Caused by: java.lang.NoSuchMethodError: edu.stanford.nlp.util.Generics.newHashMap()Ljava/util/Map;
     at edu.stanford.nlp.pipeline.AnnotatorPool.(AnnotatorPool.java:27)
     at edu.stanford.nlp.pipeline.StanfordCoreNLP.getDefaultAnnotatorPool(StanfordCoreNLP.java:305)
-",Generics.newHashMap,Generics.newHashMap,CoreNLP\src\edu\stanford\nlp\util\Generics.java,True
+",Generics.newHashMap,Generics.newHashMap,CoreNLP\src\edu\stanford\nlp\util\Generics.java,False
 "Caused by: java.lang.NoSuchMethodError: edu.stanford.nlp.util.Generics.newHashMap()Ljava/util/Map;
     at edu.stanford.nlp.pipeline.AnnotatorPool.(AnnotatorPool.java:27)
     at edu.stanford.nlp.pipeline.StanfordCoreNLP.getDefaultAnnotatorPool(StanfordCoreNLP.java:305)
@@ -14306,7 +14306,7 @@ matched expression tokens:[-LRB--1, 5-2, +-3, 5-4, -RRB--5, +-6, 5-7]
     pl.addAnnotator(new PhraseAnnotator(phrasesFile, false));
     return pl;
   }
-",AnnotationPipeline,AnnotationPipeline,CoreNLP\src\edu\stanford\nlp\pipeline\AnnotationPipeline.java,True
+",AnnotationPipeline,AnnotationPipeline,CoreNLP\src\edu\stanford\nlp\pipeline\AnnotationPipeline.java,False
 "  public AnnotationPipeline buildPipeline() {
     AnnotationPipeline pl = new AnnotationPipeline();
     pl.addAnnotator(new TokenizerAnnotator(false));
@@ -14317,7 +14317,7 @@ matched expression tokens:[-LRB--1, 5-2, +-3, 5-4, -RRB--5, +-6, 5-7]
     pl.addAnnotator(new PhraseAnnotator(phrasesFile, false));
     return pl;
   }
-",pl.addAnnotator,AnnotationPipeline.addAnnotator,CoreNLP\src\edu\stanford\nlp\pipeline\AnnotationPipeline.java,True
+",pl.addAnnotator,AnnotationPipeline.addAnnotator,CoreNLP\src\edu\stanford\nlp\pipeline\AnnotationPipeline.java,False
 "  public AnnotationPipeline buildPipeline() {
     AnnotationPipeline pl = new AnnotationPipeline();
     pl.addAnnotator(new TokenizerAnnotator(false));
@@ -14328,7 +14328,7 @@ matched expression tokens:[-LRB--1, 5-2, +-3, 5-4, -RRB--5, +-6, 5-7]
     pl.addAnnotator(new PhraseAnnotator(phrasesFile, false));
     return pl;
   }
-",TokenizerAnnotator,TokenizerAnnotator,CoreNLP\src\edu\stanford\nlp\pipeline\TokenizerAnnotator.java,True
+",TokenizerAnnotator,TokenizerAnnotator,CoreNLP\src\edu\stanford\nlp\pipeline\TokenizerAnnotator.java,False
 "  public AnnotationPipeline buildPipeline() {
     AnnotationPipeline pl = new AnnotationPipeline();
     pl.addAnnotator(new TokenizerAnnotator(false));
@@ -14339,7 +14339,7 @@ matched expression tokens:[-LRB--1, 5-2, +-3, 5-4, -RRB--5, +-6, 5-7]
     pl.addAnnotator(new PhraseAnnotator(phrasesFile, false));
     return pl;
   }
-",WordsToSentencesAnnotator,WordsToSentencesAnnotator,CoreNLP\src\edu\stanford\nlp\pipeline\WordsToSentencesAnnotator.java,True
+",WordsToSentencesAnnotator,WordsToSentencesAnnotator,CoreNLP\src\edu\stanford\nlp\pipeline\WordsToSentencesAnnotator.java,False
 "  public AnnotationPipeline buildPipeline() {
     AnnotationPipeline pl = new AnnotationPipeline();
     pl.addAnnotator(new TokenizerAnnotator(false));
@@ -14350,7 +14350,7 @@ matched expression tokens:[-LRB--1, 5-2, +-3, 5-4, -RRB--5, +-6, 5-7]
     pl.addAnnotator(new PhraseAnnotator(phrasesFile, false));
     return pl;
   }
-",POSTaggerAnnotator,POSTaggerAnnotator,CoreNLP\src\edu\stanford\nlp\pipeline\POSTaggerAnnotator.java,True
+",POSTaggerAnnotator,POSTaggerAnnotator,CoreNLP\src\edu\stanford\nlp\pipeline\POSTaggerAnnotator.java,False
 "  public AnnotationPipeline buildPipeline() {
     AnnotationPipeline pl = new AnnotationPipeline();
     pl.addAnnotator(new TokenizerAnnotator(false));
@@ -14361,7 +14361,7 @@ matched expression tokens:[-LRB--1, 5-2, +-3, 5-4, -RRB--5, +-6, 5-7]
     pl.addAnnotator(new PhraseAnnotator(phrasesFile, false));
     return pl;
   }
-",MorphaAnnotator,MorphaAnnotator,CoreNLP\src\edu\stanford\nlp\pipeline\MorphaAnnotator.java,True
+",MorphaAnnotator,MorphaAnnotator,CoreNLP\src\edu\stanford\nlp\pipeline\MorphaAnnotator.java,False
 "  public AnnotationPipeline buildPipeline() {
     AnnotationPipeline pl = new AnnotationPipeline();
     pl.addAnnotator(new TokenizerAnnotator(false));
@@ -14372,7 +14372,7 @@ matched expression tokens:[-LRB--1, 5-2, +-3, 5-4, -RRB--5, +-6, 5-7]
     pl.addAnnotator(new PhraseAnnotator(phrasesFile, false));
     return pl;
   }
-",TimeAnnotator,TimeAnnotator,CoreNLP\src\edu\stanford\nlp\time\TimeAnnotator.java,True
+",TimeAnnotator,TimeAnnotator,CoreNLP\src\edu\stanford\nlp\time\TimeAnnotator.java,False
 "  public AnnotationPipeline buildPipeline() {
     AnnotationPipeline pl = new AnnotationPipeline();
     pl.addAnnotator(new TokenizerAnnotator(false));
@@ -14391,11 +14391,11 @@ pipeline.annotate(annotation);
 "AnnotationPipeline pipeline = buildPipeline();
 Annotation annotation = new Annotation(""It's like a topography that is made from cartography of me."");
 pipeline.annotate(annotation);
-",Annotation,Annotation,CoreNLP\src\edu\stanford\nlp\pipeline\Annotation.java,True
+",Annotation,Annotation,CoreNLP\src\edu\stanford\nlp\pipeline\Annotation.java,False
 "AnnotationPipeline pipeline = buildPipeline();
 Annotation annotation = new Annotation(""It's like a topography that is made from cartography of me."");
 pipeline.annotate(annotation);
-",pipeline.annotate,AnnotationPipeline.annotate,CoreNLP\src\edu\stanford\nlp\pipeline\AnnotationPipeline.java,True
+",pipeline.annotate,AnnotationPipeline.annotate,CoreNLP\src\edu\stanford\nlp\pipeline\AnnotationPipeline.java,False
 "public void annotate(Annotation annotation);
 public Set<Requirement> requirementsSatisfied();
 public Set<Requirement> requires();
