@@ -10,17 +10,21 @@ from urllib.request import Request, urlopen
 from TaskExtractor.filters.json_filter import json_filter
 from TaskExtractor.filters.nlp_filter import nlp_filter
 from TaskExtractor.filters.dom_manipulation_filter import dom_manipulation_filter
+from http.client import InvalidURL
 
 
 # Extracts paragraphs from the HTML and uses TaskExtractor to extract the tasks
 # Then returns the paragraphs that had extracted tasks
 def extract_tasks(library_name, page, domain):
-    req = Request(url=page, headers=util.HEADERS)
-    content = html.unescape(urlopen(req).read().decode("utf-8"))
-    soup = BeautifulSoup(content, "html.parser")
-    filename = util.make_filename_from_url(library_name, page, "tasks")
-    property_file, domain_filter = _get_domain_specific(domain)
-    get_paragraphs_and_tasks(soup.find_all("p"), filename, property_file, domain_filter)
+    try:
+        req = Request(url=page, headers=util.HEADERS)
+        content = html.unescape(urlopen(req).read().decode("utf-8"))
+        soup = BeautifulSoup(content, "html.parser")
+        filename = util.make_filename_from_url(library_name, page, "tasks")
+        property_file, domain_filter = _get_domain_specific(domain)
+        get_paragraphs_and_tasks(soup.find_all("p"), filename, property_file, domain_filter)
+    except InvalidURL:
+        pass
 
 
 def _get_domain_specific(domain):

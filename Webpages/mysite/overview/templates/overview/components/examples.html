@@ -1,0 +1,22 @@
+<div class="row">
+    <div class="col">
+        <span data-bs-toggle="tooltip" data-bs-placement="top"
+              title="This percentage indicates how many public API methods contain a code example in the documentation">
+            Methods with examples
+        </span>
+    </div>
+    <div class="col metrics-child">
+        {{ example_ratios.method_ratio }}
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        <span data-bs-toggle="tooltip" data-bs-placement="top"
+              title="This percentage indicates how many public API classes contain a code example in the documentation">
+            Classes with code examples
+        </span>
+    </div>
+    <div class="col metrics-child">
+        {{ example_ratios.class_ratio }}
+    </div>
+</div>

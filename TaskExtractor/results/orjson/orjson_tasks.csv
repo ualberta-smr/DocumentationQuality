@@ -10,9 +10,9 @@ UUID instances natively.","serialize dataclass
 serialize datetime
 serialize numpy
 serialize UUID instances"
-"orjson supports CPython 3.7, 3.8, 3.9, and 3.10. It distributes x86_64/amd64
-and aarch64/armv8 wheels for Linux and macOS. It distributes x86_64/amd64 wheels
-for Windows. orjson does not support PyPy. Releases follow semantic
+"orjson supports CPython 3.6, 3.7, 3.8, and 3.9. It distributes x86_64/amd64
+and aarch64/armv8 wheels for Linux. It distributes x86_64/amd64 wheels for
+macOS and Windows. orjson does not support PyPy. Releases follow semantic
 versioning and serializing a new object type without an opt-in flag is
 considered a breaking change.","support cpython"
 "To install a wheel from PyPI:","install wheel from pypi"
@@ -180,10 +180,9 @@ of +00:00.","serialize UTC timezone on datetime.datetime instances"
 list, int, float, str, bool, and None objects.","deserialize JSON to Python objects
 deserialize  to none objects
 deserialize  to dict bool"
-"bytes, bytearray, memoryview, and str input are accepted. If the input
-exists as a memoryview, bytearray, or bytes object, it is recommended to
-pass these directly rather than creating an unnecessary str object. This has
-lower memory usage and lower latency.","pass  than creating"
+"bytes, bytearray, and str input are accepted. If the input exists as
+bytes (was read directly from a source), it is recommended to
+pass bytes. This has lower memory usage and lower latency.","pass bytes"
 "It raises JSONDecodeError if given an invalid type or invalid
 JSON. This includes if the input contains NaN, Infinity, or -Infinity,
 which the standard library allows, but is not valid JSON.","raise JSONDecodeError"
@@ -219,9 +218,8 @@ RFC 3339 format,
 e.g., ""1970-01-01T00:00:00+00:00"". This is a subset of ISO 8601 and
 compatible with isoformat() in the standard library.","serialize datetime.datetime objects to RFC"
 "datetime.datetime supports instances with a tzinfo that is None,
-datetime.timezone.utc, a timezone instance from the python3.9+ zoneinfo
-module, or a timezone instance from the third-party pendulum, pytz, or
-dateutil/arrow libraries.","support instances with tzinfo"
+datetime.timezone.utc or a timezone instance from
+the pendulum, pytz, or dateutil/arrow libraries.","support instances with tzinfo"
 "It is faster to have orjson serialize datetime objects than to do so
 before calling dumps(). If using an unsupported type such as
 pendulum.datetime, use default.","call dumps()
@@ -229,9 +227,6 @@ use unsupported type such_as pendulum.datetime
 use default"
 "To disable serialization of datetime objects specify the option
 orjson.OPT_PASSTHROUGH_DATETIME.","specify option orjson.OPT_PASSTHROUGH_DATETIME"
-"To use ""Z"" suffix instead of ""+00:00"" to indicate UTC (""Zulu"") time, use the option
-orjson.OPT_UTC_Z.","use z suffix
-use option orjson.OPT_UTC_Z"
 "Enums with members that are not supported types can be serialized using
 default:","use default
 serialize types"
@@ -240,36 +235,32 @@ precision and consistent rounding. The same behavior is observed in rapidjson,
 simplejson, and json. ujson 1.35 was inaccurate in both serialization and
 deserialization, i.e., it modifies the data, and the recent 2.0 release is
 accurate.","modify data"
-"orjson serializes and deserializes 64-bit integers by default. The range
-supported is a signed 64-bit integer's minimum (-9223372036854775807) to
-an unsigned 64-bit integer's maximum (18446744073709551615). This
-is widely compatible, but there are implementations
-that only support 53-bits for integers, e.g.,
-web browsers. For those implementations, dumps() can be configured to
-raise a JSONEncodeError on values exceeding the 53-bit range.","serialize 64-bit integers by default
-deserialize 64-bit integers by default
-support 53-bits web browsers
-support implementations
+"JSON only requires that implementations accept integers with 53-bit precision.
+orjson will, by default, serialize 64-bit integers. This is compatible with
+the Python standard library and other non-browser implementations. For
+transmitting JSON to a web browser or other strict implementations, dumps()
+can be configured to raise a JSONEncodeError on values exceeding the
+53-bit range.","serialize 64-bit integers by default
 raise JSONEncodeError on values
-configure dumps() for implementations"
+configure dumps() for transmitting"
 "orjson natively serializes numpy.ndarray and individual numpy.float64,
-numpy.float32, numpy.int64, numpy.int32, numpy.int8, numpy.uint64,
-numpy.uint32, numpy.uint8, numpy.uintp, or numpy.intp, and
-numpy.datetime64 instances.","serialize numpy.ndarray individual numpy.float64
-serialize numpy.float32 numpy.uintp
-serialize numpy.intp
-serialize numpy.datetime64 instances"
-"orjson is faster than all compared libraries at serializing
+numpy.float32, numpy.int64, numpy.int32, numpy.uint64, and
+numpy.uint32 instances. Arrays may have a
+dtype of numpy.bool, numpy.float32, numpy.float64, numpy.int32,
+numpy.int64, numpy.uint32, numpy.uint64, numpy.uintp, or numpy.intp.
+orjson is faster than all compared libraries at serializing
 numpy instances. Serializing numpy data requires specifying
-option=orjson.OPT_SERIALIZE_NUMPY.","serialize numpy instances"
-"numpy.datetime64 instances are serialized as RFC 3339 strings and
-datetime options affect them.","serialize numpy.datetime64 instances as RFC"
-"If an array is not a contiguous C array, contains an supported datatype,
-or contains a numpy.datetime64 using an unsupported representation
-(e.g., picoseconds), orjson falls through to default. In default,
-obj.tolist() can be specified. If an array is malformed, which
-is not expected, orjson.JSONEncodeError is raised.","use unsupported representation
-specify obj.tolist() in default
+option=orjson.OPT_SERIALIZE_NUMPY.","serialize numpy.uint32 instances
+serialize numpy.ndarray individual numpy.float64
+serialize numpy.float32
+serialize numpy.int64
+serialize numpy.int32
+serialize numpy.uint64
+serialize numpy instances"
+"If an array is not a contiguous C array or contains an supported datatype,
+orjson falls through to default. In default, obj.tolist() can be
+specified. If an array is malformed, which is not expected,
+orjson.JSONEncodeError is raised.","specify obj.tolist() in default
 raise orjson.JSONEncodeError"
 "This measures serializing 92MiB of JSON from an numpy.ndarray with
 dimensions of (50000, 100) and numpy.float64 values:","serialize 92MiB of JSON
@@ -331,19 +322,23 @@ use Python 3.8.3 on Linux"
 "The latency results can be reproduced using the pybench and graph
 scripts. The memory results can be reproduced using the pymem script.","use pybench graph scripts
 use pymem script"
-"Probably pip needs to be upgraded to version 20.3 or later to support
-the latest manylinux_x_y or universal2 wheel formats.","support latest manylinux_x_y
-support universal2 wheel formats"
-"The project's own CI tests against nightly-2021-08-17 and stable 1.54. It
-is prudent to pin the nightly version because that channel can introduce
-breaking changes.","introduce breaking changes"
-"orjson's tests are included in the source distribution on PyPI. The
-requirements to run the tests are specified in test/requirements.txt. The
-tests should be run as part of the build. It can be run with
-pytest -q test.","include tests in source distribution
-run tests
-specify requirements in test/requirements.txt
-run tests
-run  with pytest"
-"orjson was written by ijl <ijl@mailbox.org>, copyright 2018 - 2021, licensed
-under both the Apache 2 and MIT licenses.","write orjson"
+"To package orjson requires Rust on the
+nightly channel and the maturin
+build tool. maturin can be installed from PyPI or packaged as
+well. maturin can be invoked like:","install maturin from PyPI"
+"orjson is tested for amd64 and aarch64 on Linux, macOS, and Windows. It
+may not work on 32-bit targets. It should be compiled with
+-C target-feature=+sse2 on amd64 and -C target-feature=+neon on arm7. musl
+libc is not supported, but building with -C target-feature=-crt-static
+will probably work. The recommended flags are specified in .cargo/config
+and will apply unless RUSTFLAGS is set.","specify recommended flags
+set RUSTFLAGS"
+"orjson's tests are included in the source distribution on PyPI. It is
+necessarily to install dependencies from PyPI specified in
+test/requirements.txt. These require a C compiler. The tests do not
+make network requests.","include tests in source distribution
+install dependencies from PyPI
+specify  in test/requirements.txt"
+"The tests should be run as part of the build.","run tests"
+"orjson was written by ijl <ijl@mailbox.org>, copyright 2018 - 2020, licensed
+under either the Apache 2 or MIT licenses.","write orjson"

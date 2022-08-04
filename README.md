@@ -18,5 +18,10 @@ This repository contains the code of extracting tasks and also checking API cove
 
    Most explanations of code examples happen before the code example, that is why we stop searching after we reach our code example. A paragraph can be linked with multiple code examples, and a code example may not have an explanation.
 
+
+Create "task_data" MySQL database manually
+
+Needs 
+https://memcached.org/#/
 # License
 Described in the [LICENSE](http://github.com/ualberta-smr/tang-task-extractor/blob/main/LICENSE) file

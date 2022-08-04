@@ -17,3 +17,9 @@
     width: fit-content;
     border-radius: 15px;
 }
+
+.btn-primary-outline {
+    background-color: transparent;
+    border-color: #ccc;
+    outline: none;
+}
