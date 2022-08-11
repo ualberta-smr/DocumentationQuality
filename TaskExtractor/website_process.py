@@ -66,7 +66,10 @@ def process(library_name, datafiles):
         shutil.copy(processed_file_name, "Webpages/mysite/overview/data/processed")
 
 
-if __name__ == '__main__':
-    library_name = sys.argv[1]
+def add_tasks_to_db(library_name):
     files = find_raw_csvs(library_name)
     process(library_name, files)
+
+
+if __name__ == '__main__':
+    add_tasks_to_db(sys.argv[1])

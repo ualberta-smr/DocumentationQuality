@@ -1,11 +1,15 @@
 import json
 
+from django.core.exceptions import ObjectDoesNotExist
+
+from TaskExtract.main import analyze_library
+
 from django.db.models import Count
 from django.shortcuts import render, redirect
 
 from .models import Task, Library, Response
-from .survey import Demographics, GeneralRating, TaskList, CodeExamples, \
-    Readability, Consistency, Navigability, Feedback
+from .forms import Demographics, GeneralRating, TaskList, CodeExamples, \
+    Readability, Consistency, Navigability, Feedback, AnalyzeForm
 
 
 def _get_task_list(library_name):
@@ -33,7 +37,7 @@ def _get_example_ratios(library_name):
     return ratios
 
 
-def _create_context(store):
+def _create_overview_context(store):
     context = {
         "library_name": store["library_name"],
         "general_rating": 3,
@@ -82,6 +86,30 @@ def _create_context(store):
     return context
 
 
+def landing(request):
+    return render(request, "overview/landing.html", context={"form": AnalyzeForm()})
+
+
+def search(request):
+    if request.method == "POST":
+        try:
+            exists = Library.objects.get(library_name=request.POST["library_name"])
+        except ObjectDoesNotExist:
+            exists = False
+        if exists:
+            return redirect("overview:overview", request.POST["library_name"])
+    return render(request, "overview/landing.html")
+
+
+def create(request):
+    form = AnalyzeForm(request.POST)
+    if request.method == "POST":
+        if form.is_valid():
+            analyze_library(form.cleaned_data["language"], form.cleaned_data["library_name"], form.cleaned_data["doc_url"], form.cleaned_data["gh_url"], form.cleaned_data["domain"])
+            return redirect("overview:overview", request.POST["library_name"])
+    return render(request, "overview/landing.html", context={"form": form})
+
+
 def overview(request, library_name):
     if not request.session.exists(request.session.session_key):
         request.session.create()
@@ -113,27 +141,33 @@ def overview(request, library_name):
         store["task_list"] = task_list
         store["example_ratios"] = example_ratios
     request.session["store"] = store
-    context = _create_context(store)
+    context = _create_overview_context(store)
     return render(request, "overview/overview.html", context)
 
 
 def demographics(request, *args, **kwargs):
+    context = _create_overview_context(request.session["store"])
     if request.method == "POST":
         form = Demographics(request.POST)
         if form.is_valid():
             form.save()
-            request.session["store"]["demographics"] = json.dumps(
-                    form.cleaned_data)
+            request.session["store"]["demographics"] = json.dumps(form.cleaned_data)
             request.session.modified = True
-    return redirect("overview:overview", request.POST["library_name"])
+            return redirect("overview:overview", request.POST["library_name"])
+        else:
+            context["demographics"] = form
+    return render(request, "overview/overview.html", context)
 
 
-def general(request, *args, **kwargs):
+def general_rating(request, *args, **kwargs):
+    context = _create_overview_context(request.session["store"])
     if request.method == "POST":
         form = GeneralRating(request.POST)
         if form.is_valid():
             form.save()
             request.session["store"]["general"] = json.dumps(form.cleaned_data)
+            request.session.modified = True
+            return redirect("overview:overview", request.POST["library_name"])
         else:
             existing_record, _ = Response.objects.get_or_create(
                 session_key=request.POST["session_key"],
@@ -141,4 +175,41 @@ def general(request, *args, **kwargs):
             if existing_record:
                 existing_record.general_rating = request.POST["general_rating"]
                 existing_record.save()
-    return redirect("overview:overview", request.POST["library_name"])
+            context["general"] = form
+    return render(request, "overview/overview.html", context)
+
+
+def task_list(request, *args, **kwargs):
+    context = _create_overview_context(request.session["store"])
+    if request.method == "POST":
+        form = TaskList(request.POST)
+        if form.is_valid():
+            form.save()
+            request.session["store"]["tasks"] = json.dumps(form.cleaned_data)
+            request.session.modified = True
+            return redirect("overview:overview", request.POST["library_name"])
+        else:
+            context["tasks"] = form
+    return render(request, "overview/overview.html", context)
+
+
+def code_examples(request):
+    return None
+
+
+def readability(request):
+    return None
+
+
+def consistency(request):
+    return None
+
+
+def navigation(request):
+    return None
+
+
+def general(request):
+    return None
+
+

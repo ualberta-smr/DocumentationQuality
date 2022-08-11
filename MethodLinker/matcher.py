@@ -166,7 +166,7 @@ def get_methods_and_classes(repo_url):
     return functions, classes
 
 
-def calculate_ratios(language, repo_name, repo_url, doc_url, pages, examples):
+def calculate_ratios(language, repo_name, repo_url, doc_url, pages, check_examples):
     if not os.path.isdir("results"):
         os.mkdir("results")
     if not os.path.isdir(os.path.normpath("results/examples")):
@@ -186,7 +186,7 @@ def calculate_ratios(language, repo_name, repo_url, doc_url, pages, examples):
     doc_examples = []
     for page in pages:
         try:
-            if examples:
+            if check_examples:
                 doc_examples.extend(get_documentation_examples(doc_url, page))
             else:
                 doc_examples.extend(get_documentation_signatures(doc_url, page))
@@ -213,25 +213,25 @@ def calculate_ratios(language, repo_name, repo_url, doc_url, pages, examples):
 
     method_calls = set()
     if LANGUAGE == "python":
-        if examples:
+        if check_examples:
             method_calls = python_match_examples(repo_name, doc_examples, functions, classes)
         else:
             method_calls = python_match_signatures(repo_name, doc_examples, functions, classes)
     elif LANGUAGE == "java":
-        if examples:
+        if check_examples:
             method_calls = java_match_examples(repo_name, doc_examples, functions, classes)
         else:
             method_calls = java_match_signatures(repo_name, doc_examples, functions, classes)
     elif LANGUAGE == "javascript":
-        if examples:
+        if check_examples:
             method_calls = javascript_match_examples(repo_name, doc_examples, functions, classes)
         else:
             method_calls = javascript_match_signatures(repo_name, doc_examples, functions, classes)
     # print(method_calls)
     example_count = len(method_calls)
     seen_classes = set()
-    for examples in method_calls:
-        example = examples[1].split(".")
+    for check_examples in method_calls:
+        example = check_examples[1].split(".")
         if example[0] in classes:
             seen_classes.add(example[0])
 

@@ -4,7 +4,21 @@
     <div class="col">
         <span data-bs-toggle="tooltip" data-bs-placement="top"
               title="Indicates how similar/up-to-date the documentation is with the source code">
-              Documentation/Source code similarity
+                        <button type="button" class="btn btn-primary-outline"
+                    data-bs-toggle="modal" data-bs-target="
+                {% if not have_demographics %}
+                    #demographics
+                {% else %}
+                    #consistency
+                {% endif %}">
+                Documentation/Source code similarity
+            </button>
+            {% if not have_demographics %}
+                {% include "overview/forms/demographics_form.html" with demographics=demographics %}
+            {% else %}
+                {% include "overview/forms/consistency_form.html" with form=consistent %}
+            {% endif %}
+
         </span>
     </div>
     <div class="col metrics-child">

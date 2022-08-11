@@ -1,9 +1,22 @@
 <div class="col-5">
     <div class="metrics-container">
-        <span data-bs-toggle="tooltip" data-bs-placement="top" title="Tooltip on top">
-            <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#myModal">
+        <span data-bs-toggle="tooltip" data-bs-placement="top"
+              title="Tooltip on top">
+            <button type="button" class="btn btn-primary-outline"
+                    data-bs-toggle="modal"
+                    data-bs-target="
+                        {% if not have_demographics %}
+                            #demographics
+                        {% else %}
+                            #task_list
+                        {% endif %}">
               Documented Library Tasks
             </button>
+            {% if not have_demographics %}
+                {% include "overview/forms/demographics_form.html" with demographics=demographics %}
+            {% else %}
+                {% include "overview/forms/task_list_form.html" with form=form %}
+            {% endif %}
         </span>
         <div class="d-flex justify-content-between align-items-center">
             <ul style="list-style: none">

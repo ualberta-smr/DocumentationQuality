@@ -1,190 +1,117 @@
 import html
-import re
 import os
-import mysql.connector
+import re
+import threading
+
+from urllib.request import Request, urlopen
+from bs4 import BeautifulSoup
 
 import util
-from TaskExtractor import linker, extractor
-from urllib.request import Request, urlopen
-from urllib.parse import urlparse
-from urllib.error import HTTPError
-from bs4 import BeautifulSoup
-from MethodLinker import matcher
+
+from MethodLinker.main import api_methods_examples
+from TaskExtractor.main import task_extract_and_link
+from TaskExtractor.website_process import add_tasks_to_db
 
 
-def get_webpages(doc_home, repo_name):
-    req = Request(url=doc_home, headers=util.HEADERS)
-    content = html.unescape(urlopen(req).read().decode("utf-8"))
-    soup = BeautifulSoup(content, "html.parser")
-    domain = urlparse(doc_home).hostname
-    if not domain:
-        print("Invalid Link")
-
-    pages = [doc_home]
-    links = soup.find_all("a", href=True)
-    for link in links:
-        href = link["href"]
-        parse = urlparse(href)
-        # hostname is None means it is not an external site
-        # path not null means it is another path on the documentation
-        # not fragment means it does not have a "#"
-        # We do not want links with "#" because they're likely redundant
-        if parse.hostname is None:
-            if parse.path and not parse.fragment and not parse.query:
-                url = re.match(re.compile(".+"), doc_home)[0] + parse.path
-                if repo_name.strip().lower() in url.strip().lower():
-                    pages.append(url)
-        elif parse.hostname == domain and "#" not in href and repo_name.strip().lower() in href.strip().lower():
-            pages.append(href)
-    pages = list(dict.fromkeys(pages))
-    return pages
-
-
-def task_extract_and_link(library_name, url, domain):
-    pages = get_webpages(url, library_name)
-    os.chdir("TaskExtractor")
-    link_directory = os.path.normpath("results/" + library_name)
-    if not os.path.exists(link_directory):
-        os.mkdir(link_directory)
-    # If checking single page, then comment out for loop
-    for page in pages:
-        try:
-            extractor.extract_tasks(library_name, page, domain)
-            linker.link_tasks(library_name, page)
-        except HTTPError:
-            pass
-    # extractor.extract_tasks(library_name, url, domain)
-    # linker.link_tasks(library_name, url)
-    if not os.listdir(link_directory):
-        os.rmdir(link_directory)
-    os.chdir("..")
-
-
-def _add_or_update_method_record(item_dict):
-    website_db = mysql.connector.connect(
-        host="localhost",
-        user="djangouser",
-        password="password",
-        database="task_data"
-    )
-    cursor = website_db.cursor()
-    column_names = []
-    values = []
-    for key, value in item_dict.items():
-        column_names.append(key)
-        values.append(str(value))
-    query = "SELECT * FROM overview_library WHERE library_name = " + item_dict["library_name"] + ";"
-    cursor.execute(query)
-    result = cursor.fetchall()
-    if result:
-        query = "UPDATE overview_library SET "
-        for i in range(len(column_names)):
-            query += column_names[i] + " = " + values[i] + ", "
-        query = query[:-2] + " WHERE library_name = " + item_dict["library_name"]
-    else:
-        query = "INSERT INTO overview_library ("
-        for column in column_names:
-            query += column + ", "
-        query = query[:-2] + ") VALUES ("
-        for value in values:
-            query += value + ", "
-        query = query[:-2] + ");"
-    cursor.execute(query)
-    website_db.commit()
-    cursor.close()
-
-
-# TODO: Get a description/summary of the library, like google does
-def _get_description(repo_name, doc_url):
+def get_description(library_name, doc_url):
     req = Request(url=doc_url, headers=util.HEADERS)
     content = html.unescape(urlopen(req).read().decode("utf-8"))
     soup = BeautifulSoup(content, "html.parser")
-    for p in soup.find_all(re.compile("^h[1-6]$")):
-        print(p)
+    description = ""
+    count = 0
+    for p in soup.find_all("p"):
+        if count < 1:
+            text = re.sub(re.compile(r"[^\S ]"), " ", p.get_text())
+            norm_text = text.lower()
+            if norm_text and library_name.lower() in norm_text:
+                description = text
+                count += 1
+        else:
+            break
+    return description
 
 
-def api_methods_examples(language, repo_name, repo_url, doc_url, examples):
-    os.chdir("MethodLinker")
-    pages = get_webpages(doc_url, repo_name)
-    example_count, total_methods, classes_count, total_classes = matcher.calculate_ratios(
-        language, repo_name, repo_url, doc_url, pages, examples)
-    _add_or_update_method_record(
-        {"library_name": "'" + repo_name + "'",
-         # "description": _get_description(repo_name, doc_url),
-         "gh_url": "'" + repo_url + "'",
-         "doc_url": "'" + doc_url + "'",
-         "num_method_examples": example_count,
-         "num_methods": total_methods,
-         "num_class_examples": classes_count,
-         "num_classes": total_classes})
-    # print("Methods found w/ examples:", example_count)
-    # print("Total methods:", total_methods)
-    # print("Classes found w/ examples:", classes_count)
-    # print("Total classes:", total_classes)
-    # if total_methods > 0:
-    #     print(example_count / total_methods)
-    # if total_classes > 0:
-    #     print(classes_count / total_classes)
-    os.chdir("..")
+class Description(threading.Thread):
+    def __init__(self, library_name, doc_url):
+        threading.Thread.__init__(self)
+        self.library_name = library_name
+        self.doc_url = doc_url
+
+    def run(self):
+        description = get_description(self.library_name, self.doc_url)
+        util.add_or_update_method_record("overview_library",
+                                         {"library_name": "'" + self.library_name + "'",
+                                          "description": "'" + description + "'"})
+
+
+class Extract(threading.Thread):
+    def __init__(self, library_name, doc_url, domain):
+        threading.Thread.__init__(self)
+        self.library_name = library_name
+        self.doc_url = doc_url
+        self.domain = domain
+
+    def run(self):
+        task_extract_and_link(self.library_name, self.doc_url, self.domain)
+        add_tasks_to_db(self.library_name)
+
+
+class APIMatching(threading.Thread):
+    def __init__(self, library_name, language, doc_url, gh_url, match_examples):
+        threading.Thread.__init__(self)
+        self.library_name = library_name
+        self.language = language
+        self.doc_url = doc_url
+        self.gh_url = gh_url
+        self.match_examples = match_examples
+
+    def run(self):
+        api_methods_examples(self.language, self.library_name, self.doc_url,
+                             self.gh_url, self.match_examples)
+
+
+def analyze_library(language, library_name, doc_url, gh_url, domain):
+    os.chdir(util.ROOT_DIR)
+
+    description = get_description(library_name, doc_url)
+    util.add_or_update_method_record("overview_library",
+                                     {"library_name": "'" + library_name + "'",
+                                      "description": "'" + description + "'"})
+    task_extract_and_link(library_name, doc_url, domain)
+    add_tasks_to_db(library_name)
+
+    api_methods_examples(language, library_name, doc_url,
+                         gh_url, False)
+
+    api_methods_examples(language, library_name, doc_url,
+                         gh_url, True)
+
+    # description = Description(library_name, doc_url)
+    # extract = Extract(library_name, doc_url, domain)
+    # match_signatures = APIMatching(library_name, language, doc_url, gh_url,
+    #                                False)
+    # match_examples = APIMatching(library_name, language, doc_url, gh_url, True)
+    #
+    # description.start()
+    # extract.start()
+    # match_examples.start()
+    # match_signatures.start()
 
 
 if __name__ == '__main__':
-    # Extract tasks and link code examples
-    # inp = "https://stanfordnlp.github.io/CoreNLP/index.html"
-    # task_extract_and_link("CoreNLP", inp)
-
-    # # https://github.com/ijl/orjson
-    # task_extract_and_link("orjson", "http://web.archive.org/web/20210831032333/https://github.com/ijl/orjson", "json")
-    # # https://github.com/stleary/JSON-java
-    # task_extract_and_link("JSON-java", "http://web.archive.org/web/20211017224709/https://github.com/stleary/JSON-java", "json")
-    # task_extract_and_link("CoreNLP", "https://stanfordnlp.github.io/CoreNLP/ner.html", "nlp")
-    # task_extract_and_link("CoreNLP", "https://stanfordnlp.github.io/CoreNLP/cmdline.html", "nlp")
-    # # https://www.nltk.org/api/nltk.parse.html
-    # task_extract_and_link("NLTK", "https://web.archive.org/web/20210417122335/https://www.nltk.org/api/nltk.parse.html", "nlp")
-    # # https://www.nltk.org/api/nltk.tag.html
-    # task_extract_and_link("NLTK", "https://web.archive.org/web/20210725152853/https://www.nltk.org/api/nltk.tag.html", "nlp")
-    # task_extract_and_link("jQuery", "https://api.jquery.com/jQuery.get", "dom_manipulation")
-    # task_extract_and_link("reactjs", "https://reactjs.org/docs/components-and-props.html", "dom_manipulation")
-
-    # task_extract_and_link("requests", "https://web.archive.org/web/20220505163814/https://docs.python-requests.org/en/latest/")
-
-    api_methods_examples("python",
-                         "orjson",
-                         "https://github.com/ijl/orjson.git",
-                         "http://web.archive.org/web/20210831032333/https://github.com/ijl/orjson",
-                         False)
-    api_methods_examples("python",
-                         "orjson",
-                         "https://github.com/ijl/orjson.git",
-                         "http://web.archive.org/web/20210831032333/https://github.com/ijl/orjson",
-                         True)
-    # api_methods_examples("python",
-    #                      "nltk",
-    #                      "https://github.com/nltk/nltk.git",
-    #                      "https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.html",
-    #                      False)
-    # api_methods_examples("python",
-    #                      "requests",
-    #                      "https://github.com/psf/requests.git",
-    #                      "https://web.archive.org/web/20220505163814/https://docs.python-requests.org/en/latest/",
-    #                      False)
-    # api_methods_examples("java",
-    #                      "json-java",
-    #                      "https://github.com/stleary/JSON-java.git",
-    #                      "https://github.com/stleary/JSON-java",
-    #                      False)
-    # api_methods_examples("java",
-    #                      "CoreNLP",
-    #                      "https://github.com/stanfordnlp/CoreNLP.git",
-    #                      "https://stanfordnlp.github.io/CoreNLP",
-    #                      False)
-    # api_methods_examples("javascript",
-    #                      "qunit",
-    #                      "https://github.com/qunitjs/qunit.git",
-    #                      "https://api.qunitjs.com/",
-    #                      False)
-    # api_methods_examples("javascript",
-    #                      "jBinary",
-    #                      "https://github.com/jDataView/jBinary.git",
-    #                      "https://github.com/jDataView/jBinary/wiki",
-    #                      False)
+    analyze_library("python", "orjson", "http://web.archive.org/web/20210831032333/https://github.com/ijl/orjson", "https://github.com/ijl/orjson.git", "json")
+    # https://web.archive.org/web/20210417122335/https://www.nltk.org/api/nltk.parse.html
+    # https://web.archive.org/web/20210725152853/https://www.nltk.org/api/nltk.tag.html
+    # analyze_library("python", "nltk", "https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.html", "https://github.com/nltk/nltk.git", "nlp")
+    # analyze_library("python", "requests", "https://web.archive.org/web/20220505163814/https://docs.python-requests.org/en/latest/", "https://github.com/psf/requests.git", "http")
+    # # http://web.archive.org/web/20211017224709/https://github.com/stleary/JSON-java
+    # analyze_library("java", "JSON-java", "https://github.com/stleary/JSON-java", "https://github.com/stleary/JSON-java.git", "json")
+    # # https://stanfordnlp.github.io/CoreNLP/ner.html
+    # # https://stanfordnlp.github.io/CoreNLP/cmdline.html
+    # analyze_library("java", "CoreNLP", "https://stanfordnlp.github.io/CoreNLP", "https://github.com/stanfordnlp/CoreNLP.git", "nlp")
+    # # https://reactjs.org/docs/components-and-props.html
+    # analyze_library("javascript", "ReactJS", "https://reactjs.org/docs/getting-started.html", "https://github.com/facebook/react.git", "dom manipulation")
+    # # https://api.jquery.com/jQuery.get
+    # analyze_library("javascript", "jQuery", "https://api.jquery.com/", "https://github.com/jquery/jquery.git", "dom manipulation")
+    # analyze_library("javascript", "qunit", "https://api.qunitjs.com/", "https://github.com/qunitjs/qunit.git", "testing")
+    # analyze_library("javascript", "jBinary", "https://github.com/jDataView/jBinary/wiki", "https://github.com/jDataView/jBinary.git", "data structures")

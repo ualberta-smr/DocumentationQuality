@@ -1,15 +1,30 @@
+from decimal import Decimal
 from django import forms
 from .models import Response
+from django.db import models
+
+
+class AnalyzeForm(forms.Form):
+    library_name = forms.CharField(required=True)
+    language = forms.CharField(required=True)
+    doc_url = forms.CharField(required=True)
+    gh_url = forms.CharField(required=False, widget=forms.TextInput(attrs={"placeholder": "https://github.com/nltk/nltk.git"}))
+    domain = forms.CharField(required=False)
 
 
 class Demographics(forms.ModelForm):
     session_key = forms.CharField(widget=forms.HiddenInput())
     library_name = forms.CharField(widget=forms.HiddenInput())
-    years_experience = forms.IntegerField(widget=forms.NumberInput())
+    years_experience = forms.IntegerField(required=False, min_value=0, widget=forms.NumberInput())
     used_before = forms.ChoiceField(
-        required=True,
-        choices=((True, "I have"), (False, "I have not"))
+        required=False,
+        choices=(
+            (None, ""),
+            (False, "I have not"),
+            (True, "I have")
+        )
     )
+
     class Meta:
         model = Response
         exclude = ("general_rating",
@@ -52,6 +67,11 @@ class GeneralRating(forms.ModelForm):
 class TaskList(forms.ModelForm):
     session_key = forms.CharField(widget=forms.HiddenInput())
     library_name = forms.CharField(widget=forms.HiddenInput())
+    task_list = forms.CharField(
+        required=True,
+        widget=forms.Textarea()
+    )
+
     class Meta:
         model = Response
         exclude = ("session_key",
@@ -73,6 +93,15 @@ class TaskList(forms.ModelForm):
 class CodeExamples(forms.ModelForm):
     session_key = forms.CharField(widget=forms.HiddenInput())
     library_name = forms.CharField(widget=forms.HiddenInput())
+    code_examples_methods = forms.CharField(
+        required=True,
+        widget=forms.Textarea()
+    )
+    code_examples_classes = forms.CharField(
+        required=True,
+        widget=forms.Textarea()
+    )
+
     class Meta:
         model = Response
         exclude = ("years_experience",
@@ -91,6 +120,15 @@ class CodeExamples(forms.ModelForm):
 class Readability(forms.ModelForm):
     session_key = forms.CharField(widget=forms.HiddenInput())
     library_name = forms.CharField(widget=forms.HiddenInput())
+    text_readability = forms.CharField(
+        required=True,
+        widget=forms.Textarea()
+    )
+    code_readability = forms.CharField(
+        required=True,
+        widget=forms.Textarea()
+    )
+
     class Meta:
         model = Response
         exclude = ("session_key",
@@ -111,6 +149,11 @@ class Readability(forms.ModelForm):
 class Consistency(forms.ModelForm):
     session_key = forms.CharField(widget=forms.HiddenInput())
     library_name = forms.CharField(widget=forms.HiddenInput())
+    consistency = forms.CharField(
+        required=True,
+        widget=forms.Textarea()
+    )
+
     class Meta:
         model = Response
         exclude = ("session_key",
@@ -132,6 +175,11 @@ class Consistency(forms.ModelForm):
 class Navigability(forms.ModelForm):
     session_key = forms.CharField(widget=forms.HiddenInput())
     library_name = forms.CharField(widget=forms.HiddenInput())
+    navigability = forms.CharField(
+        required=True,
+        widget=forms.Textarea()
+    )
+
     class Meta:
         model = Response
         exclude = ("session_key",
@@ -153,6 +201,23 @@ class Navigability(forms.ModelForm):
 class Feedback(forms.ModelForm):
     session_key = forms.CharField(widget=forms.HiddenInput())
     library_name = forms.CharField(widget=forms.HiddenInput())
+    usefulness = forms.CharField(
+        required=True,
+        widget=forms.Textarea()
+    )
+    would_recommend = forms.ChoiceField(
+        required=True,
+        choices=(
+            (None, ""),
+            (True, "I would"),
+            (False, "I would not")
+        )
+    )
+    general_feedback = forms.CharField(
+        required=True,
+        widget=forms.Textarea()
+    )
+
     class Meta:
         model = Response
         exclude = ("session_key",

@@ -3,8 +3,10 @@
 <div class="col-md-3"></div>
 <h1 class="title-container">{{ library_name }}</h1>
 <div class="col">
-    <span data-bs-toggle="tooltip" data-bs-placement="top"
-          title="Tooltip on top">
+<span data-bs-toggle="tooltip" data-bs-placement="right"
+      title="Tooltip on right">
+        <span data-bs-toggle="tooltip" data-bs-placement="top"
+              title="Tooltip on top">
         <button type="button"
                 class="btn btn-primary-outline"
                 data-bs-toggle="modal"
@@ -12,7 +14,7 @@
                     {% if not have_demographics %}
                         #demographics
                     {% else %}
-                        #general
+                        #general_rating
                     {% endif %}">
             {% with ''|center:general_rating as range %}
                 {% for _ in range %}
@@ -38,48 +40,12 @@
                 {% endfor %}
             {% endwith %}
         </button>
+            {% if not have_demographics %}
+                {% include "overview/forms/demographics_form.html" with demographics=demographics %}
+            {% else %}
+                {% include "overview/forms/general_rating_form.html" with library_name=library_name form=form %}
+            {% endif %}
     </span>
-    {% if not have_demographics %}
-        {% include "overview/forms/demographics.html" with library_name=library_name demographics=demographics %}
+</span>
 
-    {% else %}
-        <!-- The Modal -->
-        <div class="modal" id="general">
-            <div class="modal-dialog">
-                <form action="/overview/forms/general/"
-                      method="post"
-                      id="general_rating">
-                    {% csrf_token %}
-                    <div class="modal-content">
-
-                        <!-- Modal Header -->
-                        <div class="modal-header">
-                            <h4 class="modal-title">General Rating</h4>
-                            <button type="button" class="btn-close"
-                                    data-bs-dismiss="modal"></button>
-                        </div>
-
-                        <!-- Modal body -->
-                        <div class="modal-body">
-                            {{ form.library_name }}
-                            {{ form.session_key }}
-                            <label for="{{ form.general_rating.id_for_label }}">Please
-                                provide feedback on the General Rating</label>
-                            {{ form.general_rating }}
-                        </div>
-
-                        <!-- Modal footer -->
-                        <div class="modal-footer">
-                            <button type="submit" form="general_rating"
-                                    value="Submit"
-                                    class="btn-primary is-success is-fullwidth is-medium mt-5"
-                                    data-bs-dismiss="modal">
-                                Submit
-                            </button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-    {% endif %}
 </div>

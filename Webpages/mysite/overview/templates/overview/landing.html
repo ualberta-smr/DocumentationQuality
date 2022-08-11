@@ -1,0 +1,138 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+    <link rel="icon" href="data:,">
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+          crossorigin="anonymous">
+    <!-- style.css -->
+    {% load static %}
+    <link rel="stylesheet" type="text/css"
+          href="{% static 'overview/styles.css' %}">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+            crossorigin="anonymous"></script>
+
+    <title>Library Documentation Quality Evaluation</title>
+</head>
+<body style="margin-top: 20px">
+
+<div class="container">
+    <h1>
+        Library Documentation Quality Evaluation
+    </h1>
+    <h2>
+        Introduction
+    </h2>
+    <hr>
+    <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce posuere
+        convallis tincidunt. Nam euismod iaculis feugiat. Cras porttitor
+        volutpat euismod. Praesent vulputate eros a orci tempus, sit amet dictum
+        eros bibendum. Cras urna metus, consectetur ut nibh eu, vehicula
+        vulputate eros. Sed nisi lectus, finibus ut condimentum ut, elementum at
+        libero. Donec nec dui bibendum, sagittis libero ut, faucibus ligula.
+    </p>
+
+    <div class="row">
+        <div class="col-5">
+            <form id="search_form" action="/overview/search/" method="post">
+                {% csrf_token %}
+                <label for="library_name" style="width: auto">Enter library
+                    name</label>
+                <input id="library_name" type="text" name="library_name"
+                       value=""
+                       style="width: auto; float: none; margin-top: 15px">
+                <button type="submit" form="search_form" value="Search"
+                        class="btn btn-primary">Search
+                </button>
+            </form>
+        </div>
+        <div class="col-1">
+            OR
+        </div>
+        <div class="col" style="align-content: center">
+            <button type="button" class="btn btn-primary"
+                    data-bs-toggle="modal"
+                    data-bs-target="#analyze"
+                    style="margin-top: 10px">
+                Analyze a new library
+            </button>
+            <div class="modal" id="analyze">
+                <div class="modal-dialog modal-lg">
+                    <form novalidate action="/overview/create/"
+                          method="post"
+                          id="analyze_form">
+                        {% csrf_token %}
+                        <div class="modal-content">
+
+                            <!-- Modal Header -->
+                            <div class="modal-header">
+                                <h4 class="modal-title">New library</h4>
+                                <button type="button" class="btn-close"
+                                        data-bs-dismiss="modal"></button>
+                            </div>
+
+                            <!-- Modal body -->
+                            <div class="modal-body">
+                                {{ form.non_field_errors }}
+                                <div class="form-group">
+                                    {{ form.library_name.errors }}
+                                    <label for={{ forms.library_name.id_for_label }}>Enter
+                                        library
+                                        name</label>{{ form.library_name }}
+                                </div>
+                                <div class="form-group">
+                                    {{ form.language.errors }}
+                                    <label for={{ forms.language.id_for_label }}>Enter
+                                        language of
+                                        library</label>{{ form.language }}
+                                </div>
+                                <div class="form-group">
+                                    {{ form.doc_url.errors }}
+                                    <label for={{ forms.doc_url.id_for_label }}>Enter
+                                        documentation
+                                        url</label>{{ form.doc_url }}
+                                </div>
+                                <div class="form-group">
+                                    {{ form.gh_url.errors }}
+                                    <label for={{ forms.gh_url.id_for_label }}>Enter
+                                        GitHub .git url</label>{{ form.gh_url }}
+                                </div>
+                                <div class="form-group">
+                                    {{ form.domain.errors }}
+                                    <label for={{ forms.domain.id_for_label }}>Enter
+                                        domain of
+                                        library</label>{{ form.domain }}
+                                </div>
+                            </div>
+
+                            <!-- Modal footer -->
+                            <div class="modal-footer">
+                                <button type="submit" form="analyze_form"
+                                        value="Submit"
+                                        class="btn btn-primary is-success is-fullwidth is-medium mt-5"
+                                        data-bs-dismiss="modal">
+                                    Submit
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+</body>
+</html>

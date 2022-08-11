@@ -17,6 +17,7 @@ class Task(models.Model):
 
 class Library(models.Model):
     library_name = models.CharField(max_length=50)
+    description = models.CharField(max_length=1000)
     gh_url = models.CharField(max_length=100)
     doc_url = models.CharField(max_length=100)
     num_methods = models.IntegerField("number of methods")
@@ -35,7 +36,7 @@ class Response(models.Model):
     library_name = models.CharField(max_length=50)
     years_experience = models.PositiveIntegerField("Years of software development experience", blank=True, null=True)
     used_before = models.BooleanField("used before", blank=True, null=True)
-    general_rating = models.CharField("What is your general intuition?", max_length=500, blank=True, null=True)
+    general_rating = models.CharField(max_length=500, blank=True, null=True)
     task_list = models.CharField(max_length=500, blank=True, null=True)
     code_examples_methods = models.CharField(max_length=500, blank=True, null=True)
     code_examples_classes = models.CharField(max_length=500, blank=True, null=True)

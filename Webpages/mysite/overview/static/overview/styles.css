@@ -20,6 +20,30 @@
 
 .btn-primary-outline {
     background-color: transparent;
-    border-color: #ccc;
+    border-color: transparent;
     outline: none;
+    padding: 0;
+}
+
+label {
+    display: inline-block;
+    float: left;
+    clear: left;
+    text-align: left;
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 15px;
+}
+
+input {
+    display: inline-block;
+    float: right;
+    height: 20px;
+    width: 350px;
+    margin-top: 10px;
+}
+
+select {
+    display: inline-block;
+    float: right;
 }

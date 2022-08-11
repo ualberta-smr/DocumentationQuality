@@ -2,7 +2,20 @@
     <div class="col">
         <span data-bs-toggle="tooltip" data-bs-placement="top"
               title="This percentage indicates how many public API methods contain a code example in the documentation">
-            Methods with examples
+            <button type="button" class="btn btn-primary-outline"
+                    data-bs-toggle="modal" data-bs-target="
+                {% if not have_demographics %}
+                    #demographics
+                {% else %}
+                    #code_examples
+                {% endif %}">
+                Methods with code examples
+            </button>
+            {% if not have_demographics %}
+                {% include "overview/forms/demographics_form.html" with demographics=demographics %}
+            {% else %}
+                {% include "overview/forms/examples_form.html" with form=examples %}
+            {% endif %}
         </span>
     </div>
     <div class="col metrics-child">
@@ -13,7 +26,20 @@
     <div class="col">
         <span data-bs-toggle="tooltip" data-bs-placement="top"
               title="This percentage indicates how many public API classes contain a code example in the documentation">
-            Classes with code examples
+                        <button type="button" class="btn btn-primary-outline"
+                                data-bs-toggle="modal" data-bs-target="
+                {% if not have_demographics %}
+                    #demographics
+                {% else %}
+                    #code_examples
+                {% endif %}">
+                Classes with code examples
+            </button>
+            {% if not have_demographics %}
+                {% include "overview/forms/demographics_form.html" with demographics=demographics %}
+            {% else %}
+                {% include "overview/forms/examples_form.html" with form=examples %}
+            {% endif %}
         </span>
     </div>
     <div class="col metrics-child">

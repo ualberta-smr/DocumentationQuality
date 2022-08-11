@@ -1,0 +1,41 @@
+<!-- The Modal -->
+<div class="modal" id="code_examples">
+    <div class="modal-dialog modal-lg">
+        <form action="/overview/forms/code_examples/"
+              method="post"
+              id="general_rating_form">
+            {% csrf_token %}
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Code examples</h4>
+                    <button type="button" class="btn-close"
+                            data-bs-dismiss="modal"></button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    {{ form.library_name }}
+                    {{ form.session_key }}
+                    <label for="{{ form.code_examples_methods.id_for_label }}">Please
+                        provide feedback on the method code examples</label>
+                    {{ form.code_examples_methods }}
+                    <label for="{{ form.code_examples_classes.id_for_label }}">Please
+                        provide feedback on the classes code examples</label>
+                    {{ form.code_examples_classes }}
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="submit" form="general_rating_form"
+                            value="Submit"
+                            class="btn-primary is-success is-fullwidth is-medium mt-5"
+                            data-bs-dismiss="modal">
+                        Submit
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
