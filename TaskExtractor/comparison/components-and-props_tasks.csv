@@ -1,9 +1,0 @@
-Paragraph,Ground truth tasks,Program tasks,Partial Ratio
-"Components let you split the UI into independent, reusable pieces, and think about each piece in isolation. This page provides an introduction to the idea of components. You can find a detailed component API reference here.","split the ui into independent, reusable pieces",split ui into independent reusable pieces,90
-You can also use an ES6 class to define a component:,define component,define component,100
-"Components can refer to other components in their output. This lets us use the same component abstraction for any level of detail. A button, a form, a dialog, a screen: in React apps, all those are commonly expressed as components.",refer to other components,use same component abstraction for level,56
-"Typically, new React apps have a single App component at the very top. However, if you integrate React into an existing app, you might start bottom-up with a small component like Button and gradually work your way to the top of the view hierarchy.",integrate react into existing app,integrate react into existing app,100
-Don’t be afraid to split components into smaller components.,split components into smaller components,split components into smaller components,100
-"represents an HTML div tag, but", 
-represents a component and requires Welcome to be in scope., 
-"Whether you declare a component as a function or a class, it must never modify its own props. Consider this sum function:",declare a component as a function or a class
