@@ -2,3 +2,4 @@
 *.jar
 *.zip
 venv/
+*.pyc
