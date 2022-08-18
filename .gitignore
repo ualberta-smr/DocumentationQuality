@@ -1,5 +1,4 @@
-*/.idea/
+.idea
 *.jar
 *.zip
 venv/
-Analyze/MethodLinker/repos
