@@ -1,7 +1,7 @@
 import sys
 import os
 import csv
-import shutil
+import mysql.connector
 
 from Analyze.util import ROOT_DIR, add_to_task_table
 
@@ -77,9 +77,25 @@ def process(library_name, datafiles):
     return processed_file_name
 
 
+def _get_library_id(library_name):
+    mydb = mysql.connector.connect(
+        host="localhost",
+        user="djangouser",
+        password="password",
+        database="task_data"
+    )
+
+    mycursor = mydb.cursor(dictionary=True)
+
+    mycursor.execute("SELECT id FROM overview_library WHERE library_name = '" + library_name + "'")
+
+    return mycursor.fetchone()["id"]
+
+
 def add_tasks_to_db(library_name):
     files = find_raw_csvs(library_name)
     file_name = process(library_name, files)
+    # library_id = _get_library_id(library_name)
     with open(file_name, "r", encoding="utf-8", newline="") as data:
         reader = csv.reader(data)
         next(reader)

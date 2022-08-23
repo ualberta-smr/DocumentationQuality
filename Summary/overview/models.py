@@ -1,20 +1,6 @@
 from django.db import models
 
 
-# Create your models here.
-
-
-class Task(models.Model):
-    library_name = models.CharField(max_length=50)
-    paragraph = models.CharField(max_length=5000)
-    task = models.CharField(max_length=100)
-    has_example = models.BooleanField("has example")
-    example_page = models.CharField(max_length=100)
-
-    def __str__(self):
-        return self.task
-
-
 class Library(models.Model):
     library_name = models.CharField(max_length=50)
     description = models.CharField(max_length=1000)
@@ -29,6 +15,18 @@ class Library(models.Model):
 
     def __str__(self):
         return self.library_name
+
+
+class Task(models.Model):
+    library_name = models.CharField(max_length=50)
+    # library = models.ForeignKey(Library, on_delete=models.CASCADE)
+    paragraph = models.CharField(max_length=5000)
+    task = models.CharField(max_length=100)
+    has_example = models.BooleanField("has example")
+    example_page = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.task
 
 
 class Response(models.Model):

@@ -28,13 +28,14 @@
 </head>
 <body style="margin-top: 20px">
 <div class="container">
+    {% include "overview/logos.html" %}
     <div class="row metrics-child">
         {% include "overview/components/general_rating.html" with general_rating=general_rating form=general library_name=library_name have_demographics=have_demographics demographics=demographics %}
     </div>
     {#Start of content#}
     <div class="row">
         {% include "overview/components/task_list.html" with task_list=task_list form=tasks have_demographics=have_demographics demographics=demographics %}
-        <div class="col-7">
+        <div class="col">
             <div class="metrics-container">
                 {{ description }}
             </div>
@@ -49,19 +50,19 @@
     </div>
     <div class="row">
         <button type="button" class="btn btn-primary" style="margin: 20px"
-                    data-bs-toggle="modal" data-bs-target="
+                data-bs-toggle="modal" data-bs-target="
                 {% if not have_demographics %}
                     #demographics
                 {% else %}
                     #general_feedback
                 {% endif %}">
-                General Feedback
-            </button>
-            {% if not have_demographics %}
-                {% include "overview/forms/demographics_form.html" with demographics=demographics %}
-            {% else %}
-                {% include "overview/forms/general_feedback_form.html" with form=feedback %}
-            {% endif %}
+            General Feedback
+        </button>
+        {% if not have_demographics %}
+            {% include "overview/forms/demographics_form.html" with demographics=demographics %}
+        {% else %}
+            {% include "overview/forms/general_feedback_form.html" with form=feedback %}
+        {% endif %}
     </div>
 
     <script>

@@ -11,6 +11,10 @@ from .forms import Demographics, GeneralRating, TaskList, CodeExamples, \
     Readability, Consistency, Navigability, Feedback, AnalyzeForm
 
 
+def _get_libraries():
+    return Library.objects.all().values("library_name")
+
+
 def _get_description(library_name):
     return Library.objects.filter(library_name=library_name).get().description
 
@@ -22,21 +26,24 @@ def _get_task_list(library_name):
 
 
 def _get_example_ratios(library_name):
-    library_data = Library.objects.filter(library_name=library_name).get()
     ratios = {
         "method_ratio": "Could not calculate method ratio",
         "class_ratio": "Could not calculate class ratio"
     }
     try:
-        ratios["method_ratio"] = "{:.0%}".format(
-            library_data.num_method_examples / library_data.num_methods)
+        library_data = Library.objects.filter(library_name=library_name).get()
+        try:
+            ratios["method_ratio"] = "{:.0%}".format(
+                library_data.num_method_examples / library_data.num_methods)
+        except:
+            ratios["method_ratio"] = "N/A"
+        try:
+            ratios["class_ratio"] = "{:.0%}".format(
+                library_data.num_class_examples / library_data.num_classes)
+        except:
+            ratios["class_ratio"] = "N/A"
     except:
-        ratios["method_ratio"] = "N/A"
-    try:
-        ratios["class_ratio"] = "{:.0%}".format(
-            library_data.num_class_examples / library_data.num_classes)
-    except:
-        ratios["class_ratio"] = "N/A"
+        pass
     return ratios
 
 
@@ -92,18 +99,21 @@ def _create_overview_context(store):
 
 def landing(request):
     return render(request, "overview/landing.html",
-                  context={"form": AnalyzeForm()})
+                  context={"form": AnalyzeForm(),
+                           "library_list": _get_libraries()
+                           }
+                  )
 
 
 def search(request):
     if request.method == "POST":
         try:
             exists = Library.objects.get(
-                library_name=request.POST["library_name"])
+                library_name=request.POST["library_select"])
         except ObjectDoesNotExist:
             exists = False
         if exists:
-            return redirect("overview:overview", request.POST["library_name"])
+            return redirect("overview:overview", request.POST["library_select"])
     return render(request, "overview/landing.html")
 
 
@@ -125,10 +135,13 @@ def overview(request, library_name):
     if not request.session.exists(request.session.session_key):
         request.session.create()
     description = _get_description(library_name)
-    task_list = _get_task_list(library_name)
     # TODO: These are none before analysis finishes
-    example_ratios = _get_example_ratios(library_name)
+    try:
+        task_list = _get_task_list(library_name)
+    except:
+        task_list = []
 
+    example_ratios = _get_example_ratios(library_name)
     if "store" not in request.session:
         store = dict(library_name=library_name,
                      general_rating=3,

@@ -5,7 +5,7 @@
         <span data-bs-toggle="tooltip" data-bs-placement="top"
               title="This score represents the readability of the textual blocks in the documentation">
                     <button type="button"
-                            class="btn btn-primary-outline"
+                            class="btn btn-outline-primary"
                             data-bs-toggle="modal"
                             data-bs-target="
                     {% if not have_demographics %}
@@ -13,13 +13,8 @@
                     {% else %}
                         #readability
                     {% endif %}">
-            Readability of text
+                        Readability of text
                     </button>
-            {% if not have_demographics %}
-                {% include "overview/forms/demographics_form.html" with demographics=demographics %}
-            {% else %}
-                {% include "overview/forms/readability_form.html" with form=readable %}
-            {% endif %}
         </span>
     </div>
     <div class="col metrics-child">
@@ -55,7 +50,7 @@
         <span data-bs-toggle="tooltip" data-bs-placement="top"
               title="This score represents the readability of the code exampes in the documentation">
                                 <button type="button"
-                                        class="btn btn-primary-outline"
+                                        class="btn btn-outline-primary"
                                         data-bs-toggle="modal"
                                         data-bs-target="
                     {% if not have_demographics %}
@@ -63,9 +58,8 @@
                     {% else %}
                         #readability
                     {% endif %}">
-            Readability of code examples
+                        Readability of code examples
                     </button>
-
         </span>
     </div>
     <div class="col metrics-child">
@@ -96,3 +90,9 @@
         {% endwith %}
     </div>
 </div>
+
+{% if not have_demographics %}
+    {% include "overview/forms/demographics_form.html" with demographics=demographics %}
+{% else %}
+    {% include "overview/forms/readability_form.html" with form=readable %}
+{% endif %}

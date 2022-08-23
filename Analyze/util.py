@@ -106,25 +106,30 @@ def add_or_update_library_record(item_dict):
     for key, value in item_dict.items():
         column_names.append(key)
         values.append(str(value))
-    query = "SELECT * FROM overview_library WHERE library_name = " + item_dict["library_name"] + ";"
+    query = "SELECT * FROM overview_library WHERE library_name = '" + str(item_dict["library_name"]) + "';"
     cursor.execute(query)
     result = cursor.fetchall()
     if result:
         query = "UPDATE overview_library SET "
         for i in range(len(column_names)):
-            query += column_names[i] + " = " + values[i] + ", "
-        query = query[:-2] + " WHERE library_name = " + item_dict["library_name"]
+            query += column_names[i] + " = %s, "
+        query = query[:-2] + " WHERE library_name = '" + item_dict["library_name"] + "'"
     else:
         query = "INSERT INTO overview_library ("
         for column in column_names:
             query += column + ", "
         query = query[:-2] + ") VALUES ("
-        for value in values:
-            query += value + ", "
+        for _ in values:
+            query += "%s, "
         query = query[:-2] + ");"
-    cursor.execute(query)
-    website_db.commit()
-    cursor.close()
+    try:
+        values = tuple(values)
+        cursor.execute(query, values)
+        website_db.commit()
+        cursor.close()
+    except:
+        print(traceback.format_exc())
+        print(query)
 
 
 def clone_repo(repo_url):

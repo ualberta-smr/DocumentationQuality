@@ -4,8 +4,8 @@
     <div class="col">
         <span data-bs-toggle="tooltip" data-bs-placement="top"
               title="Rating on the navigability of the documentation">
-                        <button type="button" class="btn btn-primary-outline"
-                    data-bs-toggle="modal" data-bs-target="
+                        <button type="button" class="btn btn-outline-primary"
+                                data-bs-toggle="modal" data-bs-target="
                 {% if not have_demographics %}
                     #demographics
                 {% else %}
@@ -13,11 +13,6 @@
                 {% endif %}">
                 Navigation rating
             </button>
-                          {% if not have_demographics %}
-                {% include "overview/forms/demographics_form.html" with demographics=demographics %}
-            {% else %}
-                {% include "overview/forms/navigability_form.html" with form=navigable %}
-            {% endif %}
         </span>
     </div>
     <div class="col metrics-child">
@@ -48,3 +43,9 @@
         {% endwith %}
     </div>
 </div>
+
+{% if not have_demographics %}
+    {% include "overview/forms/demographics_form.html" with demographics=demographics %}
+{% else %}
+    {% include "overview/forms/navigability_form.html" with form=navigable %}
+{% endif %}

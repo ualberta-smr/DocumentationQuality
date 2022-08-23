@@ -1,23 +1,22 @@
-<div class="col-5">
+<div class="col">
     <div class="metrics-container">
-        <span data-bs-toggle="tooltip" data-bs-placement="top"
-              title="Tooltip on top">
-            <button type="button" class="btn btn-primary-outline"
-                    data-bs-toggle="modal"
-                    data-bs-target="
-                        {% if not have_demographics %}
-                            #demographics
-                        {% else %}
-                            #task_list
-                        {% endif %}">
-              Documented Library Tasks
-            </button>
-            {% if not have_demographics %}
-                {% include "overview/forms/demographics_form.html" with demographics=demographics %}
-            {% else %}
-                {% include "overview/forms/task_list_form.html" with form=form %}
-            {% endif %}
-        </span>
+        <div class="row">
+            <span data-bs-toggle="tooltip" data-bs-placement="top"
+                  title="Tooltip on top">
+                <div class="d-flex justify-content-center">
+                    <button type="button" class="btn btn-outline-primary" style="font-size: 20px"
+                        data-bs-toggle="modal"
+                        data-bs-target="
+                            {% if not have_demographics %}
+                                #demographics
+                            {% else %}
+                                #task_list
+                            {% endif %}">
+                  Documented Library Tasks
+                </button>
+                </div>
+            </span>
+        </div>
         <div class="d-flex justify-content-between align-items-center">
             <ul style="list-style: none">
                 {% for task in task_list %}
@@ -39,10 +38,16 @@
                                 <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z"/>
                             </svg>
                         {% endif %}
-                         <a href="{{ task.example_page }}">{{ task.task|capfirst }}</a>
+                        <a href="{{ task.example_page }}" target="_blank">{{ task.task|capfirst }}</a>
                     </li>
                 {% endfor %}
             </ul>
         </div>
     </div>
 </div>
+
+{% if not have_demographics %}
+    {% include "overview/forms/demographics_form.html" with demographics=demographics %}
+{% else %}
+    {% include "overview/forms/task_list_form.html" with form=form %}
+{% endif %}

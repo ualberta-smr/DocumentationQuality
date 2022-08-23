@@ -7,6 +7,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css"
+          rel="stylesheet"/>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
           rel="stylesheet"
@@ -18,6 +20,7 @@
           href="{% static 'overview/styles.css' %}">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
             crossorigin="anonymous"></script>
@@ -25,8 +28,8 @@
     <title>Library Documentation Quality Evaluation</title>
 </head>
 <body style="margin-top: 20px">
-
 <div class="container">
+    {% include "overview/logos.html" %}
     <h1>
         Library Documentation Quality Evaluation
     </h1>
@@ -35,29 +38,83 @@
     </h2>
     <hr>
     <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce posuere
-        convallis tincidunt. Nam euismod iaculis feugiat. Cras porttitor
-        volutpat euismod. Praesent vulputate eros a orci tempus, sit amet dictum
-        eros bibendum. Cras urna metus, consectetur ut nibh eu, vehicula
-        vulputate eros. Sed nisi lectus, finibus ut condimentum ut, elementum at
-        libero. Donec nec dui bibendum, sagittis libero ut, faucibus ligula.
+        We are researchers from the Department of Computing Science at the
+        University of Alberta, Canada, interested in evaluating the
+        documentation quality of software libraries. The purpose of this
+        webservice is to provide a summary overview of different metrics
+        regarding a library's documentation quality. Your use and feedback will
+        be used to gauge the current accuracy and usefulness of this service.
     </p>
+    <hr>
+    <h2>
+        Legal Information
+    </h2>
+    <p>
+        Please note that this study has received ethics clearance from the
+        University of Alberta (study Pro00074107). We do not collect any
+        identifying information. By providing feedback responses, your free and
+        informed consent is implied where you acknowledge your data will be used
+        for research purposes. All information will be treated in an anonymous
+        and aggregated way.
+    <ol>
+        <li>
+            You are under no obligation to participate in this study.
+            Participation is completely voluntary
+        </li>
+        <li>
+            The feedback responses will be used for academic theses and
+            publication in software engineering conferences and journals
+        </li>
+        <li>
+            Data will be kept confidential and anonymous. The project team will
+            retain access to the data.
+        </li>
+        <li>
+            Data is kept securely on encrypted file systems for a minimum of 5
+            years following completion of the research project. Data will not be
+            destroyed.
+        </li>
+        <li>
+            Completely anonymized and non-linkable data may be posted to backup
+            the results of our analysis.
+        </li>
+        <li>
+            We do not plan to share confidential data with other researchers.
+        </li>
+        <li>
+            We may use the data from these responses in future research, but
+            after approval from a research ethics board.
+        </li>
+    </ol>
+    </p>
+    <hr>
+    <h2>
+        Contact Information
+    </h2>
+    <p>
+        If you have any further questions regarding this study, please email
+        Henry Tang (hktang@ualberta.ca) or Sarah Nadi (snadi@ualberta.ca).
+    </p>
+    <hr>
 
     <div class="row">
-        <div class="col-5">
+        <div class="col-6" id="library_selector">
             <form id="search_form" action="/overview/search/" method="post">
                 {% csrf_token %}
-                <label for="library_name" style="width: auto">Enter library
-                    name</label>
-                <input id="library_name" type="text" name="library_name"
-                       value=""
-                       style="width: auto; float: none; margin-top: 15px">
+                <label for="library_select">
+                    <select id="library_select" class="js-example-basic-single"
+                            name="library_select" style="width: 300px">
+                        {% for library in library_list %}
+                            <option value="{{ library.library_name }}">{{ library.library_name }}</option>
+                        {% endfor %}
+                    </select>
+                </label>
                 <button type="submit" form="search_form" value="Search"
                         class="btn btn-primary">Search
                 </button>
             </form>
         </div>
-        <div class="col-1">
+        <div class="col-2">
             OR
         </div>
         <div class="col" style="align-content: center">
@@ -68,7 +125,7 @@
                 Analyze a new library
             </button>
             <div class="modal" id="analyze">
-                <div class="modal-dialog modal-lg">
+                <div class="modal-dialog modal-dialog-centered">
                     <form novalidate action="/overview/create/"
                           method="post"
                           id="analyze_form">
@@ -77,7 +134,8 @@
 
                             <!-- Modal Header -->
                             <div class="modal-header">
-                                <h4 class="modal-title">New library</h4>
+                                <h4 class="modal-title">Analyze a new
+                                    library</h4>
                                 <button type="button" class="btn-close"
                                         data-bs-dismiss="modal"></button>
                             </div>
@@ -87,32 +145,38 @@
                                 {{ form.non_field_errors }}
                                 <div class="form-group">
                                     {{ form.library_name.errors }}
-                                    <label for={{ forms.library_name.id_for_label }}>Enter
-                                        library
-                                        name</label>{{ form.library_name }}
+                                    <label for={{ forms.library_name.id_for_label }}>
+                                        Enter library name
+                                    </label>
+                                    {{ form.library_name }}
                                 </div>
                                 <div class="form-group">
                                     {{ form.language.errors }}
-                                    <label for={{ forms.language.id_for_label }}>Enter
-                                        language of
-                                        library</label>{{ form.language }}
+                                    <label for={{ forms.language.id_for_label }}>
+                                        Enter language of library
+                                    </label>
+                                    {{ form.language }}
                                 </div>
                                 <div class="form-group">
                                     {{ form.doc_url.errors }}
-                                    <label for={{ forms.doc_url.id_for_label }}>Enter
-                                        documentation
-                                        url</label>{{ form.doc_url }}
+                                    <label for={{ forms.doc_url.id_for_label }}>
+                                        Enter documentation url
+                                    </label>
+                                    {{ form.doc_url }}
                                 </div>
                                 <div class="form-group">
                                     {{ form.gh_url.errors }}
-                                    <label for={{ forms.gh_url.id_for_label }}>Enter
-                                        GitHub .git url</label>{{ form.gh_url }}
+                                    <label for={{ forms.gh_url.id_for_label }}>
+                                        Enter GitHub .git url
+                                    </label>
+                                    {{ form.gh_url }}
                                 </div>
                                 <div class="form-group">
                                     {{ form.domain.errors }}
-                                    <label for={{ forms.domain.id_for_label }}>Enter
-                                        domain of
-                                        library</label>{{ form.domain }}
+                                    <label for={{ forms.domain.id_for_label }}>
+                                        Enter domain of library
+                                    </label>
+                                    {{ form.domain }}
                                 </div>
                             </div>
 
@@ -132,7 +196,11 @@
         </div>
     </div>
 
-
+    <script>
+        $(document).ready(function () {
+            $('.js-example-basic-single').select2();
+        });
+    </script>
 </div>
 </body>
 </html>

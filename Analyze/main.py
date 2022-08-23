@@ -4,6 +4,8 @@ import re
 import threading
 import nltk
 
+import time
+
 from urllib.request import Request, urlopen
 from bs4 import BeautifulSoup
 from fuzzywuzzy import fuzz
@@ -55,14 +57,19 @@ class Description(threading.Thread):
         self.doc_url = doc_url
 
     def run(self):
+        start = time.time()
         description = get_description(self.library_name, self.doc_url)
         if not description:
             description = "Could not find description"
         util.add_or_update_library_record(
-            {"library_name": "'" + self.library_name + "'",
-             "description": "'" + description + "'",
-             "doc_url": "'" + self.doc_url + "'"})
-        print("Finished retrieving description")
+            {"library_name": self.library_name,
+             "description": description,
+             "doc_url": self.doc_url})
+        end = time.time()
+        with open("times.txt", "a") as times:
+            times.write("Finished retrieving description: ")
+            times.write(str(end - start))
+            times.write("\n")
 
 
 class Extract(threading.Thread):
@@ -73,9 +80,14 @@ class Extract(threading.Thread):
         self.domain = domain
 
     def run(self):
+        start = time.time()
         task_extract_and_link(self.library_name, self.doc_url, self.domain)
         add_tasks_to_db(self.library_name)
-        print("Finished extracting tasks")
+        end = time.time()
+        with open("times.txt", "a") as times:
+            times.write("Finished extracting tasks: ")
+            times.write(str(end - start))
+            times.write("\n")
 
 
 class APIMatching(threading.Thread):
@@ -90,10 +102,14 @@ class APIMatching(threading.Thread):
         self.match_examples = match_examples
 
     def run(self):
+        start = time.time()
         api_methods_examples(self.language, self.library_name, self.doc_url,
                              self.gh_url, self.repo_path, self.match_examples)
-        print("Finished matching with " + (
-            "Examples" if self.match_examples else "Signatures"))
+        end = time.time()
+        with open("times.txt", "a") as times:
+            times.write("Finished matching with " + ("Examples" if self.match_examples else "Signatures") + ": ")
+            times.write(str(end - start))
+            times.write("\n")
 
 
 def analyze_library(language, library_name, doc_url, gh_url, domain):

@@ -8,9 +8,9 @@ def api_methods_examples(language, library_name, doc_url, repo_url, repo_path, c
     pages = get_webpages(doc_url, library_name)
     example_count, total_methods, classes_count, total_classes = calculate_ratios(
         language, library_name, repo_path, doc_url, pages, check_examples)
-    add_or_update_library_record({"library_name": "'" + library_name + "'",
-                                  "gh_url": "'" + repo_url + "'",
-                                  "doc_url": "'" + doc_url + "'",
+    add_or_update_library_record({"library_name": library_name,
+                                  "gh_url": repo_url,
+                                  "doc_url": doc_url,
                                   "num_method_examples": example_count,
                                   "num_methods": total_methods,
                                   "num_class_examples": classes_count,

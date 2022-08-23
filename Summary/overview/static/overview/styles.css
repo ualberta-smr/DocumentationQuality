@@ -18,11 +18,12 @@
     border-radius: 15px;
 }
 
-.btn-primary-outline {
-    background-color: transparent;
-    border-color: transparent;
-    outline: none;
-    padding: 0;
+.btn-outline-primary {
+    padding: 5px;
+}
+
+.btn-outline-primary:hover {
+    background-color: cornflowerblue;
 }
 
 label {
@@ -39,11 +40,23 @@ input {
     display: inline-block;
     float: right;
     height: 20px;
-    width: 350px;
+    /*width: 300px;*/
     margin-top: 10px;
 }
 
 select {
     display: inline-block;
     float: right;
+}
+
+.select2-search__field {
+    margin-bottom: 10px;
+}
+
+.select2-results__options {
+    width: 300px;
+}
+
+.modal-dialog-centered {
+    justify-content: center;
 }
