@@ -1,0 +1,3 @@
+Paragraph,Example,Page
+For example when run on the input sentence:,Joe Smith was born in Oregon.,https://stanfordnlp.github.io/CoreNLP/kbp.html
+For example when run on the input sentence:,"(""Joe Smith"", ""per:stateorprovince_of_birth"", ""Oregon"" }",https://stanfordnlp.github.io/CoreNLP/kbp.html

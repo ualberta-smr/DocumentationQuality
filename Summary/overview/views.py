@@ -6,7 +6,7 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.db.models import Count
 from django.shortcuts import render, redirect
 
-from Analyze.main import analyze_library
+from analyze.main import analyze_library
 from .models import Task, Library, Response
 from .forms import Demographics, GeneralRating, TaskList, CodeExamples, \
     Readability, Consistency, Navigability, Feedback, AnalyzeForm

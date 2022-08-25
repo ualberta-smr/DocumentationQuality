@@ -1,0 +1,71 @@
+"Paragraph","Tasks"
+"StanfordCoreNLP includes SUTime, a library for processing temporal expressions such as February 4th, 2019. SUTime is built on top of TokensRegex.","include SUTime
+process temporal expressions such_as february
+build SUTime on_top_of TokensRegex"
+"SUTime will match a variety of temporal expressions and link them to a TIMEX3 object.","match variety of temporal expressions
+link  to timex3 object"
+"4 types of temporal expression can be recognized.","recognize types of temporal expression"
+"Phrases are recognized and linked based on a set of TokensRegex rules.","recognize phrases
+link phrases"
+"SUTime is generally run as a subcomponent of the ner annotator. After it has run, the tokens of a time phrase will have a NamedEntityTagAnnotation for the type (e.g. DATE, TIME, DURATION, SET), and will have a edu.stanford.nlp.time.Timex object stored in the TimexAnnotation field.","run SUTime as subcomponent"
+"Recognized temporal expressions can be resolved relative to the document date. For instance, the expression this Wednesday will be resolved to the Wednesday that is closest to the document date, be it the current date or any other date. The document date can be set in several ways as will be documented below.","resolve recognized temporal expressions to document date
+resolve expression for instance
+resolve expression to Wednesday
+set document date in several ways"
+"If you would like to customize SUTime or make additions, you can alter the rules files accordingly or add new rules files. Setting the property sutime.rules = /path/to/my-rules.txt (or a comma-separated list of rules files) will set the pipeline to use your custom rules.","add new rules files
+set pipeline
+use custom rules"
+"SUTime will be run automatically as a subcomponent of the ner annotator. Several properties can be set to alter the behavior of SUTime.","run SUTime as subcomponent
+set several properties"
+"The document date used by SUTime can also be set by specifying a date in an xml file and using the cleanxml annotator.","specify date in xml file
+use cleanxml annotator
+set document date"
+"The English SUTime system in Stanford CoreNLP is specified in 3 rules files:","specify English SUTime system in rules files
+specify English SUTime system in Stanford CoreNLP"
+"In general, temporal concepts are set up in defs.sutime.txt, and the rules for matching phrases to temporal concepts are specified in english.sutime.txt. We will follow this pattern when adding fiscal year rules.","set up temporal concepts in general
+set up temporal concepts in defs.sutime.txt
+specify rules in english.sutime.txt
+specify rules for matching phrases"
+"In this example we will add rules to match phrases such as Q3 FY 2018.","match phrases such_as q3 FY"
+"The fiscal year is typically divided into 4 quarters. Here is an example for FY 2019.","divide fiscal year into quarters"
+"The first step is to specify these periods of time in defs.sutime.txt. Here are the rules in that file that define those blocks of time:","specify periods in defs.sutime.txt
+specify periods of time
+define blocks of time
+define file of time"
+"After this rule has been specified in defs.sutime.txt, further in that rule file and in the subsequent rule files FYQ1 can be accessed to refer to that temporal concept.","specify rule in defs.sutime.txt
+access fyq1"
+"Here two maps are produced, which will map String’s to specific financial quarters, and to integer offsets. When we specify the final rule, we need to potentially subtract 1 from the year if we are recognizing Q1. Also, using the CreateRegex function, we can generate a regex that will match any of the keys in the FISCAL_YEAR_QUARTER_MAP.","produce maps
+specify final rule
+recognize q1
+use CreateRegex function
+match regex"
+"Now that we have these tools, we can write the final TokensRegex rule that will match the actual phrases for financial quarters.","write final TokensRegex rule
+match actual phrases for financial quarters
+match final TokensRegex rule for financial quarters"
+"The TokensRegex rule specifies a pattern over tokens, and then specifies the temporal value to return.","specify pattern over tokens
+specify temporal value to return"
+"As a reminder, TokensRegex rules specify regular expression which match tokens. Each space separated regular expression matches a single token or sequence of tokens.","specify regular expression as reminder
+match tokens
+match regular expression
+match single token of tokens
+match sequence of tokens"
+"The (/$FiscalYearQuarterTerm/) token would represent Q1, Q2, Q3, Q4. The (FY)? represents an optional FY token. This is so both Q1 2019 can be recognized as well as Q1 FY 2019. The (/(FY)?([0-9]{4})/) token captures the year component of phrase, so both Q1 FY2019 can be recognized as well as Q1 2019.","recognize q1
+recognize q1 fy2019 as q1"
+"The result part of the rule specifies what temporal object to create when this pattern over tokens is recognized.","recognize pattern over tokens"
+"Keep in mind that there are two types of patterns to consider, patterns over tokens, and patterns that match the String contents of a given token.","match string contents of given token
+match patterns of given token"
+"For example (/Q*/) (/[0-9]{4}/) will match 2 tokens, the first token must start with a Q, and the second must be any 4-digit number.","match tokens"
+"In our example, the token pattern has 3 capture groups, and the String pattern for matching the year token has 2 capture groups (FY)? and ([0-9]{4}). This means $$3.matchResults[0].word.group(2) will refer to the 3rd capture group of the token pattern (the year token), and the 2nd group of the regex matching the year token’s String, which is the numerical part of the String.","match string"
+"The first component of the intersection is the result of the Subtract, which simply subtracts the quarter offset from the numerical value of the year token. So if FY2019 is matched, the numerical component will be 2019. The FISCAL_YEAR_QUARTER_YEAR_OFFSETS_MAP is used to determine the offset. If Q1 FY2019 was matched, Q1 would be mapped to 1, otherwise 0. So either 1 or 0 will be subtracted from 2019, giving the correct year. Note the Subtract is wrapped in an IsoDate. You can build a specific date with IsoDate($Year, $Month, $Day). Passing ANY to IsoDate will create a date with nothing specified for that field. So IsoDate(2019, ANY, ANY) means the year 2019.","match fy2019
+determine offset
+use FISCAL_YEAR_QUARTER_YEAR_OFFSETS_MAP
+match q1 fy2019
+wrap Subtract in IsoDate
+build specific date with IsoDate($Year, $Month, $Day)
+create date with nothing
+specify  for field"
+"The final temporal object is built and associated with the phrase.","build final temporal object with phrase"
+"If you have created a custom rules file, you can tell SUTime to use it by setting the sutime.rules property when running a pipeline. This property takes in a list of rules files and reads them in order.","create custom rules file
+use  by setting
+set sutime.rules property
+run pipeline"

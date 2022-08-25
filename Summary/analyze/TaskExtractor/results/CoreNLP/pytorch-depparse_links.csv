@@ -1,0 +1,2 @@
+Paragraph,Example,Page
+"After the model is trained, it can be converted to a format usable by CoreNLP:",python gen_model.py -o /path/to/italian-corenlp-parser.txt /path/to/experiment-dir/experiment-name,https://stanfordnlp.github.io/CoreNLP/pytorch-depparse.html

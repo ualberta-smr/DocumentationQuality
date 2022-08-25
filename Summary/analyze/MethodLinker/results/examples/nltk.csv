@@ -1,0 +1,1174 @@
+Example,Extracted Function,Linked Function,Source File,Matched
+">>> download('treebank') 
+[nltk_data] Downloading package 'treebank'...
+[nltk_data]   Unzipping corpora/treebank.zip.
+",download,N/A,N/A,N/A
+">>> download('all-corpora') 
+[nltk_data] Downloading package 'abc'...
+[nltk_data]   Unzipping corpora/abc.zip.
+[nltk_data] Downloading package 'alpino'...
+[nltk_data]   Unzipping corpora/alpino.zip.
+  ...
+[nltk_data] Downloading package 'words'...
+[nltk_data]   Unzipping corpora/words.zip.
+",download,N/A,N/A,N/A
+">>> from nltk.featstruct import unify
+>>> unify(dict(x=1, y=dict()), dict(a='a', y=dict(b='b')))  
+{'y': {'b': 'b'}, 'x': 1, 'a': 'a'}
+",unify,N/A,N/A,N/A
+">>> from nltk.featstruct import unify
+>>> unify(dict(x=1, y=dict()), dict(a='a', y=dict(b='b')))  
+{'y': {'b': 'b'}, 'x': 1, 'a': 'a'}
+",dict,N/A,N/A,N/A
+"def handler(s, position, reentrances, match): ...
+",handler,N/A,N/A,N/A
+">>> from nltk.featstruct import FeatStruct
+>>> FeatStruct('[a=?x]').unify(FeatStruct('[b=?x]'))
+[a=?x, b=?x2]
+",FeatStruct,__init__,nltk\nltk\featstruct.py,True
+">>> from nltk.featstruct import FeatStruct
+>>> FeatStruct('[a=?x]').unify(FeatStruct('[b=?x]'))
+[a=?x, b=?x2]
+",unify,N/A,N/A,N/A
+">>> from nltk.probability import ConditionalFreqDist
+>>> from nltk.tokenize import word_tokenize
+>>> sent = ""the the the dog dog some other words that we do not care about""
+>>> cfdist = ConditionalFreqDist()
+>>> for word in word_tokenize(sent):
+...     condition = len(word)
+...     cfdist[condition][word] += 1
+",ConditionalFreqDist,__init__,nltk\nltk\probability.py,True
+">>> from nltk.probability import ConditionalFreqDist
+>>> from nltk.tokenize import word_tokenize
+>>> sent = ""the the the dog dog some other words that we do not care about""
+>>> cfdist = ConditionalFreqDist()
+>>> for word in word_tokenize(sent):
+...     condition = len(word)
+...     cfdist[condition][word] += 1
+",word_tokenize,N/A,N/A,N/A
+">>> from nltk.probability import ConditionalFreqDist
+>>> from nltk.tokenize import word_tokenize
+>>> sent = ""the the the dog dog some other words that we do not care about""
+>>> cfdist = ConditionalFreqDist()
+>>> for word in word_tokenize(sent):
+...     condition = len(word)
+...     cfdist[condition][word] += 1
+",len,N/A,N/A,N/A
+">>> cfdist = ConditionalFreqDist((len(word), word) for word in word_tokenize(sent))
+",ConditionalFreqDist,__init__,nltk\nltk\probability.py,True
+">>> cfdist = ConditionalFreqDist((len(word), word) for word in word_tokenize(sent))
+",len,N/A,N/A,N/A
+">>> cfdist = ConditionalFreqDist((len(word), word) for word in word_tokenize(sent))
+",word_tokenize,N/A,N/A,N/A
+">>> cfdist[3]
+FreqDist({'the': 3, 'dog': 2, 'not': 1})
+>>> cfdist[3].freq('the')
+0.5
+>>> cfdist[3]['dog']
+2
+",FreqDist,__init__,nltk\nltk\probability.py,True
+">>> cfdist[3]
+FreqDist({'the': 3, 'dog': 2, 'not': 1})
+>>> cfdist[3].freq('the')
+0.5
+>>> cfdist[3]['dog']
+2
+",freq,N/A,N/A,N/A
+">>> from nltk.corpus import brown
+>>> from nltk.probability import ConditionalFreqDist
+>>> from nltk.probability import ConditionalProbDist, ELEProbDist
+>>> cfdist = ConditionalFreqDist(brown.tagged_words()[:5000])
+>>> cpdist = ConditionalProbDist(cfdist, ELEProbDist, 10)
+>>> cpdist['passed'].max()
+'VBD'
+>>> cpdist['passed'].prob('VBD')
+0.423...
+",ConditionalFreqDist,__init__,nltk\nltk\probability.py,True
+">>> from nltk.corpus import brown
+>>> from nltk.probability import ConditionalFreqDist
+>>> from nltk.probability import ConditionalProbDist, ELEProbDist
+>>> cfdist = ConditionalFreqDist(brown.tagged_words()[:5000])
+>>> cpdist = ConditionalProbDist(cfdist, ELEProbDist, 10)
+>>> cpdist['passed'].max()
+'VBD'
+>>> cpdist['passed'].prob('VBD')
+0.423...
+",brown.tagged_words,N/A,N/A,N/A
+">>> from nltk.corpus import brown
+>>> from nltk.probability import ConditionalFreqDist
+>>> from nltk.probability import ConditionalProbDist, ELEProbDist
+>>> cfdist = ConditionalFreqDist(brown.tagged_words()[:5000])
+>>> cpdist = ConditionalProbDist(cfdist, ELEProbDist, 10)
+>>> cpdist['passed'].max()
+'VBD'
+>>> cpdist['passed'].prob('VBD')
+0.423...
+",ConditionalProbDist,__init__,nltk\nltk\probability.py,True
+">>> from nltk.corpus import brown
+>>> from nltk.probability import ConditionalFreqDist
+>>> from nltk.probability import ConditionalProbDist, ELEProbDist
+>>> cfdist = ConditionalFreqDist(brown.tagged_words()[:5000])
+>>> cpdist = ConditionalProbDist(cfdist, ELEProbDist, 10)
+>>> cpdist['passed'].max()
+'VBD'
+>>> cpdist['passed'].prob('VBD')
+0.423...
+",max,N/A,N/A,N/A
+">>> from nltk.corpus import brown
+>>> from nltk.probability import ConditionalFreqDist
+>>> from nltk.probability import ConditionalProbDist, ELEProbDist
+>>> cfdist = ConditionalFreqDist(brown.tagged_words()[:5000])
+>>> cpdist = ConditionalProbDist(cfdist, ELEProbDist, 10)
+>>> cpdist['passed'].max()
+'VBD'
+>>> cpdist['passed'].prob('VBD')
+0.423...
+",prob,N/A,N/A,N/A
+">>> from nltk.tokenize import word_tokenize
+>>> from nltk.probability import FreqDist
+>>> sent = 'This is an example sentence'
+>>> fdist = FreqDist()
+>>> for word in word_tokenize(sent):
+...    fdist[word.lower()] += 1
+",FreqDist,__init__,nltk\nltk\probability.py,True
+">>> from nltk.tokenize import word_tokenize
+>>> from nltk.probability import FreqDist
+>>> sent = 'This is an example sentence'
+>>> fdist = FreqDist()
+>>> for word in word_tokenize(sent):
+...    fdist[word.lower()] += 1
+",word_tokenize,N/A,N/A,N/A
+">>> from nltk.tokenize import word_tokenize
+>>> from nltk.probability import FreqDist
+>>> sent = 'This is an example sentence'
+>>> fdist = FreqDist()
+>>> for word in word_tokenize(sent):
+...    fdist[word.lower()] += 1
+",word.lower,N/A,N/A,N/A
+">>> fdist = FreqDist(word.lower() for word in word_tokenize(sent))
+",FreqDist,__init__,nltk\nltk\probability.py,True
+">>> fdist = FreqDist(word.lower() for word in word_tokenize(sent))
+",word.lower,N/A,N/A,N/A
+">>> fdist = FreqDist(word.lower() for word in word_tokenize(sent))
+",word_tokenize,N/A,N/A,N/A
+">>> from nltk.probability import ProbabilisticMixIn
+>>> class A:
+...     def __init__(self, x, y): self.data = (x,y)
+...
+>>> class ProbabilisticA(A, ProbabilisticMixIn):
+...     def __init__(self, x, y, **prob_kwarg):
+...         A.__init__(self, x, y)
+...         ProbabilisticMixIn.__init__(self, **prob_kwarg)
+",__init__,N/A,N/A,N/A
+">>> from nltk.probability import ProbabilisticMixIn
+>>> class A:
+...     def __init__(self, x, y): self.data = (x,y)
+...
+>>> class ProbabilisticA(A, ProbabilisticMixIn):
+...     def __init__(self, x, y, **prob_kwarg):
+...         A.__init__(self, x, y)
+...         ProbabilisticMixIn.__init__(self, **prob_kwarg)
+",ProbabilisticA,N/A,N/A,N/A
+">>> from nltk.probability import ProbabilisticMixIn
+>>> class A:
+...     def __init__(self, x, y): self.data = (x,y)
+...
+>>> class ProbabilisticA(A, ProbabilisticMixIn):
+...     def __init__(self, x, y, **prob_kwarg):
+...         A.__init__(self, x, y)
+...         ProbabilisticMixIn.__init__(self, **prob_kwarg)
+",A.__init__,N/A,N/A,N/A
+">>> import nltk.corpus
+>>> from nltk.text import Text
+>>> moby = Text(nltk.corpus.gutenberg.words('melville-moby_dick.txt'))
+",Text,__init__,nltk\nltk\text.py,True
+">>> import nltk.corpus
+>>> from nltk.text import Text
+>>> moby = Text(nltk.corpus.gutenberg.words('melville-moby_dick.txt'))
+",gutenberg.words,N/A,N/A,N/A
+">>> from nltk.book import text4
+>>> text4.collocation_list()[:2]
+[('United', 'States'), ('fellow', 'citizens')]
+",text4.collocation_list,N/A,N/A,N/A
+">>> from nltk.book import text4
+>>> text4.collocations() 
+United States; fellow citizens; four years; ...
+",text4.collocations,N/A,N/A,N/A
+">>> print('hack'); from nltk.book import text1, text5, text9
+hack...
+>>> text5.findall(""<.*><.*>"")
+you rule bro; telling you bro; u twizted bro
+>>> text1.findall(""(<.*>)"")
+monied; nervous; dangerous; white; white; white; pious; queer; good;
+mature; white; Cape; great; wise; wise; butterless; white; fiendish;
+pale; furious; better; certain; complete; dismasted; younger; brave;
+brave; brave; brave
+>>> text9.findall(""{3,}"")
+thread through those; the thought that; that the thing; the thing
+that; that that thing; through these than through; them that the;
+through the thick; them that they; thought that the
+",print,N/A,N/A,N/A
+">>> print('hack'); from nltk.book import text1, text5, text9
+hack...
+>>> text5.findall(""<.*><.*>"")
+you rule bro; telling you bro; u twizted bro
+>>> text1.findall(""(<.*>)"")
+monied; nervous; dangerous; white; white; white; pious; queer; good;
+mature; white; Cape; great; wise; wise; butterless; white; fiendish;
+pale; furious; better; certain; complete; dismasted; younger; brave;
+brave; brave; brave
+>>> text9.findall(""{3,}"")
+thread through those; the thought that; that the thing; the thing
+that; that that thing; through these than through; them that the;
+through the thick; them that they; thought that the
+",text5.findall,N/A,N/A,N/A
+">>> print('hack'); from nltk.book import text1, text5, text9
+hack...
+>>> text5.findall(""<.*><.*>"")
+you rule bro; telling you bro; u twizted bro
+>>> text1.findall(""(<.*>)"")
+monied; nervous; dangerous; white; white; white; pious; queer; good;
+mature; white; Cape; great; wise; wise; butterless; white; fiendish;
+pale; furious; better; certain; complete; dismasted; younger; brave;
+brave; brave; brave
+>>> text9.findall(""{3,}"")
+thread through those; the thought that; that the thing; the thing
+that; that that thing; through these than through; them that the;
+through the thick; them that they; thought that the
+",text1.findall,N/A,N/A,N/A
+">>> print('hack'); from nltk.book import text1, text5, text9
+hack...
+>>> text5.findall(""<.*><.*>"")
+you rule bro; telling you bro; u twizted bro
+>>> text1.findall(""(<.*>)"")
+monied; nervous; dangerous; white; white; white; pious; queer; good;
+mature; white; Cape; great; wise; wise; butterless; white; fiendish;
+pale; furious; better; certain; complete; dismasted; younger; brave;
+brave; brave; brave
+>>> text9.findall(""{3,}"")
+thread through those; the thought that; that the thing; the thing
+that; that that thing; through these than through; them that the;
+through the thick; them that they; thought that the
+",text9.findall,N/A,N/A,N/A
+">>> import nltk.corpus
+>>> from nltk.text import TextCollection
+>>> print('hack'); from nltk.book import text1, text2, text3
+hack...
+>>> gutenberg = TextCollection(nltk.corpus.gutenberg)
+>>> mytexts = TextCollection([text1, text2, text3])
+",print,N/A,N/A,N/A
+">>> import nltk.corpus
+>>> from nltk.text import TextCollection
+>>> print('hack'); from nltk.book import text1, text2, text3
+hack...
+>>> gutenberg = TextCollection(nltk.corpus.gutenberg)
+>>> mytexts = TextCollection([text1, text2, text3])
+",TextCollection,__init__,nltk\nltk\text.py,True
+">>> from nltk.text import TokenSearcher
+>>> print('hack'); from nltk.book import text1, text5, text9
+hack...
+>>> text5.findall(""<.*><.*>"")
+you rule bro; telling you bro; u twizted bro
+>>> text1.findall(""(<.*>)"")
+monied; nervous; dangerous; white; white; white; pious; queer; good;
+mature; white; Cape; great; wise; wise; butterless; white; fiendish;
+pale; furious; better; certain; complete; dismasted; younger; brave;
+brave; brave; brave
+>>> text9.findall(""{3,}"")
+thread through those; the thought that; that the thing; the thing
+that; that that thing; through these than through; them that the;
+through the thick; them that they; thought that the
+",print,N/A,N/A,N/A
+">>> from nltk.text import TokenSearcher
+>>> print('hack'); from nltk.book import text1, text5, text9
+hack...
+>>> text5.findall(""<.*><.*>"")
+you rule bro; telling you bro; u twizted bro
+>>> text1.findall(""(<.*>)"")
+monied; nervous; dangerous; white; white; white; pious; queer; good;
+mature; white; Cape; great; wise; wise; butterless; white; fiendish;
+pale; furious; better; certain; complete; dismasted; younger; brave;
+brave; brave; brave
+>>> text9.findall(""{3,}"")
+thread through those; the thought that; that the thing; the thing
+that; that that thing; through these than through; them that the;
+through the thick; them that they; thought that the
+",text5.findall,N/A,N/A,N/A
+">>> from nltk.text import TokenSearcher
+>>> print('hack'); from nltk.book import text1, text5, text9
+hack...
+>>> text5.findall(""<.*><.*>"")
+you rule bro; telling you bro; u twizted bro
+>>> text1.findall(""(<.*>)"")
+monied; nervous; dangerous; white; white; white; pious; queer; good;
+mature; white; Cape; great; wise; wise; butterless; white; fiendish;
+pale; furious; better; certain; complete; dismasted; younger; brave;
+brave; brave; brave
+>>> text9.findall(""{3,}"")
+thread through those; the thought that; that the thing; the thing
+that; that that thing; through these than through; them that the;
+through the thick; them that they; thought that the
+",text1.findall,N/A,N/A,N/A
+">>> from nltk.text import TokenSearcher
+>>> print('hack'); from nltk.book import text1, text5, text9
+hack...
+>>> text5.findall(""<.*><.*>"")
+you rule bro; telling you bro; u twizted bro
+>>> text1.findall(""(<.*>)"")
+monied; nervous; dangerous; white; white; white; pious; queer; good;
+mature; white; Cape; great; wise; wise; butterless; white; fiendish;
+pale; furious; better; certain; complete; dismasted; younger; brave;
+brave; brave; brave
+>>> text9.findall(""{3,}"")
+thread through those; the thought that; that the thing; the thing
+that; that that thing; through these than through; them that the;
+through the thick; them that they; thought that the
+",text9.findall,N/A,N/A,N/A
+"for parent_index in ptree.parent_indices(parent):
+    parent[parent_index] is ptree
+",ptree.parent_indices,N/A,N/A,N/A
+"for treepos in ptree.treepositions(root):
+    root[treepos] is ptree
+",ptree.treepositions,N/A,N/A,N/A
+">>> from nltk.tree import Tree
+>>> print(Tree(1, [2, Tree(3, [4]), 5]))
+(1 2 (3 4) 5)
+>>> vp = Tree('VP', [Tree('V', ['saw']),
+...                  Tree('NP', ['him'])])
+>>> s = Tree('S', [Tree('NP', ['I']), vp])
+>>> print(s)
+(S (NP I) (VP (V saw) (NP him)))
+>>> print(s[1])
+(VP (V saw) (NP him))
+>>> print(s[1,1])
+(NP him)
+>>> t = Tree.fromstring(""(S (NP I) (VP (V saw) (NP him)))"")
+>>> s == t
+True
+>>> t[1][1].set_label('X')
+>>> t[1][1].label()
+'X'
+>>> print(t)
+(S (NP I) (VP (V saw) (X him)))
+>>> t[0], t[1,1] = t[1,1], t[0]
+>>> print(t)
+(S (X him) (VP (V saw) (NP I)))
+",print,N/A,N/A,N/A
+">>> from nltk.tree import Tree
+>>> print(Tree(1, [2, Tree(3, [4]), 5]))
+(1 2 (3 4) 5)
+>>> vp = Tree('VP', [Tree('V', ['saw']),
+...                  Tree('NP', ['him'])])
+>>> s = Tree('S', [Tree('NP', ['I']), vp])
+>>> print(s)
+(S (NP I) (VP (V saw) (NP him)))
+>>> print(s[1])
+(VP (V saw) (NP him))
+>>> print(s[1,1])
+(NP him)
+>>> t = Tree.fromstring(""(S (NP I) (VP (V saw) (NP him)))"")
+>>> s == t
+True
+>>> t[1][1].set_label('X')
+>>> t[1][1].label()
+'X'
+>>> print(t)
+(S (NP I) (VP (V saw) (X him)))
+>>> t[0], t[1,1] = t[1,1], t[0]
+>>> print(t)
+(S (X him) (VP (V saw) (NP I)))
+",Tree,__init__,nltk\nltk\tree\tree.py,True
+">>> from nltk.tree import Tree
+>>> print(Tree(1, [2, Tree(3, [4]), 5]))
+(1 2 (3 4) 5)
+>>> vp = Tree('VP', [Tree('V', ['saw']),
+...                  Tree('NP', ['him'])])
+>>> s = Tree('S', [Tree('NP', ['I']), vp])
+>>> print(s)
+(S (NP I) (VP (V saw) (NP him)))
+>>> print(s[1])
+(VP (V saw) (NP him))
+>>> print(s[1,1])
+(NP him)
+>>> t = Tree.fromstring(""(S (NP I) (VP (V saw) (NP him)))"")
+>>> s == t
+True
+>>> t[1][1].set_label('X')
+>>> t[1][1].label()
+'X'
+>>> print(t)
+(S (NP I) (VP (V saw) (X him)))
+>>> t[0], t[1,1] = t[1,1], t[0]
+>>> print(t)
+(S (X him) (VP (V saw) (NP I)))
+",Tree.fromstring,fromstring,nltk\nltk\tree\tree.py,False
+">>> from nltk.tree import Tree
+>>> print(Tree(1, [2, Tree(3, [4]), 5]))
+(1 2 (3 4) 5)
+>>> vp = Tree('VP', [Tree('V', ['saw']),
+...                  Tree('NP', ['him'])])
+>>> s = Tree('S', [Tree('NP', ['I']), vp])
+>>> print(s)
+(S (NP I) (VP (V saw) (NP him)))
+>>> print(s[1])
+(VP (V saw) (NP him))
+>>> print(s[1,1])
+(NP him)
+>>> t = Tree.fromstring(""(S (NP I) (VP (V saw) (NP him)))"")
+>>> s == t
+True
+>>> t[1][1].set_label('X')
+>>> t[1][1].label()
+'X'
+>>> print(t)
+(S (NP I) (VP (V saw) (X him)))
+>>> t[0], t[1,1] = t[1,1], t[0]
+>>> print(t)
+(S (X him) (VP (V saw) (NP I)))
+",set_label,N/A,N/A,N/A
+">>> from nltk.tree import Tree
+>>> print(Tree(1, [2, Tree(3, [4]), 5]))
+(1 2 (3 4) 5)
+>>> vp = Tree('VP', [Tree('V', ['saw']),
+...                  Tree('NP', ['him'])])
+>>> s = Tree('S', [Tree('NP', ['I']), vp])
+>>> print(s)
+(S (NP I) (VP (V saw) (NP him)))
+>>> print(s[1])
+(VP (V saw) (NP him))
+>>> print(s[1,1])
+(NP him)
+>>> t = Tree.fromstring(""(S (NP I) (VP (V saw) (NP him)))"")
+>>> s == t
+True
+>>> t[1][1].set_label('X')
+>>> t[1][1].label()
+'X'
+>>> print(t)
+(S (NP I) (VP (V saw) (X him)))
+>>> t[0], t[1,1] = t[1,1], t[0]
+>>> print(t)
+(S (X him) (VP (V saw) (NP I)))
+",label,N/A,N/A,N/A
+">>> len(t)
+2
+",len,N/A,N/A,N/A
+">>> t = Tree.fromstring(""(S (NP (D the) (N dog)) (VP (V chased) (NP (D the) (N cat))))"")
+>>> print(t.flatten())
+(S the dog chased the cat)
+",Tree.fromstring,fromstring,nltk\nltk\tree\tree.py,False
+">>> t = Tree.fromstring(""(S (NP (D the) (N dog)) (VP (V chased) (NP (D the) (N cat))))"")
+>>> print(t.flatten())
+(S the dog chased the cat)
+",print,N/A,N/A,N/A
+">>> t = Tree.fromstring(""(S (NP (D the) (N dog)) (VP (V chased) (NP (D the) (N cat))))"")
+>>> print(t.flatten())
+(S the dog chased the cat)
+",t.flatten,N/A,N/A,N/A
+">>> t = Tree.fromstring(""(S (NP (D the) (N dog)) (VP (V chased) (NP (D the) (N cat))))"")
+>>> t.height()
+5
+>>> print(t[0,0])
+(D the)
+>>> t[0,0].height()
+2
+",Tree.fromstring,fromstring,nltk\nltk\tree\tree.py,False
+">>> t = Tree.fromstring(""(S (NP (D the) (N dog)) (VP (V chased) (NP (D the) (N cat))))"")
+>>> t.height()
+5
+>>> print(t[0,0])
+(D the)
+>>> t[0,0].height()
+2
+",t.height,N/A,N/A,N/A
+">>> t = Tree.fromstring(""(S (NP (D the) (N dog)) (VP (V chased) (NP (D the) (N cat))))"")
+>>> t.height()
+5
+>>> print(t[0,0])
+(D the)
+>>> t[0,0].height()
+2
+",print,N/A,N/A,N/A
+">>> t = Tree.fromstring(""(S (NP (D the) (N dog)) (VP (V chased) (NP (D the) (N cat))))"")
+>>> t.height()
+5
+>>> print(t[0,0])
+(D the)
+>>> t[0,0].height()
+2
+",height,N/A,N/A,N/A
+">>> t = Tree.fromstring('(S (NP (D the) (N dog)) (VP (V chased) (NP (D the) (N cat))))')
+>>> t.label()
+'S'
+",Tree.fromstring,fromstring,nltk\nltk\tree\tree.py,False
+">>> t = Tree.fromstring('(S (NP (D the) (N dog)) (VP (V chased) (NP (D the) (N cat))))')
+>>> t.label()
+'S'
+",t.label,N/A,N/A,N/A
+">>> t = Tree.fromstring(""(S (NP (D the) (N dog)) (VP (V chased) (NP (D the) (N cat))))"")
+>>> t.leaves()
+['the', 'dog', 'chased', 'the', 'cat']
+",Tree.fromstring,fromstring,nltk\nltk\tree\tree.py,False
+">>> t = Tree.fromstring(""(S (NP (D the) (N dog)) (VP (V chased) (NP (D the) (N cat))))"")
+>>> t.leaves()
+['the', 'dog', 'chased', 'the', 'cat']
+",t.leaves,N/A,N/A,N/A
+">>> t = Tree.fromstring(""(S (NP (D the) (N dog)) (VP (V chased) (NP (D the) (N cat))))"")
+>>> t.pos()
+[('the', 'D'), ('dog', 'N'), ('chased', 'V'), ('the', 'D'), ('cat', 'N')]
+",Tree.fromstring,fromstring,nltk\nltk\tree\tree.py,False
+">>> t = Tree.fromstring(""(S (NP (D the) (N dog)) (VP (V chased) (NP (D the) (N cat))))"")
+>>> t.pos()
+[('the', 'D'), ('dog', 'N'), ('chased', 'V'), ('the', 'D'), ('cat', 'N')]
+",t.pos,N/A,N/A,N/A
+">>> t = Tree.fromstring(""(S (NP (D the) (N dog)) (VP (V chased) (NP (D the) (N cat))))"")
+>>> t.productions()
+[S -> NP VP, NP -> D N, D -> 'the', N -> 'dog', VP -> V NP, V -> 'chased',
+NP -> D N, D -> 'the', N -> 'cat']
+",Tree.fromstring,fromstring,nltk\nltk\tree\tree.py,False
+">>> t = Tree.fromstring(""(S (NP (D the) (N dog)) (VP (V chased) (NP (D the) (N cat))))"")
+>>> t.productions()
+[S -> NP VP, NP -> D N, D -> 'the', N -> 'dog', VP -> V NP, V -> 'chased',
+NP -> D N, D -> 'the', N -> 'cat']
+",t.productions,N/A,N/A,N/A
+">>> t = Tree.fromstring(""(S (NP (D the) (N dog)) (VP (V chased) (NP (D the) (N cat))))"")
+>>> t.set_label(""T"")
+>>> print(t)
+(T (NP (D the) (N dog)) (VP (V chased) (NP (D the) (N cat))))
+",Tree.fromstring,fromstring,nltk\nltk\tree\tree.py,False
+">>> t = Tree.fromstring(""(S (NP (D the) (N dog)) (VP (V chased) (NP (D the) (N cat))))"")
+>>> t.set_label(""T"")
+>>> print(t)
+(T (NP (D the) (N dog)) (VP (V chased) (NP (D the) (N cat))))
+",t.set_label,N/A,N/A,N/A
+">>> t = Tree.fromstring(""(S (NP (D the) (N dog)) (VP (V chased) (NP (D the) (N cat))))"")
+>>> t.set_label(""T"")
+>>> print(t)
+(T (NP (D the) (N dog)) (VP (V chased) (NP (D the) (N cat))))
+",print,N/A,N/A,N/A
+">>> t = Tree.fromstring(""(S (NP (D the) (N dog)) (VP (V chased) (NP (D the) (N cat))))"")
+>>> for s in t.subtrees(lambda t: t.height() == 2):
+...     print(s)
+(D the)
+(N dog)
+(V chased)
+(D the)
+(N cat)
+",Tree.fromstring,fromstring,nltk\nltk\tree\tree.py,False
+">>> t = Tree.fromstring(""(S (NP (D the) (N dog)) (VP (V chased) (NP (D the) (N cat))))"")
+>>> for s in t.subtrees(lambda t: t.height() == 2):
+...     print(s)
+(D the)
+(N dog)
+(V chased)
+(D the)
+(N cat)
+",t.subtrees,N/A,N/A,N/A
+">>> t = Tree.fromstring(""(S (NP (D the) (N dog)) (VP (V chased) (NP (D the) (N cat))))"")
+>>> for s in t.subtrees(lambda t: t.height() == 2):
+...     print(s)
+(D the)
+(N dog)
+(V chased)
+(D the)
+(N cat)
+",t.height,N/A,N/A,N/A
+">>> t = Tree.fromstring(""(S (NP (D the) (N dog)) (VP (V chased) (NP (D the) (N cat))))"")
+>>> for s in t.subtrees(lambda t: t.height() == 2):
+...     print(s)
+(D the)
+(N dog)
+(V chased)
+(D the)
+(N cat)
+",print,N/A,N/A,N/A
+">>> t = Tree.fromstring(""(S (NP (D the) (N dog)) (VP (V chased) (NP (D the) (N cat))))"")
+>>> t.treepositions() 
+[(), (0,), (0, 0), (0, 0, 0), (0, 1), (0, 1, 0), (1,), (1, 0), (1, 0, 0), ...]
+>>> for pos in t.treepositions('leaves'):
+...     t[pos] = t[pos][::-1].upper()
+>>> print(t)
+(S (NP (D EHT) (N GOD)) (VP (V DESAHC) (NP (D EHT) (N TAC))))
+",Tree.fromstring,fromstring,nltk\nltk\tree\tree.py,False
+">>> t = Tree.fromstring(""(S (NP (D the) (N dog)) (VP (V chased) (NP (D the) (N cat))))"")
+>>> t.treepositions() 
+[(), (0,), (0, 0), (0, 0, 0), (0, 1), (0, 1, 0), (1,), (1, 0), (1, 0, 0), ...]
+>>> for pos in t.treepositions('leaves'):
+...     t[pos] = t[pos][::-1].upper()
+>>> print(t)
+(S (NP (D EHT) (N GOD)) (VP (V DESAHC) (NP (D EHT) (N TAC))))
+",t.treepositions,N/A,N/A,N/A
+">>> t = Tree.fromstring(""(S (NP (D the) (N dog)) (VP (V chased) (NP (D the) (N cat))))"")
+>>> t.treepositions() 
+[(), (0,), (0, 0), (0, 0, 0), (0, 1), (0, 1, 0), (1,), (1, 0), (1, 0, 0), ...]
+>>> for pos in t.treepositions('leaves'):
+...     t[pos] = t[pos][::-1].upper()
+>>> print(t)
+(S (NP (D EHT) (N GOD)) (VP (V DESAHC) (NP (D EHT) (N TAC))))
+",upper,N/A,N/A,N/A
+">>> t = Tree.fromstring(""(S (NP (D the) (N dog)) (VP (V chased) (NP (D the) (N cat))))"")
+>>> t.treepositions() 
+[(), (0,), (0, 0), (0, 0, 0), (0, 1), (0, 1, 0), (1,), (1, 0), (1, 0, 0), ...]
+>>> for pos in t.treepositions('leaves'):
+...     t[pos] = t[pos][::-1].upper()
+>>> print(t)
+(S (NP (D EHT) (N GOD)) (VP (V DESAHC) (NP (D EHT) (N TAC))))
+",print,N/A,N/A,N/A
+">>> import nltk
+>>> from nltk.util import acyclic_branches_depth_first as tree
+>>> wn=nltk.corpus.wordnet
+>>> from pprint import pprint
+>>> pprint(tree(wn.synset('certified.a.01'), lambda s:s.also_sees(), cut_mark='...', depth=4))
+[Synset('certified.a.01'),
+ [Synset('authorized.a.01'),
+  [Synset('lawful.a.01'),
+   [Synset('legal.a.01'),
+    ""Cycle(Synset('lawful.a.01'),0,...)"",
+    [Synset('legitimate.a.01'), '...']],
+   [Synset('straight.a.06'),
+    [Synset('honest.a.01'), '...'],
+    ""Cycle(Synset('lawful.a.01'),0,...)""]],
+  [Synset('legitimate.a.01'),
+   ""Cycle(Synset('authorized.a.01'),1,...)"",
+   [Synset('legal.a.01'),
+    [Synset('lawful.a.01'), '...'],
+    ""Cycle(Synset('legitimate.a.01'),0,...)""],
+   [Synset('valid.a.01'),
+    ""Cycle(Synset('legitimate.a.01'),0,...)"",
+    [Synset('reasonable.a.01'), '...']]],
+  [Synset('official.a.01'), ""Cycle(Synset('authorized.a.01'),1,...)""]],
+ [Synset('documented.a.01')]]
+",pprint,N/A,N/A,N/A
+">>> import nltk
+>>> from nltk.util import acyclic_branches_depth_first as tree
+>>> wn=nltk.corpus.wordnet
+>>> from pprint import pprint
+>>> pprint(tree(wn.synset('certified.a.01'), lambda s:s.also_sees(), cut_mark='...', depth=4))
+[Synset('certified.a.01'),
+ [Synset('authorized.a.01'),
+  [Synset('lawful.a.01'),
+   [Synset('legal.a.01'),
+    ""Cycle(Synset('lawful.a.01'),0,...)"",
+    [Synset('legitimate.a.01'), '...']],
+   [Synset('straight.a.06'),
+    [Synset('honest.a.01'), '...'],
+    ""Cycle(Synset('lawful.a.01'),0,...)""]],
+  [Synset('legitimate.a.01'),
+   ""Cycle(Synset('authorized.a.01'),1,...)"",
+   [Synset('legal.a.01'),
+    [Synset('lawful.a.01'), '...'],
+    ""Cycle(Synset('legitimate.a.01'),0,...)""],
+   [Synset('valid.a.01'),
+    ""Cycle(Synset('legitimate.a.01'),0,...)"",
+    [Synset('reasonable.a.01'), '...']]],
+  [Synset('official.a.01'), ""Cycle(Synset('authorized.a.01'),1,...)""]],
+ [Synset('documented.a.01')]]
+",tree,N/A,N/A,N/A
+">>> import nltk
+>>> from nltk.util import acyclic_branches_depth_first as tree
+>>> wn=nltk.corpus.wordnet
+>>> from pprint import pprint
+>>> pprint(tree(wn.synset('certified.a.01'), lambda s:s.also_sees(), cut_mark='...', depth=4))
+[Synset('certified.a.01'),
+ [Synset('authorized.a.01'),
+  [Synset('lawful.a.01'),
+   [Synset('legal.a.01'),
+    ""Cycle(Synset('lawful.a.01'),0,...)"",
+    [Synset('legitimate.a.01'), '...']],
+   [Synset('straight.a.06'),
+    [Synset('honest.a.01'), '...'],
+    ""Cycle(Synset('lawful.a.01'),0,...)""]],
+  [Synset('legitimate.a.01'),
+   ""Cycle(Synset('authorized.a.01'),1,...)"",
+   [Synset('legal.a.01'),
+    [Synset('lawful.a.01'), '...'],
+    ""Cycle(Synset('legitimate.a.01'),0,...)""],
+   [Synset('valid.a.01'),
+    ""Cycle(Synset('legitimate.a.01'),0,...)"",
+    [Synset('reasonable.a.01'), '...']]],
+  [Synset('official.a.01'), ""Cycle(Synset('authorized.a.01'),1,...)""]],
+ [Synset('documented.a.01')]]
+",wn.synset,N/A,N/A,N/A
+">>> import nltk
+>>> from nltk.util import acyclic_branches_depth_first as tree
+>>> wn=nltk.corpus.wordnet
+>>> from pprint import pprint
+>>> pprint(tree(wn.synset('certified.a.01'), lambda s:s.also_sees(), cut_mark='...', depth=4))
+[Synset('certified.a.01'),
+ [Synset('authorized.a.01'),
+  [Synset('lawful.a.01'),
+   [Synset('legal.a.01'),
+    ""Cycle(Synset('lawful.a.01'),0,...)"",
+    [Synset('legitimate.a.01'), '...']],
+   [Synset('straight.a.06'),
+    [Synset('honest.a.01'), '...'],
+    ""Cycle(Synset('lawful.a.01'),0,...)""]],
+  [Synset('legitimate.a.01'),
+   ""Cycle(Synset('authorized.a.01'),1,...)"",
+   [Synset('legal.a.01'),
+    [Synset('lawful.a.01'), '...'],
+    ""Cycle(Synset('legitimate.a.01'),0,...)""],
+   [Synset('valid.a.01'),
+    ""Cycle(Synset('legitimate.a.01'),0,...)"",
+    [Synset('reasonable.a.01'), '...']]],
+  [Synset('official.a.01'), ""Cycle(Synset('authorized.a.01'),1,...)""]],
+ [Synset('documented.a.01')]]
+",s.also_sees,N/A,N/A,N/A
+">>> import nltk
+>>> from nltk.util import acyclic_branches_depth_first as tree
+>>> wn=nltk.corpus.wordnet
+>>> from pprint import pprint
+>>> pprint(tree(wn.synset('certified.a.01'), lambda s:s.also_sees(), cut_mark='...', depth=4))
+[Synset('certified.a.01'),
+ [Synset('authorized.a.01'),
+  [Synset('lawful.a.01'),
+   [Synset('legal.a.01'),
+    ""Cycle(Synset('lawful.a.01'),0,...)"",
+    [Synset('legitimate.a.01'), '...']],
+   [Synset('straight.a.06'),
+    [Synset('honest.a.01'), '...'],
+    ""Cycle(Synset('lawful.a.01'),0,...)""]],
+  [Synset('legitimate.a.01'),
+   ""Cycle(Synset('authorized.a.01'),1,...)"",
+   [Synset('legal.a.01'),
+    [Synset('lawful.a.01'), '...'],
+    ""Cycle(Synset('legitimate.a.01'),0,...)""],
+   [Synset('valid.a.01'),
+    ""Cycle(Synset('legitimate.a.01'),0,...)"",
+    [Synset('reasonable.a.01'), '...']]],
+  [Synset('official.a.01'), ""Cycle(Synset('authorized.a.01'),1,...)""]],
+ [Synset('documented.a.01')]]
+",Synset,__init__,nltk\nltk\corpus\reader\wordnet.py,True
+">>> import nltk
+>>> from nltk.util import acyclic_branches_depth_first as tree
+>>> wn=nltk.corpus.wordnet
+>>> from pprint import pprint
+>>> pprint(tree(wn.synset('certified.a.01'), lambda s:s.also_sees(), cut_mark='...', depth=4))
+[Synset('certified.a.01'),
+ [Synset('authorized.a.01'),
+  [Synset('lawful.a.01'),
+   [Synset('legal.a.01'),
+    ""Cycle(Synset('lawful.a.01'),0,...)"",
+    [Synset('legitimate.a.01'), '...']],
+   [Synset('straight.a.06'),
+    [Synset('honest.a.01'), '...'],
+    ""Cycle(Synset('lawful.a.01'),0,...)""]],
+  [Synset('legitimate.a.01'),
+   ""Cycle(Synset('authorized.a.01'),1,...)"",
+   [Synset('legal.a.01'),
+    [Synset('lawful.a.01'), '...'],
+    ""Cycle(Synset('legitimate.a.01'),0,...)""],
+   [Synset('valid.a.01'),
+    ""Cycle(Synset('legitimate.a.01'),0,...)"",
+    [Synset('reasonable.a.01'), '...']]],
+  [Synset('official.a.01'), ""Cycle(Synset('authorized.a.01'),1,...)""]],
+ [Synset('documented.a.01')]]
+",Cycle,N/A,N/A,N/A
+">>> import nltk
+>>> from nltk.util import acyclic_depth_first as acyclic_tree
+>>> wn=nltk.corpus.wordnet
+>>> from pprint import pprint
+>>> pprint(acyclic_tree(wn.synset('dog.n.01'), lambda s:s.hypernyms(),cut_mark='...'))
+[Synset('dog.n.01'),
+ [Synset('canine.n.02'),
+  [Synset('carnivore.n.01'),
+   [Synset('placental.n.01'),
+    [Synset('mammal.n.01'),
+     [Synset('vertebrate.n.01'),
+      [Synset('chordate.n.01'),
+       [Synset('animal.n.01'),
+        [Synset('organism.n.01'),
+         [Synset('living_thing.n.01'),
+          [Synset('whole.n.02'),
+           [Synset('object.n.01'),
+            [Synset('physical_entity.n.01'),
+             [Synset('entity.n.01')]]]]]]]]]]]]],
+ [Synset('domestic_animal.n.01'), ""Cycle(Synset('animal.n.01'),-3,...)""]]
+",pprint,N/A,N/A,N/A
+">>> import nltk
+>>> from nltk.util import acyclic_depth_first as acyclic_tree
+>>> wn=nltk.corpus.wordnet
+>>> from pprint import pprint
+>>> pprint(acyclic_tree(wn.synset('dog.n.01'), lambda s:s.hypernyms(),cut_mark='...'))
+[Synset('dog.n.01'),
+ [Synset('canine.n.02'),
+  [Synset('carnivore.n.01'),
+   [Synset('placental.n.01'),
+    [Synset('mammal.n.01'),
+     [Synset('vertebrate.n.01'),
+      [Synset('chordate.n.01'),
+       [Synset('animal.n.01'),
+        [Synset('organism.n.01'),
+         [Synset('living_thing.n.01'),
+          [Synset('whole.n.02'),
+           [Synset('object.n.01'),
+            [Synset('physical_entity.n.01'),
+             [Synset('entity.n.01')]]]]]]]]]]]]],
+ [Synset('domestic_animal.n.01'), ""Cycle(Synset('animal.n.01'),-3,...)""]]
+",acyclic_tree,N/A,N/A,N/A
+">>> import nltk
+>>> from nltk.util import acyclic_depth_first as acyclic_tree
+>>> wn=nltk.corpus.wordnet
+>>> from pprint import pprint
+>>> pprint(acyclic_tree(wn.synset('dog.n.01'), lambda s:s.hypernyms(),cut_mark='...'))
+[Synset('dog.n.01'),
+ [Synset('canine.n.02'),
+  [Synset('carnivore.n.01'),
+   [Synset('placental.n.01'),
+    [Synset('mammal.n.01'),
+     [Synset('vertebrate.n.01'),
+      [Synset('chordate.n.01'),
+       [Synset('animal.n.01'),
+        [Synset('organism.n.01'),
+         [Synset('living_thing.n.01'),
+          [Synset('whole.n.02'),
+           [Synset('object.n.01'),
+            [Synset('physical_entity.n.01'),
+             [Synset('entity.n.01')]]]]]]]]]]]]],
+ [Synset('domestic_animal.n.01'), ""Cycle(Synset('animal.n.01'),-3,...)""]]
+",wn.synset,N/A,N/A,N/A
+">>> import nltk
+>>> from nltk.util import acyclic_depth_first as acyclic_tree
+>>> wn=nltk.corpus.wordnet
+>>> from pprint import pprint
+>>> pprint(acyclic_tree(wn.synset('dog.n.01'), lambda s:s.hypernyms(),cut_mark='...'))
+[Synset('dog.n.01'),
+ [Synset('canine.n.02'),
+  [Synset('carnivore.n.01'),
+   [Synset('placental.n.01'),
+    [Synset('mammal.n.01'),
+     [Synset('vertebrate.n.01'),
+      [Synset('chordate.n.01'),
+       [Synset('animal.n.01'),
+        [Synset('organism.n.01'),
+         [Synset('living_thing.n.01'),
+          [Synset('whole.n.02'),
+           [Synset('object.n.01'),
+            [Synset('physical_entity.n.01'),
+             [Synset('entity.n.01')]]]]]]]]]]]]],
+ [Synset('domestic_animal.n.01'), ""Cycle(Synset('animal.n.01'),-3,...)""]]
+",s.hypernyms,N/A,N/A,N/A
+">>> import nltk
+>>> from nltk.util import acyclic_depth_first as acyclic_tree
+>>> wn=nltk.corpus.wordnet
+>>> from pprint import pprint
+>>> pprint(acyclic_tree(wn.synset('dog.n.01'), lambda s:s.hypernyms(),cut_mark='...'))
+[Synset('dog.n.01'),
+ [Synset('canine.n.02'),
+  [Synset('carnivore.n.01'),
+   [Synset('placental.n.01'),
+    [Synset('mammal.n.01'),
+     [Synset('vertebrate.n.01'),
+      [Synset('chordate.n.01'),
+       [Synset('animal.n.01'),
+        [Synset('organism.n.01'),
+         [Synset('living_thing.n.01'),
+          [Synset('whole.n.02'),
+           [Synset('object.n.01'),
+            [Synset('physical_entity.n.01'),
+             [Synset('entity.n.01')]]]]]]]]]]]]],
+ [Synset('domestic_animal.n.01'), ""Cycle(Synset('animal.n.01'),-3,...)""]]
+",Synset,__init__,nltk\nltk\corpus\reader\wordnet.py,True
+">>> import nltk
+>>> from nltk.util import acyclic_depth_first as acyclic_tree
+>>> wn=nltk.corpus.wordnet
+>>> from pprint import pprint
+>>> pprint(acyclic_tree(wn.synset('dog.n.01'), lambda s:s.hypernyms(),cut_mark='...'))
+[Synset('dog.n.01'),
+ [Synset('canine.n.02'),
+  [Synset('carnivore.n.01'),
+   [Synset('placental.n.01'),
+    [Synset('mammal.n.01'),
+     [Synset('vertebrate.n.01'),
+      [Synset('chordate.n.01'),
+       [Synset('animal.n.01'),
+        [Synset('organism.n.01'),
+         [Synset('living_thing.n.01'),
+          [Synset('whole.n.02'),
+           [Synset('object.n.01'),
+            [Synset('physical_entity.n.01'),
+             [Synset('entity.n.01')]]]]]]]]]]]]],
+ [Synset('domestic_animal.n.01'), ""Cycle(Synset('animal.n.01'),-3,...)""]]
+",Cycle,N/A,N/A,N/A
+">>> from nltk.util import bigrams
+>>> list(bigrams([1,2,3,4,5]))
+[(1, 2), (2, 3), (3, 4), (4, 5)]
+",list,N/A,N/A,N/A
+">>> from nltk.util import bigrams
+>>> list(bigrams([1,2,3,4,5]))
+[(1, 2), (2, 3), (3, 4), (4, 5)]
+",bigrams,N/A,N/A,N/A
+">>> choose(4, 2)
+6
+>>> choose(6, 2)
+15
+",choose,N/A,N/A,N/A
+">>> sent = 'a b c'.split()
+",split,N/A,N/A,N/A
+">>> list(everygrams(sent))
+[('a',), ('a', 'b'), ('a', 'b', 'c'), ('b',), ('b', 'c'), ('c',)]
+",list,N/A,N/A,N/A
+">>> list(everygrams(sent))
+[('a',), ('a', 'b'), ('a', 'b', 'c'), ('b',), ('b', 'c'), ('c',)]
+",everygrams,N/A,N/A,N/A
+">>> sorted(everygrams(sent), key=len)
+[('a',), ('b',), ('c',), ('a', 'b'), ('b', 'c'), ('a', 'b', 'c')]
+",sorted,N/A,N/A,N/A
+">>> sorted(everygrams(sent), key=len)
+[('a',), ('b',), ('c',), ('a', 'b'), ('b', 'c'), ('a', 'b', 'c')]
+",everygrams,N/A,N/A,N/A
+">>> list(everygrams(sent, max_len=2))
+[('a',), ('a', 'b'), ('b',), ('b', 'c'), ('c',)]
+",list,N/A,N/A,N/A
+">>> list(everygrams(sent, max_len=2))
+[('a',), ('a', 'b'), ('b',), ('b', 'c'), ('c',)]
+",everygrams,N/A,N/A,N/A
+">>> from nltk.util import flatten
+>>> flatten(1, 2, ['b', 'a' , ['c', 'd']], 3)
+[1, 2, 'b', 'a', 'c', 'd', 3]
+",flatten,N/A,N/A,N/A
+"locale.setlocale(locale.LC_ALL, '')
+",locale.setlocale,N/A,N/A,N/A
+">>> from nltk.util import ngrams
+>>> list(ngrams([1,2,3,4,5], 3))
+[(1, 2, 3), (2, 3, 4), (3, 4, 5)]
+",list,N/A,N/A,N/A
+">>> from nltk.util import ngrams
+>>> list(ngrams([1,2,3,4,5], 3))
+[(1, 2, 3), (2, 3, 4), (3, 4, 5)]
+",ngrams,N/A,N/A,N/A
+">>> list(ngrams([1,2,3,4,5], 2, pad_right=True))
+[(1, 2), (2, 3), (3, 4), (4, 5), (5, None)]
+>>> list(ngrams([1,2,3,4,5], 2, pad_right=True, right_pad_symbol=''))
+[(1, 2), (2, 3), (3, 4), (4, 5), (5, '')]
+>>> list(ngrams([1,2,3,4,5], 2, pad_left=True, left_pad_symbol=''))
+[('', 1), (1, 2), (2, 3), (3, 4), (4, 5)]
+>>> list(ngrams([1,2,3,4,5], 2, pad_left=True, pad_right=True, left_pad_symbol='', right_pad_symbol=''))
+[('', 1), (1, 2), (2, 3), (3, 4), (4, 5), (5, '')]
+",list,N/A,N/A,N/A
+">>> list(ngrams([1,2,3,4,5], 2, pad_right=True))
+[(1, 2), (2, 3), (3, 4), (4, 5), (5, None)]
+>>> list(ngrams([1,2,3,4,5], 2, pad_right=True, right_pad_symbol=''))
+[(1, 2), (2, 3), (3, 4), (4, 5), (5, '')]
+>>> list(ngrams([1,2,3,4,5], 2, pad_left=True, left_pad_symbol=''))
+[('', 1), (1, 2), (2, 3), (3, 4), (4, 5)]
+>>> list(ngrams([1,2,3,4,5], 2, pad_left=True, pad_right=True, left_pad_symbol='', right_pad_symbol=''))
+[('', 1), (1, 2), (2, 3), (3, 4), (4, 5), (5, '')]
+",ngrams,N/A,N/A,N/A
+">>> list(pad_sequence([1,2,3,4,5], 2, pad_left=True, pad_right=True, left_pad_symbol='', right_pad_symbol=''))
+['', 1, 2, 3, 4, 5, '']
+>>> list(pad_sequence([1,2,3,4,5], 2, pad_left=True, left_pad_symbol=''))
+['', 1, 2, 3, 4, 5]
+>>> list(pad_sequence([1,2,3,4,5], 2, pad_right=True, right_pad_symbol=''))
+[1, 2, 3, 4, 5, '']
+",list,N/A,N/A,N/A
+">>> list(pad_sequence([1,2,3,4,5], 2, pad_left=True, pad_right=True, left_pad_symbol='', right_pad_symbol=''))
+['', 1, 2, 3, 4, 5, '']
+>>> list(pad_sequence([1,2,3,4,5], 2, pad_left=True, left_pad_symbol=''))
+['', 1, 2, 3, 4, 5]
+>>> list(pad_sequence([1,2,3,4,5], 2, pad_right=True, right_pad_symbol=''))
+[1, 2, 3, 4, 5, '']
+",pad_sequence,N/A,N/A,N/A
+">>> sent = ""Insurgents killed in ongoing fighting"".split()
+>>> list(skipgrams(sent, 2, 2))
+[('Insurgents', 'killed'), ('Insurgents', 'in'), ('Insurgents', 'ongoing'), ('killed', 'in'), ('killed', 'ongoing'), ('killed', 'fighting'), ('in', 'ongoing'), ('in', 'fighting'), ('ongoing', 'fighting')]
+>>> list(skipgrams(sent, 3, 2))
+[('Insurgents', 'killed', 'in'), ('Insurgents', 'killed', 'ongoing'), ('Insurgents', 'killed', 'fighting'), ('Insurgents', 'in', 'ongoing'), ('Insurgents', 'in', 'fighting'), ('Insurgents', 'ongoing', 'fighting'), ('killed', 'in', 'ongoing'), ('killed', 'in', 'fighting'), ('killed', 'ongoing', 'fighting'), ('in', 'ongoing', 'fighting')]
+",split,N/A,N/A,N/A
+">>> sent = ""Insurgents killed in ongoing fighting"".split()
+>>> list(skipgrams(sent, 2, 2))
+[('Insurgents', 'killed'), ('Insurgents', 'in'), ('Insurgents', 'ongoing'), ('killed', 'in'), ('killed', 'ongoing'), ('killed', 'fighting'), ('in', 'ongoing'), ('in', 'fighting'), ('ongoing', 'fighting')]
+>>> list(skipgrams(sent, 3, 2))
+[('Insurgents', 'killed', 'in'), ('Insurgents', 'killed', 'ongoing'), ('Insurgents', 'killed', 'fighting'), ('Insurgents', 'in', 'ongoing'), ('Insurgents', 'in', 'fighting'), ('Insurgents', 'ongoing', 'fighting'), ('killed', 'in', 'ongoing'), ('killed', 'in', 'fighting'), ('killed', 'ongoing', 'fighting'), ('in', 'ongoing', 'fighting')]
+",list,N/A,N/A,N/A
+">>> sent = ""Insurgents killed in ongoing fighting"".split()
+>>> list(skipgrams(sent, 2, 2))
+[('Insurgents', 'killed'), ('Insurgents', 'in'), ('Insurgents', 'ongoing'), ('killed', 'in'), ('killed', 'ongoing'), ('killed', 'fighting'), ('in', 'ongoing'), ('in', 'fighting'), ('ongoing', 'fighting')]
+>>> list(skipgrams(sent, 3, 2))
+[('Insurgents', 'killed', 'in'), ('Insurgents', 'killed', 'ongoing'), ('Insurgents', 'killed', 'fighting'), ('Insurgents', 'in', 'ongoing'), ('Insurgents', 'in', 'fighting'), ('Insurgents', 'ongoing', 'fighting'), ('killed', 'in', 'ongoing'), ('killed', 'in', 'fighting'), ('killed', 'ongoing', 'fighting'), ('in', 'ongoing', 'fighting')]
+",skipgrams,N/A,N/A,N/A
+">>> from nltk.util import trigrams
+>>> list(trigrams([1,2,3,4,5]))
+[(1, 2, 3), (2, 3, 4), (3, 4, 5)]
+",list,N/A,N/A,N/A
+">>> from nltk.util import trigrams
+>>> list(trigrams([1,2,3,4,5]))
+[(1, 2, 3), (2, 3, 4), (3, 4, 5)]
+",trigrams,N/A,N/A,N/A
+">>> import nltk
+>>> from nltk.util import unweighted_minimum_spanning_tree as mst
+>>> wn=nltk.corpus.wordnet
+>>> from pprint import pprint
+>>> pprint(mst(wn.synset('bound.a.01'), lambda s:s.also_sees()))
+[Synset('bound.a.01'),
+ [Synset('unfree.a.02'),
+  [Synset('confined.a.02')],
+  [Synset('dependent.a.01')],
+  [Synset('restricted.a.01'), [Synset('classified.a.02')]]]]
+",pprint,N/A,N/A,N/A
+">>> import nltk
+>>> from nltk.util import unweighted_minimum_spanning_tree as mst
+>>> wn=nltk.corpus.wordnet
+>>> from pprint import pprint
+>>> pprint(mst(wn.synset('bound.a.01'), lambda s:s.also_sees()))
+[Synset('bound.a.01'),
+ [Synset('unfree.a.02'),
+  [Synset('confined.a.02')],
+  [Synset('dependent.a.01')],
+  [Synset('restricted.a.01'), [Synset('classified.a.02')]]]]
+",mst,N/A,N/A,N/A
+">>> import nltk
+>>> from nltk.util import unweighted_minimum_spanning_tree as mst
+>>> wn=nltk.corpus.wordnet
+>>> from pprint import pprint
+>>> pprint(mst(wn.synset('bound.a.01'), lambda s:s.also_sees()))
+[Synset('bound.a.01'),
+ [Synset('unfree.a.02'),
+  [Synset('confined.a.02')],
+  [Synset('dependent.a.01')],
+  [Synset('restricted.a.01'), [Synset('classified.a.02')]]]]
+",wn.synset,N/A,N/A,N/A
+">>> import nltk
+>>> from nltk.util import unweighted_minimum_spanning_tree as mst
+>>> wn=nltk.corpus.wordnet
+>>> from pprint import pprint
+>>> pprint(mst(wn.synset('bound.a.01'), lambda s:s.also_sees()))
+[Synset('bound.a.01'),
+ [Synset('unfree.a.02'),
+  [Synset('confined.a.02')],
+  [Synset('dependent.a.01')],
+  [Synset('restricted.a.01'), [Synset('classified.a.02')]]]]
+",s.also_sees,N/A,N/A,N/A
+">>> import nltk
+>>> from nltk.util import unweighted_minimum_spanning_tree as mst
+>>> wn=nltk.corpus.wordnet
+>>> from pprint import pprint
+>>> pprint(mst(wn.synset('bound.a.01'), lambda s:s.also_sees()))
+[Synset('bound.a.01'),
+ [Synset('unfree.a.02'),
+  [Synset('confined.a.02')],
+  [Synset('dependent.a.01')],
+  [Synset('restricted.a.01'), [Synset('classified.a.02')]]]]
+",Synset,__init__,nltk\nltk\corpus\reader\wordnet.py,True
+">>> lesk(['I', 'went', 'to', 'the', 'bank', 'to', 'deposit', 'money', '.'], 'bank', 'n')
+Synset('savings_bank.n.02')
+",lesk,N/A,N/A,N/A
+">>> lesk(['I', 'went', 'to', 'the', 'bank', 'to', 'deposit', 'money', '.'], 'bank', 'n')
+Synset('savings_bank.n.02')
+",Synset,__init__,nltk\nltk\corpus\reader\wordnet.py,True
+">>> sent = 'a b c'.split()
+>>> list(everygrams(sent))
+[('a',), ('b',), ('c',), ('a', 'b'), ('b', 'c'), ('a', 'b', 'c')]
+>>> list(everygrams(sent, max_len=2))
+[('a',), ('b',), ('c',), ('a', 'b'), ('b', 'c')]
+",split,N/A,N/A,N/A
+">>> sent = 'a b c'.split()
+>>> list(everygrams(sent))
+[('a',), ('b',), ('c',), ('a', 'b'), ('b', 'c'), ('a', 'b', 'c')]
+>>> list(everygrams(sent, max_len=2))
+[('a',), ('b',), ('c',), ('a', 'b'), ('b', 'c')]
+",list,N/A,N/A,N/A
+">>> sent = 'a b c'.split()
+>>> list(everygrams(sent))
+[('a',), ('b',), ('c',), ('a', 'b'), ('b', 'c'), ('a', 'b', 'c')]
+>>> list(everygrams(sent, max_len=2))
+[('a',), ('b',), ('c',), ('a', 'b'), ('b', 'c')]
+",everygrams,N/A,N/A,N/A
+"def choose(n, k):
+    """"""
+    This function is a fast way to calculate binomial coefficients, commonly
+    known as nCk, i.e. the number of combinations of n things taken k at a time. 
+    (https://en.wikipedia.org/wiki/Binomial_coefficient).
+
+        >>> choose(4, 2)
+        6
+        >>> choose(6, 2)
+        15
+
+    :param n: The number of things.
+    :type n: int
+    :param r: The number of times a thing is taken.
+    :type r: int
+    """"""
+    if 0 <= k <= n:
+        ntok, ktok = 1, 1
+        for t in range(1, min(k, n - k) + 1):
+            ntok *= n
+            ktok *= t
+            n -= 1
+        return ntok // ktok
+    else:
+        return 0
+",choose,N/A,N/A,N/A
+"def choose(n, k):
+    """"""
+    This function is a fast way to calculate binomial coefficients, commonly
+    known as nCk, i.e. the number of combinations of n things taken k at a time. 
+    (https://en.wikipedia.org/wiki/Binomial_coefficient).
+
+        >>> choose(4, 2)
+        6
+        >>> choose(6, 2)
+        15
+
+    :param n: The number of things.
+    :type n: int
+    :param r: The number of times a thing is taken.
+    :type r: int
+    """"""
+    if 0 <= k <= n:
+        ntok, ktok = 1, 1
+        for t in range(1, min(k, n - k) + 1):
+            ntok *= n
+            ktok *= t
+            n -= 1
+        return ntok // ktok
+    else:
+        return 0
+",range,N/A,N/A,N/A
+"def choose(n, k):
+    """"""
+    This function is a fast way to calculate binomial coefficients, commonly
+    known as nCk, i.e. the number of combinations of n things taken k at a time. 
+    (https://en.wikipedia.org/wiki/Binomial_coefficient).
+
+        >>> choose(4, 2)
+        6
+        >>> choose(6, 2)
+        15
+
+    :param n: The number of things.
+    :type n: int
+    :param r: The number of times a thing is taken.
+    :type r: int
+    """"""
+    if 0 <= k <= n:
+        ntok, ktok = 1, 1
+        for t in range(1, min(k, n - k) + 1):
+            ntok *= n
+            ktok *= t
+            n -= 1
+        return ntok // ktok
+    else:
+        return 0
+",min,N/A,N/A,N/A
+"import itertools
+def choose(n,k):
+    return len(list(itertools.combinations(range(n),k)))
+",choose,N/A,N/A,N/A
+"import itertools
+def choose(n,k):
+    return len(list(itertools.combinations(range(n),k)))
+",len,N/A,N/A,N/A
+"import itertools
+def choose(n,k):
+    return len(list(itertools.combinations(range(n),k)))
+",list,N/A,N/A,N/A
+"import itertools
+def choose(n,k):
+    return len(list(itertools.combinations(range(n),k)))
+",itertools.combinations,N/A,N/A,N/A
+"import itertools
+def choose(n,k):
+    return len(list(itertools.combinations(range(n),k)))
+",range,N/A,N/A,N/A

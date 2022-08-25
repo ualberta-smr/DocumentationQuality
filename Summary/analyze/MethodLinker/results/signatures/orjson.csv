@@ -1,0 +1,25 @@
+Example,Extracted Function,Linked Function,Source File,Matched
+load(),"(None, [])",N/A,N/A,False
+dump(),"(None, [])",N/A,N/A,False
+dumps(),"(None, [])",N/A,N/A,False
+"dumps(...) + ""\n""","(None, [])",N/A,N/A,False
+loads(),"(None, [])",N/A,N/A,False
+dataclasses.asdict(),"(None, [])",N/A,N/A,False
+"field(metadata={""json_serialize"": False})","('field', ['metadata'])",N/A,N/A,False
+isoformat(),"(None, [])",N/A,N/A,False
+orjson.dumps(),"(None, [])",N/A,N/A,False
+obj.tolist(),"(None, [])",N/A,N/A,False
+"(50000, 100)","(None, [])",N/A,N/A,False
+"(100000, 100)","(None, [])",N/A,N/A,False
+"(100000, 200)","(None, [])",N/A,N/A,False
+ndarray.tolist(),"(None, [])",N/A,N/A,False
+numpy.float64(1),"(None, [])",N/A,N/A,False
+orjson.loads(),"(None, [])",N/A,N/A,False
+numpy.empty(),"(None, [])",N/A,N/A,False
+help(),"(None, [])",N/A,N/A,False
+numpy.float64(1.0),"(None, [])",N/A,N/A,False
+"orjson.dumps(..., **{})","(None, [])",N/A,N/A,False
+orjson.dumps({}),"(None, [])",N/A,N/A,False
+orjson.dumps(obj={}),"('orjson.dumps', ['obj'])","('orjson.dumps', ['__obj', 'option', 'default'])",orjson\orjson.pyi,True
+"orjson.dumps(..., option=orjson.OPT_NAIVE_UTC)","(None, [])",N/A,N/A,False
+"orjson.dumps(..., option=orjson.OPT_STRICT_INTEGER)","(None, [])",N/A,N/A,False

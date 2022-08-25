@@ -1,0 +1,5 @@
+Paragraph,Example,Page
+If you run this command:,"java -Xmx10g edu.stanford.nlp.pipeline.StanfordCoreNLP -annotators tokenize,ssplit,pos,lemma,ner,depparse,coref,quote -file quote-example.txt -outputFormat text",https://stanfordnlp.github.io/CoreNLP/quote.html
+If you run this command:,"In the summer Joe Smith decided to go on vacation.  He said, ""I'm going to Hawaii.""  That July, vacationer Joe went to Hawaii.",https://stanfordnlp.github.io/CoreNLP/quote.html
+You should get this output for the quote in the text:,"Extracted quotes: 
+[QuotationIndex=0, CharacterOffsetBegin=61, Text=""I'm going to Hawaii."", Speaker=Joe Smith]",https://stanfordnlp.github.io/CoreNLP/quote.html

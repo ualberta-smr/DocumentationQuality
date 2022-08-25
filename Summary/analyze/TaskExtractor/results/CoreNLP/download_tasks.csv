@@ -1,0 +1,22 @@
+"Paragraph","Tasks"
+"Stanford CoreNLP can be downloaded via the link below. This will download a large (482 MB) zip file containing (1) the CoreNLP code jar, (2) the CoreNLP models jar (required in your classpath for most tasks) (3) the libraries required to run CoreNLP, and (4) documentation / source code for the project. This is everything for getting going on English! Unzip this file, open the folder that results and you’re ready to use it.","download stanford CoreNLP via link
+download CoreNLP models jar for project
+download large zip file for project
+download documentation source code for project
+run CoreNLP
+open folder"
+"If you want to change the source code and recompile the files, see these instructions. Previous releases can be found on the release history page.","change source code
+recompile files"
+"Maven: You can find Stanford CoreNLP on Maven Central. The crucial thing to know is that CoreNLP needs its models to run (most parts beyond the tokenizer and sentence splitter) and so you need to specify both the code jar and the models jar in your pom.xml, as follows: (Note: Maven releases are usually made several days after a release on the website.)","specify code jar in pom.xml
+specify models jar in pom.xml"
+"If you want to get a language models jar off of Maven for Arabic, Chinese, German, or Spanish, also add this inside dependencies to your pom.xml:","get language models jar off_of Maven
+add inside dependencies to pom.xml"
+"You can build the project with this command:","build project with command"
+"And you can run a demo with a command like this:","run demo with command"
+"This example goes over how to set up CoreNLP from the latest official release. This example will take you through downloading the package, and running a simple command-line invocation of CoreNLP.","set up CoreNLP from latest official release
+download package
+run simple command-line invocation of CoreNLP"
+"Or using curl (what you get by default on macOS):","use curl"
+"If you’ll be using CoreNLP frequently, the below line is a useful line to have in your ~/.bashrc (or equivalent) file, replacing the directory /path/to/corenlp/ with the appropriate path to where you unzipped CoreNLP:","use CoreNLP"
+"Or using curl (what you get by default on macOS):","use curl"
+"If you’ll be using CoreNLP frequently, the below lines are useful to have in your ~/.bashrc (or equivalent) file, replacing the directory /path/to/corenlp/ with the appropriate path to where you unzipped CoreNLP (3 replacements):","use CoreNLP"

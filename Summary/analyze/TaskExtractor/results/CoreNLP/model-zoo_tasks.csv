@@ -1,0 +1,8 @@
+"Paragraph","Tasks"
+"A variety of third-party groups have created extensions for Stanford CoreNLP.","create extensions for Stanford CoreNLP"
+"In the table below we provide access to their work. By simply adding the jar for an entry to your classpath, you can begin using the extension.","provide access to work
+add jar for entry
+add jar to classpath
+use extension"
+"For example, if you download corenlp-swedish-1.0.0.jar and place it in your CLASSPATH, you can then run a POS tagger on Swedish.","place  in CLASSPATH
+run POS tagger on swedish"

@@ -1,0 +1,13 @@
+"Paragraph","Tasks"
+"Tokenization is the process of turning text into tokens. For instance, the sentence Marie was born in Paris. would be tokenized as the list ""Marie"", ""was"", ""born"", ""in"", ""Paris"", ""."". CoreNLP splits texts into tokens with an elaborate collection of rules, designed to follow UD 2.0 specifications.","tokenize  as list marie
+split texts into tokens"
+"It is important to note that the full tokenization process for French, German, and Spanish also involves running the MWTAnnotator for multi-word token expansion after sentence splitting. Most of the following documentation is focused on English tokenization.","run MWTAnnotator for multi-word token expansion
+run MWTAnnotator after sentence splitting"
+"This command will take in the text of the file input.txt and produce a human readable output of the tokens and their character offsets:","produce human readable output of tokens
+produce human readable output of character offsets"
+"Other output formats include conllu, json, and serialized.","include conllu
+include json
+include serialized"
+"The following command is an example of specifying PTBTokenizer options with the tokenize.options option:","specify PTBTokenizer options with tokenize.options option"
+"This demo code will produce the tokens and the character offsets of the text.","produce tokens of text
+produce character offsets of text"

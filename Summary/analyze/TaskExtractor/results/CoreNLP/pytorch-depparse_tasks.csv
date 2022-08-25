@@ -1,0 +1,9 @@
+"Paragraph","Tasks"
+"CoreNLP dependency parser models are trained with a PyTorch system for speed considerations. The PyTorch models can be converted to the format CoreNLP’s dependency parser expects.","convert PyTorch models to format"
+"The purpose of this library is to train models for the Java code base. If you want a full featured Python dependency parser, you should look into using Stanza.","use stanza"
+"Note that the above command will automatically tag the input data with the CoreNLP tagger. Thus you need to have CoreNLP and the Italian models (for this example) in your CLASSPATH, and you need the latest version of Stanza installed.","tag input data with CoreNLP tagger"
+"Why is this done? When CoreNLP runs a dependency parser, it relies on part of speech tags, so the training and development data used during training need to have the predicted tags CoreNLP will use for optimal performance.","run dependency parser
+use  during training
+use predicted tags CoreNLP for optimal performance"
+"After the model is trained, it can be converted to a format usable by CoreNLP:","convert  to format usable"
+"This will save a CoreNLP useable model at /path/to/italian-corenlp-parser.txt.","save CoreNLP useable model at /path/to/italian-corenlp-parser.txt"

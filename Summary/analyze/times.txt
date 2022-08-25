@@ -1,0 +1,5 @@
+Starting analysis for orjson
+Finished retrieving description: 2.874636173248291
+Finished matching with Examples: 80.22425293922424
+Finished matching with Signatures: 80.34928035736084
+Finished extracting tasks: 1713.968801021576

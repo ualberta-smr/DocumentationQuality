@@ -1,0 +1,37 @@
+Paragraph,Example,Page
+You can immediately run a pipeline by issuing the following command:,java -Xmx5g edu.stanford.nlp.pipeline.StanfordCoreNLP -file input.txt,https://stanfordnlp.github.io/CoreNLP/pipeline.html
+You can customize your pipeline by providing properties in a properties file.,"# output JSON instead
+outputFormat = json
+
+# list of annotators to run
+annotators = tokenize,ssplit,pos
+
+# customize the pos model
+pos.model = edu/stanford/nlp/models/pos-tagger/english-bidirectional-distsim.tagger",https://stanfordnlp.github.io/CoreNLP/pipeline.html
+Here is the command for running a pipeline with these configurations:,java -Xmx5g edu.stanford.nlp.pipeline.StanfordCoreNLP -props example.props -file input.txt,https://stanfordnlp.github.io/CoreNLP/pipeline.html
+Of course all of those properties could be specified at the command line as well:,"java -Xmx5g edu.stanford.nlp.pipeline.StanfordCoreNLP -annotators tokenize,ssplit,pos -pos.model edu/stanford/nlp/models/pos-tagger/english-bidirectional-distsim.tagger -outputFormat json -file input.txt",https://stanfordnlp.github.io/CoreNLP/pipeline.html
+"If you want to run a non-English language pipeline, you can just specify the name of one of the CoreNLP supported languages:",java -Xmx5g edu.stanford.nlp.pipeline.StanfordCoreNLP -props french -file french-input.txt,https://stanfordnlp.github.io/CoreNLP/pipeline.html
+Here is a basic demo class showing how to run a pipeline in Java code:,"package edu.stanford.nlp.examples;
+
+import edu.stanford.nlp.io.*;
+import edu.stanford.nlp.pipeline.*;
+
+import java.util.*;
+
+
+public class PipelineExample {
+
+    public static String text = ""Marie was born in Paris."";
+
+    public static void main(String[] args) {
+        // set up pipeline properties
+        Properties props = new Properties();
+        // set the list of annotators to run
+        props.setProperty(""annotators"", ""tokenize,ssplit,pos,lemma,ner,depparse"");
+        // build pipeline
+        StanfordCoreNLP pipeline = new StanfordCoreNLP(props);
+        // create a document object
+        CoreDocument document = pipeline.processToCoreDocument(text);
+    }
+
+}",https://stanfordnlp.github.io/CoreNLP/pipeline.html

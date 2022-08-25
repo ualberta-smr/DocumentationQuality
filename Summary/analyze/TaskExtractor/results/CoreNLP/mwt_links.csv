@@ -1,0 +1,9 @@
+Paragraph,Example,Page
+"In French, the word “des” is only split in certain circumstances. Thus, a statistical model is needed to make decisions on when to split “des” into “de” and “les”. First a part of speech tag model for MWT expansion is applied (mwt.pos.model). This model applies special tags to words that should be split. For French, it applies the tag “ADP_DET” to the word “des” in cases where “des” should be split. A corresponding dictionary is provided via mwt.statisticalMappingFile which maps word-tag pairs to splits. In the case of French, “des-ADP_DET” is mapped to “de,les”. Mapping files should consist of 2 tab separated columns. The first column contains the word and tag (e.g. “des-ADP_DET”), and the second column should consist of a comma separated list of multi word tokens (e.g. “de,les”).","des-ADP_DET    de,les",https://stanfordnlp.github.io/CoreNLP/mwt.html
+"This command will take in the text of the file input.txt (assumed to be French in this example) and produce a human readable output of the sentences, with MWT expansion applied.","java -Xmx5g edu.stanford.nlp.pipeline.StanfordCoreNLP -props french -annotators tokenize,ssplit,mwt -file input.txt",https://stanfordnlp.github.io/CoreNLP/mwt.html
+"This demo code will produce this output, which shows the enclitic pronoun being split from the verb:","Pude
+haber
+querido
+escribir
+lo
+.",https://stanfordnlp.github.io/CoreNLP/mwt.html

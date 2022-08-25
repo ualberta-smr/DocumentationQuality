@@ -1,0 +1,5 @@
+"Paragraph","Tasks"
+"Uses a dictionary to match entity mention text to a specific entity in Wikipedia.","use dictionary
+match entity mention text to specific entity"
+"For instance the text Hank Williams is matched to Hank Williams.","match text hank Williams for instance
+match text hank Williams to hank Williams"

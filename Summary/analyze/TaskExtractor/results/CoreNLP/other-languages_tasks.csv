@@ -1,0 +1,19 @@
+"Paragraph","Tasks"
+"Below are interfaces and packages for running Stanford CoreNLP from other languages or within other packages. They have been written by many other people (thanks!). In general you should contact these people directly if you have problems with these packages.","run Stanford CoreNLP within other packages
+run Stanford CoreNLP from other languages"
+"Note on running the CoreNLP server under docker: The container’s port 9000 has to be published to the host. For example, give a command like: docker run -p 9000:9000 --name coreNLP --rm -i -t motiz88/corenlp. If, when going to localhost:9000/, you see the error This site can’t be reached. localhost refused to connect, then this is what you failed to do!","run CoreNLP server under docker
+reach site
+reach error"
+"And there are many others – it’s not so hard to build a dockerfile. Here are a few more:","build dockerfile"
+"We are actively developing a Python package called Stanza, with state-of-the-art NLP performance enabled by deep learning. Besides, this package also includes an API for starting and making requests to a Stanford CoreNLP server. It is the recommended way to use Stanford CoreNLP in Python.","develop Python package
+call stanza with state-of-the-art NLP performance
+include API for starting
+include API for making
+use Stanford CoreNLP in Python"
+"These packages use the Stanford CoreNLP server that we’ve developed over the last couple of years.","use Stanford CoreNLP server
+develop  over last couple"
+"These packages are miscellaneous utilities or other frameworks that use Stanford CoreNLP.","use Stanford CoreNLP
+use other frameworks"
+"These are previous generation Python interfaces to Stanford CoreNLP, using a subprocess or their own server. They are now not generally being developed and are obsolete. (But thanks a lot to the people who wrote them in the early days!)","use own server
+use subprocess"
+"CoreNLP wrapper for Apache Spark by Xiangrui Meng of Databricks. Last we checked it was at version 0.41 supporting version 3.9.1 of CoreNLP.","support version 3.9.1 of CoreNLP"

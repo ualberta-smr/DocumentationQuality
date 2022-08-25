@@ -1,0 +1,5 @@
+"Paragraph","Tasks"
+"In this section we cover getting started with CoreNLP and different usage modes. CoreNLP can be used via the command line, in Java code, or with calls to a server, and can be run on multiple languages including Arabic, Chinese, English, French, German, and Spanish.","use CoreNLP with calls
+use CoreNLP in Java code
+use CoreNLP via command line
+run CoreNLP on multiple languages"

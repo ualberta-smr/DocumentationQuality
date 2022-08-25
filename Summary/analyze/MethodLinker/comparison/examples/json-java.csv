@@ -1,0 +1,26 @@
+Example,Truth functions,Test functions,Linked functions
+"import org.json.JSONObject;
+public class Test {
+    public static void main(String args[]){
+       JSONObject jo = new JSONObject(""{ \""abc\"" : \""def\"" }"");
+       System.out.println(jo.toString());
+    }
+}","['JSONObject', 'toString']","[('main', 'N/A'), 'JSONObject', ('out.println', 'N/A'), 'JSONObject.toString']","['JSONObject', 'JSONObject.toString']"
+"SomeBean[] myArr = new SomeBean[]{ new SomeBean(1), new SomeBean(2) };
+// these will be wrapped
+JSONArray jArr = new JSONArray(myArr);
+// these will not be wrapped
+jArr.putAll(new SomeBean[]{ new SomeBean(3), new SomeBean(4) });","['JSONArray', 'putAll']","[('SomeBean', 'N/A'), 'JSONArray', 'JSONArray.putAll']","['JSONArray', 'JSONArray.putAll']"
+"SomeBean[] myArr = new SomeBean[]{ new SomeBean(1), new SomeBean(2) };
+JSONArray jArr = new JSONArray();
+// these will not be wrapped
+jArr.putAll(myArr);
+// these will not be wrapped
+jArr.putAll(new SomeBean[]{ new SomeBean(3), new SomeBean(4) });
+// our jArr is now consistent.","['JSONArray', 'putAll']","[('SomeBean', 'N/A'), 'JSONArray', 'JSONArray.putAll']","['JSONArray', 'JSONArray.putAll']"
+"SomeBean[] myArr = new SomeBean[]{ new SomeBean(1), new SomeBean(2) };
+// these will be wrapped
+JSONArray jArr = new JSONArray(myArr);
+// these will be wrapped
+jArr.putAll(new JSONArray(new SomeBean[]{ new SomeBean(3), new SomeBean(4) }));
+// our jArr is now consistent.","['JSONArray', 'putAll']","[('SomeBean', 'N/A'), 'JSONArray', 'JSONArray.putAll']","['JSONArray', 'JSONArray.putAll']"

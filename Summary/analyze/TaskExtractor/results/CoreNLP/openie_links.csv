@@ -1,0 +1,67 @@
+Paragraph,Example,Page
+An interactive command-line shell can be run with the command:,java -mx1g -cp stanford-corenlp-.jar:stanford-corenlp--models.jar:CoreNLP-to-HTML.xsl:slf4j-api.jar:slf4j-simple.jar edu.stanford.nlp.naturalli.OpenIE,https://stanfordnlp.github.io/CoreNLP/openie.html
+"In addition, the program can be run on a collection of files either by passing the files directly as command-line arguments:",java -mx1g -cp stanford-corenlp-.jar:stanford-corenlp--models.jar:CoreNLP-to-HTML.xsl:slf4j-api.jar:slf4j-simple.jar edu.stanford.nlp.naturalli.OpenIE  /path/to/file1  /path/to/file2,https://stanfordnlp.github.io/CoreNLP/openie.html
+"or by setting the -filelist argument to a file containing a list of files to annotate, one per line:",java -mx1g -cp stanford-corenlp-.jar:stanford-corenlp--models.jar:CoreNLP-to-HTML.xsl:slf4j-api.jar:slf4j-simple.jar edu.stanford.nlp.naturalli.OpenIE  -filelist /path/to/filelist,https://stanfordnlp.github.io/CoreNLP/openie.html
+Relation triples can be accessed through the CoreNLP API using the standard annotation pipeline. An example class which does this is given below:,"import edu.stanford.nlp.ie.util.RelationTriple;
+import edu.stanford.nlp.ling.CoreAnnotations;
+import edu.stanford.nlp.pipeline.Annotation;
+import edu.stanford.nlp.pipeline.StanfordCoreNLP;
+import edu.stanford.nlp.naturalli.NaturalLogicAnnotations;
+import edu.stanford.nlp.util.CoreMap;
+
+import java.util.Collection;
+import java.util.Properties;
+
+/** A demo illustrating how to call the OpenIE system programmatically.
+ */
+public class OpenIEDemo {
+
+  public static void main(String[] args) throws Exception {
+    // Create the Stanford CoreNLP pipeline
+    Properties props = new Properties();
+    props.setProperty(""annotators"", ""tokenize,ssplit,pos,lemma,depparse,natlog,openie"");
+    StanfordCoreNLP pipeline = new StanfordCoreNLP(props);
+
+    // Annotate an example document.
+    Annotation doc = new Annotation(""Obama was born in Hawaii. He is our president."");
+    pipeline.annotate(doc);
+
+    // Loop over sentences in the document
+    for (CoreMap sentence : doc.get(CoreAnnotations.SentencesAnnotation.class)) {
+      // Get the OpenIE triples for the sentence
+      Collection<RelationTriple> triples =
+	          sentence.get(NaturalLogicAnnotations.RelationTriplesAnnotation.class);
+      // Print the triples
+      for (RelationTriple triple : triples) {
+        System.out.println(triple.confidence + ""\t"" +
+            triple.subjectLemmaGloss() + ""\t"" +
+            triple.relationLemmaGloss() + ""\t"" +
+            triple.objectLemmaGloss());
+      }
+    }
+  }
+}",https://stanfordnlp.github.io/CoreNLP/openie.html
+"The Simple CoreNLP API includes bindings for the OpenIE system, via the method Sentence.openieTriples(). An example usage is given below:","import edu.stanford.nlp.ie.util.RelationTriple;
+import edu.stanford.nlp.simple.*;
+
+/** A demo illustrating how to call the OpenIE system programmatically.
+ */
+public class OpenIEDemo {
+
+  public static void main(String[] args) throws Exception {
+    // Create a CoreNLP document
+    Document doc = new Document(""Obama was born in Hawaii. He is our president."");
+
+    // Iterate over the sentences in the document
+    for (Sentence sent : doc.sentences()) {
+      // Iterate over the triples in the sentence
+      for (RelationTriple triple : sent.openieTriples()) {
+        // Print the triple
+        System.out.println(triple.confidence + ""\t"" +
+            triple.subjectLemmaGloss() + ""\t"" +
+            triple.relationLemmaGloss() + ""\t"" +
+            triple.objectLemmaGloss());
+      }
+    }
+  }
+}",https://stanfordnlp.github.io/CoreNLP/openie.html

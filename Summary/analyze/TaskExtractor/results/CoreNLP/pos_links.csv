@@ -1,0 +1,3 @@
+Paragraph,Example,Page
+This command will apply part of speech tags using a non-default model (e.g. the more powerful but slower bidirectional model):,"java -Xmx5g edu.stanford.nlp.pipeline.StanfordCoreNLP -annotators tokenize,ssplit,pos -pos.model edu/stanford/nlp/models/pos-tagger/english-bidirectional-distsim.tagger -file input.txt",https://stanfordnlp.github.io/CoreNLP/pos.html
+"If running on French, German, or Spanish, it is crucial to use the MWT annotator:","java -Xmx5g edu.stanford.nlp.pipeline.StanfordCoreNLP -props french -annotators tokenize,ssplit,mwt,pos -file input.txt",https://stanfordnlp.github.io/CoreNLP/pos.html

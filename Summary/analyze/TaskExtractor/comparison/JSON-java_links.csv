@@ -1,0 +1,102 @@
+Paragraph,Ground Truth link,Program link,Has Tasks,Partial ratio
+Compile a program that uses the jar (see example code below),javac -cp .;json-java.jar test.java ,"javac -cp .;json-java.jar test.java (windows)
+javac -cp .:json-java.jar test.java (unix systems)",TRUE,55
+Compile a program that uses the jar (see example code below),javac -cp .;json-java.jar test.java ,"import org.json.jsonobject;
+public class test {
+    public static void main(string args[]){
+       jsonobject jo = new jsonobject(""{ \""abc\"" : \""def\"" }"");
+       system.out.println(jo.tostring());
+    }
+}",TRUE,19
+Execute the Test file,java -cp .;json-java.jar test,"java -cp .;json-java.jar test (windows)
+java -cp .:json-java.jar test (unix systems)",TRUE,51
+Execute the Test file,java -cp .;json-java.jar test,"{""abc"":""def""}",TRUE,14
+Execute the test suite with Maven:,mvn clean test,mvn clean test,TRUE,100
+Execute the test suite with Gradlew:,gradlew clean build test,gradlew clean build test,TRUE,100
+Build the class files from the package root directory src/main/java,javac org/json/*.java,,FALSE
+Create the jar file in the current directory,jar cf json-java.jar org/json/*.class,,FALSE
+Test file contents,"import org.json.jsonobject;
+public class test {
+    public static void main(string args[]){
+       jsonobject jo = new jsonobject(""{ \""abc\"" : \""def\"" }"");
+       system.out.println(jo.tostring());
+    }
+}",,FALSE
+Expected output,"{""abc"":""def""}",,FALSE
+"For example, code like this will create a mixed JSONArray, some items wrapped, others not:","somebean[] myarr = new somebean[]{ new somebean(1), new somebean(2) };
+// these will be wrapped
+jsonarray jarr = new jsonarray(myarr);
+// these will not be wrapped
+jarr.putall(new somebean[]{ new somebean(3), new somebean(4) });",,FALSE
+"For structure consistency, it would be recommended that the above code is changed to look like 1 of 2 ways.","somebean[] myarr = new somebean[]{ new somebean(1), new somebean(2) };
+jsonarray jarr = new jsonarray();
+// these will not be wrapped
+jarr.putall(myarr);
+// these will not be wrapped
+jarr.putall(new somebean[]{ new somebean(3), new somebean(4) });
+// our jarr is now consistent.",,FALSE
+"For structure consistency, it would be recommended that the above code is changed to look like 1 of 2 ways.","somebean[] myarr = new somebean[]{ new somebean(1), new somebean(2) };
+// these will be wrapped
+jsonarray jarr = new jsonarray(myarr);
+// these will be wrapped
+jarr.putall(new jsonarray(new somebean[]{ new somebean(3), new somebean(4) }));
+// our jarr is now consistent.",,FALSE
+Paragraph,,example,Page
+"The org.json package can be built from the command line, Maven, and Gradle. The unit tests can be executed from Maven, Gradle, or individually in an IDE e.g. Eclipse.",,javac org/json/*.java,http://web.archive.org/web/20211017224709/https://github.com/stleary/JSON-java
+"The org.json package can be built from the command line, Maven, and Gradle. The unit tests can be executed from Maven, Gradle, or individually in an IDE e.g. Eclipse.",,jar cf json-java.jar org/json/*.class,http://web.archive.org/web/20211017224709/https://github.com/stleary/JSON-java
+"Recent pull requests added a new method putAll on the JSONArray. The putAll method
+works similarly to other put methods in that it does not call JSONObject.wrap for items
+added. This can lead to inconsistent object representation in JSONArray structures.",,"somebean[] myarr = new somebean[]{ new somebean(1), new somebean(2) };
+// these will be wrapped
+jsonarray jarr = new jsonarray(myarr);
+// these will not be wrapped
+jarr.putall(new somebean[]{ new somebean(3), new somebean(4) });",http://web.archive.org/web/20211017224709/https://github.com/stleary/JSON-java
+"Recent pull requests added a new method putAll on the JSONArray. The putAll method
+works similarly to other put methods in that it does not call JSONObject.wrap for items
+added. This can lead to inconsistent object representation in JSONArray structures.",,"somebean[] myarr = new somebean[]{ new somebean(1), new somebean(2) };
+jsonarray jarr = new jsonarray();
+// these will not be wrapped
+jarr.putall(myarr);
+// these will not be wrapped
+jarr.putall(new somebean[]{ new somebean(3), new somebean(4) });
+// our jarr is now consistent.",http://web.archive.org/web/20211017224709/https://github.com/stleary/JSON-java
+"Recent pull requests added a new method putAll on the JSONArray. The putAll method
+works similarly to other put methods in that it does not call JSONObject.wrap for items
+added. This can lead to inconsistent object representation in JSONArray structures.",,"somebean[] myarr = new somebean[]{ new somebean(1), new somebean(2) };
+// these will be wrapped
+jsonarray jarr = new jsonarray(myarr);
+// these will be wrapped
+jarr.putall(new jsonarray(new somebean[]{ new somebean(3), new somebean(4) }));
+// our jarr is now consistent.",http://web.archive.org/web/20211017224709/https://github.com/stleary/JSON-java
+"JSON-java releases can be found by searching the Maven repository for groupId ""org.json""
+and artifactId ""json"". For example:
+https://search.maven.org/search?q=g:org.json%20AND%20a:json&core=gav",,"20210307    recent commits and potentially breaking fix to jsonpointer
+
+20201115    recent commits and first release after project structure change
+
+20200518    recent commits and snapshot before project structure change
+
+20190722    recent commits
+
+20180813    pom change to include automatic-module-name (#431)
+
+20180130    recent commits
+
+20171018    checkpoint for recent commits.
+
+20170516    roll up recent commits.
+
+20160810    revert code that was breaking opt*() methods.
+
+20160807    this release contains a bug in the jsonobject.opt*() and jsonarray.opt*() methods,
+it is not recommended for use.
+java 1.6 compatability fixed, jsonarray.tolist() and jsonobject.tomap(),
+rfc4180 compatibility, jsonpointer, some exception fixes, optional xml type conversion.
+contains the latest code as of 7 aug 2016
+
+20160212    java 1.6 compatibility, osgi bundle. contains the latest code as of 12 feb 2016.
+
+20151123    jsonobject and jsonarray initialization with generics. contains the latest code as of 23 nov 2015.
+
+20150729    checkpoint for maven central repository release. contains the latest code
+as of 29 july 2015.",http://web.archive.org/web/20211017224709/https://github.com/stleary/JSON-java

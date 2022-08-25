@@ -1,0 +1,27 @@
+"Paragraph","Tasks"
+"CoreNLP implements an annotation pipeline. An Annotation object is used that stores analyses of a piece of text. It is a Map. Initially, the text of a document is added to the Annotation as its only contents. Then, an AnnotationPipeline is run on the Annotation. An AnnotationPipeline is essentially a List of Annotators, each of which is run in turn. (And an AnnotationPipeline is itself an Annotator, so you can actually nest AnnotationPipelines inside each other.) Each Annotator reads the value of one or more keys from the Annotation, does some natural language analysis, and then writes the results back to the Annotation. Typically, each Annotator stores its analyses under different keys, so that the information stored in an Annotation is cumulative rather than things being overwritten. The overall picture is given in this picture.","use stores analyses of piece
+use annotation object of piece
+add text as only contents
+add text of document
+add text to annotation
+run AnnotationPipeline on annotation
+run annotator s in turn"
+"Around this basic skeleton, StanfordCoreNLP adds a lot of stuff, for processing options, caching Annotators, writing output in different formats, and all the other modcons of life. Normally, this stuff is convenient to have. However, if it is getting in your way, you can actually fairly easily make your own AnnotationPipeline using either or both the various Annotators provided with CoreNLP or additional implementations of Annotator that you write. In Java code, creating an AnnotationPipeline looks something like this:","add lot of stuff
+add lot for processing options
+add lot around basic skeleton
+cache annotator s
+write output in different formats
+write output of life
+write other modcons in different formats
+write other modcons of life
+use various annotator
+get  in way
+provide various annotator with CoreNLP additional implementations"
+"This pipeline could be used like this:","use pipeline"
+"With a custom analysis pipeline, only the first method is used. The other two methods are used in StanfordCoreNLP to check for dependencies between Annotators.","use first method with custom analysis pipeline
+use other methods in StanfordCoreNLP
+check  for dependencies"
+"A new thing provided with v.3.9 of CoreNLP is a default WebServiceAnnotator. This is an abstract implementation of an Annotator that makes it relatively easy to tie external webservices into a CoreNLP AnnotationPipeline. You simply have to provide a class that extends this class and which specifies three methods which say how to call your webservice, how to check if it’s running, and (optionally) how to start the webservice.","provide  with v.3.9
+provide class
+specify methods
+call webservice"

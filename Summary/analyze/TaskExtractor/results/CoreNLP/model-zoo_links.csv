@@ -1,0 +1,9 @@
+Paragraph,Example,Page
+"For example, if you download corenlp-swedish-1.0.0.jar and place it in your CLASSPATH, you can then run a POS tagger on Swedish.","# set up CLASSPATH to include model zoo jars
+export CLASSPATH=$CLASSPATH:/path/to/model_zoo/*
+# go to model zoo directory 
+cd /path/to/model_zoo
+# download file
+wget https://nlp.stanford.edu/software/model_zoo/corenlp-swedish-1.0.0.jar
+# run swedish pos tagger
+java -Xmx2g edu.stanford.nlp.pipeline.StanfordCoreNLP -annotators tokenize,ssplit,pos -pos.model edu/stanford/nlp/models/zoo/corenlp-swedish/swedish.tagger -file example-swedish-sentence.txt -outputFormat text",https://stanfordnlp.github.io/CoreNLP/model-zoo.html

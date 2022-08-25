@@ -1,0 +1,19 @@
+"Paragraph","Tasks"
+"The Open Information Extraction (OpenIE) annotator extracts open-domain relation triples, representing a subject, a relation, and the object of the relation. For example, born-in(Barack Obama, Hawaii). This is useful for (1) relation extraction tasks where there is limited or no training data, and it is easy to extract the information required from such open domain triples; and, (2) when speed is essential. The system can process around 100 sentences per second per CPU core. The Collection of extracted relation triples are stored under the RelationTriplesAnnotation key of a CoreMap (i.e., sentence). The OpenIE annotator (openie) requires the natural logic annotation (natlog).","extract open-domain relation triples
+extract information"
+"In addition to extracting relation triples, the annotator produces a number of sentence fragments corresponding to entailed fragments from the given original sentence. These are stored on the EntailedSentencesAnnotation key of a CoreMap (i.e., sentence).","extract relation triples
+produce  in_addition_to extracting"
+"All option are specified as Properties. The value of a property is always a String. The type referred to here is how the String will be interpreted/parsed.","specify option as properties"
+"The final group of options for specifying models are provided to fine-tune the inner workings of the OpenIE system. These should be changed only in very rare situations; for example, if you are developing extensions to the system itself.","specify models
+provide final group of options
+develop extensions to system
+change  in rare situations"
+"The OpenIE system can be run both through the command line, and through the CoreNLP API","run OpenIE system through command line"
+"An interactive command-line shell can be run with the command:","run interactive command-line shell with command"
+"In addition, the program can be run on a collection of files either by passing the files directly as command-line arguments:","pass files as command-line arguments
+run program on collection"
+"or by setting the -filelist argument to a file containing a list of files to annotate, one per line:","set filelist argument to file"
+"Relation triples can be accessed through the CoreNLP API using the standard annotation pipeline. An example class which does this is given below:","use standard annotation pipeline
+access relation triples through CoreNLP API"
+"The Simple CoreNLP API includes bindings for the OpenIE system, via the method Sentence.openieTriples(). An example usage is given below:","include bindings for OpenIE system
+include bindings via method Sentence.openieTriples()"

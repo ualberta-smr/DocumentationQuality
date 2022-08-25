@@ -1,0 +1,17 @@
+Paragraph,Example,Page
+"Around this basic skeleton, StanfordCoreNLP adds a lot of stuff, for processing options, caching Annotators, writing output in different formats, and all the other modcons of life. Normally, this stuff is convenient to have. However, if it is getting in your way, you can actually fairly easily make your own AnnotationPipeline using either or both the various Annotators provided with CoreNLP or additional implementations of Annotator that you write. In Java code, creating an AnnotationPipeline looks something like this:","public AnnotationPipeline buildPipeline() {
+    AnnotationPipeline pl = new AnnotationPipeline();
+    pl.addAnnotator(new TokenizerAnnotator(false));
+    pl.addAnnotator(new WordsToSentencesAnnotator(false));
+    pl.addAnnotator(new POSTaggerAnnotator(false));
+    pl.addAnnotator(new MorphaAnnotator(false));
+    pl.addAnnotator(new TimeAnnotator(""sutime"", props));
+    pl.addAnnotator(new PhraseAnnotator(phrasesFile, false));
+    return pl;
+  }",https://stanfordnlp.github.io/CoreNLP/pipelines.html
+This pipeline could be used like this:,"AnnotationPipeline pipeline = buildPipeline();
+Annotation annotation = new Annotation(""It's like a topography that is made from cartography of me."");
+pipeline.annotate(annotation);",https://stanfordnlp.github.io/CoreNLP/pipelines.html
+This pipeline could be used like this:,"public void annotate(Annotation annotation);
+public Set<Requirement> requirementsSatisfied();
+public Set<Requirement> requires();",https://stanfordnlp.github.io/CoreNLP/pipelines.html

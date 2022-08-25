@@ -1,0 +1,27 @@
+Paragraph,Example,Page
+"Maven: You can find Stanford CoreNLP on Maven Central. The crucial thing to know is that CoreNLP needs its models to run (most parts beyond the tokenizer and sentence splitter) and so you need to specify both the code jar and the models jar in your pom.xml, as follows: (Note: Maven releases are usually made several days after a release on the website.)","edu.stanford.nlp
+    stanford-corenlp
+    4.4.0
+
+
+    edu.stanford.nlp
+    stanford-corenlp
+    4.4.0
+    models",https://stanfordnlp.github.io/CoreNLP/download.html
+"If you want to get a language models jar off of Maven for Arabic, Chinese, German, or Spanish, also add this inside dependencies to your pom.xml:","edu.stanford.nlp
+    stanford-corenlp
+    4.4.0
+    models-chinese",https://stanfordnlp.github.io/CoreNLP/download.html
+You can build the project with this command:,mvn compile,https://stanfordnlp.github.io/CoreNLP/download.html
+And you can run a demo with a command like this:,"export MAVEN_OPTS=""-Xmx14000m""
+mvn exec:java -Dexec.mainClass=""edu.stanford.nlp.StanfordCoreNLPEnglishTestApp""",https://stanfordnlp.github.io/CoreNLP/download.html
+Or using curl (what you get by default on macOS):,curl -O -L http://nlp.stanford.edu/software/stanford-corenlp-latest.zip,https://stanfordnlp.github.io/CoreNLP/download.html
+Or using curl (what you get by default on macOS):,unzip stanford-corenlp-latest.zip,https://stanfordnlp.github.io/CoreNLP/download.html
+Or using curl (what you get by default on macOS):,cd stanford-corenlp-4.5.0,https://stanfordnlp.github.io/CoreNLP/download.html
+"If you’ll be using CoreNLP frequently, the below line is a useful line to have in your ~/.bashrc (or equivalent) file, replacing the directory /path/to/corenlp/ with the appropriate path to where you unzipped CoreNLP:","for file in `find /path/to/corenlp/ -name ""*.jar""`; do export
+CLASSPATH=""$CLASSPATH:`realpath $file`""; done",https://stanfordnlp.github.io/CoreNLP/download.html
+"If you’ll be using CoreNLP frequently, the below line is a useful line to have in your ~/.bashrc (or equivalent) file, replacing the directory /path/to/corenlp/ with the appropriate path to where you unzipped CoreNLP:","echo ""the quick brown fox jumped over the lazy dog"" > input.txt
+java -mx3g edu.stanford.nlp.pipeline.StanfordCoreNLP -outputFormat json -file input.txt",https://stanfordnlp.github.io/CoreNLP/download.html
+Or using curl (what you get by default on macOS):,curl -O -L http://nlp.stanford.edu/software/stanford-corenlp-models-current.jar,https://stanfordnlp.github.io/CoreNLP/download.html
+"If you’ll be using CoreNLP frequently, the below lines are useful to have in your ~/.bashrc (or equivalent) file, replacing the directory /path/to/corenlp/ with the appropriate path to where you unzipped CoreNLP (3 replacements):","export CLASSPATH=""$CLASSPATH:/path/to/corenlp/javanlp-core.jar:/path/to/corenlp/stanford-corenlp-models-current.jar"";
+for file in `find /path/to/corenlp/lib -name ""*.jar""`; do export CLASSPATH=""$CLASSPATH:`realpath $file`""; done",https://stanfordnlp.github.io/CoreNLP/download.html

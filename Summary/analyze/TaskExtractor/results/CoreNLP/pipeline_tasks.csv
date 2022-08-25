@@ -1,0 +1,13 @@
+"Paragraph","Tasks"
+"Pipelines are constructed with Properties objects which provide specifications for what annotators to run and how to customize the annotators.","provide specifications
+provide Properties objects"
+"You can immediately run a pipeline by issuing the following command:","run pipeline by issuing"
+"You can customize your pipeline by providing properties in a properties file.","provide properties in properties file"
+"Here is the command for running a pipeline with these configurations:","run pipeline with configurations"
+"Of course all of those properties could be specified at the command line as well:","specify properties at command line"
+"If you want to run a non-English language pipeline, you can just specify the name of one of the CoreNLP supported languages:","run non-english language pipeline
+specify name of CoreNLP
+support languages"
+"Here is a basic demo class showing how to run a pipeline in Java code:","run pipeline in Java code"
+"To customize pipelines in Java, add properties to the Properties object in the same way the annotators property is set in the code example.","add properties to Properties object
+set annotators property"

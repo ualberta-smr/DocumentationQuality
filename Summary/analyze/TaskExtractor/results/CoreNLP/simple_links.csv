@@ -1,0 +1,26 @@
+Paragraph,Example,Page
+"In addition to the fully-featured annotator pipeline interface to CoreNLP, Stanford provides a simple API for users who do not need a lot of customization. The intended audience of this package is users of CoreNLP who want “import nlp” to work as fast and easily as possible, and do not care about the details of the behaviors of the algorithms.","import edu.stanford.nlp.simple.*;
+
+Sentence sent = new Sentence(""Lucy is in the sky with diamonds."");
+List<String> nerTags = sent.nerTags();  // [PERSON, O, O, O, O, O, O, O]
+String firstPOSTag = sent.posTag(0);   // NNP
+...",https://stanfordnlp.github.io/CoreNLP/simple.html
+An example program using the interface is given below:,"import edu.stanford.nlp.simple.*;
+
+public class SimpleCoreNLPDemo {
+    public static void main(String[] args) { 
+        // Create a document. No computation is done yet.
+        Document doc = new Document(""add your text here! It can contain multiple sentences."");
+        for (Sentence sent : doc.sentences()) {  // Will iterate over two sentences
+            // We're only asking for words -- no need to load any models yet
+            System.out.println(""The second word of the sentence '"" + sent + ""' is "" + sent.word(1));
+            // When we ask for the lemma, it will load and run the part of speech tagger
+            System.out.println(""The third lemma of the sentence '"" + sent + ""' is "" + sent.lemma(2));
+            // When we ask for the parse, it will load and run the parser
+            System.out.println(""The parse of the sentence '"" + sent + ""' is "" + sent.parse());
+            // ...
+        }
+    }
+}",https://stanfordnlp.github.io/CoreNLP/simple.html
+"Some potentially useful utility functions are implemented in the SentenceAlgorithms class. These can be called from a Sentence object with, e.g.:","Sentence sent = new Sentence(""your text should go here"");
+sent.algorithms().headOfSpan(new Span(0, 2));  // Should return 1",https://stanfordnlp.github.io/CoreNLP/simple.html

@@ -1,0 +1,7 @@
+Paragraph,Example,Page
+These languages require the mwt annotator be run immediately after the ssplit annotator.,"tokenize, ssplit, pos, ner, depparse",https://stanfordnlp.github.io/CoreNLP/migration.html
+These languages require the mwt annotator be run immediately after the ssplit annotator.,"tokenize, ssplit, mwt, pos, ner, depparse",https://stanfordnlp.github.io/CoreNLP/migration.html
+You can run the ner annotator without the additional annotators with these options,"ner.applyFineGrained = false
+ner.buildEntityMentions = false",https://stanfordnlp.github.io/CoreNLP/migration.html
+"Likewise to set the ner annotator’s internal entitymentions annotator, set ner.entitymentions properties. For instance:",coref.useCustomMentionDetection = true,https://stanfordnlp.github.io/CoreNLP/migration.html
+"And for quote annotation, quote attribution can be deactivated with",quote.attributeQuotes = false,https://stanfordnlp.github.io/CoreNLP/migration.html

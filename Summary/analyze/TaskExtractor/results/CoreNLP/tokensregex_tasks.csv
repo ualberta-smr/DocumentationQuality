@@ -1,0 +1,130 @@
+"Paragraph","Tasks"
+"StanfordCoreNLP includes TokensRegex, a framework for defining regular expressions over text and tokens, and mapping matched text to semantic objects.","include TokensRegex
+define regular expressions over text
+define regular expressions over tokens"
+"TokensRegex is a complex and powerful library for identifying and acting on patterns in text. To fully utilize TokensRegex, you should review the high level overview and then work through the specific examples below.","identify  on patterns"
+"With TokensRegex, you can build a rule based system for searching for patterns and performing actions when the patterns are found.","build rule with TokensRegex
+perform actions
+search  for patterns"
+"In a typical TokensRegex pipeline, you will need some basic Java code to load in your text, split it into sentences, and set up the CoreMapExpressionExtractor. Below is an example class TokensRegexDemo which contains the necessary code for running a TokensRegex pipeline.","split  into sentences
+set up CoreMapExpressionExtractor
+load  in text
+run TokensRegex pipeline"
+"In this code, some util classes and a StanfordCoreNLP pipeline are used to load the text and split it into sentences.","load text
+split  into sentences
+use util classes in code
+use StanfordCoreNLP pipeline in code"
+"Then the TokensRegex pipeline is built (not be confused with a general StanfordCoreNLP pipeline). The TokensRegex pipeline is specified by a list of rules files, and an Env object. The next section will contain a thorough example of a rules file which specifies a TokensRegex pipeline. In the example code you can see how the environment is built, and an example of specifying that you want all patterns to be case-insensitive. The list of rules files and the Env are used to construct a CoreMapExpressionExtractor, the main class which runs a TokensRegex pipeline.","build TokensRegex pipeline
+specify TokensRegex pipeline
+specify TokensRegex pipeline of rules file
+specify thorough example of rules file
+build environment
+run TokensRegex pipeline
+run main class
+use list of rules files
+use list of env"
+"When a CoreMapExpressionExtractor is run on a sentence, it will run a TokensRegex pipeline on the sentence, alter the token CoreLabel’s annotations in the sentence, and potentially generate a list of MatchedExpression objects which can be used in your overall logic.","run TokensRegex pipeline on sentence
+run CoreMapExpressionExtractor on sentence
+use list in overall logic
+use list of MatchedExpression objects"
+"Another way to run TokensRegex rules is to use the TokensRegexAnnotator. For instance you might want to run a full StanfordCoreNLP pipeline, but run named entity recogntion with TokensRegex rules. This can be achieved with the tokensregex annotator.","run TokensRegex rules
+use TokensRegexAnnotator
+run full StanfordCoreNLP pipeline"
+"If you run this command, it will run the TokensRegex rules of basic_ner.rules as part of the pipeline when the tokensregex annotator runs.","run command
+run TokensRegex rules as part
+run TokensRegex rules of basic_ner.rules"
+"As you work through the examples, it is helpful to understand the high level design of a TokensRegex pipeline. The pipeline is specified in a set of rules files, that are evaluated with respect to an environment. The environment can be initialized in Java code, and altered in the rules files.","specify pipeline in set
+evaluate rules files with respect
+evaluate rules files to environment
+initialize environment in Java code"
+"Generally assignments are made at the top, which set up variables to be used in the TokensRegex pipeline.","set up variables
+set up top
+use  in TokensRegex pipeline"
+"Then the rules are specified. A TokensRegex pipeline can be split into stages (as many as you’d like). Each stage runs until completion, and then the next stage runs. The Multi-Step NER example below illustrates this.","specify rules
+split TokensRegex pipeline into stages
+run  until completion
+run  until completion"
+"The Basic NER example shows token rules, the Extract Quotes example shows a text rule, the Process Math Expressions example shows a composite rule, and the Multi-Step NER example shows a filter rule.","show token rules
+show text rule
+show composite rule
+show filter rule"
+"In the pipeline all of the text/token rules are run, then the composite rules are run over and over again until no changes occur, and finally the filter rules are run.","run  in pipeline
+run filter rules"
+"The most common type of rule is the “tokens” rule. This rule type searches for patterns over a list of tokens.","search  for patterns"
+"The “pattern” field specifies the pattern to search for in the list of tokens. Here is a description of the pattern in this example:","specify pattern
+search  in list"
+"This pattern will match “I like pizza” or “I love pizza” (assuming like and love have the proper part of speech tag).","match  like pizza"
+"Note there are parenthesis around the pizza token. This specifies a group. In this example, the whole match is group $0, and the match on “pizza” is group $1. We can use the group numbers to specify lists of tokens to alter in the action part of the rule.","specify group
+specify lists of tokens"
+"The “action” field specifies an action to take. The Expressions Javadoc shows more info about the kinds of actions there are. The most common one is Annotate(). In this example we specify to annotate the word “pizza” with the NER tag “FOOD”. (Note: make sure that “ner” is tied to CoreAnnotations.NamedEntityTagAnnotation.class which is shown below). The Annotate() call says to annotate all tokens in group match $1 with named entity tag “FOOD”.","specify action
+show more info about kinds"
+"There are a lot of ways to match patterns in token sequences. Below is a helpful cheat sheet","match patterns in token sequences"
+"Let’s imagine that we want to identify company names. For our simple example, we will assume we are interested in any string of capitalized tokens that ends with a company ending token.","identify company names"
+"We will define the company ending tokens to be “Corp” or “Inc” (and optionally containing a “.”).","define company"
+"To show more functionality, we will also add the constraint that the non-ending tokens in the pattern have to have the part of speech tag “NNP”.","show more functionality
+add constraint"
+"The first section influences the environment of the pipeline. Since our Java code sets the rules to be case-insensitive, we will set them to case-sensitive in our rules file for this TokensRegex pipeline. By setting those two flags to 0, the rules will be case-sensitive.","set flags"
+"In the next section we bind certain variables to Java classes used as annotation keys. Here we bind “ner” and “tokens” to the corresponding annotation keys.","bind certain variables in next section
+bind certain variables to Java classes
+use  as annotation keys
+bind ner to corresponding annotation keys
+bind tokens to corresponding annotation keys"
+"In the third section we bind some variables to larger regexes. This would be especially useful if the regexes were especially large, though they are small in our simple example. Note that these are regexes that match the full text of a token. So $COMPANY_BEGINING will match all tokens that start with a capital letter and only contain letters (e.g. “Apple”). $COMPANY_ENDING will match the tokens “Corp”, “Inc”, “Corp.”, and “Inc.” By setting these variables to regexes, we don’t have to write out the full regex again every time we want to use it.","bind variables in third section
+bind variables to larger regexes
+match full text
+match regexes
+match tokens
+match corp corp.
+match inc.
+set variables to regexes"
+"Finally in the fourth section we define the rule for the token pattern we wish to match. The “ruleType” of the rule is “tokens”, meaning we want to find patterns over sequences of tokens.","define rule for token pattern
+define fourth section for token pattern"
+"The “pattern” of the rule defines the actual pattern we want to see in the tokens. In this case we say we want to see a number of $COMPANY_BEGINNING’s that have the “NNP” part of speech tag. Then we want to end with one token that matches the $COMPANY_ENDING pattern.","define actual pattern
+match $COMPANY_ENDING pattern
+match token"
+"If the pattern is matched,the “action” part of the rule will be executed. In the most typical case, this means we want to annotate all of the tokens in the matched pattern in some manner. This is done with the Annotate() function. In this rule, we state we want to annotate all of the matched tokens in the pattern (indicated by the group $0 in the token pattern), and that we want to set their “CoreAnnotation.NamedEntityTagAnnotation.class” value (indicated by “ner”), to the value “COMPANY”. This is where the actual CoreLabel’s are being altered by having their CoreAnnotations.NamedEntityTagAnnotation.class field changed.","match pattern
+execute action part of rule
+set CoreAnnotation.NamedEntityTagAnnotation.class value to value COMPANY
+change CoreAnnotations.NamedEntityTagAnnotation.class field"
+"Finally we may want to produce a MatchedExpression for this to operate on in our Java code, and we may want to set the value of that MatchedExpression to something. So we have the rule return a “result” when it fires, and we say the result is “COMPANY_RESULT”. The value of the MatchedExpression will be set to “COMPANY_RESULT” as a result.","produce MatchedExpression
+set value of MatchedExpression
+set value to something
+return result
+set value of MatchedExpression"
+"If you run this TokensRegex pipeline on this file basic_ner.txt:","run TokensRegex pipeline on file basic_ner.txt"
+"And run this Java command:","run Java command"
+"Note: in this command we are only running tokenize,ssplit,pos so the CoreLabels will have “null” for the NER token unless our rules find patterns in the input sentences. Also remember that the Java code specifies to create sentences based on newlines, so the input file is interpreted as one-sentence-per-line.","run  in command
+create sentences"
+"Note that “apple inc” is not being matched, meaning we have successfully set the rules to be case sensitive.","set rules"
+"In this section we will go through building a pipeline that performs multi-step named entity recognition.","build pipeline
+perform multi-step named entity recognition
+perform pipeline"
+"In the first phase, we will identify basic components of a job title. The two we will identify are JOB_TITLE_BASE (e.g. “president”) and JOB_TITLE_MODIFIER (e.g. “vice”).","identify basic components in first phase
+identify basic components of job title"
+"In the second phase, we will build on named entity tags that were applied in the first phase. Every time we see a sequence of JOB_TITLE_MODIFIER’s ending in a JOB_TITLE_BASE we will mark all of those tokens as a COMPLETE_JOB_TITLE.","build  in second phase
+build  on named entity tags
+mark JOB_TITLE_BASE as COMPLETE_JOB_TITLE"
+"You can run this for yourself with this command:","run  with command"
+"If you run it on this example file multi_step_ner.txt","run  on example file multi_step_ner.txt"
+"You should get this output:","get output"
+"Note that the sentence containing “deputy vice president” does have those tokens tagged as COMPLETE_JOB_TITLE’s, but that no matched expression is found for “deputy vice president” because of the filter. Note that the last two sentences have no named entity tags because we added a cleanup rule at the end. If we didn’t have that cleanup rule “president” and “President” would’ve been tagged with “JOB_TITLE_BASE”.","tag  as COMPLETE_JOB_TITLE
+add cleanup rule at end
+tag  with job_title_base"
+"If the pattern is found, we will get a MatchedExpression which will contain a list of tokens. This could be useful if you wanted to find quoted text and then work on the tokens of the quote.","get MatchedExpression"
+"If you run this command:","run command"
+"you should get this output:","get output"
+"The pattern finds a quote, and it returns a MatchedExpression with the values shown in the output.","return MatchedExpression with values
+show  in output"
+"If you run this command:","run command"
+"you should get this output:","get output"
+"This example demonstrates the composite rule type, it will run on a math equation and calculate the value of it. The rule should match (among other things) two numbers separated by an operator, and assign that expression the value of executing the operation on the operands. “(“, expression, “)” will be matched to be the same expression and have the same value as the enclosed expression (this is to process parenthesis). Every time a pattern is matched, all of the tokens in the pattern match will be replaced with an “aggregate token” representing the whole matched pattern.","calculate value
+run  on math equation
+match numbers
+assign numbers
+execute operation on operands
+replace  with aggregate token
+match pattern"
+"For instance if you process (5 + 5) + 5 it will run the composite rules and end up calculating 15.","run composite rules for instance"
+"The composite rules are run over and over again until nothing changes. Matched expressions are replaced with an aggregate token which represents the whole matched expression.","replace matched expressions with aggregate token"
+"If you run on this example sentence: math_expression.txt","run  on example sentence math_expression.txt"
+"You should get this output:","get output"

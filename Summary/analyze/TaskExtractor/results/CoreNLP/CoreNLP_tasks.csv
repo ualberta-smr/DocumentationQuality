@@ -1,0 +1,23 @@
+"Paragraph","Tasks"
+"CoreNLP is your one stop shop for natural language processing in Java! CoreNLP enables users to derive linguistic annotations for text, including token and sentence boundaries, parts of speech, named entities, numeric and time values, dependency and constituency parses, coreference, sentiment, quote attributions, and relations. CoreNLP currently supports 8 languages: Arabic, Chinese, English, French, German, Hungarian, Italian, and Spanish.","support languages"
+"The centerpiece of CoreNLP is the pipeline. Pipelines take in raw text, run a series of NLP annotators on the text, and produce a final set of annotations.","run series of NLP annotators
+run series on text
+produce final set of annotations"
+"Pipelines produce CoreDocuments, data objects that contain all of the annotation information, accessible with a simple API, and serializable to a Google Protocol Buffer.","produce CoreDocuments"
+"Download and unzip CoreNLP 4.5.0 (HF Hub)","download CoreNLP 4.5.0"
+"Download model jars for the language you want to work on and move the jars to the distribution directory. Jars are available directly from us, from Maven, and from Hugging Face.","move jars to distribution directory"
+"Stanford CoreNLP is written in Java; recent releases require Java 1.8+. You need to have Java installed to run CoreNLP. However, you can interact with CoreNLP via the command-line or its web service; many people use CoreNLP while writing their own code in Javascript, Python, or some other language.","write stanford CoreNLP in java
+run CoreNLP
+use CoreNLP while writing
+write own code in other language
+write own code in Javascript
+write own code in Python"
+"You can use Stanford CoreNLP from the command-line, via its original Java programmatic API, via the object-oriented simple API, via third party APIs for most major modern programming languages, or via a web service. It works on Linux, macOS, and Windows.","use Stanford CoreNLP from command-line
+use Stanford CoreNLP via web service"
+"The full Stanford CoreNLP is licensed under the GNU General Public License v3 or later. More precisely, all the Stanford NLP code is GPL v2+, but CoreNLP uses some Apache-licensed libraries, and so our understanding is that the the composite is correctly licensed as v3+. You can run almost all of CoreNLP under GPL v2; you simply need to omit the time-related libraries, and then you lose the functionality of SUTime. Note that the license is the full GPL, which allows many free uses, but not its use in proprietary software which is distributed to others. For distributors of proprietary software, CoreNLP is also available from Stanford under a commercial licensing You can contact us at java-nlp-support@lists.stanford.edu. If you don’t need a commercial license, but would like to support maintenance of these tools, we welcome gift funding: use this form and write “Stanford NLP Group open source software” in the Special Instructions.","use apache-licensed libraries
+run  under GPL v2
+omit time-related libraries
+support maintenance of tools
+use form
+write stanford NLP group"
+"If you’re just running the CoreNLP pipeline, please cite this CoreNLP paper:","run CoreNLP pipeline"

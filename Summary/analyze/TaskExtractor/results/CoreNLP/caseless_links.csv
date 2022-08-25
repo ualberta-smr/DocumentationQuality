@@ -1,0 +1,20 @@
+Paragraph,Example,Page
+An example command for using regular annotators following truecasing is:,"java -Xmx3g edu.stanford.nlp.pipeline.StanfordCoreNLP -annotators tokenize,ssplit,truecase,pos,lemma,ner,depparse -truecase.overwriteText true -file caseless.txt -outputFormat json",https://stanfordnlp.github.io/CoreNLP/caseless.html
+Be sure to include the path to the case-insensitive models jar in the -cp classpath flag and then you can ask for these models to be used like this:,"-pos.model edu/stanford/nlp/models/pos-tagger/english-caseless-left3words-distsim.tagger
+-parse.model edu/stanford/nlp/models/lexparser/englishPCFG.caseless.ser.gz
+-ner.model edu/stanford/nlp/models/ner/english.all.3class.caseless.distsim.crf.ser.gz,edu/stanford/nlp/models/ner/english.muc.7class.caseless.distsim.crf.ser.gz,edu/stanford/nlp/models/ner/english.conll.4class.caseless.distsim.crf.ser.gz",https://stanfordnlp.github.io/CoreNLP/caseless.html
+"However, if we ask to use the caseless models, then we’re doing pretty well: All the name words are now recognized as proper nouns, and the two person names are recognized. However, the team name is still missed. Correct named entity recognition is just harder for caseless English than for well-edited English!","% java edu.stanford.nlp.pipeline.StanfordCoreNLP -outputFormat conll -annotators tokenize,ssplit,pos,lemma,ner -file lakers.txt -pos.model edu/stanford/nlp/models/pos-tagger/english-caseless-left3words-distsim.tagger -ner.model edu/stanford/nlp/models/ner/english.all.3class.caseless.distsim.crf.ser.gz,edu/stanford/nlp/models/ner/english.muc.7class.caseless.distsim.crf.ser.gz,edu/stanford/nlp/models/ner/english.conll.4class.caseless.distsim.crf.ser.gz
+% cat lakers.txt.conll 
+1	lonzo	lonzo	NNP	PERSON	_	_
+2	ball	ball	NNP	PERSON	_	_
+3	talked	talk	VBD	O	_	_
+4	about	about	IN	O	_	_
+5	kobe	kobe	NNP	PERSON	_	_
+6	bryant	bryant	NNP	PERSON	_	_
+7	after	after	IN	O	_	_
+8	the	the	DT	O	_	_
+9	lakers	lakers	NNPS	O	_	_
+10	game	game	NN	O	_	_
+11	.	.	.	O	_	_",https://stanfordnlp.github.io/CoreNLP/caseless.html
+"To train your own caseless models, you need one additional property, which asks for a function to be called before a token is processed which leads to the case of all words being ignored. We use by default a function that also Americanizes the spelling of certain words:",wordFunction = edu.stanford.nlp.process.LowercaseAndAmericanizeFunction,https://stanfordnlp.github.io/CoreNLP/caseless.html
+"To train your own caseless models, you need one additional property, which asks for a function to be called before a token is processed which leads to the case of all words being ignored. We use by default a function that also Americanizes the spelling of certain words:",wordFunction = edu.stanford.nlp.process.LowercaseFunction,https://stanfordnlp.github.io/CoreNLP/caseless.html

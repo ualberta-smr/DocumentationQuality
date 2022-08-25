@@ -1,0 +1,2 @@
+Paragraph,Example,Page
+"Note, however, that some annotators that use dependencies such as natlog might not function properly if you use this option. In case you are using the Neural Network Dependency Parser, use the following model to get Stanford Dependencies:","-depparse.model ""edu/stanford/nlp/models/parser/nndep/english_SD.gz""",https://stanfordnlp.github.io/CoreNLP/faq.html
