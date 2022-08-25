@@ -4,17 +4,18 @@
     <div class="col">
         <span data-bs-toggle="tooltip" data-bs-placement="top"
               title="This score represents the readability of the textual blocks in the documentation">
-                    <button type="button"
-                            class="btn btn-outline-primary"
-                            data-bs-toggle="modal"
-                            data-bs-target="
-                    {% if not have_demographics %}
-                        #demographics
-                    {% else %}
-                        #readability
-                    {% endif %}">
-                        Readability of text
-                    </button>
+            <button type="button"
+                    class="btn btn-outline-primary"
+                    style="border-color:transparent"
+                    data-bs-toggle="modal"
+                    data-bs-target="
+                        {% if not have_demographics %}
+                            #demographics
+                        {% else %}
+                            #readability
+                        {% endif %}">
+                Readability of text
+            </button>
         </span>
     </div>
     <div class="col metrics-child">
@@ -49,17 +50,18 @@
     <div class="col">
         <span data-bs-toggle="tooltip" data-bs-placement="top"
               title="This score represents the readability of the code exampes in the documentation">
-                                <button type="button"
-                                        class="btn btn-outline-primary"
-                                        data-bs-toggle="modal"
-                                        data-bs-target="
-                    {% if not have_demographics %}
-                        #demographics
-                    {% else %}
-                        #readability
-                    {% endif %}">
-                        Readability of code examples
-                    </button>
+            <button type="button"
+                    class="btn btn-outline-primary"
+                    data-bs-toggle="modal"
+                    style="border-color:transparent"
+                    data-bs-target="
+                        {% if not have_demographics %}
+                            #demographics
+                        {% else %}
+                            #readability
+                        {% endif %}">
+                Readability of code examples
+            </button>
         </span>
     </div>
     <div class="col metrics-child">

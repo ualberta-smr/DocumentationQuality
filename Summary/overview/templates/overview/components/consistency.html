@@ -4,13 +4,16 @@
     <div class="col">
         <span data-bs-toggle="tooltip" data-bs-placement="top"
               title="Indicates how similar/up-to-date the documentation is with the source code">
-                        <button type="button" class="btn btn-outline-primary"
-                                data-bs-toggle="modal" data-bs-target="
-                {% if not have_demographics %}
-                    #demographics
-                {% else %}
-                    #consistency
-                {% endif %}">
+            <button type="button"
+                    class="btn btn-outline-primary"
+                    data-bs-toggle="modal"
+                    style="border-color:transparent"
+                    data-bs-target="
+                        {% if not have_demographics %}
+                            #demographics
+                        {% else %}
+                            #consistency
+                        {% endif %}">
                 Documentation/Source code similarity
             </button>
         </span>

@@ -1,3 +1,4 @@
+import datetime
 import html
 import os
 import re
@@ -50,10 +51,12 @@ def get_description(library_name, doc_url):
     return description
 
 
-class Description(threading.Thread):
-    def __init__(self, library_name, doc_url):
+class Create(threading.Thread):
+    def __init__(self, library_name, language, domain, doc_url):
         threading.Thread.__init__(self)
         self.library_name = library_name
+        self.language = language
+        self.domain = domain
         self.doc_url = doc_url
 
     def run(self):
@@ -63,8 +66,12 @@ class Description(threading.Thread):
             description = "Could not find description"
         util.add_or_update_library_record(
             {"library_name": self.library_name,
+             "language": self.language,
+             "domain": self.domain,
              "description": description,
-             "doc_url": self.doc_url})
+             "doc_url": self.doc_url,
+             "last_updated": datetime.datetime.utcnow()
+             })
         end = time.time()
         with open("times.txt", "a") as times:
             times.write("Finished retrieving description: ")
@@ -114,13 +121,17 @@ class APIMatching(threading.Thread):
 
 def analyze_library(language, library_name, doc_url, gh_url, domain):
     os.chdir(util.ROOT_DIR)
-    description = Description(library_name, doc_url)
+    create = Create(library_name, language, domain, doc_url)
     extract = Extract(library_name, doc_url, domain)
     repo_path = util.clone_repo(gh_url)
     match_signatures = APIMatching(library_name, language, doc_url, gh_url, repo_path, False)
     match_examples = APIMatching(library_name, language, doc_url, gh_url, repo_path, True)
 
-    description.start()
+    with open("times.txt", "w") as times:
+        times.write("Starting analysis for " + library_name)
+        times.write("\n")
+
+    create.start()
     extract.start()
     match_examples.start()
     match_signatures.start()

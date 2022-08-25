@@ -3,12 +3,13 @@
         <span data-bs-toggle="tooltip" data-bs-placement="top"
               title="This percentage indicates how many public API methods contain a code example in the documentation">
             <button type="button" class="btn btn-outline-primary"
-                    data-bs-toggle="modal" data-bs-target="
-                {% if not have_demographics %}
-                    #demographics
-                {% else %}
-                    #code_examples
-                {% endif %}">
+                    data-bs-toggle="modal" style="border-color:transparent"
+                    data-bs-target="
+                        {% if not have_demographics %}
+                            #demographics
+                        {% else %}
+                            #code_examples
+                        {% endif %}">
                 Methods with code examples
             </button>
         </span>
@@ -21,13 +22,15 @@
     <div class="col">
         <span data-bs-toggle="tooltip" data-bs-placement="top"
               title="This percentage indicates how many public API classes contain a code example in the documentation">
-                        <button type="button" class="btn btn-outline-primary"
-                                data-bs-toggle="modal" data-bs-target="
-                {% if not have_demographics %}
-                    #demographics
-                {% else %}
-                    #code_examples
-                {% endif %}">
+            <button type="button" class="btn btn-outline-primary"
+                    data-bs-toggle="modal"
+                    style="border-color:transparent"
+                    data-bs-target="
+                        {% if not have_demographics %}
+                            #demographics
+                        {% else %}
+                            #code_examples
+                        {% endif %}">
                 Classes with code examples
             </button>
         </span>

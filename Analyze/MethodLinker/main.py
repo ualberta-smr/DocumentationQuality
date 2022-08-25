@@ -1,3 +1,4 @@
+import datetime
 import os
 
 from Analyze.MethodLinker.matcher import calculate_ratios
@@ -14,7 +15,9 @@ def api_methods_examples(language, library_name, doc_url, repo_url, repo_path, c
                                   "num_method_examples": example_count,
                                   "num_methods": total_methods,
                                   "num_class_examples": classes_count,
-                                  "num_classes": total_classes})
+                                  "num_classes": total_classes,
+                                  "last_updated": datetime.datetime.utcnow()
+                                  })
     # print("Methods found w/ examples:", example_count)
     # print("Total methods:", total_methods)
     # print("Classes found w/ examples:", classes_count)

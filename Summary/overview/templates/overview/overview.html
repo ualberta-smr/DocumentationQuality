@@ -28,14 +28,17 @@
 </head>
 <body style="margin-top: 20px">
 <div class="container">
-    {% include "overview/logos.html" %}
     <div class="row metrics-child">
-        {% include "overview/components/general_rating.html" with general_rating=general_rating form=general library_name=library_name have_demographics=have_demographics demographics=demographics %}
+        {% include "overview/components/general_rating.html" with general_rating=general_rating form=general library_name=library_name doc_url=doc_url have_demographics=have_demographics demographics=demographics %}
     </div>
     {#Start of content#}
     <div class="row">
         {% include "overview/components/task_list.html" with task_list=task_list form=tasks have_demographics=have_demographics demographics=demographics %}
         <div class="col">
+            <div class="metrics-container">
+                You can provide feedback by clicking on the blue text <b>without an underline</b>
+            </div>
+            <br>
             <div class="metrics-container">
                 {{ description }}
             </div>

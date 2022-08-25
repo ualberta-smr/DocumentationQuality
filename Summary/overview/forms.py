@@ -5,10 +5,28 @@ from .models import Response
 
 class AnalyzeForm(forms.Form):
     library_name = forms.CharField(required=True)
-    language = forms.CharField(required=True)
+    language = forms.ChoiceField(
+        required=True,
+        choices=(
+            (None, ""),
+            ("Python", "Python"),
+            ("Java", "Java"),
+            ("Javascript", "Javascript"),
+            ("", "Other")
+        )
+    )
     doc_url = forms.CharField(required=True)
     gh_url = forms.CharField(required=False, widget=forms.TextInput(attrs={"placeholder": "https://github.com/nltk/nltk.git"}))
-    domain = forms.CharField(required=False)
+    domain = forms.ChoiceField(
+        required=True,
+        choices=(
+            (None, ""),
+            ("nlp", "NLP"),
+            ("json", "JSON"),
+            ("dom_manipulation", "DOM Manipulation"),
+            ("", "Other")
+        )
+    )
 
 
 class Demographics(forms.ModelForm):

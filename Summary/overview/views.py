@@ -1,4 +1,5 @@
 import json
+import time
 
 from django.core.exceptions import ObjectDoesNotExist
 
@@ -11,15 +12,20 @@ from .forms import Demographics, GeneralRating, TaskList, CodeExamples, \
     Readability, Consistency, Navigability, Feedback, AnalyzeForm
 
 
+# Get list of all libraries
 def _get_libraries():
     return Library.objects.all().values("library_name")
 
 
-def _get_description(library_name):
-    return Library.objects.filter(library_name=library_name).get().description
+def _get_library(library_name):
+    return Library.objects.filter(library_name=library_name).get()
 
 
 def _get_task_list(library_name):
+    '''
+    We do not use HAVING has_example = 1 (.filter(has_example=1)) because that would remove all tasks without an example
+    SELECT task, has_example, example_page FROM overview_task WHERE library_name = library_name GROUP BY task ORDER BY has_example DESC, task DESC LIMIT 20
+    '''
     return list(Task.objects.filter(library_name=library_name).values(
         "task", "has_example", "example_page").annotate(
         dcount=Count("task")).order_by("-has_example", "-dcount")[:20])
@@ -50,17 +56,17 @@ def _get_example_ratios(library_name):
 def _create_overview_context(store):
     context = {
         "library_name": store["library_name"],
-        "general_rating": 3,
-        "license": "MIT",
+        "doc_url": store["doc_url"],
+        "general_rating": store["general_rating"],
         "description": store["description"],
         "task_list": store["task_list"],
         "example_ratios": store["example_ratios"],
         "readability": {
-            "text_readability": 4,
-            "code_readability": 3
+            "text_readability": store["readability"]["text_readability"],
+            "code_readability": store["readability"]["code_readability"]
         },
-        "consistency": 3,
-        "navigation": 2,
+        "consistency": store["consistency"],
+        "navigation": store["navigation"],
         "session_key": store["session_key"],
         "have_demographics": True if store["demographics"] else False,
         "demographics": Demographics(store["demographics"]) if store[
@@ -126,27 +132,28 @@ def create(request):
                             form.cleaned_data["doc_url"],
                             form.cleaned_data["gh_url"],
                             form.cleaned_data["domain"])
-            # TODO: Show loading screen while app is processing library
-            return redirect("overview:landing")
+            # Sometimes the redirect happens before the database entry is created, so we sleep
+            time.sleep(5)
+            return redirect("overview:overview", request.POST["library_name"])
     return render(request, "overview/landing.html", context={"form": form})
 
 
 def overview(request, library_name):
     if not request.session.exists(request.session.session_key):
         request.session.create()
-    description = _get_description(library_name)
+    library = _get_library(library_name)
     # TODO: These are none before analysis finishes
     try:
         task_list = _get_task_list(library_name)
     except:
         task_list = []
 
-    example_ratios = _get_example_ratios(library_name)
+    example_ratios = _get_example_ratios(library)
     if "store" not in request.session:
         store = dict(library_name=library_name,
+                     doc_url=library.doc_url,
                      general_rating=3,
-                     license="MIT",
-                     description=description,
+                     description=library.description,
                      task_list=task_list,
                      example_ratios=example_ratios,
                      readability={
@@ -166,7 +173,8 @@ def overview(request, library_name):
                      feedback=None)
     else:
         store = request.session["store"]
-        store["description"] = description
+        store["description"] = library.description
+        store["doc_url"] = library.doc_url
         store["task_list"] = task_list
         store["example_ratios"] = example_ratios
     request.session["store"] = store

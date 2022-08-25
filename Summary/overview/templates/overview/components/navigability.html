@@ -4,13 +4,16 @@
     <div class="col">
         <span data-bs-toggle="tooltip" data-bs-placement="top"
               title="Rating on the navigability of the documentation">
-                        <button type="button" class="btn btn-outline-primary"
-                                data-bs-toggle="modal" data-bs-target="
-                {% if not have_demographics %}
-                    #demographics
-                {% else %}
-                    #navigation
-                {% endif %}">
+            <button type="button"
+                    class="btn btn-outline-primary"
+                    style="border-color:transparent"
+                    data-bs-toggle="modal"
+                    data-bs-target="
+                        {% if not have_demographics %}
+                            #demographics
+                        {% else %}
+                            #navigation
+                        {% endif %}">
                 Navigation rating
             </button>
         </span>

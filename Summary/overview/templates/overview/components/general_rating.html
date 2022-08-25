@@ -1,10 +1,18 @@
 {% load overview_extras %}
+{% load static %}
 
-<div class="col-md-4"></div>
-<h1 class="title-container">{{ library_name|capfirst }}</h1>
-<div class="col">
+<div class="col-md-2"></div>
+<div class="col-md-4">
+    <h2 class="float-end text-center">
+        <a href="{{ doc_url }}">
+            {{ library_name|capfirst}}
+        </a>
+        Documentation Quality Evaluation
+    </h2>
+</div>
+<div class="col-md-3">
     <span data-bs-toggle="tooltip" data-bs-placement="top"
-          title="Tooltip on top">
+          title="This general rating is a calculation of equal weighting between all the metrics shown below">
         <button type="button"
                 class="btn btn-outline-primary"
                 data-bs-toggle="modal"
@@ -44,4 +52,14 @@
     {% else %}
         {% include "overview/forms/general_rating_form.html" with library_name=library_name form=form %}
     {% endif %}
+</div>
+<div class="col">
+    <img class="d-flex mx-auto"
+         src="{% static "overview/images/UA_Logo_Green_RGB.png" %}"
+         alt="University of Alberta Logo" width="100%"/>
+</div>
+<div class="col">
+    <img class="d-flex mx-auto"
+         src="{% static "overview/images/Logo_web_color_640.png" %}"
+         alt="SMR Logo" width="80%"/>
 </div>

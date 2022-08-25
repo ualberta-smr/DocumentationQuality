@@ -18,6 +18,7 @@
     border-radius: 15px;
 }
 
+
 .btn-outline-primary {
     padding: 5px;
 }
@@ -40,13 +41,15 @@ input {
     display: inline-block;
     float: right;
     height: 20px;
-    /*width: 300px;*/
+    width: 250px;
     margin-top: 10px;
 }
 
 select {
     display: inline-block;
     float: right;
+    margin-top: 10px;
+    width: 100px;
 }
 
 .select2-search__field {

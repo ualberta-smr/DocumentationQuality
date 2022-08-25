@@ -1,8 +1,12 @@
+import datetime
+
 from django.db import models
 
 
 class Library(models.Model):
     library_name = models.CharField(max_length=50)
+    language = models.CharField(max_length=20)
+    domain = models.CharField(max_length=50)
     description = models.CharField(max_length=1000)
     gh_url = models.CharField(max_length=100, blank=True, null=True)
     doc_url = models.CharField(max_length=100)
@@ -12,6 +16,7 @@ class Library(models.Model):
         "number of methods with documentation examples", blank=True, null=True)
     num_class_examples = models.IntegerField(
         "number of classes with documentation examples", blank=True, null=True)
+    last_updated = models.DateTimeField(default=datetime.datetime.utcnow)
 
     def __str__(self):
         return self.library_name

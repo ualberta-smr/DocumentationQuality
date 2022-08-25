@@ -29,14 +29,26 @@
 </head>
 <body style="margin-top: 20px">
 <div class="container">
-    {% include "overview/logos.html" %}
+    <div class="row justify-content-center align-items-center">
+        <div class="col">
+            <img class="d-flex mx-auto"
+                 src="{% static "overview/images/UA_Logo_Green_RGB.png" %}"
+                 alt="University of Alberta Logo" width="50%"/>
+        </div>
+        <div class="col">
+            <img class="d-flex mx-auto"
+                 src="{% static "overview/images/Logo_web_color_640.png" %}"
+                 alt="SMR Logo" width="50%"/>
+        </div>
+    </div>
+
     <h1>
         Library Documentation Quality Evaluation
     </h1>
+    <hr>
     <h2>
         Introduction
     </h2>
-    <hr>
     <p>
         We are researchers from the Department of Computing Science at the
         University of Alberta, Canada, interested in evaluating the
@@ -44,61 +56,15 @@
         webservice is to provide a summary overview of different metrics
         regarding a library's documentation quality. Your use and feedback will
         be used to gauge the current accuracy and usefulness of this service.
+        Please note that feedback is <b> completely optional</b>, and you can
+        use this service without providing any feedback.
+        You can provide feedback by clicking on any blue text that is <b>not</b> highlighted.
+        Additionally, note that this study has received ethics clearance from
+        the University of Alberta (study Pro00074107).
     </p>
     <hr>
-    <h2>
-        Legal Information
-    </h2>
-    <p>
-        Please note that this study has received ethics clearance from the
-        University of Alberta (study Pro00074107). We do not collect any
-        identifying information. By providing feedback responses, your free and
-        informed consent is implied where you acknowledge your data will be used
-        for research purposes. All information will be treated in an anonymous
-        and aggregated way.
-    <ol>
-        <li>
-            You are under no obligation to participate in this study.
-            Participation is completely voluntary
-        </li>
-        <li>
-            The feedback responses will be used for academic theses and
-            publication in software engineering conferences and journals
-        </li>
-        <li>
-            Data will be kept confidential and anonymous. The project team will
-            retain access to the data.
-        </li>
-        <li>
-            Data is kept securely on encrypted file systems for a minimum of 5
-            years following completion of the research project. Data will not be
-            destroyed.
-        </li>
-        <li>
-            Completely anonymized and non-linkable data may be posted to backup
-            the results of our analysis.
-        </li>
-        <li>
-            We do not plan to share confidential data with other researchers.
-        </li>
-        <li>
-            We may use the data from these responses in future research, but
-            after approval from a research ethics board.
-        </li>
-    </ol>
-    </p>
-    <hr>
-    <h2>
-        Contact Information
-    </h2>
-    <p>
-        If you have any further questions regarding this study, please email
-        Henry Tang (hktang@ualberta.ca) or Sarah Nadi (snadi@ualberta.ca).
-    </p>
-    <hr>
-
-    <div class="row">
-        <div class="col-6" id="library_selector">
+    <div class="row align-items-center">
+        <div class="col text-center" id="library_selector">
             <form id="search_form" action="/overview/search/" method="post">
                 {% csrf_token %}
                 <label for="library_select">
@@ -114,7 +80,7 @@
                 </button>
             </form>
         </div>
-        <div class="col-2">
+        <div class="col-md-2 text-center">
             OR
         </div>
         <div class="col" style="align-content: center">
@@ -146,35 +112,35 @@
                                 <div class="form-group">
                                     {{ form.library_name.errors }}
                                     <label for={{ forms.library_name.id_for_label }}>
-                                        Enter library name
+                                        Library name
                                     </label>
                                     {{ form.library_name }}
                                 </div>
                                 <div class="form-group">
                                     {{ form.language.errors }}
                                     <label for={{ forms.language.id_for_label }}>
-                                        Enter language of library
+                                        Library language
                                     </label>
                                     {{ form.language }}
                                 </div>
                                 <div class="form-group">
                                     {{ form.doc_url.errors }}
                                     <label for={{ forms.doc_url.id_for_label }}>
-                                        Enter documentation url
+                                        Documentation url
                                     </label>
                                     {{ form.doc_url }}
                                 </div>
                                 <div class="form-group">
                                     {{ form.gh_url.errors }}
                                     <label for={{ forms.gh_url.id_for_label }}>
-                                        Enter GitHub .git url
+                                        GitHub .git url
                                     </label>
                                     {{ form.gh_url }}
                                 </div>
                                 <div class="form-group">
                                     {{ form.domain.errors }}
                                     <label for={{ forms.domain.id_for_label }}>
-                                        Enter domain of library
+                                        Library domain
                                     </label>
                                     {{ form.domain }}
                                 </div>
@@ -184,13 +150,116 @@
                             <div class="modal-footer">
                                 <button type="submit" form="analyze_form"
                                         value="Submit"
-                                        class="btn btn-primary is-success is-fullwidth is-medium mt-5"
+                                        class="btn btn-primary is-success is-fullwidth is-medium"
                                         data-bs-dismiss="modal">
                                     Submit
                                 </button>
                             </div>
                         </div>
                     </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="d-flex justify-content-end">
+        <span data-bs-toggle="modal" data-bs-target="#about"
+              style="text-decoration: underline">About</span>
+        <div class="modal fade" id="about" tabindex="-1"
+             aria-labelledby="about_label" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="about_label">About</h5>
+                        <button type="button" class="btn-close"
+                                data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <h2>
+                            Legal Information
+                        </h2>
+                        <p>
+                            Please note that this study has received ethics
+                            clearance from the
+                            University of Alberta (study Pro00074107). We do not
+                            collect any
+                            identifying information. By providing feedback
+                            responses, your free and
+                            informed consent is implied where you acknowledge
+                            your
+                            data will be used
+                            for research purposes. All information will be
+                            treated
+                            in an anonymous
+                            and aggregated way.
+
+                        <ol>
+                            <li>
+                                You are under no obligation to participate in
+                                this
+                                study.
+                                Participation is completely voluntary
+                            </li>
+                            <li>
+                                The feedback responses will be used for academic
+                                theses and
+                                publication in software engineering conferences
+                                and
+                                journals
+                            </li>
+                            <li>
+                                Data will be kept confidential and anonymous.
+                                The
+                                project team will
+                                retain access to the data.
+                            </li>
+                            <li>
+                                Data is kept securely on encrypted file systems
+                                for
+                                a minimum of 5
+                                years following completion of the research
+                                project.
+                                Data will not be
+                                destroyed.
+                            </li>
+                            <li>
+                                Completely anonymized and non-linkable data may
+                                be
+                                posted to backup
+                                the results of our analysis.
+                            </li>
+                            <li>
+                                We do not plan to share confidential data with
+                                other
+                                researchers.
+                            </li>
+                            <li>
+                                We may use the data from these responses in
+                                future
+                                research, but
+                                after approval from a research ethics board.
+                            </li>
+                        </ol>
+                        </p>
+                        <hr>
+                        <h2>
+                            Contact Information
+                        </h2>
+                        <p>
+                            If you have any further questions regarding this
+                            study,
+                            please email
+                            Henry Tang (hktang@ualberta.ca) or Sarah Nadi
+                            (snadi@ualberta.ca).
+                        </p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary"
+                                data-bs-dismiss="modal">
+                            Close
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
