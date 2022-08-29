@@ -38,7 +38,7 @@ class Response(models.Model):
     session_key = models.CharField(max_length=32)
     library_name = models.CharField(max_length=50)
     years_experience = models.PositiveIntegerField("Years of software development experience", blank=True, null=True)
-    used_before = models.BooleanField("used before", blank=True, null=True)
+    familiar = models.BooleanField("familiar", blank=True, null=True)
     general_rating = models.CharField(max_length=500, blank=True, null=True)
     task_list = models.CharField(max_length=500, blank=True, null=True)
     code_examples_methods = models.CharField(max_length=500, blank=True, null=True)

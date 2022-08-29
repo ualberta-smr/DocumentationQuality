@@ -6,13 +6,7 @@
                 <div class="d-flex justify-content-center">
                     <button type="button" class="btn btn-outline-primary"
                             style="font-size: 20px; border-color:transparent"
-                            data-bs-toggle="modal"
-                            data-bs-target="
-                            {% if not have_demographics %}
-                                #demographics
-                            {% else %}
-                                #task_list
-                            {% endif %}">
+                            onclick="showForm('#task_list_form')">
                   Documented Library Tasks
                 </button>
                 </div>
@@ -47,9 +41,3 @@
         </div>
     </div>
 </div>
-
-{% if not have_demographics %}
-    {% include "overview/forms/demographics_form.html" with demographics=demographics %}
-{% else %}
-    {% include "overview/forms/task_list_form.html" with form=form %}
-{% endif %}

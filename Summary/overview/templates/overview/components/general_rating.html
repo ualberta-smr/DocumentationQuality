@@ -5,7 +5,7 @@
 <div class="col-md-4">
     <h2 class="float-end text-center">
         <a href="{{ doc_url }}">
-            {{ library_name|capfirst}}
+            {{ library_name|capfirst }}
         </a>
         Documentation Quality Evaluation
     </h2>
@@ -15,13 +15,8 @@
           title="This general rating is a calculation of equal weighting between all the metrics shown below">
         <button type="button"
                 class="btn btn-outline-primary"
-                data-bs-toggle="modal"
-                data-bs-target="
-                    {% if not have_demographics %}
-                        #demographics
-                    {% else %}
-                        #general_rating
-                    {% endif %}">
+                style="border-color: cornflowerblue"
+                onclick="showForm('#general_rating_form')">
             {% with ''|center:general_rating as range %}
                 {% for _ in range %}
                     <svg xmlns="http://www.w3.org/2000/svg" width="45"
@@ -47,11 +42,6 @@
             {% endwith %}
         </button>
     </span>
-    {% if not have_demographics %}
-        {% include "overview/forms/demographics_form.html" with demographics=demographics %}
-    {% else %}
-        {% include "overview/forms/general_rating_form.html" with library_name=library_name form=form %}
-    {% endif %}
 </div>
 <div class="col">
     <img class="d-flex mx-auto"

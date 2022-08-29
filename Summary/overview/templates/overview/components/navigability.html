@@ -1,19 +1,12 @@
 {% load overview_extras %}
 
 <div class="row">
-    <div class="col">
+    <div class="col-md-8">
         <span data-bs-toggle="tooltip" data-bs-placement="top"
               title="Rating on the navigability of the documentation">
             <button type="button"
                     class="btn btn-outline-primary"
-                    style="border-color:transparent"
-                    data-bs-toggle="modal"
-                    data-bs-target="
-                        {% if not have_demographics %}
-                            #demographics
-                        {% else %}
-                            #navigation
-                        {% endif %}">
+                    onclick="showForm('#navigation_form')">
                 Navigation rating
             </button>
         </span>
@@ -46,9 +39,3 @@
         {% endwith %}
     </div>
 </div>
-
-{% if not have_demographics %}
-    {% include "overview/forms/demographics_form.html" with demographics=demographics %}
-{% else %}
-    {% include "overview/forms/navigability_form.html" with form=navigable %}
-{% endif %}

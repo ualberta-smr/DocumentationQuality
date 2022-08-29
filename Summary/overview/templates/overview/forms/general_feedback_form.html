@@ -1,55 +1,42 @@
-<!-- The Modal -->
-<div class="modal" id="general_feedback">
-    <div class="modal-dialog modal-lg modal-dialog-centered">
-        <form action="/overview/forms/general/"
-              method="post"
-              id="general_feedback_form">
-            {% csrf_token %}
-            <div class="modal-content">
-
-                <!-- Modal Header -->
-                <div class="modal-header">
-                    <h4 class="modal-title">General Feedback</h4>
-                    <button type="button" class="btn-close"
-                            data-bs-dismiss="modal"></button>
-                </div>
-
-                <!-- Modal body -->
-                <div class="modal-body">
-                    {{ form.library_name }}
-                    {{ form.session_key }}
-                    <div class="form-group">
-                        {{ form.usefulness.errors }}
-                        <label for="{{ form.usefulness.id_for_label }}">
-                            Please provide feedback on the usefulness
-                        </label>
-                        {{ form.usefulness }}
-                    </div>
-                    <div class="form-group">
-                        {{ form.would_recommend.errors }}
-                        <label for="{{ form.would_recommend.id_for_label }}">
-                            Would you recommend this overview summary
-                        </label>
-                        {{ form.would_recommend }}
-                    </div>
-                    <div class="form-group">
-                        {{ form.general_feedback.errors }}
-                        <label for="{{ form.general_feedback.id_for_label }}">Please
-                            provide general feedback </label>
-                        {{ form.general_feedback }}
-                    </div>
-                </div>
-
-                <!-- Modal footer -->
-                <div class="modal-footer">
-                    <button type="submit" form="general_feedback_form"
-                            value="Submit"
-                            class="btn-primary is-success is-fullwidth is-medium mt-5"
-                            data-bs-dismiss="modal">
-                        Submit
-                    </button>
-                </div>
-            </div>
-        </form>
+<form action="/overview/forms/general/"
+      method="post"
+      id="general_feedback_form"
+      class="form"
+      style="display: none;">
+    {% csrf_token %}
+    <div class="modal-header">
+        <h4 class="modal-title">General Feedback</h4>
+        <button type="button" class="btn-close"
+                onclick="hideForm('#general_feedback_form', false)"></button>
     </div>
-</div>
+    {{ form.library_name }}
+    {{ form.session_key }}
+    <div class="form-group col-md-8">
+        {{ form.usefulness.errors }}
+        <label for="{{ form.usefulness.id_for_label }}">
+            Please provide feedback on the usefulness
+        </label>
+        {{ form.usefulness }}
+    </div>
+    <div class="form-group col-md-8">
+        {{ form.would_recommend.errors }}
+        <label for="{{ form.would_recommend.id_for_label }}">
+            Would you recommend this overview summary
+        </label>
+        {{ form.would_recommend }}
+    </div>
+    <div class="form-group col-md-8">
+        {{ form.general_feedback.errors }}
+        <label for="{{ form.general_feedback.id_for_label }}">
+            Please provide general feedback </label>
+        {{ form.general_feedback }}
+    </div>
+    <div class="col-md-8" style="text-align: right;">
+        <button type="submit" form="general_feedback_form"
+                value="Submit"
+                class="btn-primary is-success is-fullwidth is-medium"
+                onclick="hideForm('#general_feedback_form', true)">
+            Submit
+        </button>
+    </div>
+</form>

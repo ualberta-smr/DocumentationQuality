@@ -21,6 +21,7 @@
 
 .btn-outline-primary {
     padding: 5px;
+    border-color: transparent;
 }
 
 .btn-outline-primary:hover {
@@ -62,4 +63,11 @@ select {
 
 .modal-dialog-centered {
     justify-content: center;
+}
+
+.errorlist, .error {
+    color: red;
+    float: left;
+    margin-top: 5px;
+    margin-bottom: 0;
 }

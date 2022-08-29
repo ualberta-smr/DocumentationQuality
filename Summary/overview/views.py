@@ -1,12 +1,10 @@
 import json
-import time
 
 from django.core.exceptions import ObjectDoesNotExist
-
 from django.db.models import Count
 from django.shortcuts import render, redirect
 
-from analyze.main import analyze_library
+from analyze.analyze import analyze_library
 from .models import Task, Library, Response
 from .forms import Demographics, GeneralRating, TaskList, CodeExamples, \
     Readability, Consistency, Navigability, Feedback, AnalyzeForm
@@ -111,38 +109,27 @@ def landing(request):
                   )
 
 
-def search(request):
-    if request.method == "POST":
-        try:
-            exists = Library.objects.get(
-                library_name=request.POST["library_select"])
-        except ObjectDoesNotExist:
-            exists = False
-        if exists:
-            return redirect("overview:overview", request.POST["library_select"])
-    return render(request, "overview/landing.html")
+def demographics(request, library_name):
+    if not request.session.exists(request.session.session_key):
+        request.session.create()
+    return render(request, "overview/forms/demographics_form.html", {
+        "demographics": Demographics(
+            {"session_key": request.session.session_key,
+             "library_name": library_name})})
 
 
-def create(request):
-    form = AnalyzeForm(request.POST)
+def demographics_form(request):
+    form = Demographics(request.POST)
     if request.method == "POST":
         if form.is_valid():
-            analyze_library(form.cleaned_data["language"],
-                            form.cleaned_data["library_name"],
-                            form.cleaned_data["doc_url"],
-                            form.cleaned_data["gh_url"],
-                            form.cleaned_data["domain"])
-            # Sometimes the redirect happens before the database entry is created, so we sleep
-            time.sleep(5)
-            return redirect("overview:overview", request.POST["library_name"])
-    return render(request, "overview/landing.html", context={"form": form})
+            form.save()
+    return redirect("overview:overview", request.POST["library_name"])
 
 
 def overview(request, library_name):
     if not request.session.exists(request.session.session_key):
         request.session.create()
     library = _get_library(library_name)
-    # TODO: These are none before analysis finishes
     try:
         task_list = _get_task_list(library_name)
     except:
@@ -182,22 +169,33 @@ def overview(request, library_name):
     return render(request, "overview/overview.html", context)
 
 
-def demographics(request, *args, **kwargs):
-    context = _create_overview_context(request.session["store"])
+def search(request):
     if request.method == "POST":
-        form = Demographics(request.POST)
+        try:
+            exists = Library.objects.get(
+                library_name=request.POST["library_select"])
+        except ObjectDoesNotExist:
+            exists = False
+        if exists:
+            return redirect("overview:demographics",
+                            request.POST["library_select"])
+    return render(request, "overview/landing.html")
+
+
+def create(request):
+    form = AnalyzeForm(request.POST)
+    if request.method == "POST":
         if form.is_valid():
-            form.save()
-            request.session["store"]["demographics"] = json.dumps(
-                form.cleaned_data)
-            request.session.modified = True
-            return redirect("overview:overview", request.POST["library_name"])
-        else:
-            context["demographics"] = form
-    return render(request, "overview/overview.html", context)
+            analyze_library(form.cleaned_data["language"],
+                            form.cleaned_data["library_name"],
+                            form.cleaned_data["doc_url"],
+                            form.cleaned_data["gh_url"],
+                            form.cleaned_data["domain"])
+            return redirect("overview:demographics", request.POST["library_name"])
+    return render(request, "overview/landing.html", context={"form": form})
 
 
-def general_rating(request, *args, **kwargs):
+def general_rating(request):
     context = _create_overview_context(request.session["store"])
     if request.method == "POST":
         form = GeneralRating(request.POST)
@@ -217,7 +215,7 @@ def general_rating(request, *args, **kwargs):
     return render(request, "overview/overview.html", context)
 
 
-def task_list(request, *args, **kwargs):
+def task_list(request):
     context = _create_overview_context(request.session["store"])
     if request.method == "POST":
         form = TaskList(request.POST)
@@ -240,7 +238,7 @@ def task_list(request, *args, **kwargs):
 def code_examples(request):
     context = _create_overview_context(request.session["store"])
     if request.method == "POST":
-        form = CodeExamples(request.POST)
+        form = CodeExamples(request.POST or None)
         if form.is_valid():
             form.save()
             request.session["store"]["examples"] = json.dumps(form.cleaned_data)

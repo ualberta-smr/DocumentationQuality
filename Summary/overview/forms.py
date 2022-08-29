@@ -33,12 +33,12 @@ class Demographics(forms.ModelForm):
     session_key = forms.CharField(widget=forms.HiddenInput())
     library_name = forms.CharField(widget=forms.HiddenInput())
     years_experience = forms.IntegerField(required=False, min_value=0, widget=forms.NumberInput())
-    used_before = forms.ChoiceField(
+    familiar = forms.ChoiceField(
         required=False,
         choices=(
             (None, ""),
-            (False, "I have not"),
-            (True, "I have")
+            (False, "I am not"),
+            (True, "I am")
         )
     )
 
@@ -62,7 +62,7 @@ class GeneralRating(forms.ModelForm):
     library_name = forms.CharField(widget=forms.HiddenInput())
     general_rating = forms.CharField(
         required=True,
-        widget=forms.Textarea()
+        widget=forms.Textarea(attrs={"rows": 4, "cols": 40})
     )
 
     class Meta:
@@ -86,7 +86,7 @@ class TaskList(forms.ModelForm):
     library_name = forms.CharField(widget=forms.HiddenInput())
     task_list = forms.CharField(
         required=True,
-        widget=forms.Textarea()
+        widget=forms.Textarea(attrs={"rows": 4, "cols": 40})
     )
 
     class Meta:
@@ -110,11 +110,11 @@ class CodeExamples(forms.ModelForm):
     library_name = forms.CharField(widget=forms.HiddenInput())
     code_examples_methods = forms.CharField(
         required=True,
-        widget=forms.Textarea()
+        widget=forms.Textarea(attrs={"rows": 4, "cols": 40})
     )
     code_examples_classes = forms.CharField(
         required=True,
-        widget=forms.Textarea()
+        widget=forms.Textarea(attrs={"rows": 4, "cols": 40})
     )
 
     class Meta:
@@ -137,11 +137,11 @@ class Readability(forms.ModelForm):
     library_name = forms.CharField(widget=forms.HiddenInput())
     text_readability = forms.CharField(
         required=True,
-        widget=forms.Textarea()
+        widget=forms.Textarea(attrs={"rows": 4, "cols": 40})
     )
     code_readability = forms.CharField(
         required=True,
-        widget=forms.Textarea()
+        widget=forms.Textarea(attrs={"rows": 4, "cols": 40})
     )
 
     class Meta:
@@ -164,7 +164,7 @@ class Consistency(forms.ModelForm):
     library_name = forms.CharField(widget=forms.HiddenInput())
     consistency = forms.CharField(
         required=True,
-        widget=forms.Textarea()
+        widget=forms.Textarea(attrs={"rows": 4, "cols": 40})
     )
 
     class Meta:
@@ -188,7 +188,7 @@ class Navigability(forms.ModelForm):
     library_name = forms.CharField(widget=forms.HiddenInput())
     navigability = forms.CharField(
         required=True,
-        widget=forms.Textarea()
+        widget=forms.Textarea(attrs={"rows": 4, "cols": 40})
     )
 
     class Meta:
@@ -212,7 +212,7 @@ class Feedback(forms.ModelForm):
     library_name = forms.CharField(widget=forms.HiddenInput())
     usefulness = forms.CharField(
         required=True,
-        widget=forms.Textarea()
+        widget=forms.Textarea(attrs={"rows": 4, "cols": 40})
     )
     would_recommend = forms.ChoiceField(
         required=True,
@@ -224,7 +224,7 @@ class Feedback(forms.ModelForm):
     )
     general_feedback = forms.CharField(
         required=True,
-        widget=forms.Textarea()
+        widget=forms.Textarea(attrs={"rows": 4, "cols": 40})
     )
 
     class Meta:

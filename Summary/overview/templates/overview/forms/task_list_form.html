@@ -1,42 +1,30 @@
-<!-- The Modal -->
-<div class="modal" id="task_list">
-    <div class="modal-dialog modal-lg modal-dialog-centered">
-        <form action="/overview/forms/task_list/"
-              method="post"
-              id="task_list_form">
-            {% csrf_token %}
-            <div class="modal-content">
-
-                <!-- Modal Header -->
-                <div class="modal-header">
-                    <h4 class="modal-title">Task List</h4>
-                    <button type="button" class="btn-close"
-                            data-bs-dismiss="modal"></button>
-                </div>
-
-                <!-- Modal body -->
-                <div class="modal-body">
-                    {{ form.library_name }}
-                    {{ form.session_key }}
-                    <div class="form-group">
-                        {{ form.task_list }}
-                        <label for="{{ form.task_list.id_for_label }}">
-                            Please provide feedback on the Task List</label>
-                        {{ form.task_list }}
-                    </div>
-
-                </div>
-
-                <!-- Modal footer -->
-                <div class="modal-footer">
-                    <button type="submit" form="task_list_form"
-                            value="Submit  "
-                            class="btn-primary is-success is-fullwidth is-medium mt-5"
-                            data-bs-dismiss="modal">
-                        Submit
-                    </button>
-                </div>
-            </div>
-        </form>
+<form action="/overview/forms/task_list/"
+      method="post"
+      id="task_list_form"
+      class="form"
+      style="display: none">
+    {% csrf_token %}
+    <div class="modal-header">
+        <h4 class="modal-title">Task List</h4>
+        <button type="button" class="btn-close"
+                onclick="hideForm('#task_list_form', false)"></button>
     </div>
-</div>
+
+    {{ form.library_name }}
+    {{ form.session_key }}
+    <div class="form-group">
+        {{ form.task_list }}
+        <label for="{{ form.task_list.id_for_label }}">
+            Please provide feedback on the Task List</label>
+        {{ form.task_list }}
+    </div>
+
+    <div class="col-md-8" style="text-align: right;">
+        <button type="submit" form="task_list_form"
+                value="Submit  "
+                class="btn-primary is-success is-fullwidth is-medium"
+                onclick="hideForm('#task_list_form', true)">
+            Submit
+        </button>
+    </div>
+</form>

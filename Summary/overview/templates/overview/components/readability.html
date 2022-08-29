@@ -1,19 +1,12 @@
 {% load overview_extras %}
 
 <div class="row">
-    <div class="col">
+    <div class="col-md-8">
         <span data-bs-toggle="tooltip" data-bs-placement="top"
               title="This score represents the readability of the textual blocks in the documentation">
             <button type="button"
                     class="btn btn-outline-primary"
-                    style="border-color:transparent"
-                    data-bs-toggle="modal"
-                    data-bs-target="
-                        {% if not have_demographics %}
-                            #demographics
-                        {% else %}
-                            #readability
-                        {% endif %}">
+                    onclick="showForm('#readability_form')">
                 Readability of text
             </button>
         </span>
@@ -47,19 +40,12 @@
     </div>
 </div>
 <div class="row">
-    <div class="col">
+    <div class="col-md-8">
         <span data-bs-toggle="tooltip" data-bs-placement="top"
               title="This score represents the readability of the code exampes in the documentation">
             <button type="button"
                     class="btn btn-outline-primary"
-                    data-bs-toggle="modal"
-                    style="border-color:transparent"
-                    data-bs-target="
-                        {% if not have_demographics %}
-                            #demographics
-                        {% else %}
-                            #readability
-                        {% endif %}">
+                    onclick="showForm('#readability_form')">
                 Readability of code examples
             </button>
         </span>
@@ -92,9 +78,3 @@
         {% endwith %}
     </div>
 </div>
-
-{% if not have_demographics %}
-    {% include "overview/forms/demographics_form.html" with demographics=demographics %}
-{% else %}
-    {% include "overview/forms/readability_form.html" with form=readable %}
-{% endif %}
