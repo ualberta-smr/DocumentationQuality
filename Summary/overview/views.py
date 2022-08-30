@@ -40,12 +40,12 @@ def _get_example_ratios(library_name):
             ratios["method_ratio"] = "{:.0%}".format(
                 library_data.num_method_examples / library_data.num_methods)
         except:
-            ratios["method_ratio"] = "N/A"
+            ratios["method_ratio"] = "Calculating..."
         try:
             ratios["class_ratio"] = "{:.0%}".format(
                 library_data.num_class_examples / library_data.num_classes)
         except:
-            ratios["class_ratio"] = "N/A"
+            ratios["class_ratio"] = "Calculating..."
     except:
         pass
     return ratios
@@ -102,6 +102,8 @@ def _create_overview_context(store):
 
 
 def landing(request):
+    if request.session.exists(request.session.session_key):
+        del request.session["store"]
     return render(request, "overview/landing.html",
                   context={"form": AnalyzeForm(),
                            "library_list": _get_libraries()

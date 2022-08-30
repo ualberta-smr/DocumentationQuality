@@ -14,7 +14,6 @@
     {{ form.library_name }}
     {{ form.session_key }}
     <div class="form-group">
-        {{ form.navigability.errors }}
         <label for="{{ form.navigability.id_for_label }}">
             Please provide feedback on the navigability
         </label>
@@ -25,7 +24,7 @@
     <div class="col-md-8" style="text-align: right;">
         <button type="submit" form="navigation_form"
                 value="Submit"
-                class="btn-primary is-success is-fullwidth is-medium"
+                class="btn btn-primary is-success is-fullwidth is-medium"
                 onclick="hideForm('#navigation_form', true)">
             Submit
         </button>

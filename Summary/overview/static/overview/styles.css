@@ -18,14 +18,13 @@
     border-radius: 15px;
 }
 
-
-.btn-outline-primary {
+.btn-outline {
     padding: 5px;
     border-color: transparent;
 }
 
-.btn-outline-primary:hover {
-    background-color: cornflowerblue;
+.btn-outline:hover {
+    background-color: seagreen;
 }
 
 label {

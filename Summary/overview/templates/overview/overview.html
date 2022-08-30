@@ -30,6 +30,7 @@
 
     <title>{{ library_name }}</title>
 </head>
+{# style="max-width: 90%;" #}
 <body style="margin-top: 20px">
     <div class="row">
         <div id="summary_col" class="col">
@@ -69,7 +70,7 @@
         </div>
         <div id="form_col" class="col align-self-center" style="display: none">
             {% include "overview/forms/general_rating_form.html" with library_name=library_name form=general %}
-            {% include "overview/forms/task_list_form.html" with form=form %}
+            {% include "overview/forms/task_list_form.html" with form=tasks %}
             {% include "overview/forms/examples_form.html" with form=examples %}
             {% include "overview/forms/readability_form.html" with form=readable %}
             {% include "overview/forms/consistency_form.html" with form=consistent %}

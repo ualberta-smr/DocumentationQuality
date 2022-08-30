@@ -212,7 +212,7 @@ class Feedback(forms.ModelForm):
     library_name = forms.CharField(widget=forms.HiddenInput())
     usefulness = forms.CharField(
         required=True,
-        widget=forms.Textarea(attrs={"rows": 4, "cols": 40})
+        widget=forms.Textarea(attrs={"rows": 4, "cols": 50})
     )
     would_recommend = forms.ChoiceField(
         required=True,
@@ -224,7 +224,7 @@ class Feedback(forms.ModelForm):
     )
     general_feedback = forms.CharField(
         required=True,
-        widget=forms.Textarea(attrs={"rows": 4, "cols": 40})
+        widget=forms.Textarea(attrs={"rows": 4, "cols": 50})
     )
 
     class Meta:

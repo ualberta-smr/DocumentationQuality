@@ -14,7 +14,6 @@
     {{ form.library_name }}
     {{ form.session_key }}
     <div class="form-group col-md-8">
-        {{ form.consistency.errors }}
         <label for="{{ form.consistency.id_for_label }}">
             Please provide feedback on the consistency
         </label>
@@ -24,7 +23,7 @@
     <div class="col-md-8" style="text-align: right;">
         <button type="submit" form="consistency_form"
                 value="Submit"
-                class="btn-primary is-success is-fullwidth is-medium"
+                class="btn btn-primary is-success is-fullwidth is-medium"
                 onclick="hideForm('#consistency_form', true)">
             Submit
         </button>
