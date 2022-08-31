@@ -37,10 +37,10 @@
                 <!-- Modal Header -->
                 <div class="modal-header">
                     <h4 class="modal-title"><b>(Optional)</b> Demographics</h4>
-                    <button type="button" class="btn-close"
-                            data-bs-dismiss="modal"></button>
+                    <a href="/overview/{{ demographics.library_name.value }}">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </a>
                 </div>
-
                 <!-- Modal body -->
                 <div class="modal-body">
                     {{ demographics.library_name }}

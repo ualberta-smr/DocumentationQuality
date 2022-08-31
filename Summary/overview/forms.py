@@ -24,7 +24,8 @@ class AnalyzeForm(forms.Form):
             ("nlp", "NLP"),
             ("json", "JSON"),
             ("dom_manipulation", "DOM Manipulation"),
-            ("", "Other")
+            ("http", "HTTP"),
+            ("''", "Other")
         )
     )
 
@@ -105,13 +106,33 @@ class TaskList(forms.ModelForm):
                    "general_feedback")
 
 
-class CodeExamples(forms.ModelForm):
+class MethodExamples(forms.ModelForm):
     session_key = forms.CharField(widget=forms.HiddenInput())
     library_name = forms.CharField(widget=forms.HiddenInput())
     code_examples_methods = forms.CharField(
         required=True,
         widget=forms.Textarea(attrs={"rows": 4, "cols": 40})
     )
+
+    class Meta:
+        model = Response
+        exclude = ("years_experience",
+                   "used_before",
+                   "general_rating",
+                   "task_list",
+                   "code_examples_classes",
+                   "text_readability",
+                   "code_readability",
+                   "consistency",
+                   "navigability",
+                   "usefulness",
+                   "would_recommend",
+                   "general_feedback")
+
+
+class ClassExamples(forms.ModelForm):
+    session_key = forms.CharField(widget=forms.HiddenInput())
+    library_name = forms.CharField(widget=forms.HiddenInput())
     code_examples_classes = forms.CharField(
         required=True,
         widget=forms.Textarea(attrs={"rows": 4, "cols": 40})
@@ -123,6 +144,7 @@ class CodeExamples(forms.ModelForm):
                    "used_before",
                    "general_rating",
                    "task_list",
+                   "code_examples_methods",
                    "text_readability",
                    "code_readability",
                    "consistency",
@@ -132,13 +154,33 @@ class CodeExamples(forms.ModelForm):
                    "general_feedback")
 
 
-class Readability(forms.ModelForm):
+class TextReadability(forms.ModelForm):
     session_key = forms.CharField(widget=forms.HiddenInput())
     library_name = forms.CharField(widget=forms.HiddenInput())
     text_readability = forms.CharField(
         required=True,
         widget=forms.Textarea(attrs={"rows": 4, "cols": 40})
     )
+
+    class Meta:
+        model = Response
+        exclude = ("years_experience",
+                   "used_before",
+                   "general_rating",
+                   "task_list",
+                   "code_examples_methods",
+                   "code_examples_classes",
+                   "code_readability",
+                   "consistency",
+                   "navigability",
+                   "usefulness",
+                   "would_recommend",
+                   "general_feedback")
+
+
+class CodeReadability(forms.ModelForm):
+    session_key = forms.CharField(widget=forms.HiddenInput())
+    library_name = forms.CharField(widget=forms.HiddenInput())
     code_readability = forms.CharField(
         required=True,
         widget=forms.Textarea(attrs={"rows": 4, "cols": 40})
@@ -152,6 +194,7 @@ class Readability(forms.ModelForm):
                    "task_list",
                    "code_examples_methods",
                    "code_examples_classes",
+                   "text_readability",
                    "consistency",
                    "navigability",
                    "usefulness",

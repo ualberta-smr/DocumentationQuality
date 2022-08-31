@@ -1,18 +1,16 @@
-import json
-
-from django.core.exceptions import ObjectDoesNotExist
 from django.db.models import Count
-from django.shortcuts import render, redirect
+from django.shortcuts import render
 
-from analyze.analyze import analyze_library
-from .models import Task, Library, Response
-from .forms import Demographics, GeneralRating, TaskList, CodeExamples, \
-    Readability, Consistency, Navigability, Feedback, AnalyzeForm
+from .forms import Demographics, GeneralRating, TaskList, MethodExamples, \
+    ClassExamples, \
+    TextReadability, CodeReadability, Consistency, Navigability, Feedback, \
+    AnalyzeForm
+from .models import Task, Library
 
 
 # Get list of all libraries
 def _get_libraries():
-    return Library.objects.all().values("library_name")
+    return Library.objects.all().values("language", "library_name")
 
 
 def _get_library(library_name):
@@ -51,7 +49,7 @@ def _get_example_ratios(library_name):
     return ratios
 
 
-def _create_overview_context(store):
+def create_overview_context(store):
     context = {
         "library_name": store["library_name"],
         "doc_url": store["doc_url"],
@@ -66,11 +64,6 @@ def _create_overview_context(store):
         "consistency": store["consistency"],
         "navigation": store["navigation"],
         "session_key": store["session_key"],
-        "have_demographics": True if store["demographics"] else False,
-        "demographics": Demographics(store["demographics"]) if store[
-            "demographics"] else Demographics(
-            {"session_key": store["session_key"],
-             "library_name": store["library_name"]}),
         "general": GeneralRating(store["general"]) if store[
             "general"] else GeneralRating({"session_key": store["session_key"],
                                            "library_name": store[
@@ -78,14 +71,22 @@ def _create_overview_context(store):
         "tasks": TaskList(store["tasks"]) if store["tasks"] else TaskList(
             {"session_key": store["session_key"],
              "library_name": store["library_name"]}),
-        "examples": CodeExamples(store["examples"]) if store[
-            "examples"] else CodeExamples({"session_key": store["session_key"],
-                                           "library_name": store[
-                                               "library_name"]}),
-        "readable": Readability(store["readable"]) if store[
-            "readable"] else Readability({"session_key": store["session_key"],
-                                          "library_name": store[
-                                              "library_name"]}),
+        "method_examples": MethodExamples(store["method_examples"]) if store[
+            "method_examples"] else MethodExamples(
+            {"session_key": store["session_key"],
+             "library_name": store["library_name"]}),
+        "class_examples": ClassExamples(store["class_examples"]) if store[
+            "class_examples"] else ClassExamples(
+            {"session_key": store["session_key"],
+             "library_name": store["library_name"]}),
+        "text_readability": TextReadability(store["text_readability"]) if store[
+            "text_readability"] else TextReadability(
+            {"session_key": store["session_key"],
+             "library_name": store["library_name"]}),
+        "code_readability": CodeReadability(store["code_readability"]) if store[
+            "code_readability"] else CodeReadability(
+            {"session_key": store["session_key"],
+             "library_name": store["library_name"]}),
         "consistent": Consistency(store["consistent"]) if store[
             "consistent"] else Consistency({"session_key": store["session_key"],
                                             "library_name": store[
@@ -103,10 +104,19 @@ def _create_overview_context(store):
 
 def landing(request):
     if request.session.exists(request.session.session_key):
-        del request.session["store"]
+        if "store" in request.session:
+            del request.session["store"]
+    libraries = _get_libraries()
+    groupings = dict()
+    for library in libraries:
+        library_language = library["language"]
+        if library_language in groupings:
+            groupings[library_language].append(library["library_name"])
+        else:
+            groupings[library_language] = [library["library_name"]]
     return render(request, "overview/landing.html",
                   context={"form": AnalyzeForm(),
-                           "library_list": _get_libraries()
+                           "groupings": groupings
                            }
                   )
 
@@ -118,14 +128,6 @@ def demographics(request, library_name):
         "demographics": Demographics(
             {"session_key": request.session.session_key,
              "library_name": library_name})})
-
-
-def demographics_form(request):
-    form = Demographics(request.POST)
-    if request.method == "POST":
-        if form.is_valid():
-            form.save()
-    return redirect("overview:overview", request.POST["library_name"])
 
 
 def overview(request, library_name):
@@ -152,11 +154,12 @@ def overview(request, library_name):
                      consistency=3,
                      navigation=2,
                      session_key=request.session.session_key,
-                     demographics=None,
                      general=None,
                      tasks=None,
-                     examples=None,
-                     readable=None,
+                     method_examples=None,
+                     class_examples=None,
+                     text_readability=None,
+                     code_readability=None,
                      consistent=None,
                      navigable=None,
                      feedback=None)
@@ -167,183 +170,5 @@ def overview(request, library_name):
         store["task_list"] = task_list
         store["example_ratios"] = example_ratios
     request.session["store"] = store
-    context = _create_overview_context(store)
-    return render(request, "overview/overview.html", context)
-
-
-def search(request):
-    if request.method == "POST":
-        try:
-            exists = Library.objects.get(
-                library_name=request.POST["library_select"])
-        except ObjectDoesNotExist:
-            exists = False
-        if exists:
-            return redirect("overview:demographics",
-                            request.POST["library_select"])
-    return render(request, "overview/landing.html")
-
-
-def create(request):
-    form = AnalyzeForm(request.POST)
-    if request.method == "POST":
-        if form.is_valid():
-            analyze_library(form.cleaned_data["language"],
-                            form.cleaned_data["library_name"],
-                            form.cleaned_data["doc_url"],
-                            form.cleaned_data["gh_url"],
-                            form.cleaned_data["domain"])
-            return redirect("overview:demographics", request.POST["library_name"])
-    return render(request, "overview/landing.html", context={"form": form})
-
-
-def general_rating(request):
-    context = _create_overview_context(request.session["store"])
-    if request.method == "POST":
-        form = GeneralRating(request.POST)
-        if form.is_valid():
-            form.save()
-            request.session["store"]["general"] = json.dumps(form.cleaned_data)
-            request.session.modified = True
-            return redirect("overview:overview", request.POST["library_name"])
-        else:
-            existing_record, _ = Response.objects.get_or_create(
-                session_key=request.POST["session_key"],
-                library_name=request.POST["library_name"])
-            if existing_record:
-                existing_record.general_rating = request.POST["general_rating"]
-                existing_record.save()
-            context["general"] = form
-    return render(request, "overview/overview.html", context)
-
-
-def task_list(request):
-    context = _create_overview_context(request.session["store"])
-    if request.method == "POST":
-        form = TaskList(request.POST)
-        if form.is_valid():
-            form.save()
-            request.session["store"]["tasks"] = json.dumps(form.cleaned_data)
-            request.session.modified = True
-            return redirect("overview:overview", request.POST["library_name"])
-        else:
-            existing_record, _ = Response.objects.get_or_create(
-                session_key=request.POST["session_key"],
-                library_name=request.POST["library_name"])
-            if existing_record:
-                existing_record.task_list = request.POST["task_list"]
-                existing_record.save()
-            context["tasks"] = form
-    return render(request, "overview/overview.html", context)
-
-
-def code_examples(request):
-    context = _create_overview_context(request.session["store"])
-    if request.method == "POST":
-        form = CodeExamples(request.POST or None)
-        if form.is_valid():
-            form.save()
-            request.session["store"]["examples"] = json.dumps(form.cleaned_data)
-            request.session.modified = True
-            return redirect("overview:overview", request.POST["library_name"])
-        else:
-            existing_record, _ = Response.objects.get_or_create(
-                session_key=request.POST["session_key"],
-                library_name=request.POST["library_name"])
-            if existing_record:
-                existing_record.code_examples_methods = request.POST[
-                    "code_examples_methods"]
-                existing_record.code_examples_classes = request.POST[
-                    "code_examples_classes"]
-                existing_record.save()
-            context["examples"] = form
-    return render(request, "overview/overview.html", context)
-
-
-def readability(request):
-    context = _create_overview_context(request.session["store"])
-    if request.method == "POST":
-        form = Readability(request.POST)
-        if form.is_valid():
-            form.save()
-            request.session["store"]["readable"] = json.dumps(form.cleaned_data)
-            request.session.modified = True
-            return redirect("overview:overview", request.POST["library_name"])
-        else:
-            existing_record, _ = Response.objects.get_or_create(
-                session_key=request.POST["session_key"],
-                library_name=request.POST["library_name"])
-            if existing_record:
-                existing_record.text_readability = request.POST[
-                    "text_readability"]
-                existing_record.code_readability = request.POST[
-                    "code_readability"]
-                existing_record.save()
-            context["readable"] = form
-    return render(request, "overview/overview.html", context)
-
-
-def consistency(request):
-    context = _create_overview_context(request.session["store"])
-    if request.method == "POST":
-        form = Consistency(request.POST)
-        if form.is_valid():
-            form.save()
-            request.session["store"]["consistent"] = json.dumps(
-                form.cleaned_data)
-            request.session.modified = True
-            return redirect("overview:overview", request.POST["library_name"])
-        else:
-            existing_record, _ = Response.objects.get_or_create(
-                session_key=request.POST["session_key"],
-                library_name=request.POST["library_name"])
-            if existing_record:
-                existing_record.consistency = request.POST["consistency"]
-                existing_record.save()
-            context["consistent"] = form
-    return render(request, "overview/overview.html", context)
-
-
-def navigation(request):
-    context = _create_overview_context(request.session["store"])
-    if request.method == "POST":
-        form = Navigability(request.POST)
-        if form.is_valid():
-            form.save()
-            request.session["store"]["navigable"] = json.dumps(
-                form.cleaned_data)
-            request.session.modified = True
-            return redirect("overview:overview", request.POST["library_name"])
-        else:
-            existing_record, _ = Response.objects.get_or_create(
-                session_key=request.POST["session_key"],
-                library_name=request.POST["library_name"])
-            if existing_record:
-                existing_record.navigability = request.POST["navigability"]
-                existing_record.save()
-            context["navigable"] = form
-    return render(request, "overview/overview.html", context)
-
-
-def general(request):
-    context = _create_overview_context(request.session["store"])
-    if request.method == "POST":
-        form = Feedback(request.POST)
-        if form.is_valid():
-            form.save()
-            request.session["store"]["feedback"] = json.dumps(form.cleaned_data)
-            request.session.modified = True
-            return redirect("overview:overview", request.POST["library_name"])
-        else:
-            existing_record, _ = Response.objects.get_or_create(
-                session_key=request.POST["session_key"],
-                library_name=request.POST["library_name"])
-            if existing_record:
-                existing_record.usefulness = request.POST["usefulness"]
-                existing_record.would_recommend = request.POST[
-                    "would_recommend"]
-                existing_record.general_feedback = request.POST[
-                    "general_feedback"]
-                existing_record.save()
-            context["feedback"] = form
+    context = create_overview_context(store)
     return render(request, "overview/overview.html", context)

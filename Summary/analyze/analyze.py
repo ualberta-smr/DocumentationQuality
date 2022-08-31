@@ -3,17 +3,17 @@ import html
 import os
 import re
 import threading
-import nltk
 
+import nltk
 import time
+import mysql.connector
 
 from django.apps import AppConfig
 from urllib.request import Request, urlopen
 from bs4 import BeautifulSoup
 from fuzzywuzzy import fuzz
 
-from .util import HEADERS, add_or_update_library_record, add_tasks_to_db, \
-    ROOT_DIR, clone_repo
+from .util import HEADERS, MYSQL_CONFIG, add_or_update_library_record, add_tasks_to_db, ROOT_DIR, clone_repo, remove_old_tasks
 from .MethodLinker.main import api_methods_examples
 from .TaskExtractor.main import task_extract_and_link
 
@@ -90,6 +90,7 @@ class Extract(threading.Thread):
     def run(self):
         start = time.time()
         task_extract_and_link(self.library_name, self.doc_url, self.domain)
+        remove_old_tasks(self.library_name)
         add_tasks_to_db(self.library_name)
         end = time.time()
         with open("times.txt", "a") as times:
@@ -121,10 +122,20 @@ class APIMatching(threading.Thread):
 
 
 def analyze_library(language, library_name, doc_url, gh_url, domain):
+    website_db = mysql.connector.connect(**MYSQL_CONFIG)
+    cursor = website_db.cursor(dictionary=True)
+    cursor.execute("SELECT * FROM overview_library WHERE library_name ='" + library_name + "';")
+    result = cursor.fetchone()
+    clone = False
+    if result:
+        now = datetime.datetime.utcnow()
+        if now - result["last_updated"] > datetime.timedelta(days=30):
+            clone = True
+    cursor.close()
     os.chdir(ROOT_DIR)
     create = Create(library_name, language, domain, doc_url)
     extract = Extract(library_name, doc_url, domain)
-    repo_path = clone_repo(gh_url)
+    repo_path = clone_repo(gh_url, clone)
     match_signatures = APIMatching(library_name, language, doc_url, gh_url, repo_path, False)
     match_examples = APIMatching(library_name, language, doc_url, gh_url, repo_path, True)
 
@@ -136,6 +147,28 @@ def analyze_library(language, library_name, doc_url, gh_url, domain):
     extract.start()
     match_examples.start()
     match_signatures.start()
+
+
+def debug_metrics(language, library_name, doc_url, gh_url, domain):
+    os.chdir(ROOT_DIR)
+    # description = get_description(library_name, doc_url)
+    # if not description:
+    #     description = "Could not find description"
+    # add_or_update_library_record(
+    #     {"library_name": library_name,
+    #      "language": language,
+    #      "domain": domain,
+    #      "description": description,
+    #      "doc_url": doc_url,
+    #      "last_updated": datetime.datetime.utcnow()
+    #      })
+
+    # task_extract_and_link(library_name, doc_url, domain)
+    # add_tasks_to_db(library_name)
+
+    repo_path = clone_repo(gh_url, False)
+    api_methods_examples(language, library_name, doc_url, gh_url, repo_path, False)
+    api_methods_examples(language, library_name, doc_url, gh_url, repo_path, True)
 
 
 class AnalyzeConfig(AppConfig):

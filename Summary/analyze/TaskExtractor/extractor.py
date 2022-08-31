@@ -23,7 +23,7 @@ def extract_tasks(library_name, page, domain):
         filename = make_filename_from_url("TaskExtractor/results/", library_name, page, "tasks")
         property_file, domain_filter = _get_domain_specific(domain)
         get_paragraphs_and_tasks(soup.find_all("p"), filename, property_file, domain_filter)
-    except InvalidURL:
+    except:
         pass
 
 

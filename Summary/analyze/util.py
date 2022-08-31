@@ -13,7 +13,6 @@ from urllib.request import Request, urlopen
 
 from git import Repo
 
-
 ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
 
 HEADERS = {
@@ -25,6 +24,13 @@ HEADERS = {
     'Accept-Encoding': 'none',
     'Accept-Language': 'en-US,en;q=0.8',
     'Connection': 'keep-alive'}
+
+MYSQL_CONFIG = {
+    "host": "localhost",
+    "user": "djangouser",
+    "password": "password",
+    "database": "task_data"
+}
 
 
 def make_filename_from_url(directory, library_name, url, ftype):
@@ -66,12 +72,7 @@ def get_webpages(doc_home, repo_name):
 
 
 def add_to_task_table(item_dict):
-    website_db = mysql.connector.connect(
-        host="localhost",
-        user="djangouser",
-        password="password",
-        database="task_data"
-    )
+    website_db = mysql.connector.connect(**MYSQL_CONFIG)
     cursor = website_db.cursor()
     column_names = []
     values = []
@@ -96,12 +97,7 @@ def add_to_task_table(item_dict):
 
 
 def add_or_update_library_record(item_dict):
-    website_db = mysql.connector.connect(
-        host="localhost",
-        user="djangouser",
-        password="password",
-        database="task_data"
-    )
+    website_db = mysql.connector.connect(**MYSQL_CONFIG)
     cursor = website_db.cursor()
     column_names = []
     values = []
@@ -134,13 +130,14 @@ def add_or_update_library_record(item_dict):
         print(query)
 
 
-def clone_repo(repo_url):
+def clone_repo(repo_url, clone):
     repo_regex = re.compile(r"(?<=/)[a-zA-Z.-]+(?!/)$")
     repo_name = re.search(repo_regex, repo_url)[0][:-4]
     repo_path = os.path.normpath("MethodLinker/repos/" + repo_name)
-    if os.path.exists(repo_path):
-        rmtree(repo_path, onerror=rmtree_access_error_handler)
-    Repo.clone_from(repo_url, repo_path)
+    if clone:
+        if os.path.exists(repo_path):
+            rmtree(repo_path, onerror=rmtree_access_error_handler)
+        Repo.clone_from(repo_url, repo_path)
     return repo_path
 
 
@@ -222,25 +219,20 @@ def _process(library_name, datafiles):
                          "example_page"])
         for key, value in file_dict.items():
             for task in value["tasks"]:
-                writer.writerow([library_name, key, task, 1 if "has_example" in value else 0, value[
+                writer.writerow([library_name, key, task,
+                                 1 if "has_example" in value else 0, value[
                                      "example_page"] if "example_page" in value else ""])
     # shutil.copy(processed_file_name, os.path.normpath("\\".join(ROOT_DIR.split("\\")[:-1]) + "/Summary/overview/data/processed"))
     return processed_file_name
 
 
 def _get_library_id(library_name):
-    mydb = mysql.connector.connect(
-        host="localhost",
-        user="djangouser",
-        password="password",
-        database="task_data"
-    )
-
-    mycursor = mydb.cursor(dictionary=True)
-
-    mycursor.execute("SELECT id FROM overview_library WHERE library_name = '" + library_name + "'")
-
-    return mycursor.fetchone()["id"]
+    mydb = mysql.connector.connect(**MYSQL_CONFIG)
+    cursor = mydb.cursor(dictionary=True)
+    cursor.execute("SELECT id FROM overview_library WHERE library_name = '" + library_name + "'")
+    library_id = cursor.fetchone()["id"]
+    cursor.close()
+    return library_id
 
 
 def add_tasks_to_db(library_name):
@@ -256,3 +248,10 @@ def add_tasks_to_db(library_name):
                                "task": line[2],
                                "has_example": line[3],
                                "example_page": line[4]})
+
+
+def remove_old_tasks(library_name):
+    mydb = mysql.connector.connect(**MYSQL_CONFIG)
+    cursor = mydb.cursor()
+    cursor.execute("DELETE FROM overview_task WHERE library_name = '" + library_name + "'")
+    cursor.close()

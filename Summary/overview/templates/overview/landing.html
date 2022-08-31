@@ -71,8 +71,12 @@
                 <label for="library_select">
                     <select id="library_select" class="js-example-basic-single"
                             name="library_select" style="width: 300px">
-                        {% for library in library_list %}
-                            <option value="{{ library.library_name }}">{{ library.library_name }}</option>
+                        {% for language, libraries in groupings.items %}
+                            <optgroup label="{{ language }}">
+                                {% for library in libraries %}
+                                    <option value="{{ library }}">{{ library }}</option>
+                                {% endfor %}
+                            </optgroup>
                         {% endfor %}
                     </select>
                 </label>

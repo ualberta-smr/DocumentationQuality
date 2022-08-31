@@ -20,11 +20,16 @@
 
 .btn-outline {
     padding: 5px;
+    color: #285c3c;
     border-color: transparent;
 }
 
 .btn-outline:hover {
     background-color: seagreen;
+}
+
+.row {
+    --bs-gutter-x: none;
 }
 
 label {
@@ -41,7 +46,7 @@ input {
     display: inline-block;
     float: right;
     height: 20px;
-    width: 250px;
+    width: 200px;
     margin-top: 10px;
 }
 

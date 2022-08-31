@@ -21,6 +21,9 @@ This repository contains the code of extracting tasks and also checking API cove
 
 Create "task_data" MySQL database manually
 
+### Deficiencies
+GitHub repo requires the source code to be in a directory named "src" or the library name for the scripts to work. e.g., https://github.com/nltk/nltk (code under library name), https://github.com/stanfordnlp/CoreNLP (code under src)
+
 Needs 
 https://memcached.org/#/
 # License

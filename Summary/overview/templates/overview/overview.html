@@ -24,60 +24,72 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"
             integrity="sha512-rstIgDs0xPgmG6RX1Aba4KV5cWJbAMcvRCVmglpam9SoHZiUCyQVDdH2LPlxoHtrv17XWblE/V/PP+Tr04hbtA=="
             crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script type="text/javascript" src="{% static 'overview/util.js' %}"></script>
+    <script type="text/javascript"
+            src="{% static 'overview/util.js' %}"></script>
 
     {% load overview_extras %}
 
     <title>{{ library_name }}</title>
 </head>
 {# style="max-width: 90%;" #}
-<body style="margin-top: 20px">
-    <div class="row">
-        <div id="summary_col" class="col">
-            <div class="row metrics-child">
-                {% include "overview/components/general_rating.html" with general_rating=general_rating form=general library_name=library_name doc_url=doc_url %}
+<body class="container-fluid" style="margin-top: 20px; max-width: 90%;">
+<div class="row">
+    <div id="summary_col" class="col">
+        <div class="row metrics-child">
+            {% include "overview/components/general_rating.html" with general_rating=general_rating form=general library_name=library_name doc_url=doc_url %}
+        </div>
+        <br>
+        <div class="row">
+            <div class="metrics-container">
+                <h5>Instructions</h5>
+                You can provide feedback by clicking on the blue text
+                <b>without
+                    an underline</b>
             </div>
-            {#Start of content#}
-            <div class="row">
+        </div>
+        <br>
+        {#Start of content#}
+        <div class="row">
+            <div class="col">
                 {% include "overview/components/task_list.html" with task_list=task_list form=tasks %}
-                <div class="col">
-                    <div class="metrics-container">
-                        You can provide feedback by clicking on the blue text
-                        <b>without
-                            an underline</b>
-                    </div>
-                    <br>
-                    <div class="metrics-container">
-                        {{ description }}
-                    </div>
-                    <br>
-                    <div class="metrics-container">
-                        {% include "overview/components/examples.html" with examples=examples %}
-                        {% include "overview/components/readability.html" with readable=readable %}
-                        {% include "overview/components/consistency.html" with consistent=consistent %}
-                        {% include "overview/components/navigability.html" with navigable=navigable %}
-                    </div>
+            </div>
+            <div class="col-md-1" style="width: 1%"></div>
+            <div class="col h-50">
+                <div class="metrics-container h-50" style="overflow-y: scroll">
+                    <h5>Library Description</h5>
+                    {{ description }}
+                </div>
+                <br>
+                <div class="metrics-container">
+                    <h5>Metric evaluation of documentation quality</h5>
+                    {% include "overview/components/examples.html" with examples=examples %}
+                    {% include "overview/components/readability.html" with readable=readable %}
+                    {% include "overview/components/consistency.html" with consistent=consistent %}
+                    {% include "overview/components/navigability.html" with navigable=navigable %}
                 </div>
             </div>
-            <div class="row">
-                <button type="button"
-                        class="btn btn-primary"
-                        style="margin: 20px"
-                        onclick="showForm('#general_feedback_form')">
-                    General Feedback
-                </button>
-            </div>
         </div>
-        <div id="form_col" class="col align-self-center" style="display: none">
-            {% include "overview/forms/general_rating_form.html" with library_name=library_name form=general %}
-            {% include "overview/forms/task_list_form.html" with form=tasks %}
-            {% include "overview/forms/examples_form.html" with form=examples %}
-            {% include "overview/forms/readability_form.html" with form=readable %}
-            {% include "overview/forms/consistency_form.html" with form=consistent %}
-            {% include "overview/forms/navigability_form.html" with form=navigable %}
-            {% include "overview/forms/general_feedback_form.html" with form=feedback %}
+        <div class="row">
+            <button type="button"
+                    class="btn btn-primary"
+                    style="margin: 20px"
+                    onclick="showForm('#general_feedback_form')">
+                General Feedback
+            </button>
         </div>
     </div>
+    <div id="form_col" class="col align-self-center" style="display: none">
+        {% include "overview/forms/general_rating_form.html" with library_name=library_name form=general %}
+        {% include "overview/forms/task_list_form.html" with form=tasks %}
+        {% include "overview/forms/method_examples_form.html" with form=method_examples %}
+        {% include "overview/forms/class_examples_form.html" with form=class_examples %}
+        {% include "overview/forms/text_readability_form.html" with form=text_readability %}
+        {% include "overview/forms/code_readability_form.html" with form=code_readability %}
+        {% include "overview/forms/consistency_form.html" with form=consistent %}
+        {% include "overview/forms/navigability_form.html" with form=navigable %}
+        {% include "overview/forms/general_feedback_form.html" with form=feedback %}
+    </div>
+</div>
 </div>
 <script>
     {# Needs to be placed at the end to activate all the tooltips above#}
