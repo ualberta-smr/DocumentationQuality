@@ -40,11 +40,28 @@
         </div>
         <br>
         <div class="row">
-            <div class="metrics-container">
+            <div class="col-11"></div>
+            <div class="col-1">
+                <span id="instructions_toggle"
+                      style="display: block; text-decoration: underline; cursor: pointer;"
+                      onclick="(() => {
+                          let instructions = $('#instructions_box')[0];
+                          if (instructions.style.display === 'block') {
+                              instructions.style.display = 'none';
+                              $('#instructions_toggle')[0].textContent = 'Show';
+                          } else {
+                              instructions.style.display = 'block';
+                              $('#instructions_toggle')[0].textContent = 'Hide';
+                          }
+                      })()">Hide</span>
+            </div>
+        </div>
+        <div class="row">
+            <div id="instructions_box" class="metrics-container">
                 <h5>Instructions</h5>
-                You can provide feedback by clicking on the blue text
-                <b>without
-                    an underline</b>
+                <hr>
+                You can provide feedback by clicking on the dark green text
+                <b>without an underline.</b>
             </div>
         </div>
         <br>
@@ -57,11 +74,13 @@
             <div class="col h-50">
                 <div class="metrics-container h-50" style="overflow-y: scroll">
                     <h5>Library Description</h5>
+                    <hr>
                     {{ description }}
                 </div>
                 <br>
                 <div class="metrics-container">
                     <h5>Metric evaluation of documentation quality</h5>
+                    <hr>
                     {% include "overview/components/examples.html" with examples=examples %}
                     {% include "overview/components/readability.html" with readable=readable %}
                     {% include "overview/components/consistency.html" with consistent=consistent %}
@@ -78,6 +97,7 @@
             </button>
         </div>
     </div>
+    <div class="col-1 " style="width: 2%"></div>
     <div id="form_col" class="col align-self-center" style="display: none">
         {% include "overview/forms/general_rating_form.html" with library_name=library_name form=general %}
         {% include "overview/forms/task_list_form.html" with form=tasks %}
