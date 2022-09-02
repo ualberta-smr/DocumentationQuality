@@ -22,9 +22,22 @@ def _get_task_list(library_name):
     We do not use HAVING has_example = 1 (.filter(has_example=1)) because that would remove all tasks without an example
     SELECT task, has_example, example_page FROM overview_task WHERE library_name = library_name GROUP BY task ORDER BY has_example DESC, task DESC LIMIT 20
     '''
-    return list(Task.objects.filter(library_name=library_name).values(
-        "task", "has_example", "example_page").annotate(
+    task_list = list(Task.objects.filter(library_name=library_name).values(
+        "task", "has_example", "example_page", "paragraph", "html_id").annotate(
         dcount=Count("task")).order_by("-has_example", "-dcount")[:20])
+
+    tasks = []
+    for task in task_list:
+        paragraph_split = task["paragraph"].split()
+        identifier = " ".join(paragraph_split[:5])
+        tasks.append(
+        {
+            "task": task["task"],
+            "has_example": task["has_example"],
+            "url": task["example_page"] + ("#" + task["html_id"]  if task["html_id"] else "#:~:text=" + identifier)
+        })
+
+    return tasks
 
 
 def _get_example_ratios(library_name):
@@ -136,7 +149,7 @@ def overview(request, library_name):
     library = _get_library(library_name)
     try:
         task_list = _get_task_list(library_name)
-    except:
+    except Exception as e:
         task_list = []
 
     example_ratios = _get_example_ratios(library)

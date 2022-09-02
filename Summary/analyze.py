@@ -1,9 +1,12 @@
-from Summary.analyze.analyze import debug_metrics
+from Summary.analyze.analyze import debug_metrics, analyze_library
 
 if __name__ == '__main__':
-    # analyze_library("python", "orjson",
+    # debug_metrics("python", "orjson",
     #                 "http://web.archive.org/web/20210831032333/https://github.com/ijl/orjson",
     #                 "https://github.com/ijl/orjson.git", "json")
+    analyze_library("python", "orjson",
+                    "http://web.archive.org/web/20210831032333/https://github.com/ijl/orjson",
+                    "https://github.com/ijl/orjson.git", "json")
     # # https://web.archive.org/web/20210417122335/https://www.nltk.org/api/nltk.parse.html
     # # https://web.archive.org/web/20210725152853/https://www.nltk.org/api/nltk.tag.html
     # analyze_library("python", "nltk",
@@ -13,11 +16,13 @@ if __name__ == '__main__':
     #                 "https://web.archive.org/web/20220505163814/https://docs.python-requests.org/en/latest/",
     #                 "https://github.com/psf/requests.git", "http")
     # # http://web.archive.org/web/20211017224709/https://github.com/stleary/JSON-java
-    debug_metrics("java", "JSON-java", "https://github.com/stleary/JSON-java",
-                    "https://github.com/stleary/JSON-java.git", "json")
+    # debug_metrics("java", "JSON-java", "https://github.com/stleary/JSON-java",
+    #                 "https://github.com/stleary/JSON-java.git", "json")
     # # https://stanfordnlp.github.io/CoreNLP/ner.html
     # # https://stanfordnlp.github.io/CoreNLP/cmdline.html
     # analyze_library("java", "CoreNLP", "https://stanfordnlp.github.io/CoreNLP",
+    #                 "https://github.com/stanfordnlp/CoreNLP.git", "nlp")
+    # debug_metrics("java", "CoreNLP", "https://stanfordnlp.github.io/CoreNLP",
     #                 "https://github.com/stanfordnlp/CoreNLP.git", "nlp")
     # # https://reactjs.org/docs/components-and-props.html
     # debug_metrics("javascript", "React",

@@ -210,18 +210,24 @@ def _process(library_name, datafiles):
                 paragraph = row[0]
                 if paragraph in file_dict:
                     file_dict[paragraph]["has_example"] = True
-                    file_dict[paragraph]["example_page"] = row[-1]
+                    file_dict[paragraph]["example_page"] = row[3]
+                    file_dict[paragraph]["html_id"] = row[2]
     processed_file_name = os.path.normpath(
         ROOT_DIR + "/TaskExtractor/processed/" + key + ".csv")
     with open(processed_file_name, "w", encoding="utf-8", newline="") as out:
         writer = csv.writer(out, quoting=csv.QUOTE_MINIMAL)
-        writer.writerow(["library_name", "paragraph", "task", "has_example",
-                         "example_page"])
+        writer.writerow(
+            ["library_name", "paragraph", "task", "has_example", "example_page",
+             "html_id"])
         for key, value in file_dict.items():
             for task in value["tasks"]:
-                writer.writerow([library_name, key, task,
-                                 1 if "has_example" in value else 0, value[
-                                     "example_page"] if "example_page" in value else ""])
+                writer.writerow([library_name,
+                                 key,
+                                 task,
+                                 1 if "has_example" in value else 0,
+                                 value["example_page"] if "example_page" in value else "",
+                                 value["html_id"] if "html_id" in value else ""
+                                 ])
     # shutil.copy(processed_file_name, os.path.normpath("\\".join(ROOT_DIR.split("\\")[:-1]) + "/Summary/overview/data/processed"))
     return processed_file_name
 
@@ -247,7 +253,9 @@ def add_tasks_to_db(library_name):
                                "paragraph": line[1],
                                "task": line[2],
                                "has_example": line[3],
-                               "example_page": line[4]})
+                               "example_page": line[4],
+                               "html_id": line[5]
+                               })
 
 
 def remove_old_tasks(library_name):

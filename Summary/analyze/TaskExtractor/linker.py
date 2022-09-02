@@ -20,6 +20,21 @@ def fuzzy_compare(potential, paragraph):
     return ratio
 
 
+def find_closest_id(example):
+    closest_id = None
+    for sibling in example.parent.children:
+        if hasattr(sibling, "attrs") and "id" in sibling.attrs:
+            closest_id = sibling.attrs["id"]
+        elif hasattr(sibling, "children") and sibling.children is not None:
+            for child in sibling.children:
+                pot_id = find_closest_id(child)
+                if pot_id:
+                    closest_id = pot_id
+        if sibling == example:
+            break
+    return closest_id
+
+
 def link_code_examples_and_paragraphs(code_examples, paragraphs, link_file):
     if os.path.isfile(link_file):
         mode = "a"
@@ -37,40 +52,38 @@ def link_code_examples_and_paragraphs(code_examples, paragraphs, link_file):
                 within_section = True
                 while within_section:
                     if len(list(example.parent.children)) > 1:
-                        for child in example.parent.children:
-                            if child.name == "p":
+                        for sibling in example.parent.children:
+                            if sibling.name == "p":
                                 potential = True
                                 break
-                            if child.name and re.match(re.compile("h[0-6]"),
-                                                       child.name):
+                            if sibling.name and re.match(re.compile("h[0-6]"), sibling.name):
                                 within_section = False
                         if potential:
                             break
                     example = example.parent
-
+                try:
+                    closest_id = find_closest_id(example)
+                except:
+                    closest_id = None
                 # Find the paragraph that is right above the code example
                 # not crossing a header
                 paragraph = None
-                for child in example.parent.children:
+                for sibling in example.parent.children:
                     # If the current child is a header then any potential
                     # paragraph previously should not be relevant
-                    if child.name and re.match(re.compile("h[0-6]"),
-                                               child.name):
+                    if sibling.name and re.match(re.compile("h[0-6]"), sibling.name):
                         paragraph = None
-                    elif child.name == "p" and child.get_text() and \
-                            child.get_text().count(" ") > 2:
+                    elif sibling.name == "p" and sibling.get_text() and sibling.get_text().count(" ") > 2:
                         for i, ratio in enumerate(list(map(
-                                functools.partial(fuzzy_compare,
-                                                  child.get_text().strip()),
-                                paragraphs))):
+                                functools.partial(fuzzy_compare, sibling.get_text().strip()), paragraphs))):
                             if ratio >= 95:
                                 paragraph = paragraphs[i]
                     # If we reach the code example then break, since according
                     # to our heuristic, explanations are not below examples
-                    if example == child:
+                    if example == sibling:
                         break
                 if paragraph is not None:
-                    writer.writerow([paragraph, code.get_text().strip()])
+                    writer.writerow([paragraph, code.get_text().strip(), closest_id])
 
 
 def link_tasks(library_name, page):
@@ -99,13 +112,10 @@ def link_tasks(library_name, page):
                                               potential_links)
         # Remove duplicates
         if os.stat(potential_links).st_size != 0:
-            with open(potential_links, "r", encoding="utf-8",
-                      newline="") as potential, \
-                    open(make_filename_from_url("TaskExtractor/results/", library_name, page, "links"),
-                         "w", encoding="utf-8", newline="") as final:
+            with open(potential_links, "r", encoding="utf-8",  newline="") as potential, open(make_filename_from_url("TaskExtractor/results/", library_name, page, "links"), "w", encoding="utf-8", newline="") as final:
                 pot_reader = csv.reader(potential)
                 link_writer = csv.writer(final)
-                link_writer.writerow(["Paragraph", "Example", "Page"])
+                link_writer.writerow(["Paragraph", "Example", "HTML_ID", "Page"])
                 seen = set()
                 for line in pot_reader:
                     if line[1] not in seen:

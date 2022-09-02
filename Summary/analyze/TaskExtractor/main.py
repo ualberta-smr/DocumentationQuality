@@ -18,7 +18,7 @@ def task_extract_and_link(library_name, url, domain):
             link_tasks(library_name, page)
         except HTTPError:
             pass
-    extract_tasks(library_name, url, domain)
-    link_tasks(library_name, url)
+    # extract_tasks(library_name, url, domain)
+    # link_tasks(library_name, url)
     if not os.listdir(link_directory):
         os.rmdir(link_directory)

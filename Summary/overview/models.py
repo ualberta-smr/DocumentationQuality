@@ -29,6 +29,7 @@ class Task(models.Model):
     task = models.CharField(max_length=100)
     has_example = models.BooleanField("has example")
     example_page = models.CharField(max_length=100)
+    html_id = models.CharField(max_length=500)
 
     def __str__(self):
         return self.task
