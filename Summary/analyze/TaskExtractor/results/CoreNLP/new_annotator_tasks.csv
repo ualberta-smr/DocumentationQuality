@@ -1,6 +1,0 @@
-"Paragraph","Tasks"
-"Users can add custom annotators to StanfordCoreNLP.","add custom annotators to StanfordCoreNLP"
-"First write the custom annotator class. Here is an example which will take in a dictionary that maps words to lemmas:","write custom annotator class"
-"Then produce a properties file which allows Stanford CoreNLP to use your custom annotator:","produce properties
-use custom annotator"
-"Finally you can run this example with this command:","run  with command"

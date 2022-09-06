@@ -1,4 +1,0 @@
-Paragraph,Example,Page
-"When cloning the Requests repository, you may need to add the -c fetch.fsck.badTimezone=ignore flag to avoid an error about a bad commit (see
-this issue for more background):",git clone -c fetch.fsck.badTimezone=ignore https://github.com/psf/requests.git,https://web.archive.org/web/20220505163814/https://github.com/psf/requests
-You can also apply this setting to your global Git config:,git config --global fetch.fsck.badTimezone ignore,https://web.archive.org/web/20220505163814/https://github.com/psf/requests

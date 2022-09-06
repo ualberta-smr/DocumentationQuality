@@ -1,2 +1,0 @@
-{   'module': {'source_file': 'qunit\\src\\module.js'},
-    'run': {'source_file': 'qunit\\src\\cli\\run.js'}}

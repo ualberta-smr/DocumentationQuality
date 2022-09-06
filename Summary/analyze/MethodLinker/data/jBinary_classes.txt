@@ -1,1 +1,0 @@
-{'proto': {'source_file': 'jBinary\\src\\proto\\props.js'}}

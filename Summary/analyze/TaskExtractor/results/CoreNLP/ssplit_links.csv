@@ -1,5 +1,0 @@
-Paragraph,Example,Page
-This command will take in the text of the file input.txt and produce a human readable output of the sentences:,"java -Xmx5g edu.stanford.nlp.pipeline.StanfordCoreNLP -annotators tokenize,ssplit -file input.txt",https://stanfordnlp.github.io/CoreNLP/ssplit.html
-This command will take in the text of the file input.txt and produce a human readable output of the sentences:,"java -Xmx5g edu.stanford.nlp.pipeline.StanfordCoreNLP -annotators tokenize,ssplit -ssplit.eolonly -file input.txt",https://stanfordnlp.github.io/CoreNLP/ssplit.html
-This demo code will produce this output:,"Hello world.
-Hello world again.",https://stanfordnlp.github.io/CoreNLP/ssplit.html

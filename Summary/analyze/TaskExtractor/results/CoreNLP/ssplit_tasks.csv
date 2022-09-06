@@ -1,6 +1,0 @@
-"Paragraph","Tasks"
-"Sentence splitting is the process of dividing text into sentences. For instance the document Hello world. Hello world again. would be split into the sentences Hello world. and Hello world again. CoreNLP splits documents into sentences via a set of rules.","divide text into sentences
-split  into sentences hello world
-split documents into sentences"
-"This command will take in the text of the file input.txt and produce a human readable output of the sentences:","produce human readable output of sentences"
-"This demo code will produce this output:","produce output"

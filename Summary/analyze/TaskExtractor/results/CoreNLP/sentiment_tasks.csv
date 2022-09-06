@@ -1,6 +1,0 @@
-"Paragraph","Tasks"
-"StanfordCoreNLP includes the sentiment tool and various programs which support it. The model can be used to analyze text as part of StanfordCoreNLP by adding “sentiment” to the list of annotators. There is also command line support and model training support.","include sentiment tool
-include various programs
-support various programs
-add sentiment to list
-use model"

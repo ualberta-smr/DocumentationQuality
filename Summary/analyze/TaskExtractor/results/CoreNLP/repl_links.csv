@@ -1,2 +1,0 @@
-Paragraph,Example,Page
-"If you do not specify any flag that directs CoreNLP to process text from a particular file, then after the pipeline is loaded, you will be placed into an interactive loop. (That is, if you don’t specify either -file or -filelist.)",q RETURN,https://stanfordnlp.github.io/CoreNLP/repl.html

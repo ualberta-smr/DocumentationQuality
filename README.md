@@ -1,30 +1,45 @@
-# Overview
-This repository contains the code of extracting tasks and also checking API coverage of code examples in library documentation. The first part is under the TaskExtractor directory, while the second part is in the APICoverage directory.
+## Installation Instructions
+### Requirements
+Python libraries are in the `requirements.txt` file. However, this project additionally needs:
+1. MySQL Server 8.0 ([Installation guide](https://dev.mysql.com/doc/mysql-installation-excerpt/8.0/en/), [Downloads](https://dev.mysql.com/downloads/mysql/))
 
-## Task Extractor
+### Installation
+Before running the Django project, we need to create the database for the project to use. 
+Django can automatically create SQLite databases, but not MySQL, so we need to do this ourselves.
+First, run the MySQL service and access it through the command line
+```
+mysql -u root -p
+```
+Then create a database named "task_data"
+```
+create database task_data
+```
 
-1. Given a HTML webpage:
-   1. Extract tasks from the paragraphs of the page denoted with the HTML tag "\<p>"
-   2. Find explicit code blocks on the webpage denoted with the HTML tag "\<code>" (Inline code with text is ignored)
-2. Link paragraphs with extracted tasks with the extracted code blocks. Ideally, the paragraph/tasks give an idea of what the code example is about.
-3. The paragraphs and extracted tasks are written to their own file (`TaskExtractor\results\tasks.txt`), and the linked paragraphs and code examples are written in their own file (`TaskExtractor\results\links.txt`).
+To create a user in MySQL for this project to use, we can run the following commands in MySQL
+```
+CREATE USER 'djangouser'@'localhost' IDENTIFIED WITH mysql_native_password BY 'password';
 
-### Process
-1. Using an HTML parser, extract all HTML elements with the "\<p>" and "\<code>" tags.
-2. Using the StringToTasks.jar file provided by Christoph Treude, run the extracted paragraphs through the jar file and keep track of which paragraphs had extracted tasks. 
-3. Most code blocks are nested HTML, so traverse the parents until we reach a parent with siblings (usually this means we are at the top level of HTML elements). Then traverse the siblings looking for candidate paragraphs, stop when we reach our current code element. A candidate paragraph is:
-   1. One that is before the code example, and does not cross a header ("\<h1-6>")
-   2. One that has extracted tasks from the previous step
+GRANT ALL ON task_data.* TO 'djangouser'@'localhost';
 
-   Most explanations of code examples happen before the code example, that is why we stop searching after we reach our code example. A paragraph can be linked with multiple code examples, and a code example may not have an explanation.
+FLUSH PRIVILEGES;
+```
+**Note:** The MySQL configuration information used by the project is stored in `Summary/analyze/util.py` and `Summary/summary/my.cnf`.
+The former is for use in the metric scripts, while the latter is for the Django project.
 
+Since this service is a Django project, the typical Django commands can be used to run this application.
+```
+Summary/manage.py makemigrations
+Summary/manage.py migrate
 
-Create "task_data" MySQL database manually
+# If running the server publicly
+Summary/manage.py runserver
+# If running the server through localhost
+Summary/manage.py runserver --insecure
+```
+The project can now be accessed through a web browser
+```
+127.0.0.1:8000/overview
+```
 
-### Deficiencies
-GitHub repo requires the source code to be in a directory named "src" or the library name for the scripts to work. e.g., https://github.com/nltk/nltk (code under library name), https://github.com/stanfordnlp/CoreNLP (code under src)
-
-Needs 
-https://memcached.org/#/
-# License
-Described in the [LICENSE](http://github.com/ualberta-smr/tang-task-extractor/blob/main/LICENSE) file
+## Limitations
+1. The service currently requires the library's GitHub repo to contain its source code in a `src` or `<library_name>` directory, otherwise the scripts are not able to find the source code. For example, NLTK stores its source code under the directory `nltk`, while CoreNLP stores its source code under a `src` directory.
