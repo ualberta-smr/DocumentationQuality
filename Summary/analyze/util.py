@@ -39,6 +39,8 @@ def make_filename_from_url(directory, library_name, url, ftype):
     filename = parse.path.split("/")[-1]
     if ".htm" in filename:
         filename = filename.rsplit(".", 1)[0]
+    if filename == "":
+        filename = library_name
     filename = filename + "_" + ftype + ".csv"
     return os.path.normpath(directory + library_name + "/" + filename)
 
@@ -212,8 +214,7 @@ def _process(library_name, datafiles):
                     file_dict[paragraph]["has_example"] = True
                     file_dict[paragraph]["example_page"] = row[3]
                     file_dict[paragraph]["html_id"] = row[2]
-    processed_file_name = os.path.normpath(
-        ROOT_DIR + "/TaskExtractor/processed/" + key + ".csv")
+    processed_file_name = os.path.normpath(ROOT_DIR + "/TaskExtractor/processed/library_name/" + key + ".csv")
     with open(processed_file_name, "w", encoding="utf-8", newline="") as out:
         writer = csv.writer(out, quoting=csv.QUOTE_MINIMAL)
         writer.writerow(

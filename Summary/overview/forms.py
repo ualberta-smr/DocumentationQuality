@@ -33,9 +33,9 @@ class AnalyzeForm(forms.Form):
 class Demographics(forms.ModelForm):
     session_key = forms.CharField(widget=forms.HiddenInput())
     library_name = forms.CharField(widget=forms.HiddenInput())
-    years_experience = forms.IntegerField(required=False, min_value=0, widget=forms.NumberInput())
+    years_experience = forms.IntegerField(required=True, min_value=0, widget=forms.NumberInput())
     familiar = forms.ChoiceField(
-        required=False,
+        required=True,
         choices=(
             (None, ""),
             (False, "I am not"),

@@ -163,12 +163,12 @@ def debug_metrics(language, library_name, doc_url, gh_url, domain):
     #      "last_updated": datetime.datetime.utcnow()
     #      })
 
-    # task_extract_and_link(library_name, doc_url, domain)
+    task_extract_and_link(library_name, doc_url, domain)
     add_tasks_to_db(library_name)
 
-    # repo_path = clone_repo(gh_url, False)
-    # api_methods_examples(language, library_name, doc_url, gh_url, repo_path, False)
-    # api_methods_examples(language, library_name, doc_url, gh_url, repo_path, True)
+    repo_path = clone_repo(gh_url, False)
+    api_methods_examples(language, library_name, doc_url, gh_url, repo_path, False)
+    api_methods_examples(language, library_name, doc_url, gh_url, repo_path, True)
 
 
 class AnalyzeConfig(AppConfig):

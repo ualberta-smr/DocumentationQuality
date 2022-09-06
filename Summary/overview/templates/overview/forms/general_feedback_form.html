@@ -13,20 +13,30 @@
     {{ form.session_key }}
     <div class="form-group col-md-8">
         <label for="{{ form.usefulness.id_for_label }}">
-            Please provide feedback on the usefulness
+            How useful is having a documentation quality summary for evaluating
+            a library's documentation's quality?
         </label>
         {{ form.usefulness }}
     </div>
     <div class="form-group col-md-9">
-        <label for="{{ form.would_recommend.id_for_label }}">
-            Would you recommend this overview summary
-        </label>
-        {{ form.would_recommend }}
-    </div>
-    <div class="form-group col-md-8">
-        <label for="{{ form.general_feedback.id_for_label }}">
-            Please provide general feedback </label>
-        {{ form.general_feedback }}
+        <div class="row">
+            <div class="col-8">
+                <label for="{{ form.would_recommend.id_for_label }}">
+                    Would you recommend this documentation quality summary tool
+                    to others?
+                </label>
+            </div>
+            <div class="col">
+                {{ form.would_recommend }}
+            </div>
+        </div>
+        <div class="form-group col-md-8">
+            <label for="{{ form.general_feedback.id_for_label }}">
+                Please provide feedback about the metrics and/or the
+                presentation of the summary, that you have not provided already.
+            </label>
+            {{ form.general_feedback }}
+        </div>
     </div>
     <div class="col-md-9" style="text-align: right;">
         <button type="submit" form="general_feedback_form"

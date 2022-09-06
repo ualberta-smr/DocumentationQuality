@@ -46,15 +46,17 @@
                     {{ demographics.library_name }}
                     {{ demographics.session_key }}
                     <div class="form-group">
+                        {{ demographics.familiar.errors }}
                         <label for="{{ demographics.used_before.id_for_label }}">
-                            Please state whether you are familiary with this library
+                            Please state whether you are familiar with this library: {{ demographics.library_name|capfirst }}
                         </label>
                         {{ demographics.familiar }}
                     </div>
                     <div class="form-group">
-                        <label for="{{ demographics.years_experience.id_for_label }}">How
-                            many years of development experience do you
-                            have?</label>
+                        {{ demographics.years_experience.errors }}
+                        <label for="{{ demographics.years_experience.id_for_label }}">
+                            How many years of development experience do you have?
+                        </label>
                         {{ demographics.years_experience }}
                     </div>
                 </div>

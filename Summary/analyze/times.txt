@@ -1,5 +1,2 @@
-Starting analysis for orjson
-Finished retrieving description: 2.929549217224121
-Finished matching with Signatures: 29.789716720581055
-Finished matching with Examples: 29.792717456817627
-Finished extracting tasks: 4585.680068016052
+Starting analysis for jQuery
+Finished retrieving description: 1.0153775215148926

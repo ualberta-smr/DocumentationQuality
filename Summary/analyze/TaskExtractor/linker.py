@@ -89,41 +89,44 @@ def link_code_examples_and_paragraphs(code_examples, paragraphs, link_file):
 def link_tasks(library_name, page):
     paragraph_file = make_filename_from_url("TaskExtractor/results/", library_name, page, "tasks")
     if os.path.exists(paragraph_file):
-        req = Request(url=page, headers=HEADERS)
-        content = html.unescape(urlopen(req).read().decode("utf-8"))
-        soup = BeautifulSoup(content, "html.parser")
-        # code_examples = soup.find_all("code")
-        pre_examples = soup.find_all("pre")
-        with open(paragraph_file, "r", encoding="utf-8",
-                  newline="") as paragraphs:
-            paragraphs = list(paragraph[0]
-                              for paragraph in list(csv.reader(paragraphs)))
-            potential_links = make_filename_from_url("TaskExtractor/results/" ,library_name, page, "links_pot")
-            # Taken from: https://stackoverflow.com/questions/10840533/most-pythonic-way-to-delete-a-file-which-may-not-exist
-            # Answer by User Matt, by Henry Tang, at 10:56 am MDT
-            try:
-                os.remove(potential_links)
-            except OSError as e:
-                if e.errno != errno.ENOENT:
-                    raise
-            # link_code_examples_and_paragraphs(code_examples, paragraphs,
-            #                                   potential_links)
-            link_code_examples_and_paragraphs(pre_examples, paragraphs,
-                                              potential_links)
-        # Remove duplicates
-        if os.stat(potential_links).st_size != 0:
-            with open(potential_links, "r", encoding="utf-8",  newline="") as potential, open(make_filename_from_url("TaskExtractor/results/", library_name, page, "links"), "w", encoding="utf-8", newline="") as final:
-                pot_reader = csv.reader(potential)
-                link_writer = csv.writer(final)
-                link_writer.writerow(["Paragraph", "Example", "HTML_ID", "Page"])
-                seen = set()
-                for line in pot_reader:
-                    if line[1] not in seen:
-                        seen.add(line[1])
-                        line.append(page)
-                        link_writer.writerow(line)
-        else:
-            print("No potential example links found")
-        os.remove(potential_links)
+        try:
+            req = Request(url=page, headers=HEADERS)
+            content = html.unescape(urlopen(req).read().decode("utf-8"))
+            soup = BeautifulSoup(content, "html.parser")
+            # code_examples = soup.find_all("code")
+            pre_examples = soup.find_all("pre")
+            with open(paragraph_file, "r", encoding="utf-8",
+                      newline="") as paragraphs:
+                paragraphs = list(paragraph[0]
+                                  for paragraph in list(csv.reader(paragraphs)))
+                potential_links = make_filename_from_url("TaskExtractor/results/" ,library_name, page, "links_pot")
+                # Taken from: https://stackoverflow.com/questions/10840533/most-pythonic-way-to-delete-a-file-which-may-not-exist
+                # Answer by User Matt, by Henry Tang, at 10:56 am MDT
+                try:
+                    os.remove(potential_links)
+                except OSError as e:
+                    if e.errno != errno.ENOENT:
+                        raise
+                # link_code_examples_and_paragraphs(code_examples, paragraphs,
+                #                                   potential_links)
+                link_code_examples_and_paragraphs(pre_examples, paragraphs,
+                                                  potential_links)
+            # Remove duplicates
+            if os.stat(potential_links).st_size != 0:
+                with open(potential_links, "r", encoding="utf-8",  newline="") as potential, open(make_filename_from_url("TaskExtractor/results/", library_name, page, "links"), "w", encoding="utf-8", newline="") as final:
+                    pot_reader = csv.reader(potential)
+                    link_writer = csv.writer(final)
+                    link_writer.writerow(["Paragraph", "Example", "HTML_ID", "Page"])
+                    seen = set()
+                    for line in pot_reader:
+                        if line[1] not in seen:
+                            seen.add(line[1])
+                            line.append(page)
+                            link_writer.writerow(line)
+            else:
+                print("No potential example links found")
+            os.remove(potential_links)
+        except:
+            pass
     else:
         print("No paragraphs for", page)

@@ -60,8 +60,9 @@
             <div id="instructions_box" class="metrics-container">
                 <h5>Instructions</h5>
                 <hr>
-                You can provide feedback by clicking on the dark green text
+                You can provide feedback by clicking on the <span style="color: darkgreen"> dark green text</span>
                 <b>without an underline.</b>
+                Please note that this feedback is optional, and you are under no obligation to provide any.
             </div>
         </div>
         <br>
@@ -99,7 +100,7 @@
     </div>
     <div class="col-1 " style="width: 2%"></div>
     <div id="form_col" class="col align-self-center" style="display: none">
-        {% include "overview/forms/general_rating_form.html" with library_name=library_name form=general %}
+        {% include "overview/forms/general_rating_form.html" with library_name=library_name form=general have_demographics=have_demographics %}
         {% include "overview/forms/task_list_form.html" with form=tasks %}
         {% include "overview/forms/method_examples_form.html" with form=method_examples %}
         {% include "overview/forms/class_examples_form.html" with form=class_examples %}

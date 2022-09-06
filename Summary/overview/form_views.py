@@ -47,7 +47,8 @@ def demographics_form(request):
     if request.method == "POST":
         if form.is_valid():
             form.save()
-    return redirect("overview:overview", request.POST["library_name"])
+            return redirect("overview:overview", request.POST["library_name"])
+    return render(request, "overview/forms/demographics_form.html", {"demographics": form})
 
 
 def general_rating(request):

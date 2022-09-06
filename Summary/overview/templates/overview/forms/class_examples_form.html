@@ -11,13 +11,22 @@
     </div>
     {{ form.library_name }}
     {{ form.session_key }}
-    <div class="form-group col-md-8">
-        <label for="{{ form.code_examples_classes.id_for_label }}">
-            Please provide feedback on the classes code examples
-        </label>
+    <div class="form-group col-md-9">
+        {% if familiar == False %}
+            <label for="{{ form.code_examples_classes.id_for_label }}">
+                How useful is knowing the percentage of classes with a code
+                example in the documentation to you?
+            </label>
+        {% else %}
+            <label for="{{ form.code_examples_classes.id_for_label }}">
+                How much does the percentage of classes with a code example match
+                your intuition of classes with a code example in the
+                documentation?
+            </label>
+        {% endif %}
         {{ form.code_examples_classes }}
     </div>
-    <div class="col-md-8" style="text-align: right;">
+    <div class="col-md-9" style="text-align: right;">
         <button type="submit" form="code_examples_form"
                 value="Submit"
                 class="btn btn-primary is-success is-fullwidth is-medium"

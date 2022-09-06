@@ -11,13 +11,21 @@
     </div>
     {{ form.library_name }}
     {{ form.session_key }}
-    <div class="form-group col-md-8">
-        <label for="{{ form.general_rating.id_for_label }}">
-            Please provide feedback on the General Rating
-        </label>
+    <div class="form-group col-md-9">
+        {% if familiar == False %}
+            <label for="{{ form.general_rating.id_for_label }}">
+                How useful is having a general rating of the library's documentation's quality?
+            </label>
+        {% else %}
+            <label for="{{ form.general_rating.id_for_label }}">
+                How does the general rating match your intuition with the
+                general quality of the library's documentation?
+            </label>
+        {% endif %}
+
         {{ form.general_rating }}
     </div>
-    <div class="col-md-8" style="text-align: right;">
+    <div class="col-md-9" style="text-align: right;">
         <button type="submit" form="general_rating_form"
                 value="Submit"
                 class="btn btn-primary is-success is-fullwidth is-medium"

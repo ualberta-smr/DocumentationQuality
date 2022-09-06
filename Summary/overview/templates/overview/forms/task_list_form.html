@@ -11,14 +11,20 @@
     </div>
     {{ form.library_name }}
     {{ form.session_key }}
-    <div class="form-group col-md-8">
-        <label for="{{ form.task_list.id_for_label }}">
-            Please provide feedback on the Task List
-        </label>
+    <div class="form-group col-md-9">
+        {% if familiar == False %}
+            <label for="{{ form.task_list.id_for_label }}">
+                How useful do you find this list of tasks found in the documentation?
+            </label>
+        {% else %}
+            <label for="{{ form.task_list.id_for_label }}">
+                How much does this list of tasks match your perception of the supported tasks by the library?
+            </label>
+        {% endif %}
         {{ form.task_list }}
     </div>
 
-    <div class="col-md-8" style="text-align: right;">
+    <div class="col-md-9" style="text-align: right;">
         <button type="submit" form="task_list_form"
                 value="Submit  "
                 class="btn btn-primary is-success is-fullwidth is-medium"

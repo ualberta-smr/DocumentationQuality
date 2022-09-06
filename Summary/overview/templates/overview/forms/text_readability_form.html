@@ -11,13 +11,21 @@
     </div>
     {{ form.library_name }}
     {{ form.session_key }}
-    <div class="form-group col-md-8">
-        <label for="{{ form.text_readability.id_for_label }}">
-            Please provide feedback on the text readability
-        </label>
+    <div class="form-group col-md-9">
+        {% if familiar == False %}
+            <label for="{{ form.text_readability.id_for_label }}">
+                How useful is having an indicator for the readability of documentation text?
+            </label>
+        {% else %}
+            <label for="{{ form.text_readability.id_for_label }}">
+                How much does the rating of text readability match your
+                intuition of the documentation's text readability?
+            </label>
+
+        {% endif %}
         {{ form.text_readability }}
     </div>
-    <div class="col-md-8" style="text-align: right;">
+    <div class="col-md-9" style="text-align: right;">
         <button type="submit" form="readability_form"
                 value="Submit"
                 class="btn btn-primary is-success is-fullwidth is-medium"

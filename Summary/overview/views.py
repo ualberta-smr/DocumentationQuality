@@ -5,7 +5,7 @@ from .forms import Demographics, GeneralRating, TaskList, MethodExamples, \
     ClassExamples, \
     TextReadability, CodeReadability, Consistency, Navigability, Feedback, \
     AnalyzeForm
-from .models import Task, Library
+from .models import Task, Library, Response
 
 
 # Get list of all libraries
@@ -77,6 +77,7 @@ def create_overview_context(store):
         "consistency": store["consistency"],
         "navigation": store["navigation"],
         "session_key": store["session_key"],
+        "familiar": store["familiar"],
         "general": GeneralRating(store["general"]) if store[
             "general"] else GeneralRating({"session_key": store["session_key"],
                                            "library_name": store[
@@ -151,6 +152,10 @@ def overview(request, library_name):
         task_list = _get_task_list(library_name)
     except Exception as e:
         task_list = []
+    try:
+        familiar = Response.objects.filter(session_key=request.session.session_key).values("familiar").get()["familiar"]
+    except:
+        familiar = False
 
     example_ratios = _get_example_ratios(library)
     if "store" not in request.session:
@@ -167,6 +172,7 @@ def overview(request, library_name):
                      consistency=3,
                      navigation=2,
                      session_key=request.session.session_key,
+                     familiar=False,
                      general=None,
                      tasks=None,
                      method_examples=None,
@@ -182,6 +188,7 @@ def overview(request, library_name):
         store["doc_url"] = library.doc_url
         store["task_list"] = task_list
         store["example_ratios"] = example_ratios
+        store["familiar"] = familiar
     request.session["store"] = store
     context = create_overview_context(store)
     return render(request, "overview/overview.html", context)
