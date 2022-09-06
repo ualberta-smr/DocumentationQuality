@@ -26,6 +26,8 @@ FLUSH PRIVILEGES;
 **Note:** The MySQL configuration information used by the project is stored in `Summary/analyze/util.py` and `Summary/summary/my.cnf`.
 The former is for use in the metric scripts, while the latter is for the Django project.
 
+Next we need to [download](https://drive.google.com/file/d/19gV3aDLz5e6Gmb7nn29BlsfVX0AbHZ41/view?usp=sharing) the task extraction jar to `Summary/analyze/TaskExtractor`, (i.e., `Summary/analyze/TaskExtractor/StringToTasks.jar`).
+
 Since this service is a Django project, the typical Django commands can be used to run this application.
 ```
 Summary/manage.py makemigrations
