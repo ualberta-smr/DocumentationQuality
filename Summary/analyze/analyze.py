@@ -3,7 +3,9 @@ import html
 import os
 import re
 import threading
+from pathlib import Path
 
+import gdown
 import nltk
 import time
 import mysql.connector
@@ -133,6 +135,9 @@ def analyze_library(language, library_name, doc_url, gh_url, domain):
             clone = True
     cursor.close()
     os.chdir(ROOT_DIR)
+    extraction_jar = Path(ROOT_DIR + "/TaskExtractor/StringToTasks.jar")
+    if not extraction_jar.exists():
+        gdown.download(url="https://drive.google.com/file/d/19gV3aDLz5e6Gmb7nn29BlsfVX0AbHZ41/view?usp=sharing", output=str(extraction_jar), fuzzy=True)
     create = Create(library_name, language, domain, doc_url)
     extract = Extract(library_name, doc_url, domain)
     repo_path = clone_repo(gh_url, clone)
@@ -151,22 +156,23 @@ def analyze_library(language, library_name, doc_url, gh_url, domain):
 
 def debug_metrics(language, library_name, doc_url, gh_url, domain):
     os.chdir(ROOT_DIR)
-    # description = get_description(library_name, doc_url)
-    # if not description:
-    #     description = "Could not find description"
-    # add_or_update_library_record(
-    #     {"library_name": library_name,
-    #      "language": language,
-    #      "domain": domain,
-    #      "description": description,
-    #      "doc_url": doc_url,
-    #      "last_updated": datetime.datetime.utcnow()
-    #      })
+    description = get_description(library_name, doc_url)
+    if not description:
+        description = "Could not find description"
+    add_or_update_library_record(
+        {"library_name": library_name,
+         "language": language,
+         "domain": domain,
+         "description": description,
+         "doc_url": doc_url,
+         "last_updated": datetime.datetime.utcnow()
+         })
 
     task_extract_and_link(library_name, doc_url, domain)
+    remove_old_tasks(library_name)
     add_tasks_to_db(library_name)
 
-    repo_path = clone_repo(gh_url, False)
+    repo_path = clone_repo(gh_url, True)
     api_methods_examples(language, library_name, doc_url, gh_url, repo_path, False)
     api_methods_examples(language, library_name, doc_url, gh_url, repo_path, True)
 

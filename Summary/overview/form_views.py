@@ -1,4 +1,5 @@
 import json
+import time
 
 from django.core.exceptions import ObjectDoesNotExist
 from django.shortcuts import render, redirect
@@ -38,6 +39,7 @@ def create(request):
             if not request.session.exists(request.session.session_key):
                 return redirect("overview:demographics", request.POST["library_name"])
             else:
+                time.sleep(5)
                 return redirect("overview:overview", request.POST["library_name"])
     return render(request, "overview/landing.html", context={"form": form})
 

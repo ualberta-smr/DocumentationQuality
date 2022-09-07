@@ -214,7 +214,11 @@ def _process(library_name, datafiles):
                     file_dict[paragraph]["has_example"] = True
                     file_dict[paragraph]["example_page"] = row[3]
                     file_dict[paragraph]["html_id"] = row[2]
-    processed_file_name = os.path.normpath(ROOT_DIR + "/TaskExtractor/processed/library_name/" + key + ".csv")
+
+    processed_directory = ROOT_DIR + "/TaskExtractor/processed/" + library_name
+    if not os.path.exists(processed_directory):
+        os.mkdir(processed_directory)
+    processed_file_name = os.path.normpath(processed_directory + "/" + key + ".csv")
     with open(processed_file_name, "w", encoding="utf-8", newline="") as out:
         writer = csv.writer(out, quoting=csv.QUOTE_MINIMAL)
         writer.writerow(

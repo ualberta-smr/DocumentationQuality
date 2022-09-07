@@ -1,2 +1,5 @@
-Starting analysis for jQuery
-Finished retrieving description: 1.0153775215148926
+Starting analysis for requests
+Finished retrieving description: 0.4338796138763428
+Finished matching with Signatures: 8.612289428710938
+Finished matching with Examples: 8.748321533203125
+Finished extracting tasks: 2857.790881872177

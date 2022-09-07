@@ -18,8 +18,8 @@ if __name__ == '__main__':
     # # # http://web.archive.org/web/20211017224709/https://github.com/stleary/JSON-java
     # # debug_metrics("java", "JSON-java", "https://github.com/stleary/JSON-java",
     # #                 "https://github.com/stleary/JSON-java.git", "json")
-    # analyze_library("java", "JSON-java", "https://github.com/stleary/JSON-java",
-    #                 "https://github.com/stleary/JSON-java.git", "json")
+    #     # analyze_library("java", "JSON-java", "https://github.com/stleary/JSON-java",
+    #     #                 "https://github.com/stleary/JSON-java.git", "json")
     # # # https://stanfordnlp.github.io/CoreNLP/ner.html
     # # # https://stanfordnlp.github.io/CoreNLP/cmdline.html
     # analyze_library("java", "CoreNLP", "https://stanfordnlp.github.io/CoreNLP",
