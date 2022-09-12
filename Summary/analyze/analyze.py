@@ -144,7 +144,7 @@ def analyze_library(language, library_name, doc_url, gh_url, domain):
     match_signatures = APIMatching(library_name, language, doc_url, gh_url, repo_path, False)
     match_examples = APIMatching(library_name, language, doc_url, gh_url, repo_path, True)
 
-    with open("times.txt", "w") as times:
+    with open("times.txt", "a") as times:
         times.write("Starting analysis for " + library_name)
         times.write("\n")
 

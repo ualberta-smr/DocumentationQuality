@@ -1,5 +1,42 @@
+Starting analysis for orjson
+Finished retrieving description: 2.5557305812835693
+Finished matching with Signatures: 87.60766935348511
+Finished matching with Examples: 87.87474870681763
+Finished extracting tasks: 1849.4127488136292
+Starting analysis for nltk
+Finished retrieving description: 7.498462200164795
+Finished matching with Signatures: 84.33656620979309
+Finished matching with Examples: 84.34757018089294
+Finished extracting tasks: 8219.210043907166
 Starting analysis for requests
-Finished retrieving description: 0.4338796138763428
-Finished matching with Signatures: 8.612289428710938
-Finished matching with Examples: 8.748321533203125
-Finished extracting tasks: 2857.790881872177
+Finished retrieving description: 5.827717542648315
+Finished matching with Examples: 78.97008013725281
+Finished matching with Signatures: 80.91302609443665
+Finished extracting tasks: 6935.989938259125
+Starting analysis for JSON-java
+Finished retrieving description: 1.1720142364501953
+Finished matching with Signatures: 26.971883535385132
+Finished matching with Examples: 28.170185804367065
+Finished extracting tasks: 250.83779525756836
+Starting analysis for CoreNLP
+Finished retrieving description: 0.8203737735748291
+Finished matching with Signatures: 112.78762888908386
+Finished matching with Examples: 112.79062986373901
+Finished extracting tasks: 1797.9008996486664
+Starting analysis for React
+Finished retrieving description: 0.6860353946685791
+Finished extracting tasks: 98.85861921310425
+Starting analysis for jQuery
+Finished retrieving description: 1.1744415760040283
+Finished extracting tasks: 516.2527842521667
+Finished matching with Signatures: 746.1172921657562
+Starting analysis for qunit
+Finished retrieving description: 0.324279308319  0918
+Finished matching with Signatures: 5.003788709640503
+Finished extracting tasks: 234.87915015220642
+Starting analysis for jBinary
+Finished retrieving description: 0.8769590854644775
+Starting analysis for jBinary
+Finished retrieving description: 0.6818089485168457
+Finished matching with Examples: 63.675174713134766
+Finished extracting tasks: 418.6911244392395
