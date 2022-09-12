@@ -30,7 +30,7 @@ def code_readability(page):
                 score = result.stdout.decode("ISO-8859-1").split()[-1]
                 if score != "NaN":
                     scores.append(float(score))
-                os.remove("temp.txt")
+                os.remove("Readability/temp.txt")
             except:
                 pass
     except:
