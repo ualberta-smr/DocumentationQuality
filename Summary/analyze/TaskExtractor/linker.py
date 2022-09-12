@@ -5,7 +5,7 @@ import re
 import csv
 import html
 
-from fuzzywuzzy import fuzz
+from thefuzz import fuzz
 from bs4 import BeautifulSoup
 from urllib.request import Request, urlopen
 from ..util import make_filename_from_url, HEADERS

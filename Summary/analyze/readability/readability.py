@@ -1,82 +1,61 @@
-# pip install py-readability-metrics
-# python -m nltk.downloader punkt
-from readability import Readability
+import re
+
+from nltk.tokenize import sent_tokenize, TweetTokenizer
 
 
-# positive: number of blank lines/comments
-# negative: line length, number of identifiers, preceding whitespace, number of keywords, number of parantheses/periods/commas
-def find_code_readability_metrics():
-    pass
-
-
-# characters
-def find_line_length(code):
-    avg = 0
-    m = 0
-    return avg, m
-
-# everything left of an "=" ?
-def find_identifiers():
-    avg = 0
-    m = 0
-    return avg, m
-
-def preceding_whitespace():
-    avg, m = 0
-    return avg, m
-
-def keywords():
-    avg, m = 0
-    return avg, m
-
-def parantheses():
-    avg = 0
-    return avg
-
-def periods():
-    avg = 0
-    return avg
-
-def blank_lines():
-    avg = 0
-    return avg
-
-def comments():
-    avg = 0
-    return avg
-
-def commas():
-    avg = 0
-    return avg
-
-# F K(S) = 206.835 − 1.015 words(S)/phrases(S) − 84.600 syllables(S)/words(S)
-def find_text_readability_metrics():
-    r = Readability("text")
-    fk = r.flesch_kincaid()
-
-
-
-
+# Taken from: https://github.com/cdimascio/py-readability-metrics/blob/master/readability/text/syllables.py
+# Written by user: Carmine DiMascio
+# Taken by: Henry Tang on 09/09/2022 at 15:33 MDT
 def count_syllables(word):
-    vowels = ["a", "e", "i", "o", "u"]
-    syllable_count = 0
-    syllables = []
-    syllable = []
-    last_was_vowel = False
-    for c in word:
-        vowel = False
-        syllable.append(c)
-        for v in vowels:
-            if c == v:
-                if not last_was_vowel:
-                    syllable_count += 1
-                vowel = True
-                last_was_vowel = True
-                break
-        if vowel:
-            syllables.append("".join(syllable))
-            syllable = []
-            last_was_vowel = False
-    # if word[-2:] == "es" or word[-1] == "e":
-    #     syllables -= 1
-    return syllables, syllable_count
+    word = word if type(word) is str else str(word)
+
+    word = word.lower()
+
+    if len(word) <= 3:
+        return 1
+
+    word = re.sub("(?:[^laeiouy]es|[^laeiouy]e)$", "", word)
+    word = re.sub("^y", "", word)
+    matches = re.findall("[aeiouy]{1,2}", word)
+    return len(matches)
+
+
+# F K(S) = 206.835 − 1.015 words(S)/sentences(S) − 84.600 syllables(S)/words(S)
+
+# Adapted from: https://github.com/cdimascio/py-readability-metrics/blob/master/readability/scorers/flesch.py
+# Original by User: Carmine DiMascio
+# Adapted by: Henry Tang on 09/09/2022 at 15:43 MDT
+def find_text_readability_metrics(text):
+    tokens = TweetTokenizer().tokenize(text)
+    words = len(tokens)
+    if words > 1:
+        sentences = len(sent_tokenize(text))
+        syllables = 0
+        for token in tokens:
+            syllables += count_syllables(token)
+
+        score = 206.835 - (1.015 * (words/sentences)) - (84.600 * (syllables/words))
+        # ease = get_rating(score)
+        return score, None #, ease
+    return None, None
+
+
+def get_rating(score):
+    if 90 <= score <= 100:
+        ease = "very_easy"
+    elif 80 <= score < 90:
+        ease = "easy"
+    elif 70 <= score < 80:
+        ease = "fairly_easy"
+    elif 60 <= score < 70:
+        ease = "standard"
+    elif 50 <= score < 60:
+        ease = "fairly_difficult"
+    elif 30 <= score < 50:
+        ease = "difficult"
+    else:
+        ease = "confusing"
+    return ease
+
+
+

@@ -4,6 +4,11 @@ Python libraries are in the `requirements.txt` file. However, this project addit
 1. MySQL Server 8.0 ([Installation guide](https://dev.mysql.com/doc/mysql-installation-excerpt/8.0/en/), [Downloads](https://dev.mysql.com/downloads/mysql/))
 
 ### Installation
+
+```
+python -m nltk.downloader punkt
+```
+
 Before running the Django project, we need to create the database for the project to use. 
 Django can automatically create SQLite databases, but not MySQL, so we need to do this ourselves.
 First, run the MySQL service and access it through the command line

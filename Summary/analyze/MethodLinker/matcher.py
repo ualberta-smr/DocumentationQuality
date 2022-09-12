@@ -45,7 +45,7 @@ def get_documentation_signatures(doc_url, url):
     content = html.unescape(urlopen(req).read().decode("utf-8"))
     soup = BeautifulSoup(content, "html.parser")
     dts = soup.find_all("dt") + soup.find_all("code")
-    descriptions = []
+    signatures = []
 
     for description in dts:
         desc = []
@@ -54,8 +54,8 @@ def get_documentation_signatures(doc_url, url):
                 desc.append(child.get_text())
         description = "".join(desc).strip()
         if "(" in description:
-            descriptions.append([description, url])
-    return descriptions
+            signatures.append([description, url])
+    return signatures
 
 
 # Retrieves only html <pre> tags to get code examples
@@ -209,8 +209,8 @@ def calculate_ratios(language, repo_name, repo_path, doc_url, pages, check_examp
     # print(method_calls)
     example_count = len(method_calls)
     seen_classes = set()
-    for check_examples in method_calls:
-        example = check_examples[1].split(".")
+    for method_call in method_calls:
+        example = method_call[1].split(".")
         if example[0] in classes:
             seen_classes.add(example[0])
 

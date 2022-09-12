@@ -6,8 +6,8 @@ from .linker import link_tasks
 from ..util import get_webpages
 
 
-def task_extract_and_link(library_name, url, domain):
-    pages = get_webpages(url, library_name)
+def task_extract_and_link(library_name, doc_url, domain):
+    pages = get_webpages(doc_url, library_name)
     link_directory = os.path.normpath("TaskExtractor/results/" + library_name)
     if not os.path.exists(link_directory):
         os.mkdir(link_directory)

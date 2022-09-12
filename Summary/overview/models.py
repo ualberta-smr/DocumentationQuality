@@ -10,12 +10,14 @@ class Library(models.Model):
     description = models.CharField(max_length=1000)
     gh_url = models.CharField(max_length=100, blank=True, null=True)
     doc_url = models.CharField(max_length=100)
-    num_methods = models.IntegerField("number of methods", blank=True, null=True)
-    num_classes = models.IntegerField("number of classes", blank=True, null=True)
-    num_method_examples = models.IntegerField(
-        "number of methods with documentation examples", blank=True, null=True)
-    num_class_examples = models.IntegerField(
-        "number of classes with documentation examples", blank=True, null=True)
+    methods_ratio = models.DecimalField(max_digits=5, decimal_places=2, blank=True, null=True)
+    classes_ratio = models.DecimalField(max_digits=5, decimal_places=2, blank=True, null=True)
+    consistency_ratio = models.DecimalField(max_digits=5, decimal_places=2, blank=True, null=True)
+    text_readability_score = models.DecimalField(max_digits=5, decimal_places=2, blank=True,null=True)
+    text_readability_rating = models.CharField(max_length=20, blank=True,null=True)
+    code_readability_score = models.DecimalField(max_digits=5, decimal_places=2, blank=True,null=True)
+    code_readability_rating = models.CharField(max_length=20, blank=True,null=True)
+
     last_updated = models.DateTimeField(default=datetime.datetime.utcnow)
 
     def __str__(self):

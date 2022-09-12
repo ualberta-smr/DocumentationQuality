@@ -1,7 +1,7 @@
 import csv
 import os
 import re
-from fuzzywuzzy import fuzz
+from thefuzz import fuzz
 
 
 def evaluate_tasks(truth, test, filename):
