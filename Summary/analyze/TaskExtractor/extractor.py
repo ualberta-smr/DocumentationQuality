@@ -103,7 +103,7 @@ def call_extractor(inp, property_file):
     inp = inp.encode("utf-8").decode("utf-8")
     # However, since this uses the running OS to run the jar, the result
     # from stdout may not be utf-8, in fact it's probably ISO-8859-1
-    result = subprocess.run(["java",
+    result = subprocess.run(["javaw",
                              "-jar",
                              "TaskExtractor/StringToTasks.jar",
                              inp,

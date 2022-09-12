@@ -187,7 +187,7 @@ def analyze_library(language, library_name, doc_url, gh_url, domain):
     repo_path = clone_repo(gh_url, clone)
     match_signatures = APIMatching(library_name, language, doc_url, gh_url, repo_path, False)
     match_examples = APIMatching(library_name, language, doc_url, gh_url, repo_path, True)
-    readability = Readability(library_name, language, doc_url)
+    # readability = Readability(library_name, language, doc_url)
 
     with open("times.txt", "a") as times:
         times.write("Starting analysis for " + library_name)
@@ -197,7 +197,7 @@ def analyze_library(language, library_name, doc_url, gh_url, domain):
     extract.start()
     match_examples.start()
     match_signatures.start()
-    readability.start()
+    # readability.start()
 
 
 def debug_metrics(language, library_name, doc_url, gh_url, domain):
