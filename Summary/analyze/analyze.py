@@ -115,30 +115,36 @@ class APIMatching(threading.Thread):
 
     def run(self):
         start = time.time()
-        methods_ratio, classes_ratio = api_methods_examples(self.language,
-                                                            self.library_name,
-                                                            self.doc_url,
-                                                            self.repo_path,
-                                                            self.match_examples)
+        methods_linked, methods, classes_linked, classes = api_methods_examples(
+            self.language,
+            self.library_name,
+            self.doc_url,
+            self.repo_path,
+            self.match_examples)
         if self.match_examples:
             add_or_update_library_record({"library_name": self.library_name,
                                           "gh_url": self.gh_url,
                                           "doc_url": self.doc_url,
-                                          "methods_ratio": methods_ratio,
-                                          "classes_ratio": classes_ratio,
+                                          "method_examples": methods_linked,
+                                          "class_examples": classes_linked,
+                                          "methods": methods,
+                                          "classes": classes,
                                           "last_updated": datetime.datetime.utcnow()
                                           })
         else:
-            consistency_ratio = (0.5 * methods_ratio) + (0.5 * classes_ratio)
             add_or_update_library_record({"library_name": self.library_name,
                                           "gh_url": self.gh_url,
                                           "doc_url": self.doc_url,
-                                          "consistency_ratio": consistency_ratio,
+                                          "signature_methods": methods_linked,
+                                          "signature_classes": classes_linked,
+                                          "methods": methods,
+                                          "classes": classes,
                                           "last_updated": datetime.datetime.utcnow()
                                           })
         end = time.time()
         with open("times.txt", "a") as times:
-            times.write("Finished matching with " + ("Examples" if self.match_examples else "Signatures") + ": ")
+            times.write("Finished matching with " + (
+                "Examples" if self.match_examples else "Signatures") + ": ")
             times.write(str(end - start))
             times.write("\n")
 
@@ -155,11 +161,14 @@ class Readability(threading.Thread):
         text_score, text_ease, code_score, code_ease = get_readability(
             self.library_name, self.language, self.doc_url)
         add_or_update_library_record({"library_name": self.library_name,
-                                      "text_readability_score": text_score,
+                                      "text_readability_score": round(
+                                          text_score, 2),
                                       "text_readability_rating": text_ease,
-                                      "code_readability_score": code_score,
+                                      "code_readability_score": round(
+                                          code_score,
+                                          2) if code_score else code_score,
                                       "code_readability_rating": code_ease,
-                                      "last_updated:": datetime.datetime.utcnow()})
+                                      "last_updated": datetime.datetime.utcnow()})
         end = time.time()
         with open("times.txt", "a") as times:
             times.write("Finished calculating readability: ")
@@ -170,7 +179,8 @@ class Readability(threading.Thread):
 def analyze_library(language, library_name, doc_url, gh_url, domain):
     website_db = mysql.connector.connect(**MYSQL_CONFIG)
     cursor = website_db.cursor(dictionary=True)
-    cursor.execute("SELECT * FROM overview_library WHERE library_name ='" + library_name + "';")
+    cursor.execute(
+        "SELECT * FROM overview_library WHERE library_name ='" + library_name + "';")
     result = cursor.fetchone()
     clone = False
     if result:
@@ -181,13 +191,17 @@ def analyze_library(language, library_name, doc_url, gh_url, domain):
     os.chdir(ROOT_DIR)
     extraction_jar = Path(ROOT_DIR + "/TaskExtractor/StringToTasks.jar")
     if not extraction_jar.exists():
-        gdown.download(url="https://drive.google.com/file/d/19gV3aDLz5e6Gmb7nn29BlsfVX0AbHZ41/view?usp=sharing", output=str(extraction_jar), fuzzy=True)
+        gdown.download(
+            url="https://drive.google.com/file/d/19gV3aDLz5e6Gmb7nn29BlsfVX0AbHZ41/view?usp=sharing",
+            output=str(extraction_jar), fuzzy=True)
     create = Create(library_name, language, domain, doc_url)
     extract = Extract(library_name, doc_url, domain)
     repo_path = clone_repo(gh_url, clone)
-    match_signatures = APIMatching(library_name, language, doc_url, gh_url, repo_path, False)
-    match_examples = APIMatching(library_name, language, doc_url, gh_url, repo_path, True)
-    # readability = Readability(library_name, language, doc_url)
+    match_signatures = APIMatching(library_name, language, doc_url, gh_url,
+                                   repo_path, False)
+    match_examples = APIMatching(library_name, language, doc_url, gh_url,
+                                 repo_path, True)
+    readability = Readability(library_name, language, doc_url)
 
     with open("times.txt", "a") as times:
         times.write("Starting analysis for " + library_name)
@@ -197,7 +211,9 @@ def analyze_library(language, library_name, doc_url, gh_url, domain):
     extract.start()
     match_examples.start()
     match_signatures.start()
-    # readability.start()
+    readability.start()
+
+    print("Done analyzing")
 
 
 def debug_metrics(language, library_name, doc_url, gh_url, domain):
@@ -224,7 +240,12 @@ def debug_metrics(language, library_name, doc_url, gh_url, domain):
     text_score, text_ease, code_score, code_ease = get_readability(library_name,
                                                                    language,
                                                                    doc_url)
-    print(text_score, text_ease, code_score, code_ease)
+    add_or_update_library_record({"library_name": library_name,
+                                  "text_readability_score": round(text_score, 2),
+                                  "text_readability_rating": text_ease,
+                                  "code_readability_score": round(code_score, 2) if code_score else code_score,
+                                  "code_readability_rating": code_ease,
+                                  "last_updated": datetime.datetime.utcnow()})
 
 
 class AnalyzeConfig(AppConfig):

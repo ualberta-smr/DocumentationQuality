@@ -20,12 +20,12 @@ def code_readability(page):
         examples = soup.find_all("pre")
         for example in examples:
             try:
-                with open("temp.txt", "w", encoding="utf-8") as ex_file:
+                with open("Readability/temp.txt", "w", encoding="utf-8") as ex_file:
                     ex_file.write(example.get_text())
                 result = subprocess.run(["javaw",
                                         "-jar",
-                                        "rsm.jar",
-                                        "temp.txt"],
+                                        "Readability/rsm.jar",
+                                        "Readability/temp.txt"],
                                        stdout=subprocess.PIPE)
                 score = result.stdout.decode("ISO-8859-1").split()[-1]
                 if score != "NaN":
@@ -76,7 +76,6 @@ def text_readability(page):
 
 
 def get_readability(library_name, language, doc_url):
-    os.chdir("Readability")
     pages = get_webpages(doc_url, library_name)
     text_scores = []
     # text_ease = {

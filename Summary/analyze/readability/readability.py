@@ -41,20 +41,22 @@ def find_text_readability_metrics(text):
 
 
 def get_rating(score):
-    if 90 <= score <= 100:
-        ease = "very_easy"
-    elif 80 <= score < 90:
-        ease = "easy"
-    elif 70 <= score < 80:
-        ease = "fairly_easy"
-    elif 60 <= score < 70:
-        ease = "standard"
-    elif 50 <= score < 60:
-        ease = "fairly_difficult"
-    elif 30 <= score < 50:
-        ease = "difficult"
-    else:
-        ease = "confusing"
+    ease = None
+    if score:
+        if 90 <= score <= 100:
+            ease = "very_easy"
+        elif 80 <= score < 90:
+            ease = "easy"
+        elif 70 <= score < 80:
+            ease = "fairly_easy"
+        elif 60 <= score < 70:
+            ease = "standard"
+        elif 50 <= score < 60:
+            ease = "fairly_difficult"
+        elif 30 <= score < 50:
+            ease = "difficult"
+        else:
+            ease = "confusing"
     return ease
 
 

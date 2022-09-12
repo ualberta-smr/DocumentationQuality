@@ -12,7 +12,7 @@
         </span>
     </div>
     <div class="col metrics-child">
-        {% with ''|center:navigation as range %}
+        {% with ''|center:navigability as range %}
             {% for _ in range %}
                 <svg xmlns="http://www.w3.org/2000/svg"
                      width="16"
@@ -24,7 +24,7 @@
                 </svg>
             {% endfor %}
         {% endwith %}
-        {% with 5|subtract:navigation as range %}
+        {% with 5|subtract:navigability as range %}
             {% for _ in range %}
                 <svg xmlns="http://www.w3.org/2000/svg"
                      width="16"

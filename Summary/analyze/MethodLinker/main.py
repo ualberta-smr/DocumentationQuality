@@ -6,7 +6,7 @@ def api_methods_examples(language, library_name, doc_url, repo_path, check_examp
     pages = get_webpages(doc_url, library_name)
     example_count, total_methods, classes_count, total_classes = calculate_ratios(
         language, library_name, repo_path, doc_url, pages, check_examples)
-    return example_count/total_methods, classes_count/total_classes
+    return example_count, total_methods, classes_count, total_classes
     # print("Methods found w/ examples:", example_count)
     # print("Total methods:", total_methods)
     # print("Classes found w/ examples:", classes_count)

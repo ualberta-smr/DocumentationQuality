@@ -24,6 +24,8 @@ Create "task_data" MySQL database manually
 ### Deficiencies
 GitHub repo requires the source code to be in a directory named "src" or the library name for the scripts to work. e.g., https://github.com/nltk/nltk (code under library name), https://github.com/stanfordnlp/CoreNLP (code under src)
 
+The `readability.classifier` needs to be in the analyze root directory and not the Readability directory because the rsm.jar looks for the classifier in the working directory from which it was called from, and we can not change directories in order to run all the metrics in multithreads.
+
 Needs 
 https://memcached.org/#/
 # License

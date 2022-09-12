@@ -31,32 +31,66 @@ def _get_task_list(library_name):
         paragraph_split = task["paragraph"].split()
         identifier = " ".join(paragraph_split[:5])
         tasks.append(
-        {
-            "task": task["task"],
-            "has_example": task["has_example"],
-            "url": task["example_page"] + ("#" + task["html_id"]  if task["html_id"] else "#:~:text=" + identifier)
-        })
+            {
+                "task": task["task"],
+                "has_example": task["has_example"],
+                "url": task["example_page"] + ("#" + task["html_id"] if task[
+                    "html_id"] else "#:~:text=" + identifier)
+            })
 
     return tasks
 
 
-def _get_example_ratios(library_name):
+def _get_consistency_ratio(library):
+    ratio = "Could not calculate consistency"
+
+    try:
+        ratio = "{:.2%}".format(
+            (0.5 * (library.signature_methods / library.methods)) + (
+                        0.5 * (library.signature_classes / library.classes)))
+    except:
+        pass
+    return ratio
+
+
+def _get_example_ratios(library):
     ratios = {
         "method_ratio": "Could not calculate method ratio",
         "class_ratio": "Could not calculate class ratio"
     }
     try:
-        library_data = Library.objects.filter(library_name=library_name).get()
         try:
-            ratios["method_ratio"] = "{:.0%}".format(
-                library_data.num_method_examples / library_data.num_methods)
+            ratios["method_ratio"] = "{:.2%}".format(
+                library.method_examples / library.methods)
         except:
             ratios["method_ratio"] = "Calculating..."
         try:
-            ratios["class_ratio"] = "{:.0%}".format(
-                library_data.num_class_examples / library_data.num_classes)
+            ratios["class_ratio"] = "{:.2%}".format(
+                library.class_examples / library.classes)
         except:
             ratios["class_ratio"] = "Calculating..."
+    except:
+        pass
+    return ratios
+
+
+def _get_readability_ratios(library):
+    ratios = {
+        "text_readability": "Could not calculate method ratio",
+        "code_readability": "Could not calculate class ratio"
+    }
+    try:
+        try:
+            ratios["text_readability"] = library.text_readability_rating
+        except:
+            ratios["text_readability"] = "Calculating..."
+        try:
+            if library.code_readability_rating:
+                ratios["code_readability"] = library.code_readability_rating
+            else:
+                ratios["code_readability"] = "N/A"
+        except:
+            ratios["code_readability"] = "Calculating..."
     except:
         pass
     return ratios
@@ -70,12 +104,9 @@ def create_overview_context(store):
         "description": store["description"],
         "task_list": store["task_list"],
         "example_ratios": store["example_ratios"],
-        "readability": {
-            "text_readability": store["readability"]["text_readability"],
-            "code_readability": store["readability"]["code_readability"]
-        },
+        "readability_ratios": store["readability_ratios"],
         "consistency": store["consistency"],
-        "navigation": store["navigation"],
+        "navigability": store["navigability"],
         "session_key": store["session_key"],
         "familiar": store["familiar"],
         "general": GeneralRating(store["general"]) if store[
@@ -153,11 +184,16 @@ def overview(request, library_name):
     except Exception as e:
         task_list = []
     try:
-        familiar = Response.objects.filter(session_key=request.session.session_key).values("familiar").get()["familiar"]
+        familiar = \
+            Response.objects.filter(
+                session_key=request.session.session_key).values(
+                "familiar").get()["familiar"]
     except:
         familiar = False
 
     example_ratios = _get_example_ratios(library)
+    readability_ratios = _get_readability_ratios(library)
+    consistency = _get_consistency_ratio(library)
     if "store" not in request.session:
         store = dict(library_name=library_name,
                      doc_url=library.doc_url,
@@ -165,12 +201,9 @@ def overview(request, library_name):
                      description=library.description,
                      task_list=task_list,
                      example_ratios=example_ratios,
-                     readability={
-                         "text_readability": 4,
-                         "code_readability": 3
-                     },
-                     consistency=3,
-                     navigation=2,
+                     readability_ratios=readability_ratios,
+                     consistency=consistency,
+                     navigability=2,
                      session_key=request.session.session_key,
                      familiar=False,
                      general=None,
@@ -188,6 +221,8 @@ def overview(request, library_name):
         store["doc_url"] = library.doc_url
         store["task_list"] = task_list
         store["example_ratios"] = example_ratios
+        store["readability_ratios"] = readability_ratios
+        store["consistency"] = consistency
         store["familiar"] = familiar
     request.session["store"] = store
     context = create_overview_context(store)

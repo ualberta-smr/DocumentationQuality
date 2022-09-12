@@ -105,7 +105,7 @@ def add_or_update_library_record(item_dict):
     values = []
     for key, value in item_dict.items():
         column_names.append(key)
-        values.append(str(value))
+        values.append(value)
     query = "SELECT * FROM overview_library WHERE library_name = '" + str(item_dict["library_name"]) + "';"
     cursor.execute(query)
     result = cursor.fetchall()
