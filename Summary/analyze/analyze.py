@@ -213,8 +213,6 @@ def analyze_library(language, library_name, doc_url, gh_url, domain):
     match_signatures.start()
     readability.start()
 
-    print("Done analyzing")
-
 
 def debug_metrics(language, library_name, doc_url, gh_url, domain):
     os.chdir(ROOT_DIR)

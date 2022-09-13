@@ -68,7 +68,10 @@ def find_javascript_arguments(source_file):
         except:
             print(preprocessed_filename)
             print(traceback.format_exc())
-    os.remove(preprocessed_filename)
+    try:
+        os.remove(preprocessed_filename)
+    except:
+        pass
     return functions
 
 
