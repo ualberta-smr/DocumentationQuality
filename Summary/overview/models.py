@@ -16,11 +16,11 @@ class Library(models.Model):
     classes = models.IntegerField("number of classes", blank=True,null=True)
     signature_methods = models.IntegerField("number of methods found in documentation", blank=True, null=True)
     signature_classes = models.IntegerField("number of classes found in documentation", blank=True, null=True)
-    text_readability_score = models.DecimalField(max_digits=5, decimal_places=2, blank=True,null=True)
-    text_readability_rating = models.CharField(max_length=20, blank=True,null=True)
-    code_readability_score = models.DecimalField(max_digits=5, decimal_places=2, blank=True,null=True)
-    code_readability_rating = models.CharField(max_length=20, blank=True,null=True)
-
+    text_readability_score = models.DecimalField(max_digits=5, decimal_places=2, blank=True, null=True)
+    text_readability_rating = models.CharField(max_length=20, blank=True, null=True)
+    code_readability_score = models.DecimalField(max_digits=5, decimal_places=2, blank=True, null=True)
+    code_readability_rating = models.CharField(max_length=20, blank=True, null=True)
+    navigability = models.CharField(max_length=500, blank=True, null=True)
     last_updated = models.DateTimeField(default=datetime.datetime.utcnow)
 
     def __str__(self):

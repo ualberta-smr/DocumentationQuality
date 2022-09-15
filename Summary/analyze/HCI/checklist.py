@@ -1,39 +1,28 @@
-import html
-
-from urllib.request import Request, urlopen
-from bs4 import BeautifulSoup, element
 from urllib.parse import urlparse
 
-from util import HEADERS
+from bs4 import element
 
-
-def get_page(url):
-    req = Request(url=url, headers=HEADERS)
-    content = html.unescape(urlopen(req).read().decode("utf-8"))
-    soup = BeautifulSoup(content, "html.parser")
-    # has_search = find_search(soup)
-    # has_toc = find_toc(soup)
-    links_correct = check_hrefs(url, soup)
-    return links_correct
 
 def check_hrefs(url, soup):
     doc_home = urlparse(url).hostname
     links = soup.find_all("a", href=True)
     yes = []
-    no =[]
+    no = []
     for link in links:
-        parse = urlparse(link.attrs["href"])
-        if "#" not in link.attrs["href"] and parse.hostname and doc_home != parse.hostname:
-            no.append(link.attrs["href"])
+        href = link.attrs["href"]
+        parse = urlparse(href)
+        if (parse.hostname and parse.hostname in doc_home) or (not parse.hostname and ("#" in href or "/" in href)):
+            yes.append(href)
         else:
-            yes.append(link.attrs["href"])
-    for i in yes:
-        print(i)
-    print()
-    for i in no:
-        print(i)
-    return False
-
+            no.append(href)
+    # for i in yes:
+    #     print(i)
+    # print(len(yes))
+    # print()
+    # for i in no:
+    #     print(i)
+    # print(len(no))
+    return bool(yes)
 
 
 # sidebar "navigation", "sidebar", list with hrefs?
@@ -79,30 +68,3 @@ def find_search(soup):
                 has_search = True
                 break
     return has_search
-
-
-# type="search", class="...autocomplete..."
-
-# <form class="search"
-
-# <form class="searchform"
-    # <span class="algolia-autocomplete"
-
-# <span class="algolia-autocomplete"
-
-# Just search for multiple things, like "input"
-
-if __name__ == '__main__':
-    urls = ["https://github.com/ijl/orjson",
-            "https://github.com/stleary/JSON-java",
-            "https://stanfordnlp.github.io/CoreNLP/",
-            "https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.html",
-            "https://api.jquery.com/",
-            "https://reactjs.org/docs/getting-started.html",
-            "https://github.com/jDataView/jBinary/wiki",
-            "https://api.qunitjs.com/",
-            "https://web.archive.org/web/20220505163814/https://docs.python-requests.org/en/latest/"]
-    for url in urls:
-        url = urls[2]
-        print(url, get_page(url))
-        break

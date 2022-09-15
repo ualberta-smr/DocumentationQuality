@@ -101,14 +101,14 @@
     <div class="col-1 " style="width: 2%"></div>
     <div id="form_col" class="col align-self-center" style="display: none">
         {% include "overview/forms/general_rating_form.html" with library_name=library_name form=general have_demographics=have_demographics %}
-        {% include "overview/forms/task_list_form.html" with form=tasks %}
-        {% include "overview/forms/method_examples_form.html" with form=method_examples %}
-        {% include "overview/forms/class_examples_form.html" with form=class_examples %}
-        {% include "overview/forms/text_readability_form.html" with form=text_readability %}
-        {% include "overview/forms/code_readability_form.html" with form=code_readability %}
-        {% include "overview/forms/consistency_form.html" with form=consistent %}
-        {% include "overview/forms/navigability_form.html" with form=navigable %}
-        {% include "overview/forms/general_feedback_form.html" with form=feedback %}
+        {% include "overview/forms/task_list_form.html" with form=tasks_form %}
+        {% include "overview/forms/method_examples_form.html" with form=method_examples_form %}
+        {% include "overview/forms/class_examples_form.html" with form=class_examples_form %}
+        {% include "overview/forms/text_readability_form.html" with form=text_readability_form %}
+        {% include "overview/forms/code_readability_form.html" with form=code_readability_form %}
+        {% include "overview/forms/consistency_form.html" with form=consistency_form %}
+        {% include "overview/forms/navigability_form.html" with form=navigability_form %}
+        {% include "overview/forms/general_feedback_form.html" with form=feedback_form %}
     </div>
 </div>
 </div>

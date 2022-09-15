@@ -1,3 +1,5 @@
+import json
+
 from django.db.models import Count
 from django.shortcuts import render
 
@@ -42,58 +44,69 @@ def _get_task_list(library_name):
 
 
 def _get_consistency_ratio(library):
-    ratio = "Could not calculate consistency"
-
+    ratio = 0
     try:
-        ratio = "{:.2%}".format(
-            (0.5 * (library.signature_methods / library.methods)) + (
-                        0.5 * (library.signature_classes / library.classes)))
-    except:
+        ratio = ((0.5 * (library.signature_methods / library.methods)) +
+                 (0.5 * (library.signature_classes / library.classes))
+                 ) * 5
+    except (TypeError, AttributeError, ZeroDivisionError):
         pass
     return ratio
 
 
 def _get_example_ratios(library):
     ratios = {
-        "method_ratio": "Could not calculate method ratio",
-        "class_ratio": "Could not calculate class ratio"
+        "method_ratio": 0,
+        "class_ratio": 0
     }
+
     try:
-        try:
-            ratios["method_ratio"] = "{:.2%}".format(
-                library.method_examples / library.methods)
-        except:
-            ratios["method_ratio"] = "Calculating..."
-        try:
-            ratios["class_ratio"] = "{:.2%}".format(
-                library.class_examples / library.classes)
-        except:
-            ratios["class_ratio"] = "Calculating..."
-    except:
+        ratios["method_ratio"] = (library.method_examples / library.methods) * 5
+    except (TypeError, AttributeError, ZeroDivisionError):
         pass
+    try:
+        ratios["class_ratio"] = (library.class_examples / library.classes) * 5
+    except (TypeError, AttributeError, ZeroDivisionError):
+        pass
+
     return ratios
 
 
 def _get_readability_ratios(library):
     ratios = {
-        "text_readability": "Could not calculate method ratio",
-        "code_readability": "Could not calculate class ratio"
+        "text_readability": 0,
+        "code_readability": 0
     }
+
     try:
-        try:
-            ratios["text_readability"] = library.text_readability_rating
-        except:
-            ratios["text_readability"] = "Calculating..."
-        try:
-            if library.code_readability_rating:
-                ratios["code_readability"] = library.code_readability_rating
-            else:
-                ratios["code_readability"] = "N/A"
-        except:
-            ratios["code_readability"] = "Calculating..."
-    except:
+        ratios["text_readability"] = (library.text_readability_score / 100) * 5
+    except (TypeError, AttributeError):
         pass
+    try:
+        ratios["code_readability"] = (library.code_readability_score / 100) * 5
+    except(TypeError, AttributeError):
+        pass
+
     return ratios
+
+
+def _get_navigability_score(library):
+    rating = 0
+    if library.navigability:
+        nav_checks = json.loads(library.navigability)
+        count = 0
+        for check in nav_checks:
+            if check:
+                count += 1
+        if count > 1:
+            rating = 5
+        elif count > 0:
+            rating = 3
+    return rating
+
+
+def _calculate_general_rating(metrics):
+    return sum(metrics)/len(metrics) if metrics else 0
 
 
 def create_overview_context(store):
@@ -109,40 +122,44 @@ def create_overview_context(store):
         "navigability": store["navigability"],
         "session_key": store["session_key"],
         "familiar": store["familiar"],
-        "general": GeneralRating(store["general"]) if store[
-            "general"] else GeneralRating({"session_key": store["session_key"],
-                                           "library_name": store[
-                                               "library_name"]}),
-        "tasks": TaskList(store["tasks"]) if store["tasks"] else TaskList(
+        "general_form": GeneralRating(store["general_form"]) if
+        store["general_form"] else GeneralRating(
             {"session_key": store["session_key"],
              "library_name": store["library_name"]}),
-        "method_examples": MethodExamples(store["method_examples"]) if store[
-            "method_examples"] else MethodExamples(
+        "tasks_form": TaskList(store["tasks_form"]) if store[
+            "tasks_form"] else TaskList(
             {"session_key": store["session_key"],
              "library_name": store["library_name"]}),
-        "class_examples": ClassExamples(store["class_examples"]) if store[
-            "class_examples"] else ClassExamples(
+        "method_examples_form": MethodExamples(store["method_examples_form"]) if
+        store["method_examples_form"] else MethodExamples(
             {"session_key": store["session_key"],
              "library_name": store["library_name"]}),
-        "text_readability": TextReadability(store["text_readability"]) if store[
-            "text_readability"] else TextReadability(
+        "class_examples_form": ClassExamples(store["class_examples_form"]) if
+        store["class_examples_form"] else ClassExamples(
             {"session_key": store["session_key"],
              "library_name": store["library_name"]}),
-        "code_readability": CodeReadability(store["code_readability"]) if store[
-            "code_readability"] else CodeReadability(
+        "text_readability_form": TextReadability(
+            store["text_readability_form"]) if
+        store["text_readability_form"] else TextReadability(
             {"session_key": store["session_key"],
              "library_name": store["library_name"]}),
-        "consistent": Consistency(store["consistent"]) if store[
-            "consistent"] else Consistency({"session_key": store["session_key"],
-                                            "library_name": store[
-                                                "library_name"]}),
-        "navigable": Navigability(store["navigable"]) if store[
-            "navigable"] else Navigability({"session_key": store["session_key"],
-                                            "library_name": store[
-                                                "library_name"]}),
-        "feedback": Feedback(store["feedback"]) if store[
-            "feedback"] else Feedback({"session_key": store["session_key"],
-                                       "library_name": store["library_name"]})
+        "code_readability_form": CodeReadability(
+            store["code_readability_form"]) if
+        store["code_readability_form"] else CodeReadability(
+            {"session_key": store["session_key"],
+             "library_name": store["library_name"]}),
+        "consistency_form": Consistency(store["consistency_form"]) if
+        store["consistency_form"] else Consistency(
+            {"session_key": store["session_key"],
+             "library_name": store["library_name"]}),
+        "navigability_form": Navigability(store["navigability_form"]) if
+        store["navigability_form"] else Navigability(
+            {"session_key": store["session_key"],
+             "library_name": store["library_name"]}),
+        "feedback_form": Feedback(store["feedback_form"]) if
+        store["feedback_form"] else Feedback(
+            {"session_key": store["session_key"],
+             "library_name": store["library_name"]})
     }
     return context
 
@@ -181,48 +198,59 @@ def overview(request, library_name):
     library = _get_library(library_name)
     try:
         task_list = _get_task_list(library_name)
-    except Exception as e:
+    except:
         task_list = []
     try:
-        familiar = \
-            Response.objects.filter(
-                session_key=request.session.session_key).values(
-                "familiar").get()["familiar"]
+        familiar = Response.objects.filter(
+            session_key=request.session.session_key).values(
+            "familiar").get()["familiar"]
     except:
         familiar = False
 
     example_ratios = _get_example_ratios(library)
     readability_ratios = _get_readability_ratios(library)
     consistency = _get_consistency_ratio(library)
+    navigability = _get_navigability_score(library)
+    metrics = [
+        example_ratios["method_ratio"],
+        example_ratios["class_ratio"],
+        readability_ratios["text_readability"],
+        readability_ratios["code_readability"],
+        consistency,
+        navigability
+    ]
+    general_rating = _calculate_general_rating(metrics)
     if "store" not in request.session:
         store = dict(library_name=library_name,
                      doc_url=library.doc_url,
-                     general_rating=3,
+                     general_rating=general_rating,
                      description=library.description,
                      task_list=task_list,
                      example_ratios=example_ratios,
                      readability_ratios=readability_ratios,
                      consistency=consistency,
-                     navigability=2,
+                     navigability=navigability,
                      session_key=request.session.session_key,
                      familiar=False,
-                     general=None,
-                     tasks=None,
-                     method_examples=None,
-                     class_examples=None,
-                     text_readability=None,
-                     code_readability=None,
-                     consistent=None,
-                     navigable=None,
-                     feedback=None)
+                     general_form=None,
+                     tasks_form=None,
+                     method_examples_form=None,
+                     class_examples_form=None,
+                     text_readability_form=None,
+                     code_readability_form=None,
+                     consistency_form=None,
+                     navigability_form=None,
+                     feedback_form=None)
     else:
         store = request.session["store"]
+        store["general_rating"] = general_rating
         store["description"] = library.description
         store["doc_url"] = library.doc_url
         store["task_list"] = task_list
         store["example_ratios"] = example_ratios
         store["readability_ratios"] = readability_ratios
         store["consistency"] = consistency
+        store["navigability"] = navigability
         store["familiar"] = familiar
     request.session["store"] = store
     context = create_overview_context(store)
