@@ -6,9 +6,8 @@ from django.shortcuts import render, redirect
 
 from analyze.analyze import analyze_library
 from .models import Library, Response
-from .forms import Demographics, GeneralRating, TaskList, MethodExamples, ClassExamples, \
-    TextReadability, CodeReadability, Consistency, Navigability, Feedback, AnalyzeForm
-from .views import create_overview_context
+from .forms import Demographics, GeneralRating, TaskList, MethodExamples, ClassExamples, TextReadability, CodeReadability, Consistency, Navigability, Feedback, AnalyzeForm
+from .util import create_overview_context
 
 
 def search(request):

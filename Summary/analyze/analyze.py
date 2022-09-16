@@ -57,9 +57,8 @@ def get_description(library_name, doc_url):
     return description
 
 
-class Create(threading.Thread):
+class Create:
     def __init__(self, library_name, language, domain, doc_url):
-        threading.Thread.__init__(self)
         self.library_name = library_name
         self.language = language
         self.domain = domain
@@ -215,31 +214,33 @@ def analyze_library(language, library_name, doc_url, gh_url, domain):
             clone = True
     cursor.close()
     os.chdir(ROOT_DIR)
+    with open("times.txt", "a") as times:
+        times.write("Starting analysis for " + library_name)
+        times.write("\n")
+    create = Create(library_name, language, domain, doc_url)
+    create.run()
+
     extraction_jar = Path(ROOT_DIR + "/TaskExtractor/StringToTasks.jar")
     if not extraction_jar.exists():
         gdown.download(
             url="https://drive.google.com/file/d/19gV3aDLz5e6Gmb7nn29BlsfVX0AbHZ41/view?usp=sharing",
             output=str(extraction_jar), fuzzy=True)
-    create = Create(library_name, language, domain, doc_url)
     extract = Extract(library_name, doc_url, domain)
+    extract.start()
+
     repo_path = clone_repo(gh_url, clone)
+    readability = Readability(library_name, language, doc_url)
+    readability.start()
+
+    navigability = Navigability(library_name, doc_url)
+    navigability.start()
+
     match_signatures = APIMatching(library_name, language, doc_url, gh_url,
                                    repo_path, False)
     match_examples = APIMatching(library_name, language, doc_url, gh_url,
                                  repo_path, True)
-    readability = Readability(library_name, language, doc_url)
-    navigability = Navigability(library_name, doc_url)
-
-    with open("times.txt", "a") as times:
-        times.write("Starting analysis for " + library_name)
-        times.write("\n")
-
-    create.start()
-    extract.start()
     match_examples.start()
     match_signatures.start()
-    readability.start()
-    navigability.start()
 
 
 def debug_metrics(language, library_name, doc_url, gh_url, domain):
@@ -255,24 +256,32 @@ def debug_metrics(language, library_name, doc_url, gh_url, domain):
          "doc_url": doc_url,
          "last_updated": datetime.datetime.utcnow()
          })
-    #
-    # task_extract_and_link(library_name, doc_url, domain)
-    # remove_old_tasks(library_name)
-    # add_tasks_to_db(library_name)
-    #
-    # repo_path = clone_repo(gh_url, True)
-    # api_methods_examples(language, library_name, doc_url, repo_path, False)
-    # api_methods_examples(language, library_name, doc_url, repo_path, True)
-    # text_score, text_ease, code_score, code_ease = get_readability(library_name,
-    #                                                                language,
-    #                                                                doc_url)
-    # add_or_update_library_record({"library_name": library_name,
-    #                               "text_readability_score": round(text_score, 2),
-    #                               "text_readability_rating": text_ease,
-    #                               "code_readability_score": round(code_score, 2) if code_score else code_score,
-    #                               "code_readability_rating": code_ease,
-    #                               "last_updated": datetime.datetime.utcnow()})
-    # run_checklist(library_name, doc_url)
+
+    task_extract_and_link(library_name, doc_url, domain)
+    remove_old_tasks(library_name)
+    add_tasks_to_db(library_name)
+
+    repo_path = clone_repo(gh_url, True)
+    api_methods_examples(language, library_name, doc_url, repo_path, False)
+    api_methods_examples(language, library_name, doc_url, repo_path, True)
+    text_score, text_ease, code_score, code_ease = get_readability(library_name,
+                                                                   language,
+                                                                   doc_url)
+    add_or_update_library_record({"library_name": library_name,
+                                  "text_readability_score": round(text_score, 2),
+                                  "text_readability_rating": text_ease,
+                                  "code_readability_score": round(code_score, 2) if code_score else code_score,
+                                  "code_readability_rating": code_ease,
+                                  "last_updated": datetime.datetime.utcnow()})
+    has_search, has_toc, links_correct = run_checklist(library_name, doc_url)
+    navigation_dict = {
+        "has_search": has_search,
+        "has_toc": has_toc,
+        "links_correct": links_correct,
+    }
+    add_or_update_library_record({"library_name": library_name,
+                                  "navigability": json.dumps(navigation_dict),
+                                  "last_updated": datetime.datetime.utcnow()})
 
 
 class AnalyzeConfig(AppConfig):

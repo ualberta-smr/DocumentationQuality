@@ -123,10 +123,10 @@ def link_tasks(library_name, page):
                             seen.add(line[1])
                             line.append(page)
                             link_writer.writerow(line)
-            else:
-                print("No potential example links found")
+            # else:
+            #     print("No potential example links found")
             os.remove(potential_links)
         except:
             pass
-    else:
-        print("No paragraphs for", page)
+    # else:
+    #     print("No paragraphs for", page)
