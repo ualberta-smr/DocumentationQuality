@@ -201,18 +201,25 @@ class Navigability(threading.Thread):
             times.write("\n")
 
 
-def analyze_library(language, library_name, doc_url, gh_url, domain):
+def clone_library(library_name, gh_url):
+    os.chdir(ROOT_DIR)
     website_db = mysql.connector.connect(**MYSQL_CONFIG)
     cursor = website_db.cursor(dictionary=True)
     cursor.execute(
         "SELECT * FROM overview_library WHERE library_name ='" + library_name + "';")
     result = cursor.fetchone()
-    clone = False
+    clone = True
     if result:
         now = datetime.datetime.utcnow()
-        if now - result["last_updated"] > datetime.timedelta(days=30):
-            clone = True
+        if now - result["last_updated"] < datetime.timedelta(days=30):
+            clone = False
     cursor.close()
+
+    repo_path = clone_repo(gh_url, clone)
+    return repo_path
+
+
+def analyze_library(language, library_name, doc_url, gh_url, domain, repo_path):
     os.chdir(ROOT_DIR)
     with open("times.txt", "a") as times:
         times.write("Starting analysis for " + library_name)
@@ -228,7 +235,6 @@ def analyze_library(language, library_name, doc_url, gh_url, domain):
     extract = Extract(library_name, doc_url, domain)
     extract.start()
 
-    repo_path = clone_repo(gh_url, clone)
     readability = Readability(library_name, language, doc_url)
     readability.start()
 
@@ -256,14 +262,18 @@ def debug_metrics(language, library_name, doc_url, gh_url, domain):
          "doc_url": doc_url,
          "last_updated": datetime.datetime.utcnow()
          })
+    print("Done description")
 
     task_extract_and_link(library_name, doc_url, domain)
     remove_old_tasks(library_name)
     add_tasks_to_db(library_name)
+    print("Done task extract")
 
     repo_path = clone_repo(gh_url, True)
+    print("Done cloning")
     api_methods_examples(language, library_name, doc_url, repo_path, False)
     api_methods_examples(language, library_name, doc_url, repo_path, True)
+    print("Done method linking")
     text_score, text_ease, code_score, code_ease = get_readability(library_name,
                                                                    language,
                                                                    doc_url)
@@ -273,6 +283,7 @@ def debug_metrics(language, library_name, doc_url, gh_url, domain):
                                   "code_readability_score": round(code_score, 2) if code_score else code_score,
                                   "code_readability_rating": code_ease,
                                   "last_updated": datetime.datetime.utcnow()})
+    print("Done readability")
     has_search, has_toc, links_correct = run_checklist(library_name, doc_url)
     navigation_dict = {
         "has_search": has_search,
@@ -282,7 +293,7 @@ def debug_metrics(language, library_name, doc_url, gh_url, domain):
     add_or_update_library_record({"library_name": library_name,
                                   "navigability": json.dumps(navigation_dict),
                                   "last_updated": datetime.datetime.utcnow()})
-
+    print("Done navigation")
 
 class AnalyzeConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'

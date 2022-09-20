@@ -1,14 +1,12 @@
 import json
-import time
 
+from analyze.analyze import analyze_library, clone_library
 from django.core.exceptions import ObjectDoesNotExist
 from django.shortcuts import render, redirect
 
-from analyze.analyze import analyze_library
-from django.views.generic import FormView
-
+from .forms import Demographics, GeneralRating, TaskList, MethodExamples, ClassExamples, TextReadability, \
+    CodeReadability, Consistency, Navigability, Feedback, AnalyzeForm
 from .models import Library, Response
-from .forms import Demographics, GeneralRating, TaskList, MethodExamples, ClassExamples, TextReadability, CodeReadability, Consistency, Navigability, Feedback, AnalyzeForm
 from .util import create_overview_context
 
 
@@ -32,15 +30,16 @@ def create(request):
     form = AnalyzeForm(request.POST)
     if request.method == "POST":
         if form.is_valid():
+            repo_path = clone_library(form.cleaned_data["library_name"], form.cleaned_data["gh_url"])
             analyze_library(form.cleaned_data["language"],
                             form.cleaned_data["library_name"],
                             form.cleaned_data["doc_url"],
                             form.cleaned_data["gh_url"],
-                            form.cleaned_data["domain"])
+                            form.cleaned_data["domain"],
+                            repo_path)
             if not request.session.exists(request.session.session_key):
                 return redirect("overview:demographics", request.POST["library_name"])
             else:
-                time.sleep(5)
                 return redirect("overview:overview", request.POST["library_name"])
     return render(request, "overview/landing.html", context={"form": form})
 

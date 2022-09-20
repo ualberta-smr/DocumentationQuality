@@ -23,7 +23,7 @@ def extract_tasks(library_name, page, domain):
         filename = make_filename_from_url("TaskExtractor/results/", library_name, page, "tasks")
         property_file, domain_filter = _get_domain_specific(domain)
         get_paragraphs_and_tasks(soup.find_all("p"), filename, property_file, domain_filter)
-    except:
+    except Exception as e:
         pass
 
 
@@ -103,7 +103,7 @@ def call_extractor(inp, property_file):
     inp = inp.encode("utf-8").decode("utf-8")
     # However, since this uses the running OS to run the jar, the result
     # from stdout may not be utf-8, in fact it's probably ISO-8859-1
-    result = subprocess.run(["javaw",
+    result = subprocess.run(["java",
                              "-jar",
                              "TaskExtractor/StringToTasks.jar",
                              inp,

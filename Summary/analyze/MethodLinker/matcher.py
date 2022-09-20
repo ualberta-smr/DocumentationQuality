@@ -152,12 +152,13 @@ def calculate_ratios(language, repo_name, repo_path, doc_url, pages, check_examp
         os.mkdir(os.path.normpath("MethodLinker/results/signatures"))
     extension_finder(language)
     functions, classes = get_methods_and_classes(repo_name, repo_path)
-    with open("MethodLinker/data/" + repo_name + "_methods.txt", "w") as temp:
-        PP = pprint.PrettyPrinter(indent=4, stream=temp)
-        PP.pprint(functions)
-    with open("MethodLinker/data/" + repo_name + "_classes.txt", "w") as temp:
-        PP = pprint.PrettyPrinter(indent=4, stream=temp)
-        PP.pprint(classes)
+    # For Debugging
+    # with open("MethodLinker/data/" + repo_name + "_methods.txt", "w") as temp:
+    #     PP = pprint.PrettyPrinter(indent=4, stream=temp)
+    #     PP.pprint(functions)
+    # with open("MethodLinker/data/" + repo_name + "_classes.txt", "w") as temp:
+    #     PP = pprint.PrettyPrinter(indent=4, stream=temp)
+    #     PP.pprint(classes)
     # with open("doc_examples.txt", "r") as temp:
     #     doc_examples = list(e[0] for e in list(csv.reader(temp)))
     doc_examples = []
@@ -179,16 +180,17 @@ def calculate_ratios(language, repo_name, repo_path, doc_url, pages, check_examp
             # print(page)
             # print(traceback.format_exc())
 
-    with open("MethodLinker/data/" + repo_name + "_doc_examples.csv", "w", encoding="utf-8", newline="") as temp:
-        writer = csv.writer(temp, quoting=csv.QUOTE_MINIMAL)
-        for item in doc_examples:
-            writer.writerow(item)
-    # Remove duplicates but retain order
-    doc_examples = list(doc_examples for doc_examples, _ in itertools.groupby(doc_examples))
-    with open("MethodLinker/data/" + repo_name + "_doc_examples_unique.csv", "w", encoding="utf-8", newline="") as temp:
-        writer = csv.writer(temp, quoting=csv.QUOTE_MINIMAL)
-        for item in doc_examples:
-            writer.writerow(item)
+    # For Debugging
+    # with open("MethodLinker/data/" + repo_name + "_doc_examples.csv", "w", encoding="utf-8", newline="") as temp:
+    #     writer = csv.writer(temp, quoting=csv.QUOTE_MINIMAL)
+    #     for item in doc_examples:
+    #         writer.writerow(item)
+    # # Remove duplicates but retain order
+    # doc_examples = list(doc_examples for doc_examples, _ in itertools.groupby(doc_examples))
+    # with open("MethodLinker/data/" + repo_name + "_doc_examples_unique.csv", "w", encoding="utf-8", newline="") as temp:
+    #     writer = csv.writer(temp, quoting=csv.QUOTE_MINIMAL)
+    #     for item in doc_examples:
+    #         writer.writerow(item)
 
     method_calls = set()
     if LANGUAGE == "python":

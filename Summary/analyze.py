@@ -1,7 +1,6 @@
 from Summary.analyze.Readability.readability import \
     find_text_readability_metrics
-from Summary.analyze.analyze import debug_metrics, analyze_library
-
+from Summary.analyze.analyze import debug_metrics, analyze_library, clone_library
 
 if __name__ == '__main__':
     # debug_metrics("python", "orjson",
@@ -19,17 +18,17 @@ if __name__ == '__main__':
     #                 "https://github.com/stleary/JSON-java.git", "json")
     # https://stanfordnlp.github.io/CoreNLP/ner.html
     # https://stanfordnlp.github.io/CoreNLP/cmdline.html
-    debug_metrics("java", "CoreNLP", "https://stanfordnlp.github.io/CoreNLP",
-                    "https://github.com/stanfordnlp/CoreNLP.git", "nlp")
+    # debug_metrics("java", "CoreNLP", "https://stanfordnlp.github.io/CoreNLP",
+    #                 "https://github.com/stanfordnlp/CoreNLP.git", "nlp")
     # https://reactjs.org/docs/components-and-props.html
     # https://api.jquery.com/jQuery.get
     # debug_metrics("javascript", "jQuery", "https://api.jquery.com/",
     #                 "https://github.com/jquery/jquery.git", "dom manipulation")
 
-
+    # repo_path = clone_library("orjson", "https://github.com/ijl/orjson.git")
     # analyze_library("python", "orjson",
-    #                 "http://web.archive.org/web/20210831032333/https://github.com/ijl/orjson",
-    #                 "https://github.com/ijl/orjson.git", "json")
+    #                             "http://web.archive.org/web/20210831032333/https://github.com/ijl/orjson",
+    #                             "https://github.com/ijl/orjson.git", "json", repo_path)
     # analyze_library("python", "nltk",
     #                 "https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.html",
     #                 "https://github.com/nltk/nltk.git", "nlp")

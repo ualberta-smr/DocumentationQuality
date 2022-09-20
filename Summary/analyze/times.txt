@@ -40,3 +40,66 @@ Starting analysis for jBinary
 Finished retrieving description: 0.6818089485168457
 Finished matching with Examples: 63.675174713134766
 Finished extracting tasks: 418.6911244392395
+Starting analysis for memfs
+Finished retrieving description: 1.2008516788482666
+Finished calculating navigability: 1.8348495960235596
+Finished calculating readability: 27.128852605819702
+Starting analysis for memfs
+Finished retrieving description: 1.0967199802398682
+Finished calculating navigability: 2.020209550857544
+Finished calculating readability: 35.328482151031494
+Starting analysis for memfs
+Finished retrieving description: 1.1873202323913574
+Finished calculating navigability: 2.1565399169921875
+Starting analysis for memfs
+Finished retrieving description: 1.0898356437683105
+Finished calculating readability: 35.25477957725525
+Finished calculating navigability: 1.675750970840454
+Finished calculating readability: 25.76737141609192
+Starting analysis for memfs
+Finished retrieving description: 1.0882878303527832
+Starting analysis for memfs
+Finished retrieving description: 1.2200927734375
+Finished calculating navigability: 1.2630600929260254
+Finished calculating readability: 34.09280824661255
+Starting analysis for memfs
+Finished retrieving description: 1.1729819774627686
+Finished calculating navigability: 1.6633493900299072
+Starting analysis for CoreNLP
+Finished retrieving description: 0.3991997241973877
+Finished calculating navigability: 0.7275519371032715
+Finished calculating readability: 36.81947183609009
+Starting analysis for orjson
+Finished retrieving description: 5.872937917709351
+Finished calculating navigability: 1.2179951667785645
+Finished calculating readability: 100.09848523139954
+Starting analysis for orjson
+Finished retrieving description: 0.5034966468811035
+Finished calculating navigability: 1.065263032913208
+Starting analysis for orjson
+Finished retrieving description: 1.2507686614990234
+Finished calculating navigability: 1.3926551342010498
+Starting analysis for orjson
+Finished retrieving description: 1.4159245491027832
+Finished calculating navigability: 0.7171952724456787
+Starting analysis for orjson
+Finished retrieving description: 0.864368200302124
+Finished calculating navigability: 3.5394582748413086
+Starting analysis for orjson
+Finished retrieving description: 0.8579850196838379
+Starting analysis for orjson
+Finished retrieving description: 1.866720199584961
+Finished calculating navigability: 2.907689094543457
+Starting analysis for orjson
+Finished retrieving description: 0.49696898460388184
+Starting analysis for orjson
+Finished retrieving description: 1.99241304397583
+Finished matching with Examples: 71.43039870262146
+Finished matching with Signatures: 75.13692283630371
+Starting analysis for memfs
+Finished retrieving description: 1.2052662372589111
+Finished calculating navigability: 1.9746036529541016
+Finished calculating readability: 35.181010484695435
+Finished matching with Signatures: 35.18410587310791
+Finished matching with Examples: 35.188085317611694
+Finished extracting tasks: 151.14182782173157

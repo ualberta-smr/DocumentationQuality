@@ -22,7 +22,7 @@ def code_readability(page):
             try:
                 with open("Readability/temp.txt", "w", encoding="utf-8") as ex_file:
                     ex_file.write(example.get_text())
-                result = subprocess.run(["javaw",
+                result = subprocess.run(["java",
                                         "-jar",
                                         "Readability/rsm.jar",
                                         "Readability/temp.txt"],
