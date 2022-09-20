@@ -14,7 +14,9 @@
     <div class="form-group col-md-9">
         {% if familiar == False %}
             <label for="{{ form.general_rating.id_for_label }}">
-                How useful is having a general rating of the library's documentation's quality?
+                On a scale from 1 to 5 (1 being the lowest), how useful is
+                having a general rating of the library's
+                documentation's quality?
             </label>
         {% else %}
             <label for="{{ form.general_rating.id_for_label }}">
@@ -22,8 +24,9 @@
                 general quality of the library's documentation?
             </label>
         {% endif %}
-
-        {{ form.general_rating }}
+        {% for choice in form.general_rating %}
+            {{ choice }}
+        {% endfor %}
     </div>
     <div class="col-md-9" style="text-align: right;">
         <button type="submit" form="general_rating_form"

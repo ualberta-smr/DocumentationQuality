@@ -1,5 +1,4 @@
 from django.shortcuts import render
-
 from .Metrics import Metrics
 from .forms import Demographics, AnalyzeForm
 from .models import Response

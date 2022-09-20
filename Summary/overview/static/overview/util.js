@@ -8,7 +8,7 @@ function showForm(form_id) {
     if (form_col[0].style.display === "none") {
         form_col[0].style.display = "block"
     }
-    form_col.children(".form").each(function () {
+    form_col.children(".form_row").children(".form").each(function () {
         this.style.display = "none"
     })
     $(form_id)[0].style.display = "block"

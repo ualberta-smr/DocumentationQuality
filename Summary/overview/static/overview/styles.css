@@ -79,3 +79,8 @@ select {
 hr {
     margin-top: 0;
 }
+
+input.form-check-inline {
+    width: auto;
+    float: none;
+}

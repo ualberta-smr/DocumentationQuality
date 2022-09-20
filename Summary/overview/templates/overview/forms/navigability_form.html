@@ -25,7 +25,9 @@
                 your intuition of the documentation's navigability?
             </label>
         {% endif %}
-        {{ form.navigability }}
+        {% for choice in form.navigability %}
+            {{ choice }}
+        {% endfor %}
     </div>
 
 

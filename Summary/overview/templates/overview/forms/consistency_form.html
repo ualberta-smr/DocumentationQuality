@@ -4,7 +4,6 @@
       class="form"
       style="display: none">
     {% csrf_token %}
-
     <div class="modal-header">
         <h4 class="modal-title">Consistency</h4>
         <button type="button" class="btn-close"
@@ -26,7 +25,9 @@
                 code/documentation consistency?
             </label>
         {% endif %}
-        {{ form.consistency }}
+        {% for choice in form.consistency %}
+            {{ choice }}
+        {% endfor %}
     </div>
 
     <div class="col-md-9" style="text-align: right;">

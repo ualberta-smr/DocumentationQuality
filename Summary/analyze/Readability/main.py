@@ -90,7 +90,7 @@ def get_readability(library_name, language, doc_url):
     code_scores = []
     for page in pages:
         text_score, _ = text_readability(page)
-        if language == "java":
+        if language.lower() == "java":
             code_score = code_readability(page)
             if code_score:
                 code_scores.append(code_score)

@@ -14,14 +14,18 @@
     <div class="form-group col-md-9">
         {% if familiar == False %}
             <label for="{{ form.task_list.id_for_label }}">
-                How useful do you find this list of tasks found in the documentation?
+                How useful do you find the list of documented library tasks found in the
+                documentation?
             </label>
         {% else %}
             <label for="{{ form.task_list.id_for_label }}">
-                How much does this list of tasks match your perception of the supported tasks by the library?
+                How much does this list of tasks match your perception of the
+                supported tasks by the library?
             </label>
         {% endif %}
-        {{ form.task_list }}
+        {% for choice in form.task_list %}
+            {{ choice }}
+        {% endfor %}
     </div>
 
     <div class="col-md-9" style="text-align: right;">

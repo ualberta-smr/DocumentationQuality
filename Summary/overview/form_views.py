@@ -5,6 +5,8 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.shortcuts import render, redirect
 
 from analyze.analyze import analyze_library
+from django.views.generic import FormView
+
 from .models import Library, Response
 from .forms import Demographics, GeneralRating, TaskList, MethodExamples, ClassExamples, TextReadability, CodeReadability, Consistency, Navigability, Feedback, AnalyzeForm
 from .util import create_overview_context

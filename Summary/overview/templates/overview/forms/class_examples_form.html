@@ -19,12 +19,14 @@
             </label>
         {% else %}
             <label for="{{ form.code_examples_classes.id_for_label }}">
-                How much does the percentage of classes with a code example match
-                your intuition of classes with a code example in the
+                How much does the percentage of classes with a code example
+                match your intuition of classes with a code example in the
                 documentation?
             </label>
         {% endif %}
-        {{ form.code_examples_classes }}
+        {% for choice in form.code_examples_classes %}
+            {{ choice }}
+        {% endfor %}
     </div>
     <div class="col-md-9" style="text-align: right;">
         <button type="submit" form="code_examples_form"
