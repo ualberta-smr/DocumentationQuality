@@ -1,39 +1,40 @@
+{% load questions %}
+
 <form action="/overview/forms/task_list/"
       method="post"
       id="task_list_form"
       class="form"
       style="display: none">
     {% csrf_token %}
-    <div class="modal-header">
-        <h4 class="modal-title">Documented Library Tasks</h4>
-        <button type="button" class="btn-close"
-                onclick="hideForm('#task_list_form', false)"></button>
-    </div>
-    {{ form.library_name }}
-    {{ form.session_key }}
-    <div class="form-group col-md-9">
-        {% if familiar == False %}
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title">Documented Library Tasks</h4>
+            <button type="button" class="btn-close"
+                    onclick="hideForm('#task_list_form', false)"></button>
+        </div>
+        {{ form.library_name }}
+        {{ form.session_key }}
+        <div class="form-group col-md-9">
             <label for="{{ form.task_list.id_for_label }}">
-                How useful do you find the list of documented library tasks found in the
-                documentation?
+                {% if familiar == False %}
+                    {% task_list_not_familiar %}
+                {% else %}
+                    {% task_list_familiar %}
+                {% endif %}
             </label>
-        {% else %}
-            <label for="{{ form.task_list.id_for_label }}">
-                How much does this list of tasks match your perception of the
-                supported tasks by the library?
-            </label>
-        {% endif %}
-        {% for choice in form.task_list %}
-            {{ choice }}
-        {% endfor %}
+            {% for choice in form.task_list %}
+                {{ choice }}
+            {% endfor %}
+        </div>
+
+        <div class="col-md-9" style="text-align: right;padding: .75rem">
+            <button type="submit" form="task_list_form"
+                    value="Submit  "
+                    class="btn btn-primary is-success is-fullwidth is-medium"
+                    onclick="hideForm('#task_list_form', true)">
+                Submit
+            </button>
+        </div>
     </div>
 
-    <div class="col-md-9" style="text-align: right;">
-        <button type="submit" form="task_list_form"
-                value="Submit  "
-                class="btn btn-primary is-success is-fullwidth is-medium"
-                onclick="hideForm('#task_list_form', true)">
-            Submit
-        </button>
-    </div>
 </form>

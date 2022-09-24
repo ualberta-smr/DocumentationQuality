@@ -56,18 +56,18 @@
                       })()">Hide</span>
             </div>
         </div>
-        <div class="row">
+        <div class="row" style="margin-bottom: 10px">
             <div id="instructions_box" class="metrics-container">
                 <h5>Instructions</h5>
                 <hr>
                 You can provide feedback by clicking on the <span
-                    style="color: darkgreen"> dark green text</span>
-                <b>without an underline.</b>
+                    style="color: forestgreen"> dark green highlighted objects</span>.
                 Please note that this feedback is optional, and you are under no
                 obligation to provide any.
+                Also note that the Documented Library Tasks list may take up to
+                30 minutes to process (average time: X).
             </div>
         </div>
-        <br>
         {#Start of content#}
         <div class="row">
             <div class="col">
@@ -82,10 +82,10 @@
                 </div>
                 <br>
                 <div class="metrics-container">
-                    <h5>Metric evaluation of documentation quality</h5>
+                    <h5>Metric Evaluation of Documentation Quality</h5>
                     <hr>
                     {% include "overview/components/examples.html" with example_ratios=example_ratios %}
-                    {% include "overview/components/readability.html" with readability_ratios=readability_ratios %}
+                    {% include "overview/components/readability.html" with readability_ratios=readability_ratios language=language%}
                     {% include "overview/components/consistency.html" with consistency=consistency %}
                     {% include "overview/components/navigability.html" with navigability=navigability %}
                 </div>

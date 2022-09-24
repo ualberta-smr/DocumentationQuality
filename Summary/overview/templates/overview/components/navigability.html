@@ -1,9 +1,10 @@
 {% load overview_extras %}
+{% load tooltips %}
 
 <div class="row">
     <div class="col-md-8">
         <span data-bs-toggle="tooltip" data-bs-placement="top"
-              title="This is an indication of the navigability of the documentation, i.e., how easy is it to navigate the documentation">
+              title="{% navigability_tooltip %}">
             <button type="button"
                     class="btn btn-outline"
                     onclick="showForm('#navigation_form')">

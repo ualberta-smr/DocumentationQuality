@@ -1,40 +1,38 @@
+{% load questions %}
+
 <form action="/overview/forms/class_examples/"
       method="post"
       id="class_examples_form"
       class="form"
       style="display: none">
     {% csrf_token %}
-    <div class="modal-header">
-        <h4 class="modal-title">Class code examples</h4>
-        <button type="button" class="btn-close"
-                onclick="hideForm('#class_examples_form', false)"></button>
-    </div>
-    {{ form.library_name }}
-    {{ form.session_key }}
-    <div class="form-group col-md-9">
-        {% if familiar == False %}
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title">Class Code Examples</h4>
+            <button type="button" class="btn-close"
+                    onclick="hideForm('#class_examples_form', false)"></button>
+        </div>
+        {{ form.library_name }}
+        {{ form.session_key }}
+        <div class="form-group col-md-9">
             <label for="{{ form.code_examples_classes.id_for_label }}">
-                How useful is knowing the percentage of classes with a code
-                example in the documentation?
+                {% if familiar == False %}
+                    {% class_examples_not_familiar %}
+                {% else %}
+                    {% class_examples_familiar %}
+                {% endif %}
             </label>
-        {% else %}
-            <label for="{{ form.code_examples_classes.id_for_label }}">
-                How much does the percentage of classes with a code example
-                match your intuition of classes with a code example in the
-                documentation?
-            </label>
-        {% endif %}
-        {% for choice in form.code_examples_classes %}
-            {{ choice }}
-        {% endfor %}
-    </div>
-    <div class="col-md-9" style="text-align: right;">
-        <button type="submit" form="code_examples_form"
-                value="Submit"
-                class="btn btn-primary is-success is-fullwidth is-medium"
-                onclick="hideForm('#class_examples_form', true)">
-            Submit
-        </button>
-
+            {% for choice in form.code_examples_classes %}
+                {{ choice }}
+            {% endfor %}
+        </div>
+        <div class="col-md-9" style="text-align: right;padding: .75rem">
+            <button type="submit" form="class_examples_form"
+                    value="Submit"
+                    class="btn btn-primary is-success is-fullwidth is-medium"
+                    onclick="hideForm('#class_examples_form', true)">
+                Submit
+            </button>
+        </div>
     </div>
 </form>

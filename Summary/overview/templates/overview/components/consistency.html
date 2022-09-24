@@ -1,9 +1,10 @@
 {% load overview_extras %}
+{% load tooltips %}
 
 <div class="row">
     <div class="col-md-8">
         <span data-bs-toggle="tooltip" data-bs-placement="top"
-              title="This rating is an indicator for how similar/consistent the documentation is with the source code">
+              title="{% consistency_tooltip %}">
             <button type="button"
                     class="btn btn-outline"
                     onclick="showForm('#consistency_form')">

@@ -1,9 +1,10 @@
 {% load overview_extras %}
+{% load tooltips %}
 
 <div class="row">
     <div class="col-md-8">
         <span data-bs-toggle="tooltip" data-bs-placement="top"
-              title="This metric indicates how many public API METHODS contain a code example in the documentation">
+              title="{% method_examples_tooltip %}">
             <button type="button" class="btn btn-outline"
                     onclick="showForm('#method_examples_form')">
                 Methods with code examples
@@ -41,7 +42,7 @@
 <div class="row">
     <div class="col-md-8">
         <span data-bs-toggle="tooltip" data-bs-placement="top"
-              title="This metric indicates how many public API CLASSES contain a code example in the documentation">
+              title="{% class_examples_tooltip %}">
             <button type="button" class="btn btn-outline"
                     onclick="showForm('#class_examples_form')">
                 Classes with code examples

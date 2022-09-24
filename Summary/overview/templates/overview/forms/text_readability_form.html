@@ -1,39 +1,39 @@
+{% load questions %}
+
 <form action="/overview/forms/text_readability/"
       method="post"
       id="text_readability_form"
       class="form"
       style="display: none">
     {% csrf_token %}
-    <div class="modal-header">
-        <h4 class="modal-title">Text Readability</h4>
-        <button type="button" class="btn-close"
-                onclick="hideForm('#text_readability_form', false)"></button>
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title">Text Readability</h4>
+            <button type="button" class="btn-close"
+                    onclick="hideForm('#text_readability_form', false)"></button>
+        </div>
+        {{ form.library_name }}
+        {{ form.session_key }}
+        <div class="form-group col-md-9">
+            <label for="{{ form.text_readability.id_for_label }}">
+                {% if familiar == False %}
+                    {% text_readability_not_familiar %}
+                {% else %}
+                    {% text_readability_familiar %}
+                {% endif %}
+            </label>
+            {% for choice in form.text_readability %}
+                {{ choice }}
+            {% endfor %}
+        </div>
+        <div class="col-md-9" style="text-align: right;padding: .75rem">
+            <button type="submit" form="text_readability_form"
+                    value="Submit"
+                    class="btn btn-primary is-success is-fullwidth is-medium"
+                    onclick="hideForm('#text_readability_form', true)">
+                Submit
+            </button>
+        </div>
     </div>
-    {{ form.library_name }}
-    {{ form.session_key }}
-    <div class="form-group col-md-9">
-        {% if familiar == False %}
-            <label for="{{ form.text_readability.id_for_label }}">
-                How useful is having an indicator for the readability of
-                documentation text?
-            </label>
-        {% else %}
-            <label for="{{ form.text_readability.id_for_label }}">
-                How much does the rating of text readability match your
-                intuition of the documentation's text readability?
-            </label>
 
-        {% endif %}
-        {% for choice in form.text_readability %}
-            {{ choice }}
-        {% endfor %}
-    </div>
-    <div class="col-md-9" style="text-align: right;">
-        <button type="submit" form="readability_form"
-                value="Submit"
-                class="btn btn-primary is-success is-fullwidth is-medium"
-                onclick="hideForm('#text_readability_form', true)">
-            Submit
-        </button>
-    </div>
 </form>

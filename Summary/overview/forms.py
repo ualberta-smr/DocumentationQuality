@@ -11,30 +11,30 @@ class AnalyzeForm(forms.Form):
             (None, ""),
             ("Python", "Python"),
             ("Java", "Java"),
-            ("Javascript", "Javascript"),
-            ("", "Other")
+            ("Javascript", "Javascript")
         )
     )
     doc_url = forms.CharField(required=True)
     gh_url = forms.CharField(required=False, widget=forms.TextInput(
         attrs={"placeholder": "https://github.com/nltk/nltk.git"}))
-    domain = forms.ChoiceField(
-        required=True,
-        choices=(
-            (None, ""),
-            ("nlp", "NLP"),
-            ("json", "JSON"),
-            ("dom_manipulation", "DOM Manipulation"),
-            ("http", "HTTP"),
-            ("''", "Other")
-        )
-    )
+    # domain = forms.ChoiceField(
+    #     required=True,
+    #     choices=(
+    #         (None, ""),
+    #         ("nlp", "NLP"),
+    #         ("json", "JSON"),
+    #         ("dom_manipulation", "DOM Manipulation"),
+    #         ("http", "HTTP"),
+    #         ("''", "Other")
+    #     )
+    # )
 
 
 class Demographics(forms.ModelForm):
     session_key = forms.CharField(widget=forms.HiddenInput())
     library_name = forms.CharField(widget=forms.HiddenInput())
-    years_experience = forms.IntegerField(required=True, min_value=0,
+    years_experience = forms.IntegerField(required=True,
+                                          min_value=0,
                                           widget=forms.NumberInput())
     familiar = forms.ChoiceField(
         required=True,
@@ -65,12 +65,7 @@ class GeneralRating(forms.ModelForm):
     library_name = forms.CharField(widget=forms.HiddenInput())
     general_rating = forms.ChoiceField(
         required=True,
-        widget=forms.RadioSelect(attrs={"class": "form-check-inline"}),
-        choices=[(1, "1"),
-                 (2, "2"),
-                 (3, "3"),
-                 (4, "4"),
-                 (5, "5")]
+        widget=forms.RadioSelect(attrs={"class": "form-check-inline"})
     )
 
     class Meta:
@@ -94,12 +89,7 @@ class TaskList(forms.ModelForm):
     library_name = forms.CharField(widget=forms.HiddenInput())
     task_list = forms.ChoiceField(
         required=True,
-        widget=forms.RadioSelect(attrs={"class": "form-check-inline"}),
-        choices=[(1, "1"), # Not useful
-                 (2, "2"), # Somewhat useful
-                 (3, "3"), # Neutral
-                 (4, "4"), # Useful
-                 (5, "5")] # Very useful
+        widget=forms.RadioSelect(attrs={"class": "form-check-inline"})
     )
 
     class Meta:
@@ -123,12 +113,7 @@ class MethodExamples(forms.ModelForm):
     library_name = forms.CharField(widget=forms.HiddenInput())
     code_examples_methods = forms.ChoiceField(
         required=True,
-        widget=forms.RadioSelect(attrs={"class": "form-check-inline"}),
-        choices=[(1, "1"),
-                 (2, "2"),
-                 (3, "3"),
-                 (4, "4"),
-                 (5, "5")]
+        widget=forms.RadioSelect(attrs={"class": "form-check-inline"})
     )
 
     class Meta:
@@ -152,12 +137,7 @@ class ClassExamples(forms.ModelForm):
     library_name = forms.CharField(widget=forms.HiddenInput())
     code_examples_classes = forms.ChoiceField(
         required=True,
-        widget=forms.RadioSelect(attrs={"class": "form-check-inline"}),
-        choices=[(1, "1"),
-                 (2, "2"),
-                 (3, "3"),
-                 (4, "4"),
-                 (5, "5")]
+        widget=forms.RadioSelect(attrs={"class": "form-check-inline"})
     )
 
     class Meta:
@@ -181,12 +161,7 @@ class TextReadability(forms.ModelForm):
     library_name = forms.CharField(widget=forms.HiddenInput())
     text_readability = forms.ChoiceField(
         required=True,
-        widget=forms.RadioSelect(attrs={"class": "form-check-inline"}),
-        choices=[(1, "1"),
-                 (2, "2"),
-                 (3, "3"),
-                 (4, "4"),
-                 (5, "5")]
+        widget=forms.RadioSelect(attrs={"class": "form-check-inline"})
     )
 
     class Meta:
@@ -210,12 +185,7 @@ class CodeReadability(forms.ModelForm):
     library_name = forms.CharField(widget=forms.HiddenInput())
     code_readability = forms.ChoiceField(
         required=True,
-        widget=forms.RadioSelect(attrs={"class": "form-check-inline"}),
-        choices=[(1, "1"),
-                 (2, "2"),
-                 (3, "3"),
-                 (4, "4"),
-                 (5, "5")]
+        widget=forms.RadioSelect(attrs={"class": "form-check-inline"})
     )
 
     class Meta:
@@ -239,12 +209,7 @@ class Consistency(forms.ModelForm):
     library_name = forms.CharField(widget=forms.HiddenInput())
     consistency = forms.ChoiceField(
         required=True,
-        widget=forms.RadioSelect(attrs={"class": "form-check-inline"}),
-        choices=[(1, "1"),
-                 (2, "2"),
-                 (3, "3"),
-                 (4, "4"),
-                 (5, "5")]
+        widget=forms.RadioSelect(attrs={"class": "form-check-inline"})
     )
 
     class Meta:
@@ -268,12 +233,7 @@ class Navigability(forms.ModelForm):
     library_name = forms.CharField(widget=forms.HiddenInput())
     navigability = forms.ChoiceField(
         required=True,
-        widget=forms.RadioSelect(attrs={"class": "form-check-inline"}),
-        choices=[(1, "1"),
-                 (2, "2"),
-                 (3, "3"),
-                 (4, "4"),
-                 (5, "5")]
+        widget=forms.RadioSelect(attrs={"class": "form-check-inline"})
     )
 
     class Meta:
@@ -295,21 +255,28 @@ class Navigability(forms.ModelForm):
 class Feedback(forms.ModelForm):
     session_key = forms.CharField(widget=forms.HiddenInput())
     library_name = forms.CharField(widget=forms.HiddenInput())
-    usefulness = forms.CharField(
+    usefulness = forms.ChoiceField(
         required=True,
-        widget=forms.Textarea(attrs={"style": "max-width: 50%"})
+        widget=forms.RadioSelect(attrs={"class": "form-check-inline"}),
+        choices=[(1, "Not useful"),
+                 (2, "Somewhat not useful"),
+                 (3, "Neither useful nor not useful"),
+                 (4, "Somewhat useful"),
+                 (5, "Very useful")
+                 ]
     )
     would_recommend = forms.ChoiceField(
-        required=True,
+        required=False,
         choices=(
             (None, ""),
             (True, "I would"),
             (False, "I would not")
-        )
+        ),
+        widget=forms.Select(attrs={"style": "float:left"})
     )
     general_feedback = forms.CharField(
-        required=True,
-        widget=forms.Textarea(attrs={"style": "max-width: 50%"})
+        required=False,
+        widget=forms.Textarea(attrs={"cols": 40, "rows": 4})
     )
 
     class Meta:

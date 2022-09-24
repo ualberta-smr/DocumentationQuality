@@ -1,39 +1,38 @@
+{% load questions %}
+
 <form action="/overview/forms/general_rating/"
       method="post"
       id="general_rating_form"
       class="form"
       style="display: none">
     {% csrf_token %}
-    <div class="modal-header">
-        <h4 class="modal-title">General Rating</h4>
-        <button type="button" class="btn-close"
-                onclick="hideForm('#general_rating_form', false)"></button>
-    </div>
-    {{ form.library_name }}
-    {{ form.session_key }}
-    <div class="form-group col-md-9">
-        {% if familiar == False %}
-            <label for="{{ form.general_rating.id_for_label }}">
-                On a scale from 1 to 5 (1 being the lowest), how useful is
-                having a general rating of the library's
-                documentation's quality?
-            </label>
-        {% else %}
-            <label for="{{ form.general_rating.id_for_label }}">
-                How does the general rating match your intuition with the
-                general quality of the library's documentation?
-            </label>
-        {% endif %}
-        {% for choice in form.general_rating %}
-            {{ choice }}
-        {% endfor %}
-    </div>
-    <div class="col-md-9" style="text-align: right;">
-        <button type="submit" form="general_rating_form"
-                value="Submit"
-                class="btn btn-primary is-success is-fullwidth is-medium"
-                onclick="hideForm('#general_rating_form', true)">
-            Submit
-        </button>
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title">General Rating</h4>
+            <button type="button" class="btn-close"
+                    onclick="hideForm('#general_rating_form', false)"></button>
+        </div>
+        {{ form.library_name }}
+        {{ form.session_key }}
+        <div class="form-group col-md-9">
+                <label for="{{ form.general_rating.id_for_label }}">
+                    {% if familiar == False %}
+                        {% general_rating_not_familiar %}
+                    {% else %}
+                        {% general_rating_familiar %}
+                    {% endif %}
+                </label>
+            {% for choice in form.general_rating %}
+                {{ choice }}
+            {% endfor %}
+        </div>
+        <div class="col-md-9" style="text-align: right;padding: .75rem">
+            <button type="submit" form="general_rating_form"
+                    value="Submit"
+                    class="btn btn-primary is-success is-fullwidth is-medium"
+                    onclick="hideForm('#general_rating_form', true)">
+                Submit
+            </button>
+        </div>
     </div>
 </form>

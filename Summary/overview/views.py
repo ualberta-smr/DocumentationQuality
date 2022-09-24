@@ -1,25 +1,18 @@
+from django.core.exceptions import ObjectDoesNotExist
 from django.shortcuts import render
 from .Metrics import Metrics
 from .forms import Demographics, AnalyzeForm
 from .models import Response
-from .util import get_libraries, get_library, create_overview_context
+from .util import get_groupings, get_library, create_overview_context
 
 
 def landing(request):
     if request.session.exists(request.session.session_key):
         if "store" in request.session:
             del request.session["store"]
-    libraries = get_libraries()
-    groupings = dict()
-    for library in libraries:
-        library_language = library["language"]
-        if library_language in groupings:
-            groupings[library_language].append(library["library_name"])
-        else:
-            groupings[library_language] = [library["library_name"]]
     return render(request, "overview/landing.html",
                   context={"form": AnalyzeForm(),
-                           "groupings": groupings
+                           "groupings": get_groupings()
                            }
                   )
 
@@ -39,13 +32,13 @@ def overview(request, library_name):
     library = get_library(library_name)
     library_metrics = Metrics(library)
     try:
-        familiar = Response.objects.filter(
-            session_key=request.session.session_key).values(
-            "familiar").get()["familiar"]
-    except:
+        familiar = Response.objects.get(library_name=library_name,
+                                        session_key=request.session.session_key).familiar
+    except ObjectDoesNotExist:
         familiar = False
     if "store" not in request.session:
         store = dict(library_name=library_name,
+                     language=library.language,
                      doc_url=library.doc_url,
                      general_rating=library_metrics.calculate_general_rating(),
                      description=library.description,

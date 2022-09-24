@@ -1,41 +1,41 @@
+{% load questions %}
+
 <form action="/overview/forms/consistency/"
       method="post"
       id="consistency_form"
       class="form"
       style="display: none">
     {% csrf_token %}
-    <div class="modal-header">
-        <h4 class="modal-title">Consistency</h4>
-        <button type="button" class="btn-close"
-                onclick="hideForm('#consistency_form', false)"></button>
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title">Consistency</h4>
+            <button type="button" class="btn-close"
+                    onclick="hideForm('#consistency_form', false)"></button>
+        </div>
+
+        {{ form.library_name }}
+        {{ form.session_key }}
+        <div class="form-group col-md-9">
+            <label for="{{ form.consistency.id_for_label }}">
+                {% if familiar == False %}
+                    {% consistency_not_familiar %}
+                {% else %}
+                    {% consistency_familiar %}
+                {% endif %}
+            </label>
+            {% for choice in form.consistency %}
+                {{ choice }}
+            {% endfor %}
+        </div>
+
+        <div class="col-md-9" style="text-align: right;padding: .75rem">
+            <button type="submit" form="consistency_form"
+                    value="Submit"
+                    class="btn btn-primary is-success is-fullwidth is-medium"
+                    onclick="hideForm('#consistency_form', true)">
+                Submit
+            </button>
+        </div>
     </div>
 
-    {{ form.library_name }}
-    {{ form.session_key }}
-    <div class="form-group col-md-9">
-        {% if familiar == False %}
-            <label for="{{ form.consistency.id_for_label }}">
-                How useful is having an indicator for the consistency between
-                the source code and documentation to you?
-            </label>
-        {% else %}
-            <label for="{{ form.consistency.id_for_label }}">
-                How much does the rating of consistency between the source code
-                and documentation match your intuition of the source
-                code/documentation consistency?
-            </label>
-        {% endif %}
-        {% for choice in form.consistency %}
-            {{ choice }}
-        {% endfor %}
-    </div>
-
-    <div class="col-md-9" style="text-align: right;">
-        <button type="submit" form="consistency_form"
-                value="Submit"
-                class="btn btn-primary is-success is-fullwidth is-medium"
-                onclick="hideForm('#consistency_form', true)">
-            Submit
-        </button>
-    </div>
 </form>

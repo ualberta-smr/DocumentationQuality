@@ -1,40 +1,39 @@
+{% load questions %}
+
 <form action="/overview/forms/code_readability/"
       method="post"
       id="code_readability_form"
       class="form"
       style="display: none">
     {% csrf_token %}
-    <div class="modal-header">
-        <h4 class="modal-title">Code Readability</h4>
-        <button type="button" class="btn-close"
-                onclick="hideForm('#code_readability_form', false)"></button>
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title">Code Readability</h4>
+            <button type="button" class="btn-close"
+                    onclick="hideForm('#code_readability_form', false)"></button>
+        </div>
+        {{ form.library_name }}
+        {{ form.session_key }}
+        <div class="form-group col-md-9">
+            <label for="{{ form.code_readability.id_for_label }}">
+                {% if familiar == False %}
+                    {% code_readability_not_familiar %}
+                {% else %}
+                    {% code_readability_familiar %}
+                {% endif %}
+            </label>
+            {% for choice in form.code_readability %}
+                {{ choice }}
+            {% endfor %}
+        </div>
+        <div class="col-md-9" style="text-align: right;padding: .75rem">
+            <button type="submit" form="code_readability_form"
+                    value="Submit"
+                    class="btn btn-primary is-success is-fullwidth is-medium"
+                    onclick="hideForm('#code_readability_form', true)">
+                Submit
+            </button>
+        </div>
     </div>
-    {{ form.library_name }}
-    {{ form.session_key }}
 
-    <div class="form-group col-md-9">
-        {% if familiar == "False" %}
-            <label for="{{ form.code_readability.id_for_label }}">
-                How useful is having an indicator for the readability of the
-                code examples in
-                the documentation?
-            </label>
-        {% else %}
-            <label for="{{ form.code_readability.id_for_label }}">
-                How much does the rating for code readability match your
-                intuition of the documentation's code example readability
-            </label>
-        {% endif %}
-        {% for choice in form.code_readability %}
-            {{ choice }}
-        {% endfor %}
-    </div>
-    <div class="col-md-9" style="text-align: right;">
-        <button type="submit" form="readability_form"
-                value="Submit"
-                class="btn btn-primary is-success is-fullwidth is-medium"
-                onclick="hideForm('#code_readability_form', true)">
-            Submit
-        </button>
-    </div>
 </form>

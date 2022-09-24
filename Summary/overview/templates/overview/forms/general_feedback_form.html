@@ -1,48 +1,45 @@
+{% load questions %}
+
 <form action="/overview/forms/general/"
       method="post"
       id="general_feedback_form"
       class="form"
       style="display: none;">
     {% csrf_token %}
-    <div class="modal-header">
-        <h4 class="modal-title">General Feedback</h4>
-        <button type="button" class="btn-close"
-                onclick="hideForm('#general_feedback_form', false)"></button>
-    </div>
-    {{ form.library_name }}
-    {{ form.session_key }}
-    <div class="form-group col-md-8">
-        <label for="{{ form.usefulness.id_for_label }}">
-            How useful is having a documentation quality summary for evaluating
-            a library's documentation's quality?
-        </label>
-        {{ form.usefulness }}
-    </div>
-    <div class="form-group col-md-9">
-        <div class="row">
-            <div class="col-8">
-                <label for="{{ form.would_recommend.id_for_label }}">
-                    Would you recommend this documentation quality summary tool
-                    to others?
-                </label>
-            </div>
-            <div class="col">
-                {{ form.would_recommend }}
-            </div>
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title">General Feedback</h4>
+            <button type="button" class="btn-close"
+                    onclick="hideForm('#general_feedback_form', false)"></button>
+        </div>
+        {{ form.library_name }}
+        {{ form.session_key }}
+        <div class="form-group col-md-8">
+            <label for="{{ form.usefulness.id_for_label }}">
+                {% general_useful %}
+            </label>
+            {{ form.usefulness }}
+        </div>
+        <div class="form-group col-md-9">
+            <label for="{{ form.would_recommend.id_for_label }}">
+                {% would_recommend %}
+            </label>
+            {{ form.would_recommend }}
         </div>
         <div class="form-group col-md-8">
             <label for="{{ form.general_feedback.id_for_label }}">
-                Please provide any additional feedback you have about this documentation quality summary.
+                {% additional_feedback %}
             </label>
             {{ form.general_feedback }}
         </div>
+        <div class="col-md-9" style="text-align: right;padding: .75rem">
+            <button type="submit" form="general_feedback_form"
+                    value="Submit"
+                    class="btn btn-primary is-success is-fullwidth is-medium"
+                    onclick="hideForm('#general_feedback_form', true)">
+                Submit
+            </button>
+        </div>
     </div>
-    <div class="col-md-9" style="text-align: right;">
-        <button type="submit" form="general_feedback_form"
-                value="Submit"
-                class="btn btn-primary is-success is-fullwidth is-medium"
-                onclick="hideForm('#general_feedback_form', true)">
-            Submit
-        </button>
-    </div>
+
 </form>
