@@ -1,105 +1,59 @@
 Starting analysis for orjson
-Finished retrieving description: 2.5557305812835693
-Finished matching with Signatures: 87.60766935348511
-Finished matching with Examples: 87.87474870681763
-Finished extracting tasks: 1849.4127488136292
+Finished retrieving description: 1.5150139331817627
+Finished calculating navigability: 3.338475465774536
+Finished matching with Signatures: 31.4132719039917
+Finished calculating readability: 31.459556102752686
+Finished matching with Examples: 31.451504468917847
+Finished extracting tasks: 311.3406927585602
 Starting analysis for nltk
-Finished retrieving description: 7.498462200164795
-Finished matching with Signatures: 84.33656620979309
-Finished matching with Examples: 84.34757018089294
-Finished extracting tasks: 8219.210043907166
+Finished retrieving description: 0.3299548625946045
+Finished calculating navigability: 0.2960669994354248
+Finished calculating readability: 14.856767177581787
+Finished matching with Examples: 14.842763185501099
+Finished matching with Signatures: 14.832759857177734
+Finished extracting tasks: 17.986510753631592
 Starting analysis for requests
-Finished retrieving description: 5.827717542648315
-Finished matching with Examples: 78.97008013725281
-Finished matching with Signatures: 80.91302609443665
-Finished extracting tasks: 6935.989938259125
+Finished retrieving description: 0.29569292068481445
+Finished calculating navigability: 0.5321199893951416
+Finished matching with Signatures: 9.503017902374268
+Finished matching with Examples: 9.51802134513855
+Finished calculating readability: 10.11698579788208
+Finished extracting tasks: 3113.9676337242126
 Starting analysis for JSON-java
-Finished retrieving description: 1.1720142364501953
-Finished matching with Signatures: 26.971883535385132
-Finished matching with Examples: 28.170185804367065
-Finished extracting tasks: 250.83779525756836
-Starting analysis for CoreNLP
-Finished retrieving description: 0.8203737735748291
-Finished matching with Signatures: 112.78762888908386
-Finished matching with Examples: 112.79062986373901
-Finished extracting tasks: 1797.9008996486664
+Finished retrieving description: 2.3156015872955322
+Finished calculating navigability: 1.8449387550354004
+Finished matching with Signatures: 36.28099036216736
+Finished matching with Examples: 36.29207229614258
+Finished calculating readability: 69.57266330718994
+Finished extracting tasks: 243.7850935459137
+Starting analysis for corenlp
+Finished retrieving description: 0.4948115348815918
+Finished calculating navigability: 0.5754189491271973
+Finished matching with Examples: 309.5660798549652
+Finished matching with Signatures: 309.5630247592926
+Finished calculating readability: 343.93785095214844
+Finished extracting tasks: 1913.2861723899841
 Starting analysis for React
-Finished retrieving description: 0.6860353946685791
-Finished extracting tasks: 98.85861921310425
+Finished retrieving description: 0.3970367908477783
+Finished calculating navigability: 0.6335921287536621
+Finished calculating readability: 29.887120485305786
+Finished extracting tasks: 81.16234064102173
 Starting analysis for jQuery
-Finished retrieving description: 1.1744415760040283
-Finished extracting tasks: 516.2527842521667
-Finished matching with Signatures: 746.1172921657562
+Finished retrieving description: 1.0945708751678467
+Finished calculating navigability: 3.000293493270874
+Finished calculating readability: 4.799289703369141
+Finished extracting tasks: 568.1787128448486
 Starting analysis for qunit
-Finished retrieving description: 0.324279308319  0918
-Finished matching with Signatures: 5.003788709640503
-Finished extracting tasks: 234.87915015220642
+Finished retrieving description: 0.30872368812561035
+Finished calculating navigability: 0.32245683670043945
+Finished matching with Signatures: 11.15617823600769
+Finished matching with Examples: 11.170265913009644
+Finished calculating readability: 11.190375804901123
+Finished matching with Examples: 948.7675409317017
+Finished extracting tasks: 255.21635556221008
 Starting analysis for jBinary
-Finished retrieving description: 0.8769590854644775
-Starting analysis for jBinary
-Finished retrieving description: 0.6818089485168457
-Finished matching with Examples: 63.675174713134766
-Finished extracting tasks: 418.6911244392395
-Starting analysis for memfs
-Finished retrieving description: 1.2008516788482666
-Finished calculating navigability: 1.8348495960235596
-Finished calculating readability: 27.128852605819702
-Starting analysis for memfs
-Finished retrieving description: 1.0967199802398682
-Finished calculating navigability: 2.020209550857544
-Finished calculating readability: 35.328482151031494
-Starting analysis for memfs
-Finished retrieving description: 1.1873202323913574
-Finished calculating navigability: 2.1565399169921875
-Starting analysis for memfs
-Finished retrieving description: 1.0898356437683105
-Finished calculating readability: 35.25477957725525
-Finished calculating navigability: 1.675750970840454
-Finished calculating readability: 25.76737141609192
-Starting analysis for memfs
-Finished retrieving description: 1.0882878303527832
-Starting analysis for memfs
-Finished retrieving description: 1.2200927734375
-Finished calculating navigability: 1.2630600929260254
-Finished calculating readability: 34.09280824661255
-Starting analysis for memfs
-Finished retrieving description: 1.1729819774627686
-Finished calculating navigability: 1.6633493900299072
-Starting analysis for CoreNLP
-Finished retrieving description: 0.3991997241973877
-Finished calculating navigability: 0.7275519371032715
-Finished calculating readability: 36.81947183609009
-Starting analysis for orjson
-Finished retrieving description: 5.872937917709351
-Finished calculating navigability: 1.2179951667785645
-Finished calculating readability: 100.09848523139954
-Starting analysis for orjson
-Finished retrieving description: 0.5034966468811035
-Finished calculating navigability: 1.065263032913208
-Starting analysis for orjson
-Finished retrieving description: 1.2507686614990234
-Finished calculating navigability: 1.3926551342010498
-Starting analysis for orjson
-Finished retrieving description: 1.4159245491027832
-Finished calculating navigability: 0.7171952724456787
-Starting analysis for orjson
-Finished retrieving description: 0.864368200302124
-Finished calculating navigability: 3.5394582748413086
-Starting analysis for orjson
-Finished retrieving description: 0.8579850196838379
-Starting analysis for orjson
-Finished retrieving description: 1.866720199584961
-Finished calculating navigability: 2.907689094543457
-Starting analysis for orjson
-Finished retrieving description: 0.49696898460388184
-Starting analysis for orjson
-Finished retrieving description: 1.99241304397583
-Finished matching with Examples: 71.43039870262146
-Finished matching with Signatures: 75.13692283630371
-Starting analysis for memfs
-Finished retrieving description: 1.2052662372589111
-Finished calculating navigability: 1.9746036529541016
-Finished calculating readability: 35.181010484695435
-Finished matching with Signatures: 35.18410587310791
-Finished matching with Examples: 35.188085317611694
-Finished extracting tasks: 151.14182782173157
+Finished retrieving description: 0.9776663780212402
+Finished calculating navigability: 0.9933309555053711
+Finished matching with Examples: 65.35546517372131
+Finished calculating readability: 65.37668538093567
+Finished extracting tasks: 448.9627351760864
