@@ -15,7 +15,7 @@
         {{ form.library_name }}
         {{ form.session_key }}
         <div class="form-group col-md-9">
-            <label for="{{ form.navigability.id_for_label }}">
+            <label class="question" for="{{ form.navigability.id_for_label }}">
                 {% if familiar == False %}
                     {% navigability_not_familiar %}
                 {% else %}

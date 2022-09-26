@@ -16,7 +16,7 @@
         {{ form.library_name }}
         {{ form.session_key }}
         <div class="form-group col-md-9">
-            <label for="{{ form.consistency.id_for_label }}">
+            <label class="question" for="{{ form.consistency.id_for_label }}">
                 {% if familiar == False %}
                     {% consistency_not_familiar %}
                 {% else %}

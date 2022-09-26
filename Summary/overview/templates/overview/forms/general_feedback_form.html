@@ -14,25 +14,25 @@
         </div>
         {{ form.library_name }}
         {{ form.session_key }}
-        <div class="form-group col-md-8">
-            <label for="{{ form.usefulness.id_for_label }}">
+        <div class="form-group col">
+            <label class="question" for="{{ form.usefulness.id_for_label }}">
                 {% general_useful %}
             </label>
             {{ form.usefulness }}
         </div>
-        <div class="form-group col-md-9">
-            <label for="{{ form.would_recommend.id_for_label }}">
+        <div class="form-group col">
+            <label class="question" for="{{ form.would_recommend.id_for_label }}">
                 {% would_recommend %}
             </label>
             {{ form.would_recommend }}
         </div>
-        <div class="form-group col-md-8">
-            <label for="{{ form.general_feedback.id_for_label }}">
+        <div class="form-group col">
+            <label class="question" for="{{ form.general_feedback.id_for_label }}">
                 {% additional_feedback %}
             </label>
             {{ form.general_feedback }}
         </div>
-        <div class="col-md-9" style="text-align: right;padding: .75rem">
+        <div class="col" style="text-align: right;padding: .75rem">
             <button type="submit" form="general_feedback_form"
                     value="Submit"
                     class="btn btn-primary is-success is-fullwidth is-medium"

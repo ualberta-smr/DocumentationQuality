@@ -42,6 +42,11 @@ label {
     margin-right: 15px;
 }
 
+label.question {
+    color: forestgreen;
+    font-size: large;
+}
+
 input {
     display: inline-block;
     float: right;
