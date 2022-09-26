@@ -65,7 +65,8 @@
                 Please note that this feedback is optional, and you are under no
                 obligation to provide any.
                 Also note that the Documented Library Tasks list may take up to
-                30 minutes to process (average time: X).
+                30 minutes to process (average time: 15 minutes) and will need a
+                page refresh.
             </div>
         </div>
         {#Start of content#}
@@ -85,7 +86,7 @@
                     <h5>Metric Evaluation of Documentation Quality</h5>
                     <hr>
                     {% include "overview/components/examples.html" with example_ratios=example_ratios %}
-                    {% include "overview/components/readability.html" with readability_ratios=readability_ratios language=language%}
+                    {% include "overview/components/readability.html" with readability_ratios=readability_ratios language=language %}
                     {% include "overview/components/consistency.html" with consistency=consistency %}
                     {% include "overview/components/navigability.html" with navigability=navigability %}
                 </div>
