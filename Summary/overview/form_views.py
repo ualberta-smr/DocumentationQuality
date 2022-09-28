@@ -3,6 +3,7 @@ import json
 from analyze.analyze import analyze_library, clone_library
 from django.core.exceptions import ObjectDoesNotExist
 from django.shortcuts import render, redirect
+from django.utils.datastructures import MultiValueDictKeyError
 
 from .forms import Demographics, GeneralRating, TaskList, MethodExamples, \
     ClassExamples, TextReadability, \
@@ -26,7 +27,7 @@ def search(request):
     if request.method == "POST":
         try:
             exists = Library.objects.get(library_name=request.POST["library_select"])
-        except ObjectDoesNotExist:
+        except (ObjectDoesNotExist, MultiValueDictKeyError):
             exists = False
         if exists:
             try:
