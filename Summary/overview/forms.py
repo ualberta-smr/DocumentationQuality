@@ -68,6 +68,13 @@ class GeneralRating(forms.ModelForm):
         widget=forms.RadioSelect(attrs={"class": "form-check-inline"})
     )
 
+    def clean(self):
+        cleaned_data = super(GeneralRating, self).clean()
+        general_rating = int(cleaned_data.get("general_rating"))
+        if general_rating and general_rating < 0 or general_rating > 5:
+            self.add_error("general_rating", "Rating should be between 1 and 5 (inclusive).")
+        return cleaned_data
+
     class Meta:
         model = Response
         exclude = ("years_experience",

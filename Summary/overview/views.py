@@ -36,39 +36,38 @@ def overview(request, library_name):
                                         session_key=request.session.session_key).familiar
     except ObjectDoesNotExist:
         familiar = False
+    store = dict(library_name=library_name,
+                 language=library.language,
+                 doc_url=library.doc_url,
+                 general_rating=library_metrics.calculate_general_rating(),
+                 description=library.description,
+                 task_list=library_metrics.tasks,
+                 example_ratios=library_metrics.example_ratios,
+                 readability_ratios=library_metrics.readability_ratios,
+                 consistency=library_metrics.consistency_ratio,
+                 navigability=library_metrics.navigability_score,
+                 session_key=request.session.session_key,
+                 familiar=familiar)
     if "store" not in request.session:
-        store = dict(library_name=library_name,
-                     language=library.language,
-                     doc_url=library.doc_url,
-                     general_rating=library_metrics.calculate_general_rating(),
-                     description=library.description,
-                     task_list=library_metrics.tasks,
-                     example_ratios=library_metrics.example_ratios,
-                     readability_ratios=library_metrics.readability_ratios,
-                     consistency=library_metrics.consistency_ratio,
-                     navigability=library_metrics.navigability_score,
-                     session_key=request.session.session_key,
-                     familiar=familiar,
-                     general_form=None,
-                     tasks_form=None,
-                     method_examples_form=None,
-                     class_examples_form=None,
-                     text_readability_form=None,
-                     code_readability_form=None,
-                     consistency_form=None,
-                     navigability_form=None,
-                     feedback_form=None)
+        store["general_form"] = None
+        store["tasks_form"] = None
+        store["method_examples_form"] = None
+        store["class_examples_form"] = None
+        store["text_readability_form"] = None
+        store["code_readability_form"] = None
+        store["consistency_form"] = None
+        store["navigability_form"] = None
+        store["feedback_form"] = None
     else:
-        store = request.session["store"]
-        store["general_rating"] = library_metrics.calculate_general_rating()
-        store["description"] = library.description
-        store["doc_url"] = library.doc_url
-        store["task_list"] = library_metrics.tasks
-        store["example_ratios"] = library_metrics.example_ratios
-        store["readability_ratios"] = library_metrics.readability_ratios
-        store["consistency"] = library_metrics.consistency_ratio
-        store["navigability"] = library_metrics.navigability_score
-        store["familiar"] = familiar
+        store["general_form"] = request.session["store"]["general_form"]
+        store["tasks_form"] = request.session["store"]["tasks_form"]
+        store["method_examples_form"] = request.session["store"]["method_examples_form"]
+        store["class_examples_form"] = request.session["store"]["class_examples_form"]
+        store["text_readability_form"] = request.session["store"]["text_readability_form"]
+        store["code_readability_form"] = request.session["store"]["code_readability_form"]
+        store["consistency_form"] = request.session["store"]["consistency_form"]
+        store["navigability_form"] = request.session["store"]["navigability_form"]
+        store["feedback_form"] = request.session["store"]["feedback_form"]
     request.session["store"] = store
     context = create_overview_context(store)
     return render(request, "overview/overview.html", context)

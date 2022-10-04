@@ -1,3 +1,5 @@
+import json
+
 from django.forms import ChoiceField
 
 from .models import Library
@@ -14,7 +16,7 @@ def get_groupings():
     libraries = Library.objects.all().values("language", "library_name")
     groupings = dict()
     for library in libraries:
-        library_language = library["language"]
+        library_language = library["language"].capitalize()
         if library_language in groupings:
             groupings[library_language].append(library["library_name"])
         else:
@@ -22,31 +24,32 @@ def get_groupings():
     return groupings
 
 
-def choice_selector(familiar):
-    if familiar:
-        choices = [(1, "Does not match"),
-                   (2, "Somewhat does not match"),
-                   (3, "Neither matches nor not matches"),
-                   (4, "Somewhat matches"),
-                   (5, "Perfectly matches")
-                   ]
-    else:
-        choices = [(1, "Not useful"),
-                   (2, "Somewhat not useful"),
-                   (3, "Neither useful nor not useful"),
-                   (4, "Somewhat useful"),
-                   (5, "Very useful")
-                   ]
-    return choices
+UNFAMILIAR_CHOICES = [(1, "Not useful"),
+                      (2, "Somewhat not useful"),
+                      (3, "Neither useful nor not useful"),
+                      (4, "Somewhat useful"),
+                      (5, "Very useful")
+                      ]
+
+FAMILIAR_CHOICES = [(1, "Does not match"),
+                    (2, "Somewhat does not match"),
+                    (3, "Neither matches nor not matches"),
+                    (4, "Somewhat matches"),
+                    (5, "Perfectly matches")
+                    ]
 
 
 def create_form(form, store):
-    form({"session_key": store["session_key"],
-          "library_name": store["library_name"]})
+    initial = {"session_key": store["session_key"], "library_name": store["library_name"]}
+    form = form(initial=initial)
     for field in form.declared_fields.keys():
         if type(form.declared_fields[field]) == ChoiceField:
-            if not form.declared_fields[field].choices:
-                form.declared_fields[field].choices = choice_selector(store["familiar"])
+            if store["familiar"]:
+                form.fields[field].choices = FAMILIAR_CHOICES
+                form.declared_fields[field].choices = FAMILIAR_CHOICES
+            else:
+                form.fields[field].choices = UNFAMILIAR_CHOICES
+                form.declared_fields[field].choices = UNFAMILIAR_CHOICES
     return form
 
 
@@ -64,14 +67,21 @@ def create_overview_context(store):
         "navigability": store["navigability"],
         "session_key": store["session_key"],
         "familiar": store["familiar"],
-        "general_form": GeneralRating(store["general_form"]) if store["general_form"] else create_form(GeneralRating, store),
+        "general_form": GeneralRating(json.loads(store["general_form"])) if store["general_form"] else create_form(GeneralRating,
+                                                                                                       store),
         "tasks_form": TaskList(store["tasks_form"]) if store["tasks_form"] else create_form(TaskList, store),
-        "method_examples_form": MethodExamples(store["method_examples_form"]) if store["method_examples_form"] else create_form(MethodExamples, store),
-        "class_examples_form": ClassExamples(store["class_examples_form"]) if store["class_examples_form"] else create_form(ClassExamples, store),
-        "text_readability_form": TextReadability(store["text_readability_form"]) if store["text_readability_form"] else create_form(TextReadability, store),
-        "code_readability_form": CodeReadability(store["code_readability_form"]) if store["code_readability_form"] else create_form(CodeReadability, store),
-        "consistency_form": Consistency(store["consistency_form"]) if store["consistency_form"] else create_form(Consistency, store),
-        "navigability_form": Navigability(store["navigability_form"]) if store["navigability_form"] else create_form(Navigability, store),
+        "method_examples_form": MethodExamples(store["method_examples_form"]) if store[
+            "method_examples_form"] else create_form(MethodExamples, store),
+        "class_examples_form": ClassExamples(store["class_examples_form"]) if store[
+            "class_examples_form"] else create_form(ClassExamples, store),
+        "text_readability_form": TextReadability(store["text_readability_form"]) if store[
+            "text_readability_form"] else create_form(TextReadability, store),
+        "code_readability_form": CodeReadability(store["code_readability_form"]) if store[
+            "code_readability_form"] else create_form(CodeReadability, store),
+        "consistency_form": Consistency(store["consistency_form"]) if store["consistency_form"] else create_form(
+            Consistency, store),
+        "navigability_form": Navigability(store["navigability_form"]) if store["navigability_form"] else create_form(
+            Navigability, store),
         "feedback_form": Feedback(store["feedback_form"]) if store["feedback_form"] else create_form(Feedback, store)
     }
     return context

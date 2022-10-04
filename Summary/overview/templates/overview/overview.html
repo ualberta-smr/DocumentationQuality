@@ -40,23 +40,23 @@
         </div>
         <br>
         <div class="row">
-            <div class="col-11"></div>
-            <div class="col-1">
+            <div class="col-10"></div>
+            <div class="col-2">
                 <span id="instructions_toggle"
                       style="display: block; text-decoration: underline; cursor: pointer;"
                       onclick="(() => {
                           let instructions = $('#instructions_box')[0];
                           if (instructions.style.display === 'block') {
                               instructions.style.display = 'none';
-                              $('#instructions_toggle')[0].textContent = 'Show';
+                              $('#instructions_toggle')[0].textContent = 'Show Instructions';
                           } else {
                               instructions.style.display = 'block';
-                              $('#instructions_toggle')[0].textContent = 'Hide';
+                              $('#instructions_toggle')[0].textContent = 'Hide Instructions';
                           }
-                      })()">Hide</span>
+                      })()">Hide Instructions</span>
             </div>
         </div>
-        <div class="row" style="margin-bottom: 10px">
+        <div class="row" style="margin-bottom: 10px; border:1px solid; padding: 10px; box-shadow: 5px 10px #888888">
             <div id="instructions_box" class="metrics-container">
                 <h5>Instructions</h5>
                 <hr>
