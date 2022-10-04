@@ -204,6 +204,7 @@ def _process(library_name, datafiles):
             for row in task_list:
                 paragraph = row[0]
                 tasks = row[1].split("\n")
+                tasks = list(filter(None, [task.strip() for task in tasks]))
                 if paragraph not in file_dict:
                     file_dict[paragraph] = {"tasks": tasks}
 
