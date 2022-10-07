@@ -35,7 +35,8 @@ class Demographics(forms.ModelForm):
     library_name = forms.CharField(widget=forms.HiddenInput())
     years_experience = forms.IntegerField(required=False,
                                           min_value=0,
-                                          widget=forms.NumberInput())
+                                          widget=forms.NumberInput(attrs={
+                                              "style": "width:100px;text-align:right;"}))
     familiar = forms.ChoiceField(
         required=False,
         choices=(
@@ -50,11 +51,13 @@ class Demographics(forms.ModelForm):
         if "years_experience" in cleaned_data:
             years_experience = cleaned_data.get("years_experience")
             if years_experience is None or int(years_experience) < 0:
-                self.add_error("years_experience", "Years of experience should be at least 0.")
+                self.add_error("years_experience",
+                               "Years of experience should be at least 0.")
         if "familiar" in cleaned_data:
             familiar = (cleaned_data.get("familiar"))
             if not familiar:
-                self.add_error("familiar", "Please state whether you are or are not familiar with the library.")
+                self.add_error("familiar",
+                               "Please state whether you are or are not familiar with the library.")
         return cleaned_data
 
     class Meta:
@@ -83,7 +86,8 @@ class GeneralRating(forms.ModelForm):
     def clean(self):
         cleaned_data = super(GeneralRating, self).clean()
         general_rating = cleaned_data.get("general_rating")
-        if not general_rating or int(general_rating) < 0 or int(general_rating) > 5:
+        if not general_rating or int(general_rating) < 0 or int(
+                general_rating) > 5:
             self.add_error("general_rating", "Please select a rating.")
         return cleaned_data
 
@@ -145,7 +149,8 @@ class MethodExamples(forms.ModelForm):
     def clean(self):
         cleaned_data = super(MethodExamples, self).clean()
         code_examples_methods = cleaned_data.get("code_examples_methods")
-        if not code_examples_methods or int(code_examples_methods) < 0 or int(code_examples_methods) > 5:
+        if not code_examples_methods or int(code_examples_methods) < 0 or int(
+                code_examples_methods) > 5:
             self.add_error("code_examples_methods", "Please select a rating.")
         return cleaned_data
 
@@ -176,7 +181,8 @@ class ClassExamples(forms.ModelForm):
     def clean(self):
         cleaned_data = super(ClassExamples, self).clean()
         code_examples_classes = cleaned_data.get("code_examples_classes")
-        if not code_examples_classes or int(code_examples_classes) < 0 or int(code_examples_classes) > 5:
+        if not code_examples_classes or int(code_examples_classes) < 0 or int(
+                code_examples_classes) > 5:
             self.add_error("code_examples_classes", "Please select a rating.")
         return cleaned_data
 
@@ -207,7 +213,8 @@ class TextReadability(forms.ModelForm):
     def clean(self):
         cleaned_data = super(TextReadability, self).clean()
         text_readability = cleaned_data.get("text_readability")
-        if not text_readability or int(text_readability) < 0 or int(text_readability) > 5:
+        if not text_readability or int(text_readability) < 0 or int(
+                text_readability) > 5:
             self.add_error("text_readability", "Please select a rating.")
         return cleaned_data
 
@@ -238,7 +245,8 @@ class CodeReadability(forms.ModelForm):
     def clean(self):
         cleaned_data = super(CodeReadability, self).clean()
         code_readability = cleaned_data.get("code_readability")
-        if not code_readability or int(code_readability) < 0 or int(code_readability) > 5:
+        if not code_readability or int(code_readability) < 0 or int(
+                code_readability) > 5:
             self.add_error("code_readability", "Please select a rating.")
         return cleaned_data
 
