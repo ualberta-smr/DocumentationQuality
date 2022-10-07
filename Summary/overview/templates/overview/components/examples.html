@@ -2,10 +2,11 @@
 {% load tooltips %}
 
 <div class="row">
-    <div class="col-md-8">
+    <div class="col">
         <span data-bs-toggle="tooltip" data-bs-placement="top"
               title="{% method_examples_tooltip %}">
-            <button type="button" class="btn btn-outline"
+            <button type="button"
+                    class="btn btn-outline btn-metric"
                     onclick="showForm('#method_examples_form')">
                 Methods with code examples
             </button>
@@ -40,10 +41,11 @@
     </div>
 </div>
 <div class="row">
-    <div class="col-md-8">
+    <div class="col">
         <span data-bs-toggle="tooltip" data-bs-placement="top"
               title="{% class_examples_tooltip %}">
-            <button type="button" class="btn btn-outline"
+            <button type="button"
+                    class="btn btn-outline btn-metric"
                     onclick="showForm('#class_examples_form')">
                 Classes with code examples
             </button>

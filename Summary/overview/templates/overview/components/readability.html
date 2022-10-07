@@ -2,11 +2,11 @@
 {% load tooltips %}
 
 <div class="row">
-    <div class="col-md-8">
+    <div class="col">
         <span data-bs-toggle="tooltip" data-bs-placement="top"
               title="{% text_readability_tooltip %}">
             <button type="button"
-                    class="btn btn-outline"
+                    class="btn btn-outline btn-metric"
                     onclick="showForm('#text_readability_form')">
                 Readability of text
             </button>
@@ -43,25 +43,24 @@
     </div>
 </div>
 <div class="row">
-    <div class="col-md-8">
+    <div class="col">
         <span data-bs-toggle="tooltip" data-bs-placement="top"
               title="{% code_readability_tooltip %}">
             <button type="button"
-                    class="btn btn-outline"
+                    class="btn btn-outline btn-metric"
                     onclick="showForm('#code_readability_form')">
                 Readability of code examples
             </button>
         </span>
     </div>
     <div class="col metrics-child">
-        <span
+        <span data-bs-toggle="tooltip"
+              data-bs-placement="top"
+              style="font-size: 0;"
+              title="{% code_readability_caveat_tooltip %}"
                 {% if language|lower != 'java' %}
                     class="strikediag"
-                {% endif %}
-                    data-bs-toggle="tooltip"
-                    data-bs-placement="top"
-        style="font-size: 0;"
-                    title="{% code_readability_caveat_tooltip %}">
+                {% endif %}>
             {% with ''|center:readability_ratios.code_readability as range %}
                 {% for _ in range %}
                     <svg xmlns="http://www.w3.org/2000/svg"

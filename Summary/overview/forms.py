@@ -51,10 +51,10 @@ class Demographics(forms.ModelForm):
             years_experience = cleaned_data.get("years_experience")
             if years_experience is None or int(years_experience) < 0:
                 self.add_error("years_experience", "Years of experience should be at least 0.")
-        # if "familiar" in cleaned_data:
-        #     familiar = (cleaned_data.get("familiar"))
-        #     if not familiar:
-        #         self.add_error("familiar", "Please state whether you are or are not familiar with the library.")
+        if "familiar" in cleaned_data:
+            familiar = (cleaned_data.get("familiar"))
+            if not familiar:
+                self.add_error("familiar", "Please state whether you are or are not familiar with the library.")
         return cleaned_data
 
     class Meta:

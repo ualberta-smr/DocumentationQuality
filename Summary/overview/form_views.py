@@ -28,7 +28,7 @@ def _get_existing_record(request):
     library_name = request.POST["library_name"] if request.POST[
         "library_name"] else request.session["store"]["library_name"]
     existing_record = Response.objects.get(session_key=session_key,
-                                              library_name=library_name)
+                                           library_name=library_name)
     return existing_record
 
 
@@ -56,7 +56,9 @@ def search(request):
                     request.session.session_key,
                     request.POST["library_select"])
                 return render(request, "overview/forms/demographics_form.html",
-                              {"demographics": Demographics()})
+                              {"library_name": request.session["store"][
+                                  "library_name"],
+                               "demographics": Demographics()})
 
     return render(request, "overview/landing.html",
                   context={"form": AnalyzeForm(),
@@ -82,7 +84,9 @@ def create(request):
                 request.session["store"] = initialize_store(
                     request.session.session_key, request.POST["library_name"])
                 return render(request, "overview/forms/demographics_form.html",
-                              {"demographics": Demographics()})
+                              {"library_name": request.session["store"][
+                                  "library_name"],
+                               "demographics": Demographics()})
             else:
                 return redirect("overview:overview",
                                 request.POST["library_name"])
@@ -111,7 +115,8 @@ def demographics_form(request):
                 return redirect("overview:overview",
                                 updated_request["library_name"])
     return render(request, "overview/forms/demographics_form.html",
-                  {"demographics": form})
+                  {"library_name": updated_request["library_name"],
+                      "demographics": form})
 
 
 def general_rating(request):

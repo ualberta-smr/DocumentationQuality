@@ -26,6 +26,11 @@
 
 .btn-outline:hover {
     background-color: darkgreen;
+    color: white;
+}
+
+.btn-metric {
+    text-align: left;
 }
 
 .row {
