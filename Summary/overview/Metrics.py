@@ -107,7 +107,8 @@ class Metrics:
         metrics = [self.example_ratios["method_ratio"],
                    self.example_ratios["class_ratio"],
                    self.readability_ratios["text_readability"],
-                   self.readability_ratios["code_readability"],
                    self.consistency_ratio,
                    self.navigability_score]
+        if self.library.language.lower() == "java":
+            metrics.append(self.readability_ratios["code_readability"])
         return round(sum(metrics) / len(metrics))

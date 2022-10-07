@@ -7,7 +7,6 @@ app_name = 'overview'
 urlpatterns = [
     path('', views.landing, name='landing'),
     path('<library_name>', views.overview, name='overview'),
-    path('demographics/<library_name>', views.demographics, name='demographics'),
     path('search/', form_views.search, name='search'),
     path('create/', form_views.create, name='create'),
     path('forms/demographics/', form_views.demographics_form, name='demographics_form'),

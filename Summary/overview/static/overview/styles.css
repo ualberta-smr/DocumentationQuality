@@ -59,7 +59,7 @@ select {
     display: inline-block;
     float: right;
     margin-top: 5px;
-    width: 100px;
+    width: 125px;
 }
 
 .select2-search__field {
@@ -79,6 +79,7 @@ select {
     float: left;
     margin-top: 5px;
     margin-bottom: 0;
+    clear: left;
 }
 
 hr {

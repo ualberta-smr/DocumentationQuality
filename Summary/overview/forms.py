@@ -33,17 +33,29 @@ class AnalyzeForm(forms.Form):
 class Demographics(forms.ModelForm):
     session_key = forms.CharField(widget=forms.HiddenInput())
     library_name = forms.CharField(widget=forms.HiddenInput())
-    years_experience = forms.IntegerField(required=True,
+    years_experience = forms.IntegerField(required=False,
                                           min_value=0,
                                           widget=forms.NumberInput())
     familiar = forms.ChoiceField(
-        required=True,
+        required=False,
         choices=(
             (None, ""),
             (False, "I am not"),
             (True, "I am")
         )
     )
+
+    def clean(self):
+        cleaned_data = super(Demographics, self).clean()
+        if "years_experience" in cleaned_data:
+            years_experience = cleaned_data.get("years_experience")
+            if years_experience is None or int(years_experience) < 0:
+                self.add_error("years_experience", "Years of experience should be at least 0.")
+        # if "familiar" in cleaned_data:
+        #     familiar = (cleaned_data.get("familiar"))
+        #     if not familiar:
+        #         self.add_error("familiar", "Please state whether you are or are not familiar with the library.")
+        return cleaned_data
 
     class Meta:
         model = Response
@@ -70,15 +82,15 @@ class GeneralRating(forms.ModelForm):
 
     def clean(self):
         cleaned_data = super(GeneralRating, self).clean()
-        general_rating = int(cleaned_data.get("general_rating"))
-        if general_rating and general_rating < 0 or general_rating > 5:
-            self.add_error("general_rating", "Rating should be between 1 and 5 (inclusive).")
+        general_rating = cleaned_data.get("general_rating")
+        if not general_rating or int(general_rating) < 0 or int(general_rating) > 5:
+            self.add_error("general_rating", "Please select a rating.")
         return cleaned_data
 
     class Meta:
         model = Response
         exclude = ("years_experience",
-                   "used_before",
+                   "familiar",
                    "task_list",
                    "code_examples_methods",
                    "code_examples_classes",
@@ -99,10 +111,17 @@ class TaskList(forms.ModelForm):
         widget=forms.RadioSelect(attrs={"class": "form-check-inline"})
     )
 
+    def clean(self):
+        cleaned_data = super(TaskList, self).clean()
+        task_list = cleaned_data.get("task_list")
+        if not task_list or int(task_list) < 0 or int(task_list) > 5:
+            self.add_error("task_list", "Please select a rating.")
+        return cleaned_data
+
     class Meta:
         model = Response
         exclude = ("years_experience",
-                   "used_before",
+                   "familiar",
                    "general_rating",
                    "code_examples_methods",
                    "code_examples_classes",
@@ -123,10 +142,17 @@ class MethodExamples(forms.ModelForm):
         widget=forms.RadioSelect(attrs={"class": "form-check-inline"})
     )
 
+    def clean(self):
+        cleaned_data = super(MethodExamples, self).clean()
+        code_examples_methods = cleaned_data.get("code_examples_methods")
+        if not code_examples_methods or int(code_examples_methods) < 0 or int(code_examples_methods) > 5:
+            self.add_error("code_examples_methods", "Please select a rating.")
+        return cleaned_data
+
     class Meta:
         model = Response
         exclude = ("years_experience",
-                   "used_before",
+                   "familiar",
                    "general_rating",
                    "task_list",
                    "code_examples_classes",
@@ -147,10 +173,17 @@ class ClassExamples(forms.ModelForm):
         widget=forms.RadioSelect(attrs={"class": "form-check-inline"})
     )
 
+    def clean(self):
+        cleaned_data = super(ClassExamples, self).clean()
+        code_examples_classes = cleaned_data.get("code_examples_classes")
+        if not code_examples_classes or int(code_examples_classes) < 0 or int(code_examples_classes) > 5:
+            self.add_error("code_examples_classes", "Please select a rating.")
+        return cleaned_data
+
     class Meta:
         model = Response
         exclude = ("years_experience",
-                   "used_before",
+                   "familiar",
                    "general_rating",
                    "task_list",
                    "code_examples_methods",
@@ -171,10 +204,17 @@ class TextReadability(forms.ModelForm):
         widget=forms.RadioSelect(attrs={"class": "form-check-inline"})
     )
 
+    def clean(self):
+        cleaned_data = super(TextReadability, self).clean()
+        text_readability = cleaned_data.get("text_readability")
+        if not text_readability or int(text_readability) < 0 or int(text_readability) > 5:
+            self.add_error("text_readability", "Please select a rating.")
+        return cleaned_data
+
     class Meta:
         model = Response
         exclude = ("years_experience",
-                   "used_before",
+                   "familiar",
                    "general_rating",
                    "task_list",
                    "code_examples_methods",
@@ -195,10 +235,17 @@ class CodeReadability(forms.ModelForm):
         widget=forms.RadioSelect(attrs={"class": "form-check-inline"})
     )
 
+    def clean(self):
+        cleaned_data = super(CodeReadability, self).clean()
+        code_readability = cleaned_data.get("code_readability")
+        if not code_readability or int(code_readability) < 0 or int(code_readability) > 5:
+            self.add_error("code_readability", "Please select a rating.")
+        return cleaned_data
+
     class Meta:
         model = Response
         exclude = ("years_experience",
-                   "used_before",
+                   "familiar",
                    "general_rating",
                    "task_list",
                    "code_examples_methods",
@@ -219,10 +266,17 @@ class Consistency(forms.ModelForm):
         widget=forms.RadioSelect(attrs={"class": "form-check-inline"})
     )
 
+    def clean(self):
+        cleaned_data = super(Consistency, self).clean()
+        consistency = cleaned_data.get("consistency")
+        if not consistency or int(consistency) < 0 or int(consistency) > 5:
+            self.add_error("consistency", "Please select a rating.")
+        return cleaned_data
+
     class Meta:
         model = Response
         exclude = ("years_experience",
-                   "used_before",
+                   "familiar",
                    "general_rating",
                    "task_list",
                    "code_examples_methods",
@@ -243,10 +297,17 @@ class Navigability(forms.ModelForm):
         widget=forms.RadioSelect(attrs={"class": "form-check-inline"})
     )
 
+    def clean(self):
+        cleaned_data = super(Navigability, self).clean()
+        navigability = cleaned_data.get("navigability")
+        if not navigability or int(navigability) < 0 or int(navigability) > 5:
+            self.add_error("navigability", "Please select a rating.")
+        return cleaned_data
+
     class Meta:
         model = Response
         exclude = ("years_experience",
-                   "used_before",
+                   "familiar",
                    "general_rating",
                    "task_list",
                    "code_examples_methods",
@@ -263,7 +324,7 @@ class Feedback(forms.ModelForm):
     session_key = forms.CharField(widget=forms.HiddenInput())
     library_name = forms.CharField(widget=forms.HiddenInput())
     usefulness = forms.ChoiceField(
-        required=True,
+        required=False,
         widget=forms.RadioSelect(attrs={"class": "form-check-inline"}),
         choices=[(1, "Not useful"),
                  (2, "Somewhat not useful"),
@@ -286,10 +347,14 @@ class Feedback(forms.ModelForm):
         widget=forms.Textarea(attrs={"cols": 40, "rows": 4})
     )
 
+    def clean(self):
+        cleaned_data = super(Feedback, self).clean()
+        return cleaned_data
+
     class Meta:
         model = Response
         exclude = ("years_experience",
-                   "used_before",
+                   "familiar",
                    "general_rating",
                    "task_list",
                    "code_examples_methods",

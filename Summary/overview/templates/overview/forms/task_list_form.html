@@ -16,10 +16,10 @@
         {{ form.session_key }}
         <div class="form-group col-md-9">
             <label class="question" for="{{ form.task_list.id_for_label }}">
-                {% if familiar == False %}
-                    {% task_list_not_familiar %}
-                {% else %}
+                {% if familiar and familiar == True %}
                     {% task_list_familiar %}
+                {% else %}
+                    {% task_list_not_familiar %}
                 {% endif %}
             </label>
             {% for choice in form.task_list %}

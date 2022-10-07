@@ -16,10 +16,10 @@
         {{ form.session_key }}
         <div class="form-group col-md-9">
             <label class="question" for="{{ form.text_readability.id_for_label }}">
-                {% if familiar == False %}
-                    {% text_readability_not_familiar %}
-                {% else %}
+                {% if familiar and familiar == True %}
                     {% text_readability_familiar %}
+                {% else %}
+                    {% text_readability_not_familiar %}
                 {% endif %}
             </label>
             {% for choice in form.text_readability %}

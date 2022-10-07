@@ -67,7 +67,7 @@
     </p>
     <hr>
     <div class="row align-items-center">
-        <div class="col text-center" id="library_selector">
+        <div class="col-md-6 text-center" id="library_selector">
             <form id="search_form" action="/overview/search/" method="post">
                 {% csrf_token %}
                 <label for="library_select">
@@ -93,8 +93,7 @@
         <div class="col" style="align-content: center">
             <button type="button" class="btn btn-primary"
                     data-bs-toggle="modal"
-                    data-bs-target="#analyze"
-                    style="margin-top: 10px">
+                    data-bs-target="#analyze">
                 Analyze a new library
             </button>
             {% include "overview/forms/analyze_form.html" %}

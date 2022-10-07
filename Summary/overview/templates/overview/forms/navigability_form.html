@@ -16,10 +16,10 @@
         {{ form.session_key }}
         <div class="form-group col-md-9">
             <label class="question" for="{{ form.navigability.id_for_label }}">
-                {% if familiar == False %}
-                    {% navigability_not_familiar %}
-                {% else %}
+                {% if familiar and familiar == False %}
                     {% navigability_familiar %}
+                {% else %}
+                    {% navigability_not_familiar %}
                 {% endif %}
             </label>
             {% for choice in form.navigability %}

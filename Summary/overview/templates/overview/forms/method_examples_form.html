@@ -16,10 +16,10 @@
         {{ form.session_key }}
         <div class="form-group col-md-9">
             <label class="question" for="{{ form.code_examples_methods.id_for_label }}">
-                {% if familiar == False %}
-                    {% method_examples_not_familiar %}
-                {% else %}
+                {% if familiar and familiar == True %}
                     {% method_examples_familiar %}
+                {% else %}
+                    {% method_examples_not_familiar %}
                 {% endif %}
             </label>
             {% for choice in form.code_examples_methods %}
