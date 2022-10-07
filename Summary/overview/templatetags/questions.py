@@ -85,7 +85,7 @@ def navigability_not_familiar():
 
 @register.simple_tag
 def general_useful():
-    return "1. How useful is having a documentation quality summary of a library's documentation?"
+    return "1. How useful is having a summary of a library's documentation quality?"
 
 
 @register.simple_tag

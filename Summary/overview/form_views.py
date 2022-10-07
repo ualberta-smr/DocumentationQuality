@@ -1,7 +1,6 @@
 import json
 
 from analyze.analyze import analyze_library, clone_library
-from django.core.exceptions import ObjectDoesNotExist
 from django.shortcuts import render, redirect
 from django.utils.datastructures import MultiValueDictKeyError
 
@@ -38,14 +37,14 @@ def search(request):
         try:
             exists = Library.objects.get(
                 library_name=request.POST["library_select"])
-        except (ObjectDoesNotExist, MultiValueDictKeyError):
+        except (Library.DoesNotExist, MultiValueDictKeyError):
             exists = False
         if exists:
             try:
                 same_user = Response.objects.get(
                     library_name=request.POST["library_select"],
                     session_key=request.session.session_key)
-            except ObjectDoesNotExist:
+            except (Response.DoesNotExist, MultiValueDictKeyError):
                 same_user = False
             if same_user:
                 return redirect("overview:overview",

@@ -1,7 +1,6 @@
-from django.core.exceptions import ObjectDoesNotExist
 from django.shortcuts import render
 from .Metrics import Metrics
-from .forms import Demographics, AnalyzeForm
+from .forms import AnalyzeForm
 from .models import Response
 from .util import get_groupings, get_library, create_overview_context, \
     initialize_store, update_store
@@ -29,7 +28,7 @@ def overview(request, library_name):
     try:
         familiar = Response.objects.get(library_name=library_name,
                                         session_key=request.session.session_key).familiar
-    except ObjectDoesNotExist:
+    except Response.DoesNotExist:
         familiar = False
     values = {
         "language": library.language,
