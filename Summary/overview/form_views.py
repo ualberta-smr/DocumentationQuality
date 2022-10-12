@@ -72,20 +72,13 @@ def create(request):
                             form.cleaned_data["library_name"],
                             form.cleaned_data["doc_url"],
                             form.cleaned_data["gh_url"],
-                            form.cleaned_data[
-                                "domain"] if "domain" in form.cleaned_data else None,
+                            form.cleaned_data["domain"] if "domain" in form.cleaned_data else None,
                             repo_path)
             if not request.session.exists(request.session.session_key):
                 request.session.create()
                 request.session["store"] = initialize_store(
                     request.session.session_key, request.POST["library_name"])
-                return render(request, "overview/forms/demographics_form.html",
-                              {"library_name": request.session["store"][
-                                  "library_name"],
-                               "demographics": Demographics()})
-            else:
-                return redirect("overview:overview",
-                                request.POST["library_name"])
+            return redirect("overview:overview", request.POST["library_name"])
     return render(request, "overview/landing.html",
                   context={"form": form, "groupings": get_groupings()})
 
