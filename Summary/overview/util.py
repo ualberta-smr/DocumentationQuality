@@ -5,7 +5,8 @@ from django.forms import ChoiceField
 from .models import Library
 
 from .forms import GeneralRating, TaskList, MethodExamples, ClassExamples, \
-    TextReadability, CodeReadability, Consistency, Navigability, Feedback
+    TextReadability, CodeReadability, Consistency, Navigability, Feedback, \
+    Demographics
 
 
 def get_library(library_name):
@@ -43,7 +44,7 @@ def create_form(form, store):
     initial = {"session_key": store["session_key"],
                "library_name": store["library_name"]}
     form = form(initial=initial)
-    if type(form) != Feedback:
+    if type(form) != Feedback and type(form) != Demographics:
         for field in form.declared_fields.keys():
             if type(form.declared_fields[field]) == ChoiceField:
                 if store["familiar"]:
@@ -68,6 +69,7 @@ def initialize_store(session_key, library_name):
                  consistency=None,
                  navigability=None,
                  familiar=None,
+                 demographics_form=None,
                  general_form=None,
                  tasks_form=None,
                  method_examples_form=None,
@@ -101,6 +103,8 @@ def create_overview_context(store):
         "consistency": store["consistency"],
         "navigability": store["navigability"],
         "familiar": store["familiar"],
+        "show_form": store["show_form"],
+        "demographics_form": Demographics(json.loads(store["demographics_form"])) if store["demographics_form"] else create_form(Demographics, store),
         "general_form": GeneralRating(json.loads(store["general_form"])) if store["general_form"] else create_form(GeneralRating, store),
         "tasks_form": TaskList(json.loads(store["tasks_form"])) if store["tasks_form"] else create_form(TaskList, store),
         "method_examples_form": MethodExamples(json.loads(store["method_examples_form"])) if store["method_examples_form"] else create_form(MethodExamples, store),

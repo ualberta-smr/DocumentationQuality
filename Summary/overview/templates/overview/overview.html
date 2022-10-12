@@ -116,7 +116,7 @@
 
     </div>
 </div>
-</div>
+{% include "overview/forms/demographics_form.html" with form=demographics_form library_name=library_name show_form=show_form%}
 <script>
     {# Needs to be placed at the end to activate all the tooltips above#}
     {# Taken from: https://getbootstrap.com/docs/5.0/components/tooltips/#examples #}

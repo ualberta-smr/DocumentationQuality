@@ -26,10 +26,14 @@ def overview(request, library_name):
     library = get_library(library_name)
     library_metrics = Metrics(library)
     try:
-        familiar = Response.objects.get(library_name=library_name,
-                                        session_key=request.session.session_key).familiar
+        response = Response.objects.get(library_name=library_name,
+                                        session_key=request.session.session_key)
+        show_form = False
+        familiar = response.familiar
     except Response.DoesNotExist:
+        show_form = True
         familiar = False
+
     values = {
         "language": library.language,
         "doc_url": library.doc_url,
@@ -41,6 +45,8 @@ def overview(request, library_name):
         "consistency": library_metrics.consistency_ratio,
         "navigability": library_metrics.navigability_score,
         "familiar": familiar,
+        "show_form": show_form,
+        "demographics_form": request.session["store"]["demographics_form"],
         "general_form": request.session["store"]["general_form"],
         "tasks_form": request.session["store"]["tasks_form"],
         "method_examples_form": request.session["store"]["method_examples_form"],
