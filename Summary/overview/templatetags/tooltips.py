@@ -10,7 +10,12 @@ def general_rating_tooltip():
 
 @register.simple_tag
 def task_list_tooltip():
-    return "This list displays the 20 most frequent tasks extracted from the documentation. A green checkmark means a code example exists in the documentation for that task, whereas a red cross means it does not. Each link goes to the section of documentation where the task is found."
+    return "This list displays the 20 most frequent tasks extracted from the documentation. A green checkmark means a code example exists in the documentation for that task, whereas a red cross means it does not."
+
+
+@register.simple_tag
+def task_list_subheading():
+    return "Each link below goes to the section of documentation where the task is found."
 
 
 @register.simple_tag

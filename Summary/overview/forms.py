@@ -71,7 +71,7 @@ class Demographics(forms.ModelForm):
                    "consistency",
                    "navigability",
                    "usefulness",
-                   "would_recommend",
+                   "where_see",
                    "general_feedback")
 
 
@@ -103,7 +103,7 @@ class GeneralRating(forms.ModelForm):
                    "consistency",
                    "navigability",
                    "usefulness",
-                   "would_recommend",
+                   "where_see",
                    "general_feedback")
 
 
@@ -134,7 +134,7 @@ class TaskList(forms.ModelForm):
                    "consistency",
                    "navigability",
                    "usefulness",
-                   "would_recommend",
+                   "where_see",
                    "general_feedback")
 
 
@@ -166,7 +166,7 @@ class MethodExamples(forms.ModelForm):
                    "consistency",
                    "navigability",
                    "usefulness",
-                   "would_recommend",
+                   "where_see",
                    "general_feedback")
 
 
@@ -198,7 +198,7 @@ class ClassExamples(forms.ModelForm):
                    "consistency",
                    "navigability",
                    "usefulness",
-                   "would_recommend",
+                   "where_see",
                    "general_feedback")
 
 
@@ -230,7 +230,7 @@ class TextReadability(forms.ModelForm):
                    "consistency",
                    "navigability",
                    "usefulness",
-                   "would_recommend",
+                   "where_see",
                    "general_feedback")
 
 
@@ -262,7 +262,7 @@ class CodeReadability(forms.ModelForm):
                    "consistency",
                    "navigability",
                    "usefulness",
-                   "would_recommend",
+                   "where_see",
                    "general_feedback")
 
 
@@ -293,7 +293,7 @@ class Consistency(forms.ModelForm):
                    "code_readability",
                    "navigability",
                    "usefulness",
-                   "would_recommend",
+                   "where_see",
                    "general_feedback")
 
 
@@ -324,7 +324,7 @@ class Navigability(forms.ModelForm):
                    "code_readability",
                    "consistency",
                    "usefulness",
-                   "would_recommend",
+                   "where_see",
                    "general_feedback")
 
 
@@ -341,12 +341,13 @@ class Feedback(forms.ModelForm):
                  (5, "Very useful")
                  ]
     )
-    would_recommend = forms.ChoiceField(
+    where_see = forms.ChoiceField(
         required=False,
         choices=(
             (None, ""),
-            (True, "I would"),
-            (False, "I would not")
+            ("readme", "README file badge"),
+            ("package_manager", "Package manager"),
+            ("other", "Other")
         ),
         widget=forms.Select(attrs={"style": "float:left"})
     )

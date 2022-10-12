@@ -55,19 +55,20 @@
         developers to quickly evaluate the documentation quality of software
         libraries they want to use. The purpose of this webservice is to provide
         a summary of different metrics regarding a library's
-        documentation quality. Your use and feedback will be used to gauge the
-        current accuracy and usefulness of this service. Please note that
-        feedback is <b> completely optional</b>, and you can
-        use this service without providing any feedback.
-        You can provide feedback by clicking on any
-        <span style="color: darkgreen">dark green highlighted objects</span>.
+        documentation quality. This summary can be integrated and used in other
+        applications, such as a package management system. Your use and feedback
+        will be used to gauge the current accuracy and usefulness of this
+        service. Please note that feedback is <b> completely optional</b>, and
+        you can use this service without providing any feedback. You can provide
+        feedback by clicking on any <span style="color: darkgreen">dark green highlighted objects</span>.
         Note that this study has received ethics clearance from
         the University of Alberta (study Pro00074107).
         See "Consent Details" link for study details of what is collected.
     </p>
     <hr>
     <div class="row align-items-center">
-        <div class="d-flex col-md-6 text-center justify-content-center" id="library_selector">
+        <div class="d-flex col-md-6 text-center justify-content-center"
+             id="library_selector">
             <form id="search_form" action="/overview/search/" method="post">
                 {% csrf_token %}
                 <label for="library_select">
@@ -90,7 +91,8 @@
         <div class="col-md-2 text-center">
             OR
         </div>
-        <div class="d-flex col justify-content-center" style="align-content: center">
+        <div class="d-flex col justify-content-center"
+             style="align-content: center">
             <button type="button" class="btn btn-primary"
                     data-bs-toggle="modal"
                     data-bs-target="#analyze">

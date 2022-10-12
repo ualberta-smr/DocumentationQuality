@@ -21,10 +21,20 @@
             {{ form.usefulness }}
         </div>
         <div class="form-group col">
-            <label class="question" for="{{ form.would_recommend.id_for_label }}">
-                {% would_recommend %}
+            <label class="question" for="{{ form.where_see.id_for_label }}">
+                {% where_see %}
             </label>
-            {{ form.would_recommend }}
+            <select id="{{ form.where_see.id_for_label }}"
+                    name="{{ form.where_see.name }}"
+                    onchange="checkOption({{ form.where_see.id_for_label }})"
+                    style="float: left">
+                {% for choice in form.where_see.field.choices %}
+                    <option value="{{ choice.0 }}">
+                        {{ choice.1 }}
+                    </option>
+                {% endfor %}
+            </select>
+            <input id="custom_where" name="{{ form.where_see.name }}" style="display: none"/>
         </div>
         <div class="form-group col">
             <label class="question" for="{{ form.general_feedback.id_for_label }}">
@@ -41,5 +51,4 @@
             </button>
         </div>
     </div>
-
 </form>

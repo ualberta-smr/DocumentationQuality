@@ -41,21 +41,21 @@ class Task(models.Model):
 
 
 class Response(models.Model):
-    session_key = models.CharField(max_length=32)
-    library_name = models.CharField(max_length=50)
+    session_key = models.CharField(max_length=64)
+    library_name = models.CharField(max_length=100)
     years_experience = models.PositiveIntegerField("Years of software development experience", blank=True, null=True)
     familiar = models.BooleanField("familiar", blank=True, null=True)
-    general_rating = models.CharField(max_length=500, blank=True, null=True)
-    task_list = models.CharField(max_length=500, blank=True, null=True)
-    code_examples_methods = models.CharField(max_length=500, blank=True, null=True)
-    code_examples_classes = models.CharField(max_length=500, blank=True, null=True)
-    text_readability = models.CharField(max_length=500, blank=True, null=True)
-    code_readability = models.CharField(max_length=500, blank=True, null=True)
-    consistency = models.CharField(max_length=500, blank=True, null=True)
-    navigability = models.CharField(max_length=500, blank=True, null=True)
+    general_rating = models.CharField(max_length=100, blank=True, null=True)
+    task_list = models.CharField(max_length=100, blank=True, null=True)
+    code_examples_methods = models.CharField(max_length=100, blank=True, null=True)
+    code_examples_classes = models.CharField(max_length=100, blank=True, null=True)
+    text_readability = models.CharField(max_length=100, blank=True, null=True)
+    code_readability = models.CharField(max_length=100, blank=True, null=True)
+    consistency = models.CharField(max_length=100, blank=True, null=True)
+    navigability = models.CharField(max_length=100, blank=True, null=True)
 
-    usefulness = models.CharField(max_length=500, blank=True, null=True)
-    would_recommend = models.BooleanField("would recommend", blank=True, null=True)
+    usefulness = models.CharField(max_length=100, blank=True, null=True)
+    where_see = models.CharField(max_length=100, blank=True, null=True)
     general_feedback = models.CharField(max_length=500, blank=True, null=True)
 
     class Meta:

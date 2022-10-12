@@ -1,17 +1,20 @@
 {% load tooltips %}
 
 <div class="metrics-container">
-    <div class="row">
+    <div class="d-flex justify-content-center">
         <span data-bs-toggle="tooltip" data-bs-placement="top"
               title="{% task_list_tooltip %}">
-            <div class="d-flex justify-content-center">
                 <button type="button" class="btn btn-outline"
                         style="font-size: 20px; border-color:transparent"
                         onclick="showForm('#task_list_form')">
-              Documented Library Tasks
-            </button>
-            </div>
+                    Documented Library Tasks
+                </button>
         </span>
+    </div>
+    <div style="text-align: center;">
+        <small style="font-size: 15px;">
+             {% task_list_subheading %}
+        </small>
     </div>
     <hr>
     <div class="d-flex justify-content-between align-items-center">

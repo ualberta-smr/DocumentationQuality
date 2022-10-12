@@ -24,3 +24,12 @@ function hideForm(form_id, is_submit) {
         summary_col.classList.add("col")
     }
 }
+
+function checkOption(select_id) {
+    let select = $(select_id)
+    if (select[0].value === "other") {
+        $("#custom_where")[0].style.display = "block";
+    } else {
+        $("#custom_where")[0].style.display = "none";
+    }
+}

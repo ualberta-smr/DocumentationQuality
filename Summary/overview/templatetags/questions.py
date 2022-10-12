@@ -94,8 +94,8 @@ def general_useful():
 
 
 @register.simple_tag
-def would_recommend():
-    return "2. Would you recommend this documentation quality summary tool to others?"
+def where_see():
+    return "2. Where would you like to see this documentation quality summary?"
 
 
 @register.simple_tag
