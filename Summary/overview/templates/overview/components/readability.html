@@ -1,15 +1,15 @@
 {% load overview_extras %}
 {% load tooltips %}
 
-<div class="row">
+<div class="row metrics-row ">
     <div class="col">
         <span data-bs-toggle="tooltip" data-bs-placement="top"
               title="{% text_readability_tooltip %}">
-            <button type="button"
-                    class="btn btn-outline btn-metric"
-                    onclick="showForm('#text_readability_form')">
+{#            <button type="button"#}
+{#                    class="btn btn-outline btn-metric"#}
+{#                    onclick="showForm('#text_readability_form')">#}
                 Readability of text
-            </button>
+{#            </button>#}
         </span>
     </div>
     <div class="col metrics-child">
@@ -42,15 +42,15 @@
         {% endwith %}
     </div>
 </div>
-<div class="row">
+<div class="row metrics-row ">
     <div class="col">
         <span data-bs-toggle="tooltip" data-bs-placement="top"
               title="{% code_readability_tooltip %}">
-            <button type="button"
-                    class="btn btn-outline btn-metric"
-                    onclick="showForm('#code_readability_form')">
+{#            <button type="button"#}
+{#                    class="btn btn-outline btn-metric"#}
+{#                    onclick="showForm('#code_readability_form')">#}
                 Readability of code examples
-            </button>
+{#            </button>#}
         </span>
     </div>
     <div class="col metrics-child">

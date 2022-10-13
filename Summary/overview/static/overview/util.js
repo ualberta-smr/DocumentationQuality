@@ -8,16 +8,16 @@ function showForm(form_id) {
     if (form_col[0].style.display === "none") {
         form_col[0].style.display = "block"
     }
-    form_col.children(".form_row").children(".form").each(function () {
-        this.style.display = "none"
-    })
-    $(form_id)[0].style.display = "block"
+    // form_col.children(".form_row").children(".form").each(function () {
+    //     this.style.display = "none"
+    // })
+    // $(form_id)[0].style.display = "block"
 }
 
 function hideForm(form_id, is_submit) {
     let form = $(form_id)
     if (!is_submit || form.valid()) {
-        form[0].style.display = "none"
+        // form[0].style.display = "none"
         $("#form_col")[0].style.display = "none"
         let summary_col = $("#summary_col")[0]
         summary_col.classList.remove("col-md-8")

@@ -29,10 +29,10 @@
     <div class="col-3" style="width: 260px">
             <span data-bs-toggle="tooltip" data-bs-placement="top"
                   title="{% general_rating_tooltip %}">
-                <button type="button"
-                        class="btn btn-outline"
-                        style="border-color: forestgreen"
-                        onclick="showForm('#general_rating_form')">
+{#                <button type="button"#}
+{#                        class="btn btn-outline"#}
+{#                        style="border-color: forestgreen"#}
+{#                        onclick="showForm('#general_rating_form')">#}
                     {% with ''|center:general_rating as range %}
                         {% for _ in range %}
                             <svg xmlns="http://www.w3.org/2000/svg" width="45"
@@ -56,7 +56,7 @@
                             </svg>
                         {% endfor %}
                     {% endwith %}
-                </button>
+{#                </button>#}
             </span>
     </div>
     <div class="d-flex col flex-row align-items-center" style="margin-top: 5px">

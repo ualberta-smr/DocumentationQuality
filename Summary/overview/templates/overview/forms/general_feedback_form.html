@@ -4,13 +4,13 @@
       method="post"
       id="general_feedback_form"
       class="form"
-      style="display: none;">
+      style="display: block;">
     {% csrf_token %}
     <div class="modal-content">
         <div class="modal-header">
             <h4 class="modal-title">General Feedback</h4>
-            <button type="button" class="btn-close"
-                    onclick="hideForm('#general_feedback_form', false)"></button>
+{#            <button type="button" class="btn-close"#}
+{#                    onclick="hideForm('#general_feedback_form', false)"></button>#}
         </div>
         {{ form.library_name }}
         {{ form.session_key }}

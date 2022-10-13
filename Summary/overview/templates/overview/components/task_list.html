@@ -2,17 +2,19 @@
 
 <div class="metrics-container">
     <div class="d-flex justify-content-center">
-        <span data-bs-toggle="tooltip" data-bs-placement="top"
-              title="{% task_list_tooltip %}">
-                <button type="button" class="btn btn-outline"
-                        style="font-size: 20px; border-color:transparent"
-                        onclick="showForm('#task_list_form')">
+        <span data-bs-toggle="tooltip"
+              data-bs-placement="top"
+              title="{% task_list_tooltip %}"
+              style="font-size: larger">
+{#                <button type="button" class="btn btn-outline"#}
+{#                        style="font-size: 20px; border-color:transparent"#}
+{#                        onclick="showForm('#task_list_form')">#}
                     Documented Library Tasks
-                </button>
+{#                </button>#}
         </span>
     </div>
     <div style="text-align: center;">
-        <small style="font-size: 15px;">
+        <small style="font-size: small;">
              {% task_list_subheading %}
         </small>
     </div>

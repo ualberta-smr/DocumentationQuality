@@ -4,13 +4,13 @@
       method="post"
       id="task_list_form"
       class="form"
-      style="display: none">
+      style="display: block">
     {% csrf_token %}
     <div class="modal-content">
         <div class="modal-header">
             <h4 class="modal-title">Documented Library Tasks</h4>
-            <button type="button" class="btn-close"
-                    onclick="hideForm('#task_list_form', false)"></button>
+{#            <button type="button" class="btn-close"#}
+{#                    onclick="hideForm('#task_list_form', false)"></button>#}
         </div>
         {{ form.library_name }}
         {{ form.session_key }}
@@ -27,14 +27,14 @@
             {% endfor %}
         </div>
 
-        <div class="col-md-9" style="text-align: right;padding: .75rem">
-            <button type="submit" form="task_list_form"
-                    value="Submit  "
-                    class="btn btn-primary is-success is-fullwidth is-medium"
-                    onclick="hideForm('#task_list_form', true)">
-                Submit
-            </button>
-        </div>
+{#        <div class="col-md-9" style="text-align: right;padding: .75rem">#}
+{#            <button type="submit" form="task_list_form"#}
+{#                    value="Submit  "#}
+{#                    class="btn btn-primary is-success is-fullwidth is-medium"#}
+{#                    onclick="hideForm('#task_list_form', true)">#}
+{#                Submit#}
+{#            </button>#}
+{#        </div>#}
     </div>
 
 </form>
