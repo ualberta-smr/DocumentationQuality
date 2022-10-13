@@ -25,17 +25,17 @@ def method_examples_tooltip():
 
 @register.simple_tag
 def class_examples_tooltip():
-    return "This metric indicates how many public API CLASSES contain a code example in the documentation."
+    return "This metric indicates how many public API CLASSES have at least one class method with a code example in the documentation."
 
 
 @register.simple_tag
 def text_readability_tooltip():
-    return "This metric indicates the readability of the text in the documentation based on the Flesch Reading Ease metric."
+    return "This metric indicates the readability of the text in the documentation based on the ratio of words to sentences and syllables to words."
 
 
 @register.simple_tag
 def code_readability_tooltip():
-    return "This metric indicates the readability of the code examples in the documentation based on Scalabrino et al. (JSEP 2018). Note: This metric currently only works for Java libraries."
+    return "This metric indicates the readability of the code examples in the documentation based on various code metrics such as the line length, number of identifiers, number of parentheses, etc. Note: This metric currently only works for Java libraries."
 
 
 @register.simple_tag
