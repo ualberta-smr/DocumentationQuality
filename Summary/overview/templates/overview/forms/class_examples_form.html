@@ -9,8 +9,8 @@
     <div class="modal-content">
         <div class="modal-header">
             <h4 class="modal-title">Classes with Code Examples</h4>
-{#            <button type="button" class="btn-close"#}
-{#                    onclick="hideForm('#class_examples_form', false)"></button>#}
+            <button type="button" class="btn-close"
+                    onclick="hideForm('#class_examples_form', false)"></button>
         </div>
         {{ form.library_name }}
         {{ form.session_key }}
@@ -26,13 +26,13 @@
                 {{ choice }}
             {% endfor %}
         </div>
-{#        <div class="col-md-9" style="text-align: right;padding: .75rem">#}
-{#            <button type="submit" form="class_examples_form"#}
-{#                    value="Submit"#}
-{#                    class="btn btn-primary is-success is-fullwidth is-medium"#}
-{#                    onclick="hideForm('#class_examples_form', true)">#}
-{#                Submit#}
-{#            </button>#}
-{#        </div>#}
+        <div class="col-md-9" style="text-align: right;padding: .75rem">
+            <button type="submit" form="class_examples_form"
+                    value="Submit"
+                    class="btn btn-primary is-success is-fullwidth is-medium"
+                    onclick="hideForm('#class_examples_form', true)">
+                Submit
+            </button>
+        </div>
     </div>
 </form>

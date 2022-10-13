@@ -252,3 +252,7 @@ def check(request, library_name):
         return HttpResponse("", status=HTTPStatus.OK)
     except Task.DoesNotExist:
         return HttpResponse("", status=HTTPStatus.NOT_FOUND)
+
+
+def survey_form():
+    return None

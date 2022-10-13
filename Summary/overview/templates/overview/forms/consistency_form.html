@@ -9,10 +9,9 @@
     <div class="modal-content">
         <div class="modal-header">
             <h4 class="modal-title">Documentation/Source code similarity</h4>
-{#            <button type="button" class="btn-close"#}
-{#                    onclick="hideForm('#consistency_form', false)"></button>#}
+            <button type="button" class="btn-close"
+                    onclick="hideForm('#consistency_form', false)"></button>
         </div>
-
         {{ form.library_name }}
         {{ form.session_key }}
         <div class="form-group col-md-9">
@@ -27,15 +26,14 @@
                 {{ choice }}
             {% endfor %}
         </div>
-
-{#        <div class="col-md-9" style="text-align: right;padding: .75rem">#}
-{#            <button type="submit" form="consistency_form"#}
-{#                    value="Submit"#}
-{#                    class="btn btn-primary is-success is-fullwidth is-medium"#}
-{#                    onclick="hideForm('#consistency_form', true)">#}
-{#                Submit#}
-{#            </button>#}
-{#        </div>#}
+        <div class="col-md-9" style="text-align: right;padding: .75rem">
+            <button type="submit" form="consistency_form"
+                    value="Submit"
+                    class="btn btn-primary is-success is-fullwidth is-medium"
+                    onclick="hideForm('#consistency_form', true)">
+                Submit
+            </button>
+        </div>
     </div>
 
 </form>

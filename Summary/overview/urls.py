@@ -10,6 +10,7 @@ urlpatterns = [
     path('check/<library_name>', form_views.check, name='check'),
     path('search/', form_views.search, name='search'),
     path('create/', form_views.create, name='create'),
+    path('forms/survey/', form_views.survey_form, name='survey_form'),
     path('forms/demographics/', form_views.demographics_form, name='demographics_form'),
     path('forms/general_rating/', form_views.general_rating, name='general_rating'),
     path('forms/task_list/', form_views.task_list, name='task_list'),

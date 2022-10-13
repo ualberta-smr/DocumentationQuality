@@ -100,15 +100,16 @@
     </div>
     <div class="col-1 " style="width: 2%"></div>
     <div id="form_col" class="col-md-4 align-self-center" style="display: none;position: absolute;">
-            {% include "overview/forms/general_rating_form.html" with form=general_form familiar=familiar %}
-            {% include "overview/forms/task_list_form.html" with form=tasks_form familiar=familiar %}
-            {% include "overview/forms/method_examples_form.html" with form=method_examples_form familiar=familiar %}
-            {% include "overview/forms/class_examples_form.html" with form=class_examples_form familiar=familiar %}
-            {% include "overview/forms/text_readability_form.html" with form=text_readability_form familiar=familiar %}
-            {% include "overview/forms/code_readability_form.html" with form=code_readability_form familiar=familiar %}
-            {% include "overview/forms/consistency_form.html" with form=consistency_form familiar=familiar %}
-            {% include "overview/forms/navigability_form.html" with form=navigability_form familiar=familiar %}
-            {% include "overview/forms/general_feedback_form.html" with form=feedback_form familiar=familiar %}
+            {% include "overview/forms/survey_form.html" with familiar=familiar general_form=general_form tasks_form=tasks_form method_examples_form=method_examples_form class_examples_form=class_examples_form text_readability_form=text_readability_form code_readability_form=code_readability_form consistency_form=consistency_form navigability_form=navigability_form feedback_form=feedback_form %}
+{#            {% include "overview/forms/general_rating_form.html" with form=general_form familiar=familiar %}#}
+{#            {% include "overview/forms/task_list_form.html" with form=tasks_form familiar=familiar %}#}
+{#            {% include "overview/forms/method_examples_form.html" with form=method_examples_form familiar=familiar %}#}
+{#            {% include "overview/forms/class_examples_form.html" with form=class_examples_form familiar=familiar %}#}
+{#            {% include "overview/forms/text_readability_form.html" with form=text_readability_form familiar=familiar %}#}
+{#            {% include "overview/forms/code_readability_form.html" with form=code_readability_form familiar=familiar %}#}
+{#            {% include "overview/forms/consistency_form.html" with form=consistency_form familiar=familiar %}#}
+{#            {% include "overview/forms/navigability_form.html" with form=navigability_form familiar=familiar %}#}
+{#            {% include "overview/forms/general_feedback_form.html" with form=feedback_form familiar=familiar %}#}
     </div>
 </div>
 {% include "overview/forms/demographics_form.html" with form=demographics_form library_name=library_name show_form=show_form%}
