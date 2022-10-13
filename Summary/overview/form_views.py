@@ -1,13 +1,15 @@
 import json
 
 from analyze.analyze import analyze_library, clone_library
+from http import HTTPStatus
+from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.utils.datastructures import MultiValueDictKeyError
 
 from .forms import Demographics, GeneralRating, TaskList, MethodExamples, \
     ClassExamples, TextReadability, \
     CodeReadability, Consistency, Navigability, Feedback, AnalyzeForm
-from .models import Library, Response
+from .models import Library, Response, Task
 from .util import get_groupings, initialize_store
 
 
@@ -242,3 +244,11 @@ def general(request):
             form.cleaned_data)
         request.session.modified = True
     return redirect("overview:overview", request.POST["library_name"])
+
+
+def check(request, library_name):
+    try:
+        Task.objects.filter(library_name=library_name)
+        return HttpResponse("", status=HTTPStatus.OK)
+    except Task.DoesNotExist:
+        return HttpResponse("", status=HTTPStatus.NOT_FOUND)

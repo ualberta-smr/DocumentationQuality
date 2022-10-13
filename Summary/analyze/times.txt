@@ -57,3 +57,47 @@ Finished calculating navigability: 0.9933309555053711
 Finished matching with Examples: 65.35546517372131
 Finished calculating readability: 65.37668538093567
 Finished extracting tasks: 448.9627351760864
+Starting analysis for orjson
+Finished retrieving description: 1.2326815128326416
+Finished calculating navigability: 3.98699688911438
+Finished matching with Signatures: 22.21228051185608
+Finished calculating readability: 22.219290256500244
+Finished matching with Examples: 22.258921146392822
+Starting analysis for orjson
+Finished retrieving description: 1.2978260517120361
+Finished calculating navigability: 2.557171106338501
+Finished calculating readability: 26.240869760513306
+Finished matching with Signatures: 26.241062879562378
+Finished matching with Examples: 26.250540256500244
+Finished extracting tasks: 291.9518392086029
+Starting analysis for JSON-java
+Finished retrieving description: 0.8503623008728027
+Finished calculating navigability: 1.854703664779663
+Finished matching with Examples: 26.724189281463623
+Finished matching with Signatures: 26.73640513420105
+Finished calculating readability: 37.84979438781738
+Starting analysis for orjson
+Finished retrieving description: 1.234527587890625
+Starting analysis for orjson
+Finished retrieving description: 1.222966194152832
+Finished calculating navigability: 5.025827407836914
+Finished calculating readability: 28.11166000366211
+Finished matching with Signatures: 28.11302137374878
+Finished matching with Examples: 28.117461442947388
+Finished extracting tasks: 283.33623719215393
+Starting analysis for orjson
+Finished retrieving description: 1.2873296737670898
+Finished calculating navigability: 3.964430809020996
+Finished matching with Signatures: 27.615579843521118
+Finished calculating readability: 27.71075749397278
+Finished matching with Examples: 27.715007305145264
+Finished extracting tasks: 284.36745715141296
+Finished extracting tasks: 0.6230642795562744
+Finished extracting tasks: 4.067139625549316
+Finished extracting tasks: 283.85225796699524
+Finished extracting tasks: 287.86182975769043
+Finished extracting tasks: 300.413437128067
+Finished extracting tasks: 299.61866569519043
+Finished extracting tasks: 310.2470223903656
+Finished extracting tasks: 298.94343733787537
+Finished extracting tasks: 298.78369426727295

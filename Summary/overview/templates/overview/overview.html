@@ -63,9 +63,8 @@
                     style="color: forestgreen"> dark green highlighted objects</span>.
                 Please note that this feedback is optional, and you are under no
                 obligation to provide any.
-                Also note that the Documented Library Tasks list may take up to
-                30 minutes to process (average time: 15 minutes) and will need a
-                page refresh.
+                Also note that the Documented Library Tasks list will take time
+                to process and a page refresh will occur.
             </div>
         </div>
         {#Start of content#}
@@ -124,6 +123,7 @@
     var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
         return new bootstrap.Tooltip(tooltipTriggerEl)
     })
+    let refreshInterval = setInterval(httpGetAsync, 300000)
 </script>
 
 </body>

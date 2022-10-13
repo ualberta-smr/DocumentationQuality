@@ -10,7 +10,6 @@ import gdown
 import nltk
 import time
 import mysql.connector
-import requests
 
 from django.apps import AppConfig
 from urllib.request import Request, urlopen
@@ -97,14 +96,6 @@ class Extract(threading.Thread):
         task_extract_and_link(self.library_name, self.doc_url, self.domain)
         remove_old_tasks(self.library_name)
         add_tasks_to_db(self.library_name)
-        # requests.post("https://smr.cs.ualberta.ca/overview/" + self.library_name)
-        url = "http://127.0.0.1:8000/overview/"
-        client = requests.session()
-        client.get(url)
-        if "csrftoken" in client.cookies:
-            csrftoken = client.cookies['csrftoken']
-            client.post(url + self.library_name, dict(csrfmiddlewaretoken=csrftoken), headers=dict(Referer=url))
-            client.get(url)
         end = time.time()
         with open("times.txt", "a") as times:
             times.write("Finished extracting tasks: ")
