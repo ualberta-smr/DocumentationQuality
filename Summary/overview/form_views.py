@@ -1,4 +1,5 @@
 import json
+from urllib.error import URLError
 
 from analyze.analyze import analyze_library, clone_library
 from http import HTTPStatus
@@ -78,17 +79,21 @@ def create(request):
         if form.is_valid():
             repo_path = clone_library(form.cleaned_data["library_name"],
                                       form.cleaned_data["gh_url"])
-            analyze_library(form.cleaned_data["language"],
-                            form.cleaned_data["library_name"],
-                            form.cleaned_data["doc_url"],
-                            form.cleaned_data["gh_url"],
-                            form.cleaned_data["domain"] if "domain" in form.cleaned_data else None,
-                            repo_path)
-            if not request.session.exists(request.session.session_key):
-                request.session.create()
-                request.session["store"] = initialize_store(
-                    request.session.session_key, request.POST["library_name"])
-            return redirect("overview:overview", request.POST["library_name"])
+            try:
+                analyze_library(form.cleaned_data["language"],
+                                form.cleaned_data["library_name"],
+                                form.cleaned_data["doc_url"],
+                                form.cleaned_data["gh_url"],
+                                form.cleaned_data["domain"] if "domain" in form.cleaned_data else None,
+                                repo_path)
+                if not request.session.exists(request.session.session_key):
+                    request.session.create()
+                    request.session["store"] = initialize_store(
+                        request.session.session_key, request.POST["library_name"])
+                return redirect("overview:overview", request.POST["library_name"])
+            # TODO: If there is a problem with the URL then let the user know
+            except URLError:
+                pass
     return render(request, "overview/landing.html",
                   context={"form": form, "groupings": get_groupings()})
 

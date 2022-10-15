@@ -235,11 +235,11 @@ def analyze_library(language, library_name, doc_url, gh_url, domain, repo_path):
     extract = Extract(library_name, doc_url, domain)
     extract.start()
 
-    # readability_jar = Path(ROOT_DIR + "/Readability/rsm.jar")
-    # if not readability_jar.exists():
-    #     gdown.download(
-    #         url="",
-    #         output=str(readability_jar), fuzzy=True)
+    readability_jar = Path(ROOT_DIR + "/Readability/rsm.jar")
+    if not readability_jar.exists():
+        gdown.download(
+            url="https://drive.google.com/file/d/1S5tl8fFoZLbln8MsP-f6-F7K-F66HPZb/view?usp=sharing",
+            output=str(readability_jar), fuzzy=True)
     readability = Readability(library_name, language, doc_url)
     readability.start()
 
