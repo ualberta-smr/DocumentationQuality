@@ -56,7 +56,7 @@ function changeWhereSee(where_see_id) {
             }
         }
     }
-    if (where_see_input.value.toLowerCase() === "none") {
+    if (in_choices) {
         where_see_input.value = "";
     }
 }
