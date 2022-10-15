@@ -1,4 +1,8 @@
+import json
+
 from django.shortcuts import render
+from django.utils.datastructures import MultiValueDictKeyError
+
 from .Metrics import Metrics
 from .forms import AnalyzeForm
 from .models import Response
@@ -30,6 +34,15 @@ def overview(request, library_name):
                                         session_key=request.session.session_key)
         show_form = False
         familiar = response.familiar
+        try:
+            if not request.session["store"]["survey_form"]:
+                form = dict()
+                for field in response._meta.get_fields():
+                    if field.name != "id":
+                        form[field.name] = getattr(response, field.name)
+                request.session["store"]["survey_form"] = json.dumps(form)
+        except MultiValueDictKeyError:
+            pass
     except Response.DoesNotExist:
         show_form = True
         familiar = False
@@ -46,16 +59,17 @@ def overview(request, library_name):
         "navigability": library_metrics.navigability_score,
         "familiar": familiar,
         "show_form": show_form,
+        "survey_form": request.session["store"]["survey_form"],
         "demographics_form": request.session["store"]["demographics_form"],
-        "general_form": request.session["store"]["general_form"],
-        "tasks_form": request.session["store"]["tasks_form"],
-        "method_examples_form": request.session["store"]["method_examples_form"],
-        "class_examples_form": request.session["store"]["class_examples_form"],
-        "text_readability_form": request.session["store"]["text_readability_form"],
-        "code_readability_form": request.session["store"]["code_readability_form"],
-        "consistency_form": request.session["store"]["consistency_form"],
-        "navigability_form": request.session["store"]["navigability_form"],
-        "feedback_form": request.session["store"]["feedback_form"]
+        # "general_form": request.session["store"]["general_form"],
+        # "tasks_form": request.session["store"]["tasks_form"],
+        # "method_examples_form": request.session["store"]["method_examples_form"],
+        # "class_examples_form": request.session["store"]["class_examples_form"],
+        # "text_readability_form": request.session["store"]["text_readability_form"],
+        # "code_readability_form": request.session["store"]["code_readability_form"],
+        # "consistency_form": request.session["store"]["consistency_form"],
+        # "navigability_form": request.session["store"]["navigability_form"],
+        # "feedback_form": request.session["store"]["feedback_form"]
     }
     request.session["store"] = update_store(request.session["store"], values)
     context = create_overview_context(request.session["store"])

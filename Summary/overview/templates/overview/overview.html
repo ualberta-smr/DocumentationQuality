@@ -100,7 +100,7 @@
     </div>
     <div class="col-1 " style="width: 2%"></div>
     <div id="form_col" class="col-md-4 align-self-center" style="display: none;position: absolute;">
-            {% include "overview/forms/survey_form.html" with familiar=familiar general_form=general_form tasks_form=tasks_form method_examples_form=method_examples_form class_examples_form=class_examples_form text_readability_form=text_readability_form code_readability_form=code_readability_form consistency_form=consistency_form navigability_form=navigability_form feedback_form=feedback_form %}
+            {% include "overview/forms/survey_form.html" with familiar=familiar form=survey_form %}
 {#            {% include "overview/forms/general_rating_form.html" with form=general_form familiar=familiar %}#}
 {#            {% include "overview/forms/task_list_form.html" with form=tasks_form familiar=familiar %}#}
 {#            {% include "overview/forms/method_examples_form.html" with form=method_examples_form familiar=familiar %}#}

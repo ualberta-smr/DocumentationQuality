@@ -27,10 +27,37 @@ function hideForm(form_id, is_submit) {
 
 function checkOption(select_id) {
     let select = $(select_id)
+    let custom_where = $(".custom_where")[0]
     if (select[0].value === "other") {
-        $("#custom_where")[0].style.display = "block";
+        custom_where.disabled = false;
+        custom_where.style.display = "block";
     } else {
-        $("#custom_where")[0].style.display = "none";
+        custom_where.disabled = true;
+        custom_where.style.display = "none";
+    }
+}
+
+function changeWhereSee(where_see_id) {
+    let where_see_select = $(where_see_id)[0]
+    let where_see_input = $(".custom_where")[0]
+    let in_choices = 0;
+    for (let i = 0; i < where_see_select.length; i++) {
+        if (where_see_input.value === where_see_select[i].value) {
+            where_see_select[i].selected = "selected"
+            in_choices = 1
+        }
+    }
+    if (!in_choices) {
+        where_see_input.disabled = false;
+        where_see_input.style.display = "block";
+        for (let i = 0; i < where_see_select.length; i++) {
+            if (where_see_select[i].value === "other") {
+                where_see_select[i].selected = "selected"
+            }
+        }
+    }
+    if (where_see_input.value.toLowerCase() === "none") {
+        where_see_input.value = "";
     }
 }
 

@@ -8,7 +8,7 @@ from django.utils.datastructures import MultiValueDictKeyError
 
 from .forms import Demographics, GeneralRating, TaskList, MethodExamples, \
     ClassExamples, TextReadability, \
-    CodeReadability, Consistency, Navigability, Feedback, AnalyzeForm
+    CodeReadability, Consistency, Navigability, Feedback, AnalyzeForm, Survey
 from .models import Library, Response, Task
 from .util import get_groupings, initialize_store
 
@@ -32,6 +32,14 @@ def _get_existing_response(request):
     existing_record = Response.objects.get(session_key=session_key,
                                            library_name=library_name)
     return existing_record
+
+
+def check(request, library_name):
+    try:
+        Task.objects.filter(library_name=library_name)
+        return HttpResponse("", status=HTTPStatus.OK)
+    except Task.DoesNotExist:
+        return HttpResponse("", status=HTTPStatus.NOT_FOUND)
 
 
 def search(request):
@@ -91,6 +99,32 @@ def demographics_form(request):
         if form.is_valid():
             form.save()
         request.session["store"]["demographics_form"] = json.dumps(form.cleaned_data)
+        request.session.modified = True
+    return redirect("overview:overview", request.POST["library_name"])
+
+
+def survey_form(request):
+    if request.method == "POST":
+        form = Survey(request.POST)
+        data = dict()
+        if form.is_valid():
+            form.save()
+        else:
+            existing_record = _get_or_create_existing_response(request)
+            if existing_record:
+                data["session_key"] = form.cleaned_data["session_key"]
+                data["library_name"] = form.cleaned_data["library_name"]
+                for key in form.declared_fields.keys():
+                    if key != "session_key" and key != "library_name":
+                        if key in form.cleaned_data and form.cleaned_data[key]:
+                            data[key] = form.cleaned_data[key]
+                            setattr(existing_record, key, form.cleaned_data[key])
+                        elif key in form.data and form.data[key]:
+                            if key == "where_see":
+                                data[key] = form.data[key]
+                                setattr(existing_record, key, str(form.data[key]))
+                existing_record.save()
+        request.session["store"]["survey_form"] = json.dumps(data) if data else json.dumps(form.cleaned_data)
         request.session.modified = True
     return redirect("overview:overview", request.POST["library_name"])
 
@@ -244,15 +278,3 @@ def general(request):
             form.cleaned_data)
         request.session.modified = True
     return redirect("overview:overview", request.POST["library_name"])
-
-
-def check(request, library_name):
-    try:
-        Task.objects.filter(library_name=library_name)
-        return HttpResponse("", status=HTTPStatus.OK)
-    except Task.DoesNotExist:
-        return HttpResponse("", status=HTTPStatus.NOT_FOUND)
-
-
-def survey_form():
-    return None

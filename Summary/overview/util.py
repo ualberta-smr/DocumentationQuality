@@ -6,7 +6,7 @@ from .models import Library
 
 from .forms import GeneralRating, TaskList, MethodExamples, ClassExamples, \
     TextReadability, CodeReadability, Consistency, Navigability, Feedback, \
-    Demographics
+    Demographics, Survey
 
 
 def get_library(library_name):
@@ -70,6 +70,7 @@ def initialize_store(session_key, library_name):
                  navigability=None,
                  familiar=None,
                  demographics_form=None,
+                 survey_form=None,
                  general_form=None,
                  tasks_form=None,
                  method_examples_form=None,
@@ -89,6 +90,25 @@ def update_store(store, values):
     return store
 
 
+def create_survey_form(store):
+    if store["survey_form"]:
+        data = json.loads(store["survey_form"])
+    else:
+        data = dict(session_key=store["session_key"],
+                    library_name=store["library_name"])
+    form = Survey(initial=data)
+    for field in form.declared_fields.keys():
+        if field != "usefulness" and field != "where_see":
+            if type(form.declared_fields[field]) == ChoiceField:
+                if store["familiar"]:
+                    form.fields[field].choices = FAMILIAR_CHOICES
+                    form.declared_fields[field].choices = FAMILIAR_CHOICES
+                else:
+                    form.fields[field].choices = UNFAMILIAR_CHOICES
+                    form.declared_fields[field].choices = UNFAMILIAR_CHOICES
+    return form
+
+
 def create_overview_context(store):
     context = {
         "library_name": store["library_name"],
@@ -104,15 +124,16 @@ def create_overview_context(store):
         "navigability": store["navigability"],
         "familiar": store["familiar"],
         "show_form": store["show_form"],
+        "survey_form": create_survey_form(store),
         "demographics_form": Demographics(json.loads(store["demographics_form"])) if store["demographics_form"] else create_form(Demographics, store),
-        "general_form": GeneralRating(json.loads(store["general_form"])) if store["general_form"] else create_form(GeneralRating, store),
-        "tasks_form": TaskList(json.loads(store["tasks_form"])) if store["tasks_form"] else create_form(TaskList, store),
-        "method_examples_form": MethodExamples(json.loads(store["method_examples_form"])) if store["method_examples_form"] else create_form(MethodExamples, store),
-        "class_examples_form": ClassExamples(json.loads(store["class_examples_form"])) if store["class_examples_form"] else create_form(ClassExamples, store),
-        "text_readability_form": TextReadability(json.loads(store["text_readability_form"])) if store["text_readability_form"] else create_form(TextReadability, store),
-        "code_readability_form": CodeReadability(json.loads(store["code_readability_form"])) if store["code_readability_form"] else create_form(CodeReadability, store),
-        "consistency_form": Consistency(json.loads(store["consistency_form"])) if store["consistency_form"] else create_form(Consistency, store),
-        "navigability_form": Navigability(json.loads(store["navigability_form"])) if store["navigability_form"] else create_form(Navigability, store),
-        "feedback_form": Feedback(json.loads(store["feedback_form"])) if store["feedback_form"] else create_form(Feedback, store)
+        # "general_form": GeneralRating(json.loads(store["general_form"])) if store["general_form"] else create_form(GeneralRating, store),
+        # "tasks_form": TaskList(json.loads(store["tasks_form"])) if store["tasks_form"] else create_form(TaskList, store),
+        # "method_examples_form": MethodExamples(json.loads(store["method_examples_form"])) if store["method_examples_form"] else create_form(MethodExamples, store),
+        # "class_examples_form": ClassExamples(json.loads(store["class_examples_form"])) if store["class_examples_form"] else create_form(ClassExamples, store),
+        # "text_readability_form": TextReadability(json.loads(store["text_readability_form"])) if store["text_readability_form"] else create_form(TextReadability, store),
+        # "code_readability_form": CodeReadability(json.loads(store["code_readability_form"])) if store["code_readability_form"] else create_form(CodeReadability, store),
+        # "consistency_form": Consistency(json.loads(store["consistency_form"])) if store["consistency_form"] else create_form(Consistency, store),
+        # "navigability_form": Navigability(json.loads(store["navigability_form"])) if store["navigability_form"] else create_form(Navigability, store),
+        # "feedback_form": Feedback(json.loads(store["feedback_form"])) if store["feedback_form"] else create_form(Feedback, store)
     }
     return context

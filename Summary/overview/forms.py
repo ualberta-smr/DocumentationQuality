@@ -75,6 +75,76 @@ class Demographics(forms.ModelForm):
                    "general_feedback")
 
 
+class Survey(forms.ModelForm):
+    session_key = forms.CharField(widget=forms.HiddenInput())
+    library_name = forms.CharField(widget=forms.HiddenInput())
+    general_rating = forms.ChoiceField(
+        required=False,
+        widget=forms.RadioSelect(attrs={"class": "form-check-inline"})
+    )
+    task_list = forms.ChoiceField(
+        required=False,
+        widget=forms.RadioSelect(attrs={"class": "form-check-inline"})
+    )
+    code_examples_methods = forms.ChoiceField(
+        required=False,
+        widget=forms.RadioSelect(attrs={"class": "form-check-inline"})
+    )
+    code_examples_classes = forms.ChoiceField(
+        required=False,
+        widget=forms.RadioSelect(attrs={"class": "form-check-inline"})
+    )
+    text_readability = forms.ChoiceField(
+        required=False,
+        widget=forms.RadioSelect(attrs={"class": "form-check-inline"})
+    )
+    code_readability = forms.ChoiceField(
+        required=False,
+        widget=forms.RadioSelect(attrs={"class": "form-check-inline"})
+    )
+    consistency = forms.ChoiceField(
+        required=False,
+        widget=forms.RadioSelect(attrs={"class": "form-check-inline"})
+    )
+    navigability = forms.ChoiceField(
+        required=False,
+        widget=forms.RadioSelect(attrs={"class": "form-check-inline"})
+    )
+    usefulness = forms.ChoiceField(
+        required=False,
+        widget=forms.RadioSelect(attrs={"class": "form-check-inline"}),
+        choices=[(1, "Not useful"),
+                 (2, "Somewhat not useful"),
+                 (3, "Neither useful nor not useful"),
+                 (4, "Somewhat useful"),
+                 (5, "Very useful")
+                 ]
+    )
+    where_see = forms.ChoiceField(
+        required=False,
+        choices=(
+            (None, ""),
+            ("readme", "README file badge"),
+            ("package_manager", "Package manager"),
+            ("other", "Other")
+        ),
+        widget=forms.Select(attrs={"style": "float:left"})
+    )
+    general_feedback = forms.CharField(
+        required=False,
+        widget=forms.Textarea(attrs={"cols": 40, "rows": 4})
+    )
+
+    def clean(self):
+        cleaned_data = super(Survey, self).clean()
+        return cleaned_data
+
+    class Meta:
+        model = Response
+        exclude = ("years_experience",
+                   "familiar")
+
+
 class GeneralRating(forms.ModelForm):
     session_key = forms.CharField(widget=forms.HiddenInput())
     library_name = forms.CharField(widget=forms.HiddenInput())
