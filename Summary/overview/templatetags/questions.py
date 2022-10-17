@@ -5,7 +5,7 @@ register = template.Library()
 
 @register.simple_tag
 def demographics_years_experience():
-    return "2. How many years of development experience do you have?\n(Not just with this library)"
+    return "2. How many years of software development experience do you have?\n(Not just with this library)"
 
 
 @register.simple_tag

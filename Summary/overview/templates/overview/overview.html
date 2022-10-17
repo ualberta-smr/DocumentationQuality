@@ -58,11 +58,15 @@
                  style="box-shadow: 5px 10px 5px #888888">
                 <h5>Instructions</h5>
                 <hr>
-                You can provide feedback by clicking on the bottom "Provide Feedback" button.
+                Hovering over any of the presented metrics/information provides
+                details on what it represents.
+                You can provide feedback by clicking on the bottom "Provide
+                Feedback" button.
                 Please note that this feedback is optional, and you are under no
                 obligation to provide any.
-                Also note that the Documented Library Tasks list will take time
-                to process and a page refresh will occur.
+                Also note that when processing a new library, populating the
+                Documented Library Tasks list will take time; a page refresh
+                will automatically occur when processing is done.
             </div>
         </div>
         {#Start of content#}
@@ -79,7 +83,7 @@
                 </div>
                 <br>
                 <div class="metrics-container">
-                    <h5>Metric Evaluation of Documentation Quality</h5>
+                    <h5>Documentation Quality Metrics</h5>
                     <hr>
                     {% include "overview/components/examples.html" with example_ratios=example_ratios %}
                     {% include "overview/components/readability.html" with readability_ratios=readability_ratios language=language %}
@@ -92,7 +96,12 @@
             <button type="button"
                     class="btn btn-primary"
                     style="margin: 20px"
-                    onclick="showForm('#general_feedback_form')">
+                    onclick="(() => {
+                        showForm('#general_feedback_form')
+                        $('#survey_inputs')[0].style.display = 'flex';
+                        $('#survey_submit')[0].style.visibility = 'visible';
+                        $('#submit_message')[0].style.display = 'none';
+                    })()">
                 Provide Feedback
             </button>
         </div>
@@ -111,7 +120,7 @@
 {#            {% include "overview/forms/general_feedback_form.html" with form=feedback_form familiar=familiar %}#}
     </div>
 </div>
-{% include "overview/forms/demographics_form.html" with form=demographics_form library_name=library_name show_form=show_form%}
+{% include "overview/forms/demographics_form.html" with form=demographics_form library_name=library_name show_form=show_form %}
 <script>
     {# Needs to be placed at the end to activate all the tooltips above#}
     {# Taken from: https://getbootstrap.com/docs/5.0/components/tooltips/#examples #}
@@ -119,8 +128,15 @@
     var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
         return new bootstrap.Tooltip(tooltipTriggerEl)
     })
-    let refreshInterval = setInterval(httpGetAsync, 300000)
-    $(function() {
+    let refreshInterval = setInterval(httpGetAsync, 300000);
+
+    (function () {
+        {% if task_list %}
+            clearInterval(refreshInterval)
+        {% endif %}
+    })();
+
+    $(function () {
         let isMobile = window.matchMedia("only screen and (max-width: 760px)").matches;
 
         if (isMobile) {
@@ -130,6 +146,5 @@
         }
     });
 </script>
-
 </body>
 </html>

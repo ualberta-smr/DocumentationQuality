@@ -5,7 +5,7 @@
       id="survey_form"
       class="form">
     {% csrf_token %}
-    <div class="modal-content">
+    <div id="survey_inputs" class="modal-content">
         <div class="modal-header">
             <h4 class="modal-title">Star rating at top</h4>
             <button type="button" class="btn-close"
@@ -180,16 +180,34 @@
             </label>
             {{ form.general_feedback }}
         </div>
-        <div class="col" style="text-align: right;padding: .75rem">
-            <button type="submit" form="survey_form"
-                    value="Submit"
-                    class="btn btn-primary is-success is-fullwidth is-medium"
-                    onclick="hideForm('#survey_form', true)">
-                Submit
-            </button>
-        </div>
+    </div>
+    <div id="submit_message"
+         style="display: none; color: forestgreen; font-size: 1.5rem;">
+        Form submitted!
+    </div>
+    <div class="col" style="text-align: right;padding: .75rem">
+        <button type="button"
+                class="btn btn-secondary is-fullwidth is-medium"
+                onclick="hideForm('#survey_form', true)">
+            Close
+        </button>
+        <button id="survey_submit"
+                type="submit"
+                form="survey_form"
+                value="Submit"
+                class="btn btn-primary is-success is-fullwidth is-medium"
+                onclick="(() => {
+                                $('#survey_inputs')[0].style.display = 'none';
+                                $('#survey_submit')[0].style.visibility = 'hidden';
+                                $('#submit_message')[0].style.display = 'block';
+                             })()">
+            Submit
+        </button>
     </div>
 </form>
 <script>
     changeWhereSee("#{{ form.where_see.id_for_label }}")
+    $("survey_form").submit(function (event) {
+        event.preventDefault();
+    });
 </script>

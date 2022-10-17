@@ -14,6 +14,21 @@ class Metrics:
         self.consistency_ratio = self._get_consistency_ratio()
         self.navigability_score = self._get_navigability_score()
 
+    def _create_url(self, task):
+        url = []
+        if task["example_page"]:
+            url.append(task["example_page"])
+            url.append("#")
+            if task["html_id"]:
+                url.append(task["html_id"])
+            else:
+                url.append(":~:text=")
+                url.append(" ".join(task["paragraph"].split()[:5]))
+        else:
+            url.append(self.library.doc_url)
+
+        return ''.join(url)
+
     def _get_task_list(self):
         '''
         We do not use HAVING has_example = 1 (.filter(has_example=1)) because that would remove all tasks without an example
@@ -27,15 +42,11 @@ class Metrics:
 
         tasks = []
         for task in task_list:
-            paragraph_split = task["paragraph"].split()
-            identifier = " ".join(paragraph_split[:5])
             tasks.append(
                 {
                     "task": task["task"],
                     "has_example": task["has_example"],
-                    "url": task["example_page"] + (
-                        "#" + task["html_id"] if task[
-                            "html_id"] else "#:~:text=" + identifier)
+                    "url": self._create_url(task)
                 })
 
         return tasks

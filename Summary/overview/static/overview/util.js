@@ -63,7 +63,7 @@ function changeWhereSee(where_see_id) {
 
 function refreshPage() {
     location.reload()
-    clearTimeout(refreshInterval)
+    clearInterval(refreshInterval)
 }
 
 function httpGetAsync() {
