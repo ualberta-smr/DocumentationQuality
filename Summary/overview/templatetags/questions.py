@@ -49,48 +49,48 @@ def navigability_familiar():
 
 
 @register.simple_tag
-def general_rating_not_familiar():
-    return "1. How useful is having a general rating of the library documentation's quality?"
+def general_rating_not_familiar(library_name):
+    return "1. How useful is having a general rating of " + str(library_name) + " documentation's quality?"
 
 
 @register.simple_tag
-def task_list_not_familiar():
-    return "1. How useful is having a list of documented library tasks found in the documentation?"
+def task_list_not_familiar(library_name):
+    return "1. How useful is having a list of documented library tasks found in " + str(library_name) + "'s documentation?"
 
 
 @register.simple_tag
-def method_examples_not_familiar():
-    return "1. How useful is having a rating of methods with a code example in the documentation?"
+def method_examples_not_familiar(library_name):
+    return "1. How useful is having a rating of methods with a code example in " + str(library_name) + "'s documentation?"
 
 
 @register.simple_tag
-def class_examples_not_familiar():
-    return "1. How useful is having a rating of classes with a code example in the documentation?"
+def class_examples_not_familiar(library_name):
+    return "1. How useful is having a rating of classes with a code example in " + str(library_name) + "'s documentation?"
 
 
 @register.simple_tag
-def text_readability_not_familiar():
-    return "1. How useful is having a rating of readability of text in the documentation?"
+def text_readability_not_familiar(library_name):
+    return "1. How useful is having a rating of readability of text in " + str(library_name) + "'s documentation?"
 
 
 @register.simple_tag
-def code_readability_not_familiar():
-    return "1. How useful is having a rating of readability of code examples in the documentation?"
+def code_readability_not_familiar(library_name):
+    return "1. How useful is having a rating of readability of code examples in " + str(library_name) + "'s documentation?"
 
 
 @register.simple_tag
-def consistency_not_familiar():
-    return "1. How useful is having a rating of similarity between the source code and documentation?"
+def consistency_not_familiar(library_name):
+    return "1. How useful is having a rating of similarity between " + str(library_name) + "'s source code and documentation?"
 
 
 @register.simple_tag
-def navigability_not_familiar():
-    return "1. How useful is having a rating of navigability of the documentation?"
+def navigability_not_familiar(library_name):
+    return "1. How useful is having a rating of navigability of " + str(library_name) + "'s documentation?"
 
 
 @register.simple_tag
-def general_useful():
-    return "1. How useful is having a summary of a library's documentation quality?"
+def general_useful(library_name):
+    return "1. How useful is having a summary of " + str(library_name) + "'s documentation quality?"
 
 
 @register.simple_tag
@@ -99,5 +99,10 @@ def where_see():
 
 
 @register.simple_tag
-def additional_feedback():
-    return "3. Please provide any additional feedback you have about this documentation quality summary."
+def matching(library_name):
+    return "3. To what extent do you agree or disagree with this statement: The documentation quality metrics represented in this summary are consistent with my experience working with " + str(library_name) + " (e.g., the metrics indicate low documentation quality and your experience is that this library is poorly documented, or vice versa)."
+
+
+@register.simple_tag
+def additional_feedback(library_name):
+    return "4. Please provide any additional feedback you have about " + str(library_name) + "'s documentation quality summary."

@@ -58,17 +58,26 @@ def get_description(library_name, doc_url):
 
 
 class Create:
-    def __init__(self, library_name, language, domain, doc_url):
+    def __init__(self, library_name, language, domain, doc_url, gh_url):
         self.library_name = library_name
         self.language = language
         self.domain = domain
         self.doc_url = doc_url
+        self.gh_url = gh_url
 
     def run(self):
         start = time.time()
         description = get_description(self.library_name, self.doc_url)
         if not description:
-            description = "Could not find description"
+            try:
+                req = Request(url=self.gh_url, headers=HEADERS)
+                content = html.unescape(urlopen(req).read().decode("utf-8"))
+                soup = BeautifulSoup(content, "html.parser")
+                for h2 in soup.find_all("h2"):
+                    if h2.string == 'About':
+                        description = h2.fetchNextSiblings()[0].get_text().strip()
+            except Exception as e:
+                description = "Could not find description"
         add_or_update_library_record(
             {"library_name": self.library_name,
              "language": self.language,
@@ -185,7 +194,8 @@ class Navigability(threading.Thread):
 
     def run(self):
         start = time.time()
-        has_search, has_toc, links_correct = run_checklist(self.library_name, self.doc_url)
+        has_search, has_toc, links_correct = run_checklist(self.library_name,
+                                                           self.doc_url)
         navigation_dict = {
             "has_search": has_search,
             "has_toc": has_toc,
@@ -224,7 +234,7 @@ def analyze_library(language, library_name, doc_url, gh_url, domain, repo_path):
     with open("times.txt", "a") as times:
         times.write("Starting analysis for " + library_name)
         times.write("\n")
-    create = Create(library_name, language, domain, doc_url)
+    create = Create(library_name, language, domain, doc_url, gh_url)
     create.run()
 
     extraction_jar = Path(ROOT_DIR + "/TaskExtractor/StringToTasks.jar")

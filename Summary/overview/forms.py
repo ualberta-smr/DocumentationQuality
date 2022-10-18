@@ -130,6 +130,16 @@ class Survey(forms.ModelForm):
         ),
         widget=forms.Select(attrs={"style": "float:left"})
     )
+    matching = forms.ChoiceField(
+        required=False,
+        widget=forms.RadioSelect(attrs={"class": "form-check-inline"}),
+        choices=[(1, "Strongly disagree"),
+                 (2, "Disagree"),
+                 (3, "Neither agree nor disagree"),
+                 (4, "Somewhat agree"),
+                 (5, "Strongly agree")
+                 ]
+    )
     general_feedback = forms.CharField(
         required=False,
         widget=forms.Textarea(attrs={"cols": 40, "rows": 4})

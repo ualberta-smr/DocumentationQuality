@@ -67,8 +67,7 @@ def get_webpages(doc_home, repo_name):
                 url = re.match(re.compile(".+"), doc_home)[0] + parse.path
                 if repo_name.strip().lower() in url.strip().lower():
                     pages.append(url)
-        # parse.hostname == domain and
-        elif "#" not in href and repo_name.strip().lower() in href.strip().lower():
+        elif parse.hostname == domain and "#" not in href and repo_name.strip().lower() in href.strip().lower():
             pages.append(href)
     pages = list(dict.fromkeys(pages))
     return pages

@@ -97,8 +97,9 @@ def create_survey_form(store):
         data = dict(session_key=store["session_key"],
                     library_name=store["library_name"])
     form = Survey(initial=data)
+    excluded = ["usefulness", "where_see", "matching"]
     for field in form.declared_fields.keys():
-        if field != "usefulness" and field != "where_see":
+        if field not in excluded:
             if type(form.declared_fields[field]) == ChoiceField:
                 if store["familiar"]:
                     form.fields[field].choices = FAMILIAR_CHOICES

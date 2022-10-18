@@ -37,37 +37,40 @@ def preprocess(source_file):
 def find_javascript_arguments(source_file):
     functions = []
     preprocessed_filename = preprocess(source_file)
-    with open(preprocessed_filename, "r", encoding="utf-8") as f:
-        try:
-            tree = esprima.parse(f.read())
-            private_function = re.compile("^_(?!_)")
-            for item in tree.body:
-                if type(item) is esprima.nodes.ExpressionStatement or \
-                        type(item) is esprima.nodes.AsyncFunctionExpression:
-                    left = item.expression.left
-                    right = item.expression.right
-                    if type(right) is esprima.nodes.FunctionExpression:
-                        if left.property.name != "exports" and \
-                                not re.match(private_function, left.property.name):
-                            if type(left.object) is esprima.nodes.Identifier:
-                                functions.append((
-                                                 left.object.name + "." + left.property.name,
-                                                 [param.name for param in right.params]))
-                            else:
-                                functions.append((
-                                                 left.object.object.name + left.object.property.name,
-                                                 [param.name for param in right.params]))
-                elif type(item) is esprima.nodes.FunctionDeclaration or \
-                        type(item) is esprima.nodes.AsyncFunctionDeclaration:
-                    if not re.match(private_function, item.id.name):
-                        functions.append((item.id.name, [param.name for param in item.params]))
-                elif type(item) is esprima.nodes.ArrowFunctionExpression or \
-                        type(item) is esprima.nodes.AsyncArrowFunctionExpression:
-                    print(preprocessed_filename)
-                    print("New function type")
-        except:
-            print(preprocessed_filename)
-            print(traceback.format_exc())
+    try:
+        with open(preprocessed_filename, "r", encoding="utf-8") as f:
+            try:
+                tree = esprima.parse(f.read())
+                private_function = re.compile("^_(?!_)")
+                for item in tree.body:
+                    if type(item) is esprima.nodes.ExpressionStatement or \
+                            type(item) is esprima.nodes.AsyncFunctionExpression:
+                        left = item.expression.left
+                        right = item.expression.right
+                        if type(right) is esprima.nodes.FunctionExpression:
+                            if left.property.name != "exports" and \
+                                    not re.match(private_function, left.property.name):
+                                if type(left.object) is esprima.nodes.Identifier:
+                                    functions.append((
+                                                     left.object.name + "." + left.property.name,
+                                                     [param.name for param in right.params]))
+                                else:
+                                    functions.append((
+                                                     left.object.object.name + left.object.property.name,
+                                                     [param.name for param in right.params]))
+                    elif type(item) is esprima.nodes.FunctionDeclaration or \
+                            type(item) is esprima.nodes.AsyncFunctionDeclaration:
+                        if not re.match(private_function, item.id.name):
+                            functions.append((item.id.name, [param.name for param in item.params]))
+                    elif type(item) is esprima.nodes.ArrowFunctionExpression or \
+                            type(item) is esprima.nodes.AsyncArrowFunctionExpression:
+                        print(preprocessed_filename)
+                        print("New function type")
+            except:
+                print(preprocessed_filename)
+                print(traceback.format_exc())
+    except:
+        pass
     try:
         os.remove(preprocessed_filename)
     except:

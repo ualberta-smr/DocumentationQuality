@@ -88,9 +88,8 @@ def create(request):
                                 repo_path)
                 if not request.session.exists(request.session.session_key):
                     request.session.create()
-                    request.session["store"] = initialize_store(
-                        request.session.session_key, request.POST["library_name"])
-                return redirect("overview:overview", request.POST["library_name"])
+                    request.session["store"] = initialize_store(request.session.session_key, form.cleaned_data["library_name"])
+                return redirect("overview:overview", form.cleaned_data["library_name"])
             # TODO: If there is a problem with the URL then let the user know
             except URLError:
                 pass

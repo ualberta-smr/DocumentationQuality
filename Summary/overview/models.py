@@ -56,6 +56,7 @@ class Response(models.Model):
 
     usefulness = models.CharField(max_length=100, blank=True, null=True)
     where_see = models.CharField(max_length=100, blank=True, null=True)
+    matching = models.CharField(max_length=100, blank=True, null=True)
     general_feedback = models.CharField(max_length=500, blank=True, null=True)
 
     class Meta:
