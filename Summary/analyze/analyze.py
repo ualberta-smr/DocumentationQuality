@@ -84,6 +84,7 @@ class Create:
              "domain": self.domain,
              "description": description,
              "doc_url": self.doc_url,
+             "task_list_done": False,
              "last_updated": datetime.datetime.utcnow()
              })
         end = time.time()
@@ -105,6 +106,11 @@ class Extract(threading.Thread):
         task_extract_and_link(self.library_name, self.doc_url, self.domain)
         remove_old_tasks(self.library_name)
         add_tasks_to_db(self.library_name)
+        add_or_update_library_record(
+            {"library_name": self.library_name,
+             "task_list_done": True,
+             "last_updated": datetime.datetime.utcnow()
+             })
         end = time.time()
         with open("times.txt", "a") as times:
             times.write("Finished extracting tasks: ")

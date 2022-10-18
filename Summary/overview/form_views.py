@@ -36,11 +36,18 @@ def _get_existing_response(request):
 
 
 def check(request, library_name):
-    try:
-        Task.objects.filter(library_name=library_name)
+    checks = Library.objects.values("language", "task_list_done", "methods", "classes", "text_readability_score", "code_readability_score", "navigability").get(library_name=library_name)
+    success = True
+    for key, value in checks.items():
+        if value is None:
+            if key == "code_readability_score" and checks["language"] != "java":
+                pass
+            else:
+                success = False
+    if success:
         return HttpResponse("", status=HTTPStatus.OK)
-    except Task.DoesNotExist:
-        return HttpResponse("", status=HTTPStatus.NOT_FOUND)
+    else:
+        return HttpResponse("", status=HTTPStatus.INTERNAL_SERVER_ERROR)
 
 
 def search(request):

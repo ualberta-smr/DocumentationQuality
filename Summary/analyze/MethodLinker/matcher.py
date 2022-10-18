@@ -94,12 +94,13 @@ def get_source_files(repo_name, repo_path):
                 source_files.append(os.path.normpath(root + "/" + file))
         break
     # If we found a src directory, loop through all the files (subdirectory too)
-    for root, dirs, files in os.walk(src_dir):
-        for file in files:
-            if "test" in root:
-                break
-            if re.search(EXTENSION, file) and "test" not in file.lower():
-                source_files.append(os.path.normpath(root + "/" + file))
+    if src_dir:
+        for root, dirs, files in os.walk(src_dir):
+            for file in files:
+                if "test" in root:
+                    break
+                if re.search(EXTENSION, file) and "test" not in file.lower():
+                    source_files.append(os.path.normpath(root + "/" + file))
     return source_files
 
 

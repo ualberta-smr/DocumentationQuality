@@ -34,74 +34,80 @@ class Metrics:
         We do not use HAVING has_example = 1 (.filter(has_example=1)) because that would remove all tasks without an example
         SELECT task, has_example, example_page FROM overview_task WHERE library_name = library_name GROUP BY task ORDER BY has_example DESC, task DESC LIMIT 20
         '''
-        task_list = list(
-            Task.objects.filter(library_name=self.library.library_name).values(
-                "task", "has_example", "example_page", "paragraph",
-                "html_id").annotate(
-                dcount=Count("task")).order_by("-has_example", "-dcount")[:20])
+        if self.library.task_list_done:
+            task_list = list(
+                Task.objects.filter(library_name=self.library.library_name).values(
+                    "task", "has_example", "example_page", "paragraph",
+                    "html_id").annotate(
+                    dcount=Count("task")).order_by("-has_example", "-dcount")[:20])
 
-        tasks = []
-        for task in task_list:
-            tasks.append(
-                {
-                    "task": task["task"],
-                    "has_example": task["has_example"],
-                    "url": self._create_url(task)
-                })
-
-        return tasks
+            tasks = []
+            for task in task_list:
+                tasks.append(
+                    {
+                        "task": task["task"],
+                        "has_example": task["has_example"],
+                        "url": self._create_url(task)
+                    })
+            return tasks
+        else:
+            return None
 
     def _get_example_ratios(self):
         ratios = {
-            "method_ratio": 0,
-            "class_ratio": 0
+            "method_ratio": None,
+            "class_ratio": None
         }
 
         try:
-            ratios["method_ratio"] = round((self.library.method_examples /
-                                      self.library.methods) * 5)
-        except (TypeError, AttributeError, ZeroDivisionError):
+            ratios["method_ratio"] = round((self.library.method_examples / self.library.methods) * 5)
+        except ZeroDivisionError:
+            ratios["method_ratio"] = 0
+        except (TypeError, AttributeError):
             pass
         try:
-            ratios["class_ratio"] = round((self.library.class_examples /
-                                     self.library.classes) * 5)
-        except (TypeError, AttributeError, ZeroDivisionError):
+            ratios["class_ratio"] = round((self.library.class_examples / self.library.classes) * 5)
+        except ZeroDivisionError:
+            ratios["method_ratio"] = 0
+        except (TypeError, AttributeError):
             pass
         return ratios
 
     def _get_readability_ratios(self):
         ratios = {
-            "text_readability": 0,
-            "code_readability": 0
+            "text_readability": None,
+            "code_readability": None
         }
 
         try:
-            ratios["text_readability"] = round((self.library.text_readability_score
-                                          / 100) * 5)
+            ratios["text_readability"] = round((self.library.text_readability_score / 100) * 5)
         except (TypeError, AttributeError):
             pass
         try:
-            ratios["code_readability"] = round((self.library.code_readability_score
-                                          / 100) * 5)
+            ratios["code_readability"] = round((self.library.code_readability_score / 100) * 5)
         except(TypeError, AttributeError):
-            pass
+            if self.library.language.lower() != "java":
+                ratios["code_readability"] = 0
 
         return ratios
 
     def _get_consistency_ratio(self):
-        ratio = 0
         try:
-            ratio = ((0.5 * (self.library.signature_methods
-                             / self.library.methods)) +
-                     (0.5 * (self.library.signature_classes
-                             / self.library.classes))
-                     ) * 5
-        except (TypeError, AttributeError, ZeroDivisionError):
-            pass
-        return round(ratio)
+            method_ratio = 0.5 * (self.library.signature_methods / self.library.methods)
+        except ZeroDivisionError:
+            method_ratio = 0
+        except (TypeError, AttributeError):
+            return None
+        try:
+            class_ratio = 0.5 * (self.library.signature_classes / self.library.classes)
+        except ZeroDivisionError:
+            class_ratio = 0
+        except(TypeError, AttributeError):
+            return None
+        return round((method_ratio + class_ratio) * 5)
 
     def _get_navigability_score(self):
-        rating = 0
+        rating = None
         if self.library.navigability:
             nav_checks = json.loads(self.library.navigability)
             count = 0
@@ -115,11 +121,21 @@ class Metrics:
         return rating
 
     def calculate_general_rating(self):
-        metrics = [self.example_ratios["method_ratio"],
-                   self.example_ratios["class_ratio"],
-                   self.readability_ratios["text_readability"],
-                   self.consistency_ratio,
-                   self.navigability_score]
+        metrics = []
+        if self.example_ratios["method_ratio"]:
+            metrics.append(self.example_ratios["method_ratio"])
+        if self.example_ratios["class_ratio"]:
+            metrics.append(self.example_ratios["class_ratio"])
+        if self.readability_ratios["text_readability"]:
+            metrics.append(self.readability_ratios["text_readability"])
+        if self.consistency_ratio:
+            metrics.append(self.consistency_ratio)
+        if self.navigability_score:
+            metrics.append(self.navigability_score)
         if self.library.language.lower() == "java":
-            metrics.append(self.readability_ratios["code_readability"])
-        return round(sum(metrics) / len(metrics))
+            if self.readability_ratios["code_readability"]:
+                metrics.append(self.readability_ratios["code_readability"])
+        try:
+            return round(sum(metrics) / len(metrics))
+        except ZeroDivisionError:
+            return 0
