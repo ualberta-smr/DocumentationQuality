@@ -68,7 +68,7 @@ class Metrics:
         try:
             ratios["class_ratio"] = round((self.library.class_examples / self.library.classes) * 5)
         except ZeroDivisionError:
-            ratios["method_ratio"] = 0
+            ratios["class_ratio"] = 0
         except (TypeError, AttributeError):
             pass
         return ratios
