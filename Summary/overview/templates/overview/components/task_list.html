@@ -31,7 +31,7 @@
     {% else %}
         <div class="d-flex justify-content-between align-items-center">
             <ul style="list-style: none">
-                {% if task_list.length > 0 %}
+                {% if task_list|length > 0 %}
                     {% for task in task_list %}
                         <li>
                             {% if task.has_example %}
