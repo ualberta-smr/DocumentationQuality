@@ -51,12 +51,16 @@ def find_javascript_arguments(source_file):
                             if left.property.name != "exports" and \
                                     not re.match(private_function, left.property.name):
                                 if type(left.object) is esprima.nodes.Identifier:
-                                    functions.append((
-                                                     left.object.name + "." + left.property.name,
+                                    name = left.object.name if left.object.name else ''
+                                    if left.property.name:
+                                        name = name + "." + left.property.name
+                                    functions.append((name,
                                                      [param.name for param in right.params]))
                                 else:
-                                    functions.append((
-                                                     left.object.object.name + left.object.property.name,
+                                    name = left.object.object.name if left.object.object.name else ''
+                                    if left.object.property.name:
+                                        name = name + left.object.property.name
+                                    functions.append((name,
                                                      [param.name for param in right.params]))
                     elif type(item) is esprima.nodes.FunctionDeclaration or \
                             type(item) is esprima.nodes.AsyncFunctionDeclaration:
