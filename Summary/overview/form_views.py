@@ -70,9 +70,7 @@ def search(request):
                 if not request.session.exists(request.session.session_key):
                     request.session.create()
                 request.session["store"] = initialize_store(request.session.session_key, request.POST["library_select"])
-                return redirect("overview:overview",
-                                request.POST["library_select"])
-                # return render(request, "overview/overview.html", request.session["store"]["library_name"])
+                return redirect("overview:overview", request.POST["library_select"])
 
     return render(request, "overview/landing.html",
                   context={"form": AnalyzeForm(),
@@ -109,8 +107,9 @@ def demographics_form(request):
         form = Demographics(request.POST)
         if form.is_valid():
             form.save()
-        request.session["store"]["demographics_form"] = json.dumps(form.cleaned_data)
-        request.session.modified = True
+        if "store" in request.session:
+            request.session["store"]["demographics_form"] = json.dumps(form.cleaned_data)
+            request.session.modified = True
     return redirect("overview:overview", request.POST["library_name"])
 
 
