@@ -107,10 +107,16 @@ def demographics_form(request, library_name):
         form = Demographics(request.POST)
         if form.is_valid():
             form.save()
+        if not request.session.exists(request.session.session_key):
+            request.session.create()
+            print(
+                "--------------------------------------------------------------------------------Created Session in demographics------------------------------------------------------------------")
         if "store" not in request.session:
             request.session["store"] = initialize_store(
                 request.session.session_key,
                 library_name)
+            print(
+                "--------------------------------------------------------------------------------Created store in demographics------------------------------------------------------------------")
         data = {"session_key": request.session["store"]["session_key"],
                 "library_name": request.session["store"]["library_name"],
                 "familiar": form.cleaned_data["familiar"] if "familiar" in form.cleaned_data else "",
