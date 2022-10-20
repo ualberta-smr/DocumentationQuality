@@ -30,7 +30,7 @@
 {% load questions %}
 <div class="modal" id="demographics">
     <div class="modal-dialog modal-lg modal-dialog-centered">
-        <form novalidate action="/docquality/forms/demographics/{{ library_name }}"
+        <form novalidate action="/docquality/forms/demographics/"
               method="post"
               id="demographic_form">
             {% csrf_token %}
@@ -52,7 +52,7 @@
                     {{ form.library_name }}
                     {{ form.session_key }}
                     <div class="form-group">
-                        <label for="{{ demographics.used_before.id_for_label }}">
+                        <label for="{{ demographics.familiar.id_for_label }}">
                             1. Please state whether you are familiar with the
                             <span style="color: green">{{ library_name|capfirst }}</span>
                             library:
