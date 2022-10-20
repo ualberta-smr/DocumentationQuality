@@ -72,6 +72,7 @@ class Demographics(forms.ModelForm):
                    "navigability",
                    "usefulness",
                    "where_see",
+                   "matching",
                    "general_feedback")
 
 
@@ -184,6 +185,7 @@ class GeneralRating(forms.ModelForm):
                    "navigability",
                    "usefulness",
                    "where_see",
+                   "matching",
                    "general_feedback")
 
 
@@ -215,6 +217,7 @@ class TaskList(forms.ModelForm):
                    "navigability",
                    "usefulness",
                    "where_see",
+                   "matching",
                    "general_feedback")
 
 
@@ -247,6 +250,7 @@ class MethodExamples(forms.ModelForm):
                    "navigability",
                    "usefulness",
                    "where_see",
+                   "matching",
                    "general_feedback")
 
 
@@ -279,6 +283,7 @@ class ClassExamples(forms.ModelForm):
                    "navigability",
                    "usefulness",
                    "where_see",
+                   "matching",
                    "general_feedback")
 
 
@@ -311,6 +316,7 @@ class TextReadability(forms.ModelForm):
                    "navigability",
                    "usefulness",
                    "where_see",
+                   "matching",
                    "general_feedback")
 
 
@@ -343,6 +349,7 @@ class CodeReadability(forms.ModelForm):
                    "navigability",
                    "usefulness",
                    "where_see",
+                   "matching",
                    "general_feedback")
 
 
@@ -374,6 +381,7 @@ class Consistency(forms.ModelForm):
                    "navigability",
                    "usefulness",
                    "where_see",
+                   "matching",
                    "general_feedback")
 
 
@@ -405,6 +413,7 @@ class Navigability(forms.ModelForm):
                    "consistency",
                    "usefulness",
                    "where_see",
+                   "matching",
                    "general_feedback")
 
 
@@ -430,6 +439,16 @@ class Feedback(forms.ModelForm):
             ("other", "Other")
         ),
         widget=forms.Select(attrs={"style": "float:left"})
+    )
+    matching = forms.ChoiceField(
+        required=False,
+        widget=forms.RadioSelect(attrs={"class": "form-check-inline"}),
+        choices=[(1, "Strongly disagree"),
+                 (2, "Disagree"),
+                 (3, "Neither agree nor disagree"),
+                 (4, "Somewhat agree"),
+                 (5, "Strongly agree")
+                 ]
     )
     general_feedback = forms.CharField(
         required=False,

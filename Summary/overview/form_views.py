@@ -102,14 +102,22 @@ def create(request):
                   context={"form": form, "groupings": get_groupings()})
 
 
-def demographics_form(request):
+def demographics_form(request, library_name):
     if request.method == "POST":
         form = Demographics(request.POST)
         if form.is_valid():
             form.save()
-        if "store" in request.session:
-            request.session["store"]["demographics_form"] = json.dumps(form.cleaned_data)
-            request.session.modified = True
+        if "store" not in request.session:
+            request.session["store"] = initialize_store(
+                request.session.session_key,
+                library_name)
+        data = {"session_key": request.session["store"]["session_key"],
+                "library_name": request.session["store"]["library_name"],
+                "familiar": form.cleaned_data["familiar"] if "familiar" in form.cleaned_data else "",
+                "years_experience": form.cleaned_data["years_experience"] if "years_experience" in form.cleaned_data else ""
+                }
+        request.session["store"]["demographics_form"] = json.dumps(data)
+        request.session.modified = True
     return redirect("overview:overview", request.POST["library_name"])
 
 

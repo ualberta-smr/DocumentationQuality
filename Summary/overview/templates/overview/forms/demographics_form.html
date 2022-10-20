@@ -30,7 +30,7 @@
 {% load questions %}
 <div class="modal" id="demographics">
     <div class="modal-dialog modal-lg modal-dialog-centered">
-        <form novalidate action="/docquality/forms/demographics/"
+        <form novalidate action="/docquality/forms/demographics/{{ library_name }}"
               method="post"
               id="demographic_form">
             {% csrf_token %}
@@ -86,9 +86,7 @@
 <script type="text/javascript">
     {% if show_form %}
         $(window).on('load', function () {
-            setTimeout(function () {
-                $('#demographics').modal('show');
-            }, 1000)
+            $('#demographics').modal('show');
         });
     {% endif %}
 </script>
