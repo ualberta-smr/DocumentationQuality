@@ -139,7 +139,16 @@
         <div class="form-group col-md-11">
             <label class="question"
                    for="{{ form.general_feedback.id_for_label }}">
-                {% additional_feedback form.library_name.value %}
+                {% if familiar and familiar == True %}
+                    {% with 4 as qn %}
+                        {% additional_feedback qn form.library_name.value %}
+                    {% endwith %}
+                {% else %}
+                    {% with 3 as qn %}
+                        {% additional_feedback qn form.library_name.value %}
+                    {% endwith %}
+                {% endif %}
+
             </label>
             {{ form.general_feedback }}
         </div>
