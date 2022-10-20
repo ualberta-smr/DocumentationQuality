@@ -109,8 +109,11 @@ def demographics_form(request):
         form = Demographics(request.POST)
         if form.is_valid():
             form.save()
-        request.session["store"]["demographics_form"] = json.dumps(form.cleaned_data)
-        request.session.modified = True
+        try:
+            request.session["store"]["demographics_form"] = json.dumps(form.cleaned_data)
+            request.session.modified = True
+        except:
+            pass
     return redirect("overview:overview", request.POST["library_name"])
 
 
