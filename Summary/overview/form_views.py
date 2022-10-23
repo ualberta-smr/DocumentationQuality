@@ -82,8 +82,10 @@ def create(request):
     form = AnalyzeForm(request.POST)
     if request.method == "POST":
         if form.is_valid():
-            repo_path = clone_library(form.cleaned_data["library_name"],
-                                      form.cleaned_data["gh_url"])
+            repo_path = None
+            if form.cleaned_data["gh_url"]:
+                repo_path = clone_library(form.cleaned_data["library_name"],
+                                          form.cleaned_data["gh_url"])
             try:
                 analyze_library(form.cleaned_data["language"],
                                 form.cleaned_data["library_name"],

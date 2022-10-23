@@ -262,12 +262,13 @@ def analyze_library(language, library_name, doc_url, gh_url, domain, repo_path):
     navigability = Navigability(library_name, doc_url)
     navigability.start()
 
-    match_signatures = APIMatching(library_name, language, doc_url, gh_url,
-                                   repo_path, False)
-    match_examples = APIMatching(library_name, language, doc_url, gh_url,
-                                 repo_path, True)
-    match_examples.start()
-    match_signatures.start()
+    if repo_path:
+        match_signatures = APIMatching(library_name, language, doc_url, gh_url,
+                                       repo_path, False)
+        match_examples = APIMatching(library_name, language, doc_url, gh_url,
+                                     repo_path, True)
+        match_examples.start()
+        match_signatures.start()
 
 
 def debug_metrics(language, library_name, doc_url, gh_url, domain):
