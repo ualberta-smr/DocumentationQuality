@@ -28,7 +28,7 @@ HEADERS = {
 MYSQL_CONFIG = {
     "host": "localhost",
     "user": "djangouser",
-    "password": "password",
+    "password": "paSSw0#d",
     "database": "task_data"
 }
 
@@ -134,7 +134,11 @@ def add_or_update_library_record(item_dict):
 
 def clone_repo(repo_url, clone):
     repo_regex = re.compile(r"(?<=/)[a-zA-Z.-]+(?!/)$")
-    repo_name = re.search(repo_regex, repo_url)[0][:-4]
+    repo_name = re.search(repo_regex, repo_url)[0]
+    if repo_name[-4:] == ".git":
+        repo_name = repo_name[:-4]
+    else:
+        repo_url = repo_url + ".git"
     repo_path = os.path.normpath("MethodLinker/repos/" + repo_name)
     if clone:
         if os.path.exists(repo_path):
