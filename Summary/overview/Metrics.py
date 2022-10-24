@@ -64,13 +64,15 @@ class Metrics:
         except ZeroDivisionError:
             ratios["method_ratio"] = 0
         except (TypeError, AttributeError):
-            pass
+            if not self.library.gh_url:
+                ratios["method_ratio"] = 0
         try:
             ratios["class_ratio"] = round((self.library.class_examples / self.library.classes) * 5)
         except ZeroDivisionError:
             ratios["class_ratio"] = 0
         except (TypeError, AttributeError):
-            pass
+            if not self.library.gh_url:
+                ratios["class_ratio"] = 0
         return ratios
 
     def _get_readability_ratios(self):
@@ -97,13 +99,19 @@ class Metrics:
         except ZeroDivisionError:
             method_ratio = 0
         except (TypeError, AttributeError):
-            return None
+            if not self.library.gh_url:
+                return 0
+            else:
+                return None
         try:
             class_ratio = 0.5 * (self.library.signature_classes / self.library.classes)
         except ZeroDivisionError:
             class_ratio = 0
         except(TypeError, AttributeError):
-            return None
+            if not self.library.gh_url:
+                return 0
+            else:
+                return None
         return round((method_ratio + class_ratio) * 5)
 
     def _get_navigability_score(self):

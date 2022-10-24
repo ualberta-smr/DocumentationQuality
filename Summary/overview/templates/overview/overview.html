@@ -85,9 +85,9 @@
                 <div class="metrics-container">
                     <h5>Documentation Quality Metrics</h5>
                     <hr>
-                    {% include "overview/components/examples.html" with example_ratios=example_ratios %}
+                    {% include "overview/components/examples.html" with example_ratios=example_ratios gh_url=gh_url %}
                     {% include "overview/components/readability.html" with readability_ratios=readability_ratios language=language %}
-                    {% include "overview/components/consistency.html" with consistency=consistency %}
+                    {% include "overview/components/consistency.html" with consistency=consistency gh_url=gh_url %}
                     {% include "overview/components/navigability.html" with navigability=navigability %}
                 </div>
             </div>

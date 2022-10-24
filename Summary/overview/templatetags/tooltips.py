@@ -24,8 +24,18 @@ def method_examples_tooltip():
 
 
 @register.simple_tag
+def method_examples_caveat_tooltip():
+    return "Calculating the method examples requires access to the source code (Missing GH url)."
+
+
+@register.simple_tag
 def class_examples_tooltip():
     return "This metric indicates how many public API CLASSES have at least one class method with a code example in the documentation."
+
+
+@register.simple_tag
+def class_examples_caveat_tooltip():
+    return "Calculating the class examples requires access to the source code (Missing GH url)."
 
 
 @register.simple_tag
@@ -46,6 +56,11 @@ def code_readability_caveat_tooltip():
 @register.simple_tag
 def consistency_tooltip():
     return "This metric indicates how similar the documentation is with the source code."
+
+
+@register.simple_tag
+def consistency_caveat_tooltip():
+    return "Calculating the consistency between source code and documentation requires access to the source code (Missing GH url)."
 
 
 @register.simple_tag

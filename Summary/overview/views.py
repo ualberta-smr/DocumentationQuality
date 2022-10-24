@@ -24,11 +24,9 @@ def landing(request):
 def overview(request, library_name):
     if not request.session.exists(request.session.session_key):
         request.session.create()
-        print("--------------------------------------------------------------------------------Created Session in overview------------------------------------------------------------------")
     if "store" not in request.session:
         request.session["store"] = initialize_store(request.session.session_key,
                                                 library_name)
-        print("--------------------------------------------------------------------------------Created store in overview------------------------------------------------------------------")
     library = get_library(library_name)
     library_metrics = Metrics(library)
     try:
@@ -52,6 +50,7 @@ def overview(request, library_name):
     values = {
         "language": library.language,
         "doc_url": library.doc_url,
+        "gh_url": library.gh_url,
         "general_rating": library_metrics.calculate_general_rating(),
         "description": library.description,
         "task_list": library_metrics.tasks,

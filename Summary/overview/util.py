@@ -116,6 +116,7 @@ def create_overview_context(store):
         "session_key": store["session_key"],
         "language": store["language"],
         "doc_url": store["doc_url"],
+        "gh_url": store["gh_url"],
         "general_rating": store["general_rating"],
         "description": store["description"],
         "task_list": store["task_list"],
