@@ -21,13 +21,13 @@
                 </div>
             </div>
         {% else %}
-            <span data-bs-toggle="tooltip"
-                  data-bs-placement="top"
-                  style="font-size: 0;"
-                  title="{% consistency_caveat_tooltip %}"
-                    {% if not gh_url %}
-                  class="strikediag"
-                    {% endif %}>
+            <span {% if not gh_url %}
+                data-bs-toggle="tooltip"
+                data-bs-placement="top"
+                style="font-size: 0;"
+                title="{% consistency_caveat_tooltip %}"
+                class="strikediag"
+            {% endif %}>
             {% with ''|center:consistency as range %}
                 {% for _ in range %}
                     <svg xmlns="http://www.w3.org/2000/svg"
@@ -36,7 +36,7 @@
                          fill="black"
                          class="bi bi-star-fill"
                          viewBox="0 0 16 16"
-                         {% if gh_url %}
+                            {% if gh_url %}
                          style="margin-right: 5px"
                             {% else %}
                          style="margin-right: 5px;opacity: 0.4;text-shadow: 0 1px 0 rgba(0,0,0,.5)"
@@ -53,7 +53,7 @@
                              stroke="black"
                              fill="white" class="bi bi-star-fill"
                              viewBox="0 0 16 16"
-                             {% if gh_url %}
+                                {% if gh_url %}
                              style="margin-right: 5px"
                                 {% else %}
                              style="margin-right: 5px;opacity: 0.4"
