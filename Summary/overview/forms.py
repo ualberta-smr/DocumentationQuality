@@ -15,7 +15,7 @@ class AnalyzeForm(forms.Form):
         )
     )
     doc_url = forms.CharField(required=True)
-    gh_url = forms.CharField(required=False, widget=forms.TextInput(
+    gh_url = forms.CharField(required=True, widget=forms.TextInput(
         attrs={"placeholder": "https://github.com/nltk/nltk.git"}))
     # domain = forms.ChoiceField(
     #     required=True,

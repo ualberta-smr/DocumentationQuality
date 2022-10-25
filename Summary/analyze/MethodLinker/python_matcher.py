@@ -7,22 +7,25 @@ import traceback
 
 def find_python_arguments(source_file):
     with open(source_file, "r", encoding="utf-8") as f:
-        a = ast.parse(f.read(), mode="exec")
         functions = []
-        private_function = re.compile("^_(?!_)")
-        for file_item in a.body:
-            if type(file_item) is ast.ClassDef:
-                for class_item in file_item.body:
-                    if type(class_item) is ast.FunctionDef:
-                        # We ignore methods that start with "_" because they are
-                        # typically considered private methods
-                        if not re.match(private_function, class_item.name):
-                            func_name, required, optionals = _extract_python_ast_args(class_item, True)
-                            functions.append(((file_item.name + "." + func_name), required, optionals))
-            if type(file_item) is ast.FunctionDef:
-                if not re.match(private_function, file_item.name):
-                    func_name, required, optionals = _extract_python_ast_args(file_item, False)
-                    functions.append((("\\".join(source_file.split("\\")[2:]).split("\\")[0] + "." + func_name), required, optionals))
+        try:
+            a = ast.parse(f.read(), mode="exec")
+            private_function = re.compile("^_(?!_)")
+            for file_item in a.body:
+                if type(file_item) is ast.ClassDef:
+                    for class_item in file_item.body:
+                        if type(class_item) is ast.FunctionDef:
+                            # We ignore methods that start with "_" because they are
+                            # typically considered private methods
+                            if not re.match(private_function, class_item.name):
+                                func_name, required, optionals = _extract_python_ast_args(class_item, True)
+                                functions.append(((file_item.name + "." + func_name), required, optionals))
+                if type(file_item) is ast.FunctionDef:
+                    if not re.match(private_function, file_item.name):
+                        func_name, required, optionals = _extract_python_ast_args(file_item, False)
+                        functions.append((("\\".join(source_file.split("\\")[2:]).split("\\")[0] + "." + func_name), required, optionals))
+        except:
+            pass
     return functions
 
 
