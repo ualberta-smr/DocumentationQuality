@@ -21,13 +21,13 @@
                 </div>
             </div>
         {% else %}
-            <span {% if not gh_url %}
-                data-bs-toggle="tooltip"
-                data-bs-placement="top"
-                style="font-size: 0;"
-                title="{% consistency_caveat_tooltip %}"
-                class="strikediag"
-            {% endif %}>
+            <span style="font-size: 0;"
+                    {% if not gh_url %}
+                  data-bs-toggle="tooltip"
+                  data-bs-placement="top"
+                  title="{% consistency_caveat_tooltip %}"
+                  class="strikediag"
+                    {% endif %}>
             {% with ''|center:consistency as range %}
                 {% for _ in range %}
                     <svg xmlns="http://www.w3.org/2000/svg"
