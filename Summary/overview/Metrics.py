@@ -131,7 +131,7 @@ class Metrics:
     def calculate_general_rating(self):
         metrics = [self.example_ratios["method_ratio"] if self.example_ratios["method_ratio"] else 0,
                    self.example_ratios["class_ratio"] if self.example_ratios["class_ratio"] else 0,
-                   self.readability_ratios["text_readability"] if self.example_ratios["text_readability"] else 0,
+                   self.readability_ratios["text_readability"] if self.readability_ratios["text_readability"] else 0,
                    self.consistency_ratio if self.consistency_ratio else 0,
                    self.navigability_score if self.navigability_score else 0]
         if self.library.language.lower() == "java":
