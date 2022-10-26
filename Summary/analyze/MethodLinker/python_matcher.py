@@ -2,6 +2,7 @@ import ast
 import sys
 import re
 import csv
+import os
 import traceback
 
 
@@ -23,7 +24,7 @@ def find_python_arguments(source_file):
                 if type(file_item) is ast.FunctionDef:
                     if not re.match(private_function, file_item.name):
                         func_name, required, optionals = _extract_python_ast_args(file_item, False)
-                        functions.append((("\\".join(source_file.split("\\")[2:]).split("\\")[0] + "." + func_name), required, optionals))
+                        functions.append(((os.path.split(os.path.split(source_file)[0])[1] + "." + func_name), required, optionals))
         except:
             pass
     return functions

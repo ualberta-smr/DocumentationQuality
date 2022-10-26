@@ -5,6 +5,7 @@ import urllib.error
 from urllib.request import Request, urlopen
 
 from bs4 import BeautifulSoup
+from pathlib import PurePath
 
 from .java_matcher import *
 from .python_matcher import *
@@ -119,14 +120,14 @@ def get_functions(functions, source_file):
     function_defs = find_params(source_file)
     for function in function_defs:
         if LANGUAGE == "python":
-            functions[function[0]] = {"source_file": os.path.normpath("\\".join(source_file.split("\\")[2:])),
+            functions[function[0]] = {"source_file": os.path.normpath("\\".join(PurePath(source_file).parts[2:])),
                                       "req_args": function[1],
                                       "opt_args": function[2]}
         else:
             if function[0] in functions:
                 functions[function[0]]["req_args"].append(function[1])
             else:
-                functions[function[0]] = {"source_file": os.path.normpath("\\".join(source_file.split("\\")[2:])),
+                functions[function[0]] = {"source_file": os.path.normpath("\\".join(PurePath(source_file).parts[2:])),
                                           "req_args": function[1]}
     return functions
 
