@@ -17,17 +17,16 @@ class AnalyzeForm(forms.Form):
     doc_url = forms.CharField(required=True)
     gh_url = forms.CharField(required=True, widget=forms.TextInput(
         attrs={"placeholder": "https://github.com/nltk/nltk.git"}))
-    # domain = forms.ChoiceField(
-    #     required=True,
-    #     choices=(
-    #         (None, ""),
-    #         ("nlp", "NLP"),
-    #         ("json", "JSON"),
-    #         ("dom_manipulation", "DOM Manipulation"),
-    #         ("http", "HTTP"),
-    #         ("''", "Other")
-    #     )
-    # )
+    domain = forms.ChoiceField(
+        required=True,
+        choices=(
+            (None, ""),
+            ("nlp", "NLP"),
+            ("json", "JSON"),
+            ("dom_manipulation", "DOM Manipulation"),
+            ("http", "HTTP"),
+        )
+    )
 
 
 class Demographics(forms.ModelForm):
