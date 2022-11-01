@@ -78,8 +78,8 @@ def get_paragraphs_and_tasks(paragraphs, task_file, property_file, domain_filter
                 extracted = call_extractor(text, property_file)
                 if extracted:
                     extracted = _clean_results(extracted)
-                    # if domain_filter:
-                    #     extracted = domain_filter(extracted)
+                    if domain_filter:
+                        extracted = domain_filter(extracted)
                     if extracted:
                         writer.writerow(
                             [paragraph.get_text().strip(), extracted])
