@@ -47,12 +47,12 @@ def create_form(form, store):
     if type(form) != Feedback and type(form) != Demographics:
         for field in form.declared_fields.keys():
             if type(form.declared_fields[field]) == ChoiceField:
-                if store["familiar"]:
-                    form.fields[field].choices = FAMILIAR_CHOICES
-                    form.declared_fields[field].choices = FAMILIAR_CHOICES
-                else:
-                    form.fields[field].choices = UNFAMILIAR_CHOICES
-                    form.declared_fields[field].choices = UNFAMILIAR_CHOICES
+                # if store["familiar"]:
+                #     form.fields[field].choices = FAMILIAR_CHOICES
+                #     form.declared_fields[field].choices = FAMILIAR_CHOICES
+                # else:
+                form.fields[field].choices = UNFAMILIAR_CHOICES
+                form.declared_fields[field].choices = UNFAMILIAR_CHOICES
     return form
 
 
@@ -101,12 +101,12 @@ def create_survey_form(store):
     for field in form.declared_fields.keys():
         if field not in excluded:
             if type(form.declared_fields[field]) == ChoiceField:
-                if store["familiar"]:
-                    form.fields[field].choices = FAMILIAR_CHOICES
-                    form.declared_fields[field].choices = FAMILIAR_CHOICES
-                else:
-                    form.fields[field].choices = UNFAMILIAR_CHOICES
-                    form.declared_fields[field].choices = UNFAMILIAR_CHOICES
+                # if store["familiar"]:
+                #     form.fields[field].choices = FAMILIAR_CHOICES
+                #     form.declared_fields[field].choices = FAMILIAR_CHOICES
+                # else:
+                form.fields[field].choices = UNFAMILIAR_CHOICES
+                form.declared_fields[field].choices = UNFAMILIAR_CHOICES
     return form
 
 
