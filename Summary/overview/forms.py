@@ -147,6 +147,34 @@ class Survey(forms.ModelForm):
 
     def clean(self):
         cleaned_data = super(Survey, self).clean()
+        errors = []
+        for key in cleaned_data.keys():
+            if key != "general_feedback":
+                if not cleaned_data[key] or cleaned_data[key] == "None":
+                    if key == "general_rating":
+                        errors.append((key, "Please rate the General rating."))
+                    elif key == "task_list":
+                        errors.append((key, "Please rate the Documented library tasks."))
+                    elif key == "code_examples_methods":
+                        errors.append((key, "Please rate the Methods with code examples."))
+                    elif key == "code_examples_classes":
+                        errors.append((key, "Please rate the Classes with code examples. "))
+                    elif key == "text_readability":
+                        errors.append((key, "Please rate the Readability of text."))
+                    elif key == "code_readability":
+                        errors.append((key, "Please rate the Readability of code examples."))
+                    elif key == "consistency":
+                        errors.append((key, "Please rate the Documentation/Source code similarity."))
+                    elif key == "navigability":
+                        errors.append((key, "Please rate the Navigation rating."))
+                    elif key == "usefulness":
+                        errors.append((key, "Please rate the Usefulness of the summary."))
+                    elif key == "where_see":
+                        errors.append((key, "Please state where you would like to see this summary."))
+                    elif key == "matching":
+                        errors.append((key, "Please rate the how much the documentation matches with your experience."))
+        for error, error_message in errors:
+            self.add_error(error, error_message)
         return cleaned_data
 
     class Meta:

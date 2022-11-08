@@ -71,6 +71,7 @@ def initialize_store(session_key, library_name):
                  familiar=None,
                  demographics_form=None,
                  survey_form=None,
+                 show_form=False,
                  general_form=None,
                  tasks_form=None,
                  method_examples_form=None,
@@ -91,26 +92,36 @@ def update_store(store, values):
 
 
 def create_survey_form(store):
+    show_survey_form = False
+    form_success = True
     if store["survey_form"]:
         data = json.loads(store["survey_form"])
+        form = Survey(data)
+        show_survey_form = True
+        if store["familiar"]:
+            if len(form.errors) > 1:
+                form_success = False
+        elif len(form.errors) > 2:
+            form_success = False
     else:
         data = dict(session_key=store["session_key"],
                     library_name=store["library_name"])
-    form = Survey(initial=data)
-    excluded = ["usefulness", "where_see", "matching"]
-    for field in form.declared_fields.keys():
-        if field not in excluded:
-            if type(form.declared_fields[field]) == ChoiceField:
-                # if store["familiar"]:
-                #     form.fields[field].choices = FAMILIAR_CHOICES
-                #     form.declared_fields[field].choices = FAMILIAR_CHOICES
-                # else:
-                form.fields[field].choices = UNFAMILIAR_CHOICES
-                form.declared_fields[field].choices = UNFAMILIAR_CHOICES
-    return form
+        form = Survey(initial=data)
+        excluded = ["usefulness", "where_see", "matching"]
+        for field in form.declared_fields.keys():
+            if field not in excluded:
+                if type(form.declared_fields[field]) == ChoiceField:
+                    # if store["familiar"]:
+                    #     form.fields[field].choices = FAMILIAR_CHOICES
+                    #     form.declared_fields[field].choices = FAMILIAR_CHOICES
+                    # else:
+                    form.fields[field].choices = UNFAMILIAR_CHOICES
+                    form.declared_fields[field].choices = UNFAMILIAR_CHOICES
+    return show_survey_form, form_success, form
 
 
 def create_overview_context(store):
+    show_survey_form, survey_form_success, survey_form = create_survey_form(store)
     context = {
         "library_name": store["library_name"],
         "session_key": store["session_key"],
@@ -125,8 +136,10 @@ def create_overview_context(store):
         "consistency": store["consistency"],
         "navigability": store["navigability"],
         "familiar": store["familiar"],
-        "show_form": store["show_form"],
-        "survey_form": create_survey_form(store),
+        "show_demographic_form": store["show_demographic_form"],
+        "show_survey_form": show_survey_form,
+        "survey_form_success": survey_form_success,
+        "survey_form": survey_form,
         "demographics_form": Demographics(json.loads(store["demographics_form"])) if store["demographics_form"] else create_form(Demographics, store),
         # "general_form": GeneralRating(json.loads(store["general_form"])) if store["general_form"] else create_form(GeneralRating, store),
         # "tasks_form": TaskList(json.loads(store["tasks_form"])) if store["tasks_form"] else create_form(TaskList, store),
