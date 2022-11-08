@@ -134,16 +134,19 @@ def add_or_update_library_record(item_dict):
 
 def clone_repo(repo_url, clone):
     repo_regex = re.compile(r"(?<=/)[a-zA-Z.-]+(?!/)$")
-    repo_name = re.search(repo_regex, repo_url)[0]
-    if repo_name[-4:] == ".git":
-        repo_name = repo_name[:-4]
-    else:
-        repo_url = repo_url + ".git"
-    repo_path = os.path.normpath("MethodLinker/repos/" + repo_name)
-    if clone:
-        if os.path.exists(repo_path):
-            rmtree(repo_path, onerror=rmtree_access_error_handler)
-        Repo.clone_from(repo_url, repo_path)
+    try:
+        repo_name = re.search(repo_regex, repo_url)[0]
+        if repo_name[-4:] == ".git":
+            repo_name = repo_name[:-4]
+        else:
+            repo_url = repo_url + ".git"
+        repo_path = os.path.normpath("MethodLinker/repos/" + repo_name)
+        if clone:
+            if os.path.exists(repo_path):
+                rmtree(repo_path, onerror=rmtree_access_error_handler)
+            Repo.clone_from(repo_url, repo_path)
+    except:
+        repo_path = None
     return repo_path
 
 

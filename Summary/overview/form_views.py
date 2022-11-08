@@ -135,10 +135,9 @@ def survey_form(request):
                                 data[key] = form.data[key]
                                 setattr(existing_record, key, str(form.data[key]))
                 existing_record.save()
-        request.session["store"]["survey_form"] = json.dumps(data) if data else json.dumps(form.cleaned_data)
+        request.session["store"]["survey_form"] = json.dumps(form.cleaned_data)
         request.session.modified = True
-    return HttpResponse(status=204)
-    # return redirect("overview:overview", request.POST["library_name"])
+    return redirect("overview:overview", request.POST["library_name"])
 
 
 def general_rating(request):

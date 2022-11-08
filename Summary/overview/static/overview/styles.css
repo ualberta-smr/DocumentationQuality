@@ -85,7 +85,6 @@ select {
 
 .errorlist, .error {
     color: red;
-    float: left;
     margin-top: 5px;
     margin-bottom: 0;
     clear: left;

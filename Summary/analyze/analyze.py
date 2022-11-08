@@ -84,6 +84,7 @@ class Create:
              "domain": self.domain,
              "description": description,
              "doc_url": self.doc_url,
+             "gh_url": self.gh_url,
              "task_list_done": False,
              "last_updated": datetime.datetime.utcnow()
              })
