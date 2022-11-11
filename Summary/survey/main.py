@@ -1,4 +1,6 @@
 import csv
+import os.path
+from pprint import pprint
 
 
 def calculate_average(response_dict):
@@ -33,30 +35,36 @@ def main():
             if add:
                 filtered_responses.append(response)
 
-        overall_averages = dict()
-        familiar_averages = dict()
-        unfamiliar_averages = dict()
-        for response in filtered_responses:
-            for idx, value in enumerate(response):
-                if response[4] == "1":
-                    if column_names[idx] in familiar_averages:
-                        familiar_averages[column_names[idx]].append(value)
-                    else:
-                        familiar_averages[column_names[idx]] = [value]
+    overall_averages = dict()
+    familiar_averages = dict()
+    unfamiliar_averages = dict()
+    for response in filtered_responses:
+        for idx, value in enumerate(response):
+            if response[4] == "1":
+                if column_names[idx] in familiar_averages:
+                    familiar_averages[column_names[idx]].append(value)
                 else:
-                    if column_names[idx] in unfamiliar_averages:
-                        unfamiliar_averages[column_names[idx]].append(value)
-                    else:
-                        unfamiliar_averages[column_names[idx]] = [value]
-                if column_names[idx] in overall_averages:
-                    overall_averages[column_names[idx]].append(value)
+                    familiar_averages[column_names[idx]] = [value]
+            else:
+                if column_names[idx] in unfamiliar_averages:
+                    unfamiliar_averages[column_names[idx]].append(value)
                 else:
-                    overall_averages[column_names[idx]] = [value]
+                    unfamiliar_averages[column_names[idx]] = [value]
+            if column_names[idx] in overall_averages:
+                overall_averages[column_names[idx]].append(value)
+            else:
+                overall_averages[column_names[idx]] = [value]
 
-        print(calculate_average(overall_averages))
-        print(calculate_average(familiar_averages))
-        print(calculate_average(unfamiliar_averages))
-        print("Done")
+    if not os.path.isdir("averages"):
+        os.mkdir("averages")
+    with open("averages/overall_averages.txt", "w", encoding="utf-8") as f:
+        pprint(calculate_average(overall_averages), f)
+    with open("averages/familiar_averages.txt", "w", encoding="utf-8") as f:
+        pprint(calculate_average(familiar_averages), f)
+    with open("averages/unfamiliar_averages.txt", "w", encoding="utf-8") as f:
+        pprint(calculate_average(unfamiliar_averages), f)
+
+    print("Done")
 
 
 if __name__ == '__main__':
