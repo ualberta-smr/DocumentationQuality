@@ -1,6 +1,7 @@
 import csv
 import os.path
 from pprint import pprint
+import csv
 
 
 def calculate_average(response_dict):
@@ -19,6 +20,13 @@ def calculate_average(response_dict):
                 else:
                     averages[key] = None
     return averages
+
+
+def dict_to_list(dic):
+    values = []
+    for value in dic.values():
+        values.append(value)
+    return values
 
 
 def main():
@@ -63,6 +71,21 @@ def main():
         pprint(calculate_average(familiar_averages), f)
     with open("averages/unfamiliar_averages.txt", "w", encoding="utf-8") as f:
         pprint(calculate_average(unfamiliar_averages), f)
+    with open("averages/responses.csv", "w", encoding="utf-8", newline="") as f:
+        writer = csv.writer(f)
+        writer.writerow(["Type", "Years experience", "Familiar", "General rating",
+                         "Task list", "Code example methods", "Code example classes",
+                         "Text readability", "Code readability", "Consistency",
+                         "Navigability", "Usefulness", "Matching"])
+        lis = ["overall"]
+        lis.extend(dict_to_list(calculate_average(overall_averages)))
+        writer.writerow(lis)
+        lis = ["familiar"]
+        lis.extend(dict_to_list(calculate_average(familiar_averages)))
+        writer.writerow(lis)
+        lis = ["unfamiliar"]
+        lis.extend(dict_to_list(calculate_average(unfamiliar_averages)))
+        writer.writerow(lis)
 
     print("Done")
 
