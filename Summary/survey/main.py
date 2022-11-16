@@ -29,6 +29,58 @@ def dict_to_list(dic):
     return values
 
 
+def calculate_distribution(response_dict):
+    distribution = dict()
+    non_dist_columns = ["id", "session_key", "library_name", "where_see",
+                        "general_feedback"]
+    for key, raw_values in response_dict.items():
+        if key not in non_dist_columns:
+            values = [int(item) for item in
+                      list(filter(lambda item: item != "NULL", raw_values))]
+            for val in values:
+                if key not in distribution:
+                    if key != "years_experience" and key != "familiar":
+                        distribution[key] = dict({1: 0,
+                                                  2: 0,
+                                                  3: 0,
+                                                  4: 0,
+                                                  5: 0})
+                    else:
+                        distribution[key] = dict()
+                if val not in distribution[key]:
+                    distribution[key][val] = 1
+                else:
+                    distribution[key][val] += 1
+
+    for key, values in distribution.items():
+        if key != "years_experience" and key != "familiar":
+            row = [0, 0, 0, 0, 0]
+            for value, count in values.items():
+                row[value - 1] = count
+            distribution[key] = row
+    mapping = {"general_rating": 1,
+               "task_list": 2,
+               "code_examples_methods": 3,
+               "code_examples_classes": 4,
+               "text_readability": 5,
+               "code_readability": 6,
+               "consistency": 7,
+               "navigability": 8,
+               "usefulness": 9,
+               "matching": 10}
+    rows = [[1, None, None, None, None, None, None, None, None, None, None],
+            [2, None, None, None, None, None, None, None, None, None, None],
+            [3, None, None, None, None, None, None, None, None, None, None],
+            [4, None, None, None, None, None, None, None, None, None, None],
+            [5, None, None, None, None, None, None, None, None, None, None]]
+    for key, values in distribution.items():
+        if key != "years_experience" and key != "familiar":
+            index = mapping[key]
+            for i in range(len(values)):
+                rows[i][index] = values[i]
+    return distribution, rows
+
+
 def main():
     with open("responses.csv", "r", encoding="utf-8") as infile:
         reader = csv.reader(infile)
@@ -42,6 +94,19 @@ def main():
                     break
             if add:
                 filtered_responses.append(response)
+    if not os.path.isdir("results"):
+        os.mkdir("results")
+    with open("results/filtered_responses.csv", "w", encoding="utf-8",
+              newline="") as f:
+        writer = csv.writer(f)
+        writer.writerow(
+            ["ID", "Session key", "Library name", "Years experience",
+             "Familiar", "General rating",
+             "Task list", "Code example methods", "Code example classes",
+             "Text readability", "Code readability", "Consistency",
+             "Navigability", "Usefulness", "Where see", "Matching",
+             "General Feedback"])
+        writer.writerows(filtered_responses)
 
     overall_averages = dict()
     familiar_averages = dict()
@@ -63,15 +128,30 @@ def main():
             else:
                 overall_averages[column_names[idx]] = [value]
 
-    if not os.path.isdir("averages"):
-        os.mkdir("averages")
-    with open("averages/overall_averages.txt", "w", encoding="utf-8") as f:
+    overall_dist, overall_rows = calculate_distribution(overall_averages)
+    familiar_dist, familiar_rows = calculate_distribution(familiar_averages)
+    unfamiliar_dist, unfamiliar_rows = calculate_distribution(unfamiliar_averages)
+    with open("results/distributions.csv", "w", encoding="utf-8",
+              newline="") as f:
+        writer = csv.writer(f)
+        writer.writerow(
+            ["Rating", "General rating", "Task list", "Code example methods",
+             "Code example classes", "Text readability", "Code readability",
+             "Consistency", "Navigability", "Usefulness", "Matching"])
+        writer.writerows(overall_rows)
+        writer.writerow([])
+        writer.writerows(familiar_rows)
+        writer.writerow([])
+        writer.writerows(unfamiliar_rows)
+
+
+    with open("results/overall_averages.txt", "w", encoding="utf-8") as f:
         pprint(calculate_average(overall_averages), f)
-    with open("averages/familiar_averages.txt", "w", encoding="utf-8") as f:
+    with open("results/familiar_averages.txt", "w", encoding="utf-8") as f:
         pprint(calculate_average(familiar_averages), f)
-    with open("averages/unfamiliar_averages.txt", "w", encoding="utf-8") as f:
+    with open("results/unfamiliar_averages.txt", "w", encoding="utf-8") as f:
         pprint(calculate_average(unfamiliar_averages), f)
-    with open("averages/responses.csv", "w", encoding="utf-8", newline="") as f:
+    with open("results/responses.csv", "w", encoding="utf-8", newline="") as f:
         writer = csv.writer(f)
         writer.writerow(["Type", "Years experience", "Familiar", "General rating",
                          "Task list", "Code example methods", "Code example classes",
