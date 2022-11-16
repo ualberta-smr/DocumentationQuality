@@ -201,13 +201,7 @@ class Navigability(threading.Thread):
 
     def run(self):
         start = time.time()
-        has_search, has_toc, links_correct = run_checklist(self.library_name,
-                                                           self.doc_url)
-        navigation_dict = {
-            "has_search": has_search,
-            "has_toc": has_toc,
-            "links_correct": links_correct,
-        }
+        navigation_dict = run_checklist(self.library_name, self.doc_url)
         add_or_update_library_record({"library_name": self.library_name,
                                       "navigability": json.dumps(navigation_dict),
                                       "last_updated": datetime.datetime.utcnow()})

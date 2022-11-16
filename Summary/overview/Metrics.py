@@ -119,13 +119,15 @@ class Metrics:
         if self.library.navigability:
             nav_checks = json.loads(self.library.navigability)
             count = 0
-            for check in nav_checks:
+            for check in nav_checks.values():
                 if check:
                     count += 1
-            if count > 1:
+            if count > 2:
                 rating = 5
-            elif count > 0:
+            elif count > 1:
                 rating = 3
+            elif count > 0:
+                rating = 1
         return rating
 
     def calculate_general_rating(self):

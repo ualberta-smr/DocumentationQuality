@@ -28,6 +28,7 @@ def check_hrefs(url, soup):
 # sidebar "navigation", "sidebar", list with hrefs?
 def find_toc(soup):
     has_toc = False
+    has_start = False
     if soup.find_all("div", {"class": "navigation"}) or soup.find_all("div", {"id": "sidebar"}):
         has_toc = True
     if not has_toc:
@@ -36,6 +37,8 @@ def find_toc(soup):
             count_items = 0
             count_links = 0
             for li in l.children:
+                if "quickstart" in li.text.lower() or "getting started" in li.text.lower():
+                    has_start = True
                 if isinstance(li, element.Tag):
                     for content in li.children:
                         if isinstance(content, element.Tag):
@@ -45,7 +48,7 @@ def find_toc(soup):
             if count_items == count_links:
                 has_toc = True
                 break
-    return has_toc
+    return has_toc, has_start
 
 
 def find_search(soup):

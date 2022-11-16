@@ -15,7 +15,12 @@ def run_checklist(library_name, doc_url):
     soup = BeautifulSoup(content, "html.parser")
 
     has_search = find_search(soup)
-    has_toc = find_toc(soup)
+    has_toc, has_start = find_toc(soup)
     links_correct = check_hrefs(doc_url, soup)
 
-    return has_search, has_toc, links_correct
+    return {
+        "has_search": has_search,
+        "has_toc": has_toc,
+        "has_start": has_start,
+        "links_correct": links_correct
+    }
