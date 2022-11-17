@@ -28,7 +28,7 @@ id,session_key,library_name,years_experience,familiar,general_rating,task_list,c
 27,g2rqyqdw7sh5y9gp9kbui9nti7020ro3,Ivy,10,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL
 28,j9heqeafrnebnqn00dyt2r7n4b2m8zha,jQuery,20,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL
 29,lurz1f1t96eept36m9tbjsqzpxnazi2x,orjson,7,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL
-30,35itjweymf3u7uwsmyvwjm2xwz9o1lvb,numpy,23,1,2,1,1,3,4,3,3,4,1,None,1,numpy's documentation is large. It's possible that your crawling just didn't find relevant portions. There is no way for me to tell from the summary what your crawler actually saw.\nThere does not seem to be any relationship between the overall star summary (4/5) and the individual quality metrics (mostly 0/5).
+30,35itjweymf3u7uwsmyvwjm2xwz9o1lvb,numpy,23,1,2,1,1,3,4,3,3,4,1,None,1,numpy's documentation is large. It's possible that your crawling just didn't find relevant portions. There is no way for me to tell from the summary what your crawler actually saw.\nThere does not seem to be any relationship between the overall star summary (4/5) and the individual quality metrics (mostly 0/5).
 31,9cc2xb4larwcbv7jint7uwyimj7aug3t,scanpy,4,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL
 32,dflrtlqmdcw8i61y4uvd8tny4drj3z7f,scanpy,6,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL
 33,3vcia1pfmnc7svoynz4oza4xih44fuus,PyOpenGL,40,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL
@@ -66,7 +66,7 @@ id,session_key,library_name,years_experience,familiar,general_rating,task_list,c
 65,2nr01w9ob1zs6tr5cisa27rqz0qrv99y,React,2,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL
 66,2nr01w9ob1zs6tr5cisa27rqz0qrv99y,orjson,3,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL
 67,2nr01w9ob1zs6tr5cisa27rqz0qrv99y,scanpy,2,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL
-68,2nr01w9ob1zs6tr5cisa27rqz0qrv99y,jQuery,2,0,4,5,4,4,4,2,2,5,4,package_manager,NULL,Since jQuery is a popular package  documenting some security practices/well-known issues might be helpful too. I am not sure how feasible this is though.
+68,2nr01w9ob1zs6tr5cisa27rqz0qrv99y,jQuery,2,0,4,5,4,4,4,2,2,5,4,package_manager,NULL,Since jQuery is a popular package, documenting some security practices/well-known issues might be helpful too. I am not sure how feasible this is, though.
 69,zhfswu6l8lil7sszofkpo22pbl54emx0,twilio,10,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL
 70,0mkmtlwmdxman0uvyyzp9lul6ns77nrf,PyOpenGL,40,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL
 71,spz7zr7ygxbr54of811r2z4yiluiim4a,orjson,1,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL
@@ -79,3 +79,61 @@ id,session_key,library_name,years_experience,familiar,general_rating,task_list,c
 78,thuw5yjur211imskbe1lvy60892dhn04,React,3,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL
 79,gvlg3ee5772qoer2j512iqc9nh0vrg7z,orjson,5,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL
 80,gvlg3ee5772qoer2j512iqc9nh0vrg7z,Typescript,5,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL
+81,pli0u67ti04pscktnzlgifom6aii0552,orjson,23,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL
+82,l7r9nejouaprzsaeizvf65hpt1pntv9b,numpy,13,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL
+83,e9c1wdsteasedzov3l3j0xrsf3lpkvnq,Typescript,0,1,4,4,4,4,4,4,4,4,3,readme,4,NULL
+84,ia0wwi9y0yyq0atp4y1otmptxhorlign,jQuery,1000,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL
+85,i6sudelzamjbt5k213xcr4cgtz1rechw,jQuery,5,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL
+86,wzsdnz1s15qy8wucf3beho3dx8jalkiv,orjson,2,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL
+87,rnlws9e0hfsvhl1fvbwb751orfiyjy05,twilio,10,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL
+88,7pydn5qq8au0qew8975ugusm02j477kd,React,6,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL
+89,ruxilks1ugyp5pa6xos2kljhn237htly,netty,5,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL
+90,bttzlviofjb63fe0cv40yu7z84q14hew,jBinary,25,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL
+91,4uy3nm1jv8q0cldfm89euxig51ob6n3a,twilio,3,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL
+92,te54suy84afax90wcz8zk0jsxkr32l9e,JSON-java,7,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL
+93,kax8x5zs47tqinuxckehu7y9bquoexqn,twilio,4,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL
+94,gob9uagk8srvxa44hjuelyvd3txx66kk,Numba,1,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL
+95,wtxrr0f6e5ucven8t2ulh22pfrfj8iwz,numpy,7,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL
+96,yij8zqp3h9lzg3zfl46geyo6vgjwyj2n,twilio,20,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL
+97,lrbnx7ypi9g47govaefse3o8ntw5hro6,python-socketio,30,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL
+98,3zzjr64s7djq33d5k1uf3dml2jxgl5ol,requests,6,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL
+99,vkh2yzqtujcmm67xumn4c3y2vu7nqsoe,numpy,1,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL
+100,hs5pc27s5zn8e3tk7c8fqgh5ayism6vo,twilio,20,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL
+101,knqsgp8pvfagrrek3c4s3xj4jnil7ikx,twilio,8,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL
+102,vrti08ht6qsyga4w2i0es4q5jtv8o30f,React,3,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL
+103,gxahtcyqp741xoyg8vcbowa8e9kcc2qm,orjson,5,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL
+104,81jkz0fby88qyyqjv0e8os1mumxnmakf,numpy,3,1,5,4,4,4,5,4,3,3,5,readme,4,NULL
+105,5f9ouv72rwb8xw1aihw8r2cb90j2vkdv,twilio,30,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL
+106,i6bng41sb6z5a2ug4boak0vro0tw6rg8,Mockito,22,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL
+107,3w49yz9kapgq34kzftr8qq1gmcogth7d,twilio,9,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL
+108,0rdntkjh9ciwltb2t8c5lo9mq05pzl6y,zoo-web-components,8,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL
+109,9zmwljgjrt8nt1mi0ttg8sk64ska7d1s,Mockito,6,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1,readme,4,NULL
+110,dyv1p3tzifi1by3ve4ye67wd1u9oy75j,axios,10,1,3,3,3,3,3,3,1,3,1,None,1,Doesn't seem to have discovered anything other than installation instructions
+111,6hqg2hg4ae7zizm44smsislauct79xj2,orjson,6,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL
+112,iwo5w4ywdxwm6ih4z3d0ub5om2rbpnxe,orjson,8,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL
+113,iwo5w4ywdxwm6ih4z3d0ub5om2rbpnxe,requests,8,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL
+114,iwo5w4ywdxwm6ih4z3d0ub5om2rbpnxe,jQuery,8,1,4,4,1,1,5,5,1,5,5,Both readme and package manager page,NULL,NULL
+115,iwo5w4ywdxwm6ih4z3d0ub5om2rbpnxe,Typescript,8,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL
+116,znia3481w6iwzj01yc5duiqe3xllqdy4,numpy,4,1,4,4,3,3,5,3,3,5,4,readme,4,I don't know whether I am interested in methods examples and class examples (at least for Python).
+119,znia3481w6iwzj01yc5duiqe3xllqdy4,NLTK,2,1,4,4,4,4,3,1,4,5,3,readme,4,NULL
+120,0ya0a675oqthpmleng3z9fct5l1gciar,requests,2,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL
+121,i16fgzwgytlcnntlc0jqs02rzarpia7r,react-query,12,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL
+122,d3njj2391vkq5ed0hcc9xotazwket4bo,numpy,3,1,4,4,5,5,4,5,5,5,4,readme,2,NULL
+123,n3b9mdkledz2nzhbz82urx5g57pasv0t,numpy,2,1,4,4,5,5,4,5,4,3,5,readme,4,NULL
+124,t8r2s4fhilpd0ai8v17pybe1t9fciy8b,twilio,25,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL
+125,4yo374bfnxm2as4l9020yvuu1cn22dx8,Tensorflow,4,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL
+126,4yo374bfnxm2as4l9020yvuu1cn22dx8,Pytorch,4,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL
+127,4yo374bfnxm2as4l9020yvuu1cn22dx8,numpy,2,1,5,4,4,4,5,4,4,2,4,readme,3,It feels like some of the sections should have much higher important or scores than they do. It is not clear why readability of code examples is crossed out.
+128,1cpv1spnavuhw26voa5vatgvgnjxf9in,React,2,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL
+129,1cpv1spnavuhw26voa5vatgvgnjxf9in,numpy,4,1,5,4,4,3,5,5,5,5,4,package_manager,5,NULL
+130,1cpv1spnavuhw26voa5vatgvgnjxf9in,Tensorflow,4,1,4,4,4,3,5,5,5,5,4,package_manager,5,NULL
+131,mydl197mcss0jok602gp4ldlhsrii4qp,orjson,10,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL
+132,e2k0vtl5t8w0oi4ssenme9a0bo51nu35,React,4,1,4,4,5,5,4,5,2,5,2,package_manager,2,NULL
+133,jggj6d98g35s3herlv3oqs5d5ixrrgv3,numpy,5,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL
+134,ln0dmq7cyu4p67dka179fctrlakangd1,React,4,1,5,5,4,4,5,5,5,5,5,readme,5,NULL
+135,ryz9qo7lctczknsse9uwq2r6gmhahkhh,numpy,1,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL
+136,owh1koq1br45ciuczqjsjgkixu5lh3pe,React,9,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL
+137,aetuwu7ph3fktiwjn63chsba3996ztuy,orjson,0,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL
+138,22s26kqkauu472gr7wrge8hf95aj3gof,NLTK,4,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL
+139,eajby9qahsj48kwswxl9kz3t7l02ztvl,React,3,1,4,1,5,5,5,5,3,4,5,package_manager,2,My experience with React's documentation has been overall pleasant. While I agree with the navigation rating, I disagree with the documentation quality metric for "Readability of text" and "Readability of code examples" - I think the text and code examples are very easy to understand and easy to read.
+140,2gwp6erpcm6tl6oxe57egbbs3zc2gd1u,Typescript,8,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL

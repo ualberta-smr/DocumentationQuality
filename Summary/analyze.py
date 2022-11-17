@@ -9,8 +9,22 @@ if __name__ == '__main__':
     # debug_metrics("python", "nltk",
     #                 "https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.html",
     #                 "https://github.com/nltk/nltk.git", "nlp")
+    # debug_metrics("javascript", "react",
+    #                 "https://reactjs.org/docs/getting-started.html",
+    #                 "https://github.com/facebook/react.git", "dom_manipulation")
+    # debug_metrics("python", "Requests",
+    #                 "https://requests.readthedocs.io/en/latest/",
+    #                 "https://github.com/psf/requests.git", "http")
     # debug_metrics("javascript", "jQuery", "https://api.jquery.com/",
     #                 "https://github.com/jquery/jquery.git", "dom manipulation")
+    # debug_metrics("java", "CoreNLP", "https://stanfordnlp.github.io/CoreNLP/cmdline.html",
+    #                 "https://github.com/stanfordnlp/CoreNLP.git", "nlp")
+    # debug_metrics("javascript", "React", "https://reactjs.org/docs/components-and-props.html",
+    #                 "https://github.com/facebook/react.git", "dom_manipulation")
+    # debug_metrics("javascript", "jquery", "https://api.jquery.com/jQuery.get",
+    #                 "https://github.com/jquery/jquery.git", "dom_manipulation")
+    debug_metrics("javascript", "jBinary", "https://github.com/jDataView/jBinary/wiki",
+                    "https://github.com/jDataView/jBinary.git", None)
     # https://web.archive.org/web/20210417122335/https://www.nltk.org/api/nltk.parse.html
     # https://web.archive.org/web/20210725152853/https://www.nltk.org/api/nltk.tag.html
     # http://web.archive.org/web/20211017224709/https://github.com/stleary/JSON-java

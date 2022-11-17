@@ -175,9 +175,9 @@ if __name__ == '__main__':
         writer.writerow(
             ["Repo", "Correct", "Total test", "Precision", "Correct",
              "Total truth", "Recall"])
-        # file1 = "truth\\qunit.csv"
-        # file2 = "results\\qunit.csv"
-        # writer.writerow([file1.split("\\")[1].split(".")[0], *evaluate_links(file1, file2)])
+        # file1 = "truth\\signatures\\jBinary.csv"
+        # file2 = "results\\signatures\\jBinary.csv"
+        # writer.writerow([file1.split("\\")[2].split(".")[0], *evaluate_example_links(file1, file2)])
         for file1 in os.listdir("truth/signatures"):
             truth_file = os.path.normpath(os.path.join("truth/signatures/", file1))
             for file2 in os.listdir("results/signatures"):
