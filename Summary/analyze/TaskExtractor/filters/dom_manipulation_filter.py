@@ -1,5 +1,9 @@
 def dom_manipulation_filter(extracted_tasks):
-    black_list = ["return", "render", "use", "write"]
+    black_list = ["add", "apply", "assign", "call", "change", "compare",
+                  "create", "describe", "disable", "find", "handle",
+                  "implement", "indent", "insert", "introduce", "learn",
+                  "receive", "remove", "render", "return", "reuse", "specify",
+                  "store", "submit", "test", "fetch", "use", "write"]
     tasks = []
     for task in extracted_tasks.strip().split("\n"):
         if not task.split(" ")[0] in black_list:
