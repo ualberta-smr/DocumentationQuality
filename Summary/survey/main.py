@@ -1,7 +1,11 @@
 import csv
 import os.path
 from pprint import pprint
-import csv
+import pandas as pd
+import matplotlib
+
+matplotlib.use('TkAgg')
+import matplotlib.pyplot as plt
 
 
 def calculate_average(response_dict):
@@ -81,7 +85,7 @@ def calculate_distribution(response_dict):
     return distribution, rows
 
 
-def main():
+def filter_responses():
     with open("responses.csv", "r", encoding="utf-8") as infile:
         reader = csv.reader(infile)
         column_names = next(reader, None)
@@ -89,7 +93,7 @@ def main():
         for response in reader:
             add = False
             for i in range(5, len(column_names)):
-                if response[i] != "NULL":
+                if response[i] != "NULL" and response[i] != "":
                     add = True
                     break
             if add:
@@ -107,65 +111,159 @@ def main():
              "Navigability", "Usefulness", "Where see", "Matching",
              "General Feedback"])
         writer.writerows(filtered_responses)
+    return column_names, filtered_responses
 
-    overall_averages = dict()
-    familiar_averages = dict()
-    unfamiliar_averages = dict()
-    for response in filtered_responses:
+
+def sort_responses(columns, responses):
+    overall_responses = dict()
+    familiar_responses = dict()
+    unfamiliar_responses = dict()
+    for response in responses:
         for idx, value in enumerate(response):
             if response[4] == "1":
-                if column_names[idx] in familiar_averages:
-                    familiar_averages[column_names[idx]].append(value)
+                if columns[idx] in familiar_responses:
+                    familiar_responses[columns[idx]].append(value)
                 else:
-                    familiar_averages[column_names[idx]] = [value]
+                    familiar_responses[columns[idx]] = [value]
             else:
-                if column_names[idx] in unfamiliar_averages:
-                    unfamiliar_averages[column_names[idx]].append(value)
+                if columns[idx] in unfamiliar_responses:
+                    unfamiliar_responses[columns[idx]].append(value)
                 else:
-                    unfamiliar_averages[column_names[idx]] = [value]
-            if column_names[idx] in overall_averages:
-                overall_averages[column_names[idx]].append(value)
+                    unfamiliar_responses[columns[idx]] = [value]
+            if columns[idx] in overall_responses:
+                overall_responses[columns[idx]].append(value)
             else:
-                overall_averages[column_names[idx]] = [value]
-
-    overall_dist, overall_rows = calculate_distribution(overall_averages)
-    familiar_dist, familiar_rows = calculate_distribution(familiar_averages)
-    unfamiliar_dist, unfamiliar_rows = calculate_distribution(unfamiliar_averages)
-    with open("results/distributions.csv", "w", encoding="utf-8",
-              newline="") as f:
-        writer = csv.writer(f)
-        writer.writerow(
-            ["Rating", "General rating", "Task list", "Code example methods",
-             "Code example classes", "Text readability", "Code readability",
-             "Consistency", "Navigability", "Usefulness", "Matching"])
-        writer.writerows(overall_rows)
-        writer.writerow([])
-        writer.writerows(familiar_rows)
-        writer.writerow([])
-        writer.writerows(unfamiliar_rows)
+                overall_responses[columns[idx]] = [value]
+    return overall_responses, familiar_responses, unfamiliar_responses
 
 
-    with open("results/overall_averages.txt", "w", encoding="utf-8") as f:
-        pprint(calculate_average(overall_averages), f)
-    with open("results/familiar_averages.txt", "w", encoding="utf-8") as f:
-        pprint(calculate_average(familiar_averages), f)
-    with open("results/unfamiliar_averages.txt", "w", encoding="utf-8") as f:
-        pprint(calculate_average(unfamiliar_averages), f)
-    with open("results/responses.csv", "w", encoding="utf-8", newline="") as f:
-        writer = csv.writer(f)
-        writer.writerow(["Type", "Years experience", "Familiar", "General rating",
-                         "Task list", "Code example methods", "Code example classes",
-                         "Text readability", "Code readability", "Consistency",
-                         "Navigability", "Usefulness", "Matching"])
-        lis = ["overall"]
-        lis.extend(dict_to_list(calculate_average(overall_averages)))
-        writer.writerow(lis)
-        lis = ["familiar"]
-        lis.extend(dict_to_list(calculate_average(familiar_averages)))
-        writer.writerow(lis)
-        lis = ["unfamiliar"]
-        lis.extend(dict_to_list(calculate_average(unfamiliar_averages)))
-        writer.writerow(lis)
+def create_violin(dataframe, filename):
+    df = dataframe.copy()
+    df.dropna(subset=["general_rating"], inplace=True)
+    general_rating = df.general_rating
+    df = dataframe.copy()
+    df.dropna(subset=["task_list"], inplace=True)
+    task_list = df.task_list
+    df = dataframe.copy()
+    df.dropna(subset=["code_examples_methods"], inplace=True)
+    code_examples_methods = df.code_examples_methods
+    df = dataframe.copy()
+    df.dropna(subset=["code_examples_classes"], inplace=True)
+    code_examples_classes = df.code_examples_classes
+    df = dataframe.copy()
+    df.dropna(subset=["text_readability"], inplace=True)
+    text_readability = df.text_readability
+    df = dataframe.copy()
+    df.dropna(subset=["code_readability"], inplace=True)
+    code_readability = df.code_readability
+    df = dataframe.copy()
+    df.dropna(subset=["consistency"], inplace=True)
+    consistency = df.consistency
+    df = dataframe.copy()
+    df.dropna(subset=["navigability"], inplace=True)
+    navigability = df.navigability
+    df = dataframe.copy()
+    df.dropna(subset=["usefulness"], inplace=True)
+    usefulness = df.usefulness
+
+    # Extract Figure and Axes instance
+    fig, ax = plt.subplots(figsize=(11, 11))
+
+    # Create a plot
+    # values = [general_rating, task_list, code_examples_methods, code_examples_classes, text_readability, code_readability, consistency, navigability, usefulness]
+    values = [usefulness, navigability, consistency, code_readability,
+              text_readability, code_examples_classes, code_examples_methods,
+              task_list, general_rating]
+    labels = ["Usefulness", "Navigability", "Consistency", "Code Readability",
+              "Text Readability", "Class Examples", "Method Examples",
+              "Task List", "General Rating"]
+    ax.violinplot(values, showmedians=True, vert=False)
+    ax.set_yticks([1, 2, 3, 4, 5, 6, 7, 8, 9])
+    ax.set_yticklabels(labels, fontsize=8)
+    ax.set_xticks([1, 2, 3, 4, 5])
+    # Add title
+    ax.set_title('Distribution of Ratings per Question', fontsize=16)
+    ax.set_xlabel("Rating", fontsize=14)
+    ax.set_ylabel("Questions", fontsize=14)
+    # plt.show()
+    plt.savefig(filename)
+    plt.close()
+
+
+def main():
+    # columns, responses = filter_responses()
+    # overall, familiar, unfamiliar = sort_responses(columns, responses)
+    # overall_dist, overall_rows = calculate_distribution(overall)
+    # familiar_dist, familiar_rows = calculate_distribution(familiar)
+    # unfamiliar_dist, unfamiliar_rows = calculate_distribution(unfamiliar)
+    # with open("results/distributions.csv", "w", encoding="utf-8",
+    #           newline="") as f:
+    #     writer = csv.writer(f)
+    #     writer.writerow(
+    #         ["Rating", "General rating", "Task list", "Code example methods",
+    #          "Code example classes", "Text readability", "Code readability",
+    #          "Consistency", "Navigability", "Usefulness", "Matching"])
+    #     writer.writerows(overall_rows)
+    #     writer.writerow([])
+    #     writer.writerows(familiar_rows)
+    #     writer.writerow([])
+    #     writer.writerows(unfamiliar_rows)
+
+    if not os.path.isdir("plots"):
+        os.mkdir("plots")
+    dataframe = pd.read_csv("responses_filtered.csv", on_bad_lines="warn", encoding="ISO-8859-1")
+    create_violin(dataframe, "plots/overall_distributions.png")
+    create_violin(dataframe.loc[dataframe["familiar"] == 1], "plots/familiar_distributions.png")
+    create_violin(dataframe.loc[dataframe["familiar"] == 0], "plots/unfamiliar_distributions.png")
+
+    df = dataframe.copy()
+    df.dropna(subset=["matching"], inplace=True)
+    matching = df.matching
+    fig, ax = plt.subplots(figsize=(10, 10))
+    ax.violinplot(matching, showmedians=True)
+    ax.set_title('Distribution of Matching Ratings', fontsize=16)
+    ax.set_yticks([1,2,3,4,5])
+    plt.tick_params(axis="x", which="both", bottom=False, top=False, labelbottom=False)
+    ax.set_ylabel("Rating", fontsize=14)
+    plt.savefig("plots/matching_distribution.png")
+    plt.close()
+
+    df = dataframe.copy()
+    df.dropna(subset=["years_experience"], inplace=True)
+    # years_experience = df.years_experience
+    years_experience = [4,2,10,15,0,12,12,6,6,6,6,5,10,3,5,40,5,4,15,8,0,5,20,8,30,10,10,20,7,23,4,6,40,11,15,0,5,5,1,2,25,25,4,22,18,0,22,0,0,18,3,10,20,10,30,3,4,3,2,16,4,2,2,2,3,2,2,10,40,1,11,11,2,2,5,11,3,5,5,23,13,0,5,2,10,6,5,25,3,7,4,1,7,20,30,6,1,20,8,3,5,3,30,22,9,8,6,10,6,8,8,8,8,4,2,2,12,3,2,25,4,4,2,2,4,4,10,4,5,4,1,9,0,4,3,8]
+    fig, ax = plt.subplots(figsize=(10, 10))
+    ax.violinplot(years_experience, showmedians=True, showextrema=True)
+    ax.set_title('Distribution of Years Experience', fontsize=16)
+    # ax.set_yticks([1, 2, 3, 4, 5])
+    plt.tick_params(axis="x", which="both", bottom=False, top=False,
+                    labelbottom=False)
+    ax.set_ylabel("Years Experience", fontsize=14)
+    plt.savefig("plots/years_experience_distribution.png")
+    plt.close()
+
+    # WRITE AVERAGES
+    # with open("results/overall_averages.txt", "w", encoding="utf-8") as f:
+    #     pprint(calculate_average(overall), f)
+    # with open("results/familiar_averages.txt", "w", encoding="utf-8") as f:
+    #     pprint(calculate_average(familiar), f)
+    # with open("results/unfamiliar_averages.txt", "w", encoding="utf-8") as f:
+    #     pprint(calculate_average(unfamiliar), f)
+    # with open("results/responses.csv", "w", encoding="utf-8", newline="") as f:
+    #     writer = csv.writer(f)
+    #     writer.writerow(["Type", "Years experience", "Familiar", "General rating",
+    #                      "Task list", "Code example methods", "Code example classes",
+    #                      "Text readability", "Code readability", "Consistency",
+    #                      "Navigability", "Usefulness", "Matching"])
+    #     lis = ["overall"]
+    #     lis.extend(dict_to_list(calculate_average(overall)))
+    #     writer.writerow(lis)
+    #     lis = ["familiar"]
+    #     lis.extend(dict_to_list(calculate_average(familiar)))
+    #     writer.writerow(lis)
+    #     lis = ["unfamiliar"]
+    #     lis.extend(dict_to_list(calculate_average(unfamiliar)))
+    #     writer.writerow(lis)
 
     print("Done")
 

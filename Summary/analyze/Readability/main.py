@@ -40,7 +40,8 @@ def code_readability(page):
 
 
 def text_readability(page):
-    scores = []
+    score = None
+    # scores = []
     # ease_count ={
     #     "very_easy": 0,
     #     "easy": 0,
@@ -55,24 +56,25 @@ def text_readability(page):
         content = html.unescape(urlopen(req).read().decode("utf-8"))
         soup = BeautifulSoup(content, "html.parser")
         paragraphs = soup.find_all("p")
-        for paragraph in paragraphs:
-            try:
-                score, _ = find_text_readability_metrics(paragraph.get_text().strip())
-                if score:
-                    scores.append(score)
-                    # ease_count[ease] += 1
-            except:
-                # paragraph.get_text()
-                # traceback.print_exc()
-                pass
+        score = find_text_readability_metrics(' '.join(p.get_text(strip=True) for p in paragraphs))
+        # for paragraph in paragraphs:
+        #     try:
+        #         score, _ = find_text_readability_metrics(paragraph.get_text().strip())
+        #         if score:
+        #             scores.append(score)
+        #             # ease_count[ease] += 1
+        #     except:
+        #         # paragraph.get_text()
+        #         # traceback.print_exc()
+        #         pass
     except:
         pass
-    avg_score = sum(scores)/len(scores) if scores else None
+    # avg_score = sum(scores)/len(scores) if scores else None
     # most = (None, 0)
     # for key, value in ease_count.items():
     #     if value > most[1]:
     #         most = (key, value)
-    return avg_score, None#, most[0]
+    return score
 
 
 def get_readability(library_name, language, doc_url):
@@ -89,7 +91,7 @@ def get_readability(library_name, language, doc_url):
     # }
     code_scores = []
     for page in pages:
-        text_score, _ = text_readability(page)
+        text_score = text_readability(page)
         if language.lower() == "java":
             code_score = code_readability(page)
             if code_score:

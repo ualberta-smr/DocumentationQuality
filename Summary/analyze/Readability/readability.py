@@ -35,9 +35,8 @@ def find_text_readability_metrics(text):
             syllables += count_syllables(token)
 
         score = 206.835 - (1.015 * (words/sentences)) - (84.600 * (syllables/words))
-        # ease = get_rating(score)
-        return score, None #, ease
-    return None, None
+        return score
+    return None
 
 
 def get_rating(score):
