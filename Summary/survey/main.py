@@ -162,29 +162,26 @@ def create_violin(dataframe, filename):
     df = dataframe.copy()
     df.dropna(subset=["navigability"], inplace=True)
     navigability = df.navigability
-    df = dataframe.copy()
-    df.dropna(subset=["usefulness"], inplace=True)
-    usefulness = df.usefulness
 
     # Extract Figure and Axes instance
-    fig, ax = plt.subplots(figsize=(11, 11))
+    fig, ax = plt.subplots(figsize=(13, 11))
 
     # Create a plot
     # values = [general_rating, task_list, code_examples_methods, code_examples_classes, text_readability, code_readability, consistency, navigability, usefulness]
-    values = [usefulness, navigability, consistency, code_readability,
+    values = [navigability, consistency, code_readability,
               text_readability, code_examples_classes, code_examples_methods,
               task_list, general_rating]
-    labels = ["Usefulness", "Navigability", "Consistency", "Code Readability",
+    labels = ["Navigability", "Documentation/\nSource code similarity", "Code Readability",
               "Text Readability", "Class Examples", "Method Examples",
               "Task List", "General Rating"]
     ax.violinplot(values, showmedians=True, vert=False)
-    ax.set_yticks([1, 2, 3, 4, 5, 6, 7, 8, 9])
+    ax.set_yticks([1, 2, 3, 4, 5, 6, 7, 8])
     ax.set_yticklabels(labels, fontsize=8)
     ax.set_xticks([1, 2, 3, 4, 5])
     # Add title
     ax.set_title('Distribution of Ratings per Question', fontsize=16)
     ax.set_xlabel("Rating", fontsize=14)
-    ax.set_ylabel("Questions", fontsize=14)
+    ax.set_ylabel("Metrics", fontsize=14)
     # plt.show()
     plt.savefig(filename)
     plt.close()
@@ -215,6 +212,19 @@ def main():
     create_violin(dataframe, "plots/overall_distributions.png")
     create_violin(dataframe.loc[dataframe["familiar"] == 1], "plots/familiar_distributions.png")
     create_violin(dataframe.loc[dataframe["familiar"] == 0], "plots/unfamiliar_distributions.png")
+
+    df = dataframe.copy()
+    df.dropna(subset=["usefulness"], inplace=True)
+    usefulness = df.usefulness
+    fig, ax = plt.subplots(figsize=(10, 10))
+    ax.violinplot(usefulness, showmedians=True)
+    ax.set_title('Distribution of Usefulness Ratings', fontsize=16)
+    ax.set_yticks([1, 2, 3, 4, 5])
+    plt.tick_params(axis="x", which="both", bottom=False, top=False,
+                    labelbottom=False)
+    ax.set_ylabel("Rating", fontsize=14)
+    plt.savefig("plots/usefulness_distribution.png")
+    plt.close()
 
     df = dataframe.copy()
     df.dropna(subset=["matching"], inplace=True)

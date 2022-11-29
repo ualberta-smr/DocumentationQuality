@@ -66,7 +66,7 @@ id,session_key,library_name,years_experience,familiar,general_rating,task_list,c
 65,2nr01w9ob1zs6tr5cisa27rqz0qrv99y,React,2,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL
 66,2nr01w9ob1zs6tr5cisa27rqz0qrv99y,orjson,3,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL
 67,2nr01w9ob1zs6tr5cisa27rqz0qrv99y,scanpy,2,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL
-68,2nr01w9ob1zs6tr5cisa27rqz0qrv99y,jQuery,2,0,4,5,4,4,4,2,2,5,4,package_manager,NULL,Since jQuery is a popular package  documenting some security practices/well-known issues might be helpful too. I am not sure how feasible this is  though.
+68,2nr01w9ob1zs6tr5cisa27rqz0qrv99y,jQuery,2,0,4,5,4,4,4,2,2,5,4,package_manager,NULL,Since jQuery is a popular package documenting some security practices/well-known issues might be helpful too. I am not sure how feasible this is though.
 69,zhfswu6l8lil7sszofkpo22pbl54emx0,twilio,10,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL
 70,0mkmtlwmdxman0uvyyzp9lul6ns77nrf,PyOpenGL,40,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL
 71,spz7zr7ygxbr54of811r2z4yiluiim4a,orjson,1,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL
@@ -135,5 +135,34 @@ id,session_key,library_name,years_experience,familiar,general_rating,task_list,c
 136,owh1koq1br45ciuczqjsjgkixu5lh3pe,React,9,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL
 137,aetuwu7ph3fktiwjn63chsba3996ztuy,orjson,0,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL
 138,22s26kqkauu472gr7wrge8hf95aj3gof,NLTK,4,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL
-139,eajby9qahsj48kwswxl9kz3t7l02ztvl,React,3,1,4,1,5,5,5,5,3,4,5,package_manager,2,"My experience with React's documentation has been overall pleasant. While I agree with the navigation rating  I disagree with the documentation quality metric for ""Readability of text"" and ""Readability of code examples"" - I think the text and code examples are very easy to understand and easy to read."
+139,eajby9qahsj48kwswxl9kz3t7l02ztvl,React,3,1,4,1,5,5,5,5,3,4,5,package_manager,2,"My experience with React's documentation has been overall pleasant. While I agree with the navigation rating I disagree with the documentation quality metric for ""Readability of text"" and ""Readability of code examples"" - I think the text and code examples are very easy to understand and easy to read."
 140,2gwp6erpcm6tl6oxe57egbbs3zc2gd1u,Typescript,8,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL
+141,zgxyx3tazwi1xfaat6m9srtlh9vwyqfo,requests,15,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL
+142,7s2921tjo988ea0uquz8krc00ztwcpq7,Pytorch,5,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL
+143,7cuvwi9smvam4jb3q8wcbs2zips8u6pq,pyppeteer,2,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL
+144,p7rkx9lg518fad8ziclwfn0f4zdq4cgm,pyppeteer,1,1,2,2,5,4,4,5,5,2,3,readme,2,NULL
+145,tccpklnzpw8lto91f8hikzaxqdnq3ugg,Mockito,5,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL
+146,d2cmszmgsprwayng3f5x6tp0nmd3i2ct,scikit-learn,6,1,3,4,5,4,3,4,4,4,4,package_manager,2,More difficult to properly assess the documentation quality given that the link for official documentation is more of a map for relevant documentation of methods rather than an all-encompassing page.
+147,d2cmszmgsprwayng3f5x6tp0nmd3i2ct,numpy,6,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL
+148,qjkfbswvl0irmqmos74dmf5nkd75n0dv,soot,36,1,4,2,4,4,4,4,4,4,4,readme,5,NULL
+149,fbt858dedcht9by3mifau7iiocf468am,testrun,10,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL
+150,5r4ylonz9dikkvs5a7d0e1iilspn6v6m,jQuery,12,1,4,2,4,4,2,2,1,2,4,readme,1,I find it difficult to understand how the metrics are actually populated: what data are they based on? How were they calculated? Based on what data? Which version of jQuery? jQuery is a very bizarre library\n\nI just find it difficult to draw a conclusion from jQuery's documentation to these metrics. since most the functionality is exposed on the $(selector) object. How are code examples extracted?
+151,5r4ylonz9dikkvs5a7d0e1iilspn6v6m,Flask,12,1,2,3,2,2,2,2,2,4,4,readme,2,The Flask project starts with a tutorial that teaches you how to use it from the start up. This is a good documentation and it is unclear how these metrics account for solid tutorials. That said it's sometimes difficult to find Flask API methods and types. These metrics do not reflect many of the practical considerations of Flask's documentation quality.
+152,5r4ylonz9dikkvs5a7d0e1iilspn6v6m,JSON-java,12,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL
+153,5r4ylonz9dikkvs5a7d0e1iilspn6v6m,CoreNLP,12,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL
+154,ap2wn4dwehshb098l5vdjfcdmysw1loa,react-query,10,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL
+155,3imvdn7kxvoqldq8ano5l6c1kfhkvpme,scikit-learn,15,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL
+156,zc4jooq0j0fes3howcswd5mg3unrnim6,orjson,4,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL
+157,zc4jooq0j0fes3howcswd5mg3unrnim6,requests,4,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL
+158,zc4jooq0j0fes3howcswd5mg3unrnim6,Mockito,4,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL
+159,zc4jooq0j0fes3howcswd5mg3unrnim6,soot,4,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL
+160,zc4jooq0j0fes3howcswd5mg3unrnim6,React,4,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL
+161,b671lwz4pbsjhcrveym50vz6slvk0fcn,Typescript,4,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL
+162,sfulpjgrbxgu4enoyucykrn5og47x95m,requests,10,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL
+163,sfulpjgrbxgu4enoyucykrn5og47x95m,Typescript,10,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL
+164,9cgsyftwal22z7je6vfux9exdc8hfps8,requests,1,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL
+165,sfulpjgrbxgu4enoyucykrn5og47x95m,pytest,10,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL
+166,sw7f2cgu8zlrmnynqfldfuwuk9gko6ch,numpy,3,1,2,2,2,2,2,2,1,2,2,readme,1,Most of the documentation quality metrics are 0 star which seems pretty strange and inaccurate to me. The documented library tasks section also seems quite limited and I feel a google search would be more effective.
+167,sw7f2cgu8zlrmnynqfldfuwuk9gko6ch,pytest,3,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL
+168,hzgw50xg17yrxlasbbqrx2h8d67u30tv,React,3,0,5,2,5,5,3,4,3,2,4,readme,NULL,NULL
+169,hzgw50xg17yrxlasbbqrx2h8d67u30tv,numpy,3,0,4,5,5,5,2,5,4,1,4,readme,NULL,NULL

@@ -14,12 +14,17 @@
     </div>
     <div class="col metrics-child">
         {% if consistency is None %}
-            <div class="modal-body">
-                <div class="spinner-border text-primary"
-                     role="status">
-                    <span class="sr-only"></span>
-                </div>
-            </div>
+            <span data-bs-toggle="tooltip"
+                  data-bs-placement="top"
+                  title="Source files must be in a 'src' directory or in a directory with the name name as the library.">
+            Unable to find source files
+            </span>
+{#            <div class="modal-body">#}
+{#                <div class="spinner-border text-primary"#}
+{#                     role="status">#}
+{#                    <span class="sr-only"></span>#}
+{#                </div>#}
+{#            </div>#}
         {% else %}
             <span style="font-size: 0;"
                     {% if not gh_url %}
