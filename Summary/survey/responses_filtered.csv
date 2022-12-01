@@ -1,0 +1,26 @@
+id,session_key,library_name,years_experience,familiar,general_rating,task_list,code_examples_methods,code_examples_classes,text_readability,code_readability,consistency,navigability,usefulness,where_see,matching,general_feedback
+30,35itjweymf3u7uwsmyvwjm2xwz9o1lvb,numpy,23,1,2,1,1,3,4,3,3,4,1,None,1,numpy's documentation is large. It's possible that your crawling just didn't find relevant portions. There is no way for me to tell from the summary what your crawler actually saw.\nThere does not seem to be any relationship between the overall star summary (4/5) and the individual quality metrics (mostly 0/5).
+68,2nr01w9ob1zs6tr5cisa27rqz0qrv99y,jQuery,2,0,4,5,4,4,4,2,2,5,4,package_manager,NULL,Since jQuery is a popular package documenting some security practices/well-known issues might be helpful too. I am not sure how feasible this is though.
+83,e9c1wdsteasedzov3l3j0xrsf3lpkvnq,Typescript,0,1,4,4,4,4,4,4,4,4,3,readme,4,NULL
+104,81jkz0fby88qyyqjv0e8os1mumxnmakf,numpy,3,1,5,4,4,4,5,4,3,3,5,readme,4,NULL
+109,9zmwljgjrt8nt1mi0ttg8sk64ska7d1s,Mockito,6,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1,readme,4,NULL
+110,dyv1p3tzifi1by3ve4ye67wd1u9oy75j,axios,10,1,3,3,3,3,3,3,1,3,1,None,1,Doesn't seem to have discovered anything other than installation instructions
+114,iwo5w4ywdxwm6ih4z3d0ub5om2rbpnxe,jQuery,8,1,4,4,1,1,5,5,1,5,5,Both readme and package manager page,NULL,NULL
+116,znia3481w6iwzj01yc5duiqe3xllqdy4,numpy,4,1,4,4,3,3,5,3,3,5,4,readme,4,I don't know whether I am interested in methods examples and class examples (at least for Python).
+119,znia3481w6iwzj01yc5duiqe3xllqdy4,NLTK,2,1,4,4,4,4,3,1,4,5,3,readme,4,NULL
+122,d3njj2391vkq5ed0hcc9xotazwket4bo,numpy,3,1,4,4,5,5,4,5,5,5,4,readme,2,NULL
+123,n3b9mdkledz2nzhbz82urx5g57pasv0t,numpy,2,1,4,4,5,5,4,5,4,3,5,readme,4,NULL
+127,4yo374bfnxm2as4l9020yvuu1cn22dx8,numpy,2,1,5,4,4,4,5,4,4,2,4,readme,3,It feels like some of the sections should have much higher important or scores than they do. It is not clear why readability of code examples is crossed out.
+129,1cpv1spnavuhw26voa5vatgvgnjxf9in,numpy,4,1,5,4,4,3,5,5,5,5,4,package_manager,5,NULL
+130,1cpv1spnavuhw26voa5vatgvgnjxf9in,Tensorflow,4,1,4,4,4,3,5,5,5,5,4,package_manager,5,NULL
+132,e2k0vtl5t8w0oi4ssenme9a0bo51nu35,React,4,1,4,4,5,5,4,5,2,5,2,package_manager,2,NULL
+134,ln0dmq7cyu4p67dka179fctrlakangd1,React,4,1,5,5,4,4,5,5,5,5,5,readme,5,NULL
+139,eajby9qahsj48kwswxl9kz3t7l02ztvl,React,3,1,4,1,5,5,5,5,3,4,5,package_manager,2,"My experience with React's documentation has been overall pleasant. While I agree with the navigation rating I disagree with the documentation quality metric for ""Readability of text"" and ""Readability of code examples"" - I think the text and code examples are very easy to understand and easy to read."
+144,p7rkx9lg518fad8ziclwfn0f4zdq4cgm,pyppeteer,1,1,2,2,5,4,4,5,5,2,3,readme,2,NULL
+146,d2cmszmgsprwayng3f5x6tp0nmd3i2ct,scikit-learn,6,1,3,4,5,4,3,4,4,4,4,package_manager,2,More difficult to properly assess the documentation quality given that the link for official documentation is more of a map for relevant documentation of methods rather than an all-encompassing page.
+148,qjkfbswvl0irmqmos74dmf5nkd75n0dv,soot,36,1,4,2,4,4,4,4,4,4,4,readme,5,NULL
+150,5r4ylonz9dikkvs5a7d0e1iilspn6v6m,jQuery,12,1,4,2,4,4,2,2,1,2,4,readme,1,I find it difficult to understand how the metrics are actually populated: what data are they based on? How were they calculated? Based on what data? Which version of jQuery? jQuery is a very bizarre library\n\nI just find it difficult to draw a conclusion from jQuery's documentation to these metrics. since most the functionality is exposed on the $(selector) object. How are code examples extracted?
+151,5r4ylonz9dikkvs5a7d0e1iilspn6v6m,Flask,12,1,2,3,2,2,2,2,2,4,4,readme,2,The Flask project starts with a tutorial that teaches you how to use it from the start up. This is a good documentation and it is unclear how these metrics account for solid tutorials. That said it's sometimes difficult to find Flask API methods and types. These metrics do not reflect many of the practical considerations of Flask's documentation quality.
+166,sw7f2cgu8zlrmnynqfldfuwuk9gko6ch,numpy,3,1,2,2,2,2,2,2,1,2,2,readme,1,Most of the documentation quality metrics are 0 star which seems pretty strange and inaccurate to me. The documented library tasks section also seems quite limited and I feel a google search would be more effective.
+168,hzgw50xg17yrxlasbbqrx2h8d67u30tv,React,3,0,5,2,5,5,3,4,3,2,4,readme,NULL,NULL
+169,hzgw50xg17yrxlasbbqrx2h8d67u30tv,numpy,3,0,4,5,5,5,2,5,4,1,4,readme,NULL,NULL

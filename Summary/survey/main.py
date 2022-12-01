@@ -218,7 +218,7 @@ def main():
     usefulness = df.usefulness
     fig, ax = plt.subplots(figsize=(10, 10))
     ax.violinplot(usefulness, showmedians=True)
-    ax.set_title('Distribution of Usefulness Ratings', fontsize=16)
+    # ax.set_title('Distribution of Usefulness Ratings', fontsize=16)
     ax.set_yticks([1, 2, 3, 4, 5])
     plt.tick_params(axis="x", which="both", bottom=False, top=False,
                     labelbottom=False)
@@ -231,7 +231,7 @@ def main():
     matching = df.matching
     fig, ax = plt.subplots(figsize=(10, 10))
     ax.violinplot(matching, showmedians=True)
-    ax.set_title('Distribution of Matching Ratings', fontsize=16)
+    # ax.set_title('Distribution of Matching Ratings', fontsize=16)
     ax.set_yticks([1,2,3,4,5])
     plt.tick_params(axis="x", which="both", bottom=False, top=False, labelbottom=False)
     ax.set_ylabel("Rating", fontsize=14)
@@ -240,15 +240,25 @@ def main():
 
     df = dataframe.copy()
     df.dropna(subset=["years_experience"], inplace=True)
-    # years_experience = df.years_experience
-    years_experience = [4,2,10,15,0,12,12,6,6,6,6,5,10,3,5,40,5,4,15,8,0,5,20,8,30,10,10,20,7,23,4,6,40,11,15,0,5,5,1,2,25,25,4,22,18,0,22,0,0,18,3,10,20,10,30,3,4,3,2,16,4,2,2,2,3,2,2,10,40,1,11,11,2,2,5,11,3,5,5,23,13,0,5,2,10,6,5,25,3,7,4,1,7,20,30,6,1,20,8,3,5,3,30,22,9,8,6,10,6,8,8,8,8,4,2,2,12,3,2,25,4,4,2,2,4,4,10,4,5,4,1,9,0,4,3,8]
-    fig, ax = plt.subplots(figsize=(10, 10))
-    ax.violinplot(years_experience, showmedians=True, showextrema=True)
-    ax.set_title('Distribution of Years Experience', fontsize=16)
+    years_experience_filtered = df.years_experience
+    dataframe = pd.read_csv("responses.csv", on_bad_lines="warn", encoding="ISO-8859-1")
+    dataframe.dropna(subset=["years_experience"], inplace=True)
+    years_experience_unfiltered = dataframe[dataframe["years_experience"] < 41].years_experience
+    fig, (ax1, ax2) = plt.subplots(nrows=1, ncols=2, figsize=(10, 10))
+    ax1.violinplot(years_experience_unfiltered, showmedians=True, showextrema=True)
+    ax1.set_title('Distribution of Years Experience (168)', fontsize=16)
+    ax1.set_ylabel("Years Experience", fontsize=14)
+    ax2.violinplot(years_experience_filtered, showmedians=True, showextrema=True)
+    ax2.set_title('Distribution of Years Experience (25)', fontsize=16)
+    ax2.set_ylabel("Years Experience", fontsize=14)
     # ax.set_yticks([1, 2, 3, 4, 5])
-    plt.tick_params(axis="x", which="both", bottom=False, top=False,
-                    labelbottom=False)
-    ax.set_ylabel("Years Experience", fontsize=14)
+    ax1.set_xticks([])
+    ax1.axis(ymin=0, ymax=45)
+    ax2.set_xticks([])
+    ax2.axis(ymin=0, ymax=45)
+    # plt.tick_params(axis="x", which="both", bottom=False, top=False,
+    #                 labelbottom=False)
+    fig.tight_layout(pad=1.5)
     plt.savefig("plots/years_experience_distribution.png")
     plt.close()
 

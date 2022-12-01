@@ -25,6 +25,9 @@ if __name__ == '__main__':
     #                 "https://github.com/jquery/jquery.git", "dom_manipulation")
     debug_metrics("javascript", "jBinary", "https://github.com/jDataView/jBinary/wiki",
                     "https://github.com/jDataView/jBinary.git", None)
+    # debug_metrics("javascript", "qunit",
+    #               "https://api.qunitjs.com/",
+    #               "https://github.com/qunitjs/qunit.git", "testing")
     # https://web.archive.org/web/20210417122335/https://www.nltk.org/api/nltk.parse.html
     # https://web.archive.org/web/20210725152853/https://www.nltk.org/api/nltk.tag.html
     # http://web.archive.org/web/20211017224709/https://github.com/stleary/JSON-java
