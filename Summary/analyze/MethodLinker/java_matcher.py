@@ -76,7 +76,7 @@ def java_match_signatures(repo_name, examples, functions, classes):
                 func_def = functions[potential_method]
             if func_def:
                 function_calls = re.findall(re.compile(
-                    r"%s\([a-zA-Z0-9_:.,/\\ =(){}\'\"|\[\]]*?\)"
+                    r"\b%s\([a-zA-Z0-9_:.,/\\ =(){}\'\"|\[\]]*?\)"
                     % call.replace(".", "\.")), example)
                 for function_call in function_calls:
                     args = function_call.split(", ")
