@@ -55,27 +55,27 @@ def general_rating_not_familiar(qn, library_name):
 
 @register.simple_tag
 def task_list_not_familiar(qn, library_name):
-    return str(qn) + ". How useful is having a list of documented library tasks found in " + str(library_name) + "'s documentation?"
+    return str(qn) + ". How useful is having a list of documented library tasks found for " + str(library_name) + "'s documentation?"
 
 
 @register.simple_tag
 def method_examples_not_familiar(qn, library_name):
-    return str(qn) + ". How useful is having a rating of methods with a code example in " + str(library_name) + "'s documentation?"
+    return str(qn) + ". How useful is having a rating of methods with a code example for " + str(library_name) + "'s documentation?"
 
 
 @register.simple_tag
 def class_examples_not_familiar(qn, library_name):
-    return str(qn) + ". How useful is having a rating of classes with a code example in " + str(library_name) + "'s documentation?"
+    return str(qn) + ". How useful is having a rating of classes with a code example for " + str(library_name) + "'s documentation?"
 
 
 @register.simple_tag
 def text_readability_not_familiar(qn, library_name):
-    return str(qn) + ". How useful is having a rating of readability of text in " + str(library_name) + "'s documentation?"
+    return str(qn) + ". How useful is having a rating of readability of text for " + str(library_name) + "'s documentation?"
 
 
 @register.simple_tag
 def code_readability_not_familiar(qn, library_name):
-    return str(qn) + ". How useful is having a rating of readability of code examples in " + str(library_name) + "'s documentation?"
+    return str(qn) + ". How useful is having a rating of readability of code examples for " + str(library_name) + "'s documentation?"
 
 
 @register.simple_tag
@@ -85,7 +85,7 @@ def consistency_not_familiar(qn, library_name):
 
 @register.simple_tag
 def navigability_not_familiar(qn, library_name):
-    return str(qn) + ". How useful is having a rating of navigability of " + str(library_name) + "'s documentation?"
+    return str(qn) + ". How useful is having a rating of navigability for " + str(library_name) + "'s documentation?"
 
 
 @register.simple_tag

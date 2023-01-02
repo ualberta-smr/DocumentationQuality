@@ -3,6 +3,7 @@ import os.path
 from pprint import pprint
 import pandas as pd
 import matplotlib
+import matplotlib.patches as mpatches
 
 matplotlib.use('TkAgg')
 import matplotlib.pyplot as plt
@@ -187,6 +188,12 @@ def create_violin(dataframe, filename):
     plt.close()
 
 
+def add_label(labels, violin, label):
+    color = violin["bodies"][0].get_facecolor().flatten()
+    labels.append((mpatches.Patch(color=color), label))
+    return labels
+
+
 def main():
     # columns, responses = filter_responses()
     # overall, familiar, unfamiliar = sort_responses(columns, responses)
@@ -209,34 +216,34 @@ def main():
     if not os.path.isdir("plots"):
         os.mkdir("plots")
     dataframe = pd.read_csv("responses_filtered.csv", on_bad_lines="warn", encoding="ISO-8859-1")
-    create_violin(dataframe, "plots/overall_distributions.png")
-    create_violin(dataframe.loc[dataframe["familiar"] == 1], "plots/familiar_distributions.png")
-    create_violin(dataframe.loc[dataframe["familiar"] == 0], "plots/unfamiliar_distributions.png")
+    # create_violin(dataframe, "plots/overall_distributions.png")
+    # create_violin(dataframe.loc[dataframe["familiar"] == 1], "plots/familiar_distributions.png")
+    # create_violin(dataframe.loc[dataframe["familiar"] == 0], "plots/unfamiliar_distributions.png")
 
     df = dataframe.copy()
-    df.dropna(subset=["usefulness"], inplace=True)
-    usefulness = df.usefulness
-    fig, ax = plt.subplots(figsize=(10, 10))
-    ax.violinplot(usefulness, showmedians=True)
-    # ax.set_title('Distribution of Usefulness Ratings', fontsize=16)
-    ax.set_yticks([1, 2, 3, 4, 5])
-    plt.tick_params(axis="x", which="both", bottom=False, top=False,
-                    labelbottom=False)
-    ax.set_ylabel("Rating", fontsize=14)
-    plt.savefig("plots/usefulness_distribution.png")
-    plt.close()
-
-    df = dataframe.copy()
-    df.dropna(subset=["matching"], inplace=True)
-    matching = df.matching
-    fig, ax = plt.subplots(figsize=(10, 10))
-    ax.violinplot(matching, showmedians=True)
-    # ax.set_title('Distribution of Matching Ratings', fontsize=16)
-    ax.set_yticks([1,2,3,4,5])
-    plt.tick_params(axis="x", which="both", bottom=False, top=False, labelbottom=False)
-    ax.set_ylabel("Rating", fontsize=14)
-    plt.savefig("plots/matching_distribution.png")
-    plt.close()
+    # df.dropna(subset=["usefulness"], inplace=True)
+    # usefulness = df.usefulness
+    # fig, ax = plt.subplots(figsize=(10, 10))
+    # ax.violinplot(usefulness, showmedians=True)
+    # # ax.set_title('Distribution of Usefulness Ratings', fontsize=16)
+    # ax.set_yticks([1, 2, 3, 4, 5])
+    # plt.tick_params(axis="x", which="both", bottom=False, top=False,
+    #                 labelbottom=False)
+    # ax.set_ylabel("Rating", fontsize=14)
+    # plt.savefig("plots/usefulness_distribution.png")
+    # plt.close()
+    #
+    # df = dataframe.copy()
+    # df.dropna(subset=["matching"], inplace=True)
+    # matching = df.matching
+    # fig, ax = plt.subplots(figsize=(10, 10))
+    # ax.violinplot(matching, showmedians=True)
+    # # ax.set_title('Distribution of Matching Ratings', fontsize=16)
+    # ax.set_yticks([1,2,3,4,5])
+    # plt.tick_params(axis="x", which="both", bottom=False, top=False, labelbottom=False)
+    # ax.set_ylabel("Rating", fontsize=14)
+    # plt.savefig("plots/matching_distribution.png")
+    # plt.close()
 
     df = dataframe.copy()
     df.dropna(subset=["years_experience"], inplace=True)
@@ -244,21 +251,32 @@ def main():
     dataframe = pd.read_csv("responses.csv", on_bad_lines="warn", encoding="ISO-8859-1")
     dataframe.dropna(subset=["years_experience"], inplace=True)
     years_experience_unfiltered = dataframe[dataframe["years_experience"] < 41].years_experience
-    fig, (ax1, ax2) = plt.subplots(nrows=1, ncols=2, figsize=(10, 10))
-    ax1.violinplot(years_experience_unfiltered, showmedians=True, showextrema=True)
-    ax1.set_title('Distribution of Years Experience (168)', fontsize=16)
-    ax1.set_ylabel("Years Experience", fontsize=14)
-    ax2.violinplot(years_experience_filtered, showmedians=True, showextrema=True)
-    ax2.set_title('Distribution of Years Experience (25)', fontsize=16)
-    ax2.set_ylabel("Years Experience", fontsize=14)
+    # fig, (ax1, ax2) = plt.subplots(nrows=1, ncols=2, figsize=(10, 10))
+    fig = plt.figure(figsize=(10, 10))
+    ax = fig.add_subplot(1, 1, 1)
+    labels = []
+    onesixeight = ax.violinplot(years_experience_unfiltered, showmedians=True, showextrema=True)
+    for pc in onesixeight["bodies"]:
+        pc.set_edgecolor("black")
+    add_label(labels, onesixeight, "168 responses")
+    ax.set_title('Distribution of Years Experience', fontsize=16)
+    ax.set_ylabel("Years Experience", fontsize=14)
+    ax.twinx()
+    twofive = ax.violinplot(years_experience_filtered, showmedians=True, showextrema=True)
+    for pc in twofive["bodies"]:
+        pc.set_color("red")
+    add_label(labels, twofive, "25 responses")
+    ax.legend(*zip(*labels))
+    # ax2.set_title('Distribution of Years Experience (25)', fontsize=16)
+    # ax2.set_ylabel("Years Experience", fontsize=14)
     # ax.set_yticks([1, 2, 3, 4, 5])
-    ax1.set_xticks([])
-    ax1.axis(ymin=0, ymax=45)
-    ax2.set_xticks([])
-    ax2.axis(ymin=0, ymax=45)
+    # ax1.set_xticks([])
+    # ax1.axis(ymin=0, ymax=45)
+    # ax2.set_xticks([])
+    # ax2.axis(ymin=0, ymax=45)
     # plt.tick_params(axis="x", which="both", bottom=False, top=False,
     #                 labelbottom=False)
-    fig.tight_layout(pad=1.5)
+    # fig.tight_layout(pad=1.5)
     plt.savefig("plots/years_experience_distribution.png")
     plt.close()
 
