@@ -277,6 +277,8 @@ def debug_metrics(language, library_name, doc_url, gh_url, domain):
          "domain": domain,
          "description": description,
          "doc_url": doc_url,
+         "gh_url": gh_url,
+         "task_list_done": False,
          "last_updated": datetime.datetime.utcnow()
          })
     print("Done description")
@@ -301,12 +303,7 @@ def debug_metrics(language, library_name, doc_url, gh_url, domain):
                                   "code_readability_rating": code_ease,
                                   "last_updated": datetime.datetime.utcnow()})
     print("Done readability")
-    has_search, has_toc, links_correct = run_checklist(library_name, doc_url)
-    navigation_dict = {
-        "has_search": has_search,
-        "has_toc": has_toc,
-        "links_correct": links_correct,
-    }
+    navigation_dict = run_checklist(library_name, doc_url)
     add_or_update_library_record({"library_name": library_name,
                                   "navigability": json.dumps(navigation_dict),
                                   "last_updated": datetime.datetime.utcnow()})
