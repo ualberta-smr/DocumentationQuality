@@ -226,7 +226,7 @@ def clone_library(library_name, gh_url):
             clone = False
     cursor.close()
 
-    repo_path = clone_repo(gh_url, clone)
+    repo_path = clone_repo(gh_url, True)
     return repo_path
 
 

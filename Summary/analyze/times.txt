@@ -101,3 +101,249 @@ Finished extracting tasks: 299.61866569519043
 Finished extracting tasks: 310.2470223903656
 Finished extracting tasks: 298.94343733787537
 Finished extracting tasks: 298.78369426727295
+Starting analysis for GitPython
+Finished retrieving description: 1.3232319355010986
+Finished calculating navigability: 0.24704742431640625
+Finished calculating readability: 41.115785360336304
+Finished matching with Signatures: 42.652549028396606
+Finished matching with Examples: 42.72928595542908
+Starting analysis for GitPython
+Finished retrieving description: 1.0687463283538818
+Finished calculating navigability: 0.24856233596801758
+Finished calculating readability: 30.471949338912964
+Finished matching with Signatures: 31.824837923049927
+Finished matching with Examples: 31.853317975997925
+Finished extracting tasks: 1259.5116755962372
+Starting analysis for Ivy
+Finished retrieving description: 0.4017174243927002
+Finished calculating navigability: 0.4352283477783203
+Finished matching with Examples: 4.5687315464019775
+Finished matching with Signatures: 4.607906818389893
+Finished calculating readability: 4.754322528839111
+Finished extracting tasks: 446.09322786331177
+Starting analysis for testrun
+Finished retrieving description: 1.0382375717163086
+Finished calculating navigability: 0.16788053512573242
+Finished calculating readability: 0.26212310791015625
+Finished matching with Examples: 0.302135705947876
+Finished matching with Signatures: 0.3148620128631592
+Finished extracting tasks: 1.9148719310760498
+Starting analysis for PyOpenGL
+Finished retrieving description: 0.17778253555297852
+Finished calculating navigability: 1.9790329933166504
+Finished calculating readability: 18.444653749465942
+Finished extracting tasks: 61.46680164337158
+Starting analysis for rcdesign
+Finished retrieving description: 1.0143356323242188
+Finished calculating navigability: 0.11391925811767578
+Finished calculating readability: 5.284799337387085
+Finished matching with Signatures: 6.63302206993103
+Finished matching with Examples: 6.76700234413147
+Finished extracting tasks: 150.76881003379822
+Starting analysis for PyOpenGL
+Finished retrieving description: 0.5734636783599854
+Finished calculating navigability: 1.0057034492492676
+Finished calculating readability: 18.488755702972412
+Finished extracting tasks: 65.21172189712524
+Starting analysis for PyOpenGL
+Finished retrieving description: 0.29326820373535156
+Finished calculating navigability: 2.379321813583374
+Finished matching with Examples: 34.87240815162659
+Finished matching with Signatures: 35.365270137786865
+Finished calculating readability: 35.86556792259216
+Finished extracting tasks: 73.86974120140076
+Starting analysis for twilio
+Finished retrieving description: 1.2544379234313965
+Finished calculating navigability: 0.4538147449493408
+Finished calculating readability: 125.24367809295654
+Finished matching with Examples: 131.9584047794342
+Finished matching with Signatures: 133.65682721138
+Finished extracting tasks: 296.67385959625244
+Starting analysis for Meyda
+Finished retrieving description: 0.2715590000152588
+Finished calculating navigability: 0.15447330474853516
+Finished matching with Signatures: 1.5656936168670654
+Finished matching with Examples: 1.5792467594146729
+Finished calculating readability: 1.5946674346923828
+Finished extracting tasks: 219.71653819084167
+Starting analysis for orjson
+Finished retrieving description: 0.9070408344268799
+Finished calculating navigability: 0.9610164165496826
+Finished calculating readability: 19.298872470855713
+Finished matching with Signatures: 19.313597679138184
+Finished matching with Examples: 19.327298641204834
+Finished extracting tasks: 295.4374623298645
+Starting analysis for requests
+Finished retrieving description: 0.1980595588684082
+Finished calculating navigability: 0.21554160118103027
+Finished matching with Signatures: 6.556239128112793
+Finished matching with Examples: 6.577056884765625
+Finished calculating readability: 6.636219263076782
+Finished extracting tasks: 3207.642900943756
+Starting analysis for JSON-java
+Finished retrieving description: 0.7523999214172363
+Finished calculating navigability: 0.6253776550292969
+Finished matching with Signatures: 21.98327136039734
+Finished matching with Examples: 22.005361795425415
+Finished calculating readability: 43.54864573478699
+Finished extracting tasks: 297.2225525379181
+Starting analysis for NLTK
+Finished retrieving description: 0.27606892585754395
+Finished calculating navigability: 0.17673802375793457
+Finished matching with Signatures: 8.73481822013855
+Finished matching with Examples: 8.748125791549683
+Finished calculating readability: 8.762635707855225
+Finished extracting tasks: 13.138187408447266
+Starting analysis for CoreNLP
+Finished retrieving description: 0.2576632499694824
+Finished calculating navigability: 0.15809059143066406
+Finished matching with Signatures: 144.62203550338745
+Finished matching with Examples: 144.64093160629272
+Finished calculating readability: 278.8546783924103
+Finished extracting tasks: 2199.6776015758514
+Starting analysis for Tensorflow
+Finished retrieving description: 5.112027168273926
+Finished calculating navigability: 6.251990795135498
+Starting analysis for TensorFlow
+Finished retrieving description: 5.128182411193848
+Finished calculating navigability: 13.925023317337036
+Starting analysis for Wikidata
+Finished retrieving description: 0.9851861000061035
+Finished calculating navigability: 0.3921380043029785
+Finished calculating readability: 21.673707008361816
+Finished matching with Signatures: 22.621248245239258
+Finished matching with Examples: 22.73822569847107
+Finished extracting tasks: 276.3690183162689
+Finished matching with Signatures: 82693.09195303917
+Finished matching with Examples: 82783.28033351898
+Finished calculating readability: 130321.33746480942
+Finished calculating readability: 135888.55289959908
+Starting analysis for Typescript
+Finished retrieving description: 1.5320937633514404
+Finished calculating navigability: 0.637643575668335
+Finished calculating readability: 26.58784818649292
+Finished matching with Examples: 26.618088245391846
+Finished matching with Signatures: 26.64812183380127
+Finished extracting tasks: 109.28589582443237
+Starting analysis for Tensorflow
+Finished retrieving description: 5.145562410354614
+Finished calculating navigability: 6.80725884437561
+Starting analysis for twilio
+Finished retrieving description: 3.883284330368042
+Finished calculating navigability: 0.8081166744232178
+Finished matching with Examples: 144.96493577957153
+Finished matching with Signatures: 145.0399866104126
+Finished calculating readability: 145.1194989681244
+Finished extracting tasks: 323.806921005249
+Starting analysis for orjson
+Finished retrieving description: 0.8779888153076172
+Finished calculating navigability: 1.8433263301849365
+Finished calculating readability: 21.864679098129272
+Finished matching with Signatures: 21.89548397064209
+Finished matching with Examples: 21.895671844482422
+Starting analysis for orjson
+Finished retrieving description: 0.8332986831665039
+Finished calculating navigability: 1.4058818817138672
+Finished calculating readability: 22.23540997505188
+Finished matching with Signatures: 22.254645824432373
+Finished matching with Examples: 22.26842188835144
+Finished extracting tasks: 296.7591724395752
+Starting analysis for python-socketio
+Finished retrieving description: 1.3647871017456055
+Finished calculating navigability: 0.13522577285766602
+Finished calculating readability: 4.71100926399231
+Finished matching with Signatures: 4.891888380050659
+Finished matching with Examples: 5.011660814285278
+Finished extracting tasks: 1065.6057479381561
+Starting analysis for Astro
+Finished retrieving description: 0.39958834648132324
+Finished calculating navigability: 0.7217671871185303
+Finished matching with Examples: 7.944913864135742
+Finished matching with Signatures: 7.965875864028931
+Finished calculating readability: 8.019721746444702
+Finished extracting tasks: 52.95796298980713
+Starting analysis for Mockito
+Finished retrieving description: 1.1508498191833496
+Finished calculating navigability: 0.32513856887817383
+Finished matching with Examples: 139.98865365982056
+Finished matching with Signatures: 141.02991938591003
+Finished extracting tasks: 270.69141006469727
+Starting analysis for Mockito
+Finished retrieving description: 0.9499390125274658
+Finished calculating navigability: 0.3104743957519531
+Finished matching with Examples: 139.9568030834198
+Finished matching with Signatures: 141.3723645210266
+Finished extracting tasks: 270.3888123035431
+Starting analysis for zoo-web-components
+Finished retrieving description: 1.4087471961975098
+Finished calculating navigability: 1.1230847835540771
+Finished calculating readability: 2.8562393188476562
+Finished matching with Examples: 2.9621810913085938
+Finished matching with Signatures: 2.9761061668395996
+Finished extracting tasks: 151.76853322982788
+Starting analysis for axios
+Finished retrieving description: 0.3035414218902588
+Finished calculating navigability: 0.18150782585144043
+Finished matching with Examples: 5.070932388305664
+Finished calculating readability: 5.09267783164978
+Finished matching with Signatures: 5.103960752487183
+Finished extracting tasks: 30.605605363845825
+Starting analysis for soot
+Finished retrieving description: 1.3859150409698486
+Finished calculating navigability: 0.2314612865447998
+Finished calculating readability: 2.0094540119171143
+Finished extracting tasks: 3.6994123458862305
+Finished matching with Signatures: 89.05909585952759
+Finished matching with Examples: 89.07489466667175
+Starting analysis for react-query
+Finished retrieving description: 1.3741068840026855
+Finished calculating navigability: 0.32057619094848633
+Finished matching with Signatures: 2.6197078227996826
+Finished matching with Examples: 2.638845205307007
+Finished calculating readability: 2.6548335552215576
+Finished extracting tasks: 28.032042264938354
+Starting analysis for Pytorch
+Finished retrieving description: 1.4493234157562256
+Finished calculating navigability: 0.36071085929870605
+Finished matching with Examples: 25.201613903045654
+Finished calculating readability: 25.78699803352356
+Finished matching with Signatures: 25.853214263916016
+Finished extracting tasks: 1741.7662320137024
+Starting analysis for React
+Finished retrieving description: 0.18743896484375
+Finished calculating navigability: 0.3507070541381836
+Finished calculating readability: 17.79459834098816
+Finished matching with Examples: 17.806190967559814
+Finished matching with Signatures: 17.81866979598999
+Finished extracting tasks: 82.58778858184814
+Starting analysis for pyppeteer
+Finished retrieving description: 1.5717144012451172
+Finished calculating navigability: 0.7395334243774414
+Finished calculating readability: 24.4085590839386
+Finished extracting tasks: 252.34095335006714
+Starting analysis for scikit-learn
+Finished retrieving description: 0.3004879951477051
+Finished calculating navigability: 0.24236822128295898
+Finished matching with Signatures: 5.073629140853882
+Finished matching with Examples: 5.089529752731323
+Finished calculating readability: 5.105280876159668
+Finished extracting tasks: 690.327454328537
+Starting analysis for GraphQL compiler
+Finished retrieving description: 0.8020410537719727
+Finished calculating navigability: 0.3230552673339844
+Finished calculating readability: 0.4007699489593506
+Finished matching with Signatures: 0.48389387130737305
+Finished matching with Examples: 0.4980795383453369
+Finished extracting tasks: 30.52036452293396
+Starting analysis for Flask
+Finished retrieving description: 1.021531581878662
+Finished calculating navigability: 0.4500546455383301
+Finished matching with Signatures: 22.646883249282837
+Finished matching with Examples: 22.973922967910767
+Finished calculating readability: 23.08785653114319
+Finished extracting tasks: 8175.329038858414
+Starting analysis for pytest
+Finished retrieving description: 1.2497687339782715
+Finished calculating navigability: 0.09743905067443848
+Finished calculating readability: 6.972404479980469
+Finished extracting tasks: 5450.45508646965
