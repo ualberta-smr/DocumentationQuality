@@ -8,6 +8,7 @@ import matplotlib.patches as mpatches
 matplotlib.use('TkAgg')
 import matplotlib.pyplot as plt
 
+from scipy.stats import ks_2samp
 
 def calculate_average(response_dict):
     averages = dict()
@@ -166,7 +167,7 @@ def create_violin(dataframe, filename):
 
     # Extract Figure and Axes instance
     fig, ax = plt.subplots(figsize=(20, 20))
-    plt.subplots_adjust(left=0.19)
+    plt.subplots_adjust(left=0.30)
 
     # Create a plot
     # values = [general_rating, task_list, code_examples_methods, code_examples_classes, text_readability, code_readability, consistency, navigability, usefulness]
@@ -176,14 +177,19 @@ def create_violin(dataframe, filename):
     labels = ["Navigability", "Documentation/\nSource code similarity", "Code Readability",
               "Text Readability", "Class Examples", "Method Examples",
               "Task List", "General Rating"]
-    ax.violinplot(values, showmedians=True, vert=False)
+    vp = ax.violinplot(values, showmedians=True, vert=False)
+    for pc in vp["bodies"]:
+        pc.set_color("gray")
+        pc.set_edgecolor("black")
     ax.set_yticks([1, 2, 3, 4, 5, 6, 7, 8])
-    ax.set_yticklabels(labels, fontsize=14)
-    ax.set_xticks([1, 2, 3, 4, 5])
+    ax.set_yticklabels(labels, fontsize=30)
+    labels = [1, 2, 3, 4, 5]
+    ax.set_xticks(labels)
+    ax.set_xticklabels(labels, fontsize=30)
     # Add title
-    ax.set_title('Distribution of Ratings per Question', fontsize=20)
-    ax.set_xlabel("Rating", fontsize=18)
-    ax.set_ylabel("Metrics", fontsize=18)
+    # ax.set_title('Distribution of Ratings per Question', fontsize=28)
+    ax.set_xlabel("Rating", fontsize=30)
+    ax.set_ylabel("Metrics", fontsize=32)
     # plt.show()
     plt.savefig(filename)
     plt.close()
@@ -238,12 +244,15 @@ def main():
     df.dropna(subset=["matching"], inplace=True)
     matching = df.matching
     fig, ax = plt.subplots(figsize=(10, 10))
-    ax.violinplot(matching, showmedians=True)
+    vp = ax.violinplot(matching, showmedians=True)
+    for pc in vp["bodies"]:
+        pc.set_color("gray")
+        pc.set_edgecolor("black")
     # ax.set_title('Distribution of Matching Ratings', fontsize=16)
     ax.set_yticks([1,2,3,4,5])
     plt.tick_params(axis="x", which="both", bottom=False, top=False, labelbottom=False)
-    plt.tick_params(axis="y", which="both", labelsize=20)
-    ax.set_ylabel("Rating", fontsize=20, labelpad=10)
+    plt.tick_params(axis="y", which="both", labelsize=30)
+    ax.set_ylabel("Rating", fontsize=34, labelpad=10)
     plt.savefig("plots/matching_distribution.png")
     plt.close()
 
@@ -261,14 +270,18 @@ def main():
     for pc in onesixeight["bodies"]:
         pc.set_edgecolor("black")
     add_label(labels, onesixeight, "168 responses")
-    ax.set_title('Distribution of Years Experience', fontsize=16)
-    ax.set_ylabel("Years Experience", fontsize=14)
-    ax.twinx()
+    ax.set_title('Distribution of Years Experience', fontsize=24)
+    ax.set_ylabel("Years Experience", fontsize=20)
+    plt.tick_params(axis="x", which="both", bottom=False, top=False,
+                    labelbottom=False)
+    plt.tick_params(axis="y", which="both", labelsize=20)
     twofive = ax.violinplot(years_experience_filtered, showmedians=True, showextrema=True)
     for pc in twofive["bodies"]:
         pc.set_color("red")
     add_label(labels, twofive, "25 responses")
-    ax.legend(*zip(*labels))
+    ax.legend(*zip(*labels), loc="right", prop={'size': 16})
+
+    print(ks_2samp(years_experience_unfiltered.tolist(), years_experience_filtered.tolist()))
     # ax2.set_title('Distribution of Years Experience (25)', fontsize=16)
     # ax2.set_ylabel("Years Experience", fontsize=14)
     # ax.set_yticks([1, 2, 3, 4, 5])
