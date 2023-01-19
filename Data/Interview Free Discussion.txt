@@ -1,0 +1,7 @@
+Participants were able to share any insights regarding documentation and the mockup that was not addressed earlier.
+Participant P1 responded about the importance of good naming of API methods and classes.
+They mentioned that well made, descriptive, and concise names for API methods and classes removes the need for much of the documentation.
+A descriptive enough method name allows a developer to understand the intent of the method, and accompanied by a code example, will understand how to use the method, removing the need for any textual documentation.
+Participant P2 highlights the importance of the idea of "consistency" between the documentation and the source code, suggesting that additional measurements can be included into the "consistency" metric.
+Keeping the trust between the developer and library requires correct documentation, however, aside from bringing up its importance, no concrete metrics were suggested to facilitate measuring consistency beyond what was currently presented.
+Participant P3 had no additional comments.

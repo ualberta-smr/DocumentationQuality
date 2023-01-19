@@ -1,3 +1,15 @@
+## Data
+- Original verb list for Task Extraction is found in this file:
+`Summary/analyze/TaskExtractor/properties/config.properties`
+
+- Updated verb lists for Task Extraction are found in this directory:
+`Summary/analyze/TaskExtractor/properties`
+
+- HCI Checklist Heuristics found in this file:
+`Summary/analyze/HCI/checklist.py`
+
+- `Data` directory contains interview theming and coding
+
 ## Installation Instructions
 ### Requirements
 Python libraries are in the `requirements.txt` file. However, this project additionally needs:
