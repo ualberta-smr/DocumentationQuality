@@ -1,0 +1,467 @@
+Code,Signature,Linked,Source File,Page
+QUnit.module( name ),QUnit.module( name ),"module(name, options, executeNow) ",qunit/src/module.js,https://api.qunitjs.com//QUnit/module/
+"QUnit.module( name, nested )","QUnit.module( name, nested )","module(name, options, executeNow) ",qunit/src/module.js,https://api.qunitjs.com//QUnit/module/
+"QUnit.module( name, options )","QUnit.module( name, options )","module(name, options, executeNow) ",qunit/src/module.js,https://api.qunitjs.com//QUnit/module/
+"QUnit.module( name, options, nested )","QUnit.module( name, options, nested )","module(name, options, executeNow)",qunit/src/module.js,https://api.qunitjs.com//QUnit/module/
+QUnit.module.only(),QUnit.module.only(),module.only(...args),qunit/src/module.js,https://api.qunitjs.com//QUnit/module/
+QUnit.module.skip(),QUnit.module.skip(),"module.skip(name, options, executeNow)",qunit/src/module.js,https://api.qunitjs.com//QUnit/module/
+QUnit.module.todo(),QUnit.module.todo(),"module.todo(name, options, executeNow)",qunit/src/module.js,https://api.qunitjs.com//QUnit/module/
+QUnit.module(),QUnit.module(),"module(name, options, executeNow)",qunit/src/module.js,https://api.qunitjs.com//QUnit/module/
+QUnit.test.only(),QUnit.test.only(),"test.only(testName, callback)",qunit/src/test.js,https://api.qunitjs.com//QUnit/module/
+QUnit.test.skip(),QUnit.test.skip(),test.skip(testName),qunit/src/test.js,https://api.qunitjs.com//QUnit/module/
+QUnit.test.todo(),QUnit.test.todo(),"test.todo(testName, callback)",qunit/src/test.js,https://api.qunitjs.com//QUnit/module/
+QUnit.begin(),QUnit.begin(),begin(),qunit/src/core.js,https://api.qunitjs.com//QUnit/module/
+QUnit.module.only(),QUnit.module.only(),module.only(...args),qunit/src/module.js,https://api.qunitjs.com//QUnit/module/
+QUnit.module.skip(),QUnit.module.skip(),"module.skip(name, options, executeNow)",qunit/src/module.js,https://api.qunitjs.com//QUnit/module/
+QUnit.module.todo(),QUnit.module.todo(),"module.todo(name, options, executeNow)",qunit/src/module.js,https://api.qunitjs.com//QUnit/module/
+"QUnit.module('Group A');
+
+QUnit.test('basic test example 1', function (assert) {
+  assert.true(true, 'this is fine');
+});
+QUnit.test('basic test example 2', function (assert) {
+  assert.true(true, 'this is also fine');
+});
+
+QUnit.module('Group B');
+
+QUnit.test('basic test example 3', function (assert) {
+  assert.true(true, 'this is fine');
+});
+QUnit.test('basic test example 4', function (assert) {
+  assert.true(true, 'this is also fine');
+});",,,,https://api.qunitjs.com//QUnit/module/
+"const { test } = QUnit;
+
+QUnit.module('Group A');
+
+test('basic test example', assert => {
+  assert.true(true, 'this is fine');
+});
+test('basic test example 2', assert => {
+  assert.true(true, 'this is also fine');
+});
+
+QUnit.module('Group B');
+
+test('basic test example 3', assert => {
+  assert.true(true, 'this is fine');
+});
+test('basic test example 4', assert => {
+  assert.true(true, 'this is also fine');
+});",,,,https://api.qunitjs.com//QUnit/module/
+"QUnit.module('module A', {
+  before: function () {
+    // prepare something once for all tests
+  },
+  beforeEach: function () {
+    // prepare something before each test
+  },
+  afterEach: function () {
+    // clean up after each test
+  },
+  after: function () {
+    // clean up once after all tests are done
+  }
+});",,,,https://api.qunitjs.com//QUnit/module/
+"const { test } = QUnit;
+
+QUnit.module('Group A', hooks => {
+  test('basic test example', assert => {
+    assert.true(true, 'this is fine');
+  });
+
+  test('basic test example 2', assert => {
+    assert.true(true, 'this is also fine');
+  });
+});
+
+QUnit.module('Group B', hooks => {
+  test('basic test example 3', assert => {
+    assert.true(true, 'this is fine');
+  });
+
+  test('basic test example 4', assert => {
+    assert.true(true, 'this is also fine');
+  });
+});",,,,https://api.qunitjs.com//QUnit/module/
+"const { test } = QUnit;
+
+QUnit.module('My Group', hooks => {
+  // It is valid to call the same hook methods more than once.
+  hooks.beforeEach(assert => {
+    assert.ok(true, 'beforeEach called');
+  });
+
+  hooks.afterEach(assert => {
+    assert.ok(true, 'afterEach called');
+  });
+
+  test('with hooks', assert => {
+    // 1 x beforeEach
+    // 1 x afterEach
+    assert.expect(2);
+  });
+
+  QUnit.module('Nested Group', hooks => {
+    // This will run after the parent module's beforeEach hook
+    hooks.beforeEach(assert => {
+      assert.ok(true, 'nested beforeEach called');
+    });
+
+    // This will run before the parent module's afterEach
+    hooks.afterEach(assert => {
+      assert.ok(true, 'nested afterEach called');
+    });
+
+    test('with nested hooks', assert => {
+      // 2 x beforeEach (parent, current)
+      // 2 x afterEach (current, parent)
+      assert.expect(4);
+    });
+  });
+});",,,,https://api.qunitjs.com//QUnit/module/
+"QUnit.module('Machine Maker', {
+  beforeEach: function () {
+    this.maker = new Maker();
+    this.parts = ['wheels', 'motor', 'chassis'];
+  }
+});
+
+QUnit.test('makes a robot', function (assert) {
+  this.parts.push('arduino');
+  assert.equal(this.maker.build(this.parts), 'robot');
+  assert.deepEqual(this.maker.log, ['robot']);
+});
+
+QUnit.test('makes a car', function (assert) {
+  assert.equal(this.maker.build(this.parts), 'car');
+  this.maker.duplicate();
+  assert.deepEqual(this.maker.log, ['car', 'car']);
+});",,,,https://api.qunitjs.com//QUnit/module/
+"const { test } = QUnit;
+
+QUnit.module('Machine Maker', hooks => {
+  hooks.beforeEach(function () {
+    this.maker = new Maker();
+    this.parts = ['wheels', 'motor', 'chassis'];
+  });
+
+  test('makes a robot', function (assert) {
+    this.parts.push('arduino');
+    assert.equal(this.maker.build(this.parts), 'robot');
+    assert.deepEqual(this.maker.log, ['robot']);
+  });
+
+  test('makes a car', function (assert) {
+    assert.equal(this.maker.build(this.parts), 'car');
+    this.maker.duplicate();
+    assert.deepEqual(this.maker.log, ['car', 'car']);
+  });
+});",,,,https://api.qunitjs.com//QUnit/module/
+"const { test } = QUnit;
+
+QUnit.module('Machine Maker', hooks => {
+  let maker;
+  let parts;
+  hooks.beforeEach(() => {
+    maker = new Maker();
+    parts = ['wheels', 'motor', 'chassis'];
+  });
+
+  test('makes a robot', assert => {
+    parts.push('arduino');
+    assert.equal(maker.build(parts), 'robot');
+    assert.deepEqual(maker.log, ['robot']);
+  });
+
+  test('makes a car', assert => {
+    assert.equal(maker.build(parts), 'car');
+    maker.duplicate();
+    assert.deepEqual(maker.log, ['car', 'car']);
+  });
+});",,,,https://api.qunitjs.com//QUnit/module/
+"QUnit.module('Database connection', {
+  before: function () {
+    return new Promise(function (resolve, reject) {
+      DB.connect(function (err) {
+        if (err) {
+          reject(err);
+        } else {
+          resolve();
+        }
+      });
+    });
+  },
+  after: function () {
+    return new Promise(function (resolve, reject) {
+      DB.disconnect(function (err) {
+        if (err) {
+          reject(err);
+        } else {
+          resolve();
+        }
+      });
+    });
+  }
+});",,,,https://api.qunitjs.com//QUnit/module/
+QUnit.module.only(),QUnit.module.only(),module.only(...args),qunit/src/module.js,https://api.qunitjs.com//QUnit/module/
+"QUnit.module('Robot', hooks => {
+  // ...
+});
+
+// Only execute this module when developing the feature,
+// skipping tests from other modules.
+QUnit.module.only('Android', hooks => {
+  let android;
+  hooks.beforeEach(() => {
+    android = new Android();
+  });
+
+  QUnit.test('Say hello', assert => {
+    assert.strictEqual(android.hello(), 'Hello, my name is AN-2178!');
+  });
+
+  QUnit.test('Basic conversation', assert => {
+    android.loadConversationData({
+      Hi: 'Hello',
+      ""What's your name?"": 'My name is AN-2178.',
+      'Nice to meet you!': 'Nice to meet you too!',
+      '...': '...'
+    });
+
+    assert.strictEqual(
+      android.answer(""What's your name?""),
+      'My name is AN-2178.'
+    );
+  });
+
+  // ...
+});",,,,https://api.qunitjs.com//QUnit/module/
+QUnit.module.skip(),,,,https://api.qunitjs.com//QUnit/module/
+"QUnit.module('Robot', hooks => {
+  // ...
+});
+
+// Skip this module's tests.
+// For example if the android tests are failing due to unsolved problems.
+QUnit.module.skip('Android', hooks => {
+  let android;
+  hooks.beforeEach(() => {
+    android = new Android();
+  });
+
+  QUnit.test('Say hello', assert => {
+    assert.strictEqual(android.hello(), 'Hello, my name is AN-2178!');
+  });
+
+  QUnit.test('Basic conversation', assert => {
+    // ...
+    assert.strictEqual(
+      android.answer('Nice to meet you!'),
+      'Nice to meet you too!'
+    );
+  });
+
+  // ...
+});",,,,https://api.qunitjs.com//QUnit/module/
+QUnit.module.todo(),QUnit.module.todo(),"module.todo(name, options, executeNow)",qunit/src/module.js,https://api.qunitjs.com//QUnit/module/
+"QUnit.module.todo('Robot', hooks => {
+  let robot;
+  hooks.beforeEach(() => {
+    robot = new Robot();
+  });
+
+  QUnit.test('Say', assert => {
+    // Currently, it returns undefined
+    assert.strictEqual(robot.say(), ""I'm Robot FN-2187"");
+  });
+
+  QUnit.test('Move arm', assert => {
+    // Move the arm to point (75, 80). Currently, each throws a NotImplementedError
+    robot.moveArmTo(75, 80);
+    assert.deepEqual(robot.getPosition(), { x: 75, y: 80 });
+  });
+
+  // ...
+});",,,,https://api.qunitjs.com//QUnit/module/
+QUnit.start(),QUnit.start(),start(count),qunit/src/core.js,https://api.qunitjs.com//QUnit/start/
+QUnit.stop(),QUnit.stop(),,,https://api.qunitjs.com//QUnit/start/
+"QUnit.config.autostart = false;
+
+require(
+  ['test/tests1.js', 'test/tests2.js'],
+  QUnit.start
+);",,,,https://api.qunitjs.com//QUnit/start/
+"QUnit.test( name, callback )","QUnit.test( name, callback )","test(testName, callback)",qunit/src/test.js,https://api.qunitjs.com//QUnit/test/
+QUnit.test(),QUnit.test(),"test(testName, callback)",qunit/src/test.js,https://api.qunitjs.com//QUnit/test/
+QUnit.test.only(),QUnit.test.only(),"test.only(testName, callback)",qunit/src/test.js,https://api.qunitjs.com//QUnit/test/
+QUnit.test.skip(),QUnit.test.skip(),test.skip(testName),qunit/src/test.js,https://api.qunitjs.com//QUnit/test/
+QUnit.test.todo(),QUnit.test.todo(),"test.todo(testName, callback)",qunit/src/test.js,https://api.qunitjs.com//QUnit/test/
+"function square (x) {
+  return x * x;
+}
+
+QUnit.test('square()', assert => {
+  assert.equal(square(2), 4, 'square(2)');
+  assert.equal(square(3), 9, 'square(3)');
+});",,,,https://api.qunitjs.com//QUnit/test/
+"QUnit.test('Test with async-await', async assert => {
+  const a = await fetchSquare(2);
+  const b = await fetchSquare(3);
+
+  assert.equal(a, 4);
+  assert.equal(b, 9);
+  assert.equal(await fetchSquare(5), 25);
+});",,,,https://api.qunitjs.com//QUnit/test/
+"function fetchSquare (x) {
+  return new Promise(function (resolve) {
+    setTimeout(function () {
+      resolve(x * x);
+    }, 1000);
+  });
+}
+
+QUnit.test('Test with Promise', function (assert) {
+  return fetchSquare(3).then(function (result) {
+    assert.equal(result, 9);
+  });
+});",,,,https://api.qunitjs.com//QUnit/test/
+"QUnit.test.each( name, dataset, callback )","QUnit.test.each( name, dataset, callback )","test.each(name, dataset, callback)",qunit/src/test.js,https://api.qunitjs.com//QUnit/test.each/
+"QUnit.test.only.each( name, dataset, callback )","QUnit.test.only.each( name, dataset, callback )","test.only.each(name, dataset, callback)",qunit/src/test.js,https://api.qunitjs.com//QUnit/test.each/
+"QUnit.test.skip.each( name, dataset, callback )","QUnit.test.skip.each( name, dataset, callback )","test.skip.each(name, dataset, callback)",qunit/src/test.js,https://api.qunitjs.com//QUnit/test.each/
+"QUnit.test.todo.each( name, dataset, callback )","QUnit.test.todo.each( name, dataset, callback )","test.todo.each(name, dataset, callback)",qunit/src/test.js,https://api.qunitjs.com//QUnit/test.each/
+QUnit.test.each(),QUnit.test.each(),"test.each(testName, dataset, callback)",qunit/src/test.js,https://api.qunitjs.com//QUnit/test.each/
+QUnit.test(),QUnit.test(),"test(testName, callback)",qunit/src/test.js,https://api.qunitjs.com//QUnit/test.each/
+"function isEven (x) {
+  return x % 2 === 0;
+}
+
+QUnit.test.each('isEven()', [2, 4, 6], (assert, data) => {
+  assert.true(isEven(data), `${data} is even`);
+});",,,,https://api.qunitjs.com//QUnit/test.each/
+"function square (x) {
+  return x * x;
+}
+
+QUnit.test.each('square()', [
+  [2, 4],
+  [3, 9]
+], (assert, [value, expected]) => {
+  assert.equal(square(value), expected, `${value} squared`);
+});",,,,https://api.qunitjs.com//QUnit/test.each/
+"QUnit.test.each('isEven()', {
+  caseEven: [2, true],
+  caseNotEven: [3, false]
+}, (assert, [value, expected]) => {
+  assert.strictEqual(isEven(value), expected);
+});",,,,https://api.qunitjs.com//QUnit/test.each/
+each(),each(),"test.each(testName, dataset, callback)",qunit/src/test.js,https://api.qunitjs.com//QUnit/test.each/
+"function isEven (x) {
+  return x % 2 === 0;
+}
+
+async function isAsyncEven (x) {
+  return isEven(x);
+}
+
+QUnit.test.each('isAsyncEven()', [2, 4], async (assert, data) => {
+  assert.true(await isAsyncEven(data), `${data} is even`);
+});",,,,https://api.qunitjs.com//QUnit/test.each/
+"function isEven (x) {
+  return x % 2 === 0;
+}
+
+function isAsyncEven (x) {
+  return Promise.resolve(isEven(x));
+}
+
+QUnit.test.each('isAsyncEven()', [2, 4], function (assert, data) {
+  return isAsyncEven(data).then(function (result) {
+    assert.true(result, data + ' is even');
+  });
+});",,,,https://api.qunitjs.com//QUnit/test.each/
+"QUnit.test.only( name, callback )","QUnit.test.only( name, callback )","test.only(testName, callback)",qunit/src/test.js,https://api.qunitjs.com//QUnit/test.only/
+"QUnit.only( name, callback )","QUnit.only( name, callback )","test.only(testName, callback)",qunit/src/test.js,https://api.qunitjs.com//QUnit/test.only/
+QUnit.module.only(),QUnit.module.only(),module.only(...args),qunit/src/module.js,https://api.qunitjs.com//QUnit/test.only/
+QUnit.only(),QUnit.only(),module.only(...args),qunit/src/module.js,https://api.qunitjs.com//QUnit/test.only/
+QUnit.test.only(),QUnit.test.only(),"test.only(testName, callback)",qunit/src/test.js,https://api.qunitjs.com//QUnit/test.only/
+QUnit.only(),QUnit.only(),module.only(...args),qunit/src/module.js,https://api.qunitjs.com//QUnit/test.only/
+"QUnit.module('robot', hooks => {
+  let robot;
+  hooks.beforeEach(() => {
+    robot = new Robot();
+  });
+
+  QUnit.test('say()', assert => {
+    assert.true(robot.say('Hello'));
+  });
+
+  // Run only this test
+  // For example, you are working on changing this method.
+  QUnit.test.only('laser()', assert => {
+    assert.true(robot.laser());
+  });
+
+  QUnit.test('take()', assert => {
+    assert.true(robot.take(5));
+  });
+});",,,,https://api.qunitjs.com//QUnit/test.only/
+"QUnit.test.skip( name, callback )","QUnit.test.skip( name, callback )","test.skip.each(name, dataset, callback)",qunit/src/test.js,https://api.qunitjs.com//QUnit/test.skip/
+"QUnit.skip( name, callback )","QUnit.skip( name, callback )","module.skip(name, options, executeNow)",qunit/src/module.js,https://api.qunitjs.com//QUnit/test.skip/
+QUnit.test(),QUnit.test(),"test.skip.each(name, dataset, callback)",qunit/src/test.js,https://api.qunitjs.com//QUnit/test.skip/
+QUnit.module.skip(),QUnit.module.skip(),"module.skip(name, options, executeNow)",qunit/src/module.js,https://api.qunitjs.com//QUnit/test.skip/
+QUnit.skip(),QUnit.skip(),"module.skip(name, options, executeNow)",qunit/src/module.js,https://api.qunitjs.com//QUnit/test.skip/
+QUnit.test.skip(),QUnit.test.skip(),"test.skip.each(name, dataset, callback)",qunit/src/test.js,https://api.qunitjs.com//QUnit/test.skip/
+QUnit.skip(),QUnit.skip(),"module.skip(name, options, executeNow)",qunit/src/module.js,https://api.qunitjs.com//QUnit/test.skip/
+"QUnit.module('robot', hooks => {
+  let robot;
+  hooks.beforeEach(() => {
+    robot = new Robot();
+  });
+
+  QUnit.test('say', assert => {
+    assert.strictEqual(robot.say(), 'Exterminate!');
+  });
+
+  // Robot does not yet have a laser() method yet, skip this test for now
+  QUnit.test.skip('laser', assert => {
+    assert.true(robot.laser());
+  });
+});",,,,https://api.qunitjs.com//QUnit/test.skip/
+"QUnit.test.todo( name, callback )","QUnit.test.todo( name, callback )","test.todo(testName, callback)",qunit/src/test.js,https://api.qunitjs.com//QUnit/test.todo/
+"QUnit.todo( name, callback )","QUnit.todo( name, callback )","module.todo(name, options, executeNow)",qunit/src/test.js,https://api.qunitjs.com//QUnit/test.todo/
+QUnit.test.todo(),QUnit.test.todo(),"test.todo(testName, callback)",qunit/src/test.js,https://api.qunitjs.com//QUnit/test.todo/
+QUnit.test(),QUnit.test(),"test.todo(testName, callback)",qunit/src/test.js,https://api.qunitjs.com//QUnit/test.todo/
+QUnit.module.todo(),QUnit.module.todo(),"module.todo(name, options, executeNow)",qunit/src/module.js,https://api.qunitjs.com//QUnit/test.todo/
+QUnit.todo(),QUnit.todo(),"module.todo(name, options, executeNow)",qunit/src/module.js,https://api.qunitjs.com//QUnit/test.todo/
+QUnit.test.todo(),QUnit.test.todo(),"test.todo(testName, callback)",qunit/src/test.js,https://api.qunitjs.com//QUnit/test.todo/
+QUnit.todo(),QUnit.todo(),"module.todo(name, options, executeNow)",qunit/src/module.js,https://api.qunitjs.com//QUnit/test.todo/
+"QUnit.module('Robot', hooks => {
+  let robot;
+  hooks.beforeEach(() => {
+    robot = new Robot();
+  });
+
+  // Robot is not yet finished, expect this is a todo test
+  QUnit.test.todo('fireLazer', assert => {
+    const result = robot.fireLazer();
+    assert.equal(result, ""I'm firing my lazer!"");
+  });
+});",,,,https://api.qunitjs.com//QUnit/test.todo/
+"// Implicit global
+// Supported everywhere, including old browsers. (But not ES strict mode.)
+QUnit = {
+  config: {
+    autostart: false,
+    maxDepth: 12
+  }
+};
+
+// Browser global
+// For all browsers (including strict mode and old browsers)
+window.QUnit = { /* .. */ };
+
+// Isomorphic global
+// For modern browsers, SpiderMonkey, and Node.js (incl. strict mode).
+globalThis.QUnit = { /* .. */ };",,,,https://api.qunitjs.com//config/

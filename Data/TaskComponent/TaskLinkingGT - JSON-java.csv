@@ -1,0 +1,36 @@
+Examples,Henry's paragraphs,Sarah's paragraphs,Conflict?,Resolved paragraphs,Program,Updated program,Has paragraphs,Paragraph count,Program count,Program correct,Updated program count,Updated program correct,,
+javac org/json/*.java,Build the class files from the package root directory src/main/java,Build the class files from the package root directory src/main/java,0,Build the class files from the package root directory src/main/java,"The org.json package can be built from the command line, Maven, and Gradle. The unit tests can be executed from Maven, Gradle, or individually in an IDE e.g. Eclipse.","The org.json package can be built from the command line, Maven, and Gradle. The unit tests can be executed from Maven, Gradle, or individually in an IDE e.g. Eclipse.",FALSE,1,1,0,1,0,,
+jar cf json-java.jar org/json/*.class,Create the jar file in the current directory,Create the jar file in the current directory,0,Create the jar file in the current directory,Create the jar file in the current directory,Create the jar file in the current directory,FALSE,1,1,1,1,1,,
+javac -cp .;json-java.jar Test.java ,Compile a program that uses the jar (see example code below),Compile a program that uses the jar (see example code below),0,Compile a program that uses the jar (see example code below),,,TRUE,1,0,0,0,0,,
+"import org.json.JSONObject;
+public class Test {
+    public static void main(String args[]){
+       JSONObject jo = new JSONObject(""{ \""abc\"" : \""def\"" }"");
+       System.out.println(jo.toString());
+    }
+}",Test file contents,Test file contents,0,Test file contents,Compile a program that uses the jar (see example code below),Compile a program that uses the jar (see example code below),FALSE,1,1,0,1,0,,
+java -cp .;json-java.jar Test,Execute the Test file,Execute the Test file,0,Execute the Test file,,,TRUE,1,0,0,0,0,,
+"{""abc"":""def""}",Expected output,Expected output,0,Expected output,Execute the Test file,Execute the Test file,FALSE,1,1,0,1,0,,
+mvn clean test,Execute the test suite with Maven:,Execute the test suite with Maven:,0,Execute the test suite with Maven:,Execute the test suite with Maven:,Execute the test suite with Maven:,TRUE,1,1,1,1,1,,
+gradlew clean build test,Execute the test suite with Gradlew:,Execute the test suite with Gradlew:,0,Execute the test suite with Gradlew:,Execute the test suite with Gradlew:,Execute the test suite with Gradlew:,TRUE,1,1,1,1,1,,
+"SomeBean[] myArr = new SomeBean[]{ new SomeBean(1), new SomeBean(2) };
+// these will be wrapped
+JSONArray jArr = new JSONArray(myArr);
+// these will not be wrapped
+jArr.putAll(new SomeBean[]{ new SomeBean(3), new SomeBean(4) });","For example, code like this will create a mixed JSONArray, some items wrapped, others not:","For example, code like this will create a mixed JSONArray, some items wrapped, others not:",0,"For example, code like this will create a mixed JSONArray, some items wrapped, others not:","For example, code like this will create a mixed JSONArray, some items wrapped, others not:","For example, code like this will create a mixed JSONArray, some items wrapped, others not:",FALSE,1,1,1,1,1,,
+"SomeBean[] myArr = new SomeBean[]{ new SomeBean(1), new SomeBean(2) };
+JSONArray jArr = new JSONArray();
+// these will not be wrapped
+jArr.putAll(myArr);
+// these will not be wrapped
+jArr.putAll(new SomeBean[]{ new SomeBean(3), new SomeBean(4) });
+// our jArr is now consistent.","For structure consistency, it would be recommended that the above code is changed to look like 1 of 2 ways.","For structure consistency, it would be recommended that the above code is changed to look like 1 of 2 ways.",0,"For structure consistency, it would be recommended that the above code is changed to look like 1 of 2 ways.","For structure consistency, it would be recommended that the above code is changed to look like 1 of 2 ways.","For example, code like this will create a mixed JSONArray, some items wrapped, others not:",FALSE,1,1,1,1,0,,
+"SomeBean[] myArr = new SomeBean[]{ new SomeBean(1), new SomeBean(2) };
+// these will be wrapped
+JSONArray jArr = new JSONArray(myArr);
+// these will be wrapped
+jArr.putAll(new JSONArray(new SomeBean[]{ new SomeBean(3), new SomeBean(4) }));
+// our jArr is now consistent.","For structure consistency, it would be recommended that the above code is changed to look like 1 of 2 ways.","For structure consistency, it would be recommended that the above code is changed to look like 1 of 2 ways.",0,"For structure consistency, it would be recommended that the above code is changed to look like 1 of 2 ways.","For structure consistency, it would be recommended that the above code is changed to look like 1 of 2 ways.","For example, code like this will create a mixed JSONArray, some items wrapped, others not:",FALSE,1,1,1,1,0,,
+,,,,,,,,11,9,6,9,4,0,0
+,,,,Precision,66.67%,44.44%,,,,,,,,
+,,,,Recall,54.55%,36.36%,,,,,,,#DIV/0!,#DIV/0!

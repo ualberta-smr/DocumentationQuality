@@ -1,0 +1,796 @@
+Examples,Henry's paragraphs,Sarah's paragraphs,Conflict,Resolved paragraphs,,Program,Has paragraphs,Updated Program,Paragraph count,Program count,Program correct,Updated program count,Updated program correct
+>>> dep_parser = CoreNLPDependencyParser(url='http://localhost:9000'),Dependency parser.,Dependency parser.,0,Dependency parser.,,,FALSE,,1,0,0,0,0
+">>> parse, = dep_parser.raw_parse(
+...     'The quick brown fox jumps over the lazy dog.'
+... )
+>>> print(parse.to_conll(4))  
+The     DT      4       det
+quick   JJ      4       amod
+brown   JJ      4       amod
+fox     NN      5       nsubj
+jumps   VBZ     0       ROOT
+over    IN      9       case
+the     DT      9       det
+lazy    JJ      9       amod
+dog     NN      5       nmod
+.       .       5       punct",Dependency parser.,Dependency parser.,0,Dependency parser.,,,,,1,0,0,0,0
+">>> print(parse.tree())  
+(jumps (fox The quick brown) (dog over the lazy) .)",Dependency parser.,Dependency parser.,0,Dependency parser.,,,,,1,0,0,0,0
+">>> for governor, dep, dependent in parse.triples():
+...     print(governor, dep, dependent)  
+    ('jumps', 'VBZ') nsubj ('fox', 'NN')
+    ('fox', 'NN') det ('The', 'DT')
+    ('fox', 'NN') amod ('quick', 'JJ')
+    ('fox', 'NN') amod ('brown', 'JJ')
+    ('jumps', 'VBZ') nmod ('dog', 'NN')
+    ('dog', 'NN') case ('over', 'IN')
+    ('dog', 'NN') det ('the', 'DT')
+    ('dog', 'NN') amod ('lazy', 'JJ')
+    ('jumps', 'VBZ') punct ('.', '.')
+",Dependency parser.,Dependency parser.,0,Dependency parser.,,,,,1,0,0,0,0
+">>> (parse_fox, ), (parse_dog, ) = dep_parser.raw_parse_sents(
+...     [
+...         'The quick brown fox jumps over the lazy dog.',
+...         'The quick grey wolf jumps over the lazy fox.',
+...     ]
+... )
+>>> print(parse_fox.to_conll(4))  
+The DT      4       det
+quick       JJ      4       amod
+brown       JJ      4       amod
+fox NN      5       nsubj
+jumps       VBZ     0       ROOT
+over        IN      9       case
+the DT      9       det
+lazy        JJ      9       amod
+dog NN      5       nmod
+.   .       5       punct",Dependency parser.,Dependency parser.,0,Dependency parser.,,,,,1,0,0,0,0
+">>> print(parse_dog.to_conll(4))  
+The DT      4       det
+quick       JJ      4       amod
+grey        JJ      4       amod
+wolf        NN      5       nsubj
+jumps       VBZ     0       ROOT
+over        IN      9       case
+the DT      9       det
+lazy        JJ      9       amod
+fox NN      5       nmod
+.   .       5       punct",Dependency parser.,Dependency parser.,0,Dependency parser.,,,,,1,0,0,0,0
+">>> (parse_dog, ), (parse_friends, ) = dep_parser.parse_sents(
+...     [
+...         ""I 'm a dog"".split(),
+...         ""This is my friends ' cat ( the tabby )"".split(),
+...     ]
+... )
+>>> print(parse_dog.to_conll(4))  
+I   PRP     4       nsubj
+'m  VBP     4       cop
+a   DT      4       det
+dog NN      0       ROOT",Dependency parser.,Dependency parser.,0,Dependency parser.,,,,,1,0,0,0,0
+">>> print(parse_friends.to_conll(4))  
+This        DT      6       nsubj
+is  VBZ     6       cop
+my  PRP$    4       nmod:poss
+friends     NNS     6       nmod:poss
+'   POS     4       case
+cat NN      0       ROOT
+-LRB-       -LRB-   9       punct
+the DT      9       det
+tabby       NN      6       appos
+-RRB-       -RRB-   9       punct",Dependency parser.,Dependency parser.,0,Dependency parser.,,,,,1,0,0,0,0
+">>> parse_john, parse_mary, = dep_parser.parse_text(
+...     'John loves Mary. Mary walks.'
+... )
+",Dependency parser.,Dependency parser.,0,Dependency parser.,,,,,1,0,0,0,0
+">>> print(parse_john.to_conll(4))  
+John        NNP     2       nsubj
+loves       VBZ     0       ROOT
+Mary        NNP     2       dobj
+.   .       2       punct",Dependency parser.,Dependency parser.,0,Dependency parser.,,,,,1,0,0,0,0
+">>> print(parse_mary.to_conll(4))  
+Mary        NNP     2       nsubj
+walks       VBZ     0       ROOT
+.   .       2       punct",Dependency parser.,Dependency parser.,0,Dependency parser.,,,,,1,0,0,0,0
+">>> len(
+...     next(
+...         dep_parser.raw_parse(
+...             'Anhalt said children typically treat a 20-ounce soda bottle as one '
+...             'serving, while it actually contains 2 1/2 servings.'
+...         )
+...     ).nodes
+... )
+21",Non-breaking space inside of a token.,Non-breaking space inside of a token.,0,Non-breaking space inside of a token.,,,,,1,0,0,0,0
+">>> len(
+...     next(
+...         dep_parser.raw_parse('This is not going to crash: 01 111 555.')
+...     ).nodes
+... )
+10",Phone numbers.,Phone numbers.,0,Phone numbers.,,,,,1,0,0,0,0
+">>> print(
+...     next(
+...         dep_parser.raw_parse('The underscore _ should not simply disappear.')
+...     ).to_conll(4)
+... )  
+The         DT  3   det
+underscore  VBP 3   amod
+_           NN  7   nsubj
+should      MD  7   aux
+not         RB  7   neg
+simply      RB  7   advmod
+disappear   VB  0   ROOT
+.           .   7   punct",Phone numbers.,,1,,No description,,,,0,0,0,0,0
+">>> print(
+...     '\n'.join(
+...         next(
+...             dep_parser.raw_parse(
+...                 'for all of its insights into the dream world of teen life , and its electronic expression through '
+...                 'cyber culture , the film gives no quarter to anyone seeking to pull a cohesive story out of its 2 '
+...                 '1/2-hour running time .'
+...             )
+...         ).to_conll(4).split('\n')[-8:]
+...     )
+... )
+its PRP$    40      nmod:poss
+2 1/2       CD      40      nummod
+-   :       40      punct
+hour        NN      31      nmod
+running     VBG     42      amod
+time        NN      40      dep
+.   .       24      punct",Phone numbers.,,1,,No description,,,,0,0,0,0,0
+>>> parser = CoreNLPParser(url='http://localhost:9000'),Bases: nltk.parse.corenlp.GenericCoreNLPParser,,1,,No description,,,Tokenize a string of text.,0,0,0,1,0
+">>> next(
+...     parser.raw_parse('The quick brown fox jumps over the lazy dog.')
+... ).pretty_print()  
+                     ROOT
+                         |
+                        S
+       _________|____________________________
+      |                                                VP                      |
+      |                               _________|___                   |
+      |                              |                        PP               |
+      |                              |         ________|___            |
+      NP                          |         |                     NP        |
+  __|__________          |         |       _______|____    |
+ DT   JJ    JJ       NN  VBZ   IN   DT      JJ          NN  .
+ |        |      |          |        |         |    |           |            |    |
+The quick brown fox jumps over the     lazy     dog  .",Bases: nltk.parse.corenlp.GenericCoreNLPParser,,1,,No description,,,,0,0,0,0,0
+">>> (parse_fox, ), (parse_wolf, ) = parser.raw_parse_sents(
+...     [
+...         'The quick brown fox jumps over the lazy dog.',
+...         'The quick grey wolf jumps over the lazy fox.',
+...     ]
+... )",Bases: nltk.parse.corenlp.GenericCoreNLPParser,,1,,No description,,,,0,0,0,0,0
+">>> parse_fox.pretty_print()  
+                     ROOT
+                      |
+                      S
+       _______________|__________________________
+      |                         VP               |
+      |                _________|___             |
+      |               |             PP           |
+      |               |     ________|___         |
+      NP              |    |            NP       |
+  ____|__________     |    |     _______|____    |
+ DT   JJ    JJ   NN  VBZ   IN   DT      JJ   NN  .
+ |    |     |    |    |    |    |       |    |   |
+The quick brown fox jumps over the     lazy dog  .",Bases: nltk.parse.corenlp.GenericCoreNLPParser,,1,,No description,,,,0,0,0,0,0
+">>> parse_wolf.pretty_print()  
+                                  ROOT
+                                     |
+                                    S
+       _______________|__________________________
+      |                         VP               |
+      |                _________|___             |
+      |               |             PP           |
+      |               |     ________|___         |
+      NP              |    |            NP       |
+  ____|_________      |    |     _______|____    |
+ DT   JJ   JJ        NN   VBZ   IN   DT      JJ   NN  .
+   |     |        |         |     |    |    |       |    |   |
+The quick grey wolf jumps over the     lazy fox  .",Bases: nltk.parse.corenlp.GenericCoreNLPParser,,1,,No description,,,,0,0,0,0,0
+">>> (parse_dog, ), (parse_friends, ) = parser.parse_sents(
+...     [
+...         ""I 'm a dog"".split(),
+...         ""This is my friends ' cat ( the tabby )"".split(),
+...     ]
+... )",Bases: nltk.parse.corenlp.GenericCoreNLPParser,,1,,No description,,,,0,0,0,0,0
+">>> parse_dog.pretty_print()  
+        ROOT
+         |
+         S
+  _______|____
+ |            VP
+ |    ________|___
+ NP  |            NP
+ |   |         ___|___
+PRP VBP       DT      NN
+ |   |        |       |
+ I   'm       a      dog",Bases: nltk.parse.corenlp.GenericCoreNLPParser,,1,,No description,,,,0,0,0,0,0
+">>> parse_friends.pretty_print()  
+     ROOT
+      |
+      S
+  ____|___________
+ |                VP
+ |     ___________|_____________
+ |    |                         NP
+ |    |                  _______|_________
+ |    |                 NP               PRN
+ |    |            _____|_______      ____|______________
+ NP   |           NP            |    |        NP         |
+ |    |     ______|_________    |    |     ___|____      |
+ DT  VBZ  PRP$   NNS       POS  NN -LRB-  DT       NN  -RRB-
+ |    |    |      |         |   |    |    |        |     |
+This  is   my  friends      '  cat -LRB- the     tabby -RRB-",Bases: nltk.parse.corenlp.GenericCoreNLPParser,,1,,No description,,,,0,0,0,0,0
+">>> parse_john, parse_mary, = parser.parse_text(
+...     'John loves Mary. Mary walks.'
+... )",Bases: nltk.parse.corenlp.GenericCoreNLPParser,,1,,No description,,,,0,0,0,0,0
+">>> parse_john.pretty_print()  
+      ROOT
+       |
+       S
+  _____|_____________
+ |          VP       |
+ |      ____|___     |
+ NP    |        NP   |
+ |     |        |    |
+NNP   VBZ      NNP   .
+ |     |        |    |
+John loves     Mary  .",Bases: nltk.parse.corenlp.GenericCoreNLPParser,,1,,No description,,,,0,0,0,0,0
+">>> parse_mary.pretty_print()  
+      ROOT
+       |
+       S
+  _____|____
+ NP    VP   |
+ |     |    |
+NNP   VBZ   .
+ |     |    |
+Mary walks  .",Bases: nltk.parse.corenlp.GenericCoreNLPParser,,1,,No description,,,,0,0,0,0,0
+">>> next(
+...     parser.raw_parse(
+...         'NASIRIYA, Iraq—Iraqi doctors who treated former prisoner of war '
+...         'Jessica Lynch have angrily dismissed claims made in her biography '
+...         'that she was raped by her Iraqi captors.'
+...     )
+... ).height()
+20",Bases: nltk.parse.corenlp.GenericCoreNLPParser,,1,,No description,,,,0,0,0,0,0
+">>> next(
+...     parser.raw_parse(
+...         ""The broader Standard & Poor's 500 Index <.SPX> was 0.46 points lower, or ""
+...         '0.05 percent, at 997.02.'
+...     )
+... ).height()
+9",Bases: nltk.parse.corenlp.GenericCoreNLPParser,,1,,No description,,,,0,0,0,0,0
+">>> parser = CoreNLPParser(url='http://localhost:9000', tagtype='ner')
+>>> tokens = 'Rami Eid is studying at Stony Brook University in NY'.split()
+>>> parser.tag(tokens)
+[('Rami', 'PERSON'), ('Eid', 'PERSON'), ('is', 'O'), ('studying', 'O'), ('at', 'O'), ('Stony', 'ORGANIZATION'),
+('Brook', 'ORGANIZATION'), ('University', 'ORGANIZATION'), ('in', 'O'), ('NY', 'O')]",Tag a list of tokens.,Tag a list of tokens.,0,Tag a list of tokens.,,,,Tag a list of tokens.,1,0,0,1,1
+">>> parser = CoreNLPParser(url='http://localhost:9000', tagtype='pos')
+>>> tokens = ""What is the airspeed of an unladen swallow ?"".split()
+>>> parser.tag(tokens)
+[('What', 'WP'), ('is', 'VBZ'), ('the', 'DT'),
+('airspeed', 'NN'), ('of', 'IN'), ('an', 'DT'),
+('unladen', 'JJ'), ('swallow', 'VB'), ('?', '.')]",Tag a list of tokens.,Tag a list of tokens.,0,Tag a list of tokens.,,,,Tag a list of tokens.,1,0,0,1,1
+>>> parser = CoreNLPParser(url='http://localhost:9000'),Tokenize a string of text.,Tokenize a string of text.,0,Tokenize a string of text.,,,,Tokenize a string of text.,1,0,0,1,1
+">>> text = 'Good muffins cost $3.88\nin New York.  Please buy me\ntwo of them.\nThanks.'
+>>> list(parser.tokenize(text))
+['Good', 'muffins', 'cost', '$', '3.88', 'in', 'New', 'York', '.', 'Please', 'buy', 'me', 'two', 'of', 'them', '.', 'Thanks', '.']",Tokenize a string of text.,Tokenize a string of text.,0,Tokenize a string of text.,,,,Tokenize a string of text.,1,0,0,1,1
+">>> s = ""The colour of the wall is blue.""
+>>> list(
+...     parser.tokenize(
+...         'The colour of the wall is blue.',
+...             properties={'tokenize.options': 'americanize=true'},
+...     )
+... )
+['The', 'color', 'of', 'the', 'wall', 'is', 'blue', '.']",Tokenize a string of text.,Tokenize a string of text.,0,Tokenize a string of text.,,,,Tokenize a string of text.,1,0,0,1,1
+">>> dg = DependencyGraph(treebank_data)
+>>> dg.contains_cycle()
+False",Check whether there are cycles.,Check whether there are cycles.,0,Check whether there are cycles.,,,,,1,0,0,0,0
+">>> cyclic_dg = DependencyGraph()
+>>> top = {'word': None, 'deps': [1], 'rel': 'TOP', 'address': 0}
+>>> child1 = {'word': None, 'deps': [2], 'rel': 'NTOP', 'address': 1}
+>>> child2 = {'word': None, 'deps': [4], 'rel': 'NTOP', 'address': 2}
+>>> child3 = {'word': None, 'deps': [1], 'rel': 'NTOP', 'address': 3}
+>>> child4 = {'word': None, 'deps': [3], 'rel': 'NTOP', 'address': 4}
+>>> cyclic_dg.nodes = {
+...     0: top,
+...     1: child1,
+...     2: child2,
+...     3: child3,
+...     4: child4,
+... }
+>>> cyclic_dg.root = top",Check whether there are cycles.,Check whether there are cycles.,0,Check whether there are cycles.,,,,,1,0,0,0,0
+">>> cyclic_dg.contains_cycle()
+[3, 1, 2, 4]",Check whether there are cycles.,Check whether there are cycles.,0,Check whether there are cycles.,,,,,1,0,0,0,0
+">>> dg = DependencyGraph(
+...     'John N 2\n'
+...     'loves V 0\n'
+...     'Mary N 2'
+... )
+>>> print(dg.to_dot())
+digraph G{
+edge [dir=forward]
+node [shape=plaintext]
+
+0 [label=""0 (None)""]
+0 -> 2 [label=""ROOT""]
+1 [label=""1 (John)""]
+2 [label=""2 (loves)""]
+2 -> 1 [label=""""]
+2 -> 3 [label=""""]
+3 [label=""3 (Mary)""]
+}",Return a dot representation suitable for using with Graphviz.,Return a dot representation suitable for using with Graphviz.,0,Return a dot representation suitable for using with Graphviz.,,Return a dot representation suitable for using with Graphviz.,,,1,1,1,0,0
+">>> from nltk.parse import DependencyGraph, DependencyEvaluator",Class for measuring labelled and unlabelled attachment score for dependency parsing. Note that the evaluation ignores punctuation.,Class for measuring labelled and unlabelled attachment score for dependency parsing. Note that the evaluation ignores punctuation.,0,Class for measuring labelled and unlabelled attachment score for dependency parsing. Note that the evaluation ignores punctuation.,,"Class for measuring labelled and unlabelled attachment score for
+dependency parsing. Note that the evaluation ignores punctuation.",,"Class for measuring labelled and unlabelled attachment score for
+dependency parsing. Note that the evaluation ignores punctuation.",1,1,1,1,1
+">>> gold_sent = DependencyGraph(""""""
+... Pierre  NNP     2       NMOD
+... Vinken  NNP     8       SUB
+... ,       ,       2       P
+... 61      CD      5       NMOD
+... years   NNS     6       AMOD
+... old     JJ      2       NMOD
+... ,       ,       2       P
+... will    MD      0       ROOT
+... join    VB      8       VC
+... the     DT      11      NMOD
+... board   NN      9       OBJ
+... as      IN      9       VMOD
+... a       DT      15      NMOD
+... nonexecutive    JJ      15      NMOD
+... director        NN      12      PMOD
+... Nov.    NNP     9       VMOD
+... 29      CD      16      NMOD
+... .       .       9       VMOD
+... """""")",Class for measuring labelled and unlabelled attachment score for dependency parsing. Note that the evaluation ignores punctuation.,Class for measuring labelled and unlabelled attachment score for dependency parsing. Note that the evaluation ignores punctuation.,0,Class for measuring labelled and unlabelled attachment score for dependency parsing. Note that the evaluation ignores punctuation.,,"Class for measuring labelled and unlabelled attachment score for
+dependency parsing. Note that the evaluation ignores punctuation.",,"Class for measuring labelled and unlabelled attachment score for
+dependency parsing. Note that the evaluation ignores punctuation.",1,1,1,1,1
+">>> parsed_sent = DependencyGraph(""""""
+... Pierre  NNP     8       NMOD
+... Vinken  NNP     1       SUB
+... ,       ,       3       P
+... 61      CD      6       NMOD
+... years   NNS     6       AMOD
+... old     JJ      2       NMOD
+... ,       ,       3       AMOD
+... will    MD      0       ROOT
+... join    VB      8       VC
+... the     DT      11      AMOD
+... board   NN      9       OBJECT
+... as      IN      9       NMOD
+... a       DT      15      NMOD
+... nonexecutive    JJ      15      NMOD
+... director        NN      12      PMOD
+... Nov.    NNP     9       VMOD
+... 29      CD      16      NMOD
+... .       .       9       VMOD
+... """""")",Class for measuring labelled and unlabelled attachment score for dependency parsing. Note that the evaluation ignores punctuation.,Class for measuring labelled and unlabelled attachment score for dependency parsing. Note that the evaluation ignores punctuation.,0,Class for measuring labelled and unlabelled attachment score for dependency parsing. Note that the evaluation ignores punctuation.,,"Class for measuring labelled and unlabelled attachment score for
+dependency parsing. Note that the evaluation ignores punctuation.",,"Class for measuring labelled and unlabelled attachment score for
+dependency parsing. Note that the evaluation ignores punctuation.",1,1,1,1,1
+">>> de = DependencyEvaluator([parsed_sent],[gold_sent])
+>>> las, uas = de.eval()
+>>> las
+0.6...
+>>> uas
+0.8...
+>>> abs(uas - 0.8) < 0.00001
+True",Class for measuring labelled and unlabelled attachment score for dependency parsing. Note that the evaluation ignores punctuation.,Class for measuring labelled and unlabelled attachment score for dependency parsing. Note that the evaluation ignores punctuation.,0,Class for measuring labelled and unlabelled attachment score for dependency parsing. Note that the evaluation ignores punctuation.,,"Class for measuring labelled and unlabelled attachment score for
+dependency parsing. Note that the evaluation ignores punctuation.",,"Class for measuring labelled and unlabelled attachment score for
+dependency parsing. Note that the evaluation ignores punctuation.",1,1,1,1,1
+">>> from nltk.parse import malt
+>>> # With MALT_PARSER and MALT_MODEL environment set.
+>>> mp = malt.MaltParser('maltparser-1.7.2', 'engmalt.linear-1.7.mco') 
+>>> mp.parse_one('I shot an elephant in my pajamas .'.split()).tree() 
+(shot I (elephant an) (in (pajamas my)) .)
+>>> # Without MALT_PARSER and MALT_MODEL environment.
+>>> mp = malt.MaltParser('/home/user/maltparser-1.7.2/', '/home/user/engmalt.linear-1.7.mco') 
+>>> mp.parse_one('I shot an elephant in my pajamas .'.split()).tree() 
+(shot I (elephant an) (in (pajamas my)) .)",A class for dependency parsing with MaltParser. The input is the paths to: - a maltparser directory - (optionally) the path to a pre-trained MaltParser .mco model file - (optionally) the tagger to use for POS tagging before parsing - (optionally) additional Java arguments,A class for dependency parsing with MaltParser. The input is the paths to: - a maltparser directory - (optionally) the path to a pre-trained MaltParser .mco model file - (optionally) the tagger to use for POS tagging before parsing - (optionally) additional Java arguments,0,A class for dependency parsing with MaltParser. The input is the paths to: - a maltparser directory - (optionally) the path to a pre-trained MaltParser .mco model file - (optionally) the tagger to use for POS tagging before parsing - (optionally) additional Java arguments,,"A class for dependency parsing with MaltParser. The input is the paths to:
+- a maltparser directory
+- (optionally) the path to a pre-trained MaltParser .mco model file
+- (optionally) the tagger to use for POS tagging before parsing
+- (optionally) additional Java arguments",,,1,1,1,0,0
+">>> from nltk.parse.dependencygraph import DependencyGraph, conll_data2","A dependency scorer built around a MaxEnt classifier. In this particular class that classifier is a NaiveBayesClassifier. It uses head-word, head-tag, child-word, and child-tag features for classification.","A dependency scorer built around a MaxEnt classifier. In this particular class that classifier is a NaiveBayesClassifier. It uses head-word, head-tag, child-word, and child-tag features for classification.",0,"A dependency scorer built around a MaxEnt classifier. In this particular class that classifier is a NaiveBayesClassifier. It uses head-word, head-tag, child-word, and child-tag features for classification.",,"A dependency scorer built around a MaxEnt classifier.  In this
+particular class that classifier is a NaiveBayesClassifier.
+It uses head-word, head-tag, child-word, and child-tag features
+for classification.",,"A dependency scorer built around a MaxEnt classifier.  In this
+particular class that classifier is a NaiveBayesClassifier.
+It uses head-word, head-tag, child-word, and child-tag features
+for classification.",1,1,1,1,1
+">>> graphs = [DependencyGraph(entry) for entry in conll_data2.split('\n\n') if entry]
+>>> npp = ProbabilisticNonprojectiveParser()
+>>> npp.train(graphs, NaiveBayesDependencyScorer())
+>>> parses = npp.parse(['Cathy', 'zag', 'hen', 'zwaaien', '.'], ['N', 'V', 'Pron', 'Adj', 'N', 'Punc'])
+>>> len(list(parses))
+1","A dependency scorer built around a MaxEnt classifier. In this particular class that classifier is a NaiveBayesClassifier. It uses head-word, head-tag, child-word, and child-tag features for classification.","A dependency scorer built around a MaxEnt classifier. In this particular class that classifier is a NaiveBayesClassifier. It uses head-word, head-tag, child-word, and child-tag features for classification.",0,"A dependency scorer built around a MaxEnt classifier. In this particular class that classifier is a NaiveBayesClassifier. It uses head-word, head-tag, child-word, and child-tag features for classification.",,"A dependency scorer built around a MaxEnt classifier.  In this
+particular class that classifier is a NaiveBayesClassifier.
+It uses head-word, head-tag, child-word, and child-tag features
+for classification.",,"A dependency scorer built around a MaxEnt classifier.  In this
+particular class that classifier is a NaiveBayesClassifier.
+It uses head-word, head-tag, child-word, and child-tag features
+for classification.",1,1,1,1,1
+">>> class Scorer(DependencyScorerI):
+...     def train(self, graphs):
+...         pass
+...
+...     def score(self, graph):
+...         return [
+...             [[], [5],  [1],  [1]],
+...             [[], [],   [11], [4]],
+...             [[], [10], [],   [5]],
+...             [[], [8],  [8],  []],
+...         ]
+",A probabilistic non-projective dependency parser.,"Nonprojective dependencies allows for “crossing branches” in the parse tree which is necessary for representing particular linguistic phenomena, or even typical parses in some languages. This parser follows the MST parsing algorithm, outlined in McDonald(2005), which likens the search for the best non-projective parse to finding the maximum spanning tree in a weighted directed graph.",1,,,,,,0,0,0,0,0
+">>> npp = ProbabilisticNonprojectiveParser()
+>>> npp.train([], Scorer())",A probabilistic non-projective dependency parser.,"Nonprojective dependencies allows for “crossing branches” in the parse tree which is necessary for representing particular linguistic phenomena, or even typical parses in some languages. This parser follows the MST parsing algorithm, outlined in McDonald(2005), which likens the search for the best non-projective parse to finding the maximum spanning tree in a weighted directed graph.",1,,,"Nonprojective dependencies allows for “crossing branches” in the parse tree
+which is necessary for representing particular linguistic phenomena, or even
+typical parses in some languages.  This parser follows the MST parsing
+algorithm, outlined in McDonald(2005), which likens the search for the best
+non-projective parse to finding the maximum spanning tree in a weighted
+directed graph.",,,0,1,0,0,0
+">>> parses = npp.parse(['v1', 'v2', 'v3'], [None, None, None])
+>>> len(list(parses))
+1",A probabilistic non-projective dependency parser.,"Nonprojective dependencies allows for “crossing branches” in the parse tree which is necessary for representing particular linguistic phenomena, or even typical parses in some languages. This parser follows the MST parsing algorithm, outlined in McDonald(2005), which likens the search for the best non-projective parse to finding the maximum spanning tree in a weighted directed graph.",1,,,"Nonprojective dependencies allows for “crossing branches” in the parse tree
+which is necessary for representing particular linguistic phenomena, or even
+typical parses in some languages.  This parser follows the MST parsing
+algorithm, outlined in McDonald(2005), which likens the search for the best
+non-projective parse to finding the maximum spanning tree in a weighted
+directed graph.",,,0,1,0,0,0
+>>> from nltk.grammar import DependencyGrammar,A probabilistic non-projective dependency parser.,"Nonprojective dependencies allows for “crossing branches” in the parse tree which is necessary for representing particular linguistic phenomena, or even typical parses in some languages. This parser follows the MST parsing algorithm, outlined in McDonald(2005), which likens the search for the best non-projective parse to finding the maximum spanning tree in a weighted directed graph.",1,,,"Nonprojective dependencies allows for “crossing branches” in the parse tree
+which is necessary for representing particular linguistic phenomena, or even
+typical parses in some languages.  This parser follows the MST parsing
+algorithm, outlined in McDonald(2005), which likens the search for the best
+non-projective parse to finding the maximum spanning tree in a weighted
+directed graph.",,,0,1,0,0,0
+">>> grammar = DependencyGrammar.fromstring('''
+... 'taught' -> 'play' | 'man'
+... 'man' -> 'the' | 'in'
+... 'in' -> 'corner'
+... 'corner' -> 'the'
+... 'play' -> 'golf' | 'dachshund' | 'to'
+... 'dachshund' -> 'his'
+... ''')",A probabilistic non-projective dependency parser.,"Nonprojective dependencies allows for “crossing branches” in the parse tree which is necessary for representing particular linguistic phenomena, or even typical parses in some languages. This parser follows the MST parsing algorithm, outlined in McDonald(2005), which likens the search for the best non-projective parse to finding the maximum spanning tree in a weighted directed graph.",1,,,"Nonprojective dependencies allows for “crossing branches” in the parse tree
+which is necessary for representing particular linguistic phenomena, or even
+typical parses in some languages.  This parser follows the MST parsing
+algorithm, outlined in McDonald(2005), which likens the search for the best
+non-projective parse to finding the maximum spanning tree in a weighted
+directed graph.",,,0,1,0,0,0
+">>> ndp = NonprojectiveDependencyParser(grammar)
+>>> parses = ndp.parse(['the', 'man', 'in', 'the', 'corner', 'taught', 'his', 'dachshund', 'to', 'play', 'golf'])
+>>> len(list(parses))
+4",A probabilistic non-projective dependency parser.,"Nonprojective dependencies allows for “crossing branches” in the parse tree which is necessary for representing particular linguistic phenomena, or even typical parses in some languages. This parser follows the MST parsing algorithm, outlined in McDonald(2005), which likens the search for the best non-projective parse to finding the maximum spanning tree in a weighted directed graph.",1,,,"Nonprojective dependencies allows for “crossing branches” in the parse tree
+which is necessary for representing particular linguistic phenomena, or even
+typical parses in some languages.  This parser follows the MST parsing
+algorithm, outlined in McDonald(2005), which likens the search for the best
+non-projective parse to finding the maximum spanning tree in a weighted
+directed graph.",,,0,1,0,0,0
+>>> from nltk.parse.dependencygraph import conll_data2,"A probabilistic, projective dependency parser.","This parser returns the most probable projective parse derived from the probabilistic dependency grammar derived from the train() method. The probabilistic model is an implementation of Eisner’s (1996) Model C, which conditions on head-word, head-tag, child-word, and child-tag. The decoding uses a bottom-up chart-based span concatenation algorithm that’s identical to the one utilized by the rule-based projective parser.",1,,,"This parser returns the most probable projective parse derived from the
+probabilistic dependency grammar derived from the train() method.  The
+probabilistic model is an implementation of Eisner’s (1996) Model C, which
+conditions on head-word, head-tag, child-word, and child-tag.  The decoding
+uses a bottom-up chart-based span concatenation algorithm that’s identical
+to the one utilized by the rule-based projective parser.",,"This parser returns the most probable projective parse derived from the
+probabilistic dependency grammar derived from the train() method.  The
+probabilistic model is an implementation of Eisner’s (1996) Model C, which
+conditions on head-word, head-tag, child-word, and child-tag.  The decoding
+uses a bottom-up chart-based span concatenation algorithm that’s identical
+to the one utilized by the rule-based projective parser.",0,1,0,1,1
+">>> graphs = [
+... DependencyGraph(entry) for entry in conll_data2.split('\n\n') if entry
+... ]","A probabilistic, projective dependency parser.","This parser returns the most probable projective parse derived from the probabilistic dependency grammar derived from the train() method. The probabilistic model is an implementation of Eisner’s (1996) Model C, which conditions on head-word, head-tag, child-word, and child-tag. The decoding uses a bottom-up chart-based span concatenation algorithm that’s identical to the one utilized by the rule-based projective parser.",1,,,"This parser returns the most probable projective parse derived from the
+probabilistic dependency grammar derived from the train() method.  The
+probabilistic model is an implementation of Eisner’s (1996) Model C, which
+conditions on head-word, head-tag, child-word, and child-tag.  The decoding
+uses a bottom-up chart-based span concatenation algorithm that’s identical
+to the one utilized by the rule-based projective parser.",,"This parser returns the most probable projective parse derived from the
+probabilistic dependency grammar derived from the train() method.  The
+probabilistic model is an implementation of Eisner’s (1996) Model C, which
+conditions on head-word, head-tag, child-word, and child-tag.  The decoding
+uses a bottom-up chart-based span concatenation algorithm that’s identical
+to the one utilized by the rule-based projective parser.",0,1,0,1,1
+">>> ppdp = ProbabilisticProjectiveDependencyParser()
+>>> ppdp.train(graphs)","A probabilistic, projective dependency parser.","This parser returns the most probable projective parse derived from the probabilistic dependency grammar derived from the train() method. The probabilistic model is an implementation of Eisner’s (1996) Model C, which conditions on head-word, head-tag, child-word, and child-tag. The decoding uses a bottom-up chart-based span concatenation algorithm that’s identical to the one utilized by the rule-based projective parser.",1,,,"This parser returns the most probable projective parse derived from the
+probabilistic dependency grammar derived from the train() method.  The
+probabilistic model is an implementation of Eisner’s (1996) Model C, which
+conditions on head-word, head-tag, child-word, and child-tag.  The decoding
+uses a bottom-up chart-based span concatenation algorithm that’s identical
+to the one utilized by the rule-based projective parser.",,"This parser returns the most probable projective parse derived from the
+probabilistic dependency grammar derived from the train() method.  The
+probabilistic model is an implementation of Eisner’s (1996) Model C, which
+conditions on head-word, head-tag, child-word, and child-tag.  The decoding
+uses a bottom-up chart-based span concatenation algorithm that’s identical
+to the one utilized by the rule-based projective parser.",0,1,0,1,1
+">>> sent = ['Cathy', 'zag', 'hen', 'wild', 'zwaaien', '.']
+>>> list(ppdp.parse(sent))
+[Tree('zag', ['Cathy', 'hen', Tree('zwaaien', ['wild', '.'])])]","A probabilistic, projective dependency parser.","This parser returns the most probable projective parse derived from the probabilistic dependency grammar derived from the train() method. The probabilistic model is an implementation of Eisner’s (1996) Model C, which conditions on head-word, head-tag, child-word, and child-tag. The decoding uses a bottom-up chart-based span concatenation algorithm that’s identical to the one utilized by the rule-based projective parser.",1,,,"This parser returns the most probable projective parse derived from the
+probabilistic dependency grammar derived from the train() method.  The
+probabilistic model is an implementation of Eisner’s (1996) Model C, which
+conditions on head-word, head-tag, child-word, and child-tag.  The decoding
+uses a bottom-up chart-based span concatenation algorithm that’s identical
+to the one utilized by the rule-based projective parser.",,"This parser returns the most probable projective parse derived from the
+probabilistic dependency grammar derived from the train() method.  The
+probabilistic model is an implementation of Eisner’s (1996) Model C, which
+conditions on head-word, head-tag, child-word, and child-tag.  The decoding
+uses a bottom-up chart-based span concatenation algorithm that’s identical
+to the one utilized by the rule-based projective parser.",0,1,0,1,1
+"[(NP: (Det: 'the') (N: 'dog')), (V: 'saw')]","ShiftReduceParser maintains a stack, which records the structure of a portion of the text. This stack is a list of strings and Trees that collectively cover a portion of the text. For example, while parsing the sentence “the dog saw the man” with a typical grammar, ShiftReduceParser will produce the following stack, which covers “the dog saw”:","ShiftReduceParser maintains a stack, which records the structure of a portion of the text. This stack is a list of strings and Trees that collectively cover a portion of the text. For example, while parsing the sentence “the dog saw the man” with a typical grammar, ShiftReduceParser will produce the following stack, which covers “the dog saw”:",0,"ShiftReduceParser maintains a stack, which records the structure of a portion of the text. This stack is a list of strings and Trees that collectively cover a portion of the text. For example, while parsing the sentence “the dog saw the man” with a typical grammar, ShiftReduceParser will produce the following stack, which covers “the dog saw”:",,"ShiftReduceParser maintains a stack, which records the
+structure of a portion of the text.  This stack is a list of
+strings and Trees that collectively cover a portion of
+the text.  For example, while parsing the sentence “the dog saw
+the man” with a typical grammar, ShiftReduceParser will produce
+the following stack, which covers “the dog saw”:",,"ShiftReduceParser maintains a stack, which records the
+structure of a portion of the text.  This stack is a list of
+strings and Trees that collectively cover a portion of
+the text.  For example, while parsing the sentence “the dog saw
+the man” with a typical grammar, ShiftReduceParser will produce
+the following stack, which covers “the dog saw”:",1,1,1,1,1
+">>> dep_parser=StanfordDependencyParser(
+...     model_path=""edu/stanford/nlp/models/lexparser/englishPCFG.ser.gz""
+... )",,,0,,No description,,,,0,0,0,0,0
+">>> [parse.tree() for parse in dep_parser.raw_parse(""The quick brown fox jumps over the lazy dog."")] 
+[Tree('jumps', [Tree('fox', ['The', 'quick', 'brown']), Tree('dog', ['over', 'the', 'lazy'])])]",,,0,,No description,,,,0,0,0,0,0
+">>> [list(parse.triples()) for parse in dep_parser.raw_parse(""The quick brown fox jumps over the lazy dog."")] 
+[[((u'jumps', u'VBZ'), u'nsubj', (u'fox', u'NN')), ((u'fox', u'NN'), u'det', (u'The', u'DT')),
+((u'fox', u'NN'), u'amod', (u'quick', u'JJ')), ((u'fox', u'NN'), u'amod', (u'brown', u'JJ')),
+((u'jumps', u'VBZ'), u'nmod', (u'dog', u'NN')), ((u'dog', u'NN'), u'case', (u'over', u'IN')),
+((u'dog', u'NN'), u'det', (u'the', u'DT')), ((u'dog', u'NN'), u'amod', (u'lazy', u'JJ'))]]",,,0,,No description,,,,0,0,0,0,0
+">>> sum([[parse.tree() for parse in dep_graphs] for dep_graphs in dep_parser.raw_parse_sents((
+...     ""The quick brown fox jumps over the lazy dog."",
+...     ""The quick grey wolf jumps over the lazy fox.""
+... ))], []) 
+[Tree('jumps', [Tree('fox', ['The', 'quick', 'brown']), Tree('dog', ['over', 'the', 'lazy'])]),
+Tree('jumps', [Tree('wolf', ['The', 'quick', 'grey']), Tree('fox', ['over', 'the', 'lazy'])])]",,,0,,No description,,,,0,0,0,0,0
+">>> sum([[parse.tree() for parse in dep_graphs] for dep_graphs in dep_parser.parse_sents((
+...     ""I 'm a dog"".split(),
+...     ""This is my friends ' cat ( the tabby )"".split(),
+... ))], []) 
+[Tree('dog', ['I', ""'m"", 'a']), Tree('cat', ['This', 'is', Tree('friends', ['my', ""'""]), Tree('tabby', ['the'])])]",,,0,,No description,,,,0,0,0,0,0
+">>> sum([[list(parse.triples()) for parse in dep_graphs] for dep_graphs in dep_parser.tagged_parse_sents((
+...     (
+...         (""The"", ""DT""),
+...         (""quick"", ""JJ""),
+...         (""brown"", ""JJ""),
+...         (""fox"", ""NN""),
+...         (""jumped"", ""VBD""),
+...         (""over"", ""IN""),
+...         (""the"", ""DT""),
+...         (""lazy"", ""JJ""),
+...         (""dog"", ""NN""),
+...         (""."", "".""),
+...     ),
+... ))],[]) 
+[[((u'jumped', u'VBD'), u'nsubj', (u'fox', u'NN')), ((u'fox', u'NN'), u'det', (u'The', u'DT')),
+((u'fox', u'NN'), u'amod', (u'quick', u'JJ')), ((u'fox', u'NN'), u'amod', (u'brown', u'JJ')),
+((u'jumped', u'VBD'), u'nmod', (u'dog', u'NN')), ((u'dog', u'NN'), u'case', (u'over', u'IN')),
+((u'dog', u'NN'), u'det', (u'the', u'DT')), ((u'dog', u'NN'), u'amod', (u'lazy', u'JJ'))]]",,,0,,No description,,,,0,0,0,0,0
+">>> from nltk.parse.stanford import StanfordNeuralDependencyParser
+>>> dep_parser=StanfordNeuralDependencyParser(java_options='-mx4g')",,,0,,No description,,,,0,0,0,0,0
+">>> [parse.tree() for parse in dep_parser.raw_parse(""The quick brown fox jumps over the lazy dog."")] 
+[Tree('jumps', [Tree('fox', ['The', 'quick', 'brown']), Tree('dog', ['over', 'the', 'lazy']), '.'])]",,,0,,No description,,,,0,0,0,0,0
+">>> [list(parse.triples()) for parse in dep_parser.raw_parse(""The quick brown fox jumps over the lazy dog."")] 
+[[((u'jumps', u'VBZ'), u'nsubj', (u'fox', u'NN')), ((u'fox', u'NN'), u'det',
+(u'The', u'DT')), ((u'fox', u'NN'), u'amod', (u'quick', u'JJ')), ((u'fox', u'NN'),
+u'amod', (u'brown', u'JJ')), ((u'jumps', u'VBZ'), u'nmod', (u'dog', u'NN')),
+((u'dog', u'NN'), u'case', (u'over', u'IN')), ((u'dog', u'NN'), u'det',
+(u'the', u'DT')), ((u'dog', u'NN'), u'amod', (u'lazy', u'JJ')), ((u'jumps', u'VBZ'),
+u'punct', (u'.', u'.'))]]",,,0,,No description,,,,0,0,0,0,0
+">>> sum([[parse.tree() for parse in dep_graphs] for dep_graphs in dep_parser.raw_parse_sents((
+...     ""The quick brown fox jumps over the lazy dog."",
+...     ""The quick grey wolf jumps over the lazy fox.""
+... ))], []) 
+[Tree('jumps', [Tree('fox', ['The', 'quick', 'brown']), Tree('dog', ['over',
+'the', 'lazy']), '.']), Tree('jumps', [Tree('wolf', ['The', 'quick', 'grey']),
+Tree('fox', ['over', 'the', 'lazy']), '.'])]",,,0,,No description,,,,0,0,0,0,0
+">>> sum([[parse.tree() for parse in dep_graphs] for dep_graphs in dep_parser.parse_sents((
+...     ""I 'm a dog"".split(),
+...     ""This is my friends ' cat ( the tabby )"".split(),
+... ))], []) 
+[Tree('dog', ['I', ""'m"", 'a']), Tree('cat', ['This', 'is', Tree('friends',
+['my', ""'""]), Tree('tabby', ['-LRB-', 'the', '-RRB-'])])]",,,0,,No description,,,,0,0,0,0,0
+">>> parser=StanfordParser(
+...     model_path=""edu/stanford/nlp/models/lexparser/englishPCFG.ser.gz""
+... )",,,0,,No description,,,,0,0,0,0,0
+">>> list(parser.raw_parse(""the quick brown fox jumps over the lazy dog"")) 
+[Tree('ROOT', [Tree('NP', [Tree('NP', [Tree('DT', ['the']), Tree('JJ', ['quick']), Tree('JJ', ['brown']),
+Tree('NN', ['fox'])]), Tree('NP', [Tree('NP', [Tree('NNS', ['jumps'])]), Tree('PP', [Tree('IN', ['over']),
+Tree('NP', [Tree('DT', ['the']), Tree('JJ', ['lazy']), Tree('NN', ['dog'])])])])])])]",,,0,,No description,,,,0,0,0,0,0
+">>> sum([list(dep_graphs) for dep_graphs in parser.raw_parse_sents((
+...     ""the quick brown fox jumps over the lazy dog"",
+...     ""the quick grey wolf jumps over the lazy fox""
+... ))], []) 
+[Tree('ROOT', [Tree('NP', [Tree('NP', [Tree('DT', ['the']), Tree('JJ', ['quick']), Tree('JJ', ['brown']),
+Tree('NN', ['fox'])]), Tree('NP', [Tree('NP', [Tree('NNS', ['jumps'])]), Tree('PP', [Tree('IN', ['over']),
+Tree('NP', [Tree('DT', ['the']), Tree('JJ', ['lazy']), Tree('NN', ['dog'])])])])])]), Tree('ROOT', [Tree('NP',
+[Tree('NP', [Tree('DT', ['the']), Tree('JJ', ['quick']), Tree('JJ', ['grey']), Tree('NN', ['wolf'])]), Tree('NP',
+[Tree('NP', [Tree('NNS', ['jumps'])]), Tree('PP', [Tree('IN', ['over']), Tree('NP', [Tree('DT', ['the']),
+Tree('JJ', ['lazy']), Tree('NN', ['fox'])])])])])])]",,,0,,No description,,,,0,0,0,0,0
+">>> sum([list(dep_graphs) for dep_graphs in parser.parse_sents((
+...     ""I 'm a dog"".split(),
+...     ""This is my friends ' cat ( the tabby )"".split(),
+... ))], []) 
+[Tree('ROOT', [Tree('S', [Tree('NP', [Tree('PRP', ['I'])]), Tree('VP', [Tree('VBP', [""'m""]),
+Tree('NP', [Tree('DT', ['a']), Tree('NN', ['dog'])])])])]), Tree('ROOT', [Tree('S', [Tree('NP',
+[Tree('DT', ['This'])]), Tree('VP', [Tree('VBZ', ['is']), Tree('NP', [Tree('NP', [Tree('NP', [Tree('PRP$', ['my']),
+Tree('NNS', ['friends']), Tree('POS', [""'""])]), Tree('NN', ['cat'])]), Tree('PRN', [Tree('-LRB-', [Tree('', []),
+Tree('NP', [Tree('DT', ['the']), Tree('NN', ['tabby'])]), Tree('-RRB-', [])])])])])])])]",,,0,,No description,,,,0,0,0,0,0
+">>> sum([list(dep_graphs) for dep_graphs in parser.tagged_parse_sents((
+...     (
+...         (""The"", ""DT""),
+...         (""quick"", ""JJ""),
+...         (""brown"", ""JJ""),
+...         (""fox"", ""NN""),
+...         (""jumped"", ""VBD""),
+...         (""over"", ""IN""),
+...         (""the"", ""DT""),
+...         (""lazy"", ""JJ""),
+...         (""dog"", ""NN""),
+...         (""."", "".""),
+...     ),
+... ))],[]) 
+[Tree('ROOT', [Tree('S', [Tree('NP', [Tree('DT', ['The']), Tree('JJ', ['quick']), Tree('JJ', ['brown']),
+Tree('NN', ['fox'])]), Tree('VP', [Tree('VBD', ['jumped']), Tree('PP', [Tree('IN', ['over']), Tree('NP',
+[Tree('DT', ['the']), Tree('JJ', ['lazy']), Tree('NN', ['dog'])])])]), Tree('.', ['.'])])])]",,,0,,No description,,,,0,0,0,0,0
+">>> from nltk.parse import DependencyGraph, DependencyEvaluator
+>>> from nltk.parse.transitionparser import TransitionParser, Configuration, Transition
+>>> gold_sent = DependencyGraph(""""""
+... Economic  JJ     2      ATT
+... news  NN     3       SBJ
+... has       VBD       0       ROOT
+... little      JJ      5       ATT
+... effect   NN     3       OBJ
+... on     IN      5       ATT
+... financial       JJ       8       ATT
+... markets    NNS      6       PC
+... .    .      3       PU
+... """""")",,,0,,No description,,,,0,0,0,0,0
+>>> conf = Configuration(gold_sent),,,0,,No description,"###################### Check The Transition #######################
+Check the Initialized Configuration
+>>> print(conf)
+Stack : [0]  Buffer : [1, 2, 3, 4, 5, 6, 7, 8, 9]   Arcs : []",,,0,1,0,0,0
+">>> print(', '.join(conf.extract_features()))
+STK_0_POS_TOP, BUF_0_FORM_Economic, BUF_0_LEMMA_Economic, BUF_0_POS_JJ, BUF_1_FORM_news, BUF_1_POS_NN, BUF_2_POS_VBD, BUF_3_POS_JJ",###################### Check the Initial Feature ########################,,1,,No description,,,,0,0,0,0,0
+">>> operation = Transition('arc-standard')
+>>> operation.shift(conf)
+>>> operation.left_arc(conf, ""ATT"")
+>>> operation.shift(conf)
+>>> operation.left_arc(conf,""SBJ"")
+>>> operation.shift(conf)
+>>> operation.shift(conf)
+>>> operation.left_arc(conf, ""ATT"")
+>>> operation.shift(conf)
+>>> operation.shift(conf)
+>>> operation.shift(conf)
+>>> operation.left_arc(conf, ""ATT"")","Do some transition checks for ARC-STANDARD
+",Do some transition checks for ARC-STANDARD,1,,,"###################### Check The Transition #######################
+Check the Initialized Configuration
+>>> print(conf)
+Stack : [0]  Buffer : [1, 2, 3, 4, 5, 6, 7, 8, 9]   Arcs : []",,"###################### Check The Transition #######################
+Check the Initialized Configuration
+>>> print(conf)
+Stack : [0]  Buffer : [1, 2, 3, 4, 5, 6, 7, 8, 9]   Arcs : []",0,1,0,1,1
+">>> print(', '.join(conf.extract_features()))
+STK_0_FORM_on, STK_0_LEMMA_on, STK_0_POS_IN, STK_1_POS_NN, BUF_0_FORM_markets, BUF_0_LEMMA_markets, BUF_0_POS_NNS, BUF_1_FORM_., BUF_1_POS_., BUF_0_LDEP_ATT","Middle Configuration and Features Check >>> print(conf) Stack : [0, 3, 5, 6] Buffer : [8, 9] Arcs : [(2, ‘ATT’, 1), (3, ‘SBJ’, 2), (5, ‘ATT’, 4), (8, ‘ATT’, 7)]",Middle Configuration and Features Check ,1,,,"###################### Check The Transition #######################
+Check the Initialized Configuration
+>>> print(conf)
+Stack : [0]  Buffer : [1, 2, 3, 4, 5, 6, 7, 8, 9]   Arcs : []",,"###################### Check The Transition #######################
+Check the Initialized Configuration
+>>> print(conf)
+Stack : [0]  Buffer : [1, 2, 3, 4, 5, 6, 7, 8, 9]   Arcs : []",0,1,0,1,1
+">>> operation.right_arc(conf, ""PC"")
+>>> operation.right_arc(conf, ""ATT"")
+>>> operation.right_arc(conf, ""OBJ"")
+>>> operation.shift(conf)
+>>> operation.right_arc(conf, ""PU"")
+>>> operation.right_arc(conf, ""ROOT"")
+>>> operation.shift(conf)","Middle Configuration and Features Check >>> print(conf) Stack : [0, 3, 5, 6] Buffer : [8, 9] Arcs : [(2, ‘ATT’, 1), (3, ‘SBJ’, 2), (5, ‘ATT’, 4), (8, ‘ATT’, 7)]",Middle Configuration and Features Check ,1,,,"###################### Check The Transition #######################
+Check the Initialized Configuration
+>>> print(conf)
+Stack : [0]  Buffer : [1, 2, 3, 4, 5, 6, 7, 8, 9]   Arcs : []",,"###################### Check The Transition #######################
+Check the Initialized Configuration
+>>> print(conf)
+Stack : [0]  Buffer : [1, 2, 3, 4, 5, 6, 7, 8, 9]   Arcs : []",0,1,0,1,1
+">>> conf = Configuration(gold_sent)
+>>> operation = Transition('arc-eager')
+>>> operation.shift(conf)
+>>> operation.left_arc(conf,'ATT')
+>>> operation.shift(conf)
+>>> operation.left_arc(conf,'SBJ')
+>>> operation.right_arc(conf,'ROOT')
+>>> operation.shift(conf)
+>>> operation.left_arc(conf,'ATT')
+>>> operation.right_arc(conf,'OBJ')
+>>> operation.right_arc(conf,'ATT')
+>>> operation.shift(conf)
+>>> operation.left_arc(conf,'ATT')
+>>> operation.right_arc(conf,'PC')
+>>> operation.reduce(conf)
+>>> operation.reduce(conf)
+>>> operation.reduce(conf)
+>>> operation.right_arc(conf,'PU')
+>>> print(conf)
+Stack : [0, 3, 9]  Buffer : []   Arcs : [(2, 'ATT', 1), (3, 'SBJ', 2), (0, 'ROOT', 3), (5, 'ATT', 4), (3, 'OBJ', 5), (5, 'ATT', 6), (8, 'ATT', 7), (6, 'PC', 8), (3, 'PU', 9)]
+",Do some transition checks for ARC-EAGER,Do some transition checks for ARC-EAGER,0,Do some transition checks for ARC-EAGER,,,,,1,0,0,0,0
+">>> parser_std = TransitionParser('arc-standard')
+>>> print(', '.join(parser_std._create_training_examples_arc_std([gold_sent], input_file)))
+ Number of training examples : 1
+ Number of valid (projective) examples : 1
+SHIFT, LEFTARC:ATT, SHIFT, LEFTARC:SBJ, SHIFT, SHIFT, LEFTARC:ATT, SHIFT, SHIFT, SHIFT, LEFTARC:ATT, RIGHTARC:PC, RIGHTARC:ATT, RIGHTARC:OBJ, SHIFT, RIGHTARC:PU, RIGHTARC:ROOT, SHIFT
+","A. Check the ARC-STANDARD training >>> import tempfile >>> import os >>> input_file = tempfile.NamedTemporaryFile(prefix=’transition_parse.train’, dir=tempfile.gettempdir(), delete=False)",Check the ARC-STANDARD training,1,,,,,,0,0,0,0,0
+">>> parser_std.train([gold_sent],'temp.arcstd.model', verbose=False)
+ Number of training examples : 1
+ Number of valid (projective) examples : 1
+>>> remove(input_file.name)","A. Check the ARC-STANDARD training >>> import tempfile >>> import os >>> input_file = tempfile.NamedTemporaryFile(prefix=’transition_parse.train’, dir=tempfile.gettempdir(), delete=False)",Check the ARC-STANDARD training,1,,,"A. Check the ARC-STANDARD training
+>>> import tempfile
+>>> import os
+>>> input_file = tempfile.NamedTemporaryFile(prefix=’transition_parse.train’, dir=tempfile.gettempdir(), delete=False)",,"A. Check the ARC-STANDARD training
+>>> import tempfile
+>>> import os
+>>> input_file = tempfile.NamedTemporaryFile(prefix=’transition_parse.train’, dir=tempfile.gettempdir(), delete=False)",0,1,0,1,1
+">>> input_file = tempfile.NamedTemporaryFile(prefix='transition_parse.train', dir=tempfile.gettempdir(),delete=False)
+>>> parser_eager = TransitionParser('arc-eager')
+>>> print(', '.join(parser_eager._create_training_examples_arc_eager([gold_sent], input_file)))
+ Number of training examples : 1
+ Number of valid (projective) examples : 1
+SHIFT, LEFTARC:ATT, SHIFT, LEFTARC:SBJ, RIGHTARC:ROOT, SHIFT, LEFTARC:ATT, RIGHTARC:OBJ, RIGHTARC:ATT, SHIFT, LEFTARC:ATT, RIGHTARC:PC, REDUCE, REDUCE, REDUCE, RIGHTARC:PU
+",Check the ARC-EAGER training,Check the ARC-EAGER training,0,Check the ARC-EAGER training,,,,,1,0,0,0,0
+">>> parser_eager.train([gold_sent],'temp.arceager.model', verbose=False)
+ Number of training examples : 1
+ Number of valid (projective) examples : 1",Check the ARC-EAGER training,Check the ARC-EAGER training,0,Check the ARC-EAGER training,,"A. Check the ARC-STANDARD training
+>>> import tempfile
+>>> import os
+>>> input_file = tempfile.NamedTemporaryFile(prefix=’transition_parse.train’, dir=tempfile.gettempdir(), delete=False)",,"A. Check the ARC-STANDARD training
+>>> import tempfile
+>>> import os
+>>> input_file = tempfile.NamedTemporaryFile(prefix=’transition_parse.train’, dir=tempfile.gettempdir(), delete=False)",1,1,0,1,1
+>>> remove(input_file.name),Check the ARC-EAGER training,Check the ARC-EAGER training,0,Check the ARC-EAGER training,,"A. Check the ARC-STANDARD training
+>>> import tempfile
+>>> import os
+>>> input_file = tempfile.NamedTemporaryFile(prefix=’transition_parse.train’, dir=tempfile.gettempdir(), delete=False)",,"A. Check the ARC-STANDARD training
+>>> import tempfile
+>>> import os
+>>> input_file = tempfile.NamedTemporaryFile(prefix=’transition_parse.train’, dir=tempfile.gettempdir(), delete=False)",1,1,0,1,1
+">>> result = parser_std.parse([gold_sent], 'temp.arcstd.model')
+>>> de = DependencyEvaluator(result, [gold_sent])
+>>> de.eval() >= (0, 0)
+True",Check the ARC-STANDARD parser,Check the ARC-STANDARD parser,0,Check the ARC-STANDARD parser,,"A. Check the ARC-STANDARD training
+>>> import tempfile
+>>> import os
+>>> input_file = tempfile.NamedTemporaryFile(prefix=’transition_parse.train’, dir=tempfile.gettempdir(), delete=False)",,"A. Check the ARC-STANDARD training
+>>> import tempfile
+>>> import os
+>>> input_file = tempfile.NamedTemporaryFile(prefix=’transition_parse.train’, dir=tempfile.gettempdir(), delete=False)",1,1,0,1,1
+">>> from nltk import word_tokenize, pos_tag
+>>> text = ""This is a foobar sentence.""
+>>> for line in taggedsent_to_conll(pos_tag(word_tokenize(text))):
+...         print(line, end="""")
+    1       This    _       DT      DT      _       0       a       _       _
+    2       is      _       VBZ     VBZ     _       0       a       _       _
+    3       a       _       DT      DT      _       0       a       _       _
+    4       foobar  _       JJ      JJ      _       0       a       _       _
+    5       sentence        _       NN      NN      _       0       a       _       _
+    6       .               _       .       .       _       0       a       _       _",A module to convert a single POS tagged sentence into CONLL format.,A module to convert a single POS tagged sentence into CONLL format.,0,A module to convert a single POS tagged sentence into CONLL format.,,A module to convert a single POS tagged sentence into CONLL format.,,A module to convert a single POS tagged sentence into CONLL format.,1,1,1,1,1
+">>> from nltk import word_tokenize, sent_tokenize, pos_tag
+>>> text = ""This is a foobar sentence. Is that right?""
+>>> sentences = [pos_tag(word_tokenize(sent)) for sent in sent_tokenize(text)]
+>>> for line in taggedsents_to_conll(sentences):
+...     if line:
+...         print(line, end="""")
+1   This    _       DT      DT      _       0       a       _       _
+2   is      _       VBZ     VBZ     _       0       a       _       _
+3   a       _       DT      DT      _       0       a       _       _
+4   foobar  _       JJ      JJ      _       0       a       _       _
+5   sentence        _       NN      NN      _       0       a       _       _
+6   .               _       .       .       _       0       a       _       _
+
+
+1   Is      _       VBZ     VBZ     _       0       a       _       _
+2   that    _       IN      IN      _       0       a       _       _
+3   right   _       NN      NN      _       0       a       _       _
+4   ?       _       .       .       _       0       a       _       _
+","A module to convert the a POS tagged document stream (i.e. list of list of tuples, a list of sentences) and yield lines in CONLL format. This module yields one line per word and two newlines for end of sentence.","A module to convert the a POS tagged document stream (i.e. list of list of tuples, a list of sentences) and yield lines in CONLL format. This module yields one line per word and two newlines for end of sentence.",0,"A module to convert the a POS tagged document stream (i.e. list of list of tuples, a list of sentences) and yield lines in CONLL format. This module yields one line per word and two newlines for end of sentence.",,,,,1,0,0,0,0
+,,,,,,,,,37,27,10,25,24
+,,,,,,Program,,,,,,,
+,,,,Precision,,37.04%,,96.00%,,,,,
+,,,,Recall,,27.03%,,64.86%,,,,,

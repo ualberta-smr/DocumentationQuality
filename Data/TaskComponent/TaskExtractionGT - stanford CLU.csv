@@ -1,0 +1,218 @@
+Paragraph,Tasks (Old),Henry's mechanical tasks,Henry's library tasks,Henry's library tasks (updated),Sarah's mechanical tasks,Sarah's library tasks,Sarah's library tasks (updated),Conflict,Resolved mechanical tasks,Resolved library tasks,Program (Original),Program (with domain specific verb list),Program (domain specific + filter),Library count,Program count,Program correct,Dom spec + filter count,Dom spec + filter correct
+"Note: Stanford CoreNLP v.3.5+ requires Java 8, but works with Java 9/10/11 as well. If using Java 9/10/11, you need to add this Java flag to avoid errors (a CoreNLP library dependency uses the JAXB module that was deleted from the default libraries for Java 9+):",,,,,Add this Java flag to avoid errors,,,1,Add this Java flag to avoid errors,,"use Java 9
+add Java flag","use Java 9
+add Java flag",add Java flag,0,2,0,1,0
+The minimal command to run Stanford CoreNLP from the command line is:,Run CoreNLP from command line,Run Stanford CoreNLP from command line,Run Stanford CoreNLP from command line,Run Stanford CoreNLP from command line,Run Stanford CoreNLP from the command line,,Run Stanford CoreNLP from the command line,0,,,run Stanford CoreNLP from command line,run Stanford CoreNLP from command line,,0,1,0,1,0
+"If this command is run from the distribution directory, it processes the included sample file input.txt. We use a wildcard * after -cp to load all jar files in the current directory – it needs to be in quotes. This command writes the output to an XML file named input.txt.xml in the same directory.",,"Process input.txt
+Write output to XML file",,Write output to XML file,"Process the included sample file
+Use a wildcard * to load all jar files in the current directory",,,0,"Process included sample file
+Use a wildcard * to load all jar files in current directory
+Write output to XML file",,"process included sample file input.txt
+run command from distribution directory
+use wildcard * after cp
+load jar files in current directory
+write output to XML file","process included sample file input.txt
+run command from distribution directory
+use wildcard * after cp
+load jar files in current directory
+write output to XML file",load jar files in current directory,0,5,0,1,0
+"Your command line has to load the code, libraries, and model jars that CoreNLP uses. These are all contained in JAR files (compressed archives with extension “.jar”) which come in the CoreNLP download or which can be downloaded on demand from Maven Central. The easiest way to make them available is with a command line like this, where /Users/me/corenlp/ should be changed to the path where you put CoreNLP:",,Load code,,,"Load the code, libraries, and model jars that CoreNLP uses
+Download on demand from Maven central",,"Load the code, libraries, and model jars that CoreNLP uses",1,"Load the code that CoreNLP uses
+Load the libraries that CoreNLP uses
+Load the model jars that CoreNLP uses
+Download on demand from Maven central","Load the code that CoreNLP uses
+Load the libraries that CoreNLP uses
+Load the model jars that CoreNLP uses","load code
+load libraries
+load model jars
+download  from Maven central
+download  on demand
+change /Users/me/corenlp/ to path","load code
+load libraries
+load model jars
+download  from Maven central
+download  on demand
+change /Users/me/corenlp/ to path","load code
+load libraries
+load model jars
+change /Users/me/corenlp/ to path",3,6,3,4,3
+"Alternatively, you can [add this path to your CLASSPATH environment variable](https://en.wikipedia.org/wiki/Classpath_(Java%29), so these libraries are always available.",,,,,Add this path to your CLASSPATH environment variable,,,1,Add this path to your CLASSPATH environment variable,,add path to CLASSPATH environment variable ],add path to CLASSPATH environment variable,add path to CLASSPATH environment variable,0,1,0,1,0
+"The “*” (which must be enclosed in quotes) says to add all JAR files in the given directory to the classpath. You can also individually specify the needed jar files. Use the following sort of command line, adjusting the JAR file date extensions VV to your downloaded release.",,,,,Add all JAR files in the given directory to the classpath,,,1,Add all JAR files in the given directory to the classpath,,"add JAR files in given directory
+specify needed jar files
+use following sort of command line
+adjust JAR file date extensions VV to downloaded release","add JAR files in given directory
+specify needed jar files
+use following sort of command line","add JAR files in given directory
+specify needed jar files",0,4,0,2,0
+"The command above works for Mac OS X or Linux. For Windows, the colons (:) separating the jar files need to be semi-colons (;). If you are not sitting in the distribution directory, you’ll also need to include a path to the files before each.",,,,,Include a path to the files before each,,,1,Include a path to the files before each,,"separate jar files
+include path to files",include path to files,,0,2,0,1,0
+"Before using Stanford CoreNLP, it is usual to create a configuration file (a Java Properties file). Minimally, this file should contain the “annotators” property, which contains a comma-separated list of Annotators to use. For example, the setting below enables: tokenization, sentence splitting (required by most Annotators), POS tagging, lemmatization, NER, (constituency) parsing, and (rule-based) coreference resolution.",,Create configuration file,Create configuration file,Create configuration file,Create a configuration file,,Create a configuration file,,Create configuration file,Create configuration file,"use Stanford CoreNLP
+create configuration file
+enable lemmatization
+enable NER
+enable parsing
+enable tokenization
+enable coreference resolution
+enable sentence splitting
+enable POS tagging","use Stanford CoreNLP
+create configuration file
+enable lemmatization
+enable NER
+enable parsing
+enable tokenization
+enable coreference resolution
+enable sentence splitting
+enable POS tagging","create configuration file
+enable lemmatization
+enable NER
+enable parsing
+enable tokenization
+enable coreference resolution
+enable sentence splitting
+enable POS tagging",1,9,1,8,1
+"annotators = tokenize, ssplit, pos, lemma, ner, parse, dcoref",,,,,,,,,,,,,,0,1,0,1,0
+"To use the properties in the properties file sampleProps.properties, you give a command as follows:",Use properties file,Use properties in properties file,Use properties in properties file,Use properties in properties file,Use the properties in the properties file sampleProps.properties,,,1,Use the properties in the properties file sampleProps.properties,Use the properties in the properties file sampleProps.properties,use properties in properties file sampleProps.properties,use properties in properties file sampleProps.properties,,1,1,1,1,0
+This results in the output file input.txt.output given the same input file input.txt.,,,,,,,,,,,,,,0,1,0,1,0
+"However, if you just want to specify a few properties, you can instead place them on the command line. For example, we can specify annotators and the output format with:",Specify few properties,"Specify few properties
+Specify annotators
+Specify output format","Specify few properties
+Specify annotators
+Specify output format","Specify few properties
+Specify annotators
+Specify output format",Specify a few properties,,Specify a few properties,1,"Specify few properties
+Specify annotators
+Specify output format","Specify few properties
+Specify annotators
+Specify output format","specify few properties
+place  on command line
+specify annotators
+specify output format","specify few properties
+place  on command line
+specify annotators
+specify output format","specify few properties
+specify annotators
+specify output format",3,4,3,3,3
+"The -props parameter is optional. By default, Stanford CoreNLP will search for StanfordCoreNLP.properties in your classpath and use the defaults included in the distribution.",,,,,Search for StandfordCoreNLP.properties in your classpath,,,1,Search for StandfordCoreNLP.properties in your classpath,,"use defaults
+search  by default
+search  for StanfordCoreNLP.properties
+include  in distribution","use defaults
+search  by default
+search  for StanfordCoreNLP.properties
+include  in distribution",,0,4,0,1,0
+"The -annotators argument is also optional. If you leave it out, the code uses a built in properties file, which enables the following annotators: tokenization and sentence splitting, POS tagging, lemmatization, NER, dependency parsing, and statistical coreference resolution: annotators = tokenize, ssplit, pos, lemma, ner, depparse, coref.",,,,,Use a built in properties file,,Use a built in properties file,0,Use a built in properties file,,"use built file
+enable built file","use built file
+build  in properties
+enable built file","build  in properties
+enable built file",0,2,0,2,0
+"If you have a lot of text but all you want to do is to, say, get part-of-speech (POS) tags, then you should definitely specify an annotators list, as above, since you can then omit later annotators which invoke much more expensive processing that you don’t need. For example, you might give the command:",Get PoS tags,"Get part-of-speech tags
+Specify annotators list
+Omit later annotators",Get part-of-speech tags,Get part-of-speech tags,"Get part-of-speech tags
+Specify annotators list",Get part-of-speech tags,"Get part-of-speech tags
+Specify annotators list",1,"Get part-of-speech tags
+Specify annotators list
+Omit later annotators","Get part-of-speech tags
+Specify annotators list","get part-of-speech tags
+specify annotators list
+omit later annotators","get part-of-speech tags
+specify annotators list
+omit later annotators","get part-of-speech tags
+specify annotators list",2,3,2,2,2
+"We provide a small shell script corenlp.sh. On Linux or OS X, this may be useful in allowing you to type shorter command lines to invoke CoreNLP. For example, you can instead say:",,,,,Type shorter command lines to invoke CoreNLP,,Type shorter command lines to invoke CoreNLP,1,Type shorter command lines to invoke CoreNLP,Type shorter command lines to invoke CoreNLP,provide small shell script corenlp.sh,provide small shell script corenlp.sh,provide small shell script corenlp.sh,1,1,0,1,0
+"You first have to have available a models jar file for the language you wish to use. You can download it from this site or you can use the models file on Maven Central. If using Maven, you add it to your pom file like this:",,,,,Download it from this site,,,1,Download it from this site,,"download  from site
+use models file on maven Central
+use maven
+add  to pom file","download  from site
+use models file on maven Central
+use maven
+add  to pom file",add  to pom file,0,4,0,1,0
+"Our examples assume that you are in the root directory of CoreNLP and that these extra jar files are also available there. Each language jar contains a default properties file for the appropriate language. Working with text in another language is then as easy as specifying this properties file. For example, for Chinese:",,,,,,,,,,,specify properties file,specify properties file,specify properties file,0,1,0,1,0
+You can as usual specify details on the annotators and properties:,Specify details on annotators and properties,"Specify details on annotators
+Specify details on properties","Specify details on annotators
+Specify details on properties","Specify details on annotators
+Specify details on properties",Specify details on the annotators and properties,,Specify details on the annotators and properties,0,"Specify details on annotators
+Specify details on properties","Specify details on annotators
+Specify details on properties","specify details on annotators
+specify details on properties","specify details on annotators
+specify details on properties","specify details on annotators
+specify details on properties",2,2,2,2,2
+"To process one file, use the -file option followed by a filename. To process a list of files, use the -fileList parameter:",Process (multiple) files,"Process file
+Process list of files","Process file
+Process list of files","Process file
+Process list of files","Process one file
+Process list of files","Process one file
+Process list of files","Process one file
+Process list of files",0,,,"process file
+process list of files","process file
+process list of files",,0,2,0,1,0
+where the -fileList parameter points to a file which lists all files to be processed (one per line).,,List all files,,,List all files to be processed,,,0,,,list file,,,0,1,0,1,0
+"If you do not specify any properties that load input files (and do not specify any input or output redirections), then you will be placed in the interactive shell. Type q to exit.",,Specify properties,,,Do not specify any properties that load input files,,,1, , ,place  in interactive shell,place  in interactive shell,,1,1,0,1,0
+"If you do not specify an option that loads input files and you redirect either input or output, then Stanford CoreNLP runs as a filter that reads from stdin and writes to stdout. The default mode is line-oriented: Each line of input counts as a document. If you give the flag/property -isOneDocument (isOneDocument = true) then the input till end-of-file will be treated as one document.",,Specify option,,,"Do not specify an option that loads input files
+Treat input till end-of-file as one document",,,1,Treat input till end-of-file as one document,,"redirect input
+redirect output
+run  as filter
+read filter from stdin
+write filter
+count  as document","run  as filter
+write filter",,0,6,0,1,0
+"If your input files have XML tags in them, you may wish to add the cleanxml annotator to preprocess it. Place it immediately after tokenize.",Process XML,"Add cleanxml annotator
+Place after tokenize",,,Add the cleanxml annotator,,,1,"Add cleanxml annotator
+Place after tokenize",,"add cleanxml annotator
+place  after tokenize","add cleanxml annotator
+place  after tokenize",add cleanxml annotator,0,2,0,1,0
+"If your input is already tokenzed and one sentence per line, then you should use the flags: -tokenize.whitespace -ssplit.eolonly.",,,,,Use the flags :-tokenize.whitespace -ssplit.eolonly,,,1,Use the flags :-tokenize.whitespace -ssplit.eolonly,,use flags,use flags,,0,1,0,1,0
+"Fine point: Stanford CoreNLP treats Unicode end of line markers (LS U+2028 and PS U+2029) as line ends, whereas conventional Unix utilities do not. If these characters are present and you are using CoreNLP in a Unix line-oriented processing pipeline, you may need to remap these characters to ‘\n’ or ‘ ‘ at the start of your processing pipeline.",,Remap characters,,,Remap characters to '\n' or ' ',Remap characters,Remap characters to '\n' or ' ',1,Remap characters to '\n' or ' ',Remap characters to '\n' or ' ',use CoreNLP in Unix line-oriented processing pipeline,use CoreNLP in Unix line-oriented processing pipeline,,1,1,0,1,0
+"You can find other input processing options in the documentation of the tokenize, cleanxml, and ssplit annotators.",,Find processing options,,,Find other input processing options,,,0,,,find other input processing options in documentation,,,0,1,0,1,0
+"If (and only if) the input filename ends with “.ser.gz” then CoreNLP will interpret the file as the output of a previous annotation run, to which you presumably want to add on further annotations. CoreNLP will read these Annotations using the class specified in the inputSerializer property. The options for this are the same as for outputSerializer below. Note: To successfully load a pipeline for layering on additional annotations, you need to include the property enforceRequirements = false to avoid complaints about required earlier annotators not being present in the pipeline.",,,,,Layer on additional annotations,Layer on additional annotations,Layer on additional annotations,1,Layer on additional annotations,Layer on additional annotations,"add  on further annotations
+read Annotations
+use class
+specify  in inputSerializer property
+load pipeline for layering","add  on further annotations
+use class
+specify  in inputSerializer property
+load pipeline for layering","add  on further annotations
+specify  in inputSerializer property
+load pipeline for layering",1,5,0,3,0
+"For each input file, Stanford CoreNLP generates one output file, with a name that adds an extra extension to the input filename. (If reading input from stdin, then it will send output to stdout.) The output may contain the output of all annotations that were done, or just a subset of them. For the first example under Quick Start above, with input.txt containing the text below:",,Generate output file,,,Generate one output file,,,0,,,"generate output file with name
+generate output file for input file
+add extra extension to input filename
+add name to input filename","add extra extension to input filename
+add name to input filename","add extra extension to input filename
+add name to input filename",0,4,0,2,0
+Stanford University is located in California. It is a great university.,,,,,,,,,,,locate stanford University in california,,,0,1,0,1,0
+Stanford CoreNLP generates this output.,,,,,,,,,,,generate output,,,0,1,0,1,0
+"Note that this XML output can use the CoreNLP-to-HTML.xsl stylesheet file, which comes with the CoreNLP download or can be downloaded from here. This stylesheet enables human-readable display of the above XML content. For example, this example should display like this.",,,,,Enable human-readable display of the above XML content,,Enable human-readable display of the above XML content,1,Enable human-readable display of the above XML content,Enable human-readable display of the above XML content,"use CoreNLP-to-HTML.xsl stylesheet file
+download CoreNLP-to-HTML.xsl stylesheet file
+enable human-readable display of above XML content","use CoreNLP-to-HTML.xsl stylesheet file
+download CoreNLP-to-HTML.xsl stylesheet file
+enable human-readable display of above XML content",enable human-readable display of above XML content,1,3,1,1,1
+The following properties are associated with output :,,,,,,,,,,,,,,0,1,0,1,0
+Other more obscure output options are:,,,,,,,,,,,,,,0,1,0,1,0
+"The value of the outputSerializer property is the name of a class which extends edu.stanford.nlp.pipeline.AnnotationSerializer. Valid choices include: edu.stanford.nlp.pipeline.GenericAnnotationSerializer, edu.stanford.nlp.pipeline.CustomAnnotationSerializer, edu.stanford.nlp.pipeline.ProtobufAnnotationSerializer; edu.stanford.nlp.kbp.common.KBPProtobufAnnotationSerializer, edu.stanford.nlp.kbp.slotfilling.ir.index.KryoAnnotationSerializer. If unspecified the value of the serializer property will be tried instead. If it is also not defined, the default is to use edu.stanford.nlp.pipeline.GenericAnnotationSerializer.",,,,,,,,,,,"extend edu.stanford.nlp.pipeline.AnnotationSerializer
+extend class
+include valid choices
+use edu.stanford.nlp.pipeline.GenericAnnotationSerializer","include valid choices
+use edu.stanford.nlp.pipeline.GenericAnnotationSerializer",,0,4,0,1,0
+"The ProtobufAnnotationSerializer is a non-lossy annotation serialization. It uses the Java methods writeDelimitedTo() and parseDelimitedFrom(), which allow sending several length-prefixed messages in one stream. Unfortunately, Google has declined to implement these methods for Python or C++. You can get information from Stack Overflow and other places on how to roll your own version for C++ or Python. Probably the best place is here but there are many other sources of information including: here, here, here, and here. This Stack Overflow question explicitly addresses the issue for CoreNLP.",ProtobufAnnotationSerializer for Python or C++ for non-lossy annotation serialization,Send several length-prefixed messages in stream,,,Send several length-prefixed messages in one stream,,Send several length-prefixed messages in one stream,1,Send several length-prefixed messages in one stream,Send several length-prefixed messages in one stream,"use Java methods
+send several length-prefixed messages in stream
+implement methods for Python
+implement methods for c + +
+get information from Stack overflow
+get information from other places","use Java methods
+send several length-prefixed messages in stream
+get information from Stack overflow
+get information from other places","send several length-prefixed messages in stream
+get information from Stack overflow
+get information from other places",1,6,1,3,1
+"In all output formats (and in our code), we number sentences and character offsets from 0 and we number tokens from 1. We realize that this is inconsistent! However, it seemed to be the best thing to do. Numbering character offsets from 0 is the only good choice, given how the Java String class and most modern programming languages work, following Dijkstra’s arguments for indexing from 0 (which were influential at the time if not necessarily so water-tight). Numbering tokens from 1 not only corresponds to the human-natural convention (“the first word of the sentence”) but most importantly is consistent with common NLP standards, such as the CoNLL formats used from CoNLL-X through CoNLL 2009, etc., and in CoNLL-U, which number tokens starting from 1. For sentences, we could then choose to be consistent with either but not both of the above. We went with 0-indexing.",,,,,,,,,,,"use  through CoNLL
+use  from conll-x
+choose  for sentences","use  through CoNLL
+use  from conll-x
+choose  for sentences",choose  for sentences,0,3,0,1,0
+CoreNLP’s default character encoding is Unicode’s UTF-8. You can change the encoding used by supplying the program with the command line flag -encoding FOO (or including the corresponding property in a properties file that you are using). We’ve done a lot of careful work to make sure CoreNLP works with any character encoding supported by Java. Want to use ISO-8859-15 or GB18030? Be our guest!,,Change encoding,Change encoding,Change encoding,Change character encoding,Change character encoding,Change character encoding,,Change character encoding,Change character encoding,"change encoding
+encode FOO","change encoding
+encode FOO","change encoding
+encode FOO",1,2,1,2,1
+,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,Library,,domain specific + filter,19,100,15,60,14
+,,,,,,,,,,,15.00%,,23.33%,,,,,
+,,,,,,,,,,,78.95%,,73.68%,,,,,

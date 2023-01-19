@@ -1,0 +1,377 @@
+Paragraph,Tasks (Old),Henry's mechanical tasks,Henry's library tasks,Henry's library tasks (updated),Sarah's mechanical tasks,Sarah's library tasks,Sarah's library tasks (updated),Conflict,Resolved mechanical tasks,Resolved library tasks,Program (Original),Program (with domain specific verb list),Program (domain specific + filter),Library count,Program count,Program correct,Dom spec + filter count,Dom spec + filter correct
+"Recognizes named entities (person and company names, etc.) in text. Principally, this annotator uses one or more machine learning sequence models to label entities, but it may also call specialist rule-based components, such as for labeling and interpreting times and dates. Numerical entities that require normalization, e.g., dates, have their normalized value stored in NormalizedNamedEntityTagAnnotation. For more extensive support for rule-based NER, you may also want to look at the RegexNER annotator. The set of entities recognized is language-dependent, and the recognized set of entities is frequently more limited for other languages than what is described below for English. As the name “NERClassifierCombiner” implies, commonly this annotator will run several named entity recognizers and then combine their results but it can run just a single annotator or only rule-based quantity NER.","Label entities with machine learning, Label entities with specialist rule-based components","Use machine
+Use specialist rule",,,"Recognize named entities in text
+Use one or more machine learning sequence models
+Run several named entity recognizers
+Run a single annotator",Recognize named entities in text,,1,"Recognize named entities in text
+Use machine learning sequence models
+Call specialist rule-based components
+Run several named entity recognizers
+Run a single annotator",,"use machine
+learn sequence models to label entities
+call specialist rule-based components
+store  in NormalizedNamedEntityTagAnnotation
+describe  for english
+run several named entity recognizers
+combine results
+run single annotator","use machine
+learn sequence models to label entities
+call specialist rule-based components
+run several named entity recognizers
+run single annotator",call specialist rule-based components,0,8,0,1,0
+"For English, by default, this annotator recognizes named (PERSON, LOCATION, ORGANIZATION, MISC), numerical (MONEY, NUMBER, ORDINAL, PERCENT), and temporal (DATE, TIME, DURATION, SET) entities (12 classes). Adding the regexner annotator and using the supplied RegexNER pattern files adds support for the fine-grained and additional entity classes EMAIL, URL, CITY, STATE_OR_PROVINCE, COUNTRY, NATIONALITY, RELIGION, (job) TITLE, IDEOLOGY, CRIMINAL_CHARGE, CAUSE_OF_DEATH, (Twitter, etc.) HANDLE (12 classes) for a total of 24 classes. Named entities are recognized using a combination of three CRF sequence taggers trained on various corpora, including CoNLL, ACE, MUC, and ERE corpora. Numerical entities are recognized using a rule-based system.","Recognize named/numerical/temporal entities, Add support for fine-grained and additional entity classes","Recognize person
+Recognize location
+Recognize organization
+Recognize misc
+Recognize Money
+Recognize Number
+Recognize Ordinal
+Recognize Percent
+Recognize Date
+Recognize Time
+Recognize Duration
+Recognize Set
+Add support for fine-grained entity classes
+Add support for additional entity classes","Add support for fine-grained entity classes
+Add support for additional entity classes",,"Recognize named entities
+Recognize numerical entities
+Recognize temporal entities
+Add the regexner annotator
+Use supplied RegexNER
+Recognize named entities
+Recognize numerical entites","Recognize named entities
+Recognize numerical entities
+Recognize temporal entities
+Recognize fine-grained and additional entity classes","Recognize named entities
+Recognize numerical entities",1,"Recognize named entities
+Recognize numerical entities
+Recognize temporal entities
+Add the regexner annotator
+Use supplied RegexNER patterns
+Add support for fine-grained entity classes
+Add support for additional entity classes","Recognize named entities
+Recognize numerical entities
+Recognize temporal entities","add regexner annotator
+use RegexNER pattern files
+add support for additional entity classes
+use combination of CRF sequence taggers
+use rule-based system","recognize temporal entities by default
+recognize temporal entities for english
+add regexner annotator
+use RegexNER pattern files
+add support for additional entity classes
+use combination of CRF sequence taggers
+recognize named entities
+use rule-based system
+recognize numerical entities","recognize temporal entities by default
+recognize temporal entities for english
+add regexner annotator
+add support for additional entity classes
+recognize named entities
+recognize numerical entities",3,5,0,6,2
+The full named entity recognition pipeline has become fairly complex and involves a set of distinct phases integrating statistical and rule based approaches. Here is a breakdown of those distinct phases.,,,,,,,,,,,,,,0,0,0,1,0
+The main class that runs this process is edu.stanford.nlp.pipeline.NERCombinerAnnotator,,,,,,,,,,,"run process
+run main class","run process
+run main class",,0,2,0,1,0
+During this phase a series of trained CRF’s will be run on each sentence. These CRF’s are trained on large tagged data sets. They evaluate the entire sequence and pick the optimal tag sequence.,,,,,Run trained CRF's on each sentence,,,1,Run trained CRF's on each sentence,,"run series of trained CRF 's
+run series during phase
+run series on sentence","run series of trained CRF s
+run series during phase
+run series on sentence
+evaluate entire sequence",evaluate entire sequence,0,3,0,1,0
+These are the default models that are run:,,,,,,,,,,,run default models,run default models,,0,1,0,1,0
+Tags written by one model cannot be overwritten by subsequent models in the series.,,,,,,,,,,,,,,0,0,0,1,0
+There are two options for how the models are combined. These are selected with the ner.combinationMode property.,,,,,Combine models,,Combine models,,,,"combine models
+select  with ner.combinationMode property",select  with ner.combinationMode property,select  with ner.combinationMode property,0,2,0,1,0
+"So for example, if the ner.combinationMode is set to NORMAL, only the 3-class model’s ORGANIZATION tags will be applied. If it is set to HIGH_RECALL, the 7-class and 4-class models’ ORGANIZATION tags will also be applied.",,,,,"set ner.CombinationMode to NORMAL
+set ner.CombinationMode to ORGANIZATION",,"set ner.CombinationMode to NORMAL
+set ner.CombinationMode to ORGANIZATION",,,,"set ner.combinationMode to NORMAL
+apply ORGANIZATION tags
+set  to HIGH_RECALL","set ner.combinationMode to NORMAL
+set  to HIGH_RECALL","set ner.combinationMode to NORMAL
+set  to HIGH_RECALL",0,3,0,2,0
+"If you do not want to run any statistical models, set ner.model to the empty string.",,Do not run statistical models,,,Do not run any statistical models,,Do not run any statistical models,0,,,"run statistical models
+set ner.model to empty string","run statistical models
+set ner.model to empty string",set ner.model to empty string,0,2,0,1,0
+Next a series of rule based systems are run to recognize and tag numeric sequences and time related sequences.,,,,,Recognize and tag numeric sequences and time related sequences,Recognize and tag numeric sequences and time related sequences,Recognize and tag numeric sequences and time related sequences,1,"Run series of rule based systems
+Recognize numeric and time related sequences
+Tag numeric and time related sequences","Recognize numeric and time related sequences
+Tag numeric and time related sequences",run systems,"recognize time related sequences
+recognize numeric sequences
+tag time related sequences
+tag numeric sequences
+run systems","recognize time related sequences
+recognize numeric sequences
+tag time related sequences
+tag numeric sequences",2,1,0,4,4
+"This phase runs by default, but can be deactivated by setting ner.applyNumericClassifiers to false.",Deactivate numerical classifiers,"Set ner.applyNumericClassifiers
+Deactivate phase",Deactivate numeric classifiers ,Deactivate phase,Set ner.applyNumericClassifiers to false,,Set ner.applyNumericClassifiers to false,1,"Set ner.applyNumericClassifiers to false
+Deactivate phase",Set ner.applyNumericClassifiers to false,"set ner.applyNumericClassifiers to false
+run  by default
+deactivate phase","set ner.applyNumericClassifiers to false
+run  by default
+deactivate phase","set ner.applyNumericClassifiers to false
+deactivate phase",1,3,1,2,1
+"This produces tags such as NUMBER, ORDINAL, MONEY, DATE, and TIME",,,,,,,,,,,produce tags such_as NUMBER,produce tags such_as NUMBER,produce tags such_as NUMBER,0,1,0,1,0
+The class that runs this phase is edu.stanford.nlp.ie.regexp.NumberSequenceClassifier,,,,,,,,,,,"run phase
+run class","run phase
+run class",,0,2,0,1,0
+SUTime (described in more detail below) is also used by default. You can deactivate this by setting ner.useSUTime to false.,Deactivate SUTime,"Set ner.useSUTime
+Deactivate SUTime","Set ner.useSUTime
+Deactivate SUTime","Set ner.useSUTime
+Deactivate SUTime",Set ner.useSUTime to false,,Set ner.useSUTime to false,1,"Set ner.useSUTime to false
+Deactivate SUTime",Set ner.useSUTime to false,"use SUTime
+deactivate  by setting
+set ner.useSUTime to false","use SUTime
+deactivate  by setting
+set ner.useSUTime to false","deactivate  by setting
+set ner.useSUTime to false",1,3,1,2,1
+"At this point, a series of rules used for the KBP 2017 competition will be run to create more fine-grained NER tags. These rules are applied using a TokensRegexNERAnnotator sub-annotator. That is the main NERCombinerAnnotator builds a TokensRegexNERAnnotator as a sub-annotator and runs it on all sentences as part of it’s entire tagging process. The purpose of these rules is give tokens more specific tags. So for instance California would be tagged as a STATE_OR_PROVINCE rather than just a LOCATION.",,,,,"Create more fine-grained NER tags
+Give tokens more specific tags",Create more fine-grained NER tags,Give tokens more specific tags,1,"Create more fine-grained NER tags
+Give tokens more specific tags",Give tokens more specific tags,"create more fine-grained NER tags
+use  for KBP competition
+run series at point
+run series of rules
+use TokensRegexNERAnnotator sub-annotator
+apply rules
+run main NERCombinerAnnotator on sentences","create more fine-grained NER tags
+use  for KBP competition
+run series at point
+run series of rules
+use TokensRegexNERAnnotator sub-annotator
+build TokensRegexNERAnnotator as sub-annotator
+build main NERCombinerAnnotator as sub-annotator
+run main NERCombinerAnnotator on sentences
+tag california as STATE_OR_PROVINCE
+tag california as LOCATION
+tag california for instance","create more fine-grained NER tags
+build TokensRegexNERAnnotator as sub-annotator
+build main NERCombinerAnnotator as sub-annotator
+tag california as STATE_OR_PROVINCE
+tag california as LOCATION
+tag california for instance",1,7,0,6,0
+The TokensRegexNERAnnotator runs TokensRegex rules. You can review all of the settings for a TokensRegexNERAnnotator here.,,,,,Review all the settings for a TokensRegexNERAnnotator,,,1,Review all the settings for a TokensRegexNERAnnotator,,run TokensRegex rules,run TokensRegex rules,,0,1,0,1,0
+NOTE: applying these rules will significantly slow down the tagging process.,,,,,,,,,,,apply rules,,,0,1,0,1,0
+The tags set by this phase include:,,,,,,,,,,,,,,0,0,0,1,0
+"If you do not want to run the fine-grained rules, set ner.applyFineGrained to false.",Disable fine-grained rules,"Set ner.applyFineGrained
+Do not run fine-grained rules",Do not run fine-grained rules,,"Do not run the fine-grained rules
+Set ner.applyFineGrained to false",,"Do not run the fine-grained rules
+Set ner.applyFineGrained to false",1,"Do not run the fine-grained rules
+Set ner.applyFineGrained to false","Do not run the fine-grained rules
+Set ner.applyFineGrained to false","run fine-grained rules
+set ner.applyFineGrained to false","run fine-grained rules
+set ner.applyFineGrained to false",set ner.applyFineGrained to false,2,2,1,1,1
+There is a more detailed write up about RegexNER here,,,,,,,,,,,,,,0,0,0,1,0
+The format is a series of tab-delimited columns.,,,,,,,,,,,,,,0,0,0,1,0
+"The first column is the tokens pattern, the second column is the NER tag to apply, the third is the types of NER tags that can be overwritten, and the fourth is a priority used for tie-breaking if two rules match a sequence.",,,,,,,,,,,"match sequence
+use  for tie-breaking","match sequence
+use  for tie-breaking",,0,2,0,1,0
+Each space delimited entry represents a regex to match a token.,,,,,,,,,,,,,,0,0,0,1,0
+The rule (remember these are tab-delimited columns):,,,,,,,,,,,,,,0,0,0,1,0
+"means to match the token “Los” followed by the token “Angeles”, and label them both as CITY, provided they have a current NER tag of O, LOCATION, or MISC.",,,,,,,,,,,match token los,match token los,,0,1,0,1,0
+The rule:,,,,,,,,,,,,,,0,0,0,1,0
+"means to match the token “Bachelor”, then the token “of”, and finally either the token “Arts” or “Science”.",,,,,,,,,,,,,,0,0,0,1,0
+Here is a breakdown of how to customize the fine-grained NER. The overall ner annotator creates a sub-annotator called ner.fine.regexner which is an instance of a TokensRegexNERAnnotator.,Customize fine-grained NER,Customize fine-grained NER,Customize fine-grained NER,Customize fine-grained NER,Customize the fine-grained NER,Customize the fine-grained NER,Customize the fine-grained NER,0,,,"customize fine-grained NER
+call ner.fine.regexner",call ner.fine.regexner,call ner.fine.regexner,0,2,0,1,0
+The ner.fine.regexner.mapping property allows one to specify a set of rules files and additional properties for each rules file.,Specify rules files and properties,Specify rules,Specify rules,Specify rules,Specify set of rules files and additional properties for each rules file,Specify set of rules files and additional properties for each rules file,Specify set of rules files and additional properties for each rules file,1,"Specify set of rules fules
+Specify additional properties for each rules file","Specify set of rules fules
+Specify additional properties for each rules file","specify set of rules files
+specify set for rules file
+specify additional properties of rules files
+specify additional properties for rules file","specify set of rules files
+specify set for rules file
+specify additional properties of rules files
+specify additional properties for rules file","specify set of rules files
+specify set for rules file
+specify additional properties of rules files
+specify additional properties for rules file",2,4,2,4,2
+The format is as follows:,,,,,,,,,,,,,,0,0,0,1,0
+"As an example, this is the default ner.fine.regexner.mapping setting:",,,,,,,,,,,,,,0,0,0,1,0
+The two rules files are:,,,,,,,,,,,,,,0,0,0,1,0
+The options for edu/stanford/nlp/models/kbp/english/gazetteers/regexner_caseless.tab are:,,,,,,,,,,,,,,0,0,0,1,0
+"ignorecase=true,validpospattern=^(NN|JJ).*",,,,,,,,,,,,,,0,0,0,1,0
+while there are no options set for edu/stanford/nlp/models/kbp/english/gazetteers/regexner_cased.tab in this example.,,,,,,,,,,,set  for edu/stanford/nlp/models/kbp/english/gazetteers/regexner_cased.tab,set  for edu/stanford/nlp/models/kbp/english/gazetteers/regexner_cased.tab,set  for edu/stanford/nlp/models/kbp/english/gazetteers/regexner_cased.tab,0,1,0,1,0
+Here is a description of some common options for the TokensRegexNERAnnotator sub-annotator used by ner,,,,,,,,,,,,,,0,0,0,1,0
+You can find more details on the page for the TokensRegexNERAnnotator located here,,,,,,,,,,,find more details on page,,,0,1,0,1,0
+"If you want to set global settings that will apply for all rules files, remember to use ner.fine.regexner.ignorecase and ner.fine.regexner.validpospattern. If you are setting options for a specific rules file with the ner.fine.regexner.mapping option, follow the pattern from above.",Set global settings for all rules files,"Use ner.fine.regexner.ignorecase
+Use ner.fine.regexner.validpospattern
+Set global settings",Set global settings,Set global settings,Set global settings that will apply for all rules files,Set global settings that will apply for all rules files,Set global settings that will apply for all rules files,1,"Use ner.fine.regexner.ignorecase
+Use ner.fine.regexner.validpospattern
+Set global settings that will apply for all rules files",Set global settings that will apply for all rules files,"set global settings
+use ner.fine.regexner.ignorecase
+use ner.fine.regexner.validpospattern
+apply global settings for rules files
+set options for specific rules file","set global settings
+use ner.fine.regexner.ignorecase
+use ner.fine.regexner.validpospattern
+set options for specific rules file","set global settings
+set options for specific rules file",1,5,1,2,1
+"After the fine-grained rules are run, there is also an option for a user to specify additional rules they would like to have run after the fine-grained NER phase.",Specify additional rules after fine-grained NER phase,Specify rules after fine-grained NER,Specify rules after fine-grained NER,Specify rules after fine-grained NER,Specify additional rules to have run,,Specify additional rules to have run,1,Specify additional rules after fine-grained NER,Specify additional rules after fine-grained NER,"specify additional rules
+run  after fine-grained NER phase
+run fine-grained rules","specify additional rules
+run  after fine-grained NER phase
+run fine-grained rules",specify additional rules,1,3,1,1,1
+This second TokensRegexNERAnnotator sub-annotator has the name ner.additional.regexner and is customized in the same manner. This is for the case when users want to run their own rules after the standard rules we provide.,,,,,Run own rules after the standard rules,Run own rules after the standard rules,Run own rules after the standard rules,1,Run own rules after the standard rules,Run own rules after the standard rules,"customize second TokensRegexNERAnnotator sub-annotator
+run own rules after standard rules
+provide standard rules","run own rules after standard rules
+provide standard rules",provide standard rules,1,3,1,1,1
+"For instance, suppose you want to match sports teams after the previous NER steps have been run.",,,,,Match sports teams ,,,1,Match sports teams ,,"match sports teams
+run previous NER steps","match sports teams
+run previous NER steps",,0,2,0,1,0
+Your rules file might look like this /path/to/sports_teams.rules,,,,,,,,,,,,,,0,1,0,1,0
+You could integrate this into the entire NER process by setting ner.additional.regexner.mapping to /path/to/sports_teams.rules,,,,,Integrate this into the entire NER process,,,1,Integrate this into the entire NER process,,"integrate  into entire NER process
+integrate  by setting
+set ner.additional.regexner.mapping to /path/to/sports_teams.rules","integrate  into entire NER process
+integrate  by setting
+set ner.additional.regexner.mapping to /path/to/sports_teams.rules","integrate  into entire NER process
+integrate  by setting
+set ner.additional.regexner.mapping to /path/to/sports_teams.rules",0,3,0,3,0
+"By default no additional rules are run, so leaving ner.additional.regexner.mapping blank will cause this phase to not be run at all.",,,,,,,,,,,run additional rules,run additional rules,,0,1,0,1,0
+"If you want to run a series of TokensRegex rules before entity building, you can also specify a set of TokensRegex rules. A TokensRegexAnnotator sub-annotator will be called. It has the name ner.additional.tokensregex.",Run series of TokensRegex rules before entity building,Run TokensRegex rules,Run TokensRegex rules,,Run a series of TokensRegex rules before entity building,Run a series of TokensRegex rules before entity building,Run a series of TokensRegex rules before entity building,1,Run a series of TokensRegex rules,Run a series of TokensRegex rules,"run series before entity building
+run series of TokensRegex rules
+specify set of TokensRegex rules
+call TokensRegexAnnotator sub-annotator","run series before entity building
+run series of TokensRegex rules
+specify set of TokensRegex rules
+call TokensRegexAnnotator sub-annotator","specify set of TokensRegex rules
+call TokensRegexAnnotator sub-annotator",1,4,1,2,1
+Example command:,,,,,,,,,,,,,,0,0,0,1,0
+You can learn more about TokensRegex rules here,,,,,Learn about TokensRegex rules,,,1,Learn about TokensRegex rules,,,,,0,0,0,1,0
+"After all of the previous steps have been run, entity detection will be run to combine the tagged tokens into entities. The entity mention detection will be based off of the tagging scheme. This is accomplished with an EntityMentionsAnnotator sub-annotator.",,,,,"Run entity detection
+Combine the tagged tokens into entities",,,1,"Run entity detection
+Combine the tagged tokens into entities",,"combine tagged tokens into entities
+run entity detection",run entity detection,,0,2,0,1,0
+You can find a more detailed description of this annotator here,,,,,Find a more detailed description of this annotator,,,1,Find a more detailed description of this annotator,,find detailed description of annotator,,,0,1,0,1,0
+"If a basic IO tagging scheme (example: PERSON, ORGANIZATION, LOCATION) is used, all contiguous sequences of tokens with the same tag will be marked as an entity.",,,,,,,,,,,"mark contiguous sequences as entity
+mark contiguous sequences of tokens
+use basic IO tagging scheme","mark contiguous sequences as entity
+mark contiguous sequences of tokens
+use basic IO tagging scheme","mark contiguous sequences as entity
+mark contiguous sequences of tokens",0,3,0,2,0
+"If a more advanced tagging scheme (such as BIO with tags like B-PERSON and I-PERSON) is used, sequences with the same tag split by a B-tag will be turned into multiple entities.",,,,,,,,,,,use advanced tagging scheme,use advanced tagging scheme,,0,1,0,1,0
+"All of our models and rule files use a basic tagging scheme, but you could create your own models and rules that use BIO.",,,,,Create own models and rules,Create own models and rules,Create own models and rules,1,"Create own models
+Create own rules","Create own models
+Create own rules","use basic tagging scheme
+create own models
+create rules
+use BIO","use basic tagging scheme
+create own models
+create rules
+use BIO","create own models
+create rules",2,4,2,2,2
+For instance (Joe PERSON) (Smith PERSON) (Jane PERSON) (Smith PERSON) will create the entity Joe Smith Jane Smith.,,,,,,,,,,,create entity for instance,create entity for instance,create entity for instance,0,1,0,1,0
+On the other hand (Joe B-PERSON) (Smith I-PERSON) (Jane B-PERSON) (Smith I-PERSON) will create two entities: Joe Smith and Jane Smith.,,,,,,,,,,,create entities on other hand,create entities on other hand,create entities on other hand,0,1,0,1,0
+You can deactivate this with ner.buildEntityMentions being set to false.,Deactivate entity mentions,Set ner.buildEntityMentions,,,Set ner.buildEntityMentions to false,,Set ner.buildEntityMentions to false,1,Set ner.buildEntityMentions to false,Set ner.buildEntityMentions to false,"deactivate  with ner.buildEntityMentions
+set  to false","deactivate  with ner.buildEntityMentions
+set  to false","deactivate  with ner.buildEntityMentions
+set  to false",1,2,0,2,0
+"At this point the NER process will be finished, having tagged tokens with NER tags and created entities.",,,,,,,,,,,,"tag tokens with NER tags
+tag tokens with created entities","tag tokens with NER tags
+tag tokens with created entities",0,0,0,2,0
+There a variety of ways to customize an NER pipeline. Below are some example commands.,Customize NER pipeline,Customize NER pipeline,Customize NER pipeline,Customize NER pipeline,Customize NER pipeline,Customize NER pipeline,Customize NER pipeline,,,,customize NER pipeline,,,0,1,0,1,0
+"Stanford CoreNLP includes SUTime, Stanford’s temporal expression recognizer. SUTime is transparently called from the “ner” annotator, so no configuration is necessary. Furthermore, the “cleanxml” annotator can extract the reference date for a given XML document, so relative dates, e.g., “yesterday”, are transparently normalized with no configuration necessary.",,,,,Extract the reference date for a given XML document,,Extract the reference date for a given XML document,1,Extract the reference date for a given XML document,Extract the reference date for a given XML document,"include SUTime
+call  from ner annotator","include SUTime
+call  from ner annotator
+extract reference date for given XML document","call  from ner annotator
+extract reference date for given XML document",1,2,0,2,1
+"SUTime supports the same annotations as before, i.e., NamedEntityTagAnnotation is set with the label of the numeric entity (DATE, TIME, DURATION, MONEY, PERCENT, or NUMBER) and NormalizedNamedEntityTagAnnotation is set to the value of the normalized temporal expression.",,,,,,,,,,,"support same annotations
+set NamedEntityTagAnnotation with label
+set NormalizedNamedEntityTagAnnotation to value","support same annotations
+set NamedEntityTagAnnotation with label
+set NormalizedNamedEntityTagAnnotation to value","support same annotations
+set NamedEntityTagAnnotation with label
+set NormalizedNamedEntityTagAnnotation to value",0,3,0,3,0
+"Also, SUTime sets the TimexAnnotation key to an edu.stanford.nlp.time.Timex object, which contains the complete list of TIMEX3 fields for the corresponding expressions, such as “val”, “alt_val”, “type”, “tid”. This might be useful to developers interested in recovering complete TIMEX3 expressions.",,,,,,,,,,,set TimexAnnotation key to edu.stanford.nlp.time.Timex object,set TimexAnnotation key to edu.stanford.nlp.time.Timex object,set TimexAnnotation key to edu.stanford.nlp.time.Timex object,0,1,0,1,0
+"Reference dates are by default extracted from the “datetime” and “date” tags in an xml document. To set a different set of tags to use, use the clean.datetags property. When using the API, reference dates can be added to an Annotation via edu.stanford.nlp.ling.CoreAnnotations.DocDateAnnotation, although note that when processing an xml document, the cleanxml annotator will overwrite the DocDateAnnotation if “datetime” or “date” are specified in the document.",Set different tags for dates.,Use clean.datetags,,,"Extract reference dates
+Set different set of tags to use
+Use the clean.datetags property
+Add reference dates to an Annotation
+Overwrite the DocDateAnnotation",Add reference dates to an Annotation,"Extract reference dates
+Set different set of tags to use
+Use the clean.datetags property
+Add reference dates to an Annotation
+Overwrite the DocDateAnnotation",1,"Extract reference dates
+Set different set of tags to use
+Use the clean.datetags property
+Add reference dates to an Annotation
+Overwrite the DocDateAnnotation","Extract reference dates
+Set different set of tags to use
+Use the clean.datetags property
+Add reference dates to an Annotation","set different set of tags
+use clean.datetags property
+use API
+process xml document
+overwrite DocDateAnnotation
+add reference dates to annotation
+specify datetime in document
+specify date in document","extract  in xml document
+extract  from datetime date tags
+set different set of tags
+use clean.datetags property
+use API
+process xml document
+overwrite DocDateAnnotation
+add reference dates to annotation
+specify datetime in document
+specify date in document","extract  in xml document
+extract  from datetime date tags
+set different set of tags
+overwrite DocDateAnnotation
+add reference dates to annotation
+specify datetime in document
+specify date in document",4,8,3,7,3
+The DocDateAnnotator provides a variety of options for setting the document date. The ner annotator will run this annotator as a sub-annotator. These can be specified by setting properties for the ner.docdate sub-annotator.,,,,,Set document date,Set document date,Set document date,1,Set document date,Set document date,"provide variety of options
+set document date
+run annotator as sub-annotator
+set properties for ner.docdate sub-annotator","provide variety of options
+set document date
+run annotator as sub-annotator
+set properties for ner.docdate sub-annotator","provide variety of options
+set document date
+set properties for ner.docdate sub-annotator",1,4,1,3,1
+The following example shows how to access label confidences for tokens and entities. Each token stores the probability of its NER label given by the CRF that was used to assign the label in the CoreAnnotations.NamedEntityTagProbsAnnotation.class. Each entity mention contains the probability of the token with the lowest label probability in its span. For example if Los Angeles had the following probabilities:,Access label confidences for tokens and entities,Access label confidences,Access label confidences,Access label confidences,Access label confidences for tokens and entities,Access label confidences for tokens and entities,Access label confidences for tokens and entities,0,,,"access label confidences for tokens
+access label confidences for entities
+store probability of NER label
+assign label in CoreAnnotations.NamedEntityTagProbsAnnotation.class
+use CRF","access label confidences for tokens
+access label confidences for entities
+assign label in CoreAnnotations.NamedEntityTagProbsAnnotation.class
+use CRF","access label confidences for tokens
+access label confidences for entities
+assign label in CoreAnnotations.NamedEntityTagProbsAnnotation.class",0,5,0,3,0
+the entity Los Angeles would be assigned the LOCATION tag with a confidence of .992.,,,,,Assign the LOCATION tag to entity Los Angeles,,,1,Assign the LOCATION tag to entity Los Angeles,,"assign LOCATION tag with confidence
+assign entity los Angeles with confidence","assign LOCATION tag with confidence
+assign entity los Angeles with confidence","assign LOCATION tag with confidence
+assign entity los Angeles with confidence",0,2,0,2,0
+Below is code for accessing these confidences.,Code for accessing confidences,Access confidences,Access confidences,Access confidences,Access confidences,Access confidences,Access confidences,,,,access confidences,access confidences,access confidences,0,1,0,1,0
+It is possible to run Stanford CoreNLP with NER models that ignore capitalization. We have trained models like this for English. You can find details on the Caseless models page.,Ignore capitalization,Run NER models,Run NER models,Run NER models,Ignore capitlization ,Ignore capitlization ,Ignore capitlization ,0,,,"run Stanford CoreNLP with NER models
+ignore capitalization
+ignore NER models
+find details on caseless models page","run Stanford CoreNLP with NER models
+ignore capitalization
+ignore NER models","ignore capitalization
+ignore NER models",0,4,0,2,0
+The train/dev/test data files should be in the following format:,,,,,,,,,,,,,,0,0,0,1,0
+"In this example, each line is a token, followed by a tab, followed by the NER tag. A blank line represents a sentence break. The model that we release is trained on over a million tokens. The more training data you have, the more accurate your model should be.",,,,,,,,,,,,,,0,0,0,1,0
+"The standard training data sets used for PERSON/LOCATION/ORGANIZATION/MISC must be purchased from the LDC, we do not distribute them.",,,,,,,,,,,purchase  from LDC,,,0,1,0,1,0
+Here is the command for starting the training process (make sure your CLASSPATH is set up to include all of the Stanford CoreNLP jars):,Start the training process,Start training,Start training process,,Start training process,,Start training process,1,Start training process,Start training process,,,,1,0,0,1,0
+The training process can be customized using a properties file. Here is an example properties file for training an English model(ner.model.props):,Customize training process,Customize process,Customize process,Customize process,Customize training process,Customize training process,Customize training process,0,,,"use properties file
+customize training process",use properties file,,0,2,0,1,0
+There is more info about training a CRF model here.,Training a CRF model,Train CRF Model,Train CRF model,,Train a CRF model,,Train a CRF model,1,Train a CRF model,Train a CRF model,,,,1,0,0,1,0
+You can learn more about what the various properties above mean here.,Modify properties file,,,,Learn more about the various properties,,,1,Learn more about the various properties,,,,,0,0,0,1,0
+"SUTime rules can be changed by modifying its included TokensRegex rule files. Changing other rule-based components (money, etc.) requires changes to the Java source code.",Modify SUTime rules,"Modify TokensRegex 
+Change SUTime rules","Modify TokensRegex 
+Change SUTime rules","Modify TokensRegex 
+Change SUTime rules",Change SUTime rules,Change SUTime rules,Change SUTime rules,1,"Modify TokensRegex rule files
+Change SUTime rules","Modify TokensRegex rule files
+Change SUTime rules","modify included TokensRegex rule files
+change SUTime rules
+change other rule-based components","modify included TokensRegex rule files
+change SUTime rules
+change other rule-based components","modify included TokensRegex rule files
+change SUTime rules
+change other rule-based components",2,3,2,3,2
+For more details on the CRF tagger see this page.,Using CRF Tagger,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,Library,,domain specific + filter,29,132,17,119,24
+,,,,,,,,,,,12.88%,,20.17%,,,,,
+,,,,,,,,,,,58.62%,,82.76%,,,,,

@@ -1,0 +1,50 @@
+Paragraph,Tasks (Old),Henry's mechanical tasks,Henry's library tasks,Henry's library tasks (updated),Sarah's mechanical tasks,Sarah's library tasks,Sarah's library tasks (updated),Conflict,Resolved mechanical tasks,Resolved library tasks,Program,Program (with domain specific verb list),Program (domain specific + filter),,,,,
+"This is a shorthand Ajax function, which is equivalent to:",,,,,,,,,,,,,,0,1,0,0,0
+"The success callback function is passed the returned data, which will be an XML root element, text string, JavaScript file, or JSON object, depending on the MIME type of the response. It is also passed the text status of the response.",,"Pass returned data
+Pass text status",,,"Pass the returned data
+Pass the text status of the response",,,0,,,"pass returned data
+pass success callback function
+pass text status of response","pass returned data
+pass success callback function
+pass text status of response","pass returned data
+pass success callback function
+pass text status of response",0,3,0,3,0
+"As of jQuery 1.5, the success callback function is also passed a jqXHR object (in jQuery 1.4, it was passed the XMLHttpRequest object). However, since JSONP and cross-domain GET requests do not use XHR, in those cases the jqXHR and textStatus parameters passed to the success callback are undefined.",,Pass XMLHttpRequest object,,,Pass the XMLHttpRequest object,,,0,,,,,,0,0,0,0,0
+Most implementations will specify a success handler:,,Specify success handler,Specify success handler,Specify success handler,Specify a success handler,,,0,,,specify success handler,,,0,1,0,0,0
+This example fetches the requested HTML snippet and inserts it on the page.,,Fetch HTML snippet and insert on page,Fetch HTML snippet and insert on page,Fetch HTML snippet and insert on page,Fetch HTML snippet and insert it on the page,Fetch HTML snippet and insert it on the page,Fetch HTML snippet and insert it on the page,0,,,"fetch requested HTML snippet
+insert  on page",,,0,2,0,0,0
+"As of jQuery 1.5, all of jQuery's Ajax methods return a superset of the XMLHTTPRequest object. This jQuery XHR object, or jqXHR, returned by $.get() implements the Promise interface, giving it all the properties, methods, and behavior of a Promise (see Deferred object for more information). The jqXHR.done() (for success), jqXHR.fail() (for error), and jqXHR.always() (for completion, whether success or error; added in jQuery 1.6) methods take a function argument that is called when the request terminates. For information about the arguments this function receives, see the jqXHR Object section of the $.ajax() documentation.",,Return superset of XMLHTTPRequest object,,,Return a superset of the XMLHTTPRequest object,,,0,,,,,,0,0,0,0,0
+"The Promise interface also allows jQuery's Ajax methods, including $.get(), to chain multiple .done(), .fail(), and .always() callbacks on a single request, and even to assign these callbacks after the request may have completed. If the request is already complete, the callback is fired immediately.",Chain callbacks on request,Chain multiple callbacks ,Chain multiple callbacks ,Chain multiple callbacks ,Allow jQuery's Ajax methods to chain multiple callbacks,Allow jQuery's Ajax methods to chain multiple callbacks,,1,Chain multiple callbacks on a single request,Chain multiple callbacks on a single request,assign callbacks after request,,,1,1,0,0,0
+"The jqXHR.success(), jqXHR.error(), and jqXHR.complete() callback methods are removed as of jQuery 3.0. You can use jqXHR.done(), jqXHR.fail(), and jqXHR.always() instead.",,,,,,,,,,,"remove jqXHR.success()
+remove jqXHR.error()
+remove jqXHR.complete() callback methods
+use jqXHR.done()
+use jqXHR.fail()
+use jqXHR.always()","use jqXHR.done()
+use jqXHR.fail()
+use jqXHR.always()",,0,6,0,0,0
+"Request the test.php page, but ignore the return results.",Request page but ignore results,"Request test.php
+Ignore results",Request test.php page,,Request page but ignore return results,Request page but ignore return results,Request page but ignore return results,1,"Request page
+Ignore return results","Request page
+Ignore return results",ignore return results,ignore return results,ignore return results,2,1,1,1,1
+Request the test.php page and send some additional data along (while still ignoring the return results).,Request page and send additional data,"Request test.php
+Send additional data
+Ignore return results",Send additional data,,Requst page and send additional data,Requst page and send additional data,Requst page and send additional data,1,"Request page
+Send additional data
+Ignore return results","Request page
+Send additional data
+Ignore return results",request test.php page,request test.php page,request test.php page,3,1,1,1,1
+Pass arrays of data to the server (while still ignoring the return results).,Pass arrays to server,"Pass data
+Ignore results",Pass arrays of data,,Pass arrays of data to the server,Pass arrays of data to the server,Pass arrays of data to the server,1,"Pass arrays of data to the server
+Ignore return results","Pass arrays of data to the server
+Ignore return results",,,,2,0,0,0,0
+"Alert the results from requesting test.php (HTML or XML, depending on what was returned).",Check for results,,,,Alert results from requesting test.php,,,1,Alert results from requesting test.php,,request test.php,request test.php,request test.php,0,1,0,1,0
+"Alert the results from requesting test.cgi with an additional payload of data (HTML or XML, depending on what was returned).",Check for results with additional data,,,,Alert results from requesting test.cgi with an additional payload of data,,,1,Alert results from requesting test.cgi with an additional payload of data,,request test.cgi with additional payload,request test.cgi with additional payload,request test.cgi with additional payload,0,1,0,1,0
+"Get the test.php page contents, which has been returned in json format (John,time=>2pm ) ); ?>), and add it to the page.",Get page contents in JSON,Get test.php,Get test.php page contents,,Get page contents,Get page contents,Get page contents,0,,,,,,0,0,0,0,0
+Get another page on the same domain. Outputs to console both the data returned and the type of data returned.,Get another page in same domain,"Get page
+Return data",Get another page on same domain,,Get another page on the same domain,Get another page on the same domain,Get another page on the same domain,1,"Get another page on the same domain
+Return data",Get another page on the same domain,get page on same domain,get page on same domain,get page on same domain,1,1,1,1,1
+,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,Library,,domain specific + filter,9,19,3,8,3
+,,,,,,,,,,,15.79%,,37.50%,,,,,
+,,,,,,,,,,,33.33%,,33.33%,,,,,

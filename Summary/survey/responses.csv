@@ -146,7 +146,7 @@ id,session_key,library_name,years_experience,familiar,general_rating,task_list,c
 147,d2cmszmgsprwayng3f5x6tp0nmd3i2ct,numpy,6,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL
 148,qjkfbswvl0irmqmos74dmf5nkd75n0dv,soot,36,1,4,2,4,4,4,4,4,4,4,readme,5,NULL
 149,fbt858dedcht9by3mifau7iiocf468am,testrun,10,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL
-150,5r4ylonz9dikkvs5a7d0e1iilspn6v6m,jQuery,12,1,4,2,4,4,2,2,1,2,4,readme,1,I find it difficult to understand how the metrics are actually populated: what data are they based on? How were they calculated? Based on what data? Which version of jQuery? jQuery is a very bizarre library\n\nI just find it difficult to draw a conclusion from jQuery's documentation to these metrics. since most the functionality is exposed on the $(selector) object. How are code examples extracted?
+150,5r4ylonz9dikkvs5a7d0e1iilspn6v6m,jQuery,12,1,4,2,4,4,2,2,1,2,4,readme,1,I find it difficult to understand how the metrics are actually populated: what data are they based on? How were they calculated? Based on what data? Which version of jQuery? jQuery is a very bizarre library since most the functionality is exposed on the $(selector) object. How are code examples extracted?\n\nI just find it difficult to draw a conclusion from jQuery's documentation to these metrics.
 151,5r4ylonz9dikkvs5a7d0e1iilspn6v6m,Flask,12,1,2,3,2,2,2,2,2,4,4,readme,2,The Flask project starts with a tutorial that teaches you how to use it from the start up. This is a good documentation and it is unclear how these metrics account for solid tutorials. That said it's sometimes difficult to find Flask API methods and types. These metrics do not reflect many of the practical considerations of Flask's documentation quality.
 152,5r4ylonz9dikkvs5a7d0e1iilspn6v6m,JSON-java,12,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL
 153,5r4ylonz9dikkvs5a7d0e1iilspn6v6m,CoreNLP,12,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL
@@ -166,3 +166,9 @@ id,session_key,library_name,years_experience,familiar,general_rating,task_list,c
 167,sw7f2cgu8zlrmnynqfldfuwuk9gko6ch,pytest,3,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL
 168,hzgw50xg17yrxlasbbqrx2h8d67u30tv,React,3,0,5,2,5,5,3,4,3,2,4,readme,NULL,NULL
 169,hzgw50xg17yrxlasbbqrx2h8d67u30tv,numpy,3,0,4,5,5,5,2,5,4,1,4,readme,NULL,NULL
+170,0xq9lkjnur4i59lekyqccdbaw365kmdg,JSON-java,3,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL
+171,vb3d8pxid37izghrk60b9fpufalp4q6u,numpy,NULL,NULL,4,5,5,4,4,4,4,4,5,readme,NULL,NULL
+172,tys67a58krqhgfw6oadq8lbf5uq01lfn,JSON-java,1,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL
+173,bxev19qq07htoobqcnchuq6hpauo4s4w,requests,1,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL
+174,2cqcltzgqlyeis2hht41mwg2td9mk03m,requests,2,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL
+175,r833esheg5hdwim6v4migrpepszpkxlh,numpy,1,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL

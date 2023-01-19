@@ -1,0 +1,5 @@
+The explanation needs to be a single paragraph (within <p> tags) above or below the code example (Does not need to be immediately above or below)
+The explanation can not be in a different section as dictated by HTML header sections
+The explanation needs to be a description of what the code example is for
+
+We want to look code examples with the paragraph that describes the task that the code example is trying to achieve

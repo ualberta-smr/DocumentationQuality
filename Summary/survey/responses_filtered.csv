@@ -24,3 +24,4 @@ id,session_key,library_name,years_experience,familiar,general_rating,task_list,c
 166,sw7f2cgu8zlrmnynqfldfuwuk9gko6ch,numpy,3,1,2,2,2,2,2,2,1,2,2,readme,1,Most of the documentation quality metrics are 0 star which seems pretty strange and inaccurate to me. The documented library tasks section also seems quite limited and I feel a google search would be more effective.
 168,hzgw50xg17yrxlasbbqrx2h8d67u30tv,React,3,0,5,2,5,5,3,4,3,2,4,readme,NULL,NULL
 169,hzgw50xg17yrxlasbbqrx2h8d67u30tv,numpy,3,0,4,5,5,5,2,5,4,1,4,readme,NULL,NULL
+171,vb3d8pxid37izghrk60b9fpufalp4q6u,numpy,NULL,NULL,4,5,5,4,4,4,4,4,5,readme,NULL,NULL

@@ -1,0 +1,2692 @@
+Example,Page,Class,Function,Source File
+load(),https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.html,N/A,load,nltk\nltk\data.py
+retrieve(),https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.html,N/A,retrieve,nltk\nltk\data.py
+write(),https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.html,N/A,write,N/A
+writestr(),https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.html,N/A,writestr,N/A
+seek(),https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.html,N/A,seek,N/A
+tell(),https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.html,N/A,tell,N/A
+readline(),https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.html,SeekableUnicodeStreamReader,readline,nltk\nltk\data.py
+read(),https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.html,SeekableUnicodeStreamReader,read,nltk\nltk\data.py
+find(),https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.html,N/A,find,nltk\nltk\data.py
+download(),https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.html,Downloader,download,nltk\nltk\downloader.py
+Downloader.default_download_dir(),https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.html,Downloader,default_download_dir,nltk\nltk\downloader.py
+default_download_dir(),https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.html,Downloader,default_download_dir,nltk\nltk\downloader.py
+_package_to_columns(),https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.html,DownloaderGUI,_package_to_columns,nltk\nltk\downloader.py
+unify(),https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.html,N/A,unify,nltk\nltk\featstruct.py
+walk(),https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.html,FeatStruct,walk,nltk\nltk\featstruct.py
+cyclic(),https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.html,FeatStruct,cyclic,nltk\nltk\featstruct.py
+"fstruct[(f1,f2,...,fn)]",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.html,N/A,N/A,N/A
+freeze(),https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.html,FeatStruct,freeze,nltk\nltk\featstruct.py
+equal_values(),https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.html,FeatStruct,equal_values,nltk\nltk\featstruct.py
+copy(),https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.html,FreqDist,copy,repos\nltk\nltk\probability.py
+nltk.featstruct.rename_variables(),https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.html,N/A,rename_variables,nltk\nltk\featstruct.py
+nltk.featstruct.retract_bindings(),https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.html,N/A,retract_bindings,nltk\nltk\featstruct.py
+nltk.featstruct.substitute_bindings(),https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.html,N/A,substitute_bindings,nltk\nltk\featstruct.py
+nltk.featstruct.find_variables(),https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.html,N/A,find_variables,nltk\nltk\featstruct.py
+"(string, position)",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.html,N/A,N/A,N/A
+"(nonterminal, position)",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.html,N/A,N/A,N/A
+FreqDist.N(),https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.html,FreqDist,N,nltk\nltk\probability.py
+FreqDist.B(),https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.html,FreqDist,B,nltk\nltk\probability.py
+bins-self.B(),https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.html,N/A,N/A,N/A
+self.B(),https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.html,N/A,N/A,N/A
+Counter.setdefault(),https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.html,N/A,N/A,N/A
+Counter.update(),https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.html,N/A,N/A,N/A
+2**(logprob),https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.html,N/A,N/A,N/A
+c+gamma)/(N+B*gamma),https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.html,N/A,N/A,N/A
+self.prob(samp),https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.html,N/A,N/A,N/A
+log(p),https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.html,N/A,N/A,N/A
+log(2**(logx)+2**(logy)),https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.html,N/A,N/A,N/A
+findall(),https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.html,TokenSearcher,findall,nltk\nltk\text.py
+"(marker, value)",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.html,N/A,N/A,N/A
+fields(),https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.html,StandardFormat,fields,nltk\nltk\toolbox.py
+decode(),https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.html,StandardFormat,decode,nltk\nltk\toolbox.py
+StandardFormat.fields(),https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.html,StandardFormat,fields,nltk\nltk\toolbox.py
+encode(),https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.html,N/A,encode,N/A
+parents(),https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.html,MultiParentedTree,parents,nltk\nltk\parented.py
+parent_indices(),https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.html,MultiParentedTree,parent_indices,nltk\nltk\parented.py
+left_siblings(),https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.html,MultiParentedTree,left_siblings,nltk\nltk\parented.py
+right_siblings(),https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.html,MultiParentedTree,right_siblings,nltk\nltk\parented.py
+ptree.parent()[ptree.parent_index()] is ptree,https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.html,ParentedTree,parent,nltk\nltk\parented.py
+ptree.parent()[ptree.parent_index()] is ptree,https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.html,ParentedTree,parent_index,nltk\nltk\parented.py
+ptree.parent_index(),https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.html,ParentedTree,parent_index,nltk\nltk\parented.py
+ptree.parent.index(ptree),https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.html,N/A,N/A,N/A
+index(),https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.html,N/A,N/A,N/A
+ptree.parent(),https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.html,ParentedTree,ptree.parent,nltk\nltk\parented.py
+(),https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.html,N/A,N/A,N/A
+"Tree(label, children)",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.html,Tree,Tree,nltk\nltk\tree\tree.py
+Tree.fromstring(s),https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.html,Tree,fromstring,nltk\nltk\tree\tree.py
+tp=self.leaf_treeposition(i),https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.html,Tree,leaf_treeposition,nltk\nltk\tree\tree.py
+self[tp]==self.leaves()[i],https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.html,Tree,leaves,nltk\nltk\tree\tree.py
+(S: (NP: I) (VP: (V: saw) (NP: it))),https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.html,N/A,N/A,N/A
+self.leaves()[start:end],https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.html,N/A,N/A,N/A
+"(decoded_unicode, successful_encoding)",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.html,N/A,N/A,N/A
+">>> download('treebank') 
+[nltk_data] Downloading package 'treebank'...
+[nltk_data]   Unzipping corpora/treebank.zip.
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.html,Downloader,download,nltk\nltk\downloader.py
+">>> download('all-corpora') 
+[nltk_data] Downloading package 'abc'...
+[nltk_data]   Unzipping corpora/abc.zip.
+[nltk_data] Downloading package 'alpino'...
+[nltk_data]   Unzipping corpora/alpino.zip.
+  ...
+[nltk_data] Downloading package 'words'...
+[nltk_data]   Unzipping corpora/words.zip.
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.html,Downloader,download,nltk\nltk\downloader.py
+">>> from nltk.featstruct import unify
+>>> unify(dict(x=1, y=dict()), dict(a='a', y=dict(b='b')))  
+{'y': {'b': 'b'}, 'x': 1, 'a': 'a'}
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.html,N/A,unify,nltk\nltk\featstruct.py
+"def handler(s, position, reentrances, match): ...
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.html,N/A,N/A,N/A
+">>> from nltk.featstruct import FeatStruct
+>>> FeatStruct('[a=?x]').unify(FeatStruct('[b=?x]'))
+[a=?x, b=?x2]
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.html,FeatStruct,unify,nltk\nltk\featstruct.py
+">>> from nltk.probability import ConditionalFreqDist
+>>> from nltk.tokenize import word_tokenize
+>>> sent = ""the the the dog dog some other words that we do not care about""
+>>> cfdist = ConditionalFreqDist()
+>>> for word in word_tokenize(sent):
+...     condition = len(word)
+...     cfdist[condition][word] += 1
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.html,ConditionalFreqDist,__init__,nltk\nltk\probability.py
+">>> from nltk.probability import ConditionalFreqDist
+>>> from nltk.tokenize import word_tokenize
+>>> sent = ""the the the dog dog some other words that we do not care about""
+>>> cfdist = ConditionalFreqDist()
+>>> for word in word_tokenize(sent):
+...     condition = len(word)
+...     cfdist[condition][word] += 1
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.html,N/A,word_tokenize,nltk\nltk\tokenize\__init__.py
+">>> cfdist = ConditionalFreqDist((len(word), word) for word in word_tokenize(sent))
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.html,ConditionalFreqDist,__init__,nltk\nltk\probability.py
+">>> cfdist = ConditionalFreqDist((len(word), word) for word in word_tokenize(sent))
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.html,N/A,word_tokenize,"
+nltk\nltk\tokenize\__init__.py"
+">>> cfdist[3]
+FreqDist({'the': 3, 'dog': 2, 'not': 1})
+>>> cfdist[3].freq('the')
+0.5
+>>> cfdist[3]['dog']
+2
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.html,FreqDist,__init__,nltk\nltk\probability.py
+">>> cfdist[3]
+FreqDist({'the': 3, 'dog': 2, 'not': 1})
+>>> cfdist[3].freq('the')
+0.5
+>>> cfdist[3]['dog']
+2
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.html,FreqDist,freq,nltk\nltk\probability.py
+">>> from nltk.corpus import brown
+>>> from nltk.probability import ConditionalFreqDist
+>>> from nltk.probability import ConditionalProbDist, ELEProbDist
+>>> cfdist = ConditionalFreqDist(brown.tagged_words()[:5000])
+>>> cpdist = ConditionalProbDist(cfdist, ELEProbDist, 10)
+>>> cpdist['passed'].max()
+'VBD'
+>>> cpdist['passed'].prob('VBD')
+0.423...
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.html,ConditionalFreqDist,ConditionalFreqDist,nltk\nltk\probability.py
+">>> from nltk.corpus import brown
+>>> from nltk.probability import ConditionalFreqDist
+>>> from nltk.probability import ConditionalProbDist, ELEProbDist
+>>> cfdist = ConditionalFreqDist(brown.tagged_words()[:5000])
+>>> cpdist = ConditionalProbDist(cfdist, ELEProbDist, 10)
+>>> cpdist['passed'].max()
+'VBD'
+>>> cpdist['passed'].prob('VBD')
+0.423...
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.html,ConditionalProbDist,ConditionalProbDist,nltk\nltk\probability.py
+">>> from nltk.corpus import brown
+>>> from nltk.probability import ConditionalFreqDist
+>>> from nltk.probability import ConditionalProbDist, ELEProbDist
+>>> cfdist = ConditionalFreqDist(brown.tagged_words()[:5000])
+>>> cpdist = ConditionalProbDist(cfdist, ELEProbDist, 10)
+>>> cpdist['passed'].max()
+'VBD'
+>>> cpdist['passed'].prob('VBD')
+0.423...
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.html,FreqDist,max,nltk\nltk\probability.py
+">>> from nltk.corpus import brown
+>>> from nltk.probability import ConditionalFreqDist
+>>> from nltk.probability import ConditionalProbDist, ELEProbDist
+>>> cfdist = ConditionalFreqDist(brown.tagged_words()[:5000])
+>>> cpdist = ConditionalProbDist(cfdist, ELEProbDist, 10)
+>>> cpdist['passed'].max()
+'VBD'
+>>> cpdist['passed'].prob('VBD')
+0.423...
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.html,ProbDistI,prob,nltk\nltk\probability.py
+">>> from nltk.tokenize import word_tokenize
+>>> from nltk.probability import FreqDist
+>>> sent = 'This is an example sentence'
+>>> fdist = FreqDist()
+>>> for word in word_tokenize(sent):
+...    fdist[word.lower()] += 1
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.html,FreqDist,FreqDist,nltk\nltk\probability.py
+">>> from nltk.tokenize import word_tokenize
+>>> from nltk.probability import FreqDist
+>>> sent = 'This is an example sentence'
+>>> fdist = FreqDist()
+>>> for word in word_tokenize(sent):
+...    fdist[word.lower()] += 1
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.html,N/A,word_tokenize,repos\nltk\nltk\tokenize\__init__.py
+">>> fdist = FreqDist(word.lower() for word in word_tokenize(sent))
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.html,FreqDist,,nltk\nltk\probability.py
+">>> fdist = FreqDist(word.lower() for word in word_tokenize(sent))
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.html,N/A,word_tokenize,repos\nltk\nltk\tokenize\__init__.py
+">>> from nltk.probability import ProbabilisticMixIn
+>>> class A:
+...     def __init__(self, x, y): self.data = (x,y)
+...
+>>> class ProbabilisticA(A, ProbabilisticMixIn):
+...     def __init__(self, x, y, **prob_kwarg):
+...         A.__init__(self, x, y)
+...         ProbabilisticMixIn.__init__(self, **prob_kwarg)
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.html,ProbabilisticMixIn,ProbabilisticMixIn,nltk\nltk\probability.py
+">>> import nltk.corpus
+>>> from nltk.text import Text
+>>> moby = Text(nltk.corpus.gutenberg.words('melville-moby_dick.txt'))
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.html,Text,Text,nltk\nltk\text.py
+">>> from nltk.book import text4
+>>> text4.collocation_list()[:2]
+[('United', 'States'), ('fellow', 'citizens')]
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.html,Text,collocation,nltk\nltk\text.py
+">>> from nltk.book import text4
+>>> text4.collocations() 
+United States; fellow citizens; four years; ...
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.html,Text,collocation,nltk\nltk\text.py
+">>> print('hack'); from nltk.book import text1, text5, text9
+hack...
+>>> text5.findall(""<.*><.*>"")
+you rule bro; telling you bro; u twizted bro
+>>> text1.findall(""(<.*>)"")
+monied; nervous; dangerous; white; white; white; pious; queer; good;
+mature; white; Cape; great; wise; wise; butterless; white; fiendish;
+pale; furious; better; certain; complete; dismasted; younger; brave;
+brave; brave; brave
+>>> text9.findall(""{3,}"")
+thread through those; the thought that; that the thing; the thing
+that; that that thing; through these than through; them that the;
+through the thick; them that they; thought that the
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.html,Text,findall,nltk\nltk\text.py
+">>> import nltk.corpus
+>>> from nltk.text import TextCollection
+>>> print('hack'); from nltk.book import text1, text2, text3
+hack...
+>>> gutenberg = TextCollection(nltk.corpus.gutenberg)
+>>> mytexts = TextCollection([text1, text2, text3])
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.html,TextCollection,__init__,nltk\nltk\text.py
+">>> from nltk.text import TokenSearcher
+>>> print('hack'); from nltk.book import text1, text5, text9
+hack...
+>>> text5.findall(""<.*><.*>"")
+you rule bro; telling you bro; u twizted bro
+>>> text1.findall(""(<.*>)"")
+monied; nervous; dangerous; white; white; white; pious; queer; good;
+mature; white; Cape; great; wise; wise; butterless; white; fiendish;
+pale; furious; better; certain; complete; dismasted; younger; brave;
+brave; brave; brave
+>>> text9.findall(""{3,}"")
+thread through those; the thought that; that the thing; the thing
+that; that that thing; through these than through; them that the;
+through the thick; them that they; thought that the",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.html,TokenSearcher,findall,nltk\nltk\text.py
+"for parent_index in ptree.parent_indices(parent):
+    parent[parent_index] is ptree
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.html,MultiParentedTree,parent_indices,nltk\nltk\parented.py
+"for treepos in ptree.treepositions(root):
+    root[treepos] is ptree
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.html,MultiParentedTree,treepositions,nltk\nltk\parented.py
+">>> from nltk.tree import Tree
+>>> print(Tree(1, [2, Tree(3, [4]), 5]))
+(1 2 (3 4) 5)
+>>> vp = Tree('VP', [Tree('V', ['saw']),
+...                  Tree('NP', ['him'])])
+>>> s = Tree('S', [Tree('NP', ['I']), vp])
+>>> print(s)
+(S (NP I) (VP (V saw) (NP him)))
+>>> print(s[1])
+(VP (V saw) (NP him))
+>>> print(s[1,1])
+(NP him)
+>>> t = Tree.fromstring(""(S (NP I) (VP (V saw) (NP him)))"")
+>>> s == t
+True
+>>> t[1][1].set_label('X')
+>>> t[1][1].label()
+'X'
+>>> print(t)
+(S (NP I) (VP (V saw) (X him)))
+>>> t[0], t[1,1] = t[1,1], t[0]
+>>> print(t)
+(S (X him) (VP (V saw) (NP I)))
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.html,Tree,__init__,nltk\nltk\tree\tree.py
+">>> from nltk.tree import Tree
+>>> print(Tree(1, [2, Tree(3, [4]), 5]))
+(1 2 (3 4) 5)
+>>> vp = Tree('VP', [Tree('V', ['saw']),
+...                  Tree('NP', ['him'])])
+>>> s = Tree('S', [Tree('NP', ['I']), vp])
+>>> print(s)
+(S (NP I) (VP (V saw) (NP him)))
+>>> print(s[1])
+(VP (V saw) (NP him))
+>>> print(s[1,1])
+(NP him)
+>>> t = Tree.fromstring(""(S (NP I) (VP (V saw) (NP him)))"")
+>>> s == t
+True
+>>> t[1][1].set_label('X')
+>>> t[1][1].label()
+'X'
+>>> print(t)
+(S (NP I) (VP (V saw) (X him)))
+>>> t[0], t[1,1] = t[1,1], t[0]
+>>> print(t)
+(S (X him) (VP (V saw) (NP I)))
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.html,Tree,fromstring,nltk\nltk\tree\tree.py
+">>> len(t)
+2
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.html,N/A,N/A,N/A
+">>> t = Tree.fromstring(""(S (NP (D the) (N dog)) (VP (V chased) (NP (D the) (N cat))))"")
+>>> print(t.flatten())
+(S the dog chased the cat)
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.html,Tree,fromstring,nltk\nltk\tree\tree.py
+">>> t = Tree.fromstring(""(S (NP (D the) (N dog)) (VP (V chased) (NP (D the) (N cat))))"")
+>>> print(t.flatten())
+(S the dog chased the cat)
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.html,Tree,flatten,nltk\nltk\tree\tree.py
+"(S (NP (NNP John)) (VP (V runs)))
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.html,N/A,N/A,N/A
+">>> t = Tree.fromstring(""(S (NP (D the) (N dog)) (VP (V chased) (NP (D the) (N cat))))"")
+>>> t.height()
+5
+>>> print(t[0,0])
+(D the)
+>>> t[0,0].height()
+2
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.html,Tree,fromstring,nltk\nltk\tree\tree.py
+">>> t = Tree.fromstring(""(S (NP (D the) (N dog)) (VP (V chased) (NP (D the) (N cat))))"")
+>>> t.height()
+5
+>>> print(t[0,0])
+(D the)
+>>> t[0,0].height()
+2
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.html,Tree,height,nltk\nltk\tree\tree.py
+">>> t = Tree.fromstring('(S (NP (D the) (N dog)) (VP (V chased) (NP (D the) (N cat))))')
+>>> t.label()
+'S'
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.html,Tree,fromstring,nltk\nltk\tree\tree.py
+">>> t = Tree.fromstring('(S (NP (D the) (N dog)) (VP (V chased) (NP (D the) (N cat))))')
+>>> t.label()
+'S'
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.html,Tree,label,nltk\nltk\tree\tree.py
+">>> t = Tree.fromstring(""(S (NP (D the) (N dog)) (VP (V chased) (NP (D the) (N cat))))"")
+>>> t.leaves()
+['the', 'dog', 'chased', 'the', 'cat']
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.html,Tree,fromstring,nltk\nltk\tree\tree.py
+">>> t = Tree.fromstring(""(S (NP (D the) (N dog)) (VP (V chased) (NP (D the) (N cat))))"")
+>>> t.leaves()
+['the', 'dog', 'chased', 'the', 'cat']
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.html,Tree,leaves,nltk\nltk\tree\tree.py
+">>> t = Tree.fromstring(""(S (NP (D the) (N dog)) (VP (V chased) (NP (D the) (N cat))))"")
+>>> t.pos()
+[('the', 'D'), ('dog', 'N'), ('chased', 'V'), ('the', 'D'), ('cat', 'N')]
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.html,Tree,fromstring,nltk\nltk\tree\tree.py
+">>> t = Tree.fromstring(""(S (NP (D the) (N dog)) (VP (V chased) (NP (D the) (N cat))))"")
+>>> t.pos()
+[('the', 'D'), ('dog', 'N'), ('chased', 'V'), ('the', 'D'), ('cat', 'N')]
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.html,Tree,pos,nltk\nltk\tree\tree.py
+">>> t = Tree.fromstring(""(S (NP (D the) (N dog)) (VP (V chased) (NP (D the) (N cat))))"")
+>>> t.productions()
+[S -> NP VP, NP -> D N, D -> 'the', N -> 'dog', VP -> V NP, V -> 'chased',
+NP -> D N, D -> 'the', N -> 'cat']
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.html,Tree,fromstring,nltk\nltk\tree\tree.py
+">>> t = Tree.fromstring(""(S (NP (D the) (N dog)) (VP (V chased) (NP (D the) (N cat))))"")
+>>> t.productions()
+[S -> NP VP, NP -> D N, D -> 'the', N -> 'dog', VP -> V NP, V -> 'chased',
+NP -> D N, D -> 'the', N -> 'cat']
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.html,Tree,productions,nltk\nltk\tree\tree.py
+">>> t = Tree.fromstring(""(S (NP (D the) (N dog)) (VP (V chased) (NP (D the) (N cat))))"")
+>>> t.set_label(""T"")
+>>> print(t)
+(T (NP (D the) (N dog)) (VP (V chased) (NP (D the) (N cat))))
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.html,Tree,fromstring,nltk\nltk\tree\tree.py
+">>> t = Tree.fromstring(""(S (NP (D the) (N dog)) (VP (V chased) (NP (D the) (N cat))))"")
+>>> t.set_label(""T"")
+>>> print(t)
+(T (NP (D the) (N dog)) (VP (V chased) (NP (D the) (N cat))))
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.html,Tree,set_label,nltk\nltk\tree\tree.py
+">>> t = Tree.fromstring(""(S (NP (D the) (N dog)) (VP (V chased) (NP (D the) (N cat))))"")
+>>> for s in t.subtrees(lambda t: t.height() == 2):
+...     print(s)
+(D the)
+(N dog)
+(V chased)
+(D the)
+(N cat)
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.html,Tree,fromstring,nltk\nltk\tree\tree.py
+">>> t = Tree.fromstring(""(S (NP (D the) (N dog)) (VP (V chased) (NP (D the) (N cat))))"")
+>>> for s in t.subtrees(lambda t: t.height() == 2):
+...     print(s)
+(D the)
+(N dog)
+(V chased)
+(D the)
+(N cat)
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.html,Tree,subtrees,nltk\nltk\tree\tree.py
+">>> t = Tree.fromstring(""(S (NP (D the) (N dog)) (VP (V chased) (NP (D the) (N cat))))"")
+>>> t.treepositions() 
+[(), (0,), (0, 0), (0, 0, 0), (0, 1), (0, 1, 0), (1,), (1, 0), (1, 0, 0), ...]
+>>> for pos in t.treepositions('leaves'):
+...     t[pos] = t[pos][::-1].upper()
+>>> print(t)
+(S (NP (D EHT) (N GOD)) (VP (V DESAHC) (NP (D EHT) (N TAC))))
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.html,Tree,fromstring,nltk\nltk\tree\tree.py
+">>> t = Tree.fromstring(""(S (NP (D the) (N dog)) (VP (V chased) (NP (D the) (N cat))))"")
+>>> t.treepositions() 
+[(), (0,), (0, 0), (0, 0, 0), (0, 1), (0, 1, 0), (1,), (1, 0), (1, 0, 0), ...]
+>>> for pos in t.treepositions('leaves'):
+...     t[pos] = t[pos][::-1].upper()
+>>> print(t)
+(S (NP (D EHT) (N GOD)) (VP (V DESAHC) (NP (D EHT) (N TAC))))
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.html,Tree,treepositions,nltk\nltk\tree\tree.py
+">>> import nltk
+>>> from nltk.util import acyclic_branches_depth_first as tree
+>>> wn=nltk.corpus.wordnet
+>>> from pprint import pprint
+>>> pprint(tree(wn.synset('certified.a.01'), lambda s:s.also_sees(), cut_mark='...', depth=4))
+[Synset('certified.a.01'),
+ [Synset('authorized.a.01'),
+  [Synset('lawful.a.01'),
+   [Synset('legal.a.01'),
+    ""Cycle(Synset('lawful.a.01'),0,...)"",
+    [Synset('legitimate.a.01'), '...']],
+   [Synset('straight.a.06'),
+    [Synset('honest.a.01'), '...'],
+    ""Cycle(Synset('lawful.a.01'),0,...)""]],
+  [Synset('legitimate.a.01'),
+   ""Cycle(Synset('authorized.a.01'),1,...)"",
+   [Synset('legal.a.01'),
+    [Synset('lawful.a.01'), '...'],
+    ""Cycle(Synset('legitimate.a.01'),0,...)""],
+   [Synset('valid.a.01'),
+    ""Cycle(Synset('legitimate.a.01'),0,...)"",
+    [Synset('reasonable.a.01'), '...']]],
+  [Synset('official.a.01'), ""Cycle(Synset('authorized.a.01'),1,...)""]],
+ [Synset('documented.a.01')]]",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.html,N/A,acyclic_branches_depth_first,nltk\nltk\util.py
+">>> import nltk
+>>> from nltk.util import acyclic_depth_first as acyclic_tree
+>>> wn=nltk.corpus.wordnet
+>>> from pprint import pprint
+>>> pprint(acyclic_tree(wn.synset('dog.n.01'), lambda s:s.hypernyms(),cut_mark='...'))
+[Synset('dog.n.01'),
+ [Synset('canine.n.02'),
+  [Synset('carnivore.n.01'),
+   [Synset('placental.n.01'),
+    [Synset('mammal.n.01'),
+     [Synset('vertebrate.n.01'),
+      [Synset('chordate.n.01'),
+       [Synset('animal.n.01'),
+        [Synset('organism.n.01'),
+         [Synset('living_thing.n.01'),
+          [Synset('whole.n.02'),
+           [Synset('object.n.01'),
+            [Synset('physical_entity.n.01'),
+             [Synset('entity.n.01')]]]]]]]]]]]]],
+ [Synset('domestic_animal.n.01'), ""Cycle(Synset('animal.n.01'),-3,...)""]]
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.html,N/A,acyclic_branches_depth_first,nltk\nltk\util.py
+">>> from nltk.util import bigrams
+>>> list(bigrams([1,2,3,4,5]))
+[(1, 2), (2, 3), (3, 4), (4, 5)]
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.html,N/A,bigrams,nltk\nltk\util.py
+">>> choose(4, 2)
+6
+>>> choose(6, 2)
+15
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.html,N/A,choose,nltk\nltk\util.py
+">>> sent = 'a b c'.split()
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.html,N/A,N/A,N/A
+">>> list(everygrams(sent))
+[('a',), ('a', 'b'), ('a', 'b', 'c'), ('b',), ('b', 'c'), ('c',)]
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.html,N/A,everygrams,nltk\nltk\util.py
+">>> sorted(everygrams(sent), key=len)
+[('a',), ('b',), ('c',), ('a', 'b'), ('b', 'c'), ('a', 'b', 'c')]
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.html,N/A,everygrams,nltk\nltk\util.py
+">>> list(everygrams(sent, max_len=2))
+[('a',), ('a', 'b'), ('b',), ('b', 'c'), ('c',)]
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.html,N/A,everygrams,nltk\nltk\util.py
+">>> from nltk.util import flatten
+>>> flatten(1, 2, ['b', 'a' , ['c', 'd']], 3)
+[1, 2, 'b', 'a', 'c', 'd', 3]
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.html,N/A,flatten,nltk\nltk\util.py
+"locale.setlocale(locale.LC_ALL, '')
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.html,N/A,N/A,N/A
+">>> from nltk.util import ngrams
+>>> list(ngrams([1,2,3,4,5], 3))
+[(1, 2, 3), (2, 3, 4), (3, 4, 5)]
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.html,N/A,ngrams,nltk\nltk\util.py
+">>> list(ngrams([1,2,3,4,5], 2, pad_right=True))
+[(1, 2), (2, 3), (3, 4), (4, 5), (5, None)]
+>>> list(ngrams([1,2,3,4,5], 2, pad_right=True, right_pad_symbol=''))
+[(1, 2), (2, 3), (3, 4), (4, 5), (5, '')]
+>>> list(ngrams([1,2,3,4,5], 2, pad_left=True, left_pad_symbol=''))
+[('', 1), (1, 2), (2, 3), (3, 4), (4, 5)]
+>>> list(ngrams([1,2,3,4,5], 2, pad_left=True, pad_right=True, left_pad_symbol='', right_pad_symbol=''))
+[('', 1), (1, 2), (2, 3), (3, 4), (4, 5), (5, '')]",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.html,N/A,ngrams,nltk\nltk\util.py
+">>> list(pad_sequence([1,2,3,4,5], 2, pad_left=True, pad_right=True, left_pad_symbol='', right_pad_symbol=''))
+['', 1, 2, 3, 4, 5, '']
+>>> list(pad_sequence([1,2,3,4,5], 2, pad_left=True, left_pad_symbol=''))
+['', 1, 2, 3, 4, 5]
+>>> list(pad_sequence([1,2,3,4,5], 2, pad_right=True, right_pad_symbol=''))
+[1, 2, 3, 4, 5, '']
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.html,N/A,pad_sequence,nltk\nltk\util.py
+">>> sent = ""Insurgents killed in ongoing fighting"".split()
+>>> list(skipgrams(sent, 2, 2))
+[('Insurgents', 'killed'), ('Insurgents', 'in'), ('Insurgents', 'ongoing'), ('killed', 'in'), ('killed', 'ongoing'), ('killed', 'fighting'), ('in', 'ongoing'), ('in', 'fighting'), ('ongoing', 'fighting')]
+>>> list(skipgrams(sent, 3, 2))
+[('Insurgents', 'killed', 'in'), ('Insurgents', 'killed', 'ongoing'), ('Insurgents', 'killed', 'fighting'), ('Insurgents', 'in', 'ongoing'), ('Insurgents', 'in', 'fighting'), ('Insurgents', 'ongoing', 'fighting'), ('killed', 'in', 'ongoing'), ('killed', 'in', 'fighting'), ('killed', 'ongoing', 'fighting'), ('in', 'ongoing', 'fighting')]
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.html,N/A,skip_grams,nltk\nltk\util.py
+">>> from nltk.util import trigrams
+>>> list(trigrams([1,2,3,4,5]))
+[(1, 2, 3), (2, 3, 4), (3, 4, 5)]
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.html,N/A,trigrams,nltk\nltk\util.py
+">>> import nltk
+>>> from nltk.util import unweighted_minimum_spanning_tree as mst
+>>> wn=nltk.corpus.wordnet
+>>> from pprint import pprint
+>>> pprint(mst(wn.synset('bound.a.01'), lambda s:s.also_sees()))
+[Synset('bound.a.01'),
+ [Synset('unfree.a.02'),
+  [Synset('confined.a.02')],
+  [Synset('dependent.a.01')],
+  [Synset('restricted.a.01'), [Synset('classified.a.02')]]]]
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.html,N/A,unweighted_minimum_spanning_tree,nltk\nltk\util.py
+">>> lesk(['I', 'went', 'to', 'the', 'bank', 'to', 'deposit', 'money', '.'], 'bank', 'n')
+Synset('savings_bank.n.02')
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.html,N/A,lesk,nltk\nltk\wsd.py
+lexicon.fromstring( string>),https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.ccg.html,N/A,fromstring,nltk\nltk\ccg\lexicon.py
+"parser = chart.CCGChartParser(, )",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.ccg.html,CCGChartParser,__init__,nltk\nltk\ccg\chart.py
+parser.parse(.split()),https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.ccg.html,CCGChartParser,parse,nltk\nltk\ccg\chart.py
+chart.printCCGDerivation( tree extracted from list>),https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.ccg.html,N/A,printCCGDerivation,nltk\nltk\ccg\chart.py
+apply(),https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.ccg.html,BackwardTypeRaiseRule,apply,nltk\nltk\ccg\chart.py
+tokens[self.start():self.end()],https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.ccg.html,N/A,N/A,N/A
+"(s, e)",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.ccg.html,N/A,N/A,N/A
+labels(),https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.classify.html,ClassifierI,labels,nltk\nltk\classify\api.py
+classify(),https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.classify.html,ClassifierI,classify,nltk\nltk\classify\api.py
+classify_many(),https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.classify.html,ClassifierI,classify_many,nltk\nltk\classify\api.py
+prob_classify(),https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.classify.html,ClassifierI,prob_classify,nltk\nltk\classify\api.py
+prob_classify_many(),https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.classify.html,ClassifierI,prob_classify_many,nltk\nltk\classify\api.py
+self.classify(),https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.classify.html,ClassifierI,classify_many,nltk\nltk\classify\api.py
+self.prob_classify(),https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.classify.html,ClassifierI,prob_classify_many,nltk\nltk\classify\api.py
+train(),https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.classify.html,BinaryMaxentFeatureEncoding,train,nltk\nltk\classify\maxent.py
+"is_unseen(fname, fval)",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.classify.html,N/A,N/A,N/A
+"(index, value)",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.classify.html,N/A,N/A,N/A
+"self.encode(fs,l)",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.classify.html,BinaryMaxentFeatureEncoding,encode,nltk\nltk\classify\maxent.py
+"(featureset, label)",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.classify.html,N/A,N/A,N/A
+"encoding.encode(fs,l)",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.classify.html,TypedMaxentFeatureEncoding,encode,nltk\nltk\classify\maxent.py
+"sum([val for (id,val) in vector])",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.classify.html,N/A,N/A,N/A
+train_maxent_classifier(),https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.classify.html,N/A,N/A,N/A
+config_megam(),https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.classify.html,N/A,config_megam,nltk\nltk\classify\megam.py
+"(fname,fval)",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.classify.html,N/A,N/A,N/A
+"map(feature_func, toks)",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.classify.html,N/A,apply_features,nltk\nltk\classify\util.py
+feature_func(),https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.classify.html,N/A,N/A,N/A
+"(tok,label)",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.classify.html,N/A,N/A,N/A
+"(tok, label)",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.classify.html,N/A,N/A,N/A
+"(token, label)",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.classify.html,N/A,N/A,N/A
+contains-word(library)',https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.classify.html,N/A,N/A,N/A
+"(featuredict, label)",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.classify.html,N/A,N/A,N/A
+"|  joint_feat(fs, l) = { 1 if (l == label)
+|                      {
+|                      { 0 otherwise
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.classify.html,N/A,N/A,N/A
+"                          dotprod(weights, encode(fs,label))
+prob(fs|label) = ---------------------------------------------------
+                 sum(dotprod(weights, encode(fs,l)) for l in labels)
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.classify.html,N/A,N/A,N/A
+"dotprod(a,b) = sum(x*y for (x,y) in zip(a,b))
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.classify.html,N/A,N/A,N/A
+"ffreq_empirical[i]
+       =
+SUM[fs,l] (classifier.prob_classify(fs).prob(l) *
+           feature_vector(fs,l)[i] *
+           exp(delta[i] * nf(feature_vector(fs,l))))
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.classify.html,N/A,N/A,N/A
+">>> from nltk.classify import megam
+>>> megam.config_megam() # pass path to megam if not found in PATH 
+[Found megam: ...]
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.classify.html,N/A,config_megam,nltk\nltk\classify\megam.py
+">>> def features(sentence):
+...     words = sentence.lower().split()
+...     return dict(('contains(%s)' % w, True) for w in words)
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.classify.html,N/A,N/A,N/A
+">>> positive_featuresets = map(features, sports_sentences)
+>>> unlabeled_featuresets = map(features, various_sentences)
+>>> classifier = PositiveNaiveBayesClassifier.train(positive_featuresets,
+...                                                 unlabeled_featuresets)
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.classify.html,PositiveNaiveBayesClassifier,train,nltk\nltk\classify\positivenaivebayes.py
+">>> classifier.classify(features('The cat is on the table'))
+False
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.classify.html,NaiveBayesClassifier,classify,nltk\nltk\classify\naivebayes.py
+">>> classifier.classify(features('My team lost the game'))
+True
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.classify.html,NaiveBayesClassifier,classify,nltk\nltk\classify\naivebayes.py
+">>> from sklearn.svm import LinearSVC
+>>> from nltk.classify.scikitlearn import SklearnClassifier
+>>> classif = SklearnClassifier(LinearSVC())
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.classify.html,SklearnClassifier,__init__,nltk\nltk\classify\scikitlearn.py
+">>> from sklearn.feature_extraction.text import TfidfTransformer
+>>> from sklearn.feature_selection import SelectKBest, chi2
+>>> from sklearn.naive_bayes import MultinomialNB
+>>> from sklearn.pipeline import Pipeline
+>>> pipeline = Pipeline([('tfidf', TfidfTransformer()),
+...                      ('chi2', SelectKBest(chi2, k=1000)),
+...                      ('nb', MultinomialNB())])
+>>> classif = SklearnClassifier(pipeline)
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.classify.html,SklearnClassifier,__init__,nltk\nltk\classify\scikitlearn.py
+">>> from nltk.classify import Senna
+>>> pipeline = Senna('/usr/share/senna-v3.0', ['pos', 'chk', 'ner'])
+>>> sent = 'Dusseldorf is an international business center'.split()
+>>> [(token['word'], token['chk'], token['ner'], token['pos']) for token in pipeline.tag(sent)] 
+[('Dusseldorf', 'B-NP', 'B-LOC', 'NNP'), ('is', 'B-VP', 'O', 'VBZ'), ('an', 'B-NP', 'O', 'DT'),
+('international', 'I-NP', 'O', 'JJ'), ('business', 'I-NP', 'O', 'NN'), ('center', 'I-NP', 'O', 'NN')]
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.classify.html,Senna,__init__,nltk\nltk\classify\senna.py
+"[feature_func(tok) for tok in toks]
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.classify.html,N/A,N/A,N/A
+"[(feature_func(tok), label) for (tok, label) in toks]
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.classify.html,N/A,N/A,N/A
+">>> # Define a feature detector function.
+>>> def document_features(document):
+...     return dict([('contains-word(%s)' % w, True) for w in document])
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.classify.html,N/A,N/A,N/A
+">>> # Classify each Gutenberg document.
+>>> from nltk.corpus import gutenberg
+>>> for fileid in gutenberg.fileids(): 
+...     doc = gutenberg.words(fileid) 
+...     print(fileid, classifier.classify(document_features(doc))) 
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.classify.html,ClassifierI,classify,nltk\nltk\classify\api.py
+">>> def wsd_features(sentence, index):
+...     featureset = {}
+...     for i in range(max(0, index-3), index):
+...         featureset['left-context(%s)' % sentence[i]] = True
+...     for i in range(index, max(index+3, len(sentence))):
+...         featureset['right-context(%s)' % sentence[i]] = True
+...     return featureset
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.classify.html,N/A,N/A,N/A
+nltk.corpus.brown.words(),https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.corpus.html,N/A,N/A,N/A
+">>> from nltk.corpus import brown
+>>> print("", "".join(brown.words()))
+The, Fulton, County, Grand, Jury, said, ...
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.corpus.html,N/A,N/A,N/A
+"(left, top, width, height)",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.draw.html,N/A,N/A,N/A
+get(),https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.draw.html,N/A,N/A,N/A
+insert(),https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.draw.html,N/A,N/A,N/A
+show_column(),https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.draw.html,N/A,N/A,N/A
+self.see(),https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.draw.html,MultiListbox,see,nltk\nltk\draw\table.py
+hide_column(),https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.draw.html,MultiListbox,hide_column,nltk\nltk\draw\table.py
+rowconfig(),https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.draw.html,MultiListbox,rowconfig,nltk\nltk\draw\table.py
+columnconfig(),https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.draw.html,MultiListbox,columnconfig,nltk\nltk\draw\table.py
+itemconfig(),https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.draw.html,MultiListbox,itemconfig,nltk\nltk\draw\table.py
+grid(),https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.draw.html,Table,grid,nltk\nltk\draw\table.py
+pack(),https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.draw.html,Table,pack,nltk\nltk\draw\table.py
+bind(),https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.draw.html,Table,bind,nltk\nltk\draw\table.py
+__getitem__(),https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.draw.html,N/A,N/A,N/A
+__setitem__(),https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.draw.html,N/A,N/A,N/A
+__nonzero__(),https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.draw.html,N/A,N/A,N/A
+MultiListbox.bind_to_columns(),https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.draw.html,MultiListbox,bind_to_columns,nltk\nltk\draw\table.py
+MultiListbox.bind_to_labels(),https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.draw.html,MultiListbox,bind_to_labels,nltk\nltk\draw\table.py
+MultiListbox.bind_to_listboxes(),https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.draw.html,MultiListbox,bind_to_listboxes,nltk\nltk\draw\table.py
+MultiListbox.columnconfigure(),https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.draw.html,MultiListbox,columnconfigure,nltk\nltk\draw\table.py
+Tkinter.Frame.grid(),https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.draw.html,N/A,N/A,N/A
+MultiListbox.hide_column(),https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.draw.html,MultiListbox,hide_column,nltk\nltk\draw\table.py
+MultiListbox.itemconfigure(),https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.draw.html,MultiListbox,itemconfigure,nltk\nltk\draw\table.py
+Tkinter.Frame.pack(),https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.draw.html,N/A,N/A,N/A
+MultiListbox.rowconfigure(),https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.draw.html,MultiListbox,rowconfigure,nltk\nltk\draw\table.py
+MultiListbox.select(),https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.draw.html,MultiListbox,select,nltk\nltk\draw\table.py
+table[table.selected_row()],https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.draw.html,Table,selected_row,nltk\nltk\draw\table.py
+MultiListbox.show_column(),https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.draw.html,MultiListbox,show_column,nltk\nltk\draw\table.py
+sort_by(),https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.draw.html,Table,sort_by,nltk\nltk\draw\table.py
+tree.children()[i1].children()[i2]....children()[in],https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.draw.html,N/A,N/A,N/A
+(),https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.draw.html,N/A,N/A,N/A
+parent.update(self),https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.draw.html,N/A,N/A,N/A
+">>> mlb = MultiListbox(master, 5)
+>>> mlb.configure(label_foreground='red')
+>>> mlb.configure(listbox_foreground='red')
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.draw.html,MultiListbox,configure,nltk\nltk\draw\table.py
+">>> print(table[3, 'First Name'])
+John
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.draw.html,N/A,N/A,N/A
+">>> from nltk.draw.util import TextWidget
+>>> cn = TextWidget(c, 'test', color='red')
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.draw.html,TextWidget,__init__,nltk\nltk\classify\util.py
+Prover.prove(),https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.inference.html,Prover,prove,nltk\nltk\inference\api.py
+readings(filter=True),https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.inference.html,DiscourseTester,readings,nltk\nltk\inference\discourse.py
+"(rid, reading)",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.inference.html,N/A,N/A,N/A
+"s0 readings:
+
+s0-r1: some x.(boxer(x) & walk(x))
+s0-r0: some x.(boxerdog(x) & walk(x))
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.inference.html,N/A,N/A,N/A
+">>> from nltk.metrics.agreement import AnnotationTask
+>>> import os.path
+>>> t = AnnotationTask(data=[x.split() for x in open(os.path.join(os.path.dirname(__file__), ""artstein_poesio_example.txt""))])
+>>> t.avg_Ao()
+0.88
+>>> t.pi()
+0.7995322418977615...
+>>> t.S()
+0.8199999999999998...",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.metrics.html,AnnotationTask,__init__,nltk\nltk\metrics\agreement.py
+">>> align('θin', 'tenwis') 
+[[('θ', 't'), ('i', 'e'), ('n', 'n'), ('-', 'w'), ('-', 'i'), ('-', 's')]]
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.metrics.html,N/A,align,nltk\nltk\metrics\aline.py
+"bigram_score_fn(n_ii, (n_ix, n_xi), n_xx)
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.metrics.html,N/A,N/A,N/A
+"score_fn(count_of_ngram,
+         (count_of_n-1gram_1, ..., count_of_n-1gram_j),
+         (count_of_n-2gram_1, ..., count_of_n-2gram_k),
+         ...,
+         (count_of_1gram_1, ..., count_of_1gram_n),
+         count_of_total_words)
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.metrics.html,N/A,N/A,N/A
+"trigram_score_fn(n_iiii,
+                (n_iiix, n_iixi, n_ixii, n_xiii),
+                (n_iixx, n_ixix, n_ixxi, n_xixi, n_xxii, n_xiix),
+                (n_ixxx, n_xixx, n_xxix, n_xxxi),
+                n_all)
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.metrics.html,N/A,N/A,N/A
+"trigram_score_fn(n_iii,
+                 (n_iix, n_ixi, n_xii),
+                 (n_ixx, n_xix, n_xxi),
+                 n_xxx)
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.metrics.html,N/A,N/A,N/A
+">>> from nltk.metrics import ConfusionMatrix
+>>> ref  = 'DET NN VB DET JJ NN NN IN DET NN'.split()
+>>> test = 'DET VB VB DET NN NN NN IN DET NN'.split()
+>>> cm = ConfusionMatrix(ref, test)
+>>> print(cm['NN', 'NN'])
+3
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.metrics.html,ConfusionMatrix,__init__,nltk\nltk\metrics\confusionmatrix.py
+">>> from nltk.metrics import binary_distance
+>>> binary_distance(1,1)
+0.0
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.metrics.html,N/A,binary_distance,nltk\nltk\metrics\distance.py
+">>> binary_distance(1,3)
+1.0
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.metrics.html,N/A,binary_distance,nltk\nltk\metrics\distance.py
+">>> from nltk.metrics import interval_distance
+>>> interval_distance(1,10)
+81
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.metrics.html,N/A,interval_distance,nltk\nltk\metrics\distance.py
+">>> winkler_examples = [(""billy"", ""billy""), (""billy"", ""bill""), (""billy"", ""blily""),
+... (""massie"", ""massey""), (""yvette"", ""yevett""), (""billy"", ""bolly""), (""dwayne"", ""duane""),
+... (""dixon"", ""dickson""), (""billy"", ""susan"")]
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.metrics.html,N/A,N/A,N/A
+">>> for (s1, s2), jscore, wscore, p in zip(winkler_examples, jaro_scores, winkler_scores, p_factors):
+...     assert round(jaro_similarity(s1, s2), 3) == jscore
+...     assert round(jaro_winkler_similarity(s1, s2, p=p), 3) == wscore
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.metrics.html,N/A,jaro_similarity,nltk\nltk\metrics\distance.py
+">>> for (s1, s2), jscore, wscore, p in zip(winkler_examples, jaro_scores, winkler_scores, p_factors):
+...     assert round(jaro_similarity(s1, s2), 3) == jscore
+...     assert round(jaro_winkler_similarity(s1, s2, p=p), 3) == wscore
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.metrics.html,N/A,jaro_winkler_similarity,nltk\nltk\metrics\distance.py
+">>> winkler_examples = [('SHACKLEFORD', 'SHACKELFORD'), ('DUNNINGHAM', 'CUNNIGHAM'),
+... ('NICHLESON', 'NICHULSON'), ('JONES', 'JOHNSON'), ('MASSEY', 'MASSIE'),
+... ('ABROMS', 'ABRAMS'), ('HARDIN', 'MARTINEZ'), ('ITMAN', 'SMITH'),
+... ('JERALDINE', 'GERALDINE'), ('MARHTA', 'MARTHA'), ('MICHELLE', 'MICHAEL'),
+... ('JULIES', 'JULIUS'), ('TANYA', 'TONYA'), ('DWAYNE', 'DUANE'), ('SEAN', 'SUSAN'),
+... ('JON', 'JOHN'), ('JON', 'JAN'), ('BROOKHAVEN', 'BRROKHAVEN'),
+... ('BROOK HALLOW', 'BROOK HLLW'), ('DECATUR', 'DECATIR'), ('FITZRUREITER', 'FITZENREITER'),
+... ('HIGBEE', 'HIGHEE'), ('HIGBEE', 'HIGVEE'), ('LACURA', 'LOCURA'), ('IOWA', 'IONA'), ('1ST', 'IST')]
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.metrics.html,N/A,N/A,N/A
+">>> for (s1, s2), jscore, wscore, p in zip(winkler_examples, jaro_scores, winkler_scores, p_factors):
+...     if (s1, s2) in [('JON', 'JAN'), ('1ST', 'IST')]:
+...         continue  # Skip bad examples from the paper.
+...     assert round(jaro_similarity(s1, s2), 3) == jscore
+...     assert round(jaro_winkler_similarity(s1, s2, p=p), 3) == wscore
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.metrics.html,N/A,jaro_similarity,nltk\nltk\metrics\distance.py
+">>> for (s1, s2), jscore, wscore, p in zip(winkler_examples, jaro_scores, winkler_scores, p_factors):
+...     if (s1, s2) in [('JON', 'JAN'), ('1ST', 'IST')]:
+...         continue  # Skip bad examples from the paper.
+...     assert round(jaro_similarity(s1, s2), 3) == jscore
+...     assert round(jaro_winkler_similarity(s1, s2, p=p), 3) == wscore
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.metrics.html,N/A,jaro_winkler_similarity,nltk\nltk\metrics\distance.py
+">>> round(jaro_winkler_similarity('TANYA', 'TONYA', p=0.1, max_l=100), 3)
+0.88
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.metrics.html,N/A,jaro_winkler_similarity,nltk\nltk\metrics\distance.py
+">>> from nltk.metrics import masi_distance
+>>> masi_distance(set([1, 2]), set([1, 2, 3, 4]))
+0.665
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.metrics.html,N/A,masi_distance,nltk\nltk\metrics\distance.py
+">>> # Same examples as Kulyukin C++ implementation
+>>> ghd('1100100000', '1100010000', 1.0, 1.0, 0.5)
+0.5
+>>> ghd('1100100000', '1100000001', 1.0, 1.0, 0.5)
+2.0
+>>> ghd('011', '110', 1.0, 1.0, 0.5)
+1.0
+>>> ghd('1', '0', 1.0, 1.0, 0.5)
+1.0
+>>> ghd('111', '000', 1.0, 1.0, 0.5)
+3.0
+>>> ghd('000', '111', 1.0, 2.0, 0.5)
+6.0
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.metrics.html,N/A,ghd,nltk\nltk\metrics\segmentation.py
+">>> '%.2f' % pk('0100'*100, '1'*400, 2)
+'0.50'
+>>> '%.2f' % pk('0100'*100, '0'*400, 2)
+'0.50'
+>>> '%.2f' % pk('0100'*100, '0100'*100, 2)
+'0.00'
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.metrics.html,N/A,pk,nltk\nltk\metrics\segmentation.py
+">>> s1 = ""000100000010""
+>>> s2 = ""000010000100""
+>>> s3 = ""100000010000""
+>>> '%.2f' % windowdiff(s1, s1, 3)
+'0.00'
+>>> '%.2f' % windowdiff(s1, s2, 3)
+'0.30'
+>>> '%.2f' % windowdiff(s2, s3, 3)
+'0.80'
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.metrics.html,N/A,windowdiff,nltk\nltk\metrics\segmentation.py
+parse(),https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.parse.html,ParserI,parse,nltk\nltk\parse\api.py
+parse_sents(),https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.parse.html,ParserI,parse_sents,nltk\nltk\parse\api.py
+grammar(),https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.parse.html,ParserI,grammar,nltk\nltk\parse\api.py
+self.parse(),https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.parse.html,ParserI,parse,nltk\nltk\parse\api.py
+bllipparser.RerankingParser.get_unified_model_parameters(),https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.parse.html,N/A,N/A,N/A
+bllipparser.RerankingParser.RerankingParser.load_parser_options(),https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.parse.html,N/A,N/A,N/A
+bllipparser.RerankingParser.RerankingParser.load_reranker_model(),https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.parse.html,N/A,N/A,N/A
+apply(),https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.parse.html,AbstractChartRule,apply,nltk\nltk\parse\chart.py
+"chart.select(is_complete=True, start=0)",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.parse.html,Chart,select,nltk\nltk\parse\chart.py
+e.span()==span,https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.parse.html,N/A,N/A,N/A
+e.start()==start,https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.parse.html,N/A,N/A,N/A
+e.end()==end,https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.parse.html,N/A,N/A,N/A
+e.length()==length,https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.parse.html,N/A,N/A,N/A
+e.lhs()==lhs,https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.parse.html,N/A,N/A,N/A
+e.rhs()==rhs,https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.parse.html,N/A,N/A,N/A
+e.nextsym()==nextsym,https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.parse.html,N/A,N/A,N/A
+e.dot()==dot,https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.parse.html,N/A,N/A,N/A
+e.is_complete()==is_complete,https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.parse.html,N/A,N/A,N/A
+e.is_incomplete()==is_incomplete,https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.parse.html,N/A,N/A,N/A
+tokens[self.start():self.end()],https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.parse.html,N/A,N/A,N/A
+"(s, e)",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.parse.html,N/A,N/A,N/A
+(),https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.parse.html,N/A,N/A,N/A
+"(start,end)",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.parse.html,N/A,N/A,N/A
+"(index,index)",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.parse.html,N/A,N/A,N/A
+"(rtext, tree, frontier)",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.parse.html,N/A,N/A,N/A
+"(stack, remaining_text)",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.parse.html,N/A,N/A,N/A
+">>> dep_parser = CoreNLPDependencyParser(url='http://localhost:9000')
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.parse.html,CoreNLPDependencyParser,__init__,nltk\nltk\parse\corenlp.py
+">>> parse, = dep_parser.raw_parse(
+...     'The quick brown fox jumps over the lazy dog.'
+... )
+>>> print(parse.to_conll(4))  
+The     DT      4       det
+quick   JJ      4       amod
+brown   JJ      4       amod
+fox     NN      5       nsubj
+jumps   VBZ     0       ROOT
+over    IN      9       case
+the     DT      9       det
+lazy    JJ      9       amod
+dog     NN      5       nmod
+.       .       5       punct
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.parse.html,GenericCoreNLPParser,raw_parse,nltk\nltk\parse\corenlp.py
+">>> parse, = dep_parser.raw_parse(
+...     'The quick brown fox jumps over the lazy dog.'
+... )
+>>> print(parse.to_conll(4))  
+The     DT      4       det
+quick   JJ      4       amod
+brown   JJ      4       amod
+fox     NN      5       nsubj
+jumps   VBZ     0       ROOT
+over    IN      9       case
+the     DT      9       det
+lazy    JJ      9       amod
+dog     NN      5       nmod
+.       .       5       punct
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.parse.html,DependencyGraph,to_conll,nltk\nltk\parse\dependencygraph.py
+">>> print(parse.tree())  
+(jumps (fox The quick brown) (dog over the lazy) .)
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.parse.html,DependencyGraph,tree,nltk\nltk\parse\dependencygraph.py
+">>> for governor, dep, dependent in parse.triples():
+...     print(governor, dep, dependent)  
+    ('jumps', 'VBZ') nsubj ('fox', 'NN')
+    ('fox', 'NN') det ('The', 'DT')
+    ('fox', 'NN') amod ('quick', 'JJ')
+    ('fox', 'NN') amod ('brown', 'JJ')
+    ('jumps', 'VBZ') nmod ('dog', 'NN')
+    ('dog', 'NN') case ('over', 'IN')
+    ('dog', 'NN') det ('the', 'DT')
+    ('dog', 'NN') amod ('lazy', 'JJ')
+    ('jumps', 'VBZ') punct ('.', '.')
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.parse.html,N/A,N/A,N/A
+">>> (parse_fox, ), (parse_dog, ) = dep_parser.raw_parse_sents(
+...     [
+...         'The quick brown fox jumps over the lazy dog.',
+...         'The quick grey wolf jumps over the lazy fox.',
+...     ]
+... )
+>>> print(parse_fox.to_conll(4))  
+The DT      4       det
+quick       JJ      4       amod
+brown       JJ      4       amod
+fox NN      5       nsubj
+jumps       VBZ     0       ROOT
+over        IN      9       case
+the DT      9       det
+lazy        JJ      9       amod
+dog NN      5       nmod
+.   .       5       punct
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.parse.html,GenericCoreNLPParser,raw_parse_sents,nltk\nltk\parse\corenlp.py
+">>> (parse_fox, ), (parse_dog, ) = dep_parser.raw_parse_sents(
+...     [
+...         'The quick brown fox jumps over the lazy dog.',
+...         'The quick grey wolf jumps over the lazy fox.',
+...     ]
+... )
+>>> print(parse_fox.to_conll(4))  
+The DT      4       det
+quick       JJ      4       amod
+brown       JJ      4       amod
+fox NN      5       nsubj
+jumps       VBZ     0       ROOT
+over        IN      9       case
+the DT      9       det
+lazy        JJ      9       amod
+dog NN      5       nmod
+.   .       5       punct
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.parse.html,DependencyGraph,to_conll,nltk\nltk\parse\dependencygraph.py
+">>> print(parse_dog.to_conll(4))  
+The DT      4       det
+quick       JJ      4       amod
+grey        JJ      4       amod
+wolf        NN      5       nsubj
+jumps       VBZ     0       ROOT
+over        IN      9       case
+the DT      9       det
+lazy        JJ      9       amod
+fox NN      5       nmod
+.   .       5       punct
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.parse.html,DependencyGraph,to_conll,nltk\nltk\parse\dependencygraph.py
+">>> (parse_dog, ), (parse_friends, ) = dep_parser.parse_sents(
+...     [
+...         ""I 'm a dog"".split(),
+...         ""This is my friends ' cat ( the tabby )"".split(),
+...     ]
+... )
+>>> print(parse_dog.to_conll(4))  
+I   PRP     4       nsubj
+'m  VBP     4       cop
+a   DT      4       det
+dog NN      0       ROOT
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.parse.html,ParserI,parse_sents,nltk\nltk\parse\api.py
+">>> (parse_dog, ), (parse_friends, ) = dep_parser.parse_sents(
+...     [
+...         ""I 'm a dog"".split(),
+...         ""This is my friends ' cat ( the tabby )"".split(),
+...     ]
+... )
+>>> print(parse_dog.to_conll(4))  
+I   PRP     4       nsubj
+'m  VBP     4       cop
+a   DT      4       det
+dog NN      0       ROOT
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.parse.html,DependencyGraph,to_conll,nltk\nltk\parse\dependencygraph.py
+">>> print(parse_friends.to_conll(4))  
+This        DT      6       nsubj
+is  VBZ     6       cop
+my  PRP$    4       nmod:poss
+friends     NNS     6       nmod:poss
+'   POS     4       case
+cat NN      0       ROOT
+-LRB-       -LRB-   9       punct
+the DT      9       det
+tabby       NN      6       appos
+-RRB-       -RRB-   9       punct
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.parse.html,DependencyGraph,to_conll,nltk\nltk\parse\dependencygraph.py
+">>> parse_john, parse_mary, = dep_parser.parse_text(
+...     'John loves Mary. Mary walks.'
+... )
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.parse.html,GenericCoreNLPParser,parse_text,nltk\nltk\parse\corenlp.py
+">>> print(parse_john.to_conll(4))  
+John        NNP     2       nsubj
+loves       VBZ     0       ROOT
+Mary        NNP     2       dobj
+.   .       2       punct
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.parse.html,DependencyGraph,to_conll,nltk\nltk\parse\dependencygraph.py
+">>> print(parse_mary.to_conll(4))  
+Mary        NNP     2       nsubj
+walks       VBZ     0       ROOT
+.   .       2       punct
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.parse.html,DependencyGraph,to_conll,nltk\nltk\parse\dependencygraph.py
+">>> len(
+...     next(
+...         dep_parser.raw_parse(
+...             'Anhalt said children typically treat a 20-ounce soda bottle as one '
+...             'serving, while it actually contains 2 1/2 servings.'
+...         )
+...     ).nodes
+... )
+21
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.parse.html,GenericCoreNLPParser,raw_parse,nltk\nltk\parse\corenlp.py
+">>> len(
+...     next(
+...         dep_parser.raw_parse('This is not going to crash: 01 111 555.')
+...     ).nodes
+... )
+10
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.parse.html,GenericCoreNLPParser,raw_parse,nltk\nltk\parse\corenlp.py
+">>> print(
+...     next(
+...         dep_parser.raw_parse('The underscore _ should not simply disappear.')
+...     ).to_conll(4)
+... )  
+The         DT  3   det
+underscore  VBP 3   amod
+_           NN  7   nsubj
+should      MD  7   aux
+not         RB  7   neg
+simply      RB  7   advmod
+disappear   VB  0   ROOT
+.           .   7   punct
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.parse.html,GenericCoreNLPParser,raw_parse,nltk\nltk\parse\corenlp.py
+">>> print(
+...     next(
+...         dep_parser.raw_parse('The underscore _ should not simply disappear.')
+...     ).to_conll(4)
+... )  
+The         DT  3   det
+underscore  VBP 3   amod
+_           NN  7   nsubj
+should      MD  7   aux
+not         RB  7   neg
+simply      RB  7   advmod
+disappear   VB  0   ROOT
+.           .   7   punct
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.parse.html,DependencyGraph,to_conll,nltk\nltk\parse\dependencygraph.py
+">>> print(
+...     '\n'.join(
+...         next(
+...             dep_parser.raw_parse(
+...                 'for all of its insights into the dream world of teen life , and its electronic expression through '
+...                 'cyber culture , the film gives no quarter to anyone seeking to pull a cohesive story out of its 2 '
+...                 '1/2-hour running time .'
+...             )
+...         ).to_conll(4).split('\n')[-8:]
+...     )
+... )
+its PRP$    40      nmod:poss
+2 1/2       CD      40      nummod
+-   :       40      punct
+hour        NN      31      nmod
+running     VBG     42      amod
+time        NN      40      dep
+.   .       24      punct
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.parse.html,GenericCoreNLPParser,raw_parse,nltk\nltk\parse\corenlp.py
+">>> print(
+...     '\n'.join(
+...         next(
+...             dep_parser.raw_parse(
+...                 'for all of its insights into the dream world of teen life , and its electronic expression through '
+...                 'cyber culture , the film gives no quarter to anyone seeking to pull a cohesive story out of its 2 '
+...                 '1/2-hour running time .'
+...             )
+...         ).to_conll(4).split('\n')[-8:]
+...     )
+... )
+its PRP$    40      nmod:poss
+2 1/2       CD      40      nummod
+-   :       40      punct
+hour        NN      31      nmod
+running     VBG     42      amod
+time        NN      40      dep
+.   .       24      punct
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.parse.html,DependencyGraph,to_conll,nltk\nltk\parse\dependencygraph.py
+">>> parser = CoreNLPParser(url='http://localhost:9000')
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.parse.html,CoreNLPParser,__init__,nltk\nltk\parse\corenlp.py
+">>> next(
+...     parser.raw_parse('The quick brown fox jumps over the lazy dog.')
+... ).pretty_print()  
+                     ROOT
+                      |
+                      S
+       _______________|__________________________
+      |                         VP               |
+      |                _________|___             |
+      |               |             PP           |
+      |               |     ________|___         |
+      NP              |    |            NP       |
+  ____|__________     |    |     _______|____    |
+ DT   JJ    JJ   NN  VBZ   IN   DT      JJ   NN  .
+ |    |     |    |    |    |    |       |    |   |
+The quick brown fox jumps over the     lazy dog  .
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.parse.html,GenericCoreNLPParser,raw_parse,nltk\nltk\parse\corenlp.py
+">>> (parse_fox, ), (parse_wolf, ) = parser.raw_parse_sents(
+...     [
+...         'The quick brown fox jumps over the lazy dog.',
+...         'The quick grey wolf jumps over the lazy fox.',
+...     ]
+... )
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.parse.html,GenericCoreNLPParser,raw_parse_sents,nltk\nltk\parse\corenlp.py
+">>> parse_fox.pretty_print()  
+                     ROOT
+                      |
+                      S
+       _______________|__________________________
+      |                         VP               |
+      |                _________|___             |
+      |               |             PP           |
+      |               |     ________|___         |
+      NP              |    |            NP       |
+  ____|__________     |    |     _______|____    |
+ DT   JJ    JJ   NN  VBZ   IN   DT      JJ   NN  .
+ |    |     |    |    |    |    |       |    |   |
+The quick brown fox jumps over the     lazy dog  .
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.parse.html,N/A,N/A,N/A
+">>> parse_wolf.pretty_print()  
+                     ROOT
+                      |
+                      S
+       _______________|__________________________
+      |                         VP               |
+      |                _________|___             |
+      |               |             PP           |
+      |               |     ________|___         |
+      NP              |    |            NP       |
+  ____|_________      |    |     _______|____    |
+ DT   JJ   JJ   NN   VBZ   IN   DT      JJ   NN  .
+ |    |    |    |     |    |    |       |    |   |
+The quick grey wolf jumps over the     lazy fox  .
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.parse.html,N/A,N/A,N/A
+">>> (parse_dog, ), (parse_friends, ) = parser.parse_sents(
+...     [
+...         ""I 'm a dog"".split(),
+...         ""This is my friends ' cat ( the tabby )"".split(),
+...     ]
+... )
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.parse.html,GenericCoreNLPParser,parse_sents,nltk\nltk\parse\corenlp.py
+">>> parse_dog.pretty_print()  
+        ROOT
+         |
+         S
+  _______|____
+ |            VP
+ |    ________|___
+ NP  |            NP
+ |   |         ___|___
+PRP VBP       DT      NN
+ |   |        |       |
+ I   'm       a      dog
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.parse.html,N/A,N/A,N/A
+">>> parse_friends.pretty_print()  
+     ROOT
+      |
+      S
+  ____|___________
+ |                VP
+ |     ___________|_____________
+ |    |                         NP
+ |    |                  _______|_________
+ |    |                 NP               PRN
+ |    |            _____|_______      ____|______________
+ NP   |           NP            |    |        NP         |
+ |    |     ______|_________    |    |     ___|____      |
+ DT  VBZ  PRP$   NNS       POS  NN -LRB-  DT       NN  -RRB-
+ |    |    |      |         |   |    |    |        |     |
+This  is   my  friends      '  cat -LRB- the     tabby -RRB-
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.parse.html,N/A,N/A,N/A
+">>> parse_john, parse_mary, = parser.parse_text(
+...     'John loves Mary. Mary walks.'
+... )
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.parse.html,GenericCoreNLPParser,parse_text,nltk\nltk\parse\corenlp.py
+">>> parse_john.pretty_print()  
+      ROOT
+       |
+       S
+  _____|_____________
+ |          VP       |
+ |      ____|___     |
+ NP    |        NP   |
+ |     |        |    |
+NNP   VBZ      NNP   .
+ |     |        |    |
+John loves     Mary  .
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.parse.html,N/A,N/A,N/A
+">>> parse_mary.pretty_print()  
+      ROOT
+       |
+       S
+  _____|____
+ NP    VP   |
+ |     |    |
+NNP   VBZ   .
+ |     |    |
+Mary walks  .
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.parse.html,N/A,N/A,N/A
+">>> next(
+...     parser.raw_parse(
+...         'NASIRIYA, Iraq—Iraqi doctors who treated former prisoner of war '
+...         'Jessica Lynch have angrily dismissed claims made in her biography '
+...         'that she was raped by her Iraqi captors.'
+...     )
+... ).height()
+20
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.parse.html,GenericCoreNLPParser,raw_parse,nltk\nltk\parse\corenlp.py
+">>> next(
+...     parser.raw_parse(
+...         ""The broader Standard & Poor's 500 Index <.SPX> was 0.46 points lower, or ""
+...         '0.05 percent, at 997.02.'
+...     )
+... ).height()
+9
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.parse.html,GenericCoreNLPParser,raw_parse,nltk\nltk\parse\corenlp.py
+">>> parser = CoreNLPParser(url='http://localhost:9000', tagtype='ner')
+>>> tokens = 'Rami Eid is studying at Stony Brook University in NY'.split()
+>>> parser.tag(tokens)
+[('Rami', 'PERSON'), ('Eid', 'PERSON'), ('is', 'O'), ('studying', 'O'), ('at', 'O'), ('Stony', 'ORGANIZATION'),
+('Brook', 'ORGANIZATION'), ('University', 'ORGANIZATION'), ('in', 'O'), ('NY', 'O')]
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.parse.html,CoreNLPParser,__init__,nltk\nltk\parse\corenlp.py
+">>> parser = CoreNLPParser(url='http://localhost:9000', tagtype='ner')
+>>> tokens = 'Rami Eid is studying at Stony Brook University in NY'.split()
+>>> parser.tag(tokens)
+[('Rami', 'PERSON'), ('Eid', 'PERSON'), ('is', 'O'), ('studying', 'O'), ('at', 'O'), ('Stony', 'ORGANIZATION'),
+('Brook', 'ORGANIZATION'), ('University', 'ORGANIZATION'), ('in', 'O'), ('NY', 'O')]
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.parse.html,GenericCoreNLPParser,tag,nltk\nltk\parse\corenlp.py
+">>> parser = CoreNLPParser(url='http://localhost:9000', tagtype='pos')
+>>> tokens = ""What is the airspeed of an unladen swallow ?"".split()
+>>> parser.tag(tokens)
+[('What', 'WP'), ('is', 'VBZ'), ('the', 'DT'),
+('airspeed', 'NN'), ('of', 'IN'), ('an', 'DT'),
+('unladen', 'JJ'), ('swallow', 'VB'), ('?', '.')]
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.parse.html,CoreNLPParser,__init__,nltk\nltk\parse\corenlp.py
+">>> parser = CoreNLPParser(url='http://localhost:9000', tagtype='pos')
+>>> tokens = ""What is the airspeed of an unladen swallow ?"".split()
+>>> parser.tag(tokens)
+[('What', 'WP'), ('is', 'VBZ'), ('the', 'DT'),
+('airspeed', 'NN'), ('of', 'IN'), ('an', 'DT'),
+('unladen', 'JJ'), ('swallow', 'VB'), ('?', '.')]
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.parse.html,GenericCoreNLPParser,tag,nltk\nltk\parse\corenlp.py
+">>> text = 'Good muffins cost $3.88\nin New York.  Please buy me\ntwo of them.\nThanks.'
+>>> list(parser.tokenize(text))
+['Good', 'muffins', 'cost', '$', '3.88', 'in', 'New', 'York', '.', 'Please', 'buy', 'me', 'two', 'of', 'them', '.', 'Thanks', '.']
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.parse.html,GenericCoreNLPParser,tokenize,nltk\nltk\parse\corenlp.py
+">>> s = ""The colour of the wall is blue.""
+>>> list(
+...     parser.tokenize(
+...         'The colour of the wall is blue.',
+...             properties={'tokenize.options': 'americanize=true'},
+...     )
+... )
+['The', 'color', 'of', 'the', 'wall', 'is', 'blue', '.']
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.parse.html,GenericCoreNLPParser,tokenize,nltk\nltk\parse\corenlp.py
+">>> dg = DependencyGraph(treebank_data)
+>>> dg.contains_cycle()
+False
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.parse.html,DependencyGraph,__init__,nltk\nltk\parse\dependencygraph.py
+">>> cyclic_dg = DependencyGraph()
+>>> top = {'word': None, 'deps': [1], 'rel': 'TOP', 'address': 0}
+>>> child1 = {'word': None, 'deps': [2], 'rel': 'NTOP', 'address': 1}
+>>> child2 = {'word': None, 'deps': [4], 'rel': 'NTOP', 'address': 2}
+>>> child3 = {'word': None, 'deps': [1], 'rel': 'NTOP', 'address': 3}
+>>> child4 = {'word': None, 'deps': [3], 'rel': 'NTOP', 'address': 4}
+>>> cyclic_dg.nodes = {
+...     0: top,
+...     1: child1,
+...     2: child2,
+...     3: child3,
+...     4: child4,
+... }
+>>> cyclic_dg.root = top
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.parse.html,DependencyGraph,__init__,nltk\nltk\parse\dependencygraph.py
+">>> cyclic_dg.contains_cycle()
+[3, 1, 2, 4]
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.parse.html,DependencyGraph,contains_cycle,nltk\nltk\parse\dependencygraph.py
+">>> dg = DependencyGraph(
+...     'John N 2\n'
+...     'loves V 0\n'
+...     'Mary N 2'
+... )
+>>> print(dg.to_dot())
+digraph G{
+edge [dir=forward]
+node [shape=plaintext]
+
+0 [label=""0 (None)""]
+0 -> 2 [label=""ROOT""]
+1 [label=""1 (John)""]
+2 [label=""2 (loves)""]
+2 -> 1 [label=""""]
+2 -> 3 [label=""""]
+3 [label=""3 (Mary)""]
+}
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.parse.html,DependencyGraph,__init__,nltk\nltk\parse\dependencygraph.py
+">>> dg = DependencyGraph(
+...     'John N 2\n'
+...     'loves V 0\n'
+...     'Mary N 2'
+... )
+>>> print(dg.to_dot())
+digraph G{
+edge [dir=forward]
+node [shape=plaintext]
+
+0 [label=""0 (None)""]
+0 -> 2 [label=""ROOT""]
+1 [label=""1 (John)""]
+2 [label=""2 (loves)""]
+2 -> 1 [label=""""]
+2 -> 3 [label=""""]
+3 [label=""3 (Mary)""]
+}
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.parse.html,DependencyGraph,to_dot,nltk\nltk\parse\dependencygraph.py
+">>> gold_sent = DependencyGraph(""""""
+... Pierre  NNP     2       NMOD
+... Vinken  NNP     8       SUB
+... ,       ,       2       P
+... 61      CD      5       NMOD
+... years   NNS     6       AMOD
+... old     JJ      2       NMOD
+... ,       ,       2       P
+... will    MD      0       ROOT
+... join    VB      8       VC
+... the     DT      11      NMOD
+... board   NN      9       OBJ
+... as      IN      9       VMOD
+... a       DT      15      NMOD
+... nonexecutive    JJ      15      NMOD
+... director        NN      12      PMOD
+... Nov.    NNP     9       VMOD
+... 29      CD      16      NMOD
+... .       .       9       VMOD
+... """""")
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.parse.html,DependencyGraph,__init__,nltk\nltk\parse\dependencygraph.py
+">>> parsed_sent = DependencyGraph(""""""
+... Pierre  NNP     8       NMOD
+... Vinken  NNP     1       SUB
+... ,       ,       3       P
+... 61      CD      6       NMOD
+... years   NNS     6       AMOD
+... old     JJ      2       NMOD
+... ,       ,       3       AMOD
+... will    MD      0       ROOT
+... join    VB      8       VC
+... the     DT      11      AMOD
+... board   NN      9       OBJECT
+... as      IN      9       NMOD
+... a       DT      15      NMOD
+... nonexecutive    JJ      15      NMOD
+... director        NN      12      PMOD
+... Nov.    NNP     9       VMOD
+... 29      CD      16      NMOD
+... .       .       9       VMOD
+... """""")
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.parse.html,DependencyGraph,__init__,nltk\nltk\parse\dependencygraph.py
+">>> de = DependencyEvaluator([parsed_sent],[gold_sent])
+>>> las, uas = de.eval()
+>>> las
+0.6...
+>>> uas
+0.8...
+>>> abs(uas - 0.8) < 0.00001
+True
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.parse.html,DependencyEvaluator,__init__,nltk\nltk\parse\evaluate.py
+">>> de = DependencyEvaluator([parsed_sent],[gold_sent])
+>>> las, uas = de.eval()
+>>> las
+0.6...
+>>> uas
+0.8...
+>>> abs(uas - 0.8) < 0.00001
+True
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.parse.html,DependencyEvaluator,eval,nltk\nltk\parse\evaluate.py
+">>> from nltk.parse import malt
+>>> # With MALT_PARSER and MALT_MODEL environment set.
+>>> mp = malt.MaltParser('maltparser-1.7.2', 'engmalt.linear-1.7.mco') 
+>>> mp.parse_one('I shot an elephant in my pajamas .'.split()).tree() 
+(shot I (elephant an) (in (pajamas my)) .)
+>>> # Without MALT_PARSER and MALT_MODEL environment.
+>>> mp = malt.MaltParser('/home/user/maltparser-1.7.2/', '/home/user/engmalt.linear-1.7.mco') 
+>>> mp.parse_one('I shot an elephant in my pajamas .'.split()).tree() 
+(shot I (elephant an) (in (pajamas my)) .)
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.parse.html,MaltParser,__init__,nltk\nltk\parse\malt.py
+">>> from nltk.parse import malt
+>>> # With MALT_PARSER and MALT_MODEL environment set.
+>>> mp = malt.MaltParser('maltparser-1.7.2', 'engmalt.linear-1.7.mco') 
+>>> mp.parse_one('I shot an elephant in my pajamas .'.split()).tree() 
+(shot I (elephant an) (in (pajamas my)) .)
+>>> # Without MALT_PARSER and MALT_MODEL environment.
+>>> mp = malt.MaltParser('/home/user/maltparser-1.7.2/', '/home/user/engmalt.linear-1.7.mco') 
+>>> mp.parse_one('I shot an elephant in my pajamas .'.split()).tree() 
+(shot I (elephant an) (in (pajamas my)) .)
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.parse.html,ParserI,parse_one,nltk\nltk\parse\api.py
+">>> graphs = [DependencyGraph(entry) for entry in conll_data2.split('\n\n') if entry]
+>>> npp = ProbabilisticNonprojectiveParser()
+>>> npp.train(graphs, NaiveBayesDependencyScorer())
+>>> parses = npp.parse(['Cathy', 'zag', 'hen', 'zwaaien', '.'], ['N', 'V', 'Pron', 'Adj', 'N', 'Punc'])
+>>> len(list(parses))
+1
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.parse.html,ProbabilisticNonprojectiveParser,__init__,nltk\nltk\parse\nonprojectivedependencyparser.py
+">>> class Scorer(DependencyScorerI):
+...     def train(self, graphs):
+...         pass
+...
+...     def score(self, graph):
+...         return [
+...             [[], [5],  [1],  [1]],
+...             [[], [],   [11], [4]],
+...             [[], [10], [],   [5]],
+...             [[], [8],  [8],  []],
+...         ]
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.parse.html,N/A,N/A,N/A
+">>> npp = ProbabilisticNonprojectiveParser()
+>>> npp.train([], Scorer())
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.parse.html,ProbabilisticNonprojectiveParser,train,nltk\nltk\parse\nonprojectivedependencyparser.py
+">>> parses = npp.parse(['v1', 'v2', 'v3'], [None, None, None])
+>>> len(list(parses))
+1
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.parse.html,ProbabilisticNonprojectiveParser,parse,nltk\nltk\parse\nonprojectivedependencyparser.py
+">>> grammar = DependencyGrammar.fromstring('''
+... 'taught' -> 'play' | 'man'
+... 'man' -> 'the' | 'in'
+... 'in' -> 'corner'
+... 'corner' -> 'the'
+... 'play' -> 'golf' | 'dachshund' | 'to'
+... 'dachshund' -> 'his'
+... ''')
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.parse.html,DependencyGrammar,fromstring,nltk\nltk\twitter\grammar.py
+">>> ndp = NonprojectiveDependencyParser(grammar)
+>>> parses = ndp.parse(['the', 'man', 'in', 'the', 'corner', 'taught', 'his', 'dachshund', 'to', 'play', 'golf'])
+>>> len(list(parses))
+4
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.parse.html,NonprojectiveDependencyParser,__init__,nltk\nltk\parse\nonprojectivedependencyparser.py
+">>> graphs = [
+... DependencyGraph(entry) for entry in conll_data2.split('\n\n') if entry
+... ]
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.parse.html,DependencyGraph,__init__,nltk\nltk\parse\dependencygraph.py
+">>> ppdp = ProbabilisticProjectiveDependencyParser()
+>>> ppdp.train(graphs)
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.parse.html,ProbabilisticProjectiveParser,train,nltk\nltk\parse\projectivedependencyparser.py
+">>> sent = ['Cathy', 'zag', 'hen', 'wild', 'zwaaien', '.']
+>>> list(ppdp.parse(sent))
+[Tree('zag', ['Cathy', 'hen', Tree('zwaaien', ['wild', '.'])])]
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.parse.html,ProbabilisticProjectiveParser,parse,nltk\nltk\parse\projectivedependencyparser.py
+"[(NP: (Det: 'the') (N: 'dog')), (V: 'saw')]
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.parse.html,N/A,N/A,N/A
+">>> dep_parser=StanfordDependencyParser(
+...     model_path=""edu/stanford/nlp/models/lexparser/englishPCFG.ser.gz""
+... )
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.parse.html,StanfordDependencyParser,__init__,nltk\nltk\parse\stanford.py
+">>> [parse.tree() for parse in dep_parser.raw_parse(""The quick brown fox jumps over the lazy dog."")] 
+[Tree('jumps', [Tree('fox', ['The', 'quick', 'brown']), Tree('dog', ['over', 'the', 'lazy'])])]
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.parse.html,DependencyGraph,tree,nltk\nltk\parse\dependencygraph.py
+">>> [parse.tree() for parse in dep_parser.raw_parse(""The quick brown fox jumps over the lazy dog."")] 
+[Tree('jumps', [Tree('fox', ['The', 'quick', 'brown']), Tree('dog', ['over', 'the', 'lazy'])])]
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.parse.html,GenericStanfordParser,raw_parse,nltk\nltk\parse\stanford.py
+">>> [list(parse.triples()) for parse in dep_parser.raw_parse(""The quick brown fox jumps over the lazy dog."")] 
+[[((u'jumps', u'VBZ'), u'nsubj', (u'fox', u'NN')), ((u'fox', u'NN'), u'det', (u'The', u'DT')),
+((u'fox', u'NN'), u'amod', (u'quick', u'JJ')), ((u'fox', u'NN'), u'amod', (u'brown', u'JJ')),
+((u'jumps', u'VBZ'), u'nmod', (u'dog', u'NN')), ((u'dog', u'NN'), u'case', (u'over', u'IN')),
+((u'dog', u'NN'), u'det', (u'the', u'DT')), ((u'dog', u'NN'), u'amod', (u'lazy', u'JJ'))]]
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.parse.html,DependencyGraph,triples,nltk\nltk\parse\dependencygraph.py
+">>> [list(parse.triples()) for parse in dep_parser.raw_parse(""The quick brown fox jumps over the lazy dog."")] 
+[[((u'jumps', u'VBZ'), u'nsubj', (u'fox', u'NN')), ((u'fox', u'NN'), u'det', (u'The', u'DT')),
+((u'fox', u'NN'), u'amod', (u'quick', u'JJ')), ((u'fox', u'NN'), u'amod', (u'brown', u'JJ')),
+((u'jumps', u'VBZ'), u'nmod', (u'dog', u'NN')), ((u'dog', u'NN'), u'case', (u'over', u'IN')),
+((u'dog', u'NN'), u'det', (u'the', u'DT')), ((u'dog', u'NN'), u'amod', (u'lazy', u'JJ'))]]
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.parse.html,GenericStanfordParser,raw_parse,nltk\nltk\parse\stanford.py
+">>> sum([[parse.tree() for parse in dep_graphs] for dep_graphs in dep_parser.raw_parse_sents((
+...     ""The quick brown fox jumps over the lazy dog."",
+...     ""The quick grey wolf jumps over the lazy fox.""
+... ))], []) 
+[Tree('jumps', [Tree('fox', ['The', 'quick', 'brown']), Tree('dog', ['over', 'the', 'lazy'])]),
+Tree('jumps', [Tree('wolf', ['The', 'quick', 'grey']), Tree('fox', ['over', 'the', 'lazy'])])]
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.parse.html,DependencyGraph,tree,nltk\nltk\parse\dependencygraph.py
+">>> sum([[parse.tree() for parse in dep_graphs] for dep_graphs in dep_parser.raw_parse_sents((
+...     ""The quick brown fox jumps over the lazy dog."",
+...     ""The quick grey wolf jumps over the lazy fox.""
+... ))], []) 
+[Tree('jumps', [Tree('fox', ['The', 'quick', 'brown']), Tree('dog', ['over', 'the', 'lazy'])]),
+Tree('jumps', [Tree('wolf', ['The', 'quick', 'grey']), Tree('fox', ['over', 'the', 'lazy'])])]
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.parse.html,GenericStanfordParser,raw_parse,nltk\nltk\parse\stanford.py
+">>> sum([[parse.tree() for parse in dep_graphs] for dep_graphs in dep_parser.parse_sents((
+...     ""I 'm a dog"".split(),
+...     ""This is my friends ' cat ( the tabby )"".split(),
+... ))], []) 
+[Tree('dog', ['I', ""'m"", 'a']), Tree('cat', ['This', 'is', Tree('friends', ['my', ""'""]), Tree('tabby', ['the'])])]
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.parse.html,DependencyGraph,tree,nltk\nltk\parse\dependencygraph.py
+">>> sum([[parse.tree() for parse in dep_graphs] for dep_graphs in dep_parser.parse_sents((
+...     ""I 'm a dog"".split(),
+...     ""This is my friends ' cat ( the tabby )"".split(),
+... ))], []) 
+[Tree('dog', ['I', ""'m"", 'a']), Tree('cat', ['This', 'is', Tree('friends', ['my', ""'""]), Tree('tabby', ['the'])])]
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.parse.html,GenericStanfordParser,parse_sents,nltk\nltk\parse\stanford.py
+">>> sum([[list(parse.triples()) for parse in dep_graphs] for dep_graphs in dep_parser.tagged_parse_sents((
+...     (
+...         (""The"", ""DT""),
+...         (""quick"", ""JJ""),
+...         (""brown"", ""JJ""),
+...         (""fox"", ""NN""),
+...         (""jumped"", ""VBD""),
+...         (""over"", ""IN""),
+...         (""the"", ""DT""),
+...         (""lazy"", ""JJ""),
+...         (""dog"", ""NN""),
+...         (""."", "".""),
+...     ),
+... ))],[]) 
+[[((u'jumped', u'VBD'), u'nsubj', (u'fox', u'NN')), ((u'fox', u'NN'), u'det', (u'The', u'DT')),
+((u'fox', u'NN'), u'amod', (u'quick', u'JJ')), ((u'fox', u'NN'), u'amod', (u'brown', u'JJ')),
+((u'jumped', u'VBD'), u'nmod', (u'dog', u'NN')), ((u'dog', u'NN'), u'case', (u'over', u'IN')),
+((u'dog', u'NN'), u'det', (u'the', u'DT')), ((u'dog', u'NN'), u'amod', (u'lazy', u'JJ'))]]
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.parse.html,DependencyGraph,triples,nltk\nltk\parse\dependencygraph.py
+">>> sum([[list(parse.triples()) for parse in dep_graphs] for dep_graphs in dep_parser.tagged_parse_sents((
+...     (
+...         (""The"", ""DT""),
+...         (""quick"", ""JJ""),
+...         (""brown"", ""JJ""),
+...         (""fox"", ""NN""),
+...         (""jumped"", ""VBD""),
+...         (""over"", ""IN""),
+...         (""the"", ""DT""),
+...         (""lazy"", ""JJ""),
+...         (""dog"", ""NN""),
+...         (""."", "".""),
+...     ),
+... ))],[]) 
+[[((u'jumped', u'VBD'), u'nsubj', (u'fox', u'NN')), ((u'fox', u'NN'), u'det', (u'The', u'DT')),
+((u'fox', u'NN'), u'amod', (u'quick', u'JJ')), ((u'fox', u'NN'), u'amod', (u'brown', u'JJ')),
+((u'jumped', u'VBD'), u'nmod', (u'dog', u'NN')), ((u'dog', u'NN'), u'case', (u'over', u'IN')),
+((u'dog', u'NN'), u'det', (u'the', u'DT')), ((u'dog', u'NN'), u'amod', (u'lazy', u'JJ'))]]
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.parse.html,GenericStanfordParser,tagged_parse_sents,nltk\nltk\parse\stanford.py
+">>> from nltk.parse.stanford import StanfordNeuralDependencyParser
+>>> dep_parser=StanfordNeuralDependencyParser(java_options='-mx4g')
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.parse.html,StanfordNeuralDependencyParser,__init__,nltk\nltk\parse\stanford.py
+">>> [parse.tree() for parse in dep_parser.raw_parse(""The quick brown fox jumps over the lazy dog."")] 
+[Tree('jumps', [Tree('fox', ['The', 'quick', 'brown']), Tree('dog', ['over', 'the', 'lazy']), '.'])]
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.parse.html,DependencyGraph,tree,nltk\nltk\parse\dependencygraph.py
+">>> [parse.tree() for parse in dep_parser.raw_parse(""The quick brown fox jumps over the lazy dog."")] 
+[Tree('jumps', [Tree('fox', ['The', 'quick', 'brown']), Tree('dog', ['over', 'the', 'lazy']), '.'])]
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.parse.html,GenericStanfordParser,raw_parse,nltk\nltk\parse\stanford.py
+">>> [list(parse.triples()) for parse in dep_parser.raw_parse(""The quick brown fox jumps over the lazy dog."")] 
+[[((u'jumps', u'VBZ'), u'nsubj', (u'fox', u'NN')), ((u'fox', u'NN'), u'det',
+(u'The', u'DT')), ((u'fox', u'NN'), u'amod', (u'quick', u'JJ')), ((u'fox', u'NN'),
+u'amod', (u'brown', u'JJ')), ((u'jumps', u'VBZ'), u'nmod', (u'dog', u'NN')),
+((u'dog', u'NN'), u'case', (u'over', u'IN')), ((u'dog', u'NN'), u'det',
+(u'the', u'DT')), ((u'dog', u'NN'), u'amod', (u'lazy', u'JJ')), ((u'jumps', u'VBZ'),
+u'punct', (u'.', u'.'))]]
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.parse.html,DependencyGraph,triples,nltk\nltk\parse\dependencygraph.py
+">>> [list(parse.triples()) for parse in dep_parser.raw_parse(""The quick brown fox jumps over the lazy dog."")] 
+[[((u'jumps', u'VBZ'), u'nsubj', (u'fox', u'NN')), ((u'fox', u'NN'), u'det',
+(u'The', u'DT')), ((u'fox', u'NN'), u'amod', (u'quick', u'JJ')), ((u'fox', u'NN'),
+u'amod', (u'brown', u'JJ')), ((u'jumps', u'VBZ'), u'nmod', (u'dog', u'NN')),
+((u'dog', u'NN'), u'case', (u'over', u'IN')), ((u'dog', u'NN'), u'det',
+(u'the', u'DT')), ((u'dog', u'NN'), u'amod', (u'lazy', u'JJ')), ((u'jumps', u'VBZ'),
+u'punct', (u'.', u'.'))]]
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.parse.html,GenericStanfordParser,raw_parse,nltk\nltk\parse\stanford.py
+">>> sum([[parse.tree() for parse in dep_graphs] for dep_graphs in dep_parser.raw_parse_sents((
+...     ""The quick brown fox jumps over the lazy dog."",
+...     ""The quick grey wolf jumps over the lazy fox.""
+... ))], []) 
+[Tree('jumps', [Tree('fox', ['The', 'quick', 'brown']), Tree('dog', ['over',
+'the', 'lazy']), '.']), Tree('jumps', [Tree('wolf', ['The', 'quick', 'grey']),
+Tree('fox', ['over', 'the', 'lazy']), '.'])]
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.parse.html,DependencyGraph,tree,nltk\nltk\parse\dependencygraph.py
+">>> sum([[parse.tree() for parse in dep_graphs] for dep_graphs in dep_parser.raw_parse_sents((
+...     ""The quick brown fox jumps over the lazy dog."",
+...     ""The quick grey wolf jumps over the lazy fox.""
+... ))], []) 
+[Tree('jumps', [Tree('fox', ['The', 'quick', 'brown']), Tree('dog', ['over',
+'the', 'lazy']), '.']), Tree('jumps', [Tree('wolf', ['The', 'quick', 'grey']),
+Tree('fox', ['over', 'the', 'lazy']), '.'])]
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.parse.html,GenericStanfordParser,raw_parse_sents,nltk\nltk\parse\stanford.py
+">>> sum([[parse.tree() for parse in dep_graphs] for dep_graphs in dep_parser.parse_sents((
+...     ""I 'm a dog"".split(),
+...     ""This is my friends ' cat ( the tabby )"".split(),
+... ))], []) 
+[Tree('dog', ['I', ""'m"", 'a']), Tree('cat', ['This', 'is', Tree('friends',
+['my', ""'""]), Tree('tabby', ['-LRB-', 'the', '-RRB-'])])]
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.parse.html,DependencyGraph,tree,nltk\nltk\parse\dependencygraph.py
+">>> sum([[parse.tree() for parse in dep_graphs] for dep_graphs in dep_parser.parse_sents((
+...     ""I 'm a dog"".split(),
+...     ""This is my friends ' cat ( the tabby )"".split(),
+... ))], []) 
+[Tree('dog', ['I', ""'m"", 'a']), Tree('cat', ['This', 'is', Tree('friends',
+['my', ""'""]), Tree('tabby', ['-LRB-', 'the', '-RRB-'])])]
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.parse.html,GenericStanfordParser,raw_parse_sents,nltk\nltk\parse\stanford.py
+">>> parser=StanfordParser(
+...     model_path=""edu/stanford/nlp/models/lexparser/englishPCFG.ser.gz""
+... )
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.parse.html,StanfordParser,__init__,nltk\nltk\parse\stanford.py
+">>> list(parser.raw_parse(""the quick brown fox jumps over the lazy dog"")) 
+[Tree('ROOT', [Tree('NP', [Tree('NP', [Tree('DT', ['the']), Tree('JJ', ['quick']), Tree('JJ', ['brown']),
+Tree('NN', ['fox'])]), Tree('NP', [Tree('NP', [Tree('NNS', ['jumps'])]), Tree('PP', [Tree('IN', ['over']),
+Tree('NP', [Tree('DT', ['the']), Tree('JJ', ['lazy']), Tree('NN', ['dog'])])])])])])]
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.parse.html,GenericStanfordParser,raw_parse,nltk\nltk\parse\stanford.py
+">>> sum([list(dep_graphs) for dep_graphs in parser.raw_parse_sents((
+...     ""the quick brown fox jumps over the lazy dog"",
+...     ""the quick grey wolf jumps over the lazy fox""
+... ))], []) 
+[Tree('ROOT', [Tree('NP', [Tree('NP', [Tree('DT', ['the']), Tree('JJ', ['quick']), Tree('JJ', ['brown']),
+Tree('NN', ['fox'])]), Tree('NP', [Tree('NP', [Tree('NNS', ['jumps'])]), Tree('PP', [Tree('IN', ['over']),
+Tree('NP', [Tree('DT', ['the']), Tree('JJ', ['lazy']), Tree('NN', ['dog'])])])])])]), Tree('ROOT', [Tree('NP',
+[Tree('NP', [Tree('DT', ['the']), Tree('JJ', ['quick']), Tree('JJ', ['grey']), Tree('NN', ['wolf'])]), Tree('NP',
+[Tree('NP', [Tree('NNS', ['jumps'])]), Tree('PP', [Tree('IN', ['over']), Tree('NP', [Tree('DT', ['the']),
+Tree('JJ', ['lazy']), Tree('NN', ['fox'])])])])])])]
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.parse.html,GenericStanfordParser,raw_parse_sents,nltk\nltk\parse\stanford.py
+">>> sum([list(dep_graphs) for dep_graphs in parser.parse_sents((
+...     ""I 'm a dog"".split(),
+...     ""This is my friends ' cat ( the tabby )"".split(),
+... ))], []) 
+[Tree('ROOT', [Tree('S', [Tree('NP', [Tree('PRP', ['I'])]), Tree('VP', [Tree('VBP', [""'m""]),
+Tree('NP', [Tree('DT', ['a']), Tree('NN', ['dog'])])])])]), Tree('ROOT', [Tree('S', [Tree('NP',
+[Tree('DT', ['This'])]), Tree('VP', [Tree('VBZ', ['is']), Tree('NP', [Tree('NP', [Tree('NP', [Tree('PRP$', ['my']),
+Tree('NNS', ['friends']), Tree('POS', [""'""])]), Tree('NN', ['cat'])]), Tree('PRN', [Tree('-LRB-', [Tree('', []),
+Tree('NP', [Tree('DT', ['the']), Tree('NN', ['tabby'])]), Tree('-RRB-', [])])])])])])])]
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.parse.html,GenericStanfordParser,parse_sents,nltk\nltk\parse\stanford.py
+">>> sum([list(dep_graphs) for dep_graphs in parser.tagged_parse_sents((
+...     (
+...         (""The"", ""DT""),
+...         (""quick"", ""JJ""),
+...         (""brown"", ""JJ""),
+...         (""fox"", ""NN""),
+...         (""jumped"", ""VBD""),
+...         (""over"", ""IN""),
+...         (""the"", ""DT""),
+...         (""lazy"", ""JJ""),
+...         (""dog"", ""NN""),
+...         (""."", "".""),
+...     ),
+... ))],[]) 
+[Tree('ROOT', [Tree('S', [Tree('NP', [Tree('DT', ['The']), Tree('JJ', ['quick']), Tree('JJ', ['brown']),
+Tree('NN', ['fox'])]), Tree('VP', [Tree('VBD', ['jumped']), Tree('PP', [Tree('IN', ['over']), Tree('NP',
+[Tree('DT', ['the']), Tree('JJ', ['lazy']), Tree('NN', ['dog'])])])]), Tree('.', ['.'])])])]
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.parse.html,GenericStanfordParser,tagged_parse_sents,nltk\nltk\parse\stanford.py
+">>> from nltk.parse import DependencyGraph, DependencyEvaluator
+>>> from nltk.parse.transitionparser import TransitionParser, Configuration, Transition
+>>> gold_sent = DependencyGraph(""""""
+... Economic  JJ     2      ATT
+... news  NN     3       SBJ
+... has       VBD       0       ROOT
+... little      JJ      5       ATT
+... effect   NN     3       OBJ
+... on     IN      5       ATT
+... financial       JJ       8       ATT
+... markets    NNS      6       PC
+... .    .      3       PU
+... """""")
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.parse.html,DependencyGraph,__init__,nltk\nltk\parse\dependencygraph.py
+">>> conf = Configuration(gold_sent)
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.parse.html,Configuration,__init__,nltk\nltk\parse\transitionparser.py
+">>> print(', '.join(conf.extract_features()))
+STK_0_POS_TOP, BUF_0_FORM_Economic, BUF_0_LEMMA_Economic, BUF_0_POS_JJ, BUF_1_FORM_news, BUF_1_POS_NN, BUF_2_POS_VBD, BUF_3_POS_JJ
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.parse.html,Configuration,extract_features,nltk\nltk\parse\transitionparser.py
+">>> operation = Transition('arc-standard')
+>>> operation.shift(conf)
+>>> operation.left_arc(conf, ""ATT"")
+>>> operation.shift(conf)
+>>> operation.left_arc(conf,""SBJ"")
+>>> operation.shift(conf)
+>>> operation.shift(conf)
+>>> operation.left_arc(conf, ""ATT"")
+>>> operation.shift(conf)
+>>> operation.shift(conf)
+>>> operation.shift(conf)
+>>> operation.left_arc(conf, ""ATT"")
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.parse.html,Transition,__init__,nltk\nltk\parse\transitionparser.py
+">>> operation = Transition('arc-standard')
+>>> operation.shift(conf)
+>>> operation.left_arc(conf, ""ATT"")
+>>> operation.shift(conf)
+>>> operation.left_arc(conf,""SBJ"")
+>>> operation.shift(conf)
+>>> operation.shift(conf)
+>>> operation.left_arc(conf, ""ATT"")
+>>> operation.shift(conf)
+>>> operation.shift(conf)
+>>> operation.shift(conf)
+>>> operation.left_arc(conf, ""ATT"")
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.parse.html,Transition,shift,nltk\nltk\parse\transitionparser.py
+">>> operation = Transition('arc-standard')
+>>> operation.shift(conf)
+>>> operation.left_arc(conf, ""ATT"")
+>>> operation.shift(conf)
+>>> operation.left_arc(conf,""SBJ"")
+>>> operation.shift(conf)
+>>> operation.shift(conf)
+>>> operation.left_arc(conf, ""ATT"")
+>>> operation.shift(conf)
+>>> operation.shift(conf)
+>>> operation.shift(conf)
+>>> operation.left_arc(conf, ""ATT"")
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.parse.html,Transition,left_arc,nltk\nltk\parse\transitionparser.py
+">>> print(', '.join(conf.extract_features()))
+STK_0_FORM_on, STK_0_LEMMA_on, STK_0_POS_IN, STK_1_POS_NN, BUF_0_FORM_markets, BUF_0_LEMMA_markets, BUF_0_POS_NNS, BUF_1_FORM_., BUF_1_POS_., BUF_0_LDEP_ATT
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.parse.html,Configuration,extract_features,nltk\nltk\parse\transitionparser.py
+">>> operation.right_arc(conf, ""PC"")
+>>> operation.right_arc(conf, ""ATT"")
+>>> operation.right_arc(conf, ""OBJ"")
+>>> operation.shift(conf)
+>>> operation.right_arc(conf, ""PU"")
+>>> operation.right_arc(conf, ""ROOT"")
+>>> operation.shift(conf)
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.parse.html,Transition,right_arc,nltk\nltk\parse\transitionparser.py
+">>> operation.right_arc(conf, ""PC"")
+>>> operation.right_arc(conf, ""ATT"")
+>>> operation.right_arc(conf, ""OBJ"")
+>>> operation.shift(conf)
+>>> operation.right_arc(conf, ""PU"")
+>>> operation.right_arc(conf, ""ROOT"")
+>>> operation.shift(conf)
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.parse.html,Transition,shift,nltk\nltk\parse\transitionparser.py
+">>> conf = Configuration(gold_sent)
+>>> operation = Transition('arc-eager')
+>>> operation.shift(conf)
+>>> operation.left_arc(conf,'ATT')
+>>> operation.shift(conf)
+>>> operation.left_arc(conf,'SBJ')
+>>> operation.right_arc(conf,'ROOT')
+>>> operation.shift(conf)
+>>> operation.left_arc(conf,'ATT')
+>>> operation.right_arc(conf,'OBJ')
+>>> operation.right_arc(conf,'ATT')
+>>> operation.shift(conf)
+>>> operation.left_arc(conf,'ATT')
+>>> operation.right_arc(conf,'PC')
+>>> operation.reduce(conf)
+>>> operation.reduce(conf)
+>>> operation.reduce(conf)
+>>> operation.right_arc(conf,'PU')
+>>> print(conf)
+Stack : [0, 3, 9]  Buffer : []   Arcs : [(2, 'ATT', 1), (3, 'SBJ', 2), (0, 'ROOT', 3), (5, 'ATT', 4), (3, 'OBJ', 5), (5, 'ATT', 6), (8, 'ATT', 7), (6, 'PC', 8), (3, 'PU', 9)]
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.parse.html,Configuration,__init__,nltk\nltk\parse\transitionparser.py
+">>> conf = Configuration(gold_sent)
+>>> operation = Transition('arc-eager')
+>>> operation.shift(conf)
+>>> operation.left_arc(conf,'ATT')
+>>> operation.shift(conf)
+>>> operation.left_arc(conf,'SBJ')
+>>> operation.right_arc(conf,'ROOT')
+>>> operation.shift(conf)
+>>> operation.left_arc(conf,'ATT')
+>>> operation.right_arc(conf,'OBJ')
+>>> operation.right_arc(conf,'ATT')
+>>> operation.shift(conf)
+>>> operation.left_arc(conf,'ATT')
+>>> operation.right_arc(conf,'PC')
+>>> operation.reduce(conf)
+>>> operation.reduce(conf)
+>>> operation.reduce(conf)
+>>> operation.right_arc(conf,'PU')
+>>> print(conf)
+Stack : [0, 3, 9]  Buffer : []   Arcs : [(2, 'ATT', 1), (3, 'SBJ', 2), (0, 'ROOT', 3), (5, 'ATT', 4), (3, 'OBJ', 5), (5, 'ATT', 6), (8, 'ATT', 7), (6, 'PC', 8), (3, 'PU', 9)]
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.parse.html,Transition,__init__,nltk\nltk\parse\transitionparser.py
+">>> conf = Configuration(gold_sent)
+>>> operation = Transition('arc-eager')
+>>> operation.shift(conf)
+>>> operation.left_arc(conf,'ATT')
+>>> operation.shift(conf)
+>>> operation.left_arc(conf,'SBJ')
+>>> operation.right_arc(conf,'ROOT')
+>>> operation.shift(conf)
+>>> operation.left_arc(conf,'ATT')
+>>> operation.right_arc(conf,'OBJ')
+>>> operation.right_arc(conf,'ATT')
+>>> operation.shift(conf)
+>>> operation.left_arc(conf,'ATT')
+>>> operation.right_arc(conf,'PC')
+>>> operation.reduce(conf)
+>>> operation.reduce(conf)
+>>> operation.reduce(conf)
+>>> operation.right_arc(conf,'PU')
+>>> print(conf)
+Stack : [0, 3, 9]  Buffer : []   Arcs : [(2, 'ATT', 1), (3, 'SBJ', 2), (0, 'ROOT', 3), (5, 'ATT', 4), (3, 'OBJ', 5), (5, 'ATT', 6), (8, 'ATT', 7), (6, 'PC', 8), (3, 'PU', 9)]
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.parse.html,Transition,shift,nltk\nltk\parse\transitionparser.py
+">>> conf = Configuration(gold_sent)
+>>> operation = Transition('arc-eager')
+>>> operation.shift(conf)
+>>> operation.left_arc(conf,'ATT')
+>>> operation.shift(conf)
+>>> operation.left_arc(conf,'SBJ')
+>>> operation.right_arc(conf,'ROOT')
+>>> operation.shift(conf)
+>>> operation.left_arc(conf,'ATT')
+>>> operation.right_arc(conf,'OBJ')
+>>> operation.right_arc(conf,'ATT')
+>>> operation.shift(conf)
+>>> operation.left_arc(conf,'ATT')
+>>> operation.right_arc(conf,'PC')
+>>> operation.reduce(conf)
+>>> operation.reduce(conf)
+>>> operation.reduce(conf)
+>>> operation.right_arc(conf,'PU')
+>>> print(conf)
+Stack : [0, 3, 9]  Buffer : []   Arcs : [(2, 'ATT', 1), (3, 'SBJ', 2), (0, 'ROOT', 3), (5, 'ATT', 4), (3, 'OBJ', 5), (5, 'ATT', 6), (8, 'ATT', 7), (6, 'PC', 8), (3, 'PU', 9)]
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.parse.html,Transition,left_arc,nltk\nltk\parse\transitionparser.py
+">>> conf = Configuration(gold_sent)
+>>> operation = Transition('arc-eager')
+>>> operation.shift(conf)
+>>> operation.left_arc(conf,'ATT')
+>>> operation.shift(conf)
+>>> operation.left_arc(conf,'SBJ')
+>>> operation.right_arc(conf,'ROOT')
+>>> operation.shift(conf)
+>>> operation.left_arc(conf,'ATT')
+>>> operation.right_arc(conf,'OBJ')
+>>> operation.right_arc(conf,'ATT')
+>>> operation.shift(conf)
+>>> operation.left_arc(conf,'ATT')
+>>> operation.right_arc(conf,'PC')
+>>> operation.reduce(conf)
+>>> operation.reduce(conf)
+>>> operation.reduce(conf)
+>>> operation.right_arc(conf,'PU')
+>>> print(conf)
+Stack : [0, 3, 9]  Buffer : []   Arcs : [(2, 'ATT', 1), (3, 'SBJ', 2), (0, 'ROOT', 3), (5, 'ATT', 4), (3, 'OBJ', 5), (5, 'ATT', 6), (8, 'ATT', 7), (6, 'PC', 8), (3, 'PU', 9)]
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.parse.html,Transition,right_arc,nltk\nltk\parse\transitionparser.py
+">>> conf = Configuration(gold_sent)
+>>> operation = Transition('arc-eager')
+>>> operation.shift(conf)
+>>> operation.left_arc(conf,'ATT')
+>>> operation.shift(conf)
+>>> operation.left_arc(conf,'SBJ')
+>>> operation.right_arc(conf,'ROOT')
+>>> operation.shift(conf)
+>>> operation.left_arc(conf,'ATT')
+>>> operation.right_arc(conf,'OBJ')
+>>> operation.right_arc(conf,'ATT')
+>>> operation.shift(conf)
+>>> operation.left_arc(conf,'ATT')
+>>> operation.right_arc(conf,'PC')
+>>> operation.reduce(conf)
+>>> operation.reduce(conf)
+>>> operation.reduce(conf)
+>>> operation.right_arc(conf,'PU')
+>>> print(conf)
+Stack : [0, 3, 9]  Buffer : []   Arcs : [(2, 'ATT', 1), (3, 'SBJ', 2), (0, 'ROOT', 3), (5, 'ATT', 4), (3, 'OBJ', 5), (5, 'ATT', 6), (8, 'ATT', 7), (6, 'PC', 8), (3, 'PU', 9)]
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.parse.html,Transition,reduce,nltk\nltk\parse\transitionparser.py
+">>> parser_std = TransitionParser('arc-standard')
+>>> print(', '.join(parser_std._create_training_examples_arc_std([gold_sent], input_file)))
+ Number of training examples : 1
+ Number of valid (projective) examples : 1
+SHIFT, LEFTARC:ATT, SHIFT, LEFTARC:SBJ, SHIFT, SHIFT, LEFTARC:ATT, SHIFT, SHIFT, SHIFT, LEFTARC:ATT, RIGHTARC:PC, RIGHTARC:ATT, RIGHTARC:OBJ, SHIFT, RIGHTARC:PU, RIGHTARC:ROOT, SHIFT
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.parse.html,TransitionParser,__init__,nltk\nltk\parse\transitionparser.py
+">>> parser_std.train([gold_sent],'temp.arcstd.model', verbose=False)
+ Number of training examples : 1
+ Number of valid (projective) examples : 1
+>>> remove(input_file.name)
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.parse.html,TransitionParser,train,nltk\nltk\parse\transitionparser.py
+">>> input_file = tempfile.NamedTemporaryFile(prefix='transition_parse.train', dir=tempfile.gettempdir(),delete=False)
+>>> parser_eager = TransitionParser('arc-eager')
+>>> print(', '.join(parser_eager._create_training_examples_arc_eager([gold_sent], input_file)))
+ Number of training examples : 1
+ Number of valid (projective) examples : 1
+SHIFT, LEFTARC:ATT, SHIFT, LEFTARC:SBJ, RIGHTARC:ROOT, SHIFT, LEFTARC:ATT, RIGHTARC:OBJ, RIGHTARC:ATT, SHIFT, LEFTARC:ATT, RIGHTARC:PC, REDUCE, REDUCE, REDUCE, RIGHTARC:PU
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.parse.html,TransitionParser,__init__,nltk\nltk\parse\transitionparser.py
+">>> parser_eager.train([gold_sent],'temp.arceager.model', verbose=False)
+ Number of training examples : 1
+ Number of valid (projective) examples : 1
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.parse.html,TransitionParser,train,nltk\nltk\parse\transitionparser.py
+">>> remove(input_file.name)
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.parse.html,N/A,N/A,N/A
+">>> result = parser_std.parse([gold_sent], 'temp.arcstd.model')
+>>> de = DependencyEvaluator(result, [gold_sent])
+>>> de.eval() >= (0, 0)
+True",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.parse.html,TransitionParser,parse,nltk\nltk\parse\transitionparser.py
+">>> result = parser_std.parse([gold_sent], 'temp.arcstd.model')
+>>> de = DependencyEvaluator(result, [gold_sent])
+>>> de.eval() >= (0, 0)
+True",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.parse.html,DependencyEvaluator,__init__,nltk\nltk\parse\evaluate.py
+">>> from nltk import word_tokenize, pos_tag
+>>> text = ""This is a foobar sentence.""
+>>> for line in taggedsent_to_conll(pos_tag(word_tokenize(text))):
+...         print(line, end="""")
+    1       This    _       DT      DT      _       0       a       _       _
+    2       is      _       VBZ     VBZ     _       0       a       _       _
+    3       a       _       DT      DT      _       0       a       _       _
+    4       foobar  _       JJ      JJ      _       0       a       _       _
+    5       sentence        _       NN      NN      _       0       a       _       _
+    6       .               _       .       .       _       0       a       _       _
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.parse.html,N/A,taggedsent_to_conll,nltk\nltk\parse\util.py
+">>> from nltk import word_tokenize, pos_tag
+>>> text = ""This is a foobar sentence.""
+>>> for line in taggedsent_to_conll(pos_tag(word_tokenize(text))):
+...         print(line, end="""")
+    1       This    _       DT      DT      _       0       a       _       _
+    2       is      _       VBZ     VBZ     _       0       a       _       _
+    3       a       _       DT      DT      _       0       a       _       _
+    4       foobar  _       JJ      JJ      _       0       a       _       _
+    5       sentence        _       NN      NN      _       0       a       _       _
+    6       .               _       .       .       _       0       a       _       _
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.parse.html,N/A,word_tokenize,nltk\nltk\tokenize\__init__.py
+">>> from nltk import word_tokenize, pos_tag
+>>> text = ""This is a foobar sentence.""
+>>> for line in taggedsent_to_conll(pos_tag(word_tokenize(text))):
+...         print(line, end="""")
+    1       This    _       DT      DT      _       0       a       _       _
+    2       is      _       VBZ     VBZ     _       0       a       _       _
+    3       a       _       DT      DT      _       0       a       _       _
+    4       foobar  _       JJ      JJ      _       0       a       _       _
+    5       sentence        _       NN      NN      _       0       a       _       _
+    6       .               _       .       .       _       0       a       _       _
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.parse.html,N/A,pos_tag,nltk\nltk\tag\__init__.py
+">>> from nltk import word_tokenize, sent_tokenize, pos_tag
+>>> text = ""This is a foobar sentence. Is that right?""
+>>> sentences = [pos_tag(word_tokenize(sent)) for sent in sent_tokenize(text)]
+>>> for line in taggedsents_to_conll(sentences):
+...     if line:
+...         print(line, end="""")
+1   This    _       DT      DT      _       0       a       _       _
+2   is      _       VBZ     VBZ     _       0       a       _       _
+3   a       _       DT      DT      _       0       a       _       _
+4   foobar  _       JJ      JJ      _       0       a       _       _
+5   sentence        _       NN      NN      _       0       a       _       _
+6   .               _       .       .       _       0       a       _       _
+
+
+1   Is      _       VBZ     VBZ     _       0       a       _       _
+2   that    _       IN      IN      _       0       a       _       _
+3   right   _       NN      NN      _       0       a       _       _
+4   ?       _       .       .       _       0       a       _       _
+
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.parse.html,N/A,taggedsents_to_conll,nltk\nltk\parse\util.py
+">>> from nltk import word_tokenize, sent_tokenize, pos_tag
+>>> text = ""This is a foobar sentence. Is that right?""
+>>> sentences = [pos_tag(word_tokenize(sent)) for sent in sent_tokenize(text)]
+>>> for line in taggedsents_to_conll(sentences):
+...     if line:
+...         print(line, end="""")
+1   This    _       DT      DT      _       0       a       _       _
+2   is      _       VBZ     VBZ     _       0       a       _       _
+3   a       _       DT      DT      _       0       a       _       _
+4   foobar  _       JJ      JJ      _       0       a       _       _
+5   sentence        _       NN      NN      _       0       a       _       _
+6   .               _       .       .       _       0       a       _       _
+
+
+1   Is      _       VBZ     VBZ     _       0       a       _       _
+2   that    _       IN      IN      _       0       a       _       _
+3   right   _       NN      NN      _       0       a       _       _
+4   ?       _       .       .       _       0       a       _       _
+
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.parse.html,N/A,word_tokenize,nltk\nltk\tokenize\__init__.py
+">>> from nltk import word_tokenize, sent_tokenize, pos_tag
+>>> text = ""This is a foobar sentence. Is that right?""
+>>> sentences = [pos_tag(word_tokenize(sent)) for sent in sent_tokenize(text)]
+>>> for line in taggedsents_to_conll(sentences):
+...     if line:
+...         print(line, end="""")
+1   This    _       DT      DT      _       0       a       _       _
+2   is      _       VBZ     VBZ     _       0       a       _       _
+3   a       _       DT      DT      _       0       a       _       _
+4   foobar  _       JJ      JJ      _       0       a       _       _
+5   sentence        _       NN      NN      _       0       a       _       _
+6   .               _       .       .       _       0       a       _       _
+
+
+1   Is      _       VBZ     VBZ     _       0       a       _       _
+2   that    _       IN      IN      _       0       a       _       _
+3   right   _       NN      NN      _       0       a       _       _
+4   ?       _       .       .       _       0       a       _       _
+
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.parse.html,N/A,sent_tokenize,nltk\nltk\tokenize\__init__.py
+">>> from nltk import word_tokenize, sent_tokenize, pos_tag
+>>> text = ""This is a foobar sentence. Is that right?""
+>>> sentences = [pos_tag(word_tokenize(sent)) for sent in sent_tokenize(text)]
+>>> for line in taggedsents_to_conll(sentences):
+...     if line:
+...         print(line, end="""")
+1   This    _       DT      DT      _       0       a       _       _
+2   is      _       VBZ     VBZ     _       0       a       _       _
+3   a       _       DT      DT      _       0       a       _       _
+4   foobar  _       JJ      JJ      _       0       a       _       _
+5   sentence        _       NN      NN      _       0       a       _       _
+6   .               _       .       .       _       0       a       _       _
+
+
+1   Is      _       VBZ     VBZ     _       0       a       _       _
+2   that    _       IN      IN      _       0       a       _       _
+3   right   _       NN      NN      _       0       a       _       _
+4   ?       _       .       .       _       0       a       _       _
+
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.parse.html,N/A,pos_tag,nltk\nltk\tag\__init__.py
+"(athens, 1368)'",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.sem.html,N/A,N/A,N/A
+"('zloty', 'zloty')",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.sem.html,N/A,N/A,N/A
+"('a', 'b')",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.sem.html,N/A,N/A,N/A
+"(symbol, set)",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.sem.html,N/A,N/A,N/A
+purge(),https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.sem.html,Assignment,purge,nltk\nltk\sem\evaluate.py
+clear(),https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.sem.html,N/A,N/A,N/A
+"(subj, filler, obj)",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.sem.html,N/A,N/A,N/A
+repr(),https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.sem.html,N/A,N/A,N/A
+"relsym(subjsym, objsym)",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.sem.html,N/A,N/A,N/A
+"city(athens,greece,1368).'
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.sem.html,N/A,N/A,N/A
+"borders(albania,greece).'
+
+'contains0(africa,central_africa).'
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.sem.html,N/A,N/A,N/A
+"PropN[num=sg, sem=<\P.(P zloty)>] -> 'Zloty'
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.sem.html,N/A,N/A,N/A
+"cities2table('cities.pl', 'city', 'city.db', verbose=True, setup=True)
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.sem.html,N/A,cities2table,nltk\nltk\sem\chat80.py
+"bo(\P.all x.(man(x) -> P(x)),z1)
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.sem.html,N/A,N/A,N/A
+">>> from nltk.sem.evaluate import Assignment
+>>> dom = set(['u1', 'u2', 'u3', 'u4'])
+>>> g3 = Assignment(dom, [('x', 'u1'), ('y', 'u2')])
+>>> g3 == {'x': 'u1', 'y': 'u2'}
+True
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.sem.html,Assignment,__init__,nltk\nltk\sem\evaluate.py
+">>> print(g3)
+g[u1/x][u2/y]
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.sem.html,N/A,N/A,N/A
+">>> dom = set(['u1', 'u2', 'u3', 'u4'])
+>>> g4 = Assignment(dom)
+>>> g4.add('x', 'u1')
+{'x': 'u1'}
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.sem.html,Assignment,__init__,nltk\nltk\sem\evaluate.py
+">>> g4.purge()
+>>> g4
+{}
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.sem.html,Assignment,purge,nltk\nltk\sem\evaluate.py
+">>> from nltk.sem import Valuation, Model
+>>> v = [('adam', 'b1'), ('betty', 'g1'), ('fido', 'd1'),
+... ('girl', set(['g1', 'g2'])), ('boy', set(['b1', 'b2'])),
+... ('dog', set(['d1'])),
+... ('love', set([('b1', 'g1'), ('b2', 'g2'), ('g1', 'b1'), ('g2', 'b1')]))]
+>>> val = Valuation(v)
+>>> dom = val.domain
+>>> m = Model(dom, val)
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.sem.html,Valuation,__init__,nltk\nltk\sem\evaluate.py
+">>> from nltk.sem import Valuation, Model
+>>> v = [('adam', 'b1'), ('betty', 'g1'), ('fido', 'd1'),
+... ('girl', set(['g1', 'g2'])), ('boy', set(['b1', 'b2'])),
+... ('dog', set(['d1'])),
+... ('love', set([('b1', 'g1'), ('b2', 'g2'), ('g1', 'b1'), ('g2', 'b1')]))]
+>>> val = Valuation(v)
+>>> dom = val.domain
+>>> m = Model(dom, val)
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.sem.html,Model,__init__,nltk\nltk\sem\evaluate.py
+">>> from nltk.stem import arlstem2
+>>> stemmer = ARLSTem2()
+>>> word = stemmer.stem('يعمل')
+>>> print(word)
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.stem.html,ARLSTem2,__init__,nltk\nltk\stem\arlstem2.py
+">>> from nltk.stem import arlstem2
+>>> stemmer = ARLSTem2()
+>>> word = stemmer.stem('يعمل')
+>>> print(word)
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.stem.html,ARLSTem2,stem,nltk\nltk\stem\arlstem2.py
+">>> from nltk.stem.cistem import Cistem
+>>> stemmer = Cistem()
+>>> s1 = ""Speicherbehältern""
+>>> print(""('"" + stemmer.segment(s1)[0] + ""', '"" + stemmer.segment(s1)[1] + ""')"")
+('speicherbehält', 'ern')
+>>> s2 = ""Grenzpostens""
+>>> stemmer.segment(s2)
+('grenzpost', 'ens')
+>>> s3 = ""Ausgefeiltere""
+>>> stemmer.segment(s3)
+('ausgefeilt', 'ere')
+>>> stemmer = Cistem(True)
+>>> print(""('"" + stemmer.segment(s1)[0] + ""', '"" + stemmer.segment(s1)[1] + ""')"")
+('speicherbehäl', 'tern')
+>>> stemmer.segment(s2)
+('grenzpo', 'stens')
+>>> stemmer.segment(s3)
+('ausgefeil', 'tere')
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.stem.html,Cistem,__init__,nltk\nltk\stem\cistem.py
+">>> from nltk.stem.cistem import Cistem
+>>> stemmer = Cistem()
+>>> s1 = ""Speicherbehältern""
+>>> print(""('"" + stemmer.segment(s1)[0] + ""', '"" + stemmer.segment(s1)[1] + ""')"")
+('speicherbehält', 'ern')
+>>> s2 = ""Grenzpostens""
+>>> stemmer.segment(s2)
+('grenzpost', 'ens')
+>>> s3 = ""Ausgefeiltere""
+>>> stemmer.segment(s3)
+('ausgefeilt', 'ere')
+>>> stemmer = Cistem(True)
+>>> print(""('"" + stemmer.segment(s1)[0] + ""', '"" + stemmer.segment(s1)[1] + ""')"")
+('speicherbehäl', 'tern')
+>>> stemmer.segment(s2)
+('grenzpo', 'stens')
+>>> stemmer.segment(s3)
+('ausgefeil', 'tere')
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.stem.html,Cistem,segment,nltk\nltk\stem\cistem.py
+">>> from nltk.stem.cistem import Cistem
+>>> stemmer = Cistem()
+>>> s1 = ""Speicherbehältern""
+>>> stemmer.stem(s1)
+'speicherbehalt'
+>>> s2 = ""Grenzpostens""
+>>> stemmer.stem(s2)
+'grenzpost'
+>>> s3 = ""Ausgefeiltere""
+>>> stemmer.stem(s3)
+'ausgefeilt'
+>>> stemmer = Cistem(True)
+>>> stemmer.stem(s1)
+'speicherbehal'
+>>> stemmer.stem(s2)
+'grenzpo'
+>>> stemmer.stem(s3)
+'ausgefeil'
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.stem.html,Cistem,__init__,nltk\nltk\stem\cistem.py
+">>> from nltk.stem.cistem import Cistem
+>>> stemmer = Cistem()
+>>> s1 = ""Speicherbehältern""
+>>> stemmer.stem(s1)
+'speicherbehalt'
+>>> s2 = ""Grenzpostens""
+>>> stemmer.stem(s2)
+'grenzpost'
+>>> s3 = ""Ausgefeiltere""
+>>> stemmer.stem(s3)
+'ausgefeilt'
+>>> stemmer = Cistem(True)
+>>> stemmer.stem(s1)
+'speicherbehal'
+>>> stemmer.stem(s2)
+'grenzpo'
+>>> stemmer.stem(s3)
+'ausgefeil'
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.stem.html,Cistem,stem,nltk\nltk\stem\cistem.py
+">>> from nltk.stem.lancaster import LancasterStemmer
+>>> st = LancasterStemmer()
+>>> st.stem('maximum')     # Remove ""-um"" when word is intact
+'maxim'
+>>> st.stem('presumably')  # Don't remove ""-um"" when word is not intact
+'presum'
+>>> st.stem('multiply')    # No action taken if word ends with ""-ply""
+'multiply'
+>>> st.stem('provision')   # Replace ""-sion"" with ""-j"" to trigger ""j"" set of rules
+'provid'
+>>> st.stem('owed')        # Word starting with vowel must contain at least 2 letters
+'ow'
+>>> st.stem('ear')         # ditto
+'ear'
+>>> st.stem('saying')      # Words starting with consonant must contain at least 3
+'say'
+>>> st.stem('crying')      #     letters and one of those letters must be a vowel
+'cry'
+>>> st.stem('string')      # ditto
+'string'
+>>> st.stem('meant')       # ditto
+'meant'
+>>> st.stem('cement')      # ditto
+'cem'
+>>> st_pre = LancasterStemmer(strip_prefix_flag=True)
+>>> st_pre.stem('kilometer') # Test Prefix
+'met'
+>>> st_custom = LancasterStemmer(rule_tuple=(""ssen4>"", ""s1t.""))
+>>> st_custom.stem(""ness"") # Change s to t
+'nest'
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.stem.html,LancasterStemmer,__init__,nltk\nltk\stem\lancaster.py
+">>> from nltk.stem.lancaster import LancasterStemmer
+>>> st = LancasterStemmer()
+>>> st.stem('maximum')     # Remove ""-um"" when word is intact
+'maxim'
+>>> st.stem('presumably')  # Don't remove ""-um"" when word is not intact
+'presum'
+>>> st.stem('multiply')    # No action taken if word ends with ""-ply""
+'multiply'
+>>> st.stem('provision')   # Replace ""-sion"" with ""-j"" to trigger ""j"" set of rules
+'provid'
+>>> st.stem('owed')        # Word starting with vowel must contain at least 2 letters
+'ow'
+>>> st.stem('ear')         # ditto
+'ear'
+>>> st.stem('saying')      # Words starting with consonant must contain at least 3
+'say'
+>>> st.stem('crying')      #     letters and one of those letters must be a vowel
+'cry'
+>>> st.stem('string')      # ditto
+'string'
+>>> st.stem('meant')       # ditto
+'meant'
+>>> st.stem('cement')      # ditto
+'cem'
+>>> st_pre = LancasterStemmer(strip_prefix_flag=True)
+>>> st_pre.stem('kilometer') # Test Prefix
+'met'
+>>> st_custom = LancasterStemmer(rule_tuple=(""ssen4>"", ""s1t.""))
+>>> st_custom.stem(""ness"") # Change s to t
+'nest'
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.stem.html,LancasterStemmer,stem,nltk\nltk\stem\lancaster.py
+">>> from nltk.stem import RegexpStemmer
+>>> st = RegexpStemmer('ing$|s$|e$|able$', min=4)
+>>> st.stem('cars')
+'car'
+>>> st.stem('mass')
+'mas'
+>>> st.stem('was')
+'was'
+>>> st.stem('bee')
+'bee'
+>>> st.stem('compute')
+'comput'
+>>> st.stem('advisable')
+'advis'
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.stem.html,RegexpStemmer,__init__,nltk\nltk\stem\regexp.py
+">>> from nltk.stem import RegexpStemmer
+>>> st = RegexpStemmer('ing$|s$|e$|able$', min=4)
+>>> st.stem('cars')
+'car'
+>>> st.stem('mass')
+'mas'
+>>> st.stem('was')
+'was'
+>>> st.stem('bee')
+'bee'
+>>> st.stem('compute')
+'comput'
+>>> st.stem('advisable')
+'advis'
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.stem.html,RegexpStemmer,stem,nltk\nltk\stem\regexp.py
+">>> from nltk.stem import RSLPStemmer
+>>> st = RSLPStemmer()
+>>> # opening lines of Erico Verissimo's ""Música ao Longe""
+>>> text = '''
+... Clarissa risca com giz no quadro-negro a paisagem que os alunos
+... devem copiar . Uma casinha de porta e janela , em cima duma
+... coxilha .'''
+>>> for token in text.split():
+...     print(st.stem(token))
+clariss risc com giz no quadro-negr a pais que os alun dev copi .
+uma cas de port e janel , em cim dum coxilh .
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.stem.html,RSLPStemmer,__init__,nltk\nltk\stem\rslp.py
+">>> from nltk.stem import RSLPStemmer
+>>> st = RSLPStemmer()
+>>> # opening lines of Erico Verissimo's ""Música ao Longe""
+>>> text = '''
+... Clarissa risca com giz no quadro-negro a paisagem que os alunos
+... devem copiar . Uma casinha de porta e janela , em cima duma
+... coxilha .'''
+>>> for token in text.split():
+...     print(st.stem(token))
+clariss risc com giz no quadro-negr a pais que os alun dev copi .
+uma cas de port e janel , em cim dum coxilh .
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.stem.html,RSLPStemmer,stem,nltk\nltk\stem\rslp.py
+">>> from nltk.stem import SnowballStemmer
+>>> print("" "".join(SnowballStemmer.languages)) # See which languages are supported
+arabic danish dutch english finnish french german hungarian
+italian norwegian porter portuguese romanian russian
+spanish swedish
+>>> stemmer = SnowballStemmer(""german"") # Choose a language
+>>> stemmer.stem(""Autobahnen"") # Stem a word
+'autobahn'
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.stem.html,SnowballStemmer,__init__,nltk\nltk\stem\snowball.py
+">>> from nltk.stem import SnowballStemmer
+>>> print("" "".join(SnowballStemmer.languages)) # See which languages are supported
+arabic danish dutch english finnish french german hungarian
+italian norwegian porter portuguese romanian russian
+spanish swedish
+>>> stemmer = SnowballStemmer(""german"") # Choose a language
+>>> stemmer.stem(""Autobahnen"") # Stem a word
+'autobahn'
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.stem.html,SnowballStemmer,stem,nltk\nltk\stem\snowball.py
+">>> from nltk.stem.snowball import GermanStemmer
+>>> stemmer = GermanStemmer()
+>>> stemmer.stem(""Autobahnen"")
+'autobahn'
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.stem.html,GermanStemmer,__init__,nltk\nltk\stem\snowball.py
+">>> from nltk.stem.snowball import GermanStemmer
+>>> stemmer = GermanStemmer()
+>>> stemmer.stem(""Autobahnen"")
+'autobahn'
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.stem.html,GermanStemmer,stem,nltk\nltk\stem\snowball.py
+">>> from nltk.stem import WordNetLemmatizer
+>>> wnl = WordNetLemmatizer()
+>>> print(wnl.lemmatize('dogs'))
+dog
+>>> print(wnl.lemmatize('churches'))
+church
+>>> print(wnl.lemmatize('aardwolves'))
+aardwolf
+>>> print(wnl.lemmatize('abaci'))
+abacus
+>>> print(wnl.lemmatize('hardrock'))
+hardrock
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.stem.html,WordNetLemmatizer,__init__,nltk\nltk\stem\wordnet.py
+">>> from nltk.stem import WordNetLemmatizer
+>>> wnl = WordNetLemmatizer()
+>>> print(wnl.lemmatize('dogs'))
+dog
+>>> print(wnl.lemmatize('churches'))
+church
+>>> print(wnl.lemmatize('aardwolves'))
+aardwolf
+>>> print(wnl.lemmatize('abaci'))
+abacus
+>>> print(wnl.lemmatize('hardrock'))
+hardrock
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.stem.html,WordNetLemmatizer,lemmatize,nltk\nltk\stem\wordnet.py
+tag(),https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.tag.html,TaggerI,tag,nltk\nltk\tag\api.py
+tag_sents(),https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.tag.html,TaggerI,tag_sents,nltk\nltk\tag\api.py
+"(token, tag)",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.tag.html,N/A,N/A,N/A
+self.tag(),https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.tag.html,TaggerI,tag,nltk\nltk\tag\api.py
+transform(),https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.tag.html,N/A,N/A,N/A
+choose_tag(),https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.tag.html,ContextTagger,choose_tag,nltk\nltk\tag\sequential.py
+classifier(),https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.tag.html,ClassifierBasedTagger,classifier,nltk\nltk\tag\sequential.py
+feature_detector(),https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.tag.html,ClassifierBasedTagger,feature_detector,nltk\nltk\tag\sequential.py
+_train(),https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.tag.html,ContextTagger,_train,nltk\nltk\tag\sequential.py
+"(regexp, tag)",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.tag.html,N/A,N/A,N/A
+"(tag, token)",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.tag.html,N/A,N/A,N/A
+">>> backoff = RegexpTagger([
+... (r'^-?[0-9]+(.[0-9]+)?$', 'CD'),   # cardinal numbers
+... (r'(The|the|A|a|An|an)$', 'AT'),   # articles
+... (r'.*able$', 'JJ'),                # adjectives
+... (r'.*ness$', 'NN'),                # nouns formed from adjectives
+... (r'.*ly$', 'RB'),                  # adverbs
+... (r'.*s$', 'NNS'),                  # plural nouns
+... (r'.*ing$', 'VBG'),                # gerunds
+... (r'.*ed$', 'VBD'),                 # past tense verbs
+... (r'.*', 'NN')                      # nouns (default)
+... ])
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.tag.html,RegexpTagger,__init__,nltk\nltk\tag\sequential.py
+">>> baseline.evaluate(gold_data) 
+0.2450142...
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.tag.html,TaggerI,evaluate,nltk\nltk\tag\api.py
+">>> tagger1 = tt.train(training_data, max_rules=10)
+TBL train (fast) (seqs: 100; tokens: 2417; tpls: 2; min score: 2; min acc: None)
+Finding initial useful rules...
+    Found 845 useful rules.
+
+           B      |
+   S   F   r   O  |        Score = Fixed - Broken
+   c   i   o   t  |  R     Fixed = num tags changed incorrect -> correct
+   o   x   k   h  |  u     Broken = num tags changed correct -> incorrect
+   r   e   e   e  |  l     Other = num tags changed incorrect -> incorrect
+   e   d   n   r  |  e
+------------------+-------------------------------------------------------
+ 132 132   0   0  | AT->DT if Pos:NN@[-1]
+  85  85   0   0  | NN->, if Pos:NN@[-1] & Word:,@[0]
+  69  69   0   0  | NN->. if Pos:NN@[-1] & Word:.@[0]
+  51  51   0   0  | NN->IN if Pos:NN@[-1] & Word:of@[0]
+  47  63  16 161  | NN->IN if Pos:NNS@[-1]
+  33  33   0   0  | NN->TO if Pos:NN@[-1] & Word:to@[0]
+  26  26   0   0  | IN->. if Pos:NNS@[-1] & Word:.@[0]
+  24  24   0   0  | IN->, if Pos:NNS@[-1] & Word:,@[0]
+  22  27   5  24  | NN->-NONE- if Pos:VBD@[-1]
+  17  17   0   0  | NN->CC if Pos:NN@[-1] & Word:and@[0]
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.tag.html,BrillTaggerTrainer,train,nltk\nltk\tag\brill_trainer.py
+">>> tagger1.rules()[1:3]
+(Rule('001', 'NN', ',', [(Pos([-1]),'NN'), (Word([0]),',')]), Rule('001', 'NN', '.', [(Pos([-1]),'NN'), (Word([0]),'.')]))
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.tag.html,BrillTagger,rules,nltk\nltk\tag\brill.py
+">>> train_stats = tagger1.train_stats()
+>>> [train_stats[stat] for stat in ['initialerrors', 'finalerrors', 'rulescores']]
+[1775, 1269, [132, 85, 69, 51, 47, 33, 26, 24, 22, 17]]
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.tag.html,BrillTagger,train_stats,nltk\nltk\tag\brill.py
+">>> tagger1.print_template_statistics(printunused=False)
+TEMPLATE STATISTICS (TRAIN)  2 templates, 10 rules)
+TRAIN (   2417 tokens) initial  1775 0.2656 final:  1269 0.4750
+#ID | Score (train) |  #Rules     | Template
+--------------------------------------------
+001 |   305   0.603 |   7   0.700 | Template(Pos([-1]),Word([0]))
+000 |   201   0.397 |   3   0.300 | Template(Pos([-1]))
+
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.tag.html,BrillTagger,print_template_statistics,nltk\nltk\tag\brill.py
+">>> tagger1.evaluate(gold_data) 
+0.43996...
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.tag.html,TaggerI,evaluate,nltk\nltk\tag\api.py
+">>> tagged, test_stats = tagger1.batch_tag_incremental(testing_data, gold_data)
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.tag.html,BrillTagger,batch_tag_incremental,nltk\nltk\tag\brill.py
+">>> tagged[33][12:] == [('foreign', 'IN'), ('debt', 'NN'), ('of', 'IN'), ('$', 'NN'), ('64', 'CD'),
+... ('billion', 'NN'), ('*U*', 'NN'), ('--', 'NN'), ('the', 'DT'), ('third-highest', 'NN'), ('in', 'NN'),
+... ('the', 'DT'), ('developing', 'VBG'), ('world', 'NN'), ('.', '.')]
+True
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.tag.html,N/A,N/A,N/A
+">>> tagger2.evaluate(gold_data)  
+0.44159544...
+>>> tagger2.rules()[2:4]
+(Rule('001', 'NN', '.', [(Pos([-1]),'NN'), (Word([0]),'.')]), Rule('001', 'NN', 'IN', [(Pos([-1]),'NN'), (Word([0]),'of')]))
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.tag.html,TaggerI,evaluate,nltk\nltk\tag\api.py
+">>> tagger2.evaluate(gold_data)  
+0.44159544...
+>>> tagger2.rules()[2:4]
+(Rule('001', 'NN', '.', [(Pos([-1]),'NN'), (Word([0]),'.')]), Rule('001', 'NN', 'IN', [(Pos([-1]),'NN'), (Word([0]),'of')]))
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.tag.html,BrillTagger,rules,nltk\nltk\tag\brill.py
+">>> from nltk.tag import CRFTagger
+>>> ct = CRFTagger()
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.tag.html,CRFTagger,__init__,nltk\nltk\tag\crf.py
+">>> train_data = [[('University','Noun'), ('is','Verb'), ('a','Det'), ('good','Adj'), ('place','Noun')],
+... [('dog','Noun'),('eat','Verb'),('meat','Noun')]]
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.tag.html,N/A,N/A,N/A
+">>> ct.train(train_data,'model.crf.tagger')
+>>> ct.tag_sents([['dog','is','good'], ['Cat','eat','meat']])
+[[('dog', 'Noun'), ('is', 'Verb'), ('good', 'Adj')], [('Cat', 'Noun'), ('eat', 'Verb'), ('meat', 'Noun')]]
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.tag.html,CRFTagger,train,nltk\nltk\tag\crf.py
+">>> ct.train(train_data,'model.crf.tagger')
+>>> ct.tag_sents([['dog','is','good'], ['Cat','eat','meat']])
+[[('dog', 'Noun'), ('is', 'Verb'), ('good', 'Adj')], [('Cat', 'Noun'), ('eat', 'Verb'), ('meat', 'Noun')]]
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.tag.html,CRFTagger,tag_sents,nltk\nltk\tag\crf.py
+">>> gold_sentences = [[('dog','Noun'),('is','Verb'),('good','Adj')] , [('Cat','Noun'),('eat','Verb'), ('meat','Noun')]]
+>>> ct.evaluate(gold_sentences)
+1.0
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.tag.html,TaggerI,evaluate,nltk\nltk\tag\api.py
+"H(O) = - sum_S Pr(S | O) log Pr(S | O)
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.tag.html,N/A,N/A,N/A
+"H = - sum_S Pr(S | O) log [ Pr(S, O) / Z ]
+= log Z - sum_S Pr(S | O) log Pr(S, 0)
+= log Z - sum_S Pr(S | O) [ log Pr(S_0) + sum_t Pr(S_t | S_{t-1}) + sum_t Pr(O_t | S_t) ]
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.tag.html,N/A,N/A,N/A
+"H = log Z - sum_s0 alpha_0(s0) beta_0(s0) / Z * log Pr(s0)
++ sum_t,si,sj alpha_t(si) Pr(sj | si) Pr(O_t+1 | sj) beta_t(sj) / Z * log Pr(sj | si)
++ sum_t,st alpha_t(st) beta_t(st) / Z * log Pr(O_t | st)
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.tag.html,N/A,N/A,N/A
+">>> from nltk.tag import HunposTagger
+>>> ht = HunposTagger('en_wsj.model')
+>>> ht.tag('What is the airspeed of an unladen swallow ?'.split())
+[('What', 'WP'), ('is', 'VBZ'), ('the', 'DT'), ('airspeed', 'NN'), ('of', 'IN'), ('an', 'DT'), ('unladen', 'NN'), ('swallow', 'VB'), ('?', '.')]
+>>> ht.close()
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.tag.html,HunposTagger,__init__,nltk\nltk\tag\hunpos.py
+">>> from nltk.tag import HunposTagger
+>>> ht = HunposTagger('en_wsj.model')
+>>> ht.tag('What is the airspeed of an unladen swallow ?'.split())
+[('What', 'WP'), ('is', 'VBZ'), ('the', 'DT'), ('airspeed', 'NN'), ('of', 'IN'), ('an', 'DT'), ('unladen', 'NN'), ('swallow', 'VB'), ('?', '.')]
+>>> ht.close()
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.tag.html,HunposTagger,tag,nltk\nltk\tag\hunpos.py
+">>> from nltk.tag import HunposTagger
+>>> ht = HunposTagger('en_wsj.model')
+>>> ht.tag('What is the airspeed of an unladen swallow ?'.split())
+[('What', 'WP'), ('is', 'VBZ'), ('the', 'DT'), ('airspeed', 'NN'), ('of', 'IN'), ('an', 'DT'), ('unladen', 'NN'), ('swallow', 'VB'), ('?', '.')]
+>>> ht.close()
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.tag.html,HunposTagger,close,nltk\nltk\tag\hunpos.py
+">>> with HunposTagger('en_wsj.model') as ht:
+...     ht.tag('What is the airspeed of an unladen swallow ?'.split())
+...
+[('What', 'WP'), ('is', 'VBZ'), ('the', 'DT'), ('airspeed', 'NN'), ('of', 'IN'), ('an', 'DT'), ('unladen', 'NN'), ('swallow', 'VB'), ('?', '.')]
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.tag.html,HunposTagger,__init__,nltk\nltk\tag\hunpos.py
+">>> with HunposTagger('en_wsj.model') as ht:
+...     ht.tag('What is the airspeed of an unladen swallow ?'.split())
+...
+[('What', 'WP'), ('is', 'VBZ'), ('the', 'DT'), ('airspeed', 'NN'), ('of', 'IN'), ('an', 'DT'), ('unladen', 'NN'), ('swallow', 'VB'), ('?', '.')]
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.tag.html,HunposTagger,tag,nltk\nltk\tag\hunpos.py
+">>> map_tag('en-ptb', 'universal', 'VBZ')
+'VERB'
+>>> map_tag('en-ptb', 'universal', 'VBP')
+'VERB'
+>>> map_tag('en-ptb', 'universal', '``')
+'.'
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.tag.html,N/A,map_tag,nltk\nltk\tag\mapping.py
+">>> tagset_mapping('ru-rnc', 'universal') == {'!': '.', 'A': 'ADJ', 'C': 'CONJ', 'AD': 'ADV',            'NN': 'NOUN', 'VG': 'VERB', 'COMP': 'CONJ', 'NC': 'NUM', 'VP': 'VERB', 'P': 'ADP',            'IJ': 'X', 'V': 'VERB', 'Z': 'X', 'VI': 'VERB', 'YES_NO_SENT': 'X', 'PTCL': 'PRT'}
+True
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.tag.html,N/A,tagset_mapping,nltk\nltk\tag\mapping.py
+">>> tagger = PerceptronTagger(load=False)
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.tag.html,PerceptronTagger,__init__,nltk\nltk\tag\perceptron.py
+">>> tagger.train([[('today','NN'),('is','VBZ'),('good','JJ'),('day','NN')],
+... [('yes','NNS'),('it','PRP'),('beautiful','JJ')]])
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.tag.html,PerceptronTagger,train,nltk\nltk\tag\perceptron.py
+">>> tagger.tag(['today','is','a','beautiful','day'])
+[('today', 'NN'), ('is', 'PRP'), ('a', 'PRP'), ('beautiful', 'JJ'), ('day', 'NN')]
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.tag.html,PerceptronTagger,tag,nltk\nltk\tag\perceptron.py
+">>> pretrain = PerceptronTagger()
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.tag.html,PerceptronTagger,__init__,nltk\nltk\tag\perceptron.py
+">>> pretrain.tag('The quick brown fox jumps over the lazy dog'.split())
+[('The', 'DT'), ('quick', 'JJ'), ('brown', 'NN'), ('fox', 'NN'), ('jumps', 'VBZ'), ('over', 'IN'), ('the', 'DT'), ('lazy', 'JJ'), ('dog', 'NN')]
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.tag.html,PerceptronTagger,train,nltk\nltk\tag\perceptron.py
+">>> pretrain.tag(""The red cat"".split())
+[('The', 'DT'), ('red', 'JJ'), ('cat', 'NN')]
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.tag.html,PerceptronTagger,tag,nltk\nltk\tag\perceptron.py
+">>> from nltk.tag import SennaTagger
+>>> tagger = SennaTagger('/usr/share/senna-v3.0')
+>>> tagger.tag('What is the airspeed of an unladen swallow ?'.split()) 
+[('What', 'WP'), ('is', 'VBZ'), ('the', 'DT'), ('airspeed', 'NN'),
+('of', 'IN'), ('an', 'DT'), ('unladen', 'NN'), ('swallow', 'NN'), ('?', '.')]
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.tag.html,SennaTagger,__init__,nltk\nltk\tag\senna.py
+">>> from nltk.tag import SennaTagger
+>>> tagger = SennaTagger('/usr/share/senna-v3.0')
+>>> tagger.tag('What is the airspeed of an unladen swallow ?'.split()) 
+[('What', 'WP'), ('is', 'VBZ'), ('the', 'DT'), ('airspeed', 'NN'),
+('of', 'IN'), ('an', 'DT'), ('unladen', 'NN'), ('swallow', 'NN'), ('?', '.')]
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.tag.html,Senna,tag,nltk\nltk\classify\senna.py
+">>> from nltk.tag import SennaChunkTagger
+>>> chktagger = SennaChunkTagger('/usr/share/senna-v3.0')
+>>> chktagger.tag('What is the airspeed of an unladen swallow ?'.split()) 
+[('What', 'B-NP'), ('is', 'B-VP'), ('the', 'B-NP'), ('airspeed', 'I-NP'),
+('of', 'B-PP'), ('an', 'B-NP'), ('unladen', 'I-NP'), ('swallow', 'I-NP'),
+('?', 'O')]
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.tag.html,SennaChunkTagger,__init__,nltk\nltk\tag\senna.py
+">>> from nltk.tag import SennaChunkTagger
+>>> chktagger = SennaChunkTagger('/usr/share/senna-v3.0')
+>>> chktagger.tag('What is the airspeed of an unladen swallow ?'.split()) 
+[('What', 'B-NP'), ('is', 'B-VP'), ('the', 'B-NP'), ('airspeed', 'I-NP'),
+('of', 'B-PP'), ('an', 'B-NP'), ('unladen', 'I-NP'), ('swallow', 'I-NP'),
+('?', 'O')]
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.tag.html,Senna,tag,nltk\nltk\classify\senna.py
+">>> from nltk.tag import SennaNERTagger
+>>> nertagger = SennaNERTagger('/usr/share/senna-v3.0')
+>>> nertagger.tag('Shakespeare theatre was in London .'.split()) 
+[('Shakespeare', 'B-PER'), ('theatre', 'O'), ('was', 'O'), ('in', 'O'),
+('London', 'B-LOC'), ('.', 'O')]
+>>> nertagger.tag('UN headquarters are in NY , USA .'.split()) 
+[('UN', 'B-ORG'), ('headquarters', 'O'), ('are', 'O'), ('in', 'O'),
+('NY', 'B-LOC'), (',', 'O'), ('USA', 'B-LOC'), ('.', 'O')]
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.tag.html,SennaNERTagger,__init__,nltk\nltk\tag\senna.py
+">>> from nltk.tag import SennaNERTagger
+>>> nertagger = SennaNERTagger('/usr/share/senna-v3.0')
+>>> nertagger.tag('Shakespeare theatre was in London .'.split()) 
+[('Shakespeare', 'B-PER'), ('theatre', 'O'), ('was', 'O'), ('in', 'O'),
+('London', 'B-LOC'), ('.', 'O')]
+>>> nertagger.tag('UN headquarters are in NY , USA .'.split()) 
+[('UN', 'B-ORG'), ('headquarters', 'O'), ('are', 'O'), ('in', 'O'),
+('NY', 'B-LOC'), (',', 'O'), ('USA', 'B-LOC'), ('.', 'O')]
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.tag.html,Senna,tag,nltk\nltk\classify\senna.py
+">>> from nltk.tag import SennaChunkTagger
+>>> chktagger = SennaChunkTagger('/usr/share/senna-v3.0')
+>>> sent = 'What is the airspeed of an unladen swallow ?'.split()
+>>> tagged_sent = chktagger.tag(sent) 
+>>> tagged_sent 
+[('What', 'B-NP'), ('is', 'B-VP'), ('the', 'B-NP'), ('airspeed', 'I-NP'),
+('of', 'B-PP'), ('an', 'B-NP'), ('unladen', 'I-NP'), ('swallow', 'I-NP'),
+('?', 'O')]
+>>> list(chktagger.bio_to_chunks(tagged_sent, chunk_type='NP')) 
+[('What', '0'), ('the airspeed', '2-3'), ('an unladen swallow', '5-6-7')]
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.tag.html,SennaChunkTagger,__init__,nltk\nltk\tag\senna.py
+">>> from nltk.tag import SennaChunkTagger
+>>> chktagger = SennaChunkTagger('/usr/share/senna-v3.0')
+>>> sent = 'What is the airspeed of an unladen swallow ?'.split()
+>>> tagged_sent = chktagger.tag(sent) 
+>>> tagged_sent 
+[('What', 'B-NP'), ('is', 'B-VP'), ('the', 'B-NP'), ('airspeed', 'I-NP'),
+('of', 'B-PP'), ('an', 'B-NP'), ('unladen', 'I-NP'), ('swallow', 'I-NP'),
+('?', 'O')]
+>>> list(chktagger.bio_to_chunks(tagged_sent, chunk_type='NP')) 
+[('What', '0'), ('the airspeed', '2-3'), ('an unladen swallow', '5-6-7')]
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.tag.html,Senna,tag,nltk\nltk\classify\senna.py
+"feature_detector(tokens, index, history) -> featureset
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.tag.html,ClassifierBasedTagger,feature_detector,nltk\nltk\tag\sequential.py
+">>> from nltk.tag import DefaultTagger
+>>> default_tagger = DefaultTagger('NN')
+>>> list(default_tagger.tag('This is a test'.split()))
+[('This', 'NN'), ('is', 'NN'), ('a', 'NN'), ('test', 'NN')]
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.tag.html,DefaultTagger,__init__,nltk\nltk\tag\sequential.py
+">>> from nltk.tag import DefaultTagger
+>>> default_tagger = DefaultTagger('NN')
+>>> list(default_tagger.tag('This is a test'.split()))
+[('This', 'NN'), ('is', 'NN'), ('a', 'NN'), ('test', 'NN')]
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.tag.html,SequentialBackoffTagger,tag,nltk\nltk\tag\sequential.py
+">>> from nltk.corpus import brown
+>>> from nltk.tag import RegexpTagger
+>>> test_sent = brown.sents(categories='news')[0]
+>>> regexp_tagger = RegexpTagger(
+...     [(r'^-?[0-9]+(.[0-9]+)?$', 'CD'),   # cardinal numbers
+...      (r'(The|the|A|a|An|an)$', 'AT'),   # articles
+...      (r'.*able$', 'JJ'),                # adjectives
+...      (r'.*ness$', 'NN'),                # nouns formed from adjectives
+...      (r'.*ly$', 'RB'),                  # adverbs
+...      (r'.*s$', 'NNS'),                  # plural nouns
+...      (r'.*ing$', 'VBG'),                # gerunds
+...      (r'.*ed$', 'VBD'),                 # past tense verbs
+...      (r'.*', 'NN')                      # nouns (default)
+... ])
+>>> regexp_tagger
+
+>>> regexp_tagger.tag(test_sent)
+[('The', 'AT'), ('Fulton', 'NN'), ('County', 'NN'), ('Grand', 'NN'), ('Jury', 'NN'),
+('said', 'NN'), ('Friday', 'NN'), ('an', 'AT'), ('investigation', 'NN'), ('of', 'NN'),
+(""Atlanta's"", 'NNS'), ('recent', 'NN'), ('primary', 'NN'), ('election', 'NN'),
+('produced', 'VBD'), ('``', 'NN'), ('no', 'NN'), ('evidence', 'NN'), (""''"", 'NN'),
+('that', 'NN'), ('any', 'NN'), ('irregularities', 'NNS'), ('took', 'NN'),
+('place', 'NN'), ('.', 'NN')]
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.tag.html,RegexpTagger,__init__,nltk\nltk\tag\sequential.py
+">>> from nltk.corpus import brown
+>>> from nltk.tag import RegexpTagger
+>>> test_sent = brown.sents(categories='news')[0]
+>>> regexp_tagger = RegexpTagger(
+...     [(r'^-?[0-9]+(.[0-9]+)?$', 'CD'),   # cardinal numbers
+...      (r'(The|the|A|a|An|an)$', 'AT'),   # articles
+...      (r'.*able$', 'JJ'),                # adjectives
+...      (r'.*ness$', 'NN'),                # nouns formed from adjectives
+...      (r'.*ly$', 'RB'),                  # adverbs
+...      (r'.*s$', 'NNS'),                  # plural nouns
+...      (r'.*ing$', 'VBG'),                # gerunds
+...      (r'.*ed$', 'VBD'),                 # past tense verbs
+...      (r'.*', 'NN')                      # nouns (default)
+... ])
+>>> regexp_tagger
+
+>>> regexp_tagger.tag(test_sent)
+[('The', 'AT'), ('Fulton', 'NN'), ('County', 'NN'), ('Grand', 'NN'), ('Jury', 'NN'),
+('said', 'NN'), ('Friday', 'NN'), ('an', 'AT'), ('investigation', 'NN'), ('of', 'NN'),
+(""Atlanta's"", 'NNS'), ('recent', 'NN'), ('primary', 'NN'), ('election', 'NN'),
+('produced', 'VBD'), ('``', 'NN'), ('no', 'NN'), ('evidence', 'NN'), (""''"", 'NN'),
+('that', 'NN'), ('any', 'NN'), ('irregularities', 'NNS'), ('took', 'NN'),
+('place', 'NN'), ('.', 'NN')]
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.tag.html,SequentialBackoffTagger,tag,nltk\nltk\tag\sequential.py
+">>> from nltk.corpus import brown
+>>> from nltk.tag import UnigramTagger
+>>> test_sent = brown.sents(categories='news')[0]
+>>> unigram_tagger = UnigramTagger(brown.tagged_sents(categories='news')[:500])
+>>> for tok, tag in unigram_tagger.tag(test_sent):
+...     print(""({}, {}), "".format(tok, tag))
+(The, AT), (Fulton, NP-TL), (County, NN-TL), (Grand, JJ-TL),
+(Jury, NN-TL), (said, VBD), (Friday, NR), (an, AT),
+(investigation, NN), (of, IN), (Atlanta's, NP$), (recent, JJ),
+(primary, NN), (election, NN), (produced, VBD), (``, ``),
+(no, AT), (evidence, NN), ('', ''), (that, CS), (any, DTI),
+(irregularities, NNS), (took, VBD), (place, NN), (., .),
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.tag.html,UnigramTagger,__init__,nltk\nltk\tag\sequential.py
+">>> from nltk.corpus import brown
+>>> from nltk.tag import UnigramTagger
+>>> test_sent = brown.sents(categories='news')[0]
+>>> unigram_tagger = UnigramTagger(brown.tagged_sents(categories='news')[:500])
+>>> for tok, tag in unigram_tagger.tag(test_sent):
+...     print(""({}, {}), "".format(tok, tag))
+(The, AT), (Fulton, NP-TL), (County, NN-TL), (Grand, JJ-TL),
+(Jury, NN-TL), (said, VBD), (Friday, NR), (an, AT),
+(investigation, NN), (of, IN), (Atlanta's, NP$), (recent, JJ),
+(primary, NN), (election, NN), (produced, VBD), (``, ``),
+(no, AT), (evidence, NN), ('', ''), (that, CS), (any, DTI),
+(irregularities, NNS), (took, VBD), (place, NN), (., .),
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.tag.html,SequentialBackoffTagger,tag,nltk\nltk\tag\sequential.py
+">>> from nltk.tag import StanfordNERTagger
+>>> st = StanfordNERTagger('english.all.3class.distsim.crf.ser.gz') 
+>>> st.tag('Rami Eid is studying at Stony Brook University in NY'.split()) 
+[('Rami', 'PERSON'), ('Eid', 'PERSON'), ('is', 'O'), ('studying', 'O'),
+ ('at', 'O'), ('Stony', 'ORGANIZATION'), ('Brook', 'ORGANIZATION'),
+ ('University', 'ORGANIZATION'), ('in', 'O'), ('NY', 'LOCATION')]
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.tag.html,StanfordNERTagger,__init__,nltk\nltk\tag\sequential.py
+">>> from nltk.tag import StanfordNERTagger
+>>> st = StanfordNERTagger('english.all.3class.distsim.crf.ser.gz') 
+>>> st.tag('Rami Eid is studying at Stony Brook University in NY'.split()) 
+[('Rami', 'PERSON'), ('Eid', 'PERSON'), ('is', 'O'), ('studying', 'O'),
+ ('at', 'O'), ('Stony', 'ORGANIZATION'), ('Brook', 'ORGANIZATION'),
+ ('University', 'ORGANIZATION'), ('in', 'O'), ('NY', 'LOCATION')]
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.tag.html,SequentialBackoffTagger,tag,nltk\nltk\tag\sequential.py
+">>> from nltk.tag import StanfordPOSTagger
+>>> st = StanfordPOSTagger('english-bidirectional-distsim.tagger')
+>>> st.tag('What is the airspeed of an unladen swallow ?'.split())
+[('What', 'WP'), ('is', 'VBZ'), ('the', 'DT'), ('airspeed', 'NN'), ('of', 'IN'), ('an', 'DT'), ('unladen', 'JJ'), ('swallow', 'VB'), ('?', '.')]
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.tag.html,StanfordPOSTagger,__init__,nltk\nltk\tag\stanford.py
+">>> from nltk.tag import StanfordPOSTagger
+>>> st = StanfordPOSTagger('english-bidirectional-distsim.tagger')
+>>> st.tag('What is the airspeed of an unladen swallow ?'.split())
+[('What', 'WP'), ('is', 'VBZ'), ('the', 'DT'), ('airspeed', 'NN'), ('of', 'IN'), ('an', 'DT'), ('unladen', 'JJ'), ('swallow', 'VB'), ('?', '.')]
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.tag.html,StanfordTagger,tag,nltk\nltk\tag\stanford.py
+">>> from nltk.tag.util import str2tuple
+>>> str2tuple('fly/NN')
+('fly', 'NN')
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.tag.html,N/A,str2tuple,nltk\nltk\tag\util.py
+">>> from nltk.tag.util import tuple2str
+>>> tagged_token = ('fly', 'NN')
+>>> tuple2str(tagged_token)
+'fly/NN'
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.tag.html,N/A,tuple2str,nltk\nltk\tag\util.py
+">>> from nltk.tag.util import untag
+>>> untag([('John', 'NNP'), ('saw', 'VBD'), ('Mary', 'NNP')])
+['John', 'saw', 'Mary']
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.tag.html,N/A,untag,nltk\nltk\tag\util.py
+">>> tagged_tok = ('fly', 'NN')
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.tag.html,N/A,N/A,N/A
+">>> from nltk import pos_tag, word_tokenize
+>>> pos_tag(word_tokenize(""John's big idea isn't all that bad.""))
+[('John', 'NNP'), (""'s"", 'POS'), ('big', 'JJ'), ('idea', 'NN'), ('is', 'VBZ'),
+(""n't"", 'RB'), ('all', 'PDT'), ('that', 'DT'), ('bad', 'JJ'), ('.', '.')]
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.tag.html,N/A,pos_tag,nltk\nltk\tag\init.py
+">>> from nltk import pos_tag, word_tokenize
+>>> pos_tag(word_tokenize(""John's big idea isn't all that bad.""))
+[('John', 'NNP'), (""'s"", 'POS'), ('big', 'JJ'), ('idea', 'NN'), ('is', 'VBZ'),
+(""n't"", 'RB'), ('all', 'PDT'), ('that', 'DT'), ('bad', 'JJ'), ('.', '.')]
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.tag.html,N/A,word_tokenize,nltk\nltk\tokenize\__init__.py
+">>> pos_tag(word_tokenize(""Илья оторопел и дважды перечитал бумажку.""), lang='rus')    
+[('Илья', 'S'), ('оторопел', 'V'), ('и', 'CONJ'), ('дважды', 'ADV'), ('перечитал', 'V'),
+('бумажку', 'S'), ('.', 'NONLEX')]
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.tag.html,N/A,pos_tag,nltk\nltk\tag\init.py
+">>> pos_tag(word_tokenize(""Илья оторопел и дважды перечитал бумажку.""), lang='rus')    
+[('Илья', 'S'), ('оторопел', 'V'), ('и', 'CONJ'), ('дважды', 'ADV'), ('перечитал', 'V'),
+('бумажку', 'S'), ('.', 'NONLEX')]
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.tag.html,N/A,word_tokenize,nltk\nltk\tokenize\__init__.py
+">>> from nltk.corpus import brown
+>>> from nltk.tag import UnigramTagger
+>>> tagger = UnigramTagger(brown.tagged_sents(categories='news')[:500])
+>>> sent = ['Mitchell', 'decried', 'the', 'high', 'rate', 'of', 'unemployment']
+>>> for word, tag in tagger.tag(sent):
+...     print(word, '->', tag)
+Mitchell -> NP
+decried -> None
+the -> AT
+high -> JJ
+rate -> NN
+of -> IN
+unemployment -> None
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.tag.html,UnigramTagger,__init__,nltk\nltk\tag\sequential.py
+">>> from nltk.corpus import brown
+>>> from nltk.tag import UnigramTagger
+>>> tagger = UnigramTagger(brown.tagged_sents(categories='news')[:500])
+>>> sent = ['Mitchell', 'decried', 'the', 'high', 'rate', 'of', 'unemployment']
+>>> for word, tag in tagger.tag(sent):
+...     print(word, '->', tag)
+Mitchell -> NP
+decried -> None
+the -> AT
+high -> JJ
+rate -> NN
+of -> IN
+unemployment -> None
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.tag.html,SequentialBackoffTagger,tag,nltk\nltk\tag\sequential.py
+">>> tagger.evaluate(brown.tagged_sents(categories='news')[500:600])
+0.7...
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.tag.html,TaggerI,evaluate,nltk\nltk\tag\api.py
+">>> from nltk.tag import pos_tag
+>>> from nltk.tokenize import word_tokenize
+>>> pos_tag(word_tokenize(""John's big idea isn't all that bad.""))
+[('John', 'NNP'), (""'s"", 'POS'), ('big', 'JJ'), ('idea', 'NN'), ('is', 'VBZ'),
+(""n't"", 'RB'), ('all', 'PDT'), ('that', 'DT'), ('bad', 'JJ'), ('.', '.')]
+>>> pos_tag(word_tokenize(""John's big idea isn't all that bad.""), tagset='universal')
+[('John', 'NOUN'), (""'s"", 'PRT'), ('big', 'ADJ'), ('idea', 'NOUN'), ('is', 'VERB'),
+(""n't"", 'ADV'), ('all', 'DET'), ('that', 'DET'), ('bad', 'ADJ'), ('.', '.')]
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.tag.html,N/A,pos_tag,nltk\nltk\tag\init.py
+">>> from nltk.tag import pos_tag
+>>> from nltk.tokenize import word_tokenize
+>>> pos_tag(word_tokenize(""John's big idea isn't all that bad.""))
+[('John', 'NNP'), (""'s"", 'POS'), ('big', 'JJ'), ('idea', 'NN'), ('is', 'VBZ'),
+(""n't"", 'RB'), ('all', 'PDT'), ('that', 'DT'), ('bad', 'JJ'), ('.', '.')]
+>>> pos_tag(word_tokenize(""John's big idea isn't all that bad.""), tagset='universal')
+[('John', 'NOUN'), (""'s"", 'PRT'), ('big', 'ADJ'), ('idea', 'NOUN'), ('is', 'VERB'),
+(""n't"", 'ADV'), ('all', 'DET'), ('that', 'DET'), ('bad', 'ADJ'), ('.', '.')]
+",https://web.archive.org/web/20210415060141/https://www.nltk.org/api/nltk.tag.html,N/A,word_tokenize,nltk\nltk\tokenize\__init__.py

@@ -1,0 +1,14 @@
+Methodology
+First I used a Python library to extract all the paragraphs on the webpage (based on the <p> HTML tag)
+Then reading the paragraph I tried to extract tasks that a developer may do
+"The react page required me to look at the page itself, rather than the extracted paragraphs for me to extract all the tasks"
+
+Task definition
+I define a task as something a developer may search/look for in documentation
+It is not a description of what the library is able to do
+The reason for this is a developer will not know the full extent of a library when exploring the documentation. They will have some specific tasks in mind that they want to see how this library addresses them.
+
+Updated Task definition
+"A task is any usage of a library, including its API, installation instructions, and interaction with other software."
+
+"We ignore negative verbs (e.g., do not) because it usually describes a default that will happen, rather than a task that a developer would want to do "

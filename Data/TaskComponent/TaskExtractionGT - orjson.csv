@@ -1,0 +1,950 @@
+Paragraphs,Tasks (Old),Henry's mechanical tasks,Henry's library tasks,Henry's library tasks (updated),Sarah's mechanical tasks,Sarah's library tasks,Sarah's library tasks (updated),Agree?,Library task conflict?,Resolved mechanical tasks,Resolved library tasks,Resolved library tasks (updated),Program (Original verb list),Program (Domain specific list),Program (domain specific + filter),Mechanical count,Library count,Mechanical correct,Program count,Library correct,Dom spec program count,Dom spec library correct,dom spec filter count,dom spec filter correct,Code example,Program paragraph linked,Updated links
+"orjson is a fast, correct JSON library for Python. It benchmarks as the fastest Python library for JSON and is more correct than the standard json library or other third-party libraries. It serializes dataclass, datetime, numpy, and UUID instances natively.","Serializes dataclass, datetime, numpy, and UUID instances natively","Serialize dataclass
+serialize datetime
+serialize numpy
+serialize UUID instances","Serialize dataclass
+serialize datetime
+serialize numpy
+serialize UUID instances","Serialize dataclass
+serialize datetime
+serialize numpy
+serialize UUID instances","Serialize dateclass
+Serialize datetime
+Serialize numpy
+Serialize UUID","Serialize dateclass, datetime, numpy, and UUID instances natively","Serialize dateclass
+Serialize datetime
+Serialize numpy
+Serialize UUID",1,0,"Serialize dataclass
+serialize datetime
+serialize numpy
+serialize UUID instances","Serialize dataclass
+serialize datetime
+serialize numpy
+serialize UUID instances","Serialize dataclass
+serialize datetime
+serialize numpy
+serialize UUID instances",,"serialize dataclass
+serialize datetime
+serialize numpy
+serialize UUID instances","serialize dataclass
+serialize datetime
+serialize numpy
+serialize UUID instances",4,4,0,0,0,4,4,4,4,,,
+Its features and drawbacks compared to other Python JSON libraries:,,,,,,,,1,,,,,,,,0,0,0,0,,0,0,0,0,,,
+"orjson supports CPython 3.7, 3.8, 3.9, and 3.10. It distributes x86_64/amd64 and aarch64/armv8 wheels for Linux and macOS. It distributes x86_64/amd64 wheels for Windows. orjson does not support PyPy. Releases follow semantic versioning and serializing a new object type without an opt-in flag is considered a breaking change.",Serializing a new object,Serialize a new object,Serialize a new object,Serialize a new object,"Distribute x86_64/amd64 
+Distribute aarch64/armv8
+Distribute x86_64/amd64",,,0,1,"Distribute x86_64/amd64 
+Distribute aarch64/armv8
+Distribute x86_64/amd64
+Serialize a new object",,Serialize a new object,support cpython,support cpython,,4,1,0,1,0,1,0,0,0,,,
+"orjson is licensed under both the Apache 2.0 and MIT licenses. The repository and issue tracker is github.com/ijl/orjson, and patches may be submitted there. There is a CHANGELOG available in the repository.",,,,,,,,1,,,,,submit patches,,,0,0,0,1,0,0,0,0,0,,,
+To install a wheel from PyPI:,Install a wheel from PyPI,Install wheel from PyPI,Install wheel from PyPI,Install wheel from PyPI,Install wheel from PyPi,,Install wheel from PyPi,1,0,Install wheel from PyPi,,Install wheel from PyPi,install wheel from pypi,install wheel from pypi,install wheel from pypi,1,1,0,1,1,1,1,1,1,"pip install --upgrade ""pip>=20.3"" # manylinux_x_y, universal2 wheel support
+pip install --upgrade orjson",,
+"To build a wheel, see packaging.",Build a wheel,Build wheel,Build wheel,Build wheel,Build wheel,,Build wheel,1,0,Build wheel,,Build wheel,,,,1,1,,0,,0,0,0,0,,,
+"This is an example of serializing, with options specified, and deserializing:",Serializing and Deserializing,,,,"Serialize with specified options
+Deserialize with specified options","Serialize with specified options
+Deserialize with specified options","Serialize with specified options
+Deserialize with specified options",0,1,"Serialize with specified options
+Deserialize with specified options",,"Serialize with specified options
+Deserialize with specified options",,"serialize  with options
+deserialize  with options","serialize  with options
+deserialize  with options",2,2,,0,,2,2,2,2,">>> import orjson, datetime, numpy
+>>> data = {
+    ""type"": ""job"",
+    ""created_at"": datetime.datetime(1970, 1, 1),
+    ""status"": ""🆗"",
+    ""payload"": numpy.array([[1, 2], [3, 4]]),
+}
+>>> orjson.dumps(data, option=orjson.OPT_NAIVE_UTC | orjson.OPT_SERIALIZE_NUMPY)
+b'{""type"":""job"",""created_at"":""1970-01-01T00:00:00+00:00"",""status"":""\xf0\x9f\x86\x97"",""payload"":[[1,2],[3,4]]}'
+>>> orjson.loads(_)
+{'type': 'job', 'created_at': '1970-01-01T00:00:00+00:00', 'status': '🆗', 'payload': [[1, 2], [3, 4]]}",No paragraph linked,
+"orjson version 3 serializes more types than version 2. Subclasses of str, int, dict, and list are now serialized. This is faster and more similar to the standard library. It can be disabled with orjson.OPT_PASSTHROUGH_SUBCLASS.dataclasses.dataclass instances are now serialized by default and cannot be customized in a default function unless option=orjson.OPT_PASSTHROUGH_DATACLASS is specified. uuid.UUID instances are serialized by default. For any type that is now serialized, implementations in a default function and options enabling them can be removed but do not need to be. There was no change in deserialization.","- Subclasses str, int, dict, and list are now serializable.
+- Disable additional serialization.
+- Customize serialization with option=orjson.OPT_PASSTHROUGH_DATACLASS","Specify option=orjson.OPT_PASSTHROUGH_DATACLASS
+Remove implementations in default function
+Remove options enabling default functions
+Remove implementations for type",,,Serialize more types than version 2,,,1,,"Specify option=orjson.OPT_PASSTHROUGH_DATACLASS
+Remove implementations in default function
+Remove options enabling default functions
+Remove implementations for type",,,"disable  with orjson.OPT_PASSTHROUGH_SUBCLASS
+specify option = orjson.OPT_PASSTHROUGH_DATACLASS
+remove implementations in default function
+remove implementations in options
+remove implementations for type","serialize more types than version
+serialize subclasses of str
+serialize dataclasses.dataclass instances
+specify option = orjson.OPT_PASSTHROUGH_DATACLASS
+serialize uuid.UUID instances
+remove implementations in default function
+remove implementations in options
+remove implementations for type","serialize more types than version
+serialize subclasses of str
+serialize dataclasses.dataclass instances
+specify option = orjson.OPT_PASSTHROUGH_DATACLASS
+serialize uuid.UUID instances",4,0,4,5,0,8,0,5,0,,,
+"To migrate from the standard library, the largest difference is that orjson.dumps returns bytes and json.dumps returns a str. Users with dict objects using non-str keys should specify option=orjson.OPT_NON_STR_KEYS. sort_keys is replaced by option=orjson.OPT_SORT_KEYS. indent is replaced by option=orjson.OPT_INDENT_2 and other levels of indentation are not supported.","- Migrate from standard library
+- Users with dict objects and non-str keys should use option=orgjson.OPT_NON_STR_KEYS","Migrate from standard library
+Replace sort_keys with option=orjson.OPT_SORT_KEYS",Migrate from standard library,Migrate from standard library,"Migrate from standard library
+Specify option=orjson.OPT_NON_STR_KEYSa",,"Migrate from standard library
+Specify option=orjson.OPT_NON_STR_KEYSa",0,1,"Migrate from standard library
+Replace sort_keys with option=orjson.OPT_SORT_KEYS
+Specify option=orjson.OPT_NON_STR_KEYSa",,Migrate from standard library,"use non
+replace sort_keys
+replace indent","use non
+replace sort_keys
+replace indent","replace sort_keys
+replace indent",3,1,0,3,1,3,0,2,0,,,
+dumps() serializes Python objects to JSON.,Serialize Python objects to JSON,Serialize Python objects to JSON,Serialize Python objects to JSON,Serialize Python objects to JSON,Serialize Python objects to JSON,Serialize Python objects to JSON,Serialize Python objects to JSON,1,,Serialize Python objects to JSON,,Serialize Python objects to JSON,,serialize Python objects to JSON,serialize Python objects to JSON,1,1,,0,,1,1,1,1,"def dumps(
+    __obj: Any,
+    default: Optional[Callable[[Any], Any]] = ...,
+    option: Optional[int] = ...,
+) -> bytes: ...",No paragraph linked,
+"It natively serializes str, dict, list, tuple, int, float, bool, dataclasses.dataclass, typing.TypedDict, datetime.datetime, datetime.date, datetime.time, uuid.UUID, numpy.ndarray, and None instances. It supports arbitrary types through default. It serializes subclasses of str, int, dict, list, dataclasses.dataclass, and enum.Enum. It does not serialize subclasses of tuple to avoid serializing namedtuple objects as arrays. To avoid serializing subclasses, specify the option orjson.OPT_PASSTHROUGH_SUBCLASS.","- Serializes str, dict, list, tuple, int, float, bool, dataclass, TypedDict, datetime.datetime, datetime.date, datetime.time, uuid.UUID, numpy, ndarray, None, enum.Enum
+- Does not serialize tuples","Serialize str
+Serialize dict
+Serialize list
+Serialize tuple
+Serialize int
+Serialize float
+Serialize bool
+Serialize dataclasses.dataclass
+Serialize typing.TypedDict
+Serialize datetime.date
+Serialize datetime.time
+Serialize uuid.UUID
+Serialize numpy.ndarray
+Serialize None
+Supports arbitrary types through default
+Serialize enum.Enum
+Specify option orjson.OPT_PASSTHROUGH_SUBCLASS","Serialize str
+Serialize dict
+Serialize list
+Serialize tuple
+Serialize int
+Serialize float
+Serialize bool
+Serialize dataclasses.dataclass
+Serialize typing.TypedDict
+Serialize datetime.date
+Serialize datetime.time
+Serialize uuid.UUID
+Serialize numpy.ndarray
+Serialize None
+Supports arbitrary types through default
+Serialize enum.Enum
+Specify option orjson.OPT_PASSTHROUGH_SUBCLASS","Serialize str
+Serialize dict
+Serialize list
+Serialize tuple
+Serialize int
+Serialize float
+Serialize bool
+Serialize dataclasses.dataclass
+Serialize typing.TypedDict
+Serialize datetime.date
+Serialize datetime.time
+Serialize uuid.UUID
+Serialize numpy.ndarray
+Serialize None
+Supports arbitrary types through default
+Serialize enum.Enum
+Specify option orjson.OPT_PASSTHROUGH_SUBCLASS","Serialize str
+Serialize dict
+Serialize list
+Serialize tuple
+Serialize int
+Serialize float
+Serialize bool
+Serialize dataclasses.dataclass
+Serialize typing.TypedDict
+Serialize datetime.dateime
+Serialize datetime.date
+Serialize datetime.time
+Serialize uuid.UUID
+Serialize numpy.ndarray
+Serialize None
+Serialize subclass of str
+Serialize subclass of int
+Serialize subclass of dict
+Serialize subclass of list
+Serialize subclass of list
+Serialize subclass of dataclasses.dataclass
+Serialize subclass of enum.Enum
+Avoid serializing subclasses","Serialize str
+Serialize dict
+Serialize list
+Serialize tuple
+Serialize int
+Serialize float
+Serialize bool
+Serialize dataclasses.dataclass
+Serialize typing.TypedDict
+Serialize datetime.dateime
+Serialize datetime.date
+Serialize datetime.time
+Serialize uuid.UUID
+Serialize numpy.ndarray
+Serialize None
+Serialize subclass of str
+Serialize subclass of int
+Serialize subclass of dict
+Serialize subclass of list
+Serialize subclass of list
+Serialize subclass of dataclasses.dataclass
+Serialize subclass of enum.Enum
+Avoid serializing subclasses","Serialize str
+Serialize dict
+Serialize list
+Serialize tuple
+Serialize int
+Serialize float
+Serialize bool
+Serialize dataclasses.dataclass
+Serialize typing.TypedDict
+Serialize datetime.dateime
+Serialize datetime.date
+Serialize datetime.time
+Serialize uuid.UUID
+Serialize numpy.ndarray
+Serialize None
+Serialize subclass of str
+Serialize subclass of int
+Serialize subclass of dict
+Serialize subclass of list
+Serialize subclass of dataclasses.dataclass
+Serialize subclass of enum.Enum
+Avoid serializing subclasses",0,1,"Serialize str
+Serialize dict
+Serialize list
+Serialize tuple
+Serialize int
+Serialize float
+Serialize bool
+Serialize dataclasses.dataclass
+Serialize typing.TypedDict
+Serialize datetime.datetime
+Serialize datetime.date
+Serialize datetime.time
+Serialize uuid.UUID
+Serialize numpy.ndarray
+Serialize None
+Serialize subclass of str
+Serialize subclass of int
+Serialize subclass of dict
+Serialize subclass of list
+Serialize subclass of dataclasses.dataclass
+Serialize subclass of enum.Enum
+Avoid serializing subclasses
+Specify option orjson.OPT_PASSTHROUGH_SUBCLASS","Serialize str
+Serialize dict
+Serialize list
+Serialize tuple
+Serialize int
+Serialize float
+Serialize bool
+Serialize dataclasses.dataclass
+Serialize typing.TypedDict
+Serialize datetime.dateime
+Serialize datetime.date
+Serialize datetime.time
+Serialize uuid.UUID
+Serialize numpy.ndarray
+Serialize None
+Serialize subclass of str
+Serialize subclass of int
+Serialize subclass of dict
+Serialize subclass of list
+Serialize subclass of list
+Serialize subclass of dataclasses.dataclass
+Serialize subclass of enum.Enum
+Avoid serializing subclasses","Serialize str
+Serialize dict
+Serialize list
+Serialize tuple
+Serialize int
+Serialize float
+Serialize bool
+Serialize dataclasses.dataclass
+Serialize typing.TypedDict
+Serialize datetime.datetime
+Serialize datetime.date
+Serialize datetime.time
+Serialize uuid.UUID
+Serialize numpy.ndarray
+Serialize None
+Serialize subclass of str
+Serialize subclass of int
+Serialize subclass of dict
+Serialize subclass of list
+Serialize subclass of dataclasses.dataclass
+Serialize subclass of enum.Enum
+Avoid serializing subclasses","support arbitrary types through default
+specify option orjson.OPT_PASSTHROUGH_SUBCLASS","serialize none
+serialize str
+serialize dict
+serialize list
+serialize tuple
+serialize int
+serialize float
+serialize bool
+serialize dataclasses.dataclass
+serialize typing.TypedDict
+serialize datetime.datetime
+serialize datetime.date
+serialize datetime.time
+serialize uuid.UUID
+serialize numpy.ndarray
+support arbitrary types through default
+serialize subclasses of str
+serialize namedtuple objects as arrays
+specify option orjson.OPT_PASSTHROUGH_SUBCLASS","serialize none
+serialize str
+serialize dict
+serialize list
+serialize tuple
+serialize int
+serialize float
+serialize bool
+serialize dataclasses.dataclass
+serialize typing.TypedDict
+serialize datetime.datetime
+serialize datetime.date
+serialize datetime.time
+serialize uuid.UUID
+serialize numpy.ndarray
+serialize subclasses of str
+serialize namedtuple objects as arrays
+specify option orjson.OPT_PASSTHROUGH_SUBCLASS",23,22,1,2,0,19,16,18,16,,,
+The output is a bytes object containing UTF-8.,Output byte object in UTF-8,Output bytes object,,,,,,1,,,,,,,,0,0,,0,,0,0,0,0,,,
+The global interpreter lock (GIL) is held for the duration of the call.,,,,,,,,1,,,,,,,,0,0,,0,,0,0,0,0,,,
+"It raises JSONEncodeError on an unsupported type. This exception message describes the invalid object with the error message Type is not JSON serializable: .... To fix this, specify default.",Fix error messages Type is not JSON serializable,"Raise JSONEncodeError on unsupported type
+Specify default",,,"Raise JSONEncodeError on an unsupported type
+Describe the invalid object with the error message",,,1,,"Raise JSONEncodeError on an unsupported type
+Describe the invalid object with the error message
+Specify default",,,"raise JSONEncodeError on unsupported type
+specify default","raise JSONEncodeError on unsupported type
+specify default",specify default,3,0,2,2,0,2,0,1,0,,,
+It raises JSONEncodeError on a str that contains invalid UTF-8.,,Raise JSONEncodeError on invalid ETF-8 str,,,Raise JSONEncodeError on a str,,,1,,Raise JSONEncodeError on a str,,,raise JSONEncodeError on str UTF-8,raise JSONEncodeError on str UTF-8,,1,0,0,1,0,1,0,0,0,,,
+"It raises JSONEncodeError on an integer that exceeds 64 bits by default or, with OPT_STRICT_INTEGER, 53 bits.",,Raise JSONEncodeError integer,,,Raise JSONEncodeError on an integer,,,1,,Raise JSONEncodeError on an integer,,,raise JSONEncodeError on integer,raise JSONEncodeError on integer,,1,0,0,1,0,1,0,0,0,,,
+"It raises JSONEncodeError if a dict has a key of a type other than str, unless OPT_NON_STR_KEYS is specified.",,"Raise JSONEncodeError
+Specify OPT_NON_STR_KEYS",,,Raise JSONEncodeError,,,1,,"Raise JSONEncodeError
+Specify OPT_NON_STR_KEYS",,,"raise JSONEncodeError
+specify OPT_NON_STR_KEYS","raise JSONEncodeError
+specify OPT_NON_STR_KEYS",specify OPT_NON_STR_KEYS,2,0,2,2,0,2,0,1,1,,,
+It raises JSONEncodeError if the output of default recurses to handling by default more than 254 levels deep.,,Raise JSONEncodeError,,,Raise JSONEncodeError,,,1,,Raise JSONEncodeError,,,"raise JSONEncodeError
+handle  by default",raise JSONEncodeError,,1,0,0,2,0,1,0,0,0,,,
+It raises JSONEncodeError on circular references.,,Raise JSONEncodeError on circular references,,,,,,1,,Raise JSONEncodeError on circular references,,,raise JSONEncodeError on circular references,raise JSONEncodeError on circular references,,1,0,1,1,0,1,0,0,0,,,
+It raises JSONEncodeError if a tzinfo on a datetime object is unsupported.,,Raise JSONEncodeError,,,Raise JSONEncodeError,,,1,,Raise JSONEncodeError,,,,,,1,0,,0,,0,0,0,0,,,
+JSONEncodeError is a subclass of TypeError. This is for compatibility with the standard library.,,,,,,,,1,,,,,,,,0,0,,0,,0,0,0,0,,,
+"To serialize a subclass or arbitrary types, specify default as a callable that returns a supported type. default may be a function, lambda, or callable class instance. To specify that a type was not handled by default, raise an exception such as TypeError.","- Serialize a subclass or arbitrary types
+- Specify type not handled by default","Serialize subclass
+Serialize arbitrary types
+Specify type not handled by default","Serialize subclass
+Serialize arbitrary types
+Specify type not handled by default","Serialize subclass
+Serialize arbitrary types
+Specify type not handled by default","Serialize subclass
+Serialize arbitrary types
+Specify type not handled by default","Serialize subclass
+Serialize arbitrary types","Serialize subclass
+Serialize arbitrary types
+Specify type not handled by default",1,,"Serialize subclass
+Serialize arbitrary types
+Specify type not handled by default","Serialize subclass
+Serialize arbitrary types","Serialize subclass
+Serialize arbitrary types
+Specify type not handled by default","return supported type
+return callable
+raise exception such_as TypeError","serialize subclass arbitrary types specify default as callable
+raise exception such_as TypeError",serialize subclass arbitrary types specify default as callable,3,3,0,3,0,2,1,1,1,">>> import orjson, decimal
+>>>
+def default(obj):
+    if isinstance(obj, decimal.Decimal):
+        return str(obj)
+    raise TypeError
+
+>>> orjson.dumps(decimal.Decimal(""0.0842389659712649442845""))
+JSONEncodeError: Type is not JSON serializable: decimal.Decimal
+>>> orjson.dumps(decimal.Decimal(""0.0842389659712649442845""), default=default)
+b'""0.0842389659712649442845""'
+>>> orjson.dumps({1, 2}, default=default)
+orjson.JSONEncodeError: Type is not JSON serializable: set",,
+The default callable may return an object that itself must be handled by default up to 254 times before an exception is raised.,,,,,,,,1,,,,,"return object
+raise exception",raise exception,,0,0,0,2,0,1,0,0,0,,,
+"It is important that default raise an exception if a type cannot be handled. Python otherwise implicitly returns None, which appears to the caller like a legitimate value and is serialized:",,,,,,,,1,,,,,"raise exception
+return none","raise exception
+serialize none",serialize none,0,0,0,2,0,2,0,1,0,">>> import orjson, json, rapidjson
+>>>
+def default(obj):
+    if isinstance(obj, decimal.Decimal):
+        return str(obj)
+
+>>> orjson.dumps({""set"":{1, 2}}, default=default)
+b'{""set"":null}'
+>>> json.dumps({""set"":{1, 2}}, default=default)
+'{""set"":null}'
+>>> rapidjson.dumps({""set"":{1, 2}}, default=default)
+'{""set"":null}'",,
+"To modify how data is serialized, specify option. Each option is an integer constant in orjson. To specify multiple options, mask them together, e.g., option=orjson.OPT_STRICT_INTEGER | orjson.OPT_NAIVE_UTC.",Modify how data is serialized,"Modify how data is serialized
+Specify multiple options","Modify how data is serialized
+Specify multiple options","Modify how data is serialized
+Specify multiple options",Modify how data is serialized,Modify how data is serialized,Modify how data is serialized,0,1,"Modify how data is serialized
+Specify multiple options",,"Modify how data is serialized
+Specify multiple options","specify option
+specify multiple options","specify option
+serialize data
+specify multiple options","specify option
+serialize data
+specify multiple options",2,2,1,2,1,3,1,3,1,,,
+Append \n to the output. This is a convenience and optimization for the pattern of dumps(...) + \n. bytes objects are immutable and this pattern copies the original contents.,,,,,Append \n to output,Append \n to output,Append \n to output,0,1,Append \n to output,Append \n to output,Append \n to output,,,,1,1,0,0,0,0,0,0,0,">>> import orjson
+>>> orjson.dumps([])
+b""[]""
+>>> orjson.dumps([], option=orjson.OPT_APPEND_NEWLINE)
+b""[]\n""",No paragraph linked,
+Pretty-print output with an indent of two spaces. This is equivalent to indent=2 in the standard library. Pretty printing is slower and the output larger. orjson is the fastest compared library at pretty printing and has much less of a slowdown to pretty print than the standard library does. This option is compatible with all other options.,Pretty print output with an indent of two spaces,Pretty-print output,Pretty-print output,Pretty-print output,Pretty-print output,Pretty-print output,Pretty-print output,1,,Pretty-print output,,Pretty-print output,indent  in standard library,,,1,1,0,1,0,0,0,0,0,">>> import orjson
+>>> orjson.dumps({""a"": ""b"", ""c"": {""d"": True}, ""e"": [1, 2]})
+b'{""a"":""b"",""c"":{""d"":true},""e"":[1,2]}'
+>>> orjson.dumps(
+    {""a"": ""b"", ""c"": {""d"": True}, ""e"": [1, 2]},
+    option=orjson.OPT_INDENT_2
+)
+b'{\n  ""a"": ""b"",\n  ""c"": {\n    ""d"": true\n  },\n  ""e"": [\n    1,\n    2\n  ]\n}'",,
+"If displayed, the indentation and linebreaks appear like this:",,,,,,,,1,,,,,,,,0,0,,0,,0,0,0,0,"{
+  ""a"": ""b"",
+  ""c"": {
+    ""d"": true
+  },
+  ""e"": [
+    1,
+    2
+  ]
+}","Pretty-print output with an indent of two spaces. This is equivalent to
+indent=2 in the standard library. Pretty printing is slower and the output
+larger. orjson is the fastest compared library at pretty printing and has
+much less of a slowdown to pretty print than the standard library does. This
+option is compatible with all other options.",
+This measures serializing the github.json fixture as compact (52KiB) or pretty (64KiB):,Measure serializing the github.json fixture,Measure github.json fixture,,,,,,1,,Measure github.json fixture,,,,serialize github.json fixture,serialize github.json fixture,1,0,0,0,,1,0,1,0,,,
+"This measures serializing the citm_catalog.json fixture, more of a worst case due to the amount of nesting and newlines, as compact (489KiB) or pretty (1.1MiB):",Measures serializing the citm_catalog.json fixture,Measure citm_catalog.json fixture,,,,,,1,,Measure citm_catalog.json fixture,,,,,,1,0,0,0,,0,0,0,0,,,
+rapidjson is blank because it does not support pretty printing. This can be reproduced using the pyindent script.,,Use pyindent script,,,,,,1,,Use pyindent script,,,use pyindent script,use pyindent script,,1,0,1,1,0,1,0,0,0,,,
+Serialize datetime.datetime objects without a tzinfo as UTC. This has no effect on datetime.datetime objects that have tzinfo set.,Serialize datetime.datetime objects without a tzinfo as UTC,Serialize datetime.datetime objects,Serialize datetime.datetime objects,Serialize datetime.datetime objects,Serialize datetime.datetime without tzinfo as UTC,Serialize datetime.datetime without tzinfo as UTC,Serialize datetime.datetime without tzinfo as UTC,1,0,Serialize datetime.datetime without tzinfo as UTC,,Serialize datetime.datetime without tzinfo as UTC,,serialize datetime.datetime objects without tzinfo,serialize datetime.datetime objects without tzinfo,1,1,,0,,1,1,1,1,">>> import orjson, datetime
+>>> orjson.dumps(
+        datetime.datetime(1970, 1, 1, 0, 0, 0),
+    )
+b'""1970-01-01T00:00:00""'
+>>> orjson.dumps(
+        datetime.datetime(1970, 1, 1, 0, 0, 0),
+        option=orjson.OPT_NAIVE_UTC,
+    )
+b'""1970-01-01T00:00:00+00:00""'",No paragraph linked,
+"Serialize dict keys of type other than str. This allows dict keys to be one of str, int, float, bool, None, datetime.datetime, datetime.date, datetime.time, enum.Enum, and uuid.UUID. For comparison, the standard library serializes str, int, float, bool or None by default. orjson benchmarks as being faster at serializing non-str keys than other libraries. This option is slower for str keys than the default.","Serialize dict keys of type str, int, float, bool, None, datetime.datetime, datetime.date, datetime.time, enum.Enum, uuid.UUID",Serialize dict keys,Serialize dict keys,Serialize dict keys,Serialize dict keys of type other than str,Serialize dict keys of type other than str,Serialize dict keys of type other than str,1,0,Serialize dict keys of type other than str,,Serialize dict keys of type other than str,,"serialize none by default
+serialize none for comparison
+serialize str by default
+serialize str for comparison
+serialize int by default
+serialize int for comparison
+serialize float by default
+serialize float for comparison
+serialize bool by default
+serialize bool for comparison
+serialize non","serialize none by default
+serialize none for comparison
+serialize str by default
+serialize str for comparison
+serialize int by default
+serialize int for comparison
+serialize float by default
+serialize float for comparison
+serialize bool by default
+serialize bool for comparison
+serialize non",1,1,,0,,11,0,11,0,">>> import orjson, datetime, uuid
+>>> orjson.dumps(
+        {uuid.UUID(""7202d115-7ff3-4c81-a7c1-2a1f067b1ece""): [1, 2, 3]},
+        option=orjson.OPT_NON_STR_KEYS,
+    )
+b'{""7202d115-7ff3-4c81-a7c1-2a1f067b1ece"":[1,2,3]}'
+>>> orjson.dumps(
+        {datetime.datetime(1970, 1, 1, 0, 0, 0): [1, 2, 3]},
+        option=orjson.OPT_NON_STR_KEYS | orjson.OPT_NAIVE_UTC,
+    )
+b'{""1970-01-01T00:00:00+00:00"":[1,2,3]}'",No paragraph linked,
+"These types are generally serialized how they would be as values, e.g., datetime.datetime is still an RFC 3339 string and respects options affecting it. The exception is that int serialization does not respect OPT_STRICT_INTEGER.",,,,,,,,1,,,,,,serialize types,serialize types,0,0,,0,,1,0,1,0,,,
+"This option has the risk of creating duplicate keys. This is because non-str objects may serialize to the same str as an existing key, e.g., {1: true, 1: false}. The last key to be inserted to the dict will be serialized last and a JSON deserializer will presumably take the last occurrence of a key (in the above, false). The first value will be lost.",,,,,,,,1,,,,,"create duplicate keys
+insert  to dict",,,0,0,,2,,0,,0,,,,
+"This option is compatible with orjson.OPT_SORT_KEYS. If sorting is used, note the sort is unstable and will be unpredictable for duplicate keys.",,,,,Sort with duplicate keys,Sort with duplicate keys,Sort with duplicate keys,0,1,,, ,,,,0,1,,0,,0,,0,,">>> import orjson, datetime
+>>> orjson.dumps(
+    {""other"": 1, datetime.date(1970, 1, 5): 2, datetime.date(1970, 1, 3): 3},
+    option=orjson.OPT_NON_STR_KEYS | orjson.OPT_SORT_KEYS
+)
+b'{""1970-01-03"":3,""1970-01-05"":2,""other"":1}'","This option has the risk of creating duplicate keys. This is because non-str
+objects may serialize to the same str as an existing key, e.g.,
+{""1"": true, 1: false}. The last key to be inserted to the dict will be
+serialized last and a JSON deserializer will presumably take the last
+occurrence of a key (in the above, false). The first value will be lost.",
+"This measures serializing 589KiB of JSON comprising a list of 100 dict in which each dict has both 365 randomly-sorted int keys representing epoch timestamps as well as one str key and the value for each key is a single integer. In str keys, the keys were converted to str before serialization, and orjson still specifes option=orjson.OPT_NON_STR_KEYS (which is always somewhat slower).",Serializing 589KiB of JSON comprising list ,"Convert keys to str
+Specify option=orjson.OPT_NON_STR_KEYS",,,Serialize 589KiB of JSON,,"Convert keys to str
+Specify option=orjson.OPT_NON_STR_KEYS",0,1,"Convert keys to str
+Specify option=orjson.OPT_NON_STR_KEYS
+Serialize 589KiB of JSON",, ,,,,3,1,0,0,,0,,0,,,,
+ujson is blank for sorting because it segfaults. json is blank because it raises TypeError on attempting to sort before converting all keys to str. rapidjson is blank because it does not support non-str keys. This can be reproduced using the pynonstr script.,,,,,,,,1,,,,,"raise TypeError on attempting
+convert keys to str
+sort  before converting
+use pynonstr script","raise TypeError on attempting
+convert keys to str
+sort  before converting
+use pynonstr script","convert keys to str
+sort  before converting",0,0,0,4,0,4,0,2,0,,,
+Do not serialize the microsecond field on datetime.datetime and datetime.time instances.,,,,,Do not serialize microsecond field,,Do not serialize microsecond field,0,1,,,,,,,0,0,0,0,,0,0,0,0,">>> import orjson, datetime
+>>> orjson.dumps(
+        datetime.datetime(1970, 1, 1, 0, 0, 0, 1),
+    )
+b'""1970-01-01T00:00:00.000001""'
+>>> orjson.dumps(
+        datetime.datetime(1970, 1, 1, 0, 0, 0, 1),
+        option=orjson.OPT_OMIT_MICROSECONDS,
+    )
+b'""1970-01-01T00:00:00""'",No paragraph linked,
+Passthrough dataclasses.dataclass instances to default. This allows customizing their output but is much slower.,Pass through dataclasses.dataclass instances to default,"Passthrough dataclasses.dataclass
+Customize output ",Customize output,Customize output,Passthrough dataclasses.dataclass,,"Passthrough dataclasses.dataclass
+Customize output ",0,1,"Passthrough dataclasses.dataclass
+Customize output ",Customize output,"Passthrough dataclasses.dataclass
+Customize output ",customize output,customize output,customize output,2,2,1,1,1,1,1,1,,">>> import orjson, dataclasses
+>>>
+@dataclasses.dataclass
+class User:
+    id: str
+    name: str
+    password: str
+
+def default(obj):
+    if isinstance(obj, User):
+        return {""id"": obj.id, ""name"": obj.name}
+    raise TypeError
+
+>>> orjson.dumps(User(""3b1"", ""asd"", ""zxc""))
+b'{""id"":""3b1"",""name"":""asd"",""password"":""zxc""}'
+>>> orjson.dumps(User(""3b1"", ""asd"", ""zxc""), option=orjson.OPT_PASSTHROUGH_DATACLASS)
+TypeError: Type is not JSON serializable: User
+>>> orjson.dumps(
+        User(""3b1"", ""asd"", ""zxc""),
+        option=orjson.OPT_PASSTHROUGH_DATACLASS,
+        default=default,
+    )
+b'{""id"":""3b1"",""name"":""asd""}'",,
+"Passthrough datetime.datetime, datetime.date, and datetime.time instances to default. This allows serializing datetimes to a custom format, e.g., HTTP dates:",Serialize datetimes to a custom format,"Passthrough datetime.datetime
+Passthrough datetime.date
+Passthrough datetime.time
+Serialize datetimes",Serialize datetimes,Serialize datetimes,Serialize datetimes,Serialize datetimes,Serialize datetimes to custom format,1,0,"Passthrough datetime.datetime
+Passthrough datetime.date
+Passthrough datetime.time
+Serialize datetimes",Serialize datetimes,Serialize datetimes to custom format,,serialize datetimes to custom format,serialize datetimes to custom format,4,1,0,0,,1,1,1,1,">>> import orjson, datetime
+>>>
+def default(obj):
+    if isinstance(obj, datetime.datetime):
+        return obj.strftime(""%a, %d %b %Y %H:%M:%S GMT"")
+    raise TypeError
+
+>>> orjson.dumps({""created_at"": datetime.datetime(1970, 1, 1)})
+b'{""created_at"":""1970-01-01T00:00:00""}'
+>>> orjson.dumps({""created_at"": datetime.datetime(1970, 1, 1)}, option=orjson.OPT_PASSTHROUGH_DATETIME)
+TypeError: Type is not JSON serializable: datetime.datetime
+>>> orjson.dumps(
+        {""created_at"": datetime.datetime(1970, 1, 1)},
+        option=orjson.OPT_PASSTHROUGH_DATETIME,
+        default=default,
+    )
+b'{""created_at"":""Thu, 01 Jan 1970 00:00:00 GMT""}'
+",No paragraph linked,
+This does not affect datetimes in dict keys if using OPT_NON_STR_KEYS.,,,,,,,,1,,,,,use OPT_NON_STR_KEYS,use OPT_NON_STR_KEYS,,0,0,0,1,0,1,0,0,0,,,
+Passthrough subclasses of builtin types to default.,Passthrough subclasses of builtin types to default,,,,,,,1,,,,,,,,0,0,,0,,0,0,0,0,">>> import orjson
+>>>
+class Secret(str):
+    pass
+
+def default(obj):
+    if isinstance(obj, Secret):
+        return ""******""
+    raise TypeError
+
+>>> orjson.dumps(Secret(""zxc""))
+b'""zxc""'
+>>> orjson.dumps(Secret(""zxc""), option=orjson.OPT_PASSTHROUGH_SUBCLASS)
+TypeError: Type is not JSON serializable: Secret
+>>> orjson.dumps(Secret(""zxc""), option=orjson.OPT_PASSTHROUGH_SUBCLASS, default=default)
+b'""******""'",No paragraph linked,
+This does not affect serializing subclasses as dict keys if using OPT_NON_STR_KEYS.,,,,,,,,1,,,,,use OPT_NON_STR_KEYS,use OPT_NON_STR_KEYS,,0,0,0,1,0,1,0,0,0,,,
+"This is deprecated and has no effect in version 3. In version 2 this was required to serialize dataclasses.dataclass instances. For more, see dataclass.",,,,,,,,1,,,,,,,,0,0,,0,,0,0,0,0,,,
+"Serialize numpy.ndarray instances. For more, see numpy.",Serialize numpy.ndarray instances,Serialize numpy.ndarray,Serialize numpy.ndarray,Serialize numpy.ndarray,Serialize numpy.ndarray instance,Serialize numpy.ndarray instance,Serialize numpy.ndarray instance,1,0,Serialize numpy.ndarray instance,,Serialize numpy.ndarray instance,,serialize numpy.ndarray instances,serialize numpy.ndarray instances,1,1,,0,,1,1,1,1,,,
+"This is deprecated and has no effect in version 3. In version 2 this was required to serialize uuid.UUID instances. For more, see UUID.",Serialize uuid.UUID instances,Serialize uuid.UUID,Serialize uuid.UUID,Serialize uuid.UUID,,,Serialize uuid.UUID,1,,Serialize uuid.UUID,Serialize uuid.UUID,Serialize uuid.UUID,,serialize uuid.UUID instances,serialize uuid.UUID instances,1,1,0,0,,1,1,1,1,,,
+Serialize dict keys in sorted order. The default is to serialize in an unspecified order. This is equivalent to sort_keys=True in the standard library.,Serialize dict keys in sorted order,Serialize dict keys,Serialize dict keys,Serialize dict keys,Serialize dict keys,Serialize dict keys,Serialize dict keys,1,,Serialize dict keys,,Serialize dict keys,,serialize dict keys,serialize dict keys,1,1,,0,,1,1,1,1,">>> import orjson
+>>> orjson.dumps({""b"": 1, ""c"": 2, ""a"": 3})
+b'{""b"":1,""c"":2,""a"":3}'
+>>> orjson.dumps({""b"": 1, ""c"": 2, ""a"": 3}, option=orjson.OPT_SORT_KEYS)
+b'{""a"":3,""b"":1,""c"":2}'
+",No paragraph linked,
+This can be used to ensure the order is deterministic for hashing or tests. It has a substantial performance penalty and is not recommended in general.,Ensure order is deterministic for hashing or tests,Ensure deterministic order,Ensure deterministic order,Ensure deterministic order,Ensure deterministic order,Ensure deterministic order,Ensure deterministic order,1,,Ensure deterministic order,Ensure deterministic order,,,,,1,0,,0,0,0,,0,0,,,
+This measures serializing the twitter.json fixture unsorted and sorted:,Measures serializing the twitter.json fixture,"Measures twitter.json fixture
+Serialize twitter.json ","Measures twitter.json fixture
+Serialize twitter.json ",Serialize twitter.json,,,Serialize twitter.json,1,,"Measures twitter.json fixture
+Serialize twitter.json ",,Serialize twitter.json,,serialize twitter.json fixture,serialize twitter.json fixture,2,1,0,0,,1,1,1,1,,,
+The benchmark can be reproduced using the pysort script.,,,,,,,,1,,,,,use pysort script,use pysort script,,0,0,0,1,0,1,0,0,0,,,
+The sorting is not collation/locale-aware:,,,,,,,,1,,,,,,,,0,0,,0,,0,,0,0,">>> import orjson
+>>> orjson.dumps({""a"": 1, ""ä"": 2, ""A"": 3}, option=orjson.OPT_SORT_KEYS)
+b'{""A"":3,""a"":1,""\xc3\xa4"":2}'",The benchmark can be reproduced using the pysort script.,
+"This is the same sorting behavior as the standard library, rapidjson, simplejson, and ujson.",,,,,,,,1,,,,,,,,0,0,,0,,0,,0,0,,,
+dataclass also serialize as maps but this has no effect on them.,,,,,,,,1,,,,,,serialize  as maps,serialize  as maps,0,0,,0,,1,0,1,0,,,
+"Enforce 53-bit limit on integers. The limit is otherwise 64 bits, the same as the Python standard library. For more, see int.",Enforce 53-bit limit of integers,Limit integers,,,Limit integers,Limit integers,Enforce integer limit,0,1,Enforce integer limit,Enforce integer limit,Enforce integer limit,,,,1,1,0,0,0,0,,0,0,,,
+Serialize a UTC timezone on datetime.datetime instances as Z instead of +00:00.,Serialize UTC timezone as Z instead of +00:00,Serialize datetime.datetime,Serialize datetime.datetime,Serialize datetime.datetime,Serialize UTC timezone on datetime.datetime instance,Serialize UTC timezone on datetime.datetime instance,Serialize UTC timezone on datetime.datetime instance,1,0,Serialize UTC timezone on datetime.datetime instance,,Serialize UTC timezone on datetime.datetime instance,,serialize UTC timezone on datetime.datetime instances,serialize UTC timezone on datetime.datetime instances,1,1,,0,,1,1,1,1,">>> import orjson, datetime
+>>> orjson.dumps(
+        datetime.datetime(1970, 1, 1, 0, 0, 0, tzinfo=datetime.timezone.utc),
+    )
+b'""1970-01-01T00:00:00+00:00""'
+>>> orjson.dumps(
+        datetime.datetime(1970, 1, 1, 0, 0, 0, tzinfo=datetime.timezone.utc),
+        option=orjson.OPT_UTC_Z
+    )
+b'""1970-01-01T00:00:00Z""'",No paragraph linked,
+"loads() deserializes JSON to Python objects. It deserializes to dict, list, int, float, str, bool, and None objects.",Deserialize JSON to Python objects,Deserialize JSON to Python,Deserialize JSON to Python,Deserialize JSON to Python,Deserialize JSON to Python object,Deserialize JSON to Python object,Deserialize JSON to Python objects,1,0,Deserialize JSON to Python object,,Deserialize JSON to Python objects,,"deserialize JSON to Python objects
+deserialize  to none objects
+deserialize  to dict bool","deserialize JSON to Python objects
+deserialize  to none objects
+deserialize  to dict bool",1,1,,0,,3,1,3,1,"def loads(__obj: Union[bytes, bytearray, memoryview, str]) -> Any: ...",No paragraph linked,
+"bytes, bytearray, memoryview, and str input are accepted. If the input exists as a memoryview, bytearray, or bytes object, it is recommended to pass these directly rather than creating an unnecessary str object. This has lower memory usage and lower latency.",,,,,,,,1,,,,,"pass  than creating
+create unnecessary str object",pass  than creating,,0,0,0,2,0,1,0,0,0,,,
+The input must be valid UTF-8.,,,,,,,,1,,,,,,,,0,0,,0,,0,0,0,0,,,
+orjson maintains a cache of map keys for the duration of the process. This causes a net reduction in memory usage by avoiding duplicate strings. The keys must be at most 64 bytes to be cached and 512 entries are stored.,,,,,,,,1,,,,,store entries,,,0,0,0,1,0,0,0,0,0,,,
+The global interpreter lock (GIL) is held for the duration of the call.,,,,,,,,1,,,,,,,,0,0,,0,,0,0,0,0,,,
+"It raises JSONDecodeError if given an invalid type or invalid JSON. This includes if the input contains NaN, Infinity, or -Infinity, which the standard library allows, but is not valid JSON.",,,,,,,,1,,,,,raise JSONDecodeError,raise JSONDecodeError,,0,0,0,1,0,1,0,0,0,,,
+JSONDecodeError is a subclass of json.JSONDecodeError and ValueError. This is for compatibility with the standard library.,,,,,,,,1,,,,,,,,0,0,,0,,0,0,0,0,,,
+orjson serializes instances of dataclasses.dataclass natively. It serializes instances 40-50x as fast as other libraries and avoids a severe slowdown seen in other libraries compared to serializing dict.,,,,,Serialize dataclasses.dataclass,,Serialize dataclasses.dataclass natively,0,1,Serialize dataclasses.dataclass natively,Serialize dataclasses.dataclass,Serialize dataclasses.dataclass natively,,"serialize instances of dataclasses.dataclass natively
+serialize instances","serialize instances of dataclasses.dataclass natively
+serialize instances",1,1,0,0,0,2,1,2,1,,,
+"It is supported to pass all variants of dataclasses, including dataclasses using __slots__, frozen dataclasses, those with optional or default attributes, and subclasses. There is a performance benefit to not using __slots__.",Pass all variants of dataclasses,Pass dataclasses,,,,,Pass variants of dataclasses,0,1,Pass variants of dataclasses,, ,"pass variants of dataclasses
+use subclasses
+use __slots__
+support  including dataclasses","pass variants of dataclasses
+use subclasses
+use __slots__
+support  including dataclasses",,1,1,1,4,0,4,0,0,0,,,
+"This measures serializing 555KiB of JSON, orjson natively and other libraries using default to serialize the output of dataclasses.asdict(). This can be reproduced using the pydataclass script.",Measures serializing 555KiB of JSON,Serialize dataclasses.asdict(),Serialize dataclasses.asdict(),Serialize dataclasses.asdict(),,,Serialize dataclasses.asdict(),1,,Serialize dataclasses.asdict(),Serialize dataclasses.asdict(),Serialize dataclasses.asdict(),"use default
+use pydataclass script","serialize 555KiB of JSON natively
+serialize 555KiB of other libraries
+use default
+serialize output of dataclasses.asdict()
+use pydataclass script","serialize 555KiB of JSON natively
+serialize 555KiB of other libraries
+serialize output of dataclasses.asdict()",1,1,0,2,0,5,1,3,1,,,
+"Dataclasses are serialized as maps, with every attribute serialized and in the order given on class definition:",,Serialize dataclasses,Serialize dataclasses,Serialize dataclasses,Serialize Dataclasses as maps,,Serialize Dataclasses as maps,1,0,Serialize Dataclasses as maps,,Serialize Dataclasses as maps,,"serialize dataclasses with attribute
+serialize dataclasses as maps","serialize dataclasses with attribute
+serialize dataclasses as maps",1,1,,0,,2,1,2,1,">>> import dataclasses, orjson, typing
+
+@dataclasses.dataclass
+class Member:
+    id: int
+    active: bool = dataclasses.field(default=False)
+
+@dataclasses.dataclass
+class Object:
+    id: int
+    name: str
+    members: typing.List[Member]
+
+>>> orjson.dumps(Object(1, ""a"", [Member(1, True), Member(2)]))
+b'{""id"":1,""name"":""a"",""members"":[{""id"":1,""active"":true},{""id"":2,""active"":false}]}'
+",No paragraph linked,
+"Users may wish to control how dataclass instances are serialized, e.g., to not serialize an attribute or to change the name of an attribute when serialized. orjson may implement support using the metadata mapping on field attributes, e.g., field(metadata={json_serialize: False}), if use cases are clear.",Control how dataclass instances are serialized,Control dataclass instance serialization ,Control dataclass instance serialization ,Control dataclass instance serialization ,"Do not serialize attribute
+Change attribute name when serialized","Do not serialize attribute
+Change attribute name when serialized","Control dataclass instance serialization 
+Do not serialize attribute
+Change attribute name when serialized",0,1,"Control dataclass instance serialization 
+Change attribute name when serialized","Control dataclass instance serialization 
+Do not serialize attribute
+Change attribute name when serialized","Control dataclass instance serialization 
+Change attribute name when serialized",,,,2,2,0,0,0,0,0,0,0,,,
+"orjson serializes datetime.datetime objects to RFC 3339 format, e.g., 1970-01-01T00:00:00+00:00. This is a subset of ISO 8601 and compatible with isoformat() in the standard library.",,,,,,,,1,,,,,,,,0,0,,0,,0,0,0,0,">>> import orjson, datetime, zoneinfo
+>>> orjson.dumps(
+    datetime.datetime(2018, 12, 1, 2, 3, 4, 9, tzinfo=zoneinfo.ZoneInfo('Australia/Adelaide'))
+)
+b'""2018-12-01T02:03:04.000009+10:30""'
+>>> orjson.dumps(
+    datetime.datetime.fromtimestamp(4123518902).replace(tzinfo=datetime.timezone.utc)
+)
+b'""2100-09-01T21:55:02+00:00""'
+>>> orjson.dumps(
+    datetime.datetime.fromtimestamp(4123518902)
+)
+b'""2100-09-01T21:55:02""'",No paragraph linked,
+"datetime.datetime supports instances with a tzinfo that is None, datetime.timezone.utc, a timezone instance from the python3.9+ zoneinfo module, or a timezone instance from the third-party pendulum, pytz, or dateutil/arrow libraries.",,,,,,,,1,,,,,support instances with tzinfo,support instances with tzinfo,,0,0,0,1,0,1,0,0,0,,,
+datetime.time objects must not have a tzinfo.,,,,,,,,1,,,,,,,,0,0,,0,,0,0,0,0,">>> import orjson, datetime
+>>> orjson.dumps(datetime.time(12, 0, 15, 290))
+b'""12:00:15.000290""'","datetime.datetime supports instances with a tzinfo that is None,
+datetime.timezone.utc, a timezone instance from the python3.9+ zoneinfo
+module, or a timezone instance from the third-party pendulum, pytz, or
+dateutil/arrow libraries.",
+datetime.date objects will always serialize.,,,,,,,,1,,,,,,,,0,0,,0,,0,0,0,0,">>> import orjson, datetime
+>>> orjson.dumps(datetime.date(1900, 1, 2))
+b'""1900-01-02""'","datetime.datetime supports instances with a tzinfo that is None,
+datetime.timezone.utc, a timezone instance from the python3.9+ zoneinfo
+module, or a timezone instance from the third-party pendulum, pytz, or
+dateutil/arrow libraries.",
+Errors with tzinfo result in JSONEncodeError being raised.,,,,,,,,1,,,,,,,,0,0,,0,,0,0,0,0,,,
+"It is faster to have orjson serialize datetime objects than to do so before calling dumps(). If using an unsupported type such as pendulum.datetime, use default.",,,,,,,,1,,,,,"call dumps()
+use unsupported type such_as pendulum.datetime
+use default","call dumps()
+use unsupported type such_as pendulum.datetime
+use default",call dumps(),0,0,0,3,0,3,0,1,0,,,
+To disable serialization of datetime objects specify the option orjson.OPT_PASSTHROUGH_DATETIME.,Disable serialization of datetime objects,"Specify option orjson.OPT_PASSTHROUGH_DATETIME
+Disable serialization of datetime objects ",Disable serialization of datetime objects ,,Disable serialization of datetime objects,Disable serialization of datetime objects,"Specify option orjson.OPT_PASSTHROUGH_DATETIME
+Disable serialization of datetime objects ",0,1,"Specify option orjson.OPT_PASSTHROUGH_DATETIME
+Disable serialization of datetime objects ",Disable serialization of datetime objects,Disable serialization of datetime objects,specify option orjson.OPT_PASSTHROUGH_DATETIME,specify option orjson.OPT_PASSTHROUGH_DATETIME,specify option orjson.OPT_PASSTHROUGH_DATETIME,2,1,1,1,0,1,0,1,0,,,
+"To use Z suffix instead of +00:00 to indicate UTC (Zulu) time, use the option orjson.OPT_UTC_Z.",Use Z suffix instead of +00:00,"Use option orjson.OPT_UTC_Z
+Use Z suffix instead of +00:00",Use Z suffix instead of +00:00,Use Z suffix instead of +00:00,Use Z suffix for UTC (Zulu) time,Use Z suffix for UTC (Zulu) time,"Use option orjson.OPT_UTC_Z
+Use Z suffix instead of +00:00",0,1,"Use option orjson.OPT_UTC_Z
+Use Z suffix instead of +00:00",Use Z suffix to indicate UTC,Use Z suffix instead of +00:00,,,,2,1,0,0,0,0,0,0,0,,,
+"To assume datetimes without timezone are UTC, se the option orjson.OPT_NAIVE_UTC.",Assume datetimes without timezone as UTC,Use option orjson.OPT_NAIVE_UTC,,,Assume datetimes without timezone are UTC,,Assume datetimes without timezone are UTC,0,1,Assume datetimes without timezone are UTC,Assume datetimes without timezone are UTC,Assume datetimes without timezone are UTC,,,,1,1,0,0,0,0,0,0,0,,,
+orjson serializes enums natively. Options apply to their values.,,,,,Serialize enums natively,,Serialize enums natively,0,1,Serialize enums natively,,Serialize enums natively,apply  to values,,,1,1,0,1,0,0,0,0,0,">>> import enum, datetime, orjson
+>>>
+class DatetimeEnum(enum.Enum):
+    EPOCH = datetime.datetime(1970, 1, 1, 0, 0, 0)
+>>> orjson.dumps(DatetimeEnum.EPOCH)
+b'""1970-01-01T00:00:00""'
+>>> orjson.dumps(DatetimeEnum.EPOCH, option=orjson.OPT_NAIVE_UTC)
+b'""1970-01-01T00:00:00+00:00""'",,
+Enums with members that are not supported types can be serialized using default:,,,,,,,,1,,,,,use default,"use default
+serialize types",serialize types,0,0,0,1,0,2,0,1,0,">>> import enum, orjson
+>>>
+class Custom:
+    def __init__(self, val):
+        self.val = val
+
+def default(obj):
+    if isinstance(obj, Custom):
+        return obj.val
+    raise TypeError
+
+class CustomEnum(enum.Enum):
+    ONE = Custom(1)
+
+>>> orjson.dumps(CustomEnum.ONE, default=default)
+b'1'",,
+"orjson serializes and deserializes double precision floats with no loss of precision and consistent rounding. The same behavior is observed in rapidjson, simplejson, and json. ujson 1.35 was inaccurate in both serialization and deserialization, i.e., it modifies the data, and the recent 2.0 release is accurate.",,,,,,,,1,,,,,modify data,modify data,modify data,0,0,0,1,0,1,0,1,0,,,
+"orjson.dumps() serializes Nan, Infinity, and -Infinity, which are not compliant JSON, as null:","Serialize Nan, Infinity and -Infinity","Serialize Nan
+Serialize infinity
+Serialize -Infinity","Serialize Nan
+Serialize infinity
+Serialize -Infinity","Serialize Nan
+Serialize infinity
+Serialize -Infinity",,,"Serialize Nan
+Serialize infinity
+Serialize -Infinity",1,,"Serialize Nan
+Serialize infinity
+Serialize -Infinity","Serialize Nan
+Serialize infinity
+Serialize -Infinity",,,,,3,0,0,0,0,0,0,0,0,">>> import orjson, ujson, rapidjson, json
+>>> orjson.dumps([float(""NaN""), float(""Infinity""), float(""-Infinity"")])
+b'[null,null,null]'
+>>> ujson.dumps([float(""NaN""), float(""Infinity""), float(""-Infinity"")])
+OverflowError: Invalid Inf value when encoding double
+>>> rapidjson.dumps([float(""NaN""), float(""Infinity""), float(""-Infinity"")])
+'[NaN,Infinity,-Infinity]'
+>>> json.dumps([float(""NaN""), float(""Infinity""), float(""-Infinity"")])
+'[NaN, Infinity, -Infinity]'","orjson serializes and deserializes double precision floats with no loss of
+precision and consistent rounding. The same behavior is observed in rapidjson,
+simplejson, and json. ujson 1.35 was inaccurate in both serialization and
+deserialization, i.e., it modifies the data, and the recent 2.0 release is
+accurate.",
+"orjson serializes and deserializes 64-bit integers by default. The range supported is a signed 64-bit integer's minimum (-9223372036854775807) to an unsigned 64-bit integer's maximum (18446744073709551615). This is widely compatible, but there are implementations that only support 53-bits for integers, e.g., web browsers. For those implementations, dumps() can be configured to raise a JSONEncodeError on values exceeding the 53-bit range.",,,,,"Serialize 64-bit integers
+Deserialize 64-bit integers",,"Serialize 64-bit integers
+Deserialize 64-bit integers",0,1,"Serialize 64-bit integers
+Deserialize 64-bit integers",, ,"support 53-bits web browsers
+support implementations
+raise JSONEncodeError on values
+configure dumps() for implementations","serialize 64-bit integers by default
+deserialize 64-bit integers by default
+support 53-bits web browsers
+support implementations
+raise JSONEncodeError on values
+configure dumps() for implementations","serialize 64-bit integers by default
+deserialize 64-bit integers by default
+configure dumps() for implementations",2,1,0,4,0,6,0,3,0,">>> import orjson
+>>> orjson.dumps(9007199254740992)
+b'9007199254740992'
+>>> orjson.dumps(9007199254740992, option=orjson.OPT_STRICT_INTEGER)
+JSONEncodeError: Integer exceeds 53-bit range
+>>> orjson.dumps(-9007199254740992, option=orjson.OPT_STRICT_INTEGER)
+JSONEncodeError: Integer exceeds 53-bit range",,
+"orjson natively serializes numpy.ndarray and individual numpy.float64, numpy.float32, numpy.int64, numpy.int32, numpy.int8, numpy.uint64, numpy.uint32, numpy.uint8, numpy.uintp, or numpy.intp, and numpy.datetime64 instances.",,,,,"Serialize numpy.ndarray
+Serialize individual numpy.float64
+Serialize numpy.float32
+Serialize numpy.int64
+Serialize numpy.int32
+Serialize numpy.int8
+Serialize numpy.uint64
+Serialize numpy.uint32
+Serialize numpy.uint8
+Serialize numpy.uintp
+Serialize numpy.intp
+Serialize numpy.datetime64 instances",,"Serialize numpy.ndarray
+Serialize individual numpy.float64
+Serialize numpy.float32
+Serialize numpy.int64
+Serialize numpy.int32
+Serialize numpy.int8
+Serialize numpy.uint64
+Serialize numpy.uint32
+Serialize numpy.uint8
+Serialize numpy.uintp
+Serialize numpy.intp
+Serialize numpy.datetime64 instances",0,1,"Serialize numpy.ndarray
+Serialize individual numpy.float64
+Serialize numpy.float32
+Serialize numpy.int64
+Serialize numpy.int32
+Serialize numpy.int8
+Serialize numpy.uint64
+Serialize numpy.uint32
+Serialize numpy.uint8
+Serialize numpy.uintp
+Serialize numpy.intp
+Serialize numpy.datetime64 instances",,"Serialize numpy.ndarray
+Serialize individual numpy.float64
+Serialize numpy.float32
+Serialize numpy.int64
+Serialize numpy.int32
+Serialize numpy.int8
+Serialize numpy.uint64
+Serialize numpy.uint32
+Serialize numpy.uint8
+Serialize numpy.uintp
+Serialize numpy.intp
+Serialize numpy.datetime64 instances",,"serialize numpy.ndarray individual numpy.float64
+serialize numpy.float32 numpy.uintp
+serialize numpy.intp
+serialize numpy.datetime64 instances","serialize numpy.ndarray individual numpy.float64
+serialize numpy.float32 numpy.uintp
+serialize numpy.intp
+serialize numpy.datetime64 instances",12,12,0,0,,4,4,4,4,,,
+orjson is faster than all compared libraries at serializing numpy instances. Serializing numpy data requires specifying option=orjson.OPT_SERIALIZE_NUMPY.,,,,,,,,1,,,,,"compare libraries at serializing
+compare orjson at serializing",serialize numpy instances,serialize numpy instances,0,0,0,2,0,1,0,1,0,">>> import orjson, numpy
+>>> orjson.dumps(
+        numpy.array([[1, 2, 3], [4, 5, 6]]),
+        option=orjson.OPT_SERIALIZE_NUMPY,
+)
+b'[[1,2,3],[4,5,6]]'",,
+The array must be a contiguous C array (C_CONTIGUOUS) and one of the supported datatypes.,,,,,,,,1,,,,,,,,0,0,,0,,0,0,0,0,,,
+numpy.datetime64 instances are serialized as RFC 3339 strings and datetime options affect them.,,,,,,,,1,,,,,,serialize numpy.datetime64 instances as RFC,serialize numpy.datetime64 instances as RFC,0,0,,0,,1,0,1,0,">>> import orjson, numpy
+>>> orjson.dumps(
+        numpy.datetime64(""2021-01-01T00:00:00.172""),
+        option=orjson.OPT_SERIALIZE_NUMPY,
+)
+b'""2021-01-01T00:00:00.172000""'
+>>> orjson.dumps(
+        numpy.datetime64(""2021-01-01T00:00:00.172""),
+        option=(
+            orjson.OPT_SERIALIZE_NUMPY |
+            orjson.OPT_NAIVE_UTC |
+            orjson.OPT_OMIT_MICROSECONDS
+        ),
+)
+b'""2021-01-01T00:00:00+00:00""'",orjson is faster than all compared libraries at serializing numpy instances. Serializing numpy data requires specifying option=orjson.OPT_SERIALIZE_NUMPY.,
+"If an array is not a contiguous C array, contains an supported datatype, or contains a numpy.datetime64 using an unsupported representation (e.g., picoseconds), orjson falls through to default. In default, obj.tolist() can be specified. If an array is malformed, which is not expected, orjson.JSONEncodeError is raised.",,,,,,,,1,,,,,"use unsupported representation
+specify obj.tolist() in default
+raise orjson.JSONEncodeError","use unsupported representation
+specify obj.tolist() in default
+raise orjson.JSONEncodeError",specify obj.tolist() in default,0,0,0,3,0,3,0,1,0,,,
+"This measures serializing 92MiB of JSON from an numpy.ndarray with dimensions of (50000, 100) and numpy.float64 values:",Measures serializing JSON from an numpy.ndarray,Serialize numpy.ndarray,Serialize numpy.ndarray,Serialize numpy.ndarray,,,Serialize numpy.ndarray,1,,Serialize numpy.ndarray,,Serialize numpy.ndarray,,"serialize 92MiB of JSON
+serialize 92MiB from numpy.ndarray","serialize 92MiB of JSON
+serialize 92MiB from numpy.ndarray",1,1,0,0,0,2,1,2,1,,,
+"This measures serializing 100MiB of JSON from an numpy.ndarray with dimensions of (100000, 100) and numpy.int32 values:",Measures serializing JSON from an numpy.ndarray,Serialize numpy.ndarray,Serialize numpy.ndarray,Serialize numpy.ndarray,,,Serialize numpy.ndarray,1,,Serialize numpy.ndarray,,Serialize numpy.ndarray,,"serialize 100MiB of JSON
+serialize 100MiB from numpy.ndarray","serialize 100MiB of JSON
+serialize 100MiB from numpy.ndarray",1,1,0,0,0,2,1,2,1,,,
+"This measures serializing 105MiB of JSON from an numpy.ndarray with dimensions of (100000, 200) and numpy.bool values:",Measures serializing JSON from an numpy.ndarray,Serialize numpy.ndarray,Serialize numpy.ndarray,Serialize numpy.ndarray,,,Serialize numpy.ndarray,1,,Serialize numpy.ndarray,,Serialize numpy.ndarray,,"serialize 105MiB of JSON
+serialize 105MiB from numpy.ndarray","serialize 105MiB of JSON
+serialize 105MiB from numpy.ndarray",1,1,0,0,0,2,1,2,1,,,
+"In these benchmarks, orjson serializes natively, ujson is blank because it does not support a default parameter, and the other libraries serialize ndarray.tolist() via default. The RSS column measures peak memory usage during serialization. This can be reproduced using the pynumpy script.",,,,,,,,1,,,,,use pynumpy script,"serialize ndarray.tolist() via default
+use pynumpy script",serialize ndarray.tolist() via default,0,0,0,1,0,2,0,1,0,,,
+"orjson does not have an installation or compilation dependency on numpy. The implementation is independent, reading numpy.ndarray using PyArrayInterface.",,,,,,,,1,,,,,use PyArrayInterface,use PyArrayInterface,,0,0,0,1,0,1,0,0,0,,,
+"orjson is strict about UTF-8 conformance. This is stricter than the standard library's json module, which will serialize and deserialize UTF-16 surrogates, e.g., \ud800, that are invalid UTF-8.",,,,,,,,1,,,,,,,,0,0,,0,,0,0,0,0,,,
+"If orjson.dumps() is given a str that does not contain valid UTF-8, orjson.JSONEncodeError is raised. If loads() receives invalid UTF-8, orjson.JSONDecodeError is raised.",,,,,,,,1,,,,,"raise orjson.JSONEncodeError
+raise orjson.JSONDecodeError","raise orjson.JSONEncodeError
+raise orjson.JSONDecodeError",,0,0,0,2,0,2,0,0,0,,,
+orjson and rapidjson are the only compared JSON libraries to consistently error on bad input.,,,,,,,,1,,,,,,,,0,0,,0,,0,0,0,0,">>> import orjson, ujson, rapidjson, json
+>>> orjson.dumps('\ud800')
+JSONEncodeError: str is not valid UTF-8: surrogates not allowed
+>>> ujson.dumps('\ud800')
+UnicodeEncodeError: 'utf-8' codec ...
+>>> rapidjson.dumps('\ud800')
+UnicodeEncodeError: 'utf-8' codec ...
+>>> json.dumps('\ud800')
+'""\\ud800""'
+>>> orjson.loads('""\\ud800""')
+JSONDecodeError: unexpected end of hex escape at line 1 column 8: line 1 column 1 (char 0)
+>>> ujson.loads('""\\ud800""')
+''
+>>> rapidjson.loads('""\\ud800""')
+ValueError: Parse error at offset 1: The surrogate pair in string is invalid.
+>>> json.loads('""\\ud800""')
+'\ud800'","If orjson.dumps() is given a str that does not contain valid UTF-8,
+orjson.JSONEncodeError is raised. If loads() receives invalid UTF-8,
+orjson.JSONDecodeError is raised.",
+"To make a best effort at deserializing bad input, first decode bytes using the replace or lossy argument for errors:",Deserialize bad input,Deserialize input,Deserialize input,Deserialize input,Deserialize bad input,Deserialize bad input,Deserialize bad input,1,0,Deserialize bad input,Deserialize bad input,Deserialize bad input,use replace lossy argument for errors,"deserialize bad input
+use replace lossy argument for errors",deserialize bad input,1,1,0,1,0,2,1,1,1,">>> import orjson
+>>> orjson.loads(b'""\xed\xa0\x80""')
+JSONDecodeError: str is not valid UTF-8: surrogates not allowed
+>>> orjson.loads(b'""\xed\xa0\x80""'.decode(""utf-8"", ""replace""))
+'���'",,
+"orjson serializes uuid.UUID instances to RFC 4122 format, e.g., ""f81d4fae-7dec-11d0-a765-00a0c91e6bf6"".",,,,,,,,1,,,,,,serialize uuid.UUID instances to RFC,serialize uuid.UUID instances to RFC,0,0,,1,0,1,0,1,0,">>> import orjson, uuid
+>>> orjson.dumps(uuid.UUID('f81d4fae-7dec-11d0-a765-00a0c91e6bf6'))
+b'""f81d4fae-7dec-11d0-a765-00a0c91e6bf6""'
+>>> orjson.dumps(uuid.uuid5(uuid.NAMESPACE_DNS, ""python.org""))
+b'""886313e1-3b8a-5372-9b90-0c9aee199e5d""'",No paragraph linked,
+The library has comprehensive tests. There are tests against fixtures in the JSONTestSuite and nativejson-benchmark repositories. It is tested to not crash against the Big List of Naughty Strings. It is tested to not leak memory. It is tested to not crash against and not accept invalid UTF-8. There are integration tests exercising the library's use in web servers (gunicorn using multiprocess/forked workers) and when multithreaded. It also uses some tests from the ultrajson library.,,,,,,,,1,,,,,"test  to crash
+use tests from ultrajson library",use tests from ultrajson library,,0,0,0,2,0,1,0,0,0,,,
+orjson is the most correct of the compared libraries. This graph shows how each library handles a combined 342 JSON fixtures from the JSONTestSuite and nativejson-benchmark tests:,,,,,,,,1,,,,,"compare libraries
+handle combined 342 JSON fixtures from nativejson-benchmark tests
+handle combined 342 JSON fixtures from JSONTestSuite",,,0,0,0,3,0,0,0,0,0,,,
+This shows that all libraries deserialize valid JSON but only orjson correctly rejects the given invalid JSON fixtures. Errors are largely due to accepting invalid strings and numbers.,,,,,,,,1,,,,,,deserialize valid JSON,deserialize valid JSON,0,0,,0,0,1,0,1,0,,,
+The graph above can be reproduced using the pycorrectness script.,,,,,,,,1,,,,,use pycorrectness script,,,0,0,0,1,0,0,0,0,0,,,
+"Serialization and deserialization performance of orjson is better than ultrajson, rapidjson, simplejson, or json. The benchmarks are done on fixtures of real data:",,,,,,,,1,,,,,,,,0,0,,0,,0,0,0,0,,,
+"twitter.json, 631.5KiB, results of a search on Twitter for 一, containing CJK strings, dictionaries of strings and arrays of dictionaries, indented.",,,,,,,,1,,,,,,,,0,0,,0,,0,0,0,0,,,
+"github.json, 55.8KiB, a GitHub activity feed, containing dictionaries of strings and arrays of dictionaries, not indented.",,,,,,,,1,,,,,,,,0,0,,0,,0,0,0,0,,,
+"citm_catalog.json, 1.7MiB, concert data, containing nested dictionaries of strings and arrays of integers, indented.",,,,,,,,1,,,,,,,,0,0,,0,,0,0,0,0,,,
+"canada.json, 2.2MiB, coordinates of the Canadian border in GeoJSON format, containing floats and arrays, indented.",,,,,,,,1,,,,,,,,0,0,,0,,0,0,0,0,,,
+orjson's memory usage when deserializing is similar to or lower than the standard library and other third-party libraries.,,,,,,,,1,,,,,,,,0,0,,0,,0,0,0,0,,,
+"This measures, in the first column, RSS after importing a library and reading the fixture, and in the second column, increases in RSS after repeatedly calling loads() on the fixture.",,,,,,,,1,,,,,"import library
+read fixture
+call loads() on fixture",,"import library
+read fixture
+call loads() on fixture",0,0,0,3,0,0,0,3,0,,,
+"The above was measured using Python 3.8.3 on Linux (x86_64) with orjson 3.3.0, ujson 3.0.0, python-rapidson 0.9.1, and simplejson 3.17.2.",,,,,,,,1,,,,,"use Python 3.8.3 with python-rapidson 0.9.1
+use Python 3.8.3 with simplejson 3.17.2
+use Python 3.8.3 with orjson 3.3.0
+use Python 3.8.3 with ujson 3.0.0
+use Python 3.8.3 on Linux",,,0,0,0,5,0,0,0,0,0,,,
+The latency results can be reproduced using the pybench and graph scripts. The memory results can be reproduced using the pymem script.,,,,,,,,1,,,,,"use pybench graph scripts
+use pymem script",,,0,0,0,2,0,0,0,0,0,,,
+Probably pip needs to be upgraded to version 20.3 or later to support the latest manylinux_x_y or universal2 wheel formats.,,,,,,,,1,,,,,"support latest manylinux_x_y
+support universal2 wheel formats",,,0,0,0,2,0,0,0,0,0,,,
+No. This requires a schema specifying what types are expected and how to handle errors etc. This is addressed by data validation libraries a level above this.,,,,,,,,1,,,,,,,,0,0,,0,,0,0,0,0,,,
+No. bytes is the correct type for a serialized blob.,,,,,,,,1,,,,,,,,0,0,,0,,0,0,0,0,,,
+If someone implements it well.,,,,,,,,1,,,,,,,,0,0,,0,,0,0,0,0,,,
+To package orjson requires Rust and the maturin build tool.,,,,,,,,1,,,,,,,,0,0,,0,0,0,0,0,0,,,
+This is an example for x86_64 on the Rust nightly channel:,,,,,,,,1,,,,,,,,0,0,,0,,0,,0,0,"export RUSTFLAGS=""-C target-cpu=k8""
+maturin build --no-sdist --release --strip --cargo-extra-args=""--features=unstable-simd""",No paragraph linked,
+"To build on the stable channel, do not specify --features=unstable-simd.",Build on stable channel,Build channel,Build channel,Build channel,Build on the stable channel,,,0,1,Build on the stable channel,, ,,,,1,1,,0,0,0,0,0,0,,,
+The project's own CI tests against nightly-2021-08-17 and stable 1.54. It is prudent to pin the nightly version because that channel can introduce breaking changes.,,,,,,,,1,,,,,"test  against nightly-2021-08-17 stable 1.54
+introduce breaking changes",,introduce breaking changes,0,0,0,2,0,0,0,1,0,,,
+orjson is tested for amd64 and aarch64 on Linux and amd64 on macOS and Windows. It may not work on 32-bit targets.,,,,,,,,1,,,,,"test orjson on Linux
+test orjson on amd64
+test orjson on macOS
+test orjson on windows",,,0,0,0,4,0,0,0,0,0,,,
+There are no runtime dependencies other than libc.,,,,,,,,1,,,,,,,,0,0,,0,,0,0,0,0,,,
+orjson's tests are included in the source distribution on PyPI. The requirements to run the tests are specified in test/requirements.txt. The tests should be run as part of the build. It can be run with pytest -q test.,,,,,,,,1,,,,,"include tests in source distribution
+run tests
+specify requirements in test/requirements.txt
+run tests
+run  with pytest",,specify requirements in test/requirements.txt,0,0,0,5,0,0,0,1,0,,,
+"orjson was written by ijl <ijl@mailbox.org>, copyright 2018 - 2021, licensed under both the Apache 2 and MIT licenses.",,,,,,,,1,,,,,write orjson,,write orjson,0,0,0,1,0,0,0,1,0,,,
+,,,,,,,,,,,Mechanical,,,,,117,82,15,106,4,142,46,104,46,,,
+,,,,,,,,,,,14.15%,Precision,3.77%,32.39%,44.23%,,,,,,,,,,,,
+,,,,,,,,,,,12.82%,Recall,4.88%,56.10%,56.10%,,,,,,,,,,,,

@@ -1,0 +1,1290 @@
+Paragraph,Tasks (Old),Henry's mechanical tasks,Henry's library tasks,Henry's library tasks (updated),Sarah's mechanical tasks,Sarah's library tasks,Sarah's library tasks (updated),Conflict,Resolved mechanical tasks,Resolved library tasks,Program,
+Bases: object,,,,,,,,,,,,
+"A processing class for deriving trees that represent possible structures for a sequence of tokens. These tree structures are known as “parses”. Typically, parsers are used to derive syntax trees for sentences. But parsers can also be used to derive other kinds of tree structure, such as morphological trees and discourse structures.",,"Derive trees that represent sequence of tokens
+Derive syntax trees for sentences",,,"Derive trees that represent possible structures for a sequence of tokens
+Derive syntax trees for sentences
+Derive other kinds of tree structure",,Derive syntax trees for sentences,1,,,,
+"at least one of: parse(), parse_sents().",,,,,,,,,,,,
+grammar(),,,,,,,,,,,,
+The grammar used by this parser.,,,,,,,,,,,use  by parser,
+An iterator that generates parse trees for the sentence.,Generate parse tree from sentence,Generate parse trees,Generate parse trees,Generate parse trees,Generate parse tree for the sentence,Generate parse tree for the sentence,Generate parse tree for the sentence,0,Generate parse tree for the sentence,Generate parse tree for the sentence,generate iterator,"parse trees for sentence
+generate iterator"
+When possible this list is sorted from most likely to least likely.,,,,,,,,,,,sort list,sort list
+sent (list(str)) – The sentence to be parsed,,,,,,,,,,,,parse sentence
+iter(Tree),,,,,,,,,,,,
+list(Tree),,,,,,,,,,,,
+Tree or None,,,,,,,,,,,,
+Apply self.parse() to each element of sents. :rtype: iter(iter(Tree)),,,,,Apply self.parse() to each element of sents,,,1,,,,
+Bases: nltk.parse.api.ParserI,,,,,,,,,,,,
+Interface for parsing with BLLIP Parser. BllipParser objects can be constructed with the BllipParser.from_unified_model_dir class method or manually using the BllipParser constructor.,Use BLLIP Parser,,,,,,,,,,"use BllipParser constructor
+use BllipParser objects",parse  with BLLIP parser
+Create a BllipParser object from a unified parsing model directory. Unified parsing model directories are a standardized way of storing BLLIP parser and reranker models together on disk. See bllipparser.RerankingParser.get_unified_model_parameters() for more information about unified model directories.,Create BllipParser object,Create BllipParser,Create BllipParser,Create BllipParser,Create a BllipParser object from a unified parsing model directory,,,1,,,"create BllipParser object from unified parsing model directory
+store BLLIP parser on disk
+store reranker models on disk","create BllipParser object from unified parsing model directory
+store BLLIP parser on disk
+store reranker models on disk"
+A BllipParser object using the parser and reranker,,,,,,,,,,,"use parser
+use reranker",
+models in the model directory.,,,,,,,,,,,,
+model_dir (str) – Path to the unified model directory.,Get path to unified model directory,,,,,,,,,,,
+"parser_options – optional dictionary of parser options, see",,,,,,,,,,,,
+"bllipparser.RerankingParser.RerankingParser.load_parser_options() for more information. :type parser_options: dict(str) :param reranker_options: optional dictionary of reranker options, see bllipparser.RerankingParser.RerankingParser.load_reranker_model() for more information. :type reranker_options: dict(str) :rtype: BllipParser",,,,,,,,,,,,
+Use BLLIP Parser to parse a sentence. Takes a sentence as a list of words; it will be automatically tagged with this BLLIP Parser instance’s tagger.,Use Bllip parser to parse a sentence,Use BLLIP,Use BLLIP,Use BLLIP,Use BLLIP Parser to parse a sentence,Use BLLIP Parser to parse a sentence,Use BLLIP Parser to parse a sentence,0,Use BLLIP Parser to parse a sentence,Use BLLIP Parser to parse a sentence,,parse sentence
+An iterator that generates parse trees for the sentence,Generate parse trees,Generate parse trees,Generate parse trees,Generate parse trees,Generate parse trees for the sentence,Generate parse trees for the sentence,Generate parse trees for the sentence,0,Generate parse trees for the sentence,Generate parse trees for the sentence,generate iterator,"parse trees for sentence
+generate iterator"
+from most likely to least likely.,,,,,,,,,,,,
+sentence (list(str)) – The sentence to be parsed,,,,,,,,,,,,
+iter(Tree),,,,,,,,,,,,
+"Use BLLIP to parse a sentence. Takes a sentence as a list of (word, tag) tuples; the sentence must have already been tokenized and tagged. BLLIP will attempt to use the tags provided but may use others if it can’t come up with a complete parse subject to those constraints. You may also specify a tag as None to leave a token’s tag unconstrained.",Use Bllip to parse a sentence,"Use BLLIP
+Specify tag as None","Use BLLIP
+Specify tag as None","Use BLLIP
+Specify tag as None",Use BLLIP Parser to parse a sentence,Use BLLIP Parser to parse a sentence,Use BLLIP Parser to parse a sentence,1,,,"use BLLIP
+use others
+specify tag as none","parse sentence
+specify tag as none"
+An iterator that generates parse trees for the sentence,,,,,Generate parse trees for the sentence,Generate parse trees for the sentence,Generate parse trees for the sentence,1,,,generate iterator,"parse trees for sentence
+generate iterator"
+from most likely to least likely.,,,,,,,,,,,,
+"sentence (list(tuple(str, str))) – Input sentence to parse as (word, tag) pairs",,,,,,,,,,,,parse  as pairs
+iter(Tree),,,,,,,,,,,,
+"Data classes and parser implementations for “chart parsers”, which use dynamic programming to efficiently parse a text. A chart parser derives parse trees for a text by iteratively adding “edges” to a “chart.” Each edge represents a hypothesis about the tree structure for a subsequence of the text. The chart is a “blackboard” for composing and combining these hypotheses.",,Use dynamic programming to parse text,,,"Efficiently parse a text
+Derive parse trees for a text",Efficiently parse a text,"Efficiently parse a text
+Derive parse trees for a text",1,,,,
+"When a chart parser begins parsing a text, it creates a new (empty) chart, spanning the text. It then incrementally adds new edges to the chart. A set of “chart rules” specifies the conditions under which new edges should be added to the chart. Once the chart reaches a stage where none of the chart rules adds any new edges, parsing is complete.",,"Create new chart
+Add edges to chart","Create new chart
+Add edges to chart","Create new chart
+Add edges to chart","Create a new chart
+Add new edges to the chart",,,1,,,,
+"Charts are encoded with the Chart class, and edges are encoded with the TreeEdge and LeafEdge classes. The chart parser module defines three chart parsers:",,,,,"Encode Charts with the Chart class
+Encode edges with the TreeEdge and LeafeEdge classes",,,1,,,,
+"ChartParser is a simple and flexible chart parser. Given a set of chart rules, it will apply those rules to the chart until no more edges are added.",,Apply rules to chart,Apply rules to chart,Apply rules to chart,Apply rules to the chart,,,0,,,,
+SteppingChartParser is a subclass of ChartParser that can be used to step through the parsing process.,,,,,Step through the parsing process,Step through the parsing process,Step through the parsing process,1,,,use subclass of ChartParser,
+Bases: nltk.parse.chart.ChartRuleI,,,,,,,,,,,,
+An abstract base class for chart rules. AbstractChartRule provides:,,,,,,,,,,,,
+A default implementation for apply.,,,,,,,,,,,,
+"A default implementation for apply_everywhere, (Currently, this implementation assumes that ``NUM_EDGES``<=3.)",,,,,,,,,,,,
+"A default implementation for __str__, which returns a name based on the rule’s class name.",,Return name ,,,Return a name based on the rule's class name,,,0,,,"return name
+return __str__","return name
+return __str__"
+"Return a generator that will add edges licensed by this rule and the given edges to the chart, one at a time. Each time the generator is resumed, it will either add a new edge and yield that edge; or return.",Get generator that will add edges given a rule and also add to the chart,"Return generator
+Add edges one at a time
+Add edges to chart
+Add new edge
+Yield edge",,,"Return a generator
+Add a new edge
+Yield that edge",,,1,,,,
+edges (list(EdgeI)) – A set of existing edges. The number of edges that should be passed to apply() is specified by the NUM_EDGES class variable.,Get the existing edges,"Pass edges to apply()
+Specify number of edges",,,,,,1,,,,
+iter(EdgeI),,,,,,,,,,,,
+"Return a generator that will add all edges licensed by this rule, given the edges that are currently in the chart, one at a time. Each time the generator is resumed, it will either add a new edge and yield that edge; or return.",Get generator that will add edges given a rule and also add to the chart,"Return generator 
+Add edges one at a time
+Add new edge",,,"Return a generator that will add all edges licensed by this rule
+Add a new edge
+Yield that edge",,,1,,,,
+iter(EdgeI),,,,, ,,,,,,,
+Bases: nltk.parse.chart.ChartParser,,,,,,,,,,,,
+A ChartParser using a bottom-up parsing strategy. See ChartParser for more information.,,,,,,,,,,,use bottom-up parsing strategy,
+Bases: nltk.parse.chart.ChartParser,,,,,,,,,,,,
+A ChartParser using a bottom-up left-corner parsing strategy. This strategy is often more efficient than standard bottom-up. See ChartParser for more information.,,Use bottom-up left-corner strategy,,,Use a bottom-up left-corner parsing strategy,Use a bottom-up left-corner parsing strategy,Use a bottom-up left-corner parsing strategy,0,,,use bottom-up left-corner parsing strategy,
+Bases: nltk.parse.chart.BottomUpPredictRule,,,,,,,,,,,,
+"A rule licensing any edge corresponding to a production whose right-hand side begins with a complete edge’s left-hand side. In particular, this rule specifies that [A -> alpha \*] licenses the edge [B -> A \* beta] for each grammar production B -> A beta.",How to define a rule ,,,,,,,,,,,
+"This is like BottomUpPredictRule, but it also applies the FundamentalRule to the resulting edge.",,Apply FundamentalRule to edge,,,Apply the FundamentalRule to the resulting edge,,,0,,,apply FundamentalRule to resulting edge,apply FundamentalRule to resulting edge
+"Return a generator that will add edges licensed by this rule and the given edges to the chart, one at a time. Each time the generator is resumed, it will either add a new edge and yield that edge; or return.",Get generator that will add edges given a rule and also add to the chart,"Return generator
+Add edges one at at time
+Add new edge",,,Return a generator that will add edges licensed by this rule,,,1,,,,
+edges (list(EdgeI)) – A set of existing edges. The number of edges that should be passed to apply() is specified by the NUM_EDGES class variable.,Get the existing edges,"Pass edges to apply()
+Specify number of edges",,,,,,1,,,,
+iter(EdgeI),,,,,,,,,,,,
+Bases: nltk.parse.chart.AbstractChartRule,,,,,,,,,,,,
+"A rule licensing any edge corresponding to a production whose right-hand side begins with a complete edge’s left-hand side. In particular, this rule specifies that [A -> alpha \*] licenses the edge [B -> \* A beta] for each grammar production B -> A beta.",How to define a rule ,,,,,,,,,,,
+"Return a generator that will add edges licensed by this rule and the given edges to the chart, one at a time. Each time the generator is resumed, it will either add a new edge and yield that edge; or return.",Get generator that will add edges given a rule and also add to the chart,"Return generator
+Add edges one at at time
+Add new edge",,,Return a generator that will add edges licensed by this rule,,,1,,,,
+edges (list(EdgeI)) – A set of existing edges. The number of edges that should be passed to apply() is specified by the NUM_EDGES class variable.,Get the existing edges,"Pass edges to apply()
+Specify number of edges",,,,,,1,,,,
+iter(EdgeI),,,,,,,,,,,,
+Bases: nltk.parse.chart.TopDownPredictRule,,,,,,,,,,,,
+"A cached version of TopDownPredictRule. After the first time this rule is applied to an edge with a given end and next, it will not generate any more edges for edges with that end and next.",,,,,Apply rule to an edge,,,1,,,,
+"If chart or grammar are changed, then the cache is flushed.",,Flush cache,Flush cache,Flush cache,Flush cache,,,,,,"change chart
+change grammar
+flush cache",flush cache
+"Return a generator that will add edges licensed by this rule and the given edges to the chart, one at a time. Each time the generator is resumed, it will either add a new edge and yield that edge; or return.",Get generator that will add edges given a rule and also add to the chart,"Return generator
+Add edges one at at time
+Add new edge",,,Return a generator that will add edges licensed by this rule,,,1,,,,
+edges (list(EdgeI)) – A set of existing edges. The number of edges that should be passed to apply() is specified by the NUM_EDGES class variable.,Get the existing edges,"Pass edges to apply()
+Specify number of edges",,,,,,1,,,,
+iter(EdgeI),,,,,,,,,,,,
+Bases: object,,,,,,,,,,,,
+"A blackboard for hypotheses about the syntactic constituents of a sentence. A chart contains a set of edges, and each edge encodes a single hypothesis about the structure of some portion of the sentence.",,,,,,,,,,,,
+"The select method can be used to select a specific collection of edges. For example chart.select(is_complete=True, start=0) yields all complete edges whose start indices are 0. To ensure the efficiency of these selection operations, Chart dynamically creates and maintains an index for each set of attributes that have been selected on.",Select specific collection of edges,"Select specific collection of edges
+Use select method
+Create index for set",Select specific collection of edges,Select specific collection of edges,"Select a specific collection of edges
+Create and maintain an index for each set of attributes that have been selected on",,,1,,,,
+"In order to reconstruct the trees that are represented by an edge, the chart associates each edge with a set of child pointer lists. A child pointer list is a list of the edges that license an edge’s right-hand side.",,Reconstruct trees,,,Reconstruct the trees that are represented by an edge,,,0,Reconstruct the trees that are represented by an edge,,,
+_tokens – The sentence that the chart covers.,Get the sentence the chart covers,,,,,,,,,,,
+_num_leaves – The number of tokens.,Get the number of tokens,,,,,,,,,,,
+_edges – A list of the edges in the chart,Get the edges in the chart,,,,,,,,,,,
+_edge_to_cpls – A dictionary mapping each edge to a set of child pointer lists that are associated with that edge.,Get a mapping of each edge to child pointer lists,,,,,,,,,,,
+"_indexes – A dictionary mapping tuples of edge attributes to indices, where each index maps the corresponding edge attribute values to lists of edges.",Get mapping of edge attributes to indices,,,,,,,,,,,
+Return the set of child pointer lists for the given edge. Each child pointer list is a list of edges that have been used to form this edge.,Get the child pointer list for an edge,Return child pointer lists for given edge,,,Return the set of child pointer lists for the given edge,,,0,Return the set of child pointer lists for the given edge,Return the set of child pointer lists for the given edge,"list  for given edge
+use edges",list  for given edge
+list(list(EdgeI)),,,,,,,,,,,,
+Return a list of all edges in this chart. New edges that are added to the chart after the call to edges() will not be contained in this list.,Get all the edges in the chart,Return list of edges in chart,,,Return a list of all edges in this chart,,,0,,,,
+list(EdgeI),,,,,,,,,,,,
+"iteredges, select",,,,,,,,,,,,
+Clear the chart.,Clear the chart,Clear chart ,Clear chart ,Clear chart ,Clear the chart,,,1,,,,
+"Add a new edge to the chart, and return True if this operation modified the chart. In particular, return true iff the chart did not already contain edge, or if it did not already associate child_pointer_lists with edge.",Add a new edge to the chart and checked if it modified the chart,"Add new edge to chart
+Modify the chart",,,"Add a new edge to the chart
+Return true iff the chart did not already contain edge",,,1,,,,
+edge (EdgeI) – The new edge,,,,,,,,,,,,
+child_pointer_lists (sequence of tuple(EdgeI)) – A sequence of lists of the edges that were used to form this edge. This list is used to reconstruct the trees (or partial trees) that are associated with edge.,Get sequence of lists of edges that formed this edge,Use sequence of lists to form edge,Use sequence of lists to form edge,Use sequence of lists to form edge,Reconstruct the trees that are associated with edge,,,1,,,,
+bool,,,,,,,,,,,,
+"Add a new edge to the chart, using a pointer to the previous edge.",Add a new edge to the chart and point to the previous edge,"Add new edge to chart
+Use pointer to previous edge ","Add new edge to chart
+Use pointer to previous edge ",Add new edge to chart ,Add a new edge to the chart,,,1,,,"add new edge to chart
+use pointer to previous edge",add new edge to chart
+Return an iterator over the edges in this chart. It is not guaranteed that new edges which are added to the chart before the iterator is exhausted will also be generated.,Get an iterator of over the chart edges,Return iterator over chart,,,Return an iterator over the edges in this chart,,,0,,,,
+iter(EdgeI),,,,,,,,,,,,
+"edges, select",,,,,,,,,,,,
+Return the leaf value of the word at the given index.,Get the leaf value of the word at index,Return leaf value of word,,,Return the leaf value of the word at the given index.,,,0,,,return leaf value of word,return leaf value of word
+str,,,,,,,,,,,,
+Return a list of the leaf values of each word in the chart’s sentence.,Get leaf values of each word in chart,Return list of leaf values,,,Return a list of the leaf values of each word in the chart’s sentence.,,,0,,,,
+list(str),,,,,,,,,,,,
+Return the number of edges contained in this chart.,Get number of edges in chart,Return number of edges,,,Return the number of edges contained in this chart.,,,0,,,return number of edges,return number of edges
+int,,,,,,,,,,,,
+Return the number of words in this chart’s sentence.,Get number of words in chart,Return number of words,,,Return the number of words in this chart’s sentence.,,,0,,,,
+int,,,,,,,,,,,,
+"Return an iterator of the complete tree structures that span the entire chart, and whose root node is root.",Get iterator of tree that spans the chart,Return iterator that span chart,,,Return an iterator of the complete tree structures that span the entire chart,,,0,,,,
+Return a pretty-printed string representation of this chart.,Pretty print string representatino of chart,Return pretty-printed string representation of this chart,,,Return a pretty-printed string representation of this chart.,,,0,,,,
+width – The number of characters allotted to each index in the sentence.,Specify number of characters for each index of sentence,,,,,,,,,,,
+str,,,,,,,,,,,,
+Return a pretty-printed string representation of a given edge in this chart.,Pretty print string representation of an edge,Return pretty-printed string representation of given edge,,,Return a pretty-printed string representation of a given edge in this chart.,,,0,,,return pretty-printed string representation of given edge,return pretty-printed string representation of given edge
+str,,,,,,,,,,,,
+width – The number of characters allotted to each index in the sentence.,Specify number of characters for each index of sentence,,,,,,,,,,,
+Return a pretty-printed string representation of this chart’s leaves. This string can be used as a header for calls to pretty_format_edge.,Pretty print string representation chart leaves,Return pretty-printed string representation of chart leaves,,,Return a pretty-printed string representation of this chart’s leaves,,,0,,,,
+Return an iterator over the edges in this chart. Any new edges that are added to the chart before the iterator is exahusted will also be generated. restrictions can be used to restrict the set of edges that will be generated.,Get iterator over the edges in the chart,Return iterator over edges in chart,,,Return an iterator over the edges in this chart.,,,0,,,,
+span – Only generate edges e where e.span()==span,Generate edges where span == span,Generate edges e,,,Generate edges e where e.span()==span,,,0,,,,
+start – Only generate edges e where e.start()==start,Generate edges where start == start,Generate edges e,,,Generate edges e where e.start()==start,,,0,,,,
+end – Only generate edges e where e.end()==end,Generate edges where end == end,Generate edges e,,,Generate edges e where e.end()==end,,,0,,,,
+length – Only generate edges e where e.length()==length,Generate edges where length == length,Generate edges e,,,Generate edges e where e.length()==length,,,0,,,,
+lhs – Only generate edges e where e.lhs()==lhs,Generate edges where lhs == lhs,Generate edges e,,, Generate edges e where e.lhs()==lhs,,,0,,,,
+rhs – Only generate edges e where e.rhs()==rhs,Generate edges where rhs == rhs,Generate edges e,,,Generate edges e where e.rhs()==rhs,,,0,,,,
+nextsym – Only generate edges e where e.nextsym()==nextsym,Generate edges where nextsym == nextsym,Generate edges e,,,Generate edges e where e.nextsym()==nextsym,,,0,,,,
+dot – Only generate edges e where e.dot()==dot,Generate edges where dot == dot,Generate edges e,,,Generate edges e where e.dot()==dot,,,0,,,,
+is_complete – Only generate edges e where e.is_complete()==is_complete,Generate edges where is_complete == is_complete,Generate edges e,,,Generate edges e where e.is_complete()==is_complete,,,0,,,,
+is_incomplete – Only generate edges e where e.is_incomplete()==is_incomplete,Generate edges where is_incomplete == is_incomplete,Generate edges e,,,Generate edges e where e.is_incomplete()==is_incomplete,,,0,,,,
+iter(EdgeI),,,,,,,,,,,,
+Return an iterator of the tree structures that are associated with edge.,Get iterator of tree structures associated with edge,Return iterator of tree structures,,,Return an iterator of the tree structures that are associated with edge,,,0,,,return iterator of tree structures,return iterator of tree structures
+"If edge is incomplete, then the unexpanded children will be encoded as childless subtrees, whose node value is the corresponding terminal or nonterminal.",,Encode unexpanded children as childless subtrees,,,Encode unexpanded children as childless subtrees,,,,,,encode unexpanded children as childless subtrees,encode unexpanded children as childless subtrees
+list(Tree),,,,,,,,,,,,
+"If two trees share a common subtree, then the same Tree may be used to encode that subtree in both trees. If you need to eliminate this subtree sharing, then create a deep copy of each tree.",Eliminate subtree sharing,"Encode subtree in trees
+Create deep copy of tree",,,Eliminate subtree sharing,,Eliminate subtree sharing,1,,,,
+Bases: nltk.parse.api.ParserI,,,,,,,,,,,,
+"A generic chart parser. A “strategy”, or list of ChartRuleI instances, is used to decide what edges to add to the chart. In particular, ChartParser uses the following algorithm to parse texts:",,Decide what edges to add to the chart,,,Decide what edges to add to the chart,,,,,,,
+Return the final parse Chart from which all possible parse trees can be extracted.,Get final parse chart,Return final parse chart,Return final parse chart,,Return the final parse Chart from which all possible parse trees can be extracted,,,1,,,return final parse chart,return final parse chart
+tokens (list(str)) – The sentence to be parsed,,,,,,,,,,,,parse sentence
+Chart,,,,,,,,,,,,
+The grammar used by this parser.,Get grammer used by parser,Use parser,,,,,,1,,,use  by parser,
+An iterator that generates parse trees for the sentence.,Get iterator that generates parse trees,Generate parse trees,Generate parse trees,,Generate parse trees for the sentence,Generate parse trees for the sentence,Generate parse trees for the sentence,0,,,generate iterator,"parse trees for sentence
+generate iterator"
+When possible this list is sorted from most likely to least likely.,,,,,,,,,,,sort list,sort list
+sent (list(str)) – The sentence to be parsed,,,,,,,,,,,,parse sentence
+iter(Tree),,,,,,,,,,,,
+Bases: object,,,,,,,,,,,,
+"A rule that specifies what new edges are licensed by any given set of existing edges. Each chart rule expects a fixed number of edges, as indicated by the class variable NUM_EDGES. In particular:",Specify which edges are licensed ,Specify rule of existing edges,Specify rule of existing edges,,Specify what new edges are licensed by any given set of existing edges,,,1,,,,
+"A chart rule with NUM_EDGES=0 specifies what new edges are licensed, regardless of existing edges.",Specify which edges are licensed ,Specify regardless of existing edges,,,"Specify what new edges are licensed, regardless of existing edges",,,0,,,specify  regardless_of existing edges,specify  regardless_of existing edges
+A chart rule with NUM_EDGES=1 specifies what new edges are licensed by a single existing edge.,Specify which edges are licensed ,Specify by single edge,,,Specify what new edges are licensed by a single existing edge,,,0,,,,
+A chart rule with NUM_EDGES=2 specifies what new edges are licensed by a pair of existing edges.,Specify which edges are licensed ,Specify by pair of edges,,,Specify what new edges are licensed by a pair of existing edges,,,0,,,,
+"NUM_EDGES – The number of existing edges that this rule uses to license new edges. Typically, this number ranges from zero to two.",,,,,,,,,,,,
+"Return a generator that will add edges licensed by this rule and the given edges to the chart, one at a time. Each time the generator is resumed, it will either add a new edge and yield that edge; or return.",Get generator that will add licensed edges,"Return generator
+Add edges one at at time
+Add new edge",,,"Return a generator that will add edges licensed by this rule and the given edges to the chart, one at a time",,,1,,,,
+edges (list(EdgeI)) – A set of existing edges. The number of edges that should be passed to apply() is specified by the NUM_EDGES class variable.,Get set of existing edges,"Pass edges to apply()
+Specify number of edges",,,,,,1,,,,
+iter(EdgeI),,,,,,,,,,,,
+"Return a generator that will add all edges licensed by this rule, given the edges that are currently in the chart, one at a time. Each time the generator is resumed, it will either add a new edge and yield that edge; or return.",Get generator that will add all edges licensed by rule,"Add edges to chart
+Add new edge",,,"Return a generator that will add all edges licensed by this rule, given the edges that are currently in the chart, one at a time",,,1,,,,
+iter(EdgeI),,,,,,,,,,,,
+Bases: object,,,,,,,,,,,,
+A hypothesis about the structure of part of a sentence. Each edge records the fact that a structure is (partially) consistent with the sentence. An edge contains:,,,,,,,,,,,,
+"A span, indicating what part of the sentence is consistent with the hypothesized structure.",,,,,,,,,,,,
+"A left-hand side, specifying what kind of structure is hypothesized.",,,,,,,,,,,specify kind of structure,specify kind of structure
+"A right-hand side, specifying the contents of the hypothesized structure.",,,,,,,,,,,specify contents of hypothesized structure,specify contents of hypothesized structure
+"A dot position, indicating how much of the hypothesized structure is consistent with the sentence.",,,,,,,,,,,,
+Every edge is either complete or incomplete:,,,,,,,,,,,,
+An edge is complete if its structure is fully consistent with the sentence.,,,,,,,,,,,,
+"An edge is incomplete if its structure is partially consistent with the sentence. For every incomplete edge, the span specifies a possible prefix for the edge’s structure.",,,,,,,,,,,,
+There are two kinds of edge:,,,,,,,,,,,,
+A TreeEdge records which trees have been found to be (partially) consistent with the text.,,,,,,,,,,,find trees,find trees
+A LeafEdge records the tokens occurring in the text.,,,,,,,,,,,,
+"The EdgeI interface provides a common interface to both types of edge, allowing chart parsers to treat them in a uniform manner.",,,,,Provide a common interface to both types of edges,,,,,,provide common interface to types,provide common interface to types
+"Return this edge’s dot position, which indicates how much of the hypothesized structure is consistent with the sentence. In particular, self.rhs[:dot] is consistent with tokens[self.start():self.end()].",Get edge dot position,Return dot position,,,Return the edge's dot position,,,0,,,,
+int,,,,,,,,,,,,
+Return the end index of this edge’s span.,Get end index of edge span,Return end index,,,Return the end index of this edge's span,,,0,,,,
+int,,,,,,,,,,,,
+Return True if this edge’s structure is fully consistent with the text.,Check if edge structure is fully consistent with text ,,,,Return True if this edge's structure is fully consistent with the text,,,1,,,,
+bool,,,,,,,,,,,,
+Return True if this edge’s structure is partially consistent with the text.,Check if edge structure is partially consistent with text,,,,Return True if this edge's structure is partially consistent with the text,,,,,,,
+bool,,,,,,,,,,,,
+Return the length of this edge’s span.,Get edge span length,Return edge span length,,,Return the length of this edge's span,,,0,,,,
+int,,,,,,,,,,,,
+"Return this edge’s left-hand side, which specifies what kind of structure is hypothesized by this edge.",Get the edge left hand side,"Return left-hand side
+Specify kind of structure",,,Return this edge's left-hand side,,,1,,,"return left-hand side
+specify kind of structure
+specify left-hand side of structure","return left-hand side
+specify kind of structure
+specify left-hand side of structure"
+TreeEdge and LeafEdge for a description of the left-hand side values for each edge type.,,,,,,,,,,,,
+Return the element of this edge’s right-hand side that immediately follows its dot.,Get the edge right hand side that follows the dot,Return element of right-hand side,,,Return the element of this edge’s right-hand side that immediately follows its dot,,,0,,,return element of right-hand side,return element of right-hand side
+Nonterminal or terminal or None,,,,,,,,,,,,
+"Return this edge’s right-hand side, which specifies the content of the structure hypothesized by this edge.",Get edge right hand side,"Return right-hand side
+Specify content of structure",,,Return this edge’s right-hand side,,,1,,,"return right-hand side
+specify content of structure
+specify right-hand side of structure","return right-hand side
+specify content of structure
+specify right-hand side of structure"
+TreeEdge and LeafEdge for a description of the right-hand side values for each edge type.,,,,,,,,,,,,
+"Return a tuple (s, e), where tokens[s:e] is the portion of the sentence that is consistent with this edge’s structure.",Get tuple of tokens that indicate consistency of edge structure,"Return tuple (s, e)",,,Return a tuple,,,0,Return a tuple,,return tuple,return tuple
+"tuple(int, int)",,,,,,,,,,,,
+Return the start index of this edge’s span.,Get start index of edge span,Return start index,,,Return the start index of this edge’s span,,,0,,,,
+int,,,,,,,,,,,,
+Bases: nltk.parse.chart.AbstractChartRule,,,,,,,,,,,,
+"A rule that inserts all empty productions as passive edges, in every position in the chart.",,Insert empty productions,,,Insert all empty productions as passive edges,,,0,,,,
+"Return a generator that will add edges licensed by this rule and the given edges to the chart, one at a time. Each time the generator is resumed, it will either add a new edge and yield that edge; or return.",Get generator that will add all edges licensed by rule,"Return generator
+Add edges one at at time
+Add new edge",,Add new edge,"Return a generator that will add edges licensed by this rule and the given edges to the chart, one at a time",,,1,,,,
+edges (list(EdgeI)) – A set of existing edges. The number of edges that should be passed to apply() is specified by the NUM_EDGES class variable.,Get set of existing edges,"Pass edges to apply()
+Specify number of edges",,,,,,1,,,,
+iter(EdgeI),,,,,,,,,,,,
+Bases: nltk.parse.chart.BottomUpPredictCombineRule,,,,,,,,,,,,
+"Return a generator that will add edges licensed by this rule and the given edges to the chart, one at a time. Each time the generator is resumed, it will either add a new edge and yield that edge; or return.",Get generator that will add all edges licensed by rule,"Return generator
+Add edges one at at time
+Add new edge",,,"Return a generator that will add edges licensed by this rule and the given edges to the chart, one at a time",,,1,,,,
+edges (list(EdgeI)) – A set of existing edges. The number of edges that should be passed to apply() is specified by the NUM_EDGES class variable.,Get set of existing edges,"Pass edges to apply()
+Specify number of edges",,,,,,1,,,,
+iter(EdgeI),,,,,,,,,,,,
+Bases: nltk.parse.chart.SingleEdgeFundamentalRule,,,,,,,,,,,,
+Bases: nltk.parse.chart.AbstractChartRule,,,,,,,,,,,,
+"A rule that joins two adjacent edges to form a single combined edge. In particular, this rule specifies that any pair of edges",,,,,,,,,,,,
+[A -> alpha \* B beta][i:j],,,,,,,,,,,,
+[B -> gamma \*][j:k],,,,,,,,,,,,
+licenses the edge:,,,,,,,,,,,,
+[A -> alpha B * beta][i:j],,,,,,,,,,,,
+"Return a generator that will add edges licensed by this rule and the given edges to the chart, one at a time. Each time the generator is resumed, it will either add a new edge and yield that edge; or return.",Get generator that will add all edges licensed by rule,"Return generator
+Add edges one at at time
+Add new edge",,,"Return a generator that will add edges licensed by this rule and the given edges to the chart, one at a time",,,1,,,,
+edges (list(EdgeI)) – A set of existing edges. The number of edges that should be passed to apply() is specified by the NUM_EDGES class variable.,Get set of existing edges,"Pass edges to apply()
+Specify number of edges",,,,,,1,,,,
+iter(EdgeI),,,,,,,,,,,,
+Bases: nltk.parse.chart.EdgeI,,,,,,,,,,,,
+An edge that records the fact that a leaf value is consistent with a word in the sentence. A leaf edge consists of:,,,,,,,,,,,,
+"An index, indicating the position of the word.",,,,,,,,,,,,
+"A leaf, specifying the word’s content.",,,,,,,,,,,specify word,specify word
+"A leaf edge’s left-hand side is its leaf value, and its right hand side is (). Its span is [index, index+1], and its dot position is 0.",,,,,,,,,,,,
+"Return this edge’s dot position, which indicates how much of the hypothesized structure is consistent with the sentence. In particular, self.rhs[:dot] is consistent with tokens[self.start():self.end()].",,Return dot position,,,Return this edge’s dot position,,,0,,,,
+int,,,,,,,,,,,,
+Return the end index of this edge’s span.,Get end index of edge span,Return end index,,,Return the end index of this edge’s span,,,0,,,,
+int,,,,,,,,,,,,
+Return True if this edge’s structure is fully consistent with the text.,Check if edge structure is fully consistent with text ,,,,Return True if this edge’s structure is fully consistent with the text.,,,,,,,
+bool,,,,,,,,,,,,
+Return True if this edge’s structure is partially consistent with the text.,Check if edge structure is partially consistent with text,,,,Return True if this edge’s structure is partially consistent with the text.,,,,,,,
+bool,,,,,,,,,,,,
+Return the length of this edge’s span.,Get edge span length,Return edge span length,Return edge span length,,Return the length of this edge’s span.,,,1,,,,
+int,,,,,,,,,,,,
+"Return this edge’s left-hand side, which specifies what kind of structure is hypothesized by this edge.",Get the edge left hand side,"Return left-hand side
+Specify kind of structure",,,Return this edge’s left-hand side,,,1,,,"return left-hand side
+specify kind of structure
+specify left-hand side of structure","return left-hand side
+specify kind of structure
+specify left-hand side of structure"
+TreeEdge and LeafEdge for a description of the left-hand side values for each edge type.,,,,,,,,,,,,
+Return the element of this edge’s right-hand side that immediately follows its dot.,Get the edge right hand side that follows the dot,Return element of right-hand side,,,Return the element of this edge’s right-hand side that immediately follows its dot,,,0,,,return element of right-hand side,return element of right-hand side
+Nonterminal or terminal or None,,,,,,,,,,,,
+"Return this edge’s right-hand side, which specifies the content of the structure hypothesized by this edge.",Get edge right hand side,"Return right-hand side
+Specify content of structure",,,Return this edge’s right-hand side,,,1,,,"return right-hand side
+specify content of structure
+specify right-hand side of structure","return right-hand side
+specify content of structure
+specify right-hand side of structure"
+TreeEdge and LeafEdge for a description of the right-hand side values for each edge type.,,,,,,,,,,,,
+"Return a tuple (s, e), where tokens[s:e] is the portion of the sentence that is consistent with this edge’s structure.",Get tuple of tokens that indicate consistency of edge structure,"Return tuple (s, e)",,,Return a tuple,,,1,,,return tuple,return tuple
+"tuple(int, int)",,,,,,,,,,,,
+Return the start index of this edge’s span.,Get start index of edge span,Return start index,Return start index,,Return the start index of this edge’s span,,,1,,,,
+int,,,,,,,,,,,,
+Bases: nltk.parse.chart.AbstractChartRule,,,,,,,,,,,,
+"Return a generator that will add edges licensed by this rule and the given edges to the chart, one at a time. Each time the generator is resumed, it will either add a new edge and yield that edge; or return.",Get generator that will add all edges licensed by rule,"Return generator
+Add edges one at at time
+Add new edge",,,"Return a generator that will add edges licensed by this rule and the given edges to the chart, one at a time.",,,1,,,,
+edges (list(EdgeI)) – A set of existing edges. The number of edges that should be passed to apply() is specified by the NUM_EDGES class variable.,Get set of existing edges,"Pass edges to apply()
+Specify number of edges",,,,,,1,,,,
+iter(EdgeI),,,,,,,,,,,,
+Bases: nltk.parse.chart.ChartParser,,,,,,,,,,,,
+Bases: nltk.parse.chart.FundamentalRule,,,,,,,,,,,,
+"A rule that joins a given edge with adjacent edges in the chart, to form combined edges. In particular, this rule specifies that either of the edges:",,,,,Join a given edge with adjacent edges in the chart,,,1,,,,
+[A -> alpha \* B beta][i:j],,,,,,,,,,,,
+[B -> gamma \*][j:k],,,,,,,,,,,,
+licenses the edge:,,,,,,,,,,,,
+[A -> alpha B * beta][i:j],,,,,,,,,,,,
+if the other edge is already in the chart.,,,,,,,,,,,,
+"This is basically FundamentalRule, with one edge left unspecified.",,,,,,,,,,,,
+"Return a generator that will add edges licensed by this rule and the given edges to the chart, one at a time. Each time the generator is resumed, it will either add a new edge and yield that edge; or return.",Get generator that will add all edges licensed by rule,"Return generator
+Add edges one at at time
+Add new edge",,,Return a generator that will add edges licensed by this rule,,,1,,,,
+edges (list(EdgeI)) – A set of existing edges. The number of edges that should be passed to apply() is specified by the NUM_EDGES class variable.,Get set of existing edges,"Pass edges to apply()
+Specify number of edges",,,,,,1,,,,
+iter(EdgeI),,,,,,,,,,,,
+Bases: nltk.parse.chart.ChartParser,,,,,,,,,,,,
+"A ChartParser that allows you to step through the parsing process, adding a single edge at a time. It also allows you to change the parser’s strategy or grammar midway through parsing a text.",,"Step through parsing
+Add single edge at time
+Change parser strategy
+Change parser grammar",,,"Step through the parsing process
+Change the parser's strategy or grammar midway through parsing a text",,Change the parser's strategy or grammar midway through parsing a text,1,,,,
+The initialize method is used to start parsing a text. step adds a single edge to the chart. set_strategy changes the strategy used by the chart parser. parses returns the set of parses that has been found by the chart parser.,,Start parsing text,,,Start parsing a text,,Start parsing a text,0,,,,
+"_restart – Records whether the parser’s strategy, grammar, or chart has been changed. If so, then step must restart the parsing algorithm.",,"Record parser strategy
+Record parser grammar
+Record parser chart",,,"Record whether the parser's strategy, grammar, or chart has been changed",,,1,,,,
+Return the chart that is used by this parser.,,Return chart,,,Return the chart that is used by this parser,,,0,,,,
+Return the chart rule used to generate the most recent edge.,,Return chart rule,,,Return the chart rule used to generate the most recent edge,,,0,,,generate recent edge,generate recent edge
+Return the grammar used by this parser.,,Return grammar,,,Return the grammar used by this parser,,,0,,,use  by parser,
+Begin parsing the given tokens.,,Parse tokens,,,Begin parsing the given tokens,,Begin parsing the given tokens,0,,,,parse given tokens
+An iterator that generates parse trees for the sentence.,,,,,,,,,,,generate iterator,"parse trees for sentence
+generate iterator"
+When possible this list is sorted from most likely to least likely.,,Sort list,,,Sort list from most likely to least likely,,,0,,,sort list,sort list
+sent (list(str)) – The sentence to be parsed,,,,,,,,,,,,parse sentence
+iter(Tree),,,,,,,,,,,,
+Return the parse trees currently contained in the chart.,,Return parse trees,,,Return the parse trees currently contained in the chart.,,,0,,,,
+Load a given chart into the chart parser.,,Load chart ,,,Load a given chart into the chart parser,,,0,,,load given chart into chart parser,
+Change the grammar used by the parser.,,Change grammar,,,Change the grammar used by the parser,,Change the grammar used by the parser,0,,,use  by parser,
+Change the strategy that the parser uses to decide which edges to add to the chart.,,Change strategy,,,Change the strategy that the parser uses ,,Change the strategy that the parser uses ,0,,,"change strategy
+add  to chart",add  to chart
+strategy (list(ChartRuleI)) – A list of rules that should be used to decide what edges to add to the chart.,,,,,Decide what edges to add to the chart,,,1,,,"add  to chart
+use rules",add  to chart
+"Return a generator that adds edges to the chart, one at a time. Each time the generator is resumed, it adds a single edge and yields that edge. If no more edges can be added, then it yields None.",,"Return generator
+Add edges one at at time
+Add new edge",,,"Return a generator that adds edges to the chart, one at a time.",,,1,,,,
+"If the parser’s strategy, grammar, or chart is changed, then the generator will continue adding edges using the new strategy, grammar, or chart.",,,,,Continue adding edges,,,,,,"add edges
+use new strategy
+use grammar
+use chart
+change strategy
+change chart",add edges
+"Note that this generator never terminates, since the grammar or strategy might be changed to values that would add new edges. Instead, it yields None when no more edges can be added with the current strategy and grammar.",,,,,,,,,,,,
+Return the strategy used by this parser.,,Return strategy,,,Return the strategy used by this parser,,,0,,,,
+Bases: nltk.parse.chart.ChartParser,,,,,,,,,,,,
+A ChartParser using a top-down parsing strategy. See ChartParser for more information.,,Use top-down parsing strategy,Use top-down parsing strategy,,Use a top-down parsing strategy,Use a top-down parsing strategy,Use a top-down parsing strategy,0,,,use top-down parsing strategy,
+Bases: nltk.parse.chart.AbstractChartRule,,,,,,,,,,,,
+"A rule licensing edges corresponding to the grammar productions for the grammar’s start symbol. In particular, this rule specifies that [S -> \* alpha][0:i] is licensed for each grammar production S -> alpha, where S is the grammar’s start symbol.",,,,,,,,,,,,
+"Return a generator that will add edges licensed by this rule and the given edges to the chart, one at a time. Each time the generator is resumed, it will either add a new edge and yield that edge; or return.",Get generator that will add all edges licensed by rule,"Return generator
+Add edges one at at time
+Add new edge",,,Return a generator that will add edges licensed by this rule ,,,1,,,,
+edges (list(EdgeI)) – A set of existing edges. The number of edges that should be passed to apply() is specified by the NUM_EDGES class variable.,Get set of existing edges,"Pass edges to apply()
+Specify number of edges",,,,,,1,,,,
+iter(EdgeI),,,,,,,,,,,,
+Bases: nltk.parse.chart.AbstractChartRule,,,,,,,,,,,,
+"A rule licensing edges corresponding to the grammar productions for the nonterminal following an incomplete edge’s dot. In particular, this rule specifies that [A -> alpha \* B beta][i:j] licenses the edge [B -> \* gamma][j:j] for each grammar production B -> gamma.",,,,,Return a generator that will add edges licensed by this rule ,,,1,,,,
+This rule corresponds to the Predictor Rule in Earley parsing.,,,,,,,,,,,,
+"Return a generator that will add edges licensed by this rule and the given edges to the chart, one at a time. Each time the generator is resumed, it will either add a new edge and yield that edge; or return.",Get generator that will add all edges licensed by rule,"Return generator
+Add edges one at at time
+Add new edge",,,Return a generator that will add edges licensed by this rule ,,,1,,,,
+edges (list(EdgeI)) – A set of existing edges. The number of edges that should be passed to apply() is specified by the NUM_EDGES class variable.,Get set of existing edges,"Pass edges to apply()
+Specify number of edges",,,,,,1,,,,
+iter(EdgeI),,,,,,,,,,,,
+Bases: nltk.parse.chart.EdgeI,,,,,,,,,,,,
+An edge that records the fact that a tree is (partially) consistent with the sentence. A tree edge consists of:,,,,,Record the fact that a tree is (partially) consistent with the sentence,,Record the fact that a tree is (partially) consistent with the sentence,1,,,,
+"A span, indicating what part of the sentence is consistent with the hypothesized tree.",,,,,Indicate what part of the sentence is consistent with the hypothesized tree,,Indicate what part of the sentence is consistent with the hypothesized tree,1,,,,
+"A left-hand side, specifying the hypothesized tree’s node value.",,Specify tree's node value,,,Specify the hypothesized tree's ndoe value,,,0,,,specify hypothesized tree,specify hypothesized tree
+"A right-hand side, specifying the hypothesized tree’s children. Each element of the right-hand side is either a terminal, specifying a token with that terminal as its leaf value; or a nonterminal, specifying a subtree with that nonterminal’s symbol as its node value.",,Specify tree's children,,,Specify the hypothesized tree's children,,,0,,,,
+"A dot position, indicating which children are consistent with part of the sentence. In particular, if dot is the dot position, rhs is the right-hand size, (start,end) is the span, and sentence is the list of tokens in the sentence, then tokens[start:end] can be spanned by the children specified by rhs[:dot].",,,,,Indicate which children are consistent with part of the sentence,,,1,,,,
+"For more information about edges, see the EdgeI interface.",,,,,,,,,,,,
+"Return this edge’s dot position, which indicates how much of the hypothesized structure is consistent with the sentence. In particular, self.rhs[:dot] is consistent with tokens[self.start():self.end()].",Get edge dot position,Return dot position,,,Return this edge's dot position,,,0,,,,
+int,,,,,,,,,,,,
+Return the end index of this edge’s span.,Get end index of edge span,Return end index,,,Return the end index of this edge’s span,,,0,,,,
+int,,,,,,,,,,,,
+"Return a new TreeEdge formed from the given production. The new edge’s left-hand side and right-hand side will be taken from production; its span will be (index,index); and its dot position will be 0.",,Return TreeEdge,,,Return a new TreeEdge formed from the given production,,,0,,,,
+TreeEdge,,,,,,,,,,,,
+Return True if this edge’s structure is fully consistent with the text.,Check if edge structure is fully consistent with text ,,,,Return True if this edge’s structure is fully consistent with the text,,,1,,,,
+bool,,,,,,,,,,,,
+Return True if this edge’s structure is partially consistent with the text.,Check if edge structure is partially consistent with text,,,,Return True if this edge’s structure is partially consistent with the text,,,1,,,,
+bool,,,,,,,,,,,,
+Return the length of this edge’s span.,Get edge span length,Return edge span length,,,Return the length of this edge’s span,,,0,,,,
+int,,,,,,,,,,,,
+"Return this edge’s left-hand side, which specifies what kind of structure is hypothesized by this edge.",Get the edge left hand side,"Return left-hand side
+Specify kind of structure",,,Return this edge’s left-hand side,,,1,,,"return left-hand side
+specify kind of structure
+specify left-hand side of structure","return left-hand side
+specify kind of structure
+specify left-hand side of structure"
+TreeEdge and LeafEdge for a description of the left-hand side values for each edge type.,,,,,,,,,,,,
+"Return a new TreeEdge formed from this edge. The new edge’s dot position is increased by 1, and its end index will be replaced by new_end.",,Return Tree edge,,,Return a new TreeEdge formed from this edge.,,,0,,,replace end index,replace end index
+new_end (int) – The new end index.,,,,,,,,,,,,
+TreeEdge,,,,,,,,,,,,
+Return the element of this edge’s right-hand side that immediately follows its dot.,Get the edge right hand side that follows the dot,Return element of right-hand side,,,Return the element of this edge’s right-hand side,,,0,,,return element of right-hand side,return element of right-hand side
+Nonterminal or terminal or None,,,,,,,,,,,,
+"Return this edge’s right-hand side, which specifies the content of the structure hypothesized by this edge.",Get edge right hand side,"Return right-hand side
+Specify content of structure",,,Return this edge’s right-hand side,,,1,,,"return right-hand side
+specify content of structure
+specify right-hand side of structure","return right-hand side
+specify content of structure
+specify right-hand side of structure"
+TreeEdge and LeafEdge for a description of the right-hand side values for each edge type.,,,,,,,,,,,,
+"Return a tuple (s, e), where tokens[s:e] is the portion of the sentence that is consistent with this edge’s structure.",Get tuple of tokens that indicate consistency of edge structure,"Return tuple (s, e)",,,Return a tuple ,,,0,,,return tuple,return tuple
+"tuple(int, int)",,,,,,,,,,,,
+Return the start index of this edge’s span.,Get start index of edge span,Return start index,,,Return the start index of this edge’s span,,,0,,,,
+int,,,,,,,,,,,,
+A demonstration of the chart parsers.,,,,,,,,,,,,
+Bases: nltk.parse.corenlp.GenericCoreNLPParser,,,,,,,,,,,,
+Dependency parser.,,,,,,,,,,,,
+Non-breaking space inside of a token.,,,,,,,,,,,,
+Phone numbers.,,,,,,,,,,,,
+Bases: nltk.parse.corenlp.GenericCoreNLPParser,,,,,,,,,,,,
+Bases: object,,,,,,,,,,,,
+Starts the CoreNLP server,,Start CoreNLP server,Start CoreNLP server,Start CoreNLP server,Start the CoreNLP server,Start the CoreNLP server,Start the CoreNLP server,1,,,,
+"stderr (stdout,) – Specifies where CoreNLP output is redirected. Valid values are ‘devnull’, ‘stdout’, ‘pipe’",,,,,,,,,,,"redirect CoreNLP output
+redirect specifies","redirect CoreNLP output
+redirect specifies"
+Bases: OSError,,,,,,,,,,,,
+Exceptions associated with the Core NLP server.,,,,,,,,,,,,
+"Bases: nltk.parse.api.ParserI, nltk.tokenize.api.TokenizerI, nltk.tag.api.TaggerI",,,,,,,,,,,,
+Interface to the CoreNLP Parser.,,,,,Interface to the CoreNLP Parser,,Interface to the CoreNLP Parser,,,,,
+Parse multiple sentences.,,,,,Parse multiple sentences.,,Parse multiple sentences.,,,,,parse multiple sentences
+Takes multiple sentences as a list where each sentence is a list of words. Each sentence will be automatically tagged with this CoreNLPParser instance’s tagger.,,,,,Tag sentence with CoreNLPParser tagger,,Tag sentence with CoreNLPParser tagger,,,,,
+"If a whitespace exists inside a token, then the token will be treated as several tokens.",,,,,,,,,,,,
+sentences (list(list(str))) – Input sentences to parse,,,,,,,,,,,,
+iter(iter(Tree)),,,,,,,,,,,,
+Parse a piece of text.,,,,,,,,,,,,parse piece of text
+The text might contain several sentences which will be split by CoreNLP.,,,,,,,,,,,split several sentences,split several sentences
+text (str) – text to be split.,,,,,,,,,,,,
+an iterable of syntactic structures. # TODO: should it be an iterable of iterables?,,,,,,,,,,,,
+Parse a sentence.,,Parse sentence,Parse sentence,,Parse a sentence,Parse a sentence,Parse a sentence,0,,,,parse sentence
+"Takes a sentence as a string; before parsing, it will be automatically tokenized and tagged by the CoreNLP Parser.",Single sentence as input,"Tokenize sentences
+Tag sentence",,,Take a sentence as a string,,Take a sentence as a string,1,,,,
+sentence (str) – Input sentence to parse,,,,,,,,1,,,,
+iter(Tree),,,,,,,,,,,,
+Parse multiple sentences.,,Parse multiple sentences,Parse multiple sentences,Parse multiple sentences,Parse multiple sentences,Parse multiple sentences,Parse multiple sentences,,,,,parse multiple sentences
+Takes multiple sentences as a list of strings. Each sentence will be automatically tokenized and tagged.,Multiple sentences as input,"Tokenize sentence
+Tag sentence",,,Automatically tokenize and tag sentence,Automatically tokenize and tag sentence,Automatically tokenize and tag sentence,1,,,,
+sentences (list(str)) – Input sentences to parse.,,,,,,,,,,,,
+iter(iter(Tree)),,,,,,,,,,,,
+Tag multiple sentences.,Tag multiple sentences,Tag multiple sentences,Tag multiple sentences,Tag multiple sentences,Tag multiple sentences,Tag multiple sentences,,,,,,
+Takes multiple sentences as a list where each sentence is a string.,,,,,Take multiple sentences as a list,,,,,,,
+sentences (list(str)) – Input sentences to tag,,,,,,,,,,,,
+"list(list(list(tuple(str, str)))",,,,,,,,,,,,
+Tag a list of tokens.,,,,,Tag a list of tokens.,,Tag a list of tokens.,,,,,
+"list(tuple(str, str))",,,,,,,,,,,,
+Tag multiple sentences.,,,,,Tag multiple sentences.,,Tag multiple sentences.,,,,,
+Takes multiple sentences as a list where each sentence is a list of tokens.,,,,,Take multiple sentences as a list,,Take multiple sentences as a list,1,,,,
+sentences (list(list(str))) – Input sentences to tag,,,,,,,,,,,,
+"list(list(tuple(str, str))",,,,,,,,,,,,
+Tokenize a string of text.,Tokenize string of text,Tokenize string of text,Tokenize string of text,Tokenize string of text,Tokenize a string of text,Tokenize a string of text,Tokenize a string of text,0,,,,
+Tools for reading and writing dependency trees. The input is assumed to be in Malt-TAB format (http://stp.lingfil.uu.se/~nivre/research/MaltXML.html).,,,,,,,,,,,"read dependency trees
+write dependency trees","read dependency trees
+write dependency trees"
+Bases: object,,,,,,,,,,,,
+A container for the nodes and labelled edges of a dependency structure.,,,,,,,,,,,,
+Adds an arc from the node specified by head_address to the node specified by the mod address.,Add arc from head node to target node,"Add arc from node
+Specify to node","Add arc from node
+Specify to node",,Add an arc from the node specified by head_address to the node specified by the mod address,,,1,,,"add arc from node
+specify  to node","add arc from node
+specify  to node"
+Fully connects all non-root nodes. All nodes are set to be dependents of the root node.,Connect all non-root nodes,Set nodes,,,,,,1,,,,
+"Returns true if the graph contains a node with the given node address, false otherwise.",Check if graph contains specific node,,,,,,,,,,return true,return true
+Check whether there are cycles.,Check if graph has cycles,Check cycles,Check cycles,Check cycles,Check whether there are cycles,,,1,,,,
+Return the node with the given address.,Get specific node,Return node with given address,,,Return the node with the given address,,,0,,,return node with given address,return node with given address
+Returns the number of left children under the node specified by the given address.,Get number of children of node,"Return number of left children
+Return number under node",,,Return the number of left children under the node specified by the given address,,,1,,,"return number of left children
+return number under node","return number of left children
+return number under node"
+filename – a name of a file in Malt-TAB format,,,,,,,,,,,,
+zero_based – nodes in the input file are numbered starting from 0,,,,,,,,,,,,
+"rather than 1 (as produced by, e.g., zpar) :param str cell_separator: the cell separator. If not provided, cells are split by whitespace. :param str top_relation_label: the label by which the top relation is identified, for examlple, ROOT, null or TOP.",,,,,,,,,,,"split cells
+identify top relation for examlple
+identify top relation for ROOT
+identify top relation for null
+identify top relation for TOP
+identify label for examlple
+identify label for ROOT
+identify label for null
+identify label for TOP","split cells
+identify top relation for examlple
+identify top relation for ROOT
+identify top relation for null
+identify top relation for TOP
+identify label for examlple
+identify label for ROOT
+identify label for null
+identify label for TOP"
+a list of DependencyGraphs,,,,,,,,,,,,
+Convert the data in a nodelist into a networkx labeled directed graph.,Convert nodelist to networkx labeled directed graph,"Convert data into networkx
+Convert data in nodelist","Convert data into networkx
+Convert data in nodelist","Convert data into networkx
+Convert data in nodelist",Convert the data in a nodelist into a networkx labeled directed graph,,Convert the data in a nodelist into a networkx labeled directed graph,1,,,convert data in nodelist graph,convert data in nodelist graph
+Redirects arcs to any of the nodes in the originals list to the redirect node address.,Redirect node arcs,Redirect node arcs,Redirect node arcs,Redirect node arcs,Redirect arcs to any of the nodels in the originals list,,,1,,,,
+Removes the node with the given address. References to this node in others will still exist.,Remove specific node,Remove node with given address,Remove node with given address,Remove node with given address,Remove the node with the given address,,,1,,,,
+Returns the number of right children under the node specified by the given address.,Get number of right children under node,"Return number of right children
+Return number under node",,,Return the number of right children under the node specified by the given address,,,1,,,"return number of right children
+return number under node","return number of right children
+return number under node"
+The dependency graph in CoNLL format.,,,,,,,,,,,,
+"style (int) – the style to use for the format (3, 4, 10 columns)",,,,,,,,,,,use  for format,
+str,,,,,,,,,,,,
+Return a dot representation suitable for using with Graphviz.,Get dot representation ,Use with Graphviz,Use with Graphviz,Use with Graphviz,Return a dot representation suitable for using with Graphviz,Return a dot representation suitable for using with Graphviz,Return a dot representation suitable for using with Graphviz,1,,,use  with graphviz,
+"Starting with the root node, build a dependency tree using the NLTK Tree constructor. Dependency labels are omitted.",,,,,Build a dependency tree using the NLTK Tree constructor,Build a dependency tree using the NLTK Tree constructor,Build a dependency tree using the NLTK Tree constructor,1,,,"use NLTK tree constructor
+omit dependency labels","build dependency tree
+omit dependency labels"
+"Extract dependency triples of the form: ((head word, head tag), rel, (dep word, dep tag))",Get dependency triples,Extract dependency triples,Extract dependency triples,,Extract dependency triples,Extract dependency triples,Extract dependency triples,,,,,
+Bases: Exception,,,,,,,,,,,,
+Dependency graph exception.,,,,,,,,,,,,
+A demonstration of how to read a string representation of a CoNLL format dependency tree.,,Read string representation of CoNLL format,,,Read a string representatino of a CoNLL format dependency tree,Read a string representatino of a CoNLL format dependency tree,Read a string representatino of a CoNLL format dependency tree,1,,,read string representation of CoNLL format,read string representation of CoNLL format
+A demonstration of the result of reading a dependency version of the first sentence of the Penn Treebank.,,,,,,,,,,,read dependency version of first sentence,read dependency version of first sentence
+"Data classes and parser implementations for incremental chart parsers, which use dynamic programming to efficiently parse a text. A “chart parser” derives parse trees for a text by iteratively adding “edges” to a “chart”. Each “edge” represents a hypothesis about the tree structure for a subsequence of the text. The “chart” is a “blackboard” for composing and combining these hypotheses.",,Use dynamic programming to parse text,,,Use dynamic programming to efficiently parse a tree,Use dynamic programming to efficiently parse a tree,Use dynamic programming to efficiently parse a tree,1,,,,
+"A parser is “incremental”, if it guarantees that for all i, j where i < j, all edges ending at i are built before any edges ending at j. This is appealing for, say, speech recognizer hypothesis filtering.",,,,,,,,,,,,"build edges before edges
+build j before edges"
+"The main parser class is EarleyChartParser, which is a top-down algorithm, originally formulated by Jay Earley (1970).",,,,,,,,,,,,
+Bases: nltk.parse.chart.SingleEdgeFundamentalRule,,,,,,,,,,,,
+Bases: nltk.parse.earleychart.CompleteFundamentalRule,,,,,,,,,,,,
+"Return a generator that will add edges licensed by this rule and the given edges to the chart, one at a time. Each time the generator is resumed, it will either add a new edge and yield that edge; or return.",Get generator that will add all edges licensed by rule,"Return generator
+Add edges one at at time
+Add new edge",,,"Return a generator that will add edges licensed by this rule and the given edges to the chart,",,,1,,,,
+edges (list(EdgeI)) – A set of existing edges. The number of edges that should be passed to apply() is specified by the NUM_EDGES class variable.,Get set of existing edges,"Pass edges to apply()
+Specify number of edges",,,,,,1,,,,
+iter(EdgeI),,,,,,,,,,,,
+Bases: nltk.parse.earleychart.IncrementalChartParser,,,,,,,,,,,,
+Bases: nltk.parse.featurechart.FeatureSingleEdgeFundamentalRule,,,,,,,,,,,,
+Bases: nltk.parse.earleychart.CompleterRule,,,,,,,,,,,,
+Bases: nltk.parse.earleychart.FeatureIncrementalChartParser,,,,,,,,,,,,
+Bases: nltk.parse.earleychart.FeatureIncrementalChartParser,,,,,,,,,,,,
+Bases: nltk.parse.earleychart.FeatureIncrementalChartParser,,,,,,,,,,,,
+"Bases: nltk.parse.earleychart.IncrementalChart, nltk.parse.featurechart.FeatureChart",,,,,,,,,,,,
+Returns an iterator over the edges in this chart. See Chart.select for more information about the restrictions on the edges.,Get iterator over edges of chart,Return iterator over edges,,,Returns an iterator over the edges in this chart,,,0,Returns an iterator over the edges in this chart,Returns an iterator over the edges in this chart,return iterator over edges,return iterator over edges
+"Bases: nltk.parse.earleychart.IncrementalChartParser, nltk.parse.featurechart.FeatureChartParser",,,,,,,,,,,,
+Bases: nltk.parse.earleychart.FeatureIncrementalChartParser,,,,,,,,,,,,
+Bases: nltk.parse.featurechart.FeatureTopDownPredictRule,,,,,,,,,,,,
+Bases: nltk.parse.earleychart.ScannerRule,,,,,,,,,,,,
+Bases: nltk.parse.chart.FilteredSingleEdgeFundamentalRule,,,,,,,,,,,,
+"Return a generator that will add edges licensed by this rule and the given edges to the chart, one at a time. Each time the generator is resumed, it will either add a new edge and yield that edge; or return.",Get generator that will add all edges licensed by rule,"Return generator
+Add edges one at at time
+Add new edge",,,Return a generator,,,1,,,,
+edges (list(EdgeI)) – A set of existing edges. The number of edges that should be passed to apply() is specified by the NUM_EDGES class variable.,Get set of existing edges,"Pass edges to apply()
+Specify number of edges",,,,,,1,,,,
+iter(EdgeI),,,,,,,,,,,,
+Bases: nltk.parse.earleychart.IncrementalChartParser,,,,,,,,,,,,
+Bases: nltk.parse.earleychart.IncrementalChartParser,,,,,,,,,,,,
+Bases: nltk.parse.chart.Chart,,,,,,,,,,,,
+Return a list of all edges in this chart. New edges that are added to the chart after the call to edges() will not be contained in this list.,Get list of edges in chart,Return list of edges in chart,,,Return a list of all edges in this chart,,,1,,,,
+list(EdgeI),,,,,,,,,,,,
+"iteredges, select",,,,,,,,,,,,
+Clear the chart.,Clear chart,Clear chart ,Clear chart ,Clear chart ,Clear the chart,,,1,,,,
+Return an iterator over the edges in this chart. It is not guaranteed that new edges which are added to the chart before the iterator is exhausted will also be generated.,Get iterator over edges of chart,Return iterator over chart,,,Return an iterator over the edges in this chart,,,0,,,,
+iter(EdgeI),,,,,,,,,,,,
+"edges, select",,,,,,,,,,,,
+Return an iterator over the edges in this chart. Any new edges that are added to the chart before the iterator is exahusted will also be generated. restrictions can be used to restrict the set of edges that will be generated.,Get iterator over edges of chart,"Return iterator over edges
+Use restrictions",,,Return an iterator over the edges in this chart,,,1,,,,
+span – Only generate edges e where e.span()==span,Generate edges where span == span,Generate edges e,,,,,,1,,,,
+start – Only generate edges e where e.start()==start,Generate edges where start == start,Generate edges e,,,,,,1,,,,
+end – Only generate edges e where e.end()==end,Generate edges where end == end,Generate edges e,,,,,,1,,,,
+length – Only generate edges e where e.length()==length,Generate edges where length == length,Generate edges e,,,,,,1,,,,
+lhs – Only generate edges e where e.lhs()==lhs,Generate edges where lhs == lhs,Generate edges e,,,,,,1,,,,
+rhs – Only generate edges e where e.rhs()==rhs,Generate edges where rhs == rhs,Generate edges e,,,,,,1,,,,
+nextsym – Only generate edges e where e.nextsym()==nextsym,Generate edges where nextsym == nextsym,Generate edges e,,,,,,1,,,,
+dot – Only generate edges e where e.dot()==dot,Generate edges where dot == dot,Generate edges e,,,,,,1,,,,
+is_complete – Only generate edges e where e.is_complete()==is_complete,Generate edges where is_complete == is_complete,Generate edges e,,,,,,1,,,,
+is_incomplete – Only generate edges e where e.is_incomplete()==is_incomplete,Generate edges where is_incomplete == is_incomplete,Generate edges e,,,,,,1,,,,
+iter(EdgeI),,,,,,,,,,,,
+Bases: nltk.parse.chart.ChartParser,,,,,,,,,,,,
+An incremental chart parser implementing Jay Earley’s parsing algorithm:,,,,,,,,,,,implement parsing algorithm,implement parsing algorithm
+Return the final parse Chart from which all possible parse trees can be extracted.,Get final parse chart,Return final parse Chart,,,Return the final parse Chart from which all possible parse trees can be extracted,,,0,,,return final parse chart,return final parse chart
+tokens (list(str)) – The sentence to be parsed,,,,,,,,,,,,parse sentence
+Chart,,,,,,,,,,,,
+Bases: nltk.parse.earleychart.IncrementalChartParser,,,,,,,,,,,,
+Bases: nltk.parse.earleychart.IncrementalChartParser,,,,,,,,,,,,
+Bases: nltk.parse.chart.CachedTopDownPredictRule,,,,,,,,,,,,
+Bases: nltk.parse.earleychart.CompleteFundamentalRule,,,,,,,,,,,,
+"Return a generator that will add edges licensed by this rule and the given edges to the chart, one at a time. Each time the generator is resumed, it will either add a new edge and yield that edge; or return.",Get generator that will add all edges licensed by rule,"Return generator
+Add edges one at at time
+Add new edge",,,"Return a generator that will add edges licensed by this rule and the given edges to the chart,",,,1,,,,
+edges (list(EdgeI)) – A set of existing edges. The number of edges that should be passed to apply() is specified by the NUM_EDGES class variable.,Get set of existing edges,"Pass edges to apply()
+Specify number of edges",,,,,,1,,,,
+iter(EdgeI),,,,,,,,,,,,
+A demonstration of the Earley parsers.,,,,,,,,,,,,
+Bases: object,,,,,,,,,,,,
+Class for measuring labelled and unlabelled attachment score for dependency parsing. Note that the evaluation ignores punctuation.,,,,,,,,,,,ignore punctuation,ignore punctuation
+Return the Labeled Attachment Score (LAS) and Unlabeled Attachment Score (UAS),Get LAS and UAS,"Return Labeled attachment score
+Return Unlabeled attachment score",,,Return the Labeled Attachment Score (LAS) and Unlabeled Attachment Score (UAS),,,0,,,,
+":return : tuple(float,float)",,,,,,,,,,,,
+Extension of chart parsing implementation to handle grammars with feature structures as nodes.,,,,,,,,,,,handle grammars with feature structures,handle grammars with feature structures
+Bases: nltk.parse.featurechart.FeatureChartParser,,,,,,,,,,,,
+Bases: nltk.parse.featurechart.FeatureChartParser,,,,,,,,,,,,
+Bases: nltk.parse.chart.BottomUpPredictCombineRule,,,,,,,,,,,,
+"Return a generator that will add edges licensed by this rule and the given edges to the chart, one at a time. Each time the generator is resumed, it will either add a new edge and yield that edge; or return.",Get generator that will add all edges licensed by rule,"Return generator
+Add edges one at at time
+Add new edge",,,Return a generator that will add edges licensed by this rule and the given edges to the chart,,,1,,,,
+edges (list(EdgeI)) – A set of existing edges. The number of edges that should be passed to apply() is specified by the NUM_EDGES class variable.,Get set of existing edges,"Pass edges to apply()
+Specify number of edges",,,,,,1,,,,
+iter(EdgeI),,,,,,,,,,,,
+Bases: nltk.parse.chart.BottomUpPredictRule,,,,,,,,,,,,
+"Return a generator that will add edges licensed by this rule and the given edges to the chart, one at a time. Each time the generator is resumed, it will either add a new edge and yield that edge; or return.",Get generator that will add all edges licensed by rule,"Return generator
+Add edges one at at time
+Add new edge",,,Return a generator that will add edges licensed by this rule and the given edges to the chart,,,1,,,,
+edges (list(EdgeI)) – A set of existing edges. The number of edges that should be passed to apply() is specified by the NUM_EDGES class variable.,Get set of existing edges,"Pass edges to apply()
+Specify number of edges",,,,,,1,,,,
+iter(EdgeI),,,,,,,,,,,,
+Bases: nltk.parse.chart.Chart,,,,,,,,,,,,
+A Chart for feature grammars. :see: Chart for more information.,,,,,,,,,,,,
+"Return an iterator of the complete tree structures that span the entire chart, and whose root node is root.",Get iterator for complete tree structure,Return iterator that span chart,,,Return an iterator of the complete tree structures,,,1,,,,
+Returns an iterator over the edges in this chart. See Chart.select for more information about the restrictions on the edges.,Get iterator over chart edges,Return iterator over edges,,,Return an iterator over the edges in this chart,,,1,,,return iterator over edges,return iterator over edges
+Bases: nltk.parse.chart.ChartParser,,,,,,,,,,,,
+Bases: nltk.parse.chart.EmptyPredictRule,,,,,,,,,,,,
+"Return a generator that will add edges licensed by this rule and the given edges to the chart, one at a time. Each time the generator is resumed, it will either add a new edge and yield that edge; or return.",Get generator that will add all edges licensed by rule,"Return generator
+Add edges one at at time
+Add new edge",,,Return a generator that will add edges licensed by this rule and the given edges to the chart,,,1,,,,
+edges (list(EdgeI)) – A set of existing edges. The number of edges that should be passed to apply() is specified by the NUM_EDGES class variable.,Get set of existing edges,"Pass edges to apply()
+Specify number of edges",,,,,,1,,,,
+iter(EdgeI),,,,,,,,,,,,
+Bases: nltk.parse.chart.FundamentalRule,,,,,,,,,,,,
+"A specialized version of the fundamental rule that operates on nonterminals whose symbols are FeatStructNonterminal``s.  Rather tha simply comparing the nonterminals for equality, they are unified.  Variable bindings from these unifications are collected and stored in the chart using a ``FeatureTreeEdge. When a complete edge is generated, these bindings are applied to all nonterminals in the edge.",,,,,Operate on nonterminals,Operate on nonterminals,,1,,,,
+The fundamental rule states that:,,,,,,,,,,,,
+[A -> alpha \* B1 beta][i:j],,,,,,,,,,,,
+[B2 -> gamma \*][j:k],,,,,,,,,,,,
+licenses the edge:,,,,,,,,,,,,
+[A -> alpha B3 \* beta][i:j],,,,,,,,,,,,
+assuming that B1 and B2 can be unified to generate B3.,,,,,,,,,,,generate b3,generate b3
+"Return a generator that will add edges licensed by this rule and the given edges to the chart, one at a time. Each time the generator is resumed, it will either add a new edge and yield that edge; or return.",Get generator that will add all edges licensed by rule,"Return generator
+Add edges one at at time
+Add new edge",,,"Return a generator that will add edges licensed by this rule and the given edges to the chart, one at a time",,,1,,,,
+edges (list(EdgeI)) – A set of existing edges. The number of edges that should be passed to apply() is specified by the NUM_EDGES class variable.,Get set of existing edges,"Pass edges to apply()
+Specify number of edges",,,,,,1,,,,
+iter(EdgeI),,,,,,,,,,,,
+Bases: nltk.parse.chart.SingleEdgeFundamentalRule,,,,,,,,,,,,
+"A specialized version of the completer / single edge fundamental rule that operates on nonterminals whose symbols are ``FeatStructNonterminal``s. Rather than simply comparing the nonterminals for equality, they are unified.",,,,,Operate on nonterminals,Operate on nonterminals,,1,,,compare nonterminals for equality,compare nonterminals for equality
+Bases: nltk.parse.featurechart.FeatureChartParser,,,,,,,,,,,,
+Bases: nltk.parse.chart.TopDownInitRule,,,,,,,,,,,,
+"Return a generator that will add edges licensed by this rule and the given edges to the chart, one at a time. Each time the generator is resumed, it will either add a new edge and yield that edge; or return.",Get generator that will add all edges licensed by rule,"Return generator
+Add edges one at at time
+Add new edge",,,"Return a generator that will add edges licensed by this rule and the given edges to the chart, one at a time",,,1,,,,
+edges (list(EdgeI)) – A set of existing edges. The number of edges that should be passed to apply() is specified by the NUM_EDGES class variable.,Get set of existing edges,"Pass edges to apply()
+Specify number of edges",,,,,,1,,,,
+iter(EdgeI),,,,,,,,,,,,
+Bases: nltk.parse.chart.CachedTopDownPredictRule,,,,,,,,,,,,
+"A specialized version of the (cached) top down predict rule that operates on nonterminals whose symbols are ``FeatStructNonterminal``s. Rather than simply comparing the nonterminals for equality, they are unified.",,,,,Operate on nonterminals,,,1,,,,
+The top down expand rule states that:,,,,,,,,,,,expand rule states,expand rule states
+[A -> alpha \* B1 beta][i:j],,,,,,,,,,,,
+licenses the edge:,,,,,,,,,,,,
+[B2 -> \* gamma][j:j],,,,,,,,,,,,
+"for each grammar production B2 -> gamma, assuming that B1 and B2 can be unified.",,,,,,,,,,,,
+"Return a generator that will add edges licensed by this rule and the given edges to the chart, one at a time. Each time the generator is resumed, it will either add a new edge and yield that edge; or return.",Get generator that will add all edges licensed by rule,"Return generator
+Add edges one at at time
+Add new edge",,,"Return a generator that will add edges licensed by this rule and the given edges to the chart, one at a time",,,1,,,,
+edges (list(EdgeI)) – A set of existing edges. The number of edges that should be passed to apply() is specified by the NUM_EDGES class variable.,Get set of existing edges,"Pass edges to apply()
+Specify number of edges",,,,,,1,,,,
+iter(EdgeI),,,,,,,,,,,,
+Bases: nltk.parse.chart.TreeEdge,,,,,,,,,,,,
+A specialized tree edge that allows shared variable bindings between nonterminals on the left-hand side and right-hand side.,,,,,Allow shared variable bindings between nonterminals on the left-hand side and right-hand side,Allow shared variable bindings between nonterminals on the left-hand side and right-hand side,,1,,,"share variable bindings between nonterminals
+share variable bindings on right-hand side
+share variable bindings on left-hand side","share variable bindings between nonterminals
+share variable bindings on right-hand side
+share variable bindings on left-hand side"
+"Each FeatureTreeEdge contains a set of bindings, i.e., a dictionary mapping from variables to values. If the edge is not complete, then these bindings are simply stored. However, if the edge is complete, then the constructor applies these bindings to every nonterminal in the edge whose symbol implements the interface SubstituteBindingsI.",,,,,,,,,,,,
+Return a copy of this edge’s bindings dictionary.,Get copy of edge bindings dictionary,Return edge bindings,,,Return a copy of this edge’s bindings dictionary,,,1,,,,
+"A new TreeEdge formed from the given production. The new edge’s left-hand side and right-hand side will be taken from production; its span will be (index,index); and its dot position will be 0.",,,,,,,,,,,,
+TreeEdge,,,,,,,,,,,,
+"A new FeatureTreeEdge formed from this edge. The new edge’s dot position is increased by 1, and its end index will be replaced by new_end.",,,,,,,,,,,replace end index,replace end index
+FeatureTreeEdge,,,,,,,,,,,,
+new_end (int) – The new end index.,,,,,,,,,,,,
+bindings (dict) – Bindings for the new edge.,,,,,,,,,,,,
+The set of variables used by this edge.,,,,,,,,,,,use  by edge,
+set(Variable),,,,,,,,,,,,
+Bases: nltk.parse.featurechart.FeatureChart,,,,,,,,,,,,
+"A specialized chart that ‘instantiates’ variables whose names start with ‘@’, by replacing them with unique new variables. In particular, whenever a complete edge is added to the chart, any variables in the edge’s lhs whose names start with ‘@’ will be replaced by unique new ``Variable``s.",,,,,Instantiate varaibles whose names start with '@',Instantiate varaibles whose names start with '@',,1,,,"replace  with unique new variables
+add complete edge to chart
+replace variables in lhs","replace  with unique new variables
+add complete edge to chart
+replace variables in lhs"
+Clear the chart.,Clear chart,,,,,,,,,,,
+"Add a new edge to the chart, and return True if this operation modified the chart. In particular, return true iff the chart did not already contain edge, or if it did not already associate child_pointer_lists with edge.",Add new edge chart and check if chart is modified,"Add new edge to chart
+Return True
+Modify Chart",,,Add a new edge to the chart,,,1,,,,
+edge (EdgeI) – The new edge,,,,,,,,,,,,
+child_pointer_lists (sequence of tuple(EdgeI)) – A sequence of lists of the edges that were used to form this edge. This list is used to reconstruct the trees (or partial trees) that are associated with edge.,,,,,,,,,,,,
+bool,,,,,,,,,,,,
+"If the edge is a FeatureTreeEdge, and it is complete, then instantiate all variables whose names start with ‘@’, by replacing them with unique new variables.",,Instantiate variables,,,Instantiate varaibles whose names start with '@',,,1,,,"instantiate variables
+replace  with unique new variables","instantiate variables
+replace  with unique new variables"
+"Note that instantiation is done in-place, since the parsing algorithms might already hold a reference to the edge for future use.",,,,,,,,,,,,
+Generates an iterator of all sentences from a CFG.,,Generate iterator,Generate iterator,Generate iterator,Generates an iterator of all sentences from a CFG,Generates an iterator of all sentences from a CFG,,1,,,,
+grammar – The Grammar used to generate sentences.,,,,,,,,,,,generate sentences,generate sentences
+start – The Nonterminal from which to start generate sentences.,,,,,,,,,,,generate sentences,generate sentences
+depth – The maximal depth of the generated tree.,,,,,,,,,,,,
+n – The maximum number of sentences to return.,,,,,,,,,,,,
+An iterator of lists of terminal tokens.,,,,,,,,,,,,
+Bases: nltk.parse.api.ParserI,,,,,,,,,,,,
+A class for dependency parsing with MaltParser. The input is the paths to: - a maltparser directory - (optionally) the path to a pre-trained MaltParser .mco model file - (optionally) the tagger to use for POS tagging before parsing - (optionally) additional Java arguments,,,,,,,,,,,use  for POS,parse  with MaltParser
+This function generates the maltparser command use at the terminal.,,Generate maltparser command,,,Generate the maltparser command use at the terminal,,,1,,,generate maltparser command use at terminal,generate maltparser command use at terminal
+inputfilename (str) – path to the input file,,,,,,,,,,,,
+outputfilename (str) – path to the output file,,,,,,,,,,,,
+"Use MaltParser to parse multiple sentences. Takes a list of sentences, where each sentence is a list of words. Each sentence will be automatically tagged with this MaltParser instance’s tagger.",,"Use MaltParser
+Parse multiple sentences","Use MaltParser
+Parse multiple sentences","Use MaltParser
+Parse multiple sentences",Use MaltParser to parse multiple sentences,Use MaltParser to parse multiple sentences,,0,,,use MaltParser,parse multiple sentences
+sentences – Input sentences to parse,,,,,Input sentences to parse,,,1,,,,
+iter(DependencyGraph),,,,,,,,,,,,
+"Use MaltParser to parse multiple POS tagged sentences. Takes multiple sentences where each sentence is a list of (word, tag) tuples. The sentences must have already been tokenized and tagged.",,"Use MaltParser
+Parse multiple sentences","Use MaltParser
+Parse multiple sentences","Use MaltParser
+Parse multiple sentences",Use MaltParser to parse multiple POS tagged sentences,Use MaltParser to parse multiple POS tagged sentences,,0,,,use MaltParser,parse multiple POS tagged sentences
+sentences – Input sentences to parse,,,,,,,,1,,,,
+iter(iter(DependencyGraph)) the dependency graph,,,,,,,,,,,,
+representation of each sentence,,,,,,,,,,,,
+Train MaltParser from a list of DependencyGraph objects,Train MaltParser on dependency graph objects,Train MaltParser,Train MaltParser,Train MaltParser,Train MaltParser from a list of DependencyGraph objects,Train MaltParser from a list of DependencyGraph objects,Train MaltParser from a list of DependencyGraph objects,0,,,,
+depgraphs (DependencyGraph) – list of DependencyGraph objects for training input data,,,,,,,,,,,,
+Train MaltParser from a file :param conll_file: str for the filename of the training input data :type conll_file: str,Train MaltParser from file,Train MaltParser,Train MaltParser,Train MaltParser,Train MaltParser from a file,Train MaltParser from a file,Train MaltParser from a file,0,,,,
+A module to find pre-trained MaltParser model.,,Find MaltParser model,,,Find pre-trained MaltParser model,,,0,,,find pre-trained MaltParser model,find pre-trained MaltParser model
+A module to find MaltParser .jar file and its dependencies.,,Find MaltParser.jar,,,Find MaltParser .jar file and its dependencies,,,0,,,find MaltParser,find MaltParser
+Bases: nltk.parse.nonprojectivedependencyparser.DependencyScorerI,,,,,,,,,,,,
+graph (DependencyGraph) – A dependency graph whose set of edges need to be,,,,,,,,,,,,
+"scored. :rtype: A three-dimensional list of numbers. :return: The score is returned in a multidimensional(3) list, such that the outer-dimension refers to the head, and the inner-dimension refers to the dependencies. For instance, scores[0][1] would reference the list of scores corresponding to arcs from node 0 to node 1. The node’s ‘address’ field can be used to determine its number identification.",,,,,,,,,,,,
+"For further illustration, a score list corresponding to Fig.2 of Keith Hall’s ‘K-best Spanning Tree Parsing’ paper:",,,,,,,,,,,,
+"[[], [], [11], [4]], [[], [10], [], [5]], [[], [8], [8], []]]",,,,,,,,,,,,
+"When used in conjunction with a MaxEntClassifier, each score would correspond to the confidence of a particular edge being classified with the positive training examples.",,,,,,,,,,,"use  with MaxEntClassifier
+use  in conjunction",
+graphs (list(DependencyGraph)) – A list of dependency graphs to train the scorer.,,,,,,,,,,,,
+"Typically the edges present in the graphs can be used as positive training examples, and the edges not present as negative examples.",,,,,,,,,,,use graphs as positive training examples,
+Bases: object,,,,,,,,,,,,
+"A scorer for calculated the weights on the edges of a weighted dependency graph. This is used by a ProbabilisticNonprojectiveParser to initialize the edge weights of a DependencyGraph. While typically this would be done by training a binary classifier, any class that can return a multidimensional list representation of the edge weights can implement this interface. As such, it has no necessary fields.",,,,,"Initialize the edge weights of a DependencyGraph
+Train a binary classifier",,,1,,,,
+graph (DependencyGraph) – A dependency graph whose set of edges need to be,,,,,,,,,,,,
+"scored. :rtype: A three-dimensional list of numbers. :return: The score is returned in a multidimensional(3) list, such that the outer-dimension refers to the head, and the inner-dimension refers to the dependencies. For instance, scores[0][1] would reference the list of scores corresponding to arcs from node 0 to node 1. The node’s ‘address’ field can be used to determine its number identification.",,,,,,,,,,,,
+"For further illustration, a score list corresponding to Fig.2 of Keith Hall’s ‘K-best Spanning Tree Parsing’ paper:",,,,,,,,,,,,
+"[[], [], [11], [4]], [[], [10], [], [5]], [[], [8], [8], []]]",,,,,,,,,,,,
+"When used in conjunction with a MaxEntClassifier, each score would correspond to the confidence of a particular edge being classified with the positive training examples.",,,,,,,,,,,"use  with MaxEntClassifier
+use  in conjunction",
+graphs (list(DependencyGraph)) – A list of dependency graphs to train the scorer.,,,,,,,,,,,,
+"Typically the edges present in the graphs can be used as positive training examples, and the edges not present as negative examples.",,,,,,,,,,,use graphs as positive training examples,
+Bases: nltk.parse.nonprojectivedependencyparser.DependencyScorerI,,,,,,,,,,,,
+"A dependency scorer built around a MaxEnt classifier. In this particular class that classifier is a NaiveBayesClassifier. It uses head-word, head-tag, child-word, and child-tag features for classification.",,,,,,,,,,,,
+"Converts the graph into a feature-based representation of each edge, and then assigns a score to each based on the confidence of the classifier in assigning it to the positive label. Scores are returned in a multidimensional list.",Assign score to each edge of graph,"Convert graph into feature-based representation
+Assign score
+Assign to positive label
+Return scores in multidimensional list",Convert graph into feature-based representation,Convert graph into feature-based representation,"Convert graph into feature-based representation of each edge
+Assign a score based on the confidence of the classifier",,,1,,,,
+graph (DependencyGraph) – A dependency graph to score.,,,,,,,,,,,,
+3 dimensional list,,,,,,,,,,,,
+Edge scores for the graph parameter.,,,,,,,,,,,,
+"Trains a NaiveBayesClassifier using the edges present in graphs list as positive examples, the edges not present as negative examples. Uses a feature vector of head-word, head-tag, child-word, and child-tag.",Train Naive Bayes Classifier,"Use edges present list as positive examples
+Train NaiveBayesClassifier",Train NaiveBayesClassifier,Train NaiveBayesClassifier,Train a NaiveBayesClassifier using the edges present in graphs list as positive examples,Train a NaiveBayesClassifier using the edges present in graphs list as positive examples,,0,,,,
+graphs (list(DependencyGraph)) – A list of dependency graphs to train the scorer.,,,,,Train the scorer,,Train the scorer,1,,,,
+Bases: object,,,,,,,,,,,,
+"A non-projective, rule-based, dependency parser. This parser will return the set of all possible non-projective parses based on the word-to-word relations defined in the parser’s dependency grammar, and will allow the branches of the parse tree to cross in order to capture a variety of linguistic phenomena that a projective parser will not.",,Return non-projective parses,,,Return the set of all possible non-projective parses,,,1,,,,
+"Parses the input tokens with respect to the parser’s grammar. Parsing is accomplished by representing the search-space of possible parses as a fully-connected directed graph. Arcs that would lead to ungrammatical parses are removed and a lattice is constructed of length n, where n is the number of input tokens, to represent all possible grammatical traversals. All possible paths through the lattice are then enumerated to produce the set of non-projective parses.",,Parse input tokens,Parse input tokens,Parse input tokens,Parse the input tokens with respect to the parser's grammar,Parse the input tokens with respect to the parser's grammar,Parse the input tokens with respect to the parser's grammar,1,,,,
+param tokens: A list of tokens to parse. type tokens: list(str) return: An iterator of non-projective parses. rtype: iter(DependencyGraph),,,,,,,,,,,,
+Bases: object,,,,,,,,,,,,
+A probabilistic non-projective dependency parser.,,,,,,,,,,,,
+"Nonprojective dependencies allows for “crossing branches” in the parse tree which is necessary for representing particular linguistic phenomena, or even typical parses in some languages. This parser follows the MST parsing algorithm, outlined in McDonald(2005), which likens the search for the best non-projective parse to finding the maximum spanning tree in a weighted directed graph.",,,,,,,,,,,,
+Returns the source of the best incoming arc to the node with address: node_index,,Return best incoming arc,,,Returns the source of the best incoming arc to the node ,,,1,,,return source of best incoming arc,return source of best incoming arc
+"node_index (integer.) – The address of the ‘destination’ node,",,,,,,,,,,,,
+the node that is arced to.,,,,,,,,,,,,
+"Takes a list of nodes that have been identified to belong to a cycle, and collapses them into on larger node. The arcs of all nodes in the graph must be updated to account for this.",Collapses nodes in cycle to one node,Collapse list of nodes,Collapse list of nodes,,Collapse list of nodes into on larger node,,,1,,,,
+new_node (Node.) – A Node (Dictionary) to collapse the cycle nodes into.,,,,,,,,,,,,
+"cycle_path (A list of integers.) – A list of node addresses, each of which is in the cycle.",,,,,,,,,,,,
+"b_graph, c_graph (g_graph,) – Graphs which need to be updated.",,,,,,,,,,,,
+When updating scores the score of the highest-weighted incoming arc is subtracted upon collapse. This returns the correct amount to subtract from that edge.,,,,,Return the correct amount to subtract from that edge,,,1,,,,
+column_index (integer.) – A index representing the column of incoming arcs,,,,,,,,,,,,
+to a particular node being updated :type cycle_indexes: A list of integers. :param cycle_indexes: Only arcs from cycle nodes are considered. This is a list of such nodes addresses.,,,,,,,,,,,,
+"As nodes are collapsed into others, they are replaced by the new node in the graph, but it’s still necessary to keep track of what these original nodes were. This takes a list of node addresses and replaces any collapsed node addresses with their original addresses.",,,,,"Collapse nodes
+Replace by the new node in the graph
+Collapse node address with their original addresses",,,1,,,,
+new_indexes (A list of integers.) – A list of node addresses to check for,,,,,,,,,,,,
+subsumed nodes.,,,,,,,,,,,,
+Assigns a score to every edge in the DependencyGraph graph. These scores are generated via the parser’s scorer which was assigned during the training process.,Assign score to every edge in DependencyGraph,Assign score,Assign score,Assign score,Assign a score to every edge in the DependencyGraph graph,,,1,,,"assign score to edge
+generate scores via scorer
+assign scorer during training process","assign score to edge
+generate scores via scorer
+assign scorer during training process"
+graph (DependencyGraph) – A dependency graph to assign scores to.,,,,,,,,,,,assign scores,assign scores
+Parses a list of tokens in accordance to the MST parsing algorithm for non-projective dependency parses. Assumes that the tokens to be parsed have already been tagged and those tags are provided. Various scoring methods can be used by implementing the DependencyScorerI interface and passing it to the training algorithm.,Parse tokens according to MST parsing algorithm,Parse list of tokens,Parse list of tokens,,Parse a list of tokens in accordance to the MST parsing algorithm for non-projective dependency parses,Parse a list of tokens in accordance to the MST parsing algorithm for non-projective dependency parses,Parse a list of tokens in accordance to the MST parsing algorithm for non-projective dependency parses,0,,,,
+tokens (list(str)) – A list of words or punctuation to be parsed.,,,,,,,,,,,,"parse list of words
+parse list of punctuation"
+tags (list(str)) – A list of tags corresponding by index to the words in the tokens list.,,,,,,,,,,,,
+An iterator of non-projective parses.,,,,,,,,,,,,
+iter(DependencyGraph),,,,,,,,,,,,
+"Trains a DependencyScorerI from a set of DependencyGraph objects, and establishes this as the parser’s scorer. This is used to initialize the scores on a DependencyGraph during the parsing procedure.",,Train DependencyScorerI,Train DependencyScorerI,Train DependencyScorerI,"Trains a DependencyScorerI from a set of DependencyGraph objects
+Initialize the scores on a DependencyGraph during the parsing procedure","Trains a DependencyScorerI from a set of DependencyGraph objects
+Initialize the scores on a DependencyGraph during the parsing procedure",,0,,,,
+graphs (list(DependencyGraph)) – A list of dependency graphs to train the scorer.,,,,,,,,,,,,
+dependency_scorer (DependencyScorerI) – A scorer which implements the DependencyScorerI interface.,,,,,,,,,,,"implement DependencyScorerI interface
+implement scorer","implement DependencyScorerI interface
+implement scorer"
+Updates the edge scores to reflect a collapse operation into new_node.,,Update edge scores,,,Update the edge scores to reflect a collapse operation,,,0,,,,
+new_node (A Node.) – The node which cycle nodes are collapsed into.,,,,,,,,,,,,
+cycle_path (A list of integers.) – A list of node addresses that belong to the cycle.,,,,,,,,,,,,
+Classes and interfaces for associating probabilities with tree structures that represent the internal organization of a text. The probabilistic parser module defines BottomUpProbabilisticChartParser.,,,,,Associate probabilities with tree structures,,,1,,,,
+"BottomUpProbabilisticChartParser is an abstract class that implements a bottom-up chart parser for PCFG grammars. It maintains a queue of edges, and adds them to the chart one at a time. The ordering of this queue is based on the probabilities associated with the edges, allowing the parser to expand more likely edges before less likely ones. Each subclass implements a different queue ordering, producing different search strategies. Currently the following subclasses are defined:",,Implement bottom-up chart parser,,,Implement a bottom-up chart parser for PCFG grammars,,,0,,,,
+InsideChartParser searches edges in decreasing order of their trees’ inside probabilities.,,,,,Search edges in decreasing order of their trees' inside probabilities,,,,,,search edges,
+RandomChartParser searches edges in random order.,,,,,Search edges in random order,,,,,,search edges,
+LongestChartParser searches edges in decreasing order of their location’s length.,,,,,Search edges in decreasing order of their location's length,,,,,,search edges,
+"The BottomUpProbabilisticChartParser constructor has an optional argument beam_size. If non-zero, this controls the size of the beam (aka the edge queue). This option is most useful with InsideChartParser.",,,,,,,,,,,,
+Bases: nltk.parse.api.ParserI,,,,,,,,,,,,
+"An abstract bottom-up parser for PCFG grammars that uses a Chart to record partial results. BottomUpProbabilisticChartParser maintains a queue of edges that can be added to the chart. This queue is initialized with edges for each token in the text that is being parsed. BottomUpProbabilisticChartParser inserts these edges into the chart one at a time, starting with the most likely edges, and proceeding to less likely edges. For each edge that is added to the chart, it may become possible to insert additional edges into the chart; these are added to the queue. This process continues until enough complete parses have been generated, or until the queue is empty.",,Insert edges into chart,,,Insert these edges into the chart,,,0,,,,
+The sorting order for the queue is not specified by BottomUpProbabilisticChartParser. Different sorting orders will result in different search strategies. The sorting order for the queue is defined by the method sort_queue; subclasses are required to provide a definition for this method.,,Define sorting order,,,Define sorting order,,,,,,,
+_grammar – The grammar used to parse sentences.,,,,,,,,,,,,parse sentences
+_trace – The level of tracing output that should be generated when parsing a text.,,,,,,,,,,,generate output,"parse text
+generate output"
+The grammar used by this parser.,,,,,,,,,,,use  by parser,
+An iterator that generates parse trees for the sentence.,,,,,,,,,,,generate iterator,"parse trees for sentence
+generate iterator"
+When possible this list is sorted from most likely to least likely.,,Sort list from most likely to least likely,Sort list from most likely to least likely,Sort list from most likely to least likely,Sort list from most likely to least likely,,,,,,sort list,sort list
+sent (list(str)) – The sentence to be parsed,,,,,,,,,,,,parse sentence
+iter(Tree),,,,,,,,,,,,
+"Sort the given queue of Edge objects, placing the edge that should be tried first at the beginning of the queue. This method will be called after each Edge is added to the queue.",Sort given queue of edge objects,Sort edge objects,Sort edge objects,Sort edge objects,Sort the given queue of Edge objects,,,1,,,,
+queue (list(Edge)) – The queue of Edge objects to sort. Each edge in this queue is an edge that could be added to the chart by the fundamental rule; but that has not yet been added.,,,,,,,,,,,,
+chart (Chart) – The chart being used to parse the text. This chart can be used to provide extra information for sorting the queue.,,,,,,,,,,,,
+None,,,,,,,,,,,,
+Set the level of tracing output that should be generated when parsing a text.,Set tracing output when parsing text,Set tracing level,Set tracing level,Set tracing level,Set the level of tracing output that should be generated when parsing a text,,Set the level of tracing output that should be generated when parsing a text,1,,,"set level of tracing
+generate output","set level of tracing
+parse text
+generate output"
+trace (int) – The trace level. A trace level of 0 will generate no tracing output; and higher trace levels will produce more verbose tracing output.,,,,,,,,,,,,
+None,,,,,,,,,,,,
+Bases: nltk.parse.pchart.BottomUpProbabilisticChartParser,,,,,,,,,,,,
+"A bottom-up parser for PCFG grammars that tries edges in descending order of the inside probabilities of their trees. The “inside probability” of a tree is simply the probability of the entire tree, ignoring its context. In particular, the inside probability of a tree generated by production p with children c[1], c[2], …, c[n] is P(p)P(c[1])P(c[2])…P(c[n]); and the inside probability of a token is 1 if it is present in the text, and 0 if it is absent.",,,,,,,,,,,,
+This sorting order results in a type of lowest-cost-first search strategy.,,,,,,,,,,,,
+"Sort the given queue of edges, in descending order of the inside probabilities of the edges’ trees.",Sort queue of edges in descending order of probability,Sort edges,Sort edges,Sort edges,Sort the given queue of edges,,,1,,,sort given queue of edges,sort given queue of edges
+queue (list(Edge)) – The queue of Edge objects to sort. Each edge in this queue is an edge that could be added to the chart by the fundamental rule; but that has not yet been added.,,,,,,,,,,,,
+chart (Chart) – The chart being used to parse the text. This chart can be used to provide extra information for sorting the queue.,,,,,,,,,,,,
+None,,,,,,,,,,,,
+Bases: nltk.parse.pchart.BottomUpProbabilisticChartParser,,,,,,,,,,,,
+A bottom-up parser for PCFG grammars that tries longer edges before shorter ones. This sorting order results in a type of best-first search strategy.,,,,,Try longer edges before shorter ones,,,1,,,,
+"Sort the given queue of Edge objects, placing the edge that should be tried first at the beginning of the queue. This method will be called after each Edge is added to the queue.",,Sort Edge objects,Sort Edge objects,Sort Edge objects,Sort the given queue of Edge objects,,,0,,,,
+queue (list(Edge)) – The queue of Edge objects to sort. Each edge in this queue is an edge that could be added to the chart by the fundamental rule; but that has not yet been added.,,,,,,,,,,,,
+chart (Chart) – The chart being used to parse the text. This chart can be used to provide extra information for sorting the queue.,,Parse text,Parse text,Parse text,"Parse the text
+Provide extra information for sorting the queue",Parse the text,,1,,,,
+None,,,,,,,,,,,,
+Bases: nltk.parse.chart.AbstractChartRule,,,,,,,,,,,,
+"Return a generator that will add edges licensed by this rule and the given edges to the chart, one at a time. Each time the generator is resumed, it will either add a new edge and yield that edge; or return.",Get generator that will add all edges licensed by rule,"Return generator
+Add edges one at at time
+Add new edge",,,Return a generator that will add edges licensed by this rule and the given edges to the chart,,,1,,,,
+edges (list(EdgeI)) – A set of existing edges. The number of edges that should be passed to apply() is specified by the NUM_EDGES class variable.,Get set of existing edges,"Pass edges to apply()
+Specify number of edges",,,,,,1,,,,
+iter(EdgeI),,,,,,,,,,,,
+Bases: nltk.parse.chart.AbstractChartRule,,,,,,,,,,,,
+"Return a generator that will add edges licensed by this rule and the given edges to the chart, one at a time. Each time the generator is resumed, it will either add a new edge and yield that edge; or return.",Get generator that will add all edges licensed by rule,"Return generator
+Add edges one at at time
+Add new edge",,,Return a generator that will add edges licensed by this rule and the given edges to the chart,,,1,,,,
+edges (list(EdgeI)) – A set of existing edges. The number of edges that should be passed to apply() is specified by the NUM_EDGES class variable.,Get set of existing edges,"Pass edges to apply()
+Specify number of edges",,,,,,1,,,,
+iter(EdgeI),,,,,,,,,,,,
+Bases: nltk.parse.chart.AbstractChartRule,,,,,,,,,,,,
+"Return a generator that will add edges licensed by this rule and the given edges to the chart, one at a time. Each time the generator is resumed, it will either add a new edge and yield that edge; or return.",Get generator that will add all edges licensed by rule,"Return generator
+Add edges one at at time
+Add new edge",,,Return a generator that will add edges licensed by this rule and the given edges to the chart,,,1,,,,
+edges (list(EdgeI)) – A set of existing edges. The number of edges that should be passed to apply() is specified by the NUM_EDGES class variable.,Get set of existing edges,"Pass edges to apply()
+Specify number of edges",,,,,,1,,,,
+iter(EdgeI),,,,,,,,,,,,
+Bases: nltk.parse.chart.LeafEdge,,,,,,,,,,,,
+Bases: nltk.parse.chart.TreeEdge,,,,,,,,,,,,
+"Return a new TreeEdge formed from the given production. The new edge’s left-hand side and right-hand side will be taken from production; its span will be (index,index); and its dot position will be 0.",Get new TreeEdge from given production,Return TreeEdge,,,Return a new TreeEdge formed from the given production,,,0,,,,
+TreeEdge,,,,,,,,,,,,
+Bases: nltk.parse.pchart.BottomUpProbabilisticChartParser,,,,,,,,,,,,
+A bottom-up parser for PCFG grammars that tries edges in random order. This sorting order results in a random search strategy.,,,,,Try edges in random order,,,1,,,,
+"Sort the given queue of Edge objects, placing the edge that should be tried first at the beginning of the queue. This method will be called after each Edge is added to the queue.",Sort given queue of edges,Sort edge objects,Sort edge objects,Sort edge objects,Sort the given queue of Edge objects,,,1,,,,
+queue (list(Edge)) – The queue of Edge objects to sort. Each edge in this queue is an edge that could be added to the chart by the fundamental rule; but that has not yet been added.,,,,,,,,,,,,
+chart (Chart) – The chart being used to parse the text. This chart can be used to provide extra information for sorting the queue.,,Parse text,Parse text,Parse text,Provide extra information for sorting the queue,Parse the text,,1,,,,
+None,,,,,,,,,,,,
+Bases: nltk.parse.chart.AbstractChartRule,,,,,,,,,,,,
+"Return a generator that will add edges licensed by this rule and the given edges to the chart, one at a time. Each time the generator is resumed, it will either add a new edge and yield that edge; or return.",Get generator that will add all edges licensed by rule,"Return generator
+Add edges one at at time
+Add new edge",,,Return a generator that will add edges licensed by this rule and the given edges to the chart,,,1,,,,
+edges (list(EdgeI)) – A set of existing edges. The number of edges that should be passed to apply() is specified by the NUM_EDGES class variable.,Get set of existing edges,"Pass edges to apply()
+Specify number of edges",,,,,,1,,,,
+iter(EdgeI),,,,,,,,,,,,
+Bases: nltk.parse.pchart.BottomUpProbabilisticChartParser,,,,,,,,,,,,
+A bottom-up parser for PCFG grammars that tries edges in whatever order.,,,,,,,,,,,,
+"Sort the given queue of Edge objects, placing the edge that should be tried first at the beginning of the queue. This method will be called after each Edge is added to the queue.",,Sort Edge objects,,,Sort the given queue of Edge objects,,,0,,,,
+queue (list(Edge)) – The queue of Edge objects to sort. Each edge in this queue is an edge that could be added to the chart by the fundamental rule; but that has not yet been added.,,,,,,,,,,,,
+chart (Chart) – The chart being used to parse the text. This chart can be used to provide extra information for sorting the queue.,,Parse text,,,,,,0,,,,
+None,,,,,,,,,,,,
+"A demonstration of the probabilistic parsers. The user is prompted to select which demo to run, and how many parses should be found; and then each parser is run on the same demo, and a summary of the results are displayed.",,,,,,,,,,,,
+Bases: object,,,,,,,,,,,,
+"A cell from the parse chart formed when performing the CYK algorithm. Each cell keeps track of its x and y coordinates (though this will probably be discarded), and a list of spans serving as the cell’s entries.",,Perform CYK algorithm,,,Perform the CYK algorithm,Perform the CYK algorithm,,1,,,perform CYK algorithm,perform CYK algorithm
+Appends the given span to the list of spans representing the chart cell’s entries.,,,,,,,,,,,append given span to list,append given span to list
+span (DependencySpan) – The span to add.,,,,,,,,,,,,
+Bases: object,,,,,,,,,,,,
+"A contiguous span over some part of the input string representing dependency (head -> modifier) relationships amongst words. An atomic span corresponds to only one word so it isn’t a ‘span’ in the conventional sense, as its _start_index = _end_index = _head_index for concatenation purposes. All other spans are assumed to have arcs between all nodes within the start and end indexes of the span, and one head index corresponding to the head word for the entire span. This is the same as the root node if the dependency structure were depicted as a graph.",,,,,,,,,,,,
+An value indexing the head of the entire DependencySpan.,,,,,,,,,,,,
+int,,,,,,,,,,,,
+Bases: object,,,,,,,,,,,,
+"A probabilistic, projective dependency parser.",,,,,,,,,,,,
+"This parser returns the most probable projective parse derived from the probabilistic dependency grammar derived from the train() method. The probabilistic model is an implementation of Eisner’s (1996) Model C, which conditions on head-word, head-tag, child-word, and child-tag. The decoding uses a bottom-up chart-based span concatenation algorithm that’s identical to the one utilized by the rule-based projective parser.",,Return probably projective parse,,,Return the most probable projective parse derived from the probabilistic dependency grammar ,,Return the most probable projective parse derived from the probabilistic dependency grammar ,0,,,,
+Computes the probability of a dependency graph based on the parser’s probability model (defined by the parser’s statistical dependency grammar).,Compute probability of dependency graph,Compute dependency graph probability,Compute dependency graph probability,Compute dependency graph probability,Compute the probability of a dependency graph based on the parser's probability model,Compute the probability of a deendency graph based on the parser's probability model,Compute the probability of a dependency graph based on the parser's probability model,0,,,compute probability of dependency graph,compute probability of dependency graph
+dg (DependencyGraph) – A dependency graph to score.,,,,,,,,,,,,
+The probability of the dependency graph.,,,,,,,,,,,,
+int,,,,,,,,,,,,
+"Concatenates the two spans in whichever way possible. This includes rightward concatenation (from the leftmost word of the leftmost span to the rightmost word of the rightmost span) and leftward concatenation (vice-versa) between adjacent spans. Unlike Eisner’s presentation of span concatenation, these spans do not share or pivot on a particular word/word-index.",Concatenate two spans,Concatenate spans,Concatenate spans,,Concatenate the two spans,,,1,,,,
+A list of new spans formed through concatenation.,,,,,,,,,,,,
+list(DependencySpan),,,,,,,,,,,,
+Parses the list of tokens subject to the projectivity constraint and the productions in the parser’s grammar. This uses a method similar to the span-concatenation algorithm defined in Eisner (1996). It returns the most probable parse derived from the parser’s probabilistic dependency grammar.,,Parse list of tokens,Parse list of tokens,Parse list of tokens,Parse the list of tokens subject to the projectivity constraint and the productions in the parser’s grammar,Parse the list of tokens subject to the projectivity constraint and the productions in the parser’s grammar,Parse the list of tokens subject to the projectivity constraint and the productions in the parser’s grammar,1,,,,
+"Trains a ProbabilisticDependencyGrammar based on the list of input DependencyGraphs. This model is an implementation of Eisner’s (1996) Model C, which derives its statistics from head-word, head-tag, child-word, and child-tag relationships.",Train a Probabilistic dependency grammar on input dependency graphs,Train ProbabilisticDependencyGrammar,Train ProbabilisticDependencyGrammar,Train ProbabilisticDependencyGrammar,Train a ProbabilisticDependencyGrammar based on the list of input DependencyGraphs,Train a ProbabilisticDependencyGrammar based on the list of input DependencyGraphs,Train a ProbabilisticDependencyGrammar based on the list of input DependencyGraphs,1,,,,
+graphs – A list of dependency graphs to train from.,,,,,,,,,,,,
+list(DependencyGraph),,,,,,,,,,,,
+Bases: object,,,,,,,,,,,,
+"A projective, rule-based, dependency parser. A ProjectiveDependencyParser is created with a DependencyGrammar, a set of productions specifying word-to-word dependency relations. The parse() method will then return the set of all parses, in tree representation, for a given input sequence of tokens. Each parse must meet the requirements of the both the grammar and the projectivity constraint which specifies that the branches of the dependency tree are not allowed to cross. Alternatively, this can be understood as stating that each parent node and its children in the parse tree form a continuous substring of the input sequence.",,Return set of all parses,,,Return the set of all parses,,,0,,,,
+"Concatenates the two spans in whichever way possible. This includes rightward concatenation (from the leftmost word of the leftmost span to the rightmost word of the rightmost span) and leftward concatenation (vice-versa) between adjacent spans. Unlike Eisner’s presentation of span concatenation, these spans do not share or pivot on a particular word/word-index.",Concatenate two spans,Concatenate spans,Concatenate spans,Concatenate spans,Concatenate the two spans,,,1,,,,
+A list of new spans formed through concatenation.,,,,,,,,,,,,
+list(DependencySpan),,,,,,,,,,,,
+"Performs a projective dependency parse on the list of tokens using a chart-based, span-concatenation algorithm similar to Eisner (1996).",,Perform projective depedency parse,,,"Perform a projective dependency parse on the list of tokens using a chart-based, span-concatenation algorithm similar to Eisner (1996)","Perform a projective dependency parse on the list of tokens using a chart-based, span-concatenation algorithm similar to Eisner (1996)","Perform a projective dependency parse on the list of tokens using a chart-based, span-concatenation algorithm similar to Eisner (1996)",1,,,use chart-based span-concatenation algorithm similar,parse  on list
+tokens (list(str)) – The list of input tokens.,,,,,,,,,,,,
+An iterator over parse trees.,,,,,,,,,,,,
+iter(Tree),,,,,,,,,,,,
+A demonstration showing the creation of a DependencyGrammar in which a specific number of modifiers is listed for a given head. This can further constrain the number of possible parses created by a ProjectiveDependencyParser.,,,,,,,,,,,,
+A demo showing the training and use of a projective dependency parser.,,,,,,,,,,,"show training of projective dependency parser
+show use of projective dependency parser","show training of projective dependency parser
+show use of projective dependency parser"
+A demonstration showing the creation and use of a DependencyGrammar to perform a projective dependency parse.,,,,,,,,,,,"show creation of DependencyGrammar
+show use of DependencyGrammar
+perform projective dependency parse","show creation of DependencyGrammar
+show use of DependencyGrammar
+perform projective dependency parse"
+Bases: nltk.parse.api.ParserI,,,,,,,,,,,,
+"A simple top-down CFG parser that parses texts by recursively expanding the fringe of a Tree, and matching it against a text.",,Parse text,Parse text,Parse text,Parse text by recursively expanding the fringe of a Tree,Parse text by recursively expanding the fringe of a Tree,,1,,,"expand fringe of tree
+match  against text","parse texts by matching
+parse texts by expanding
+expand fringe of tree
+match  against text"
+RecursiveDescentParser uses a list of tree locations called a “frontier” to remember which subtrees have not yet been expanded and which leaves have not yet been matched against the text. Each tree location consists of a list of child indices specifying the path from the root of the tree to a subtree or a leaf; see the reference documentation for Tree for more information about tree locations.,,,,,Remember which subtrees have not yet been expanded,,,1,,,,
+"When the parser begins parsing a text, it constructs a tree containing only the start symbol, and a frontier containing the location of the tree’s root node. It then extends the tree to cover the text, using the following recursive procedure:",,,,,"Begin parsing a text
+Construct a tree containing only the start symbol
+Extend the tree to cover the text",,,1,,,,
+"If the frontier is empty, and the text is covered by the tree, then return the tree as a possible parse.",,Return tree,,,Return the tree as a possible parse,,,0,,,return tree as possible parse,return tree as possible parse
+"If the frontier is empty, and the text is not covered by the tree, then return no parses.",,,,,,,,,,,return parses,return parses
+"If the first element of the frontier is a subtree, then use CFG productions to “expand” it. For each applicable production, add the expanded subtree’s children to the frontier, and recursively find all parses that can be generated by the new tree and frontier.",,,,,Recursively find all parses that can be generated by the new tree and frontier,,,1,,,,
+"If the first element of the frontier is a token, then “match” it against the next token from the text. Remove the token from the frontier, and recursively find all parses that can be generated by the new tree and frontier.",,,,,"Remove the token from the frontier
+Recursively find all parses that can be generated",,,1,,,,
+nltk.grammar,,,,,,,,,,,,
+The grammar used by this parser.,,,,,,,,,,,use  by parser,
+An iterator that generates parse trees for the sentence.,,Generate parse trees for sentence,,,Generate parse trees for the sentence,Generate parse trees for the sentence,Generate parse trees for the sentence,1,,,generate iterator,"parse trees for sentence
+generate iterator"
+When possible this list is sorted from most likely to least likely.,,,,,,,,,,,sort list,sort list
+sent (list(str)) – The sentence to be parsed,,,,,,,,,,,,parse sentence
+iter(Tree),,,,,,,,,,,,
+Set the level of tracing output that should be generated when parsing a text.,,Set tracing output,Set tracing output,Set tracing output,Set the level of tracing output that should be generated when parsing a text,Set the level of tracing output that should be generated when parsing a text,Set the level of tracing output that should be generated when parsing a text,0,,,"set level of tracing
+generate output","set level of tracing
+parse text
+generate output"
+trace (int) – The trace level. A trace level of 0 will generate no tracing output; and higher trace levels will produce more verbose tracing output.,,,,,"Generate no tracing output
+Produce more verbose tracing output",,"Generate no tracing output
+Produce more verbose tracing output",1,,,,
+None,,,,,,,,,,,,
+Bases: nltk.parse.recursivedescent.RecursiveDescentParser,,,,,,,,,,,,
+"A RecursiveDescentParser that allows you to step through the parsing process, performing a single operation at a time.",,,,,Step through the parsing process,Step through the parsing process,Step through the parsing process,1,,,perform single operation at time,perform single operation at time
+"The initialize method is used to start parsing a text. expand expands the first element on the frontier using a single CFG production, and match matches the first element on the frontier against the next text token. backtrack undoes the most recent expand or match operation. step performs a single expand, match, or backtrack operation. parses returns the set of parses that have been found by the parser.",,"Start parsing text
+Expand first element
+Match first element
+Undo expand
+Undo match
+Perform single expand
+Return parses",,,"Start parsing a text
+Match the first element on the frontier
+Undo the most recent expand or match operation
+Perform a single expand",,,1,,,,
+"_history – A list of (rtext, tree, frontier) tripples, containing the previous states of the parser. This history is used to implement the backtrack operation.",,,,,,,,,,,,
+_tried_e – A record of all productions that have been tried for a given tree. This record is used by expand to perform the next untried production.,,,,,,,,,,,,
+_tried_m – A record of what tokens have been matched for a given tree. This record is used by step to decide whether or not to match a token.,,,,,,,,,,,,
+nltk.grammar,,,,,,,,,,,,
+"Return the parser to its state before the most recent match or expand operation. Calling undo repeatedly return the parser to successively earlier states. If no match or expand operations have been performed, undo will make no changes.",,,,,,,,,,,,
+true if an operation was successfully undone.,,,,,,,,,,,,
+bool,,,,,,,,,,,,
+Whether the parser’s current state represents a complete parse.,,,,,,,,,,,,
+bool,,,,,,,,,,,,
+"Expand the first element of the frontier. In particular, if the first element of the frontier is a subtree whose node type is equal to production’s left hand side, then add a child to that subtree for each element of production’s right hand side. If production is not specified, then use the first untried expandable production. If all expandable productions have been tried, do nothing.",,"Expand first element
+Add child to subtree",,,"Expand the first element of the frontier
+Add a child to that subtree for each element of the production's right hand side",,,0,,,,
+"The production used to expand the frontier, if an expansion was performed. If no expansion was performed, return None.",,,,,,,,,,,,
+Production or None,,,,,,,,,,,,
+A list of all the productions for which expansions are available for the current parser state.,,,,,,,,,,,,
+list(Production),,,,,,,,,,,,
+"A list of the tree locations of all subtrees that have not yet been expanded, and all leaves that have not yet been matched.",,,,,,,,,,,,
+list(tuple(int)),,,,,,,,,,,,
+"Start parsing a given text. This sets the parser’s tree to the start symbol, its frontier to the root node, and its remaining text to token['SUBTOKENS'].",,Start parsing text,,,Start parsing a given text,,Start parsing a given text,0,,,,
+"Match the first element of the frontier. In particular, if the first element of the frontier has the same type as the next text token, then substitute the text token into the tree.",,Match first element,,,Match the first element of the frontier,,,0,,,,
+"The token matched, if a match operation was performed. If no match was performed, return None",,,,,,,,,,,,
+str or None,,,,,,,,,,,,
+An iterator that generates parse trees for the sentence.,,Generate parse trees for sentence,,,Generate parse trees for the sentence,,Generate parse trees for the sentence,0,,,generate iterator,"parse trees for sentence
+generate iterator"
+When possible this list is sorted from most likely to least likely.,,,,,,,,,,,sort list,sort list
+sent (list(str)) – The sentence to be parsed,,,,,,,,,,,,parse sentence
+iter(Tree),,,,,,,,,,,,
+An iterator of the parses that have been found by this parser so far.,,,,,,,,,,,find parses,find parses
+list of Tree,,,,,,,,,,,,
+The portion of the text that is not yet covered by the tree.,,,,,,,,,,,,
+list(str),,,,,,,,,,,,
+Change the grammar used to parse texts.,,,,,,,,,,,,parse texts
+grammar (CFG) – The new grammar.,,,,,,,,,,,,
+"Perform a single parsing operation. If an untried match is possible, then perform the match, and return the matched token. If an untried expansion is possible, then perform the expansion, and return the production that it is based on. If backtracking is possible, then backtrack, and return True. Otherwise, return None.",Do single parsing operation,"Perform match
+Return matched token
+Perform expansion
+Return production",,,Perform a single parsing operation,,Perform a single parsing operation,1,,,,
+None if no operation was performed; a token if a match was performed; a production if an expansion was performed; and True if a backtrack operation was performed.,,,,,,,,,,,"perform operation
+perform match
+perform expansion
+perform backtrack operation","perform operation
+perform match
+perform expansion
+perform backtrack operation"
+Production or String or bool,,,,,,,,,,,,
+A partial structure for the text that is currently being parsed. The elements specified by the frontier have not yet been expanded or matched.,,,,,,,,,,,,
+Tree,,,,,,,,,,,,
+A list of all the untried productions for which expansions are available for the current parser state.,,,,,,,,,,,,
+list(Production),,,,,,,,,,,,
+Whether the first element of the frontier is a token that has not yet been matched.,,,,,,,,,,,,
+bool,,,,,,,,,,,,
+A demonstration of the recursive descent parser.,,,,,,,,,,,,
+Bases: nltk.parse.api.ParserI,,,,,,,,,,,,
+"A simple bottom-up CFG parser that uses two operations, “shift” and “reduce”, to find a single parse for a text.",,Find single parse for text,,,Use two operations to find a single parse for the text,,,1,,,"use operations
+use simple bottom-up CFG parser
+find single parse for text",find single parse for text
+"ShiftReduceParser maintains a stack, which records the structure of a portion of the text. This stack is a list of strings and Trees that collectively cover a portion of the text. For example, while parsing the sentence “the dog saw the man” with a typical grammar, ShiftReduceParser will produce the following stack, which covers “the dog saw”:",,,,,,,,,,,,
+"ShiftReduceParser attempts to extend the stack to cover the entire text, and to combine the stack elements into a single tree, producing a complete parse for the sentence.",,"Extend stack to text
+Combine stack elements
+Produce complete parse",,,"Extend the stack to cover the entire text
+Combine the stack elements into a single tree
+Produce a complete parse for the sentence",Produce a complete parse for the sentence,,1,,,"extend stack
+combine stack elements into single tree
+produce complete parse for sentence","combine stack elements into single tree
+produce complete parse for sentence"
+"Initially, the stack is empty. It is extended to cover the text, from left to right, by repeatedly applying two operations:",,,,,,,,,,,,
+“shift” moves a token from the beginning of the text to the end of the stack.,,Move token,,,Move a token from the beginning of the text to the end of the stack,,,0,,,move  from beginning,move  from beginning
+“reduce” uses a CFG production to combine the rightmost stack elements into a single Tree.,,Combine stack elements,,,Use a CFG production to combine the rightmost stack elements into a single tree,,,0,,,,
+"Often, more than one operation can be performed on a given stack. In this case, ShiftReduceParser uses the following heuristics to decide which operation to perform:",,,,,Perform more than one operation on a given stack,Perform more than one operation on a given stack,,1,,,"perform operation on given stack
+use  in case",perform operation on given stack
+Only shift if no reductions are available.,,,,,,,,,,,,
+"If multiple reductions are available, then apply the reduction whose CFG production is listed earliest in the grammar.",,,,,Apply the reduction whose CFG is listed earliest in the grammar,,,1,,,"apply reduction
+list CFG production","apply reduction
+list CFG production"
+"Note that these heuristics are not guaranteed to choose an operation that leads to a parse of the text. Also, if multiple parses exists, ShiftReduceParser will return at most one of them.",,,,,,,,,,,,
+nltk.grammar,,,,,,,,,,,,
+The grammar used by this parser.,,,,,,,,,,,use  by parser,
+An iterator that generates parse trees for the sentence.,,,,,,,,,,,generate iterator,"parse trees for sentence
+generate iterator"
+When possible this list is sorted from most likely to least likely.,,,,,Sort list from most likely to least likely,,,1,,,sort list,sort list
+sent (list(str)) – The sentence to be parsed,,,,,,,,,,,,parse sentence
+iter(Tree),,,,,,,,,,,,
+Set the level of tracing output that should be generated when parsing a text.,Set tracing output level when parsing text,Set tracing level,Set tracing level,Set tracing level,,,,1,,,"set level of tracing
+generate output","set level of tracing
+parse text
+generate output"
+trace (int) – The trace level. A trace level of 0 will generate no tracing output; and higher trace levels will produce more verbose tracing output.,,Generate tracing output,,,"Generate no tracing output
+Produce more verbose tracing output",,"Generate no tracing output
+Produce more verbose tracing output",1,,,,
+None,,,,,,,,,,,,
+Bases: nltk.parse.shiftreduce.ShiftReduceParser,,,,,,,,,,,,
+"A ShiftReduceParser that allows you to setp through the parsing process, performing a single operation at a time. It also allows you to change the parser’s grammar midway through parsing a text.",,"Perform single operation
+Change grammar",,,"Step through the parsing process
+Change the parser's grammar midway through parsing a text","Step through the parsing process
+Change the parser's grammar midway through parsing a text","Step through the parsing process
+Change the parser's grammar midway through parsing a text",1,,,,
+"The initialize method is used to start parsing a text. shift performs a single shift operation, and reduce performs a single reduce operation. step will perform a single reduce operation if possible; otherwise, it will perform a single shift operation. parses returns the set of parses that have been found by the parser.",,"Start parsing text
+Perform shift
+Perform reduce
+Return parses",,,"Start parsing a text
+Perform a single shift operation
+Perform a single reduce operation
+Return the set of parses that have been found by the parser",,Start parsing a text,1,,,,
+"_history – A list of (stack, remaining_text) pairs, containing all of the previous states of the parser. This history is used to implement the undo operation.",,,,,,,,,,,,
+nltk.grammar,,,,,,,,,,,,
+Start parsing a given text. This sets the parser’s stack to [] and sets its remaining text to tokens.,,,,,,,,,,,,
+An iterator that generates parse trees for the sentence.,,Generate parse trees for sentence,Generate parse trees for sentence,Generate parse trees for sentence,Generate parse trees for the sentence,Generate parse trees for the sentence,Generate parse trees for the sentence,1,,,generate iterator,"parse trees for sentence
+generate iterator"
+When possible this list is sorted from most likely to least likely.,,,,,Sort list from most likely to least likely,,,1,,,sort list,sort list
+sent (list(str)) – The sentence to be parsed,,,,,,,,,,,,parse sentence
+iter(Tree),,,,,,,,,,,,
+An iterator of the parses that have been found by this parser so far.,,,,,,,,,,,find parses,find parses
+iter(Tree),,,,,,,,,,,,
+"Use production to combine the rightmost stack elements into a single Tree. If production does not match the rightmost stack elements, then do nothing.",,,,,Use production to combine the rightmost stack elements into a single Tree,,,1,,,,
+"The production used to reduce the stack, if a reduction was performed. If no reduction was performed, return None.",,,,,,,,,,,,
+Production or None,,,,,,,,,,,,
+A list of the productions for which reductions are available for the current parser state.,,,,,,,,,,,,
+list(Production),,,,,,,,,,,,
+The portion of the text that is not yet covered by the stack.,,,,,,,,,,,,
+list(str),,,,,,,,,,,,
+Change the grammar used to parse texts.,,Change grammar,Change grammar,Change grammar,Change the grammar used to parse texts,Change the grammar used to parse texts,Change the grammar used to parse texts,1,,,,parse texts
+grammar (CFG) – The new grammar.,,,,,,,,,,,,
+"Move a token from the beginning of the remaining text to the end of the stack. If there are no more tokens in the remaining text, then do nothing.",Move a token from the beginning of remaining text to end of stack,Move token,Move token,,Move a token from the begining of the remaining text to the end of the stack,,,1,,,,
+True if the shift operation was successful.,,,,,,,,,,,,
+bool,,,,,,,,,,,,
+The parser’s stack.,,,,,,,,,,,,
+list(str and Tree),,,,,,,,,,,,
+"Perform a single parsing operation. If a reduction is possible, then perform that reduction, and return the production that it is based on. Otherwise, if a shift is possible, then perform it, and return True. Otherwise, return False.",Perform single parsing operation,"Perform reduction
+Return production",,Perform reduction,Perform a single parsing operation,Perform a single parsing operation,,1,,,,
+False if no operation was performed; True if a shift was performed; and the CFG production used to reduce if a reduction was performed.,,,,,,,,,,,"perform operation
+perform shift
+perform reduction","perform operation
+perform shift
+perform reduction"
+Production or bool,,,,,,,,,,,,
+"Return the parser to its state before the most recent shift or reduce operation. Calling undo repeatedly return the parser to successively earlier states. If no shift or reduce operations have been performed, undo will make no changes.",Set parser to state before the most recent shift or reduce operation,Return parser,,,Return the parser to its state before the most recent shift or reduce operation,,,0,,,,
+true if an operation was successfully undone.,,,,,,,,,,,,
+bool,,,,,,,,,,,,
+A demonstration of the shift-reduce parser.,,,,,,,,,,,,
+Bases: nltk.parse.api.ParserI,,,,,,,,,,,,
+Interface to the Stanford Parser,,,,,,,,,,,,
+"Use StanfordParser to parse multiple sentences. Takes multiple sentences as a list where each sentence is a list of words. Each sentence will be automatically tagged with this StanfordParser instance’s tagger. If whitespaces exists inside a token, then the token will be treated as separate tokens.",Use Stanford parser to parse multiple sentences,Use StanfordParser,Use StanfordParser,Use StanfordParser,Use StanfordParser to parse multiple sentences,Use StanfordParser to parse multiple sentences,Use StanfordParser to parse multiple sentences,0,,,use StanfordParser,parse multiple sentences
+sentences (list(list(str))) – Input sentences to parse,,,,,,,,,,,,
+iter(iter(Tree)),,,,,,,,,,,,
+"Use StanfordParser to parse a sentence. Takes a sentence as a string; before parsing, it will be automatically tokenized and tagged by the Stanford Parser.",Use Stanford parser to parse a single sentence,Use StanfordParser,Use StanfordParser,Use StanfordParser,Use StanfordParser to parse a sentence,Use StanfordParser to parse a sentence,Use StanfordParser to parse a sentence,0,,,use StanfordParser,parse sentence
+sentence (str) – Input sentence to parse,,,,,,,,,,,,
+iter(Tree),,,,,,,,,,,,
+Use StanfordParser to parse multiple sentences. Takes multiple sentences as a list of strings. Each sentence will be automatically tokenized and tagged by the Stanford Parser.,Use Stanford parser to parse multiple sentences,Use StanfordParser,Use StanfordParser,Use StanfordParser,Use StanfordParser to parse multiple sentences,Use StanfordParser to parse multiple sentences,Use StanfordParser to parse multiple sentences,0,,,use StanfordParser,parse multiple sentences
+sentences (list(str)) – Input sentences to parse,,,,,,,,,,,,
+iter(iter(Tree)),,,,,,,,,,,,
+"Use StanfordParser to parse a sentence. Takes a sentence as a list of (word, tag) tuples; the sentence must have already been tokenized and tagged.",Use Stanford parser to parse a single sentence,Use StanfordParser,Use StanfordParser,Use StanfordParser,Use StanfordParser to parse a sentence,Use StanfordParser to parse a sentence,Use StanfordParser to parse a sentence,0,,,use StanfordParser,parse sentence
+"sentence (list(tuple(str, str))) – Input sentence to parse",,,,,,,,,,,,
+iter(Tree),,,,,,,,,,,,
+"Use StanfordParser to parse multiple sentences. Takes multiple sentences where each sentence is a list of (word, tag) tuples. The sentences must have already been tokenized and tagged.",Use Stanford parser to parse multiple sentences,Use StanfordParser,Use StanfordParser,Use StanfordParser,Use StanfordParser to parse multiple sentences,Use StanfordParser to parse multiple sentences,Use StanfordParser to parse multiple sentences,0,,,use StanfordParser,parse multiple sentences
+"sentences (list(list(tuple(str, str)))) – Input sentences to parse",,,,,,,,,,,,
+iter(iter(Tree)),,,,,,,,,,,,
+Bases: nltk.parse.stanford.GenericStanfordParser,,,,,,,,,,,,
+Bases: nltk.parse.stanford.GenericStanfordParser,,,,,,,,,,,,
+Currently unimplemented because the neural dependency parser (and the StanfordCoreNLP pipeline class) doesn’t support passing in pre- tagged tokens.,,,,,,,,,,,pass  in pre,pass  in pre
+Bases: nltk.parse.stanford.GenericStanfordParser,,,,,,,,,,,,
+Bases: object,,,,,,,,,,,,
+Class for holding configuration which is the partial analysis of the input sentence. The transition based parser aims at finding set of operators that transfer the initial configuration to the terminal configuration.,,,,,Find set of operators that transfer the initial configuration to the terminal configuration,,,1,,,find set of operators,find set of operators
+Stack: for storing partially proceeded words,,,,,,,,,,,,
+Buffer: for storing remaining input words,,,,,,,,,,,store remaining input words,store remaining input words
+Set of arcs: for storing partially built dependency tree,,,,,,,,,,,"store built dependency tree
+set  of arcs
+set  for storing","store built dependency tree
+set  of arcs
+set  for storing"
+This class also provides a method to represent a configuration as list of features.,,,,,Represent a configuration as a list of features,Represent a configuration as a list of features,Represent a configuration as a list of features,1,,,provide method,provide method
+"Extract the set of features for the current configuration. Implement standard features as describe in Table 3.2 (page 31) in Dependency Parsing book by Sandra Kubler, Ryan McDonal, Joakim Nivre. Please note that these features are very basic. :return: list(str)",Extract set of features for current configuration,"Extract features
+Implement features",,,Extract the set of features for the current configuration,,Extract the set of features for the current configuration,1,,,"describe  in Table
+describe  in Dependency parsing book",
+Bases: object,,,,,,,,,,,,
+"This class defines a set of transition which is applied to a configuration to get another configuration Note that for different parsing algorithm, the transition is different.",,Define set of transitions,,,Define a set of transition,,,0,,,"define set of transition
+get configuration Note
+apply set of transition
+apply set to configuration","get configuration Note
+apply set of transition
+apply set to configuration"
+is the current configuration,,,,,,,,,,,,
+:return : A new configuration or -1 if the pre-condition is not satisfied,,,,,,,,,,,,
+is the current configuration,,,,,,,,,,,,
+:return : A new configuration or -1 if the pre-condition is not satisfied,,,,,,,,,,,,
+is the current configuration,,,,,,,,,,,,
+:return : A new configuration or -1 if the pre-condition is not satisfied,,,,,,,,,,,,
+is the current configuration,,,,,,,,,,,,
+:return : A new configuration or -1 if the pre-condition is not satisfied,,,,,,,,,,,,
+Bases: nltk.parse.api.ParserI,,,,,,,,,,,,
+Class for transition based parser. Implement 2 algorithms which are “arc-standard” and “arc-eager”,,,,,,,,1,,,implement algorithms,implement algorithms
+"depgraphs (list(DependencyGraph)) – the list of test sentence, each sentence is represented as a dependency graph where the ‘head’ information is dummy",,,,,,Represent sentence as a dependency graph,,1,,,,
+modelfile (str) – the model file,,,,,,,,,,,,
+list (DependencyGraph) with the ‘head’ and ‘rel’ information,,,,,,,,,,,,
+:param depgraphs : list of DependencyGraph as the training data :type depgraphs : DependencyGraph :param modelfile : file name to save the trained model :type modelfile : str,,,,,,,,,,,save trained model,save trained model
+###################### Check the Initial Feature ########################,,Check initial feature,,,Check the initial feature,,,0,,,,
+"###################### Check The Transition ####################### Check the Initialized Configuration >>> print(conf) Stack : [0] Buffer : [1, 2, 3, 4, 5, 6, 7, 8, 9] Arcs : []",,"Check transition
+Check configuration",,,"Check the transition
+Check the initialized configuration",,,1,,,,
+Do some transition checks for ARC-STANDARD,,,,,,,,,,,,
+"Middle Configuration and Features Check >>> print(conf) Stack : [0, 3, 5, 6] Buffer : [8, 9] Arcs : [(2, ‘ATT’, 1), (3, ‘SBJ’, 2), (5, ‘ATT’, 4), (8, ‘ATT’, 7)]",,,,,,,,,,,,
+"Terminated Configuration Check >>> print(conf) Stack : [0] Buffer : [] Arcs : [(2, ‘ATT’, 1), (3, ‘SBJ’, 2), (5, ‘ATT’, 4), (8, ‘ATT’, 7), (6, ‘PC’, 8), (5, ‘ATT’, 6), (3, ‘OBJ’, 5), (3, ‘PU’, 9), (0, ‘ROOT’, 3)]",,,,,,,,,,,,
+Do some transition checks for ARC-EAGER,,,,,,,,,,,,
+###################### Check The Training Function #######################,,Check training function,,,Check the training function,,,0,,,,
+"A. Check the ARC-STANDARD training >>> import tempfile >>> import os >>> input_file = tempfile.NamedTemporaryFile(prefix=’transition_parse.train’, dir=tempfile.gettempdir(), delete=False)",,Check ARC-STANDARD training,,,Check the ARC-STANDARD training ,,,0,,,check ARC-STANDARD training,check ARC-STANDARD training
+Check the ARC-EAGER training,,Check ARC-EAGER training,,,Check the ARC-EAGER training,,,0,,,check ARC-EAGER training,check ARC-EAGER training
+###################### Check The Parsing Function ########################,,Check parsing function,,,Check the parsing function,,,0,,,,
+Check the ARC-STANDARD parser,,Check ARC-STANDARD parser,,,Check the ARC-STANDARD PARSER,,,0,,,check ARC-STANDARD parser,check ARC-STANDARD parser
+"B. Check the ARC-EAGER parser >>> result = parser_eager.parse([gold_sent], ‘temp.arceager.model’) >>> de = DependencyEvaluator(result, [gold_sent]) >>> de.eval() >= (0, 0) True",,Check ARC-EAGER parser,,,Check the ARC-STANDARD PARSER,,,0,,,,
+Remove test temporary files >>> remove(‘temp.arceager.model’) >>> remove(‘temp.arcstd.model’),Remove test temporary files,Remove test files,,,Remove test temporary files,,,0,,,,
+Note that result is very poor because of only one training example.,,,,,,,,,,,,
+Utility functions for parsers.,,,,,,,,,,,,
+Bases: object,,,,,,,,,,,,
+Unit tests for CFG.,,,,,,,,,,,,
+grammatical (accept) and,,,,,,,,,,,,
+ungrammatical (reject).,,,,,,,,,,,,
+"If a sentence should parse accordng to the grammar, the value of trees will be a non-empty list. If a sentence should be rejected according to the grammar, then the value of trees will be None.",,"Parse sentence
+Reject sentence",,Parse sentence,"Parse sentence according to the grammar
+Reject sentence according to the grammar",Parse sentence according to the grammar,"Parse sentence according to the grammar
+Reject sentence according to the grammar",1,,,,
+Parses a string with one test sentence per line. Lines can optionally begin with:,,,,,,,,,,,,
+"a bool, saying if the sentence is grammatical or not, or",,,,,,,,,,,,
+"an int, giving the number of parse trees is should have,",,,,,,,,,,,,
+"The result information is followed by a colon, and then the sentence. Empty lines and lines beginning with a comment char are ignored.",,,,,,,,,,,"ignore empty lines
+ignore lines","ignore empty lines
+ignore lines"
+"a list of tuple of sentences and expected results, where a sentence is a list of str, and a result is None, or bool, or int",,,,,,,,,,,,
+comment_chars – str of possible comment characters.,,,,,,,,,,,,
+"encoding – the encoding of the string, if it is binary",,,,,,,,,,,,
+"Load a grammar from a file, and build a parser based on that grammar. The parser depends on the grammar format, and might also depend on properties of the grammar itself.",Load grammar from file and build parser on grammar,Build parser,Build parser,,"Load a grammar from a file
+Build a parser based on that grammar","Load a grammar from a file
+Build a parser based on that grammar","Load a grammar from a file
+Build a parser based on that grammar",1,,,load grammar from file,build parser
+cfg' (CFGs: CFG),,,,,,,,,,,,
+pcfg' (probabilistic CFGs: PCFG),,,,,,,,,,,,
+fcfg' (feature-based CFGs: FeatureGrammar),,,,,,,,,,,,
+"grammar_url (str) – A URL specifying where the grammar is located. The default protocol is nltk:, which searches for the file in the the NLTK data package.",,Specify grammar,,,"Specify where grammar is located
+Search for the file in the NLTK data package",,"Specify where grammar is located
+Search for the file in the NLTK data package",1,,,,
+trace (int) – The level of tracing that should be used when parsing a text. 0 will generate no tracing output; and higher numbers will produce more verbose tracing output.,,Generate tracing output,,,"Generate no tracing output
+Produce more verbose tracing output","Generate no tracing output
+Produce more verbose tracing output","Generate no tracing output
+Produce more verbose tracing output",1,,,,
+"parser – The class used for parsing; should be ChartParser or a subclass. If None, the class depends on the grammar format.",,,,,,,,,,,use  for parsing,
+"chart_class – The class used for storing the chart; should be Chart or a subclass. Only used for CFGs and feature CFGs. If None, the chart class depends on the grammar format.",,,,,,,,,,,"store chart
+use  for storing
+use  for cfgs
+use  for feature",store chart
+beam_size (int) – The maximum length for the parser’s edge queue. Only used for probabilistic CFGs.,,,,,,,,,,,use  for probabilistic cfgs,
+load_args – Keyword parameters used when loading the grammar. See data.load for more information.,,,,,,,,,,,load grammar,
+A module to convert a single POS tagged sentence into CONLL format.,,Convert sentence into CONLL format,Convert sentence into CONLL format,,Convert a single POS tagged sentence into CONLL format,Convert a single POS tagged sentence into CONLL format,Convert a single POS tagged sentence into CONLL format,0,,,convert single POS,convert single POS
+"sentence (list(tuple(str, str))) – A single input sentence to parse",,,,,,,,,,,,
+iter(str),,,,,,,,,,,,
+a generator yielding a single sentence in CONLL format.,,,,,Yield single sentence in CONLL format,Yield single sentence in CONLL format,Yield single sentence in CONLL format,1,,,,
+"A module to convert the a POS tagged document stream (i.e. list of list of tuples, a list of sentences) and yield lines in CONLL format. This module yields one line per word and two newlines for end of sentence.",,Convert document stream,,,Convert the POS tagged document stream and yield lines in CONLL format,Convert the POS tagged document stream and yield lines in CONLL format,Convert the POS tagged document stream and yield lines in CONLL format,1,,,convert POS,convert POS
+sentences – Input sentences to parse,,,,,,,,,,,,
+iter(str),,,,,,,,,,,,
+a generator yielding sentences in CONLL format.,,,,,,,,,,,,
+Bases: nltk.parse.api.ParserI,,,,,,,,,,,,
+"A bottom-up PCFG parser that uses dynamic programming to find the single most likely parse for a text. The ViterbiParser parser parses texts by filling in a “most likely constituent table”. This table records the most probable tree representation for any given span and node value. In particular, it has an entry for every start index, end index, and node value, recording the most likely subtree that spans from the start index to the end index, and has the given node value.",,Parse text,,,"Use dynamic programming to find the single most likely parse for a text
+Fill in a most likely constituent table
+Record the most probably tree representation for any given span and node value",Use dynamic programming to find the single most likely parse for a text,"Use dynamic programming to find the single most likely parse for a text
+Fill in a most likely constituent table",1,,,,
+"The ViterbiParser parser fills in this table incrementally. It starts by filling in all entries for constituents that span one element of text (i.e., entries where the end index is one greater than the start index). After it has filled in all table entries for constituents that span one element of text, it fills in the entries for constitutants that span two elements of text. It continues filling in the entries for constituents spanning larger and larger portions of the text, until the entire table has been filled. Finally, it returns the table entry for a constituent spanning the entire text, whose node value is the grammar’s start symbol.",,,,,"Fill all entries for constituents
+Return the table entry for a constituent",,"Fill all entries for constituents
+Return the table entry for a constituent",1,,,,
+"In order to find the most likely constituent with a given span and node value, the ViterbiParser parser considers all productions that could produce that node value. For each production, it finds all children that collectively cover the span and have the node values specified by the production’s right hand side. If the probability of the tree formed by applying the production to the children is greater than the probability of the current entry in the table, then the table is updated with this new tree.",,,,,"Find the most likely constituent with a given span and node value
+Conder all productions that could produce that node value
+Find all children that colelctively cover the span
+Update table with this new tree","Find the most likely constituent with a given span and node value
+",,1,,,,
+A pseudo-code description of the algorithm used by ViterbiParser is:,,,,,,,,,,,,
+_grammar – The grammar used to parse sentences.,,,,,,,,,,,,parse sentences
+_trace – The level of tracing output that should be generated when parsing a text.,,,,,,,,,,,generate output,"parse text
+generate output"
+The grammar used by this parser.,,,,,,,,,,,use  by parser,
+An iterator that generates parse trees for the sentence.,,Generate parse trees,,,Generate parse trees for the sentence,Generate parse trees for the sentence,Generate parse trees for the sentence,1,,,generate iterator,"parse trees for sentence
+generate iterator"
+When possible this list is sorted from most likely to least likely.,,,,,Sort list from most likely to least likely,,,1,,,sort list,sort list
+sent (list(str)) – The sentence to be parsed,,,,,,,,,,,,parse sentence
+iter(Tree),,,,,,,,,,,,
+Set the level of tracing output that should be generated when parsing a text.,Set level of tracing output when parsing text,Set tracing level,Set tracing level,Set tracing level,Set the level of tracing output that should be generated when parsing a text,Set the level of tracing output that should be generated when parsing a text,Set the level of tracing output that should be generated when parsing a text,0,,,"set level of tracing
+generate output","set level of tracing
+parse text
+generate output"
+trace (int) – The trace level. A trace level of 0 will generate no tracing output; and higher trace levels will produce more verbose tracing output.,,Generate tracing output,,,"Generate no tracing output
+Produce more verbose tracing output",,"Generate no tracing output
+Produce more verbose tracing output",1,,,,
+None,,,,,,,,,,,,
+"A demonstration of the probabilistic parsers. The user is prompted to select which demo to run, and how many parses should be found; and then each parser is run on the same demo, and a summary of the results are displayed.",,,,,,,,,,,,
+NLTK Parsers,,,,,,,,,,,,
+"Classes and interfaces for producing tree structures that represent the internal organization of a text. This task is known as “parsing” the text, and the resulting tree structures are called the text’s “parses”. Typically, the text is a single sentence, and the tree structure represents the syntactic structure of the sentence. However, parsers can also be used in other domains. For example, parsers can be used to derive the morphological structure of the morphemes that make up a word, or to derive the discourse structure for a set of utterances.",,,,,Parse the text,Parse the text,Parse the text,1,,,,
+"Sometimes, a single piece of text can be represented by more than one tree structure. Texts represented by more than one tree structure are called “ambiguous” texts. Note that there are actually two ways in which a text can be ambiguous:",,,,,,,,,,,,
+The text has multiple correct parses.,,,,,,,,,,,,
+There is not enough information to decide which of several candidate parses is correct.,,,,,Decide which of several candidate parses is correct,,Decide which of several candidate parses is correct,1,,,,
+"However, the parser module does not distinguish these two types of ambiguity.",,,,,Distinguish two types of abmiguity,,,1,,,,
+"The parser module defines ParserI, a standard interface for parsing texts; and two simple implementations of that interface, ShiftReduceParser and RecursiveDescentParser. It also contains three sub-modules for specialized kinds of parsing:",,,,,Parse text,Parse text,Parse text,1,,,,
+"nltk.parser.chart defines chart parsing, which uses dynamic programming to efficiently parse texts.",,,,,"Define chart parsing
+Use dynamic programming to efficiently parse texts",Use dynamic programming to efficiently parse texts,Use dynamic programming to efficiently parse texts,1,,,"define chart parsing
+use dynamic programming to efficiently parse texts
+use chart parsing to efficiently parse texts",
+"nltk.parser.probabilistic defines probabilistic parsing, which associates a probability with each parse.",,,,,"Define probabilistic parsing
+Associate a probability with each parse",Associate a probability with each parse,"Define probabilistic parsing
+Associate a probability with each parse",1,,,define probabilistic parsing,
