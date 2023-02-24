@@ -10,6 +10,10 @@
 
 - `Data` directory contains interview theming and coding
 
+- `Summary\survey\responses.csv` contains the survey data
+
+- `Summary\survey\responses_filtered.csv` contains the filtered survey data of the 26 responses where at least 1 question was answered
+
 ## Installation Instructions
 ### Requirements
 Python libraries are in the `requirements.txt` file. However, this project additionally needs:
