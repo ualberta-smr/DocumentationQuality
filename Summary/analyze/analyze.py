@@ -290,8 +290,27 @@ def debug_metrics(language, library_name, doc_url, gh_url, domain):
 
     repo_path = clone_repo(gh_url, True)
     print("Done cloning")
-    api_methods_examples(language, library_name, doc_url, repo_path, False)
-    api_methods_examples(language, library_name, doc_url, repo_path, True)
+    methods_linked, methods, classes_linked, classes = api_methods_examples(language, library_name, doc_url, repo_path, False)
+    add_or_update_library_record({"library_name": library_name,
+                                  "gh_url": gh_url,
+                                  "doc_url": doc_url,
+                                  "signature_methods": methods_linked,
+                                  "signature_classes": classes_linked,
+                                  "methods": methods,
+                                  "classes": classes,
+                                  "last_updated": datetime.datetime.utcnow()
+                                  })
+
+    methods_linked, methods, classes_linked, classes = api_methods_examples(language, library_name, doc_url, repo_path, True)
+    add_or_update_library_record({"library_name": library_name,
+                                  "gh_url": gh_url,
+                                  "doc_url": doc_url,
+                                  "method_examples": methods_linked,
+                                  "class_examples": classes_linked,
+                                  "methods": methods,
+                                  "classes": classes,
+                                  "last_updated": datetime.datetime.utcnow()
+                                  })
     print("Done method linking")
     text_score, text_ease, code_score, code_ease = get_readability(library_name,
                                                                    language,
