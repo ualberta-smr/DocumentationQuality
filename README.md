@@ -8,7 +8,7 @@ This repository contains:
 1. The source code for the Django webtool prototype that provides a summary and service that runs our implemented metrics on a given library documentation web link
 2. The source code implementation for the different metrics
 3. The data for the survey study we conducted using our webtool prototype
-4. Scripts to analyze the responses of the built-in survey to the Django webtool
+4. Script to analyze the responses of the built-in survey to the Django webtool
 5. The ground truth datasets for both the task-related component (which includes the task extraction and task linking with code examples), and the documentation linking component, which compares the public source code methods/classes of a library with what is in its documentation, as well as whether the documentation contains a code example for that method/class.
 
 
@@ -94,14 +94,23 @@ The project can now be accessed through a web browser
 127.0.0.1:8000/docquality
 ```
 
-### Locally
-If you want to run the metric implementations locally you can run this Python file: `Summary/analyze.py` and include a call with your interested library documentation link. For example,
+### Manually
+If you want to run the metric implementations manually you can run this Python file: `Summary/analyze.py` and include a call with your interested library documentation link. For example,
 ```python
 # debug_metrics(language, library_name, doc_url, gh_url, domain)
 debug_metrics("python", "orjson", "https://github.com/ijl/orjson", "https://github.com/ijl/orjson.git", "json")
 ```
 
 Note that the MySQL database must still be setup (or you can modify method `debug_metrics` in `Summary/analyze/analyze.py` to print values instead). 
+
+The debug_metrics method can also be modified to include or exclude which metrics you want to run by commenting out the call to that metric. By default, all metrics are run and database updates are made.
+
+# Running the survey scripts
+The survey script to analyze survey responses can be found in this directory:
+`Summary/survey/main.py`.
+
+You can simply run `./main.py` in this directory to run the script with the `responses.csv` and `responses_filtered.csv` found in the same directory. This will create (or update) the plots found in the `Summary/survey/plots/` directory.
+
 
 ## Limitations
 1. The service currently requires the library's GitHub repo to contain its source code in a `src` or `<library_name>` directory, otherwise the scripts are not able to find the source code. For example, NLTK stores its source code under the directory `nltk`, while CoreNLP stores its source code under a `src` directory.
