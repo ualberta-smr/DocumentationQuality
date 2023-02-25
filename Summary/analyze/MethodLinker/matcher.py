@@ -98,7 +98,7 @@ def get_source_files(repo_name, repo_path):
     if src_dir:
         for root, dirs, files in os.walk(src_dir):
             for file in files:
-                if "test" in root:
+                if root == "test":
                     break
                 if re.search(EXTENSION, file) and "test" not in file.lower():
                     source_files.append(os.path.normpath(root + "/" + file))

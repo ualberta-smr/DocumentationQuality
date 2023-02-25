@@ -145,7 +145,7 @@ def clone_repo(repo_url, clone):
             if os.path.exists(repo_path):
                 rmtree(repo_path, onerror=rmtree_access_error_handler)
             Repo.clone_from(repo_url, repo_path)
-    except:
+    except Exception as e:
         repo_path = None
     return repo_path
 

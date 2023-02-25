@@ -25,7 +25,7 @@ def find_python_arguments(source_file):
                     if not re.match(private_function, file_item.name):
                         func_name, required, optionals = _extract_python_ast_args(file_item, False)
                         functions.append(((os.path.split(os.path.split(source_file)[0])[1] + "." + func_name), required, optionals))
-        except:
+        except Exception as e:
             pass
     return functions
 

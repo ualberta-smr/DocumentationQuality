@@ -32,9 +32,9 @@ if __name__ == '__main__':
     # debug_metrics("javascript", "qunit",
     #               "https://api.qunitjs.com/",
     #               "https://github.com/qunitjs/qunit.git", "testing")
-    debug_metrics("python", "nltk",
-                    "https://web.archive.org/web/20210725152853/https://www.nltk.org/api/nltk.tag.html",
-                    "https://github.com/nltk/nltk.git", "nlp")
+    # debug_metrics("python", "nltk",
+    #                 "https://web.archive.org/web/20210725152853/https://www.nltk.org/api/nltk.tag.html",
+    #                 "https://github.com/nltk/nltk.git", "nlp")
     # https://web.archive.org/web/20210417122335/https://www.nltk.org/api/nltk.parse.html
     # https://web.archive.org/web/20210725152853/https://www.nltk.org/api/nltk.tag.html
     # http://web.archive.org/web/20211017224709/https://github.com/stleary/JSON-java
@@ -48,3 +48,9 @@ if __name__ == '__main__':
     # https://api.jquery.com/jQuery.get
     # debug_metrics("javascript", "jQuery", "https://api.jquery.com/",
     #                 "https://github.com/jquery/jquery.git", "dom manipulation")
+    # debug_metrics("python", "pytest",
+    #               "https://docs.pytest.org/en/7.2.x/",
+    #               "https://github.com/pytest-dev/pytest", "")
+    debug_metrics("python", "pandas",
+                  "https://pandas.pydata.org/docs/",
+                  "https://github.com/pandas-dev/pandas", "")
