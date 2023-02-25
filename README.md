@@ -1,9 +1,7 @@
 # Overview
----
 This project contains the code in order to run a webtool prototype that allows users to evaluate software documentation quality. We implement various metrics to evaluate documentation quality, and explore presenting the metrics in a summary that allows developers a quick understanding of the documentation quality for a library. The webtool allows users to submit a link to a library's online documentation and presents a summary with our calculated metrics. This will aid developers in deciding which library to integrate into their own project, based on the quality rating of the prospective library documentation without implemented metrics. 
 
 # What is in this repo:
----
 This repository contains the source code for:
 
 1. The Django webtool prototype that provides a summary and service that runs our implemented metrics on a given library documentation web link
@@ -15,7 +13,6 @@ This repository contains the source code for:
 
 
 ## Data
----
 - `Data` directory contains interview theming and coding
   - `Data/DocLinkingGT` contains CSVs with the extracted documentation code examples and source code references from different software libraries. Each of the CSVs contains information about what code/example was found, what documentation page it was found on, and what source code file it is referring to
   - `Data/Interview` contains coded responses from the interview study (not full transcripts) as well as a text document containing a summary of the free discussion section of the interview.
