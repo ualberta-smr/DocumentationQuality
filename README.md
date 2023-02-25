@@ -19,6 +19,7 @@ This repository contains:
   - `Data/Interview` contains coded responses from the interview study (not full transcripts) as well as a text document containing a summary of the free discussion section of the interview.
   - `Data/TaskComponent` contains CSVs with either manually extracted tasks from different library documentation pages, or the manually linked code examples with paragraphs from the library documentation.
   - `Data/DocumentationAspects` contains CSVs which show out intermediate steps in aggregating the existing literature and extracting and defining documentation aspects that we later filter and decide which to create/find metrics for
+  - `Data/task_data.sql` contains a MySQL dump of the database used to store the evaluation of our metrics on various software libraries during the course of the survey study. It also contains the raw survey responses.
 
 - `Summary/survey/responses.csv` contains the raw survey data of all 173 unique session key accesses.
 
@@ -94,8 +95,13 @@ The project can now be accessed through a web browser
 127.0.0.1:8000/docquality
 ```
 
-### Manually
-If you want to run the metric implementations manually you can run this Python file: `Summary/analyze.py` and include a call with your interested library documentation link. For example,
+### Loading the database
+To load the database with our provided existing data, you can run:
+
+`mysql -u [user] -p task_data < Data/task_data.sql`
+
+### Separately triggering metrics scripts
+If you want to run the metric implementations separately from running the webpage you can run this Python file: `Summary/analyze.py` and include a call with your interested library documentation link. For example,
 ```python
 # debug_metrics(language, library_name, doc_url, gh_url, domain)
 debug_metrics("python", "orjson", "https://github.com/ijl/orjson", "https://github.com/ijl/orjson.git", "json")
@@ -105,7 +111,7 @@ Note that the MySQL database must still be setup (or you can modify method `debu
 
 The debug_metrics method can also be modified to include or exclude which metrics you want to run by commenting out the call to that metric. By default, all metrics are run and database updates are made.
 
-# Running the survey scripts
+# Analyzing the survey data
 The survey script to analyze survey responses can be found in this directory:
 `Summary/survey/main.py`.
 
