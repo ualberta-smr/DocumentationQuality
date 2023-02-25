@@ -13,11 +13,20 @@ This repository contains:
 
 
 
+<<<<<<< HEAD
 ## Data Structure
 - The `Data` directory contains interview theming and coding
   - `Data/DocLinkingGT` contains CSVs with the extracted documentation code examples and source code references from different software libraries. Each of the CSVs contains information about what code/example was found, what documentation page it was found on, and what source code file it is referring to.
   - `Data/Interview` contains coded responses from the interview study (not full transcripts) as well as a text document containing a summary of the free discussion section of the interview.
   - `Data/TaskComponent` contains CSVs with either manually extracted tasks from different library documentation pages, or the manually linked code examples with paragraphs from the library documentation.
+=======
+## Data
+- `Data` directory contains interview theming and coding
+  - `Data\DocLinkingGT` contains CSVs with the extracted documentation code examples and source code references from different software libraries. Each of the CSVs contains information about what code/example was found, what documentation page it was found on, and what source code file it is referring to
+  - `Data\Interview` contains coded responses from the interview study (not full transcripts) as well as a text document containing a summary of the free discussion section of the interview.
+  - `Data\TaskComponent` contains CSVs with either manually extracted tasks from different library documentation pages, or the manually linked code examples with paragraphs from the library documentation.
+  - `Data\DocumentationAspects` contains CSVs which show out intermediate steps in aggregating the existing literature and extracting and defining documentation aspects that we later filter and decide which to create/find metrics for
+>>>>>>> 2d28742 (Update README)
 
 - `Summary\survey\responses.csv` contains the raw survey data of all 173 unique session key accesses.
 
@@ -35,9 +44,13 @@ This repository contains:
 `Summary/analyze/HCI/checklist.py`
 
 ### Regex expressions
+<<<<<<< HEAD
 We use various regex expressions in our metric implementations. To match the different method calls for the different languages, the regex used can be found in the respective `<language>_matcher.py` file in the `Summary/analyze/MethodLinker/` directory. For examples the regex used to match Python function calls can be found in `Summary/analyze/MethodLinker/python_matcher.py`.
 
 # Installing and Running the Web tool (locally)
+=======
+We use various regex expressions in our metric implementations. To match the different method calls for the different languages, the regex used can be found in the respective `<language>_matcher.py` file in the `Summary\analyze\MethodLinker` directory. For example, the regex used to match Python function calls can be found in `Summary\analyze\MethodLinker\python_matcher.py`.
+>>>>>>> 2d28742 (Update README)
 
 ## Requirements
 Python dependencies are in the `requirements.txt` file. Please run `python install -r requirements.txt`. This project additionally needs:
