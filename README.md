@@ -1,5 +1,7 @@
 # Overview
-This project contains the code in order to run a webtool prototype that allows users to evaluate software documentation quality. We implement various metrics to evaluate documentation quality, and explore presenting the metrics in a summary that allows developers a quick understanding of the documentation quality for a library. The webtool allows users to submit a link to a library's online documentation and presents a summary with our calculated metrics. This will aid developers in deciding which library to integrate into their own project, based on the quality rating of the prospective library documentation without implemented metrics. 
+This repository contains the source code and data to replicate the creation of a webtool prototype to measure software library documentation quality. The source code implementation of metrics is also provided. For this project we implement various metrics to evaluate documentation quality, and explore presenting the metrics in a summary that allows developers a quick understanding of the documentation quality for a library. The webtool allows users to submit a link to a library's online documentation and presents a summary with our calculated metrics. This will aid developers in deciding which library to integrate into their own project, based on the quality rating of the prospective library documentation without implemented metrics. 
+
+This is the artifact for the anonymous MSR 2023 submission titled “Evaluating Software Documentation Quality”.
 
 # What is in this repo:
 This repository contains the source code for:
