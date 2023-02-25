@@ -1,20 +1,20 @@
 # Overview
-This project contains the code in order to run a webtool prototype that allows users to evaluate software documentation quality. We implement various metrics to evaluate documentation quality, and explore presenting the metrics in a summary that allows developers a quick understanding of the documentation quality for a library. The webtool allows users to submit a link to a library's online documentation and presents a summary with our calculated metrics. This will aid developers in deciding which library to integrate into their own project, based on the quality rating of the prospective library documentation without implemented metrics. 
+This is the artfiact for the anonymous MSR 2023 paper titled "Evaluating Software Documentation Quality". We implement various metrics to evaluate documentation quality, and explore presenting the metrics in a summary (webtool) that allows developers a quick understanding of the documentation quality for a library. The webtool allows users to submit a link to a library's online documentation and presents a summary with our calculated metrics. This will aid developers in deciding which library to integrate into their own project, based on the quality rating of the prospective library documentation without implemented metrics. 
 
 # What is in this repo:
-This repository contains the source code for:
+This repository contains:
 
-1. The Django webtool prototype that provides a summary and service that runs our implemented metrics on a given library documentation web link
+1. The source code for the Django webtool prototype that provides a summary and service that runs our implemented metrics on a given library documentation web link
 2. The source code implementation for the different metrics
 3. The data for the survey study we conducted using our webtool prototype
 4. Scripts to analyze the responses of the built-in survey to the Django webtool
-5. The ground truth datasets for both the task component (which includes the task extraction and task linking with code examples), and the documentation linking component, which compares the public source code methods/classes of a library with what is on its documentation, as well as whether the documentation contains a code example for that method/class.
+5. The ground truth datasets for both the task-related component (which includes the task extraction and task linking with code examples), and the documentation linking component, which compares the public source code methods/classes of a library with what is in its documentation, as well as whether the documentation contains a code example for that method/class.
 
 
 
-## Data
-- `Data` directory contains interview theming and coding
-  - `Data/DocLinkingGT` contains CSVs with the extracted documentation code examples and source code references from different software libraries. Each of the CSVs contains information about what code/example was found, what documentation page it was found on, and what source code file it is referring to
+## Data Structure
+- The `Data` directory contains interview theming and coding
+  - `Data/DocLinkingGT` contains CSVs with the extracted documentation code examples and source code references from different software libraries. Each of the CSVs contains information about what code/example was found, what documentation page it was found on, and what source code file it is referring to.
   - `Data/Interview` contains coded responses from the interview study (not full transcripts) as well as a text document containing a summary of the free discussion section of the interview.
   - `Data/TaskComponent` contains CSVs with either manually extracted tasks from different library documentation pages, or the manually linked code examples with paragraphs from the library documentation.
 
@@ -28,17 +28,18 @@ This repository contains the source code for:
 `Summary/analyze/TaskExtractor/properties/config.properties`
 
 - Updated verb lists for Task Extraction are found in this directory:
-`Summary/analyze/TaskExtractor/properties`
+`Summary/analyze/TaskExtractor/properties/`
 
 - HCI Checklist Heuristics found in this file:
 `Summary/analyze/HCI/checklist.py`
 
 ### Regex expressions
-We use various regex expressions in our metric implementations. To match the different method calls for the different languages, the regex used can be found in the respective `<language>_matcher.py` file in the `Summary\analyze\MethodLinker` directory. For examples the regex used to match Python function calls can be found in `Summary\analyze\MethodLinker\python_matcher.py`.
+We use various regex expressions in our metric implementations. To match the different method calls for the different languages, the regex used can be found in the respective `<language>_matcher.py` file in the `Summary/analyze/MethodLinker/` directory. For examples the regex used to match Python function calls can be found in `Summary/analyze/MethodLinker/python_matcher.py`.
 
-# Installation Instructions
+# Installing and Running the Web tool (locally)
+
 ## Requirements
-Python libraries are in the `requirements.txt` file. However, this project additionally needs:
+Python dependencies are in the `requirements.txt` file. Please run `python install -r requirements.txt`. This project additionally needs:
 1. MySQL Server 8.0 ([Installation guide](https://dev.mysql.com/doc/mysql-installation-excerpt/8.0/en/), [Downloads](https://dev.mysql.com/downloads/mysql/))
 
 ## Installation
