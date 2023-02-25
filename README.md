@@ -10,6 +10,9 @@ This repository contains:
 3. The data for the survey study we conducted using our webtool prototype
 4. Script to analyze the responses of the built-in survey to the Django webtool
 5. The ground truth datasets for both the task-related component (which includes the task extraction and task linking with code examples), and the documentation linking component, which compares the public source code methods/classes of a library with what is in its documentation, as well as whether the documentation contains a code example for that method/class.
+6. Data of our interview coding 
+7. Data of our intermediate steps from analyzing existing literature to defining documentation aspects and selecting documentation aspects
+8. A MySQL database dump of evaluated library documentation
 
 
 
