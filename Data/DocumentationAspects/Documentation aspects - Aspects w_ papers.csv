@@ -1,0 +1,104 @@
+Raw,Refined,Papers
+Accessibility,Accessibility,A Study of the Documentation Essential to Software Maintenance
+Accessibility,Accessibility,"Cost, benefits and quality of software development documentation: A systematic mapping"
+Availability,Accessibility,"The Relevance of Software Documentation, Tools and Technologies: A Survey"
+Appeal,Appeal,Beyond Accuracy: Assessing Software Documentation
+Appropriateness comments,Appropriateness comments,Evaluating the Quality of the Documentation of Open Source Software
+Author,Authority,"The Relevance of Software Documentation, Tools and Technologies: A Survey"
+Author-related,Authority,"Cost, benefits and quality of software development documentation: A systematic mapping"
+Authority,Authority,Software Documentation - Building and Maintaining Artefacts of Communication
+Influence,Authority,"The Relevance of Software Documentation, Tools and Technologies: A Survey"
+Trustworthiness,Authority,"Cost, benefits and quality of software development documentation: A systematic mapping"
+Code examples,Code examples,A field study of API learning obstacles
+Code examples,Code examples,API Documentation and Software Community Values: A Survey of Open-Source API Documentation
+include good examples,Code examples,What Makes APIs Hard to Learn? Answers from Developers
+Unexplained examples,Code examples,How API Documentation Fails
+Use of examples,Code examples,Evaluating Usage and Quality of Technical Software Documentation: An Empirical Study
+Use of examples,Code examples,"The Relevance of Software Documentation, Tools and Technologies: A Survey"
+Cohesion,Cohesion,Beyond Accuracy: Assessing Software Documentation
+be complete,Completeness,What Makes APIs Hard to Learn? Answers from Developers
+Completeness,Completeness,A Study of the Documentation Essential to Software Maintenance
+Completeness,Completeness,An empirical analysis of the impact of software development problem factors on software maintainability
+Completeness,Completeness,Evaluating the Quality of the Documentation of Open Source Software
+Completeness,Completeness,Evaluating Usage and Quality of Technical Software Documentation: An Empirical Study
+Completeness,Completeness,Software Documentation Issues Unveiled
+Incompleteness,Completeness,How API Documentation Fails
+Information Completeness,Completeness,"Cost, benefits and quality of software development documentation: A systematic mapping"
+Completeness,Completeness,Detecting API documentation errors
+Completeness,Completeness,Analyzing APIs Documentation and Code to Detect Directive Defects
+Consistency,Consistency,An empirical analysis of the impact of software development problem factors on software maintainability
+Consistency,Consistency,Beyond Accuracy: Assessing Software Documentation
+Consistency,Consistency,"Cost, benefits and quality of software development documentation: A systematic mapping"
+Consistency,Consistency,Evaluating Usage and Quality of Technical Software Documentation: An Empirical Study
+Consistency,Consistency,Understanding the Requirements for Information System Documentation: An Empirical Investigation
+Inconsistency,Consistency,How API Documentation Fails
+Consistency to Standard,Consistency (to standard),A Study of the Documentation Essential to Software Maintenance
+Consistency to Standard,Consistency (to standard),Evaluating the Quality of the Documentation of Open Source Software
+Accuracy,Correctness,Evaluating Usage and Quality of Technical Software Documentation: An Empirical Study
+Correctness,Correctness,Software Documentation Issues Unveiled
+Correctness (Accuracy),Correctness,"Cost, benefits and quality of software development documentation: A systematic mapping"
+Incorrectness,Correctness,How API Documentation Fails
+"Documentation should be written from the point of view of the reader, not the writer.",Documentation PoV,Software Architecture Documentation in Practice: Documenting Architectural Layers
+Easy to use,Ease of Use,Evaluating the Quality of the Documentation of Open Source Software
+Format and Presentation,Ease of Use,A field study of API learning obstacles
+Format and Presentation,Ease of Use,API Documentation and Software Community Values: A Survey of Open-Source API Documentation
+Fragmentation,Ease of Use,How API Documentation Fails
+Navigation,Ease of Use,"The Relevance of Software Documentation, Tools and Technologies: A Survey"
+Effectiveness,Effectiveness,Beyond Accuracy: Assessing Software Documentation
+Review documentation for fitness of purpose,Fitness of purpose,Software Architecture Documentation in Practice: Documenting Architectural Layers
+Format,Format,"The Relevance of Software Documentation, Tools and Technologies: A Survey"
+Graphical Support,Graphical Support,Evaluating the Quality of the Documentation of Open Source Software
+Includes visual models,Graphical Support,Evaluating Usage and Quality of Technical Software Documentation: An Empirical Study
+Use of diagrams,Graphical Support,"The Relevance of Software Documentation, Tools and Technologies: A Survey"
+Dimension,Length,Evaluating the Quality of the Documentation of Open Source Software
+Length,Length,"The Relevance of Software Documentation, Tools and Technologies: A Survey"
+Maintainability,Maintainability,Software Documentation Issues Unveiled
+be conveniently organized,Organization,What Makes APIs Hard to Learn? Answers from Developers
+Organization,Organization,Evaluating Usage and Quality of Technical Software Documentation: An Empirical Study
+Organization,Organization,"The Relevance of Software Documentation, Tools and Technologies: A Survey"
+Redundancy,Organization,A Study of the Documentation Essential to Software Maintenance
+Use a standard organization,Organization,Software Architecture Documentation in Practice: Documenting Architectural Layers
+Similarity,Organization,"Cost, benefits and quality of software development documentation: A systematic mapping"
+Excess Structural information,Organization,How API Documentation Fails
+Structure,Organization,Beyond Accuracy: Assessing Software Documentation
+Structure,Organization,Evaluating the Quality of the Documentation of Open Source Software
+Structure,Organization,"The Relevance of Software Documentation, Tools and Technologies: A Survey"
+Preciseness,Preciseness,Evaluating Usage and Quality of Technical Software Documentation: An Empirical Study
+Quality,Quality,Beyond Accuracy: Assessing Software Documentation
+Readability,Readability,Beyond Accuracy: Assessing Software Documentation
+Readability,Readability,"Cost, benefits and quality of software development documentation: A systematic mapping"
+Readability,Readability,Evaluating the Quality of the Documentation of Open Source Software
+Readability,Readability,Evaluating Usage and Quality of Technical Software Documentation: An Empirical Study
+Readability,Readability,Software Documentation Issues Unveiled
+Readable (called understandable),Readability,Understanding the Requirements for Information System Documentation: An Empirical Investigation
+Tangled information,Readability,How API Documentation Fails
+Writing style,Readability,"The Relevance of Software Documentation, Tools and Technologies: A Survey"
+Record rationale,Record rationale,Software Architecture Documentation in Practice: Documenting Architectural Layers
+Avoid repetition,Relevance of content,Software Architecture Documentation in Practice: Documenting Architectural Layers
+Bloat,Relevance of content,How API Documentation Fails
+Conciseness,Relevance of content,Beyond Accuracy: Assessing Software Documentation
+Content,Relevance of content,"The Relevance of Software Documentation, Tools and Technologies: A Survey"
+include relevant design elements,Relevance of content,What Makes APIs Hard to Learn? Answers from Developers
+Relevance of content,Relevance of content,Evaluating Usage and Quality of Technical Software Documentation: An Empirical Study
+Spelling and Grammar,Spelling and Grammar,"Cost, benefits and quality of software development documentation: A systematic mapping"
+Spelling and Grammar,Spelling and Grammar,"The Relevance of Software Documentation, Tools and Technologies: A Survey"
+support many complex usage scenarios,Support many scenarios,What Makes APIs Hard to Learn? Answers from Developers
+Traceability,Traceability,"Cost, benefits and quality of software development documentation: A systematic mapping"
+Type,Type,"The Relevance of Software Documentation, Tools and Technologies: A Survey"
+Ambiguity,Understandability,How API Documentation Fails
+Avoid unintentional ambiguity,Understandability,Software Architecture Documentation in Practice: Documenting Architectural Layers
+Clarity,Understandability,Beyond Accuracy: Assessing Software Documentation
+Understandability,Understandability,Beyond Accuracy: Assessing Software Documentation
+Alignment,Up-to-date,Evaluating the Quality of the Documentation of Open Source Software
+Keep it current,Up-to-date,Software Architecture Documentation in Practice: Documenting Architectural Layers
+Obsoleteness,Up-to-date,How API Documentation Fails
+Referential decay,Up-to-date,Software Documentation - Building and Maintaining Artefacts of Communication
+Up to date,Up-to-date,Evaluating Usage and Quality of Technical Software Documentation: An Empirical Study
+Up to dateness,Up-to-date,An empirical analysis of the impact of software development problem factors on software maintainability
+Up-to date,Up-to-date,Understanding the Requirements for Information System Documentation: An Empirical Investigation
+Up-to-date,Up-to-date,"The Relevance of Software Documentation, Tools and Technologies: A Survey"
+Up-to-datedness,Up-to-date,"Cost, benefits and quality of software development documentation: A systematic mapping"
+Up-to-dateness,Up-to-date,A Study of the Documentation Essential to Software Maintenance
+Up-to-dateness,Up-to-date,Software Documentation Issues Unveiled
+Usability,Usability,Software Documentation Issues Unveiled
+Usefulness,Usefulness,Software Documentation - Building and Maintaining Artefacts of Communication

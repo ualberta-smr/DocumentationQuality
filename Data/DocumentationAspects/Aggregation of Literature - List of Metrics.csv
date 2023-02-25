@@ -1,0 +1,40 @@
+Metric ,References,Type,Metric ,Reference count,Mentioned count,Importance (1-5),"Ease of implementation/quantifiability (Easy, Medium, Hard)",Notes
+Clone detection,A metrics-Based Approach to Technical Documentation Quality,Presentation Quality,Clone detection (Redundancy),2,2,2,Medium,"Can use a clone detection tool, but we need to research which clone detection tool we want to use."
+Test coverage,A metrics-Based Approach to Technical Documentation Quality,,Test coverage,1,1,3,Hard,How much of the documentation does a user need to read to accomplish a task? They say it can be done automatically but I do not know how.
+Clone detection,A Visualization-based Approach to Technical Documentation Quality,,Usage analysis ,1,1,1,Hard,Can only get this by keeping track of usages over time.
+Usage analysis,A Visualization-based Approach to Technical Documentation Quality,Presentation Quality,Structure/Organization,3,5,4,Hard,"How do we rate what is ""Good"" or ""Bad"" structure of the documentation?  (Evaluating the Quality of the Documentation of Open Source Software has a bunch of equations)"
+Structure analysis,A Visualization-based Approach to Technical Documentation Quality,,Meta-information analysis,1,1,2,Easy?,"data types, database rules, schemata, conventions, and
+search tags etc."
+Meta-information analysis,A Visualization-based Approach to Technical Documentation Quality,Content Quality,Usefulness,1,1,3,Hard,"How do we measure usefulness?
+""Usefulness as a Measure of Recency, Frequency and Feedback"" from one reference. "
+Usefulness,Software Documentation - Building and Maintaining Artefacts of Comunication,Presentation Quality,Ease of use,1,1,,,
+Referential Decay,Software Documentation - Building and Maintaining Artefacts of Comunication,Content Quality,Referential Decay/Up-to-dateness,3,3,4,Easy,Do we need both referential decay and up-to-dateness? They are similar
+Authority,Software Documentation - Building and Maintaining Artefacts of Comunication,,Authority,2,3,3,Hard,"One paper uses ""Kleinberg’s authoritative ranking technique"""
+Content,"The Relevance of Software Documentation, Tools and Technologies: A Survey",Content Quality,Content,2,2,5,Hard,Do we just use the tools for mismatch to gauge content?
+Up-to-dateness,"The Relevance of Software Documentation, Tools and Technologies: A Survey",,Availability,1,1,5,Easy,How available is the documentation. Maybe a boolean of whether or not we can find and access it
+Availability,"The Relevance of Software Documentation, Tools and Technologies: A Survey",Content Quality,Examples/Diagrams,2,3,4,Medium,How many examples/diagrams are good? What about the quality of the examples themselves. A lot of bad diagrams are just noise
+Use of Examples,"The Relevance of Software Documentation, Tools and Technologies: A Survey",Presentation Quality,"Readability - Sentence length, grammar, conformity to standards, etc.",2,6,4,Hard,How easy is it to understand the documentation?
+Organization,"The Relevance of Software Documentation, Tools and Technologies: A Survey",Presentation Quality,File format,1,1,1,Easy,"Is it a PDF, or HTML, XML, etc.?"
+Type of Document ,"The Relevance of Software Documentation, Tools and Technologies: A Survey",Content Quality,Mismatch between Source Code and Documentation,3,3,4,Medium,Can maybe use the tools already created. Maybe we can combine this with Content/Up-to-dateness?
+Use of diagrams,"The Relevance of Software Documentation, Tools and Technologies: A Survey",Content Quality,Online opinions,1,1,3,Easy,Use the tool created
+Navigation - quality of internal/external links,"The Relevance of Software Documentation, Tools and Technologies: A Survey",,,,,,,
+"Structure - arrangement of text, diagrams, figures","The Relevance of Software Documentation, Tools and Technologies: A Survey",,,,,,,
+"Writing Style - sentence/paragraph structure, grammar","The Relevance of Software Documentation, Tools and Technologies: A Survey",,,,,,,
+Length -  not too long or shirt,"The Relevance of Software Documentation, Tools and Technologies: A Survey",,,,,,,
+Spelling and grammar,"The Relevance of Software Documentation, Tools and Technologies: A Survey",,,,,,,
+Author,"The Relevance of Software Documentation, Tools and Technologies: A Survey",,,,,,,
+Influence to use it,"The Relevance of Software Documentation, Tools and Technologies: A Survey",,,,,,,
+"Format - pdf, doc, txt, xml, etc.","The Relevance of Software Documentation, Tools and Technologies: A Survey",,,,,,,
+Completeness,Evaluating the Quality of the Documentation of Open Source Software,,,,,,,
+Alignment,Evaluating the Quality of the Documentation of Open Source Software,,,,,,,
+Readability,Evaluating the Quality of the Documentation of Open Source Software,,,,,,,
+Dimension,Evaluating the Quality of the Documentation of Open Source Software,,,,,,,
+Graphical support,Evaluating the Quality of the Documentation of Open Source Software,,,,,,,
+Consistency to standard,Evaluating the Quality of the Documentation of Open Source Software,,,,,,,
+Structure,Evaluating the Quality of the Documentation of Open Source Software,,,,,,,
+Easy to use,Evaluating the Quality of the Documentation of Open Source Software,,,,,,,
+Appropriateness comments,Evaluating the Quality of the Documentation of Open Source Software,,,,,,,
+Mismatched code names,Detecting API documentation errors,,,,,,,
+Summarize online opinions,Opiner: An Opinion Search and Summarization Engine for APIs,,,,,,,
+Discrepancies between documentation and source code,Analyzing APIs Documentation and Code to Detect Directive Defects,,,,,,,
+Similarity between source code and documentation,A Topic Modeling Based Solution for Confirming Software Documentation Quality,,,,,,,

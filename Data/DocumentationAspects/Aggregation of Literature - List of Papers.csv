@@ -1,0 +1,73 @@
+Title,Conference,,Summary ,Relevant?,Quantifiable?
+A field study of API learning obstacles,"(2011) Empir Software Eng 16, 703–732 ",Survey,"Five important factors that impacted developers’ API learning
+(1) documentation of intent;
+(2) code examples;
+(3) cookbooks for mapping usage scenarios to API elements;
+(4) penetrability of the API;
+(5) format and presentation of the documentation",Yes,No
+A Metrics-Based Approach to Technical Documentation Quality,2010 Seventh International Conference on the Quality of Information and Communications Technology,Programmed,"Tested technical documentation quality by checking for uniqueness of information and test coverage. 
+Both are done automatically however, test coverage is combined with test results which are done manually by asking people to find documentation to do a task. 
+But is something like 49% non uniqueness bad?",Yes,Yes
+A Study of the Documentation Essential to Software Maintenance,SIGDOC '05: Proceedings of the 23rd annual international conference on Design of communication: documenting & designing for pervasive information,Survey,"Most important artifacts are source code and comments, a data model, and information about the requirements.
+Documentation is generally incomplete and out-of-date",No,No
+"Cost, benefits and quality of software development documentation: A systematic mapping","(2014). Cost, Benefits and Quality of Software Development Documentation: A Systematic Mapping. Journal of Systems and Software",Programmed,"Accessibility, Consistency, Duplication, Readability, Spelling and Grammar, Trustworthiness, Author-related, Correctness (Accuracy), Information Completeness, Similarity, Traceability, Up-to-datedness",Yes ,No
+Evaluating Usage and Quality of Technical Software Documentation: An Empirical Study,EASE '13: Proceedings of the 17th International Conference on Evaluation and Assessment in Software Engineering,Case study,"Up-to-datedness is not actually that important. More important is organization, relevency, readability, and visual model aids",No,No
+How API Documentation Fails,"July-Aug. 2015, ""How API Documentation Fails,"" in IEEE Software, vol. 32, no. 4, pp. 68-75",Survey,"Ambiguity, Incompleteness, and Incorrectness are the top 3 that should be fixed.
+Novice and Experienced responders have no statistically significant difference in thoughts.
+Most frequent and common problems deal with Content rather than presentation
+Completing, clarifying, and correcting documentation requires deep, authoritative knowledge of the API. -> Hard for new/non developers to contribute",Yes ,No
+Software Architecture Documentation in Practice: Documenting Architectural Layers,(2000). Software Architecture Documentation in Practice: Documenting Architectural Layers,Programmed,"Documentation should be written from the point of view of the reader, not the writer. 
+Avoid repetition
+Avoid unintentional ambiguity
+Use a standard organization
+Record rationale
+Keep it current
+Review documentation for fitness of purpose",Yes,No
+Software Documentation - Building and Maintaining Artefacts of Communication,2002 Presented to the Faculty of Graduate and Postdoctoral Studies in partial fulfillment of the requirements for the degree Master in Computer Science,Survey,"Being up to date in documentation is not that useful of a metric
+Documentation is tool of communication rather than tool of fact",Yes, Yes
+Software Documentation Issues Unveiled,2019 IEEE/ACM 41st International Conference on Software Engineering (ICSE),,"4 main documentation problems categories: ""What"", ""How"", process-related, tool-related",Yes,No
+"The Relevance of Software Documentation, Tools and Technologies: A Survey",DocEng '02: Proceedings of the 2002 ACM symposium on Document engineering,Survey,"Content, up-to-dateness, availability, use of examples, and organization are what is perceived to be what is important for documentation.
+Suggests documentation that is light and disposable as it is too hard to maintain documentation",Yes ,Yes
+Understanding the Requirements for Information System Documentation: An Empirical Investigation,COCS '95: Proceedings of conference on Organizational computing systems,Case study,"8 hypotheses/requirements for good documentation:
+Backbone systems require more formal documentation process than non-backbone systems
+Backbone systems require documents with a high degree of traceability
+Out-of-house development/maintenance efforts undergo documentation processes that are more formal than those of in-house
+Out-of-house developments require a high degree of traceability
+In-house developments can accommodate low consistency and completeness but require accurate details
+In-house development efforts require less documentation that those of out-of-house development efforts 
+Users unfamiliar with similar automated systems follow a different documentation process than familiar users
+Users unfamiliar with similar automated systems require documents that are more consistent, complete, and traceable ",No ,No
+Usage and usefulness of technical software documentation: An industrial case study,"Usage and usefulness of technical software documentation: An industrial case study,
+Information and Software Technology,
+Volume 57,
+2015",Case study,"Significant different between documentation and other sources of information during different phases of software cycle
+No significant difference in documentation usage in different phases of software cycle
+No significant difference on job function on amount of documentation usage
+No significant difference on job experience and documentation usage
+No significant different on job experience on type of documtentation used",No,No
+Detecting API documentation errors,OOPSLA '13: Proceedings of the 2013 ACM SIGPLAN international conference on Object oriented programming systems languages & applications,Programmed,Created a program that found documentation errors and reported >1000 errors to 5 API libraries,Yes,Yes
+API documentation and software community values: a survey of open-source API documentation,SIGDOC '13: Proceedings of the 31st ACM international conference on Design of communication,Survey,"Summarized what other papers said what was useful to have in terms of documentation
+Overview documentation
+Short code ""snippets"" that demonstrate usage of API in context
+Code examples that show best practices with API
+Scenario and task-based documentation
+Limitations and error handling
+Meaningful documentation (no filler or boilerplate)
+Accuracy, completeness, correctness
+Scenario and task-focused examples
+Content that does not repeat the obvious (eg can be learned from ui)",Yes,No
+Opiner: An Opinion Search and SummarizationEngine for APIs,2017 32nd IEEE/ACM International Conference on Automated Software Engineering (ASE),Programmed,Developed a tool that would search and provide (summarized or original) opinions about an API,Yes,Yes?
+A Visualization-based Approach to Present and Assess Technical Documentation Quality,(2010) Proceedings of the 4th European Conference on Information Management and Evaluation,Programmed,"Checked documentation quality based on ""Clone detection"", ""Usage analysis"", ""Structure analysis"", ""Meta-information analysis""",Yes ,Yes
+Evaluating the Quality of the Documentation of Open Source Software,ENASE 2017,Case study,Defined another set of metrics based on metrics defined by previous works and created a calculation for their metrics,Yes,Yes?
+Analyzing APIs Documentation and Code to Detect Directive Defects,2017 IEEE/ACM 39th International Conference on Software Engineering (ICSE),Programmed,Found discrepancies between API documentation and source code with a combination of static code analysis and NLP,Yes,Yes
+An empirical analysis of the impact of software development problem factors on software maintainability,"Journal of Systems and Software
+Volume 82, Issue 6, June 2009",Survey,"Inadequacy or poorness of documentation which would cause software to be hard to understand, change and modify
+Documentation is obscure or untrustworthy
+Inadequate system documentation; incomplete or non-existent system documentation
+Changes are not adequately documented
+Lack of integrity/consistency ",Yes ,No
+What Makes APIs Hard to Learn? Answers from Developers,"(2009) IEEE Software, vol. 26, no. 6, pp. 27-34, Nov.-Dec. ",Survey,"API documentation must include good examples, be complete, support many complex usage scenarios, be conveniently organized, and include relevant design elements
+Respondents also expressed the feeling of wanting to know the design intent behind the API",Yes ,No
+The Value of Software Documentation Quality,2014 14th International Conference on Quality Software,Survey,"The most important quality attributes with regard to documentation quality are accuracy, clarity, consistency, readability, structuredness, and understandability",No,No
+A Topic Modeling Based Solution for Confirming Software Documentation Quality,(2016). A Topic Modeling Based Solution for Confirming Software Documentation Quality. International Journal of Advanced Computer Science and Applications,Programmed,Combined Latent Dirichlet Allocation (LDA) and Hellinger distance to rate the relatedness of source code and documentation based on similarity. High similarity = High quality?,Yes,Yes
+A Study of the Effectiveness of Usage Examples in REST API Documentation,2017 IEEE Symposium on Visual Languages and Human-Centric Computing (VL/HCC),Survey,"Concluded that usage examples in API documentation reduce time spent, and number of trial attempts, while raising success rate of task implementation for developers.",No,No
