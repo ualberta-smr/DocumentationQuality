@@ -20,9 +20,9 @@ This repository contains:
   - `Data/TaskComponent` contains CSVs with either manually extracted tasks from different library documentation pages, or the manually linked code examples with paragraphs from the library documentation.
   - `Data/DocumentationAspects` contains CSVs which show out intermediate steps in aggregating the existing literature and extracting and defining documentation aspects that we later filter and decide which to create/find metrics for
 
-- `Summary\survey\responses.csv` contains the raw survey data of all 173 unique session key accesses.
+- `Summary/survey/responses.csv` contains the raw survey data of all 173 unique session key accesses.
 
-- `Summary\survey\responses_filtered.csv` contains filtered survey data of the 26 responses where at least 1 question was answered
+- `Summary/survey/responses_filtered.csv` contains filtered survey data of the 26 responses where at least 1 question was answered
 
 ## Important code files
 
@@ -36,13 +36,9 @@ This repository contains:
 `Summary/analyze/HCI/checklist.py`
 
 ### Regex expressions
-<<<<<<< HEAD
-We use various regex expressions in our metric implementations. To match the different method calls for the different languages, the regex used can be found in the respective `<language>_matcher.py` file in the `Summary/analyze/MethodLinker/` directory. For examples the regex used to match Python function calls can be found in `Summary/analyze/MethodLinker/python_matcher.py`.
+We use various regex expressions in our metric implementations. To match the different method calls for the different languages, the regex used can be found in the respective `<language>_matcher.py` file in the `Summary/analyze/MethodLinker/` directory. For example, the regex used to match Python function calls can be found in `Summary/analyze/MethodLinker/python_matcher.py`.
 
 # Installing and Running the Web tool (locally)
-=======
-We use various regex expressions in our metric implementations. To match the different method calls for the different languages, the regex used can be found in the respective `<language>_matcher.py` file in the `Summary\analyze\MethodLinker` directory. For example, the regex used to match Python function calls can be found in `Summary\analyze\MethodLinker\python_matcher.py`.
->>>>>>> 2d28742 (Update README)
 
 ## Requirements
 Python dependencies are in the `requirements.txt` file. Please run `python install -r requirements.txt`. This project additionally needs:
