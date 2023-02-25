@@ -1,5 +1,6 @@
 # Overview
-This is the artfiact for the anonymous MSR 2023 paper titled "Evaluating Software Documentation Quality". We implement various metrics to evaluate documentation quality, and explore presenting the metrics in a summary (webtool) that allows developers a quick understanding of the documentation quality for a library. The webtool allows users to submit a link to a library's online documentation and presents a summary with our calculated metrics. This will aid developers in deciding which library to integrate into their own project, based on the quality rating of the prospective library documentation without implemented metrics. 
+This is the artfiact for the anonymous MSR 2023 paper titled "Evaluating Software Documentation Quality". 
+We implement various metrics to evaluate documentation quality, and explore presenting the metrics in a summary (webtool) that allows developers a quick understanding of the documentation quality for a library. The webtool allows users to submit a link to a library's online documentation and presents a summary with our calculated metrics. This will aid developers in deciding which library to integrate into their own project, based on the quality rating of the prospective library documentation without implemented metrics. 
 
 # What is in this repo:
 This repository contains:
