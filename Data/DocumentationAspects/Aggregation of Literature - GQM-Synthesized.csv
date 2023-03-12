@@ -1,0 +1,37 @@
+Goal,Question,Metric,,,Java Apache HttpClient 4.5,,libhttp,libcurl,Javascript Axios,
+,,,,,Looking at first two pages of google search,,,,,
+Availability,Is there documentation available?,# of tutorials/blogs etc (# of documents),The more blogs/tutorials there are means more information based on experience is available for developers ,,8,,,,16,
+,,# of SO questions,The more questions are on Stack Overflow the more answers. And more answers is more information on real life examples on how to use the API,,2149,,,,10471,
+,,# of official documentation sources,Typically this will just be one,,1,https://www.javadoc.io/doc/org.apache.httpcomponents/httpclient/4.5/overview-summary.html,,,1,
+,,,,,These were only for the official documentation,,,,,
+Examples,Are there usage examples available?,# of documents,The more documents there are the more likely the documentation is complete. (Covers all the public methods in the API),,27,,,,,
+,,# of documents containing examples,Each document should detail one part of the API if not one class/one method. Does each document have an usage example?,,26,,,,3,
+,,# of examples,What are the total number of examples in the documentation? Generally the more examples the better as it gives developers many examples of how to use the API,,99,,,,34,
+,,percentage of documents w/ examples,How many documents have examples out of the total?,,96.30%,,,,8.82%,
+,,,,,,,,,,
+Example quality,Are the usage examples all the same?,# of distinct examples ,"How many of the examples are different from each other? i.e., they show how to use a different part of the API?",diff implementations of doing the same task,91,,,,21,Depending on Clone detection maybe we want to explore NLP
+,,diversity score (ratio of distinct to total),"if it is higher, then we have more examples per task",,91.92%,,,,61.76%,
+,,# of distinct tasks in the examples,"if we cluster examples by task and say get 5 clusters, then we have examples for 5 tasks in this library (we can go further and see all tasks mentioned in the lib doc and how many of these have examples but maybe that's another metric)",,52,,,,15,
+,,avg number of example per documented task (that have e.g.),How many examples are there for a task?,,,,,,,
+,,percentage of tasks w/ examples,How many of the tasks have examples?,,,,,,,
+,,,,,,,,,,
+Documentation Coverage,How much of the library is documented?,coverage of public APIs in doc,Maybe not just how much of the public methods are covered in the doc. But how many public methods actually have an example?,,,,,,100.00%,
+,,which functionality of the library appears in the documentation,What are the tasks the API is supposed to have implementations for?,,"HTTP requests and response, HTTPClient interface, exception handling, Connection management, state management, authentication, caching.",,,,"GET request, POST request, Concurrent requests, Configuration, Interceptors, Error handling, Request cancelling",
+,,,,,,,,,,
+State matching,Does the documentation reflect the current state of the API?,mismatch tool,How different is the API with the docuentation?,,,,,,,
+,,dates of unofficial documentation sources (grouped by year),The older the dates are the more likely it is no longer relevant,,"{2020: 1, 2019: 1, 2018: 0, 2017: 2, 2016: 1}","May 23, 2017",,,"{2020: 3, 2019: 5, 2018: 2, 2017: 1}",https://kapeli.com/cheat_sheets/Axios.docset/Contents/Resources/Documents/index
+,,,,,https://pmd.github.io/,"October 9, 2019",,,,"July 2, 2019"
+,What is the quality of code examples in the API?,static code analysis ,What is the quality of the examples themselves?,,,"February 12, 2020",,,,"May 22, 2020"
+,,,,,,"April 6th, 2016",,,,"May 24, 2019"
+,"Does the documentation provide any insight to the API other than how to use it? (Security, efficiency, size, incompatible other APIs)",Document makes mention of these insights,Does the API talk about meta information about itself?,,Yes,13 February 2017,,,No,https://axios.nuxtjs.org/#features
+,,,,,,https://www.javaguides.net/p/apache-httpclient-tutorial.html,,,,https://vuejs.org/v2/cookbook/using-axios-to-consume-apis.html
+,,,,,,https://www.tutorialspoint.com/apache_httpclient/apache_httpclient_quick_guide.htm,,,,"Mar 7, 2017"
+,,,,,,https://www.journaldev.com/7146/apache-httpclient-example-closeablehttpclient,,,,"April 5, 2019"
+,,,,,,,,,,https://openbase.io/js/axios
+,,,,,,,,,,"Aug 2, 2019"
+,,,,,,,,,,"June 8, 2018"
+,,,,,,,,,,"January 23, 2018"
+,,,,,,,,,,"February 9, 2019"
+,,,,,,,,,,"May 26, 2020"
+,,,,,,,,,,"April 9, 2020"
+,,,,,,,,,,"http://comet.lehman.cuny.edu/sfulakeza/su19/tpp/slides/Day%206/AJAX,%20fetch,%20and%20Axios.pdf"
