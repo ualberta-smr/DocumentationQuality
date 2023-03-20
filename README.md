@@ -127,5 +127,5 @@ You can simply run `./main.py` in this directory to run the script with the `res
 # Contact
 If you have any questions or concerns, you can open an Issue using Github's issue tracker, or email:
 
-- Henry Tang <hktang@ualberta.ca> or, 
+- Henry Tang <hktang@ualberta.ca>, or 
 - Sarah Nadi <nadi@ualberta.ca>
