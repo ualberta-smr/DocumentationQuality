@@ -125,4 +125,7 @@ You can simply run `./main.py` in this directory to run the script with the `res
 1. The service currently requires the library's GitHub repo to contain its source code in a `src` or `<library_name>` directory, otherwise the scripts are not able to find the source code. For example, NLTK stores its source code under the directory `nltk`, while CoreNLP stores its source code under a `src` directory.
 
 # Contact
-If you have any questions or concerns, you can open an Issue using Github's issue tracker, or email Henry Tang <hktang@ualberta.ca> or Sarah Nadi <nadi@ualberta.ca>
+If you have any questions or concerns, you can open an Issue using Github's issue tracker, or email:
+
+- Henry Tang <hktang@ualberta.ca> or, 
+- Sarah Nadi <nadi@ualberta.ca>
