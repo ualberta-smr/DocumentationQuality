@@ -37,7 +37,7 @@
             <div class="modal-content">
 
                 <!-- Modal Header -->
-                <div class="modal-header">
+                <div class="modal-header" style="border-bottom: none">
                     <h4 class="modal-title">
                         <b>(Optional)</b> Demographics
                     </h4>
@@ -46,7 +46,13 @@
                             data-bs-dismiss="modal"
                             aria-label="Close">
                     </button>
+
                 </div>
+                <div class="modal-header" style="padding-top: 0;">
+                        <small style="font-size: small;">
+                            Close the form by clicking on the 'X' if you decline to provide your demographics
+                        </small>
+                    </div>
                 <!-- Modal body -->
                 <div class="modal-body">
                     {{ form.library_name }}
