@@ -1,5 +1,5 @@
 # Overview
-This is the artfiact for the anonymous MSR 2023 paper titled "Evaluating Software Documentation Quality". 
+This is the artfiact for the MSR 2023 paper titled "Evaluating Software Documentation Quality" by Henry Tang and Sarah Nadi. 
 We implement various metrics to evaluate documentation quality, and explore presenting the metrics in a summary (webtool) that allows developers a quick understanding of the documentation quality for a library. The webtool allows users to submit a link to a library's online documentation and presents a summary with our calculated metrics. This will aid developers in deciding which library to integrate into their own project, based on the quality rating of the prospective library documentation without implemented metrics. 
 
 # What is in this repo:
@@ -123,3 +123,6 @@ You can simply run `./main.py` in this directory to run the script with the `res
 
 ## Limitations
 1. The service currently requires the library's GitHub repo to contain its source code in a `src` or `<library_name>` directory, otherwise the scripts are not able to find the source code. For example, NLTK stores its source code under the directory `nltk`, while CoreNLP stores its source code under a `src` directory.
+
+# Contact
+If you have any questions or concerns, you can open an Issue using Github's issue tracker, or email Henry Tang <hktang@ualberta.ca> or Sarah Nadi <nadi@ualberta.ca>
