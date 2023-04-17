@@ -28,7 +28,7 @@ HEADERS = {
 MYSQL_CONFIG = {
     "host": "localhost",
     "user": "djangouser",
-    "password": "paSSw0#d",
+    "password": "password",
     "database": "task_data"
 }
 
