@@ -3,7 +3,12 @@ import sys
 import re
 import csv
 import os
-import traceback
+import inspect
+import importlib
+import subprocess
+import sys
+
+import regex
 
 
 def find_python_arguments(source_file):
@@ -24,7 +29,8 @@ def find_python_arguments(source_file):
                 if type(file_item) is ast.FunctionDef:
                     if not re.match(private_function, file_item.name):
                         func_name, required, optionals = _extract_python_ast_args(file_item, False)
-                        functions.append(((os.path.split(os.path.split(source_file)[0])[1] + "." + func_name), required, optionals))
+                        functions.append(
+                            ((os.path.split(os.path.split(source_file)[0])[1] + "." + func_name), required, optionals))
         except Exception as e:
             pass
     return functions
@@ -168,7 +174,8 @@ def python_match_signatures(repo_name, examples, functions, classes):
                 link.append(True)
             elif len(matched_methods) == 1:
                 method_calls.add((matched_methods[0][1]["source_file"], matched_methods[0][0]))
-                link.append((matched_methods[0][0], matched_methods[0][1]["req_args"] + matched_methods[0][1]["opt_args"]))
+                link.append(
+                    (matched_methods[0][0], matched_methods[0][1]["req_args"] + matched_methods[0][1]["opt_args"]))
                 link.append(matched_methods[0][1]["source_file"])
                 link.append(True)
             elif len(matched_methods) > 1:
@@ -208,10 +215,18 @@ def python_match_signatures(repo_name, examples, functions, classes):
 def python_match_examples(repo_name, examples, functions, classes):
     method_calls = set()
     links = []
+    var_declarations = dict()
+    var_declarations["pd"] = "pandas"
+    var_declarations["df"] = "DataFrame"
+    var_declarations["s"] = "Series"
+    install(repo_name)
+    module = importlib.import_module(repo_name)
+
     call_regex = re.compile(r"(?:\w+\.)?\w+(?=\()")
     for ex in examples:
         example = ex[0]
         found_calls = re.findall(call_regex, example)
+        # var_declarations.update(get_var_declarations(example))
         calls = []
         # Remove duplicate found calls
         [calls.append(item) for item in found_calls if item not in calls]
@@ -225,6 +240,10 @@ def python_match_examples(repo_name, examples, functions, classes):
                 if len(function_split) > 1:
                     if function_split[1] in functions:
                         func_def = functions[function_split[1]]
+                    else:
+                        func_def = get_match_with_other_class_functions(module, classes, functions, function_split,
+                                                                        var_declarations)
+
             else:
                 func_def = functions[call]
             if func_def:
@@ -243,7 +262,8 @@ def python_match_examples(repo_name, examples, functions, classes):
                             num_args = len(a.body[0].value.args)
                     except:
                         num_args = 0
-                    if len(func_def["req_args"]) <= num_args <= (sys.maxsize if "kwargs" in func_def["opt_args"] else (len(func_def["req_args"]) + len(func_def["opt_args"]))):
+                    if len(func_def["req_args"]) <= num_args <= (sys.maxsize if "kwargs" in func_def["opt_args"] else (
+                            len(func_def["req_args"]) + len(func_def["opt_args"]))):
                         method_calls.add((func_def["source_file"], call))
                         links.append(
                             [example, call, call.split(".")[1] if len(
@@ -277,3 +297,56 @@ def python_match_examples(repo_name, examples, functions, classes):
                 seen.add((link[0], link[1]))
 
     return method_calls
+
+
+def get_var_declarations(example_code):
+    var_declarations = dict()
+    import_regex = r"(?:^\s*(?:import)\s+(\w+(?:\.\w+)*)\s+(?:as)\s+(\w+))|(?:^\s*(?:from)\s+(?:\w+(?:\.\w+)*)\s(?:import)\s+(\w+(?:\.\w+)*)\s+(?:as)\s+(\w+))"
+    lines = example_code.split('\n')
+    for line in lines:
+        if type(ast.parse(line)) == ast.Import:
+            import_values = re.findall(re.compile(import_regex), example_code.split('\n')[0])
+            import_values = [value for value in import_values if value]
+            if len(import_values) == 2:
+                var_declarations[import_values[1]] = import_values[0]
+
+    return var_declarations
+
+
+def get_match_with_other_class_functions(module, classes, functions, function_split, var_declarations):
+    # match df -> DataFrame
+    # Traverse through code and find class declarations as variables
+    # e.g: df1 = pd.DataFrame(np.random.randn(6, 4), index=dates, columns=list("ABCD"))
+    # we need to know that Dataframe is a class and put df in a dict matched with DataFrame
+    class_name_regex = r"[<](?:function)\s(\w+)"
+    class_name = function_split[0]
+    function_name = function_split[-1]
+    actual_class_name = class_name if class_name in classes.keys() else var_declarations[class_name] \
+        if class_name in var_declarations else None
+
+    if actual_class_name:
+        similar_funcs = [s for s in functions.keys() if "." + function_split[1] in s]
+        if len(similar_funcs) > 0:
+            for func in similar_funcs:
+                try:
+                    class_members = inspect.getmembers(getattr(module, actual_class_name))
+                    actual_func = [member for member in class_members if not 'NA' in member and function_name in member]
+                    if actual_func:
+                        actual_func_qualified_name = actual_func[0][1].__qualname__
+                        actual_func_module = actual_func[0][1].__module__
+
+                        if func.split('.')[0] in actual_func_qualified_name.split('.'):
+                            return functions[func]
+
+                        if func.split('.')[0] in actual_func_module.split('.'):
+                            return functions[func]
+
+                except Exception as e:
+                    print(e)
+                    print(function_split[0] + " " + function_split[1])
+
+    return None
+
+
+def install(package):
+    subprocess.check_call([sys.executable, "-m", "pip", "install", package])
