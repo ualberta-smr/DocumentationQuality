@@ -155,15 +155,6 @@ def calculate_ratios(language, repo_name, repo_path, doc_url, pages, check_examp
     extension_finder(language)
     functions, classes = get_methods_and_classes(repo_name, repo_path)
     if functions and classes:
-        # For Debugging
-        # with open("MethodLinker/data/" + repo_name + "_methods.txt", "w") as temp:
-        #     PP = pprint.PrettyPrinter(indent=4, stream=temp)
-        #     PP.pprint(functions)
-        # with open("MethodLinker/data/" + repo_name + "_classes.txt", "w") as temp:
-        #     PP = pprint.PrettyPrinter(indent=4, stream=temp)
-        #     PP.pprint(classes)
-        # with open("doc_examples.txt", "r") as temp:
-        #     doc_examples = list(e[0] for e in list(csv.reader(temp)))
         doc_examples = []
         for page in pages:
             try:
@@ -172,28 +163,11 @@ def calculate_ratios(language, repo_name, repo_path, doc_url, pages, check_examp
                 else:
                     doc_examples.extend(get_documentation_signatures(doc_url, page))
             except urllib.error.HTTPError as e:
-                pass
-                # if e.code == 404:
-                #     pass
-                # else:
-                #     print(page)
-                #     print(traceback.format_exc())
-            except:
-                pass
-                # print(page)
-                # print(traceback.format_exc())
-
-        # For Debugging
-        # with open("MethodLinker/data/" + repo_name + "_doc_examples.csv", "w", encoding="utf-8", newline="") as temp:
-        #     writer = csv.writer(temp, quoting=csv.QUOTE_MINIMAL)
-        #     for item in doc_examples:
-        #         writer.writerow(item)
-        # # Remove duplicates but retain order
-        # doc_examples = list(doc_examples for doc_examples, _ in itertools.groupby(doc_examples))
-        # with open("MethodLinker/data/" + repo_name + "_doc_examples_unique.csv", "w", encoding="utf-8", newline="") as temp:
-        #     writer = csv.writer(temp, quoting=csv.QUOTE_MINIMAL)
-        #     for item in doc_examples:
-        #         writer.writerow(item)
+                print(e)
+                print(traceback.format_exc())
+            except Exception as e:
+                print(e)
+                print(traceback.format_exc())
 
         method_calls = set()
         if LANGUAGE == "python":
@@ -211,7 +185,6 @@ def calculate_ratios(language, repo_name, repo_path, doc_url, pages, check_examp
                 method_calls = javascript_match_examples(repo_name, doc_examples, functions, classes)
             else:
                 method_calls = javascript_match_signatures(repo_name, doc_examples, functions, classes)
-        # print(method_calls)
         example_count = len(method_calls)
         seen_classes = set()
         for method_call in method_calls:

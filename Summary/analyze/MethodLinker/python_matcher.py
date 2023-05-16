@@ -24,7 +24,8 @@ def find_python_arguments(source_file):
                 if type(file_item) is ast.FunctionDef:
                     if not re.match(private_function, file_item.name):
                         func_name, required, optionals = _extract_python_ast_args(file_item, False)
-                        functions.append(((os.path.split(os.path.split(source_file)[0])[1] + "." + func_name), required, optionals))
+                        functions.append(
+                            ((os.path.split(os.path.split(source_file)[0])[1] + "." + func_name), required, optionals))
         except Exception as e:
             pass
     return functions
@@ -168,7 +169,8 @@ def python_match_signatures(repo_name, examples, functions, classes):
                 link.append(True)
             elif len(matched_methods) == 1:
                 method_calls.add((matched_methods[0][1]["source_file"], matched_methods[0][0]))
-                link.append((matched_methods[0][0], matched_methods[0][1]["req_args"] + matched_methods[0][1]["opt_args"]))
+                link.append(
+                    (matched_methods[0][0], matched_methods[0][1]["req_args"] + matched_methods[0][1]["opt_args"]))
                 link.append(matched_methods[0][1]["source_file"])
                 link.append(True)
             elif len(matched_methods) > 1:
@@ -208,6 +210,8 @@ def python_match_signatures(repo_name, examples, functions, classes):
 def python_match_examples(repo_name, examples, functions, classes):
     method_calls = set()
     links = []
+    declared_variable_mapping = dict()
+
     call_regex = re.compile(r"(?:\w+\.)?\w+(?=\()")
     for ex in examples:
         example = ex[0]
@@ -243,7 +247,8 @@ def python_match_examples(repo_name, examples, functions, classes):
                             num_args = len(a.body[0].value.args)
                     except:
                         num_args = 0
-                    if len(func_def["req_args"]) <= num_args <= (sys.maxsize if "kwargs" in func_def["opt_args"] else (len(func_def["req_args"]) + len(func_def["opt_args"]))):
+                    if len(func_def["req_args"]) <= num_args <= (sys.maxsize if "kwargs" in func_def["opt_args"] else (
+                            len(func_def["req_args"]) + len(func_def["opt_args"]))):
                         method_calls.add((func_def["source_file"], call))
                         links.append(
                             [example, call, call.split(".")[1] if len(
@@ -277,3 +282,45 @@ def python_match_examples(repo_name, examples, functions, classes):
                 seen.add((link[0], link[1]))
 
     return method_calls
+
+
+def get_declared_variable_mapping(example_code, classes):
+    var_declarations = dict()
+    func_call_assign_regex = r"(\w+)\s*=\s*(?:\w+\.)+(\w+(?=\())"
+    import_regex = r"(?:^\s*(?:import)\s+(\w+(?:\.\w+)*)\s+(?:as)\s+(\w+))|(?:^\s*(?:from)\s+(?:\w+(?:\.\w+)*)\s(?:import)\s+(\w+(?:\.\w+)*)(?:\s+(?:as)\s+(\w+))?)"
+    lines = example_code.split('\n')
+    for line in lines:
+        try:
+            line = preprocess_doc_example_line(line)
+            if not line:
+                continue
+            if type(ast.parse(line).body[0]) == ast.Import:
+                import_values = re.findall(re.compile(import_regex), line)[0]
+                import_values = [value for value in import_values if value]
+                if len(import_values) == 2:
+                    var_declarations[import_values[1]] = import_values[0]
+
+            elif type(ast.parse(line).body[0]) == ast.Assign:
+                func_call_assign = re.findall(func_call_assign_regex, line)
+                func_call_assign = func_call_assign[0] if func_call_assign else None
+
+                if func_call_assign and len(func_call_assign) == 2 and func_call_assign[1] in classes.keys():
+                    var_declarations[func_call_assign[0]] = func_call_assign[1]
+
+        except Exception as e:
+            print(f"Error in get_declared_variable_mapping. Example code line: \n{line}")
+            print(e)
+
+    return var_declarations
+
+
+def preprocess_doc_example_line(line):
+    jupyter_notebook_prefix = r"(?:^In\s?\[\d+\]\:\s*)|(?:^Out\s?\[\d+\]\:\s*)"
+    prompt_regex = r"(?:^>>>\s*)"
+    rest_line = r"(.*\S)$"
+    code_line = f'(?:{jupyter_notebook_prefix}|{prompt_regex})?{rest_line}'
+
+    processed_line = re.findall(re.compile(code_line), line)
+    processed_line = processed_line[0] if len(processed_line) > 0 else ''
+
+    return processed_line
