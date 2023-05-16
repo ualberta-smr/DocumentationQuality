@@ -1,6 +1,6 @@
 from unittest import TestCase
 
-from src.analyze.method_linker.python_matcher import get_declared_variable_mapping
+from Summary.analyze.MethodLinker.python_matcher import get_declared_variable_mapping
 
 
 class TestPythonMatcher(TestCase):
