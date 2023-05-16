@@ -218,11 +218,14 @@ def python_match_examples(repo_name, examples, functions, classes):
     var_declarations = dict()
     var_declarations["pd"] = "pandas"
     var_declarations["df"] = "DataFrame"
+    var_declarations["dft"] = "DataFrame"
+    var_declarations["frame"] = "DataFrame"
     var_declarations["s"] = "Series"
+    var_declarations["series"] = "Series"
     install(repo_name)
     module = importlib.import_module(repo_name)
 
-    call_regex = re.compile(r"(?:\w+\.)?\w+(?=\()")
+    call_regex = re.compile(r"(?:\w+\.)+\w+(?=\()")
     for ex in examples:
         example = ex[0]
         found_calls = re.findall(call_regex, example)
@@ -241,8 +244,8 @@ def python_match_examples(repo_name, examples, functions, classes):
                     if function_split[1] in functions:
                         func_def = functions[function_split[1]]
                     else:
-                        func_def = get_match_with_other_class_functions(module, classes, functions, function_split,
-                                                                        var_declarations)
+                        func_def = match_call_with_other_class_functions(
+                            module, classes, functions, call, var_declarations)
 
             else:
                 func_def = functions[call]
@@ -313,16 +316,19 @@ def get_var_declarations(example_code):
     return var_declarations
 
 
-def get_match_with_other_class_functions(module, classes, functions, function_split, var_declarations):
+def match_call_with_other_class_functions(module, classes, functions, call, var_declarations):
     # match df -> DataFrame
     # Traverse through code and find class declarations as variables
     # e.g: df1 = pd.DataFrame(np.random.randn(6, 4), index=dates, columns=list("ABCD"))
     # we need to know that Dataframe is a class and put df in a dict matched with DataFrame
     class_name_regex = r"[<](?:function)\s(\w+)"
+    function_split = call.split(".")
     class_name = function_split[0]
     function_name = function_split[-1]
-    actual_class_name = class_name if class_name in classes.keys() else var_declarations[class_name] \
-        if class_name in var_declarations else None
+    # actual_class_name = class_name if class_name in classes.keys() else var_declarations[class_name] \
+    #     if class_name in var_declarations else None
+    actual_class_name = var_declarations[class_name] if class_name in var_declarations else \
+        class_name if class_name in classes.keys() else None
 
     if actual_class_name:
         similar_funcs = [s for s in functions.keys() if "." + function_split[1] in s]
@@ -344,6 +350,7 @@ def get_match_with_other_class_functions(module, classes, functions, function_sp
                 except Exception as e:
                     print(e)
                     print(function_split[0] + " " + function_split[1])
+                    print(call)
 
     return None
 
