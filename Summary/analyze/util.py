@@ -53,9 +53,6 @@ def get_webpages(doc_home, repo_name):
     if not domain:
         print("Invalid Link")
 
-    if doc_home[-1] not in ["/", "#"]:
-        doc_home += "/"
-
     base_url = re.match(re.compile(".+\/"), doc_home)[0]
     pages = [doc_home]
     links = soup.find_all("a", href=True)
