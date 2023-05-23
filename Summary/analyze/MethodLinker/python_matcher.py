@@ -1,5 +1,4 @@
 import ast
-import sys
 import re
 import csv
 import os
@@ -7,6 +6,7 @@ import inspect
 import importlib
 import subprocess
 import sys
+from typing import Dict
 
 import regex
 
@@ -297,7 +297,7 @@ def python_match_examples(repo_name, examples, functions, classes):
     return method_calls
 
 
-def get_declared_variable_mapping(example_code, classes):
+def get_declared_variable_mapping(example_code: str, classes: Dict) -> Dict:
     var_declarations = dict()
     func_call_assign_regex = r"(\w+)\s*=\s*(?:\w+\.)+(\w+(?=\())"
     import_regex = r"(?:^\s*(?:import)\s+(\w+(?:\.\w+)*)\s+(?:as)\s+(\w+))|(?:^\s*(?:from)\s+(?:\w+(?:\.\w+)*)\s(?:import)\s+(\w+(?:\.\w+)*)(?:\s+(?:as)\s+(\w+))?)"
@@ -328,7 +328,7 @@ def get_declared_variable_mapping(example_code, classes):
     return var_declarations
 
 
-def preprocess_doc_example_line(line):
+def preprocess_doc_example_line(line: str) -> str:
     jupyter_notebook_prefix = r"(?:^In\s?\[\d+\]\:\s*)|(?:^Out\s?\[\d+\]\:\s*)"
     prompt_regex = r"(?:^>>>\s*)"
     rest_line = r"(.*\S)$"
@@ -340,7 +340,8 @@ def preprocess_doc_example_line(line):
     return processed_line
 
 
-def match_call_with_other_class_functions(module, classes, functions, call, var_declarations):
+def match_call_with_other_class_functions(module, classes: Dict, functions: Dict, call: str,
+                                          var_declarations: Dict) -> Dict:
     # match df -> DataFrame
     # Traverse through code and find class declarations as variables
     # e.g: df1 = pd.DataFrame(np.random.randn(6, 4), index=dates, columns=list("ABCD"))
@@ -348,13 +349,12 @@ def match_call_with_other_class_functions(module, classes, functions, call, var_
     function_split = call.split(".")
     class_name = function_split[0]
     function_name = function_split[-1]
-    # actual_class_name = class_name if class_name in classes.keys() else var_declarations[class_name] \
-    #     if class_name in var_declarations else None
+
     actual_class_name = var_declarations[class_name] if class_name in var_declarations else \
         class_name if class_name in classes.keys() else None
 
     if actual_class_name:
-        similar_funcs = [s for s in functions.keys() if "." + function_split[1] in s]
+        similar_funcs = [s for s in functions.keys() if function_split[1] in s.split('.')]
         if len(similar_funcs) > 0:
             for func in similar_funcs:
                 try:
@@ -364,9 +364,13 @@ def match_call_with_other_class_functions(module, classes, functions, call, var_
                         actual_func_qualified_name = actual_func[0][1].__qualname__
                         actual_func_module = actual_func[0][1].__module__
 
+                        # e.g: 1. 'NDFrame' in ['NDFrame', 'head'] ;
+                        # e.g: 2.  'indexes' in 'date_range'
                         if func.split('.')[0] in actual_func_qualified_name.split('.'):
                             return functions[func]
 
+                        # e.g: 1. 'NDFrame' in ['pandas', 'core', 'generic'] ;
+                        # e.g: 2. 'indexes' in ['pandas', 'core', 'indexes', 'datetimes']
                         if func.split('.')[0] in actual_func_module.split('.'):
                             return functions[func]
 
@@ -380,4 +384,3 @@ def match_call_with_other_class_functions(module, classes, functions, call, var_
 
 def install(package):
     subprocess.check_call([sys.executable, "-m", "pip", "install", package])
-
