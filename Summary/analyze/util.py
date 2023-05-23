@@ -28,7 +28,7 @@ HEADERS = {
 MYSQL_CONFIG = {
     "host": "localhost",
     "user": "djangouser",
-    "password": "paSSw0#d",
+    "password": "password",
     "database": "task_data"
 }
 
@@ -53,6 +53,10 @@ def get_webpages(doc_home, repo_name):
     if not domain:
         print("Invalid Link")
 
+    if doc_home[-1] not in ["/", "#"]:
+        doc_home += "/"
+
+    base_url = re.match(re.compile(".+\/"), doc_home)[0]
     pages = [doc_home]
     links = soup.find_all("a", href=True)
     for link in links:
@@ -64,7 +68,7 @@ def get_webpages(doc_home, repo_name):
         # We do not want links with "#" because they're likely redundant
         if parse.hostname is None:
             if parse.path and not parse.fragment and not parse.query:
-                url = re.match(re.compile(".+"), doc_home)[0] + parse.path
+                url = base_url + parse.path
                 if repo_name.strip().lower() in url.strip().lower():
                     pages.append(url)
         elif parse.hostname == domain and "#" not in href and repo_name.strip().lower() in href.strip().lower():
