@@ -294,13 +294,14 @@ def get_declared_variable_mapping(example_code, classes):
             line = preprocess_doc_example_line(line)
             if not line:
                 continue
-            if type(ast.parse(line).body[0]) == ast.Import:
+            parsed_line = "" if not ast.parse(line.strip()).body else ast.parse(line.strip()).body[0]
+            if parsed_line and type(parsed_line) == ast.Import:
                 import_values = re.findall(re.compile(import_regex), line)[0]
                 import_values = [value for value in import_values if value]
                 if len(import_values) == 2:
                     var_declarations[import_values[1]] = import_values[0]
 
-            elif type(ast.parse(line).body[0]) == ast.Assign:
+            elif parsed_line and type(parsed_line) == ast.Assign:
                 func_call_assign = re.findall(func_call_assign_regex, line)
                 func_call_assign = func_call_assign[0] if func_call_assign else None
 
