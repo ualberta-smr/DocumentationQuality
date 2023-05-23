@@ -1,4 +1,5 @@
 import ast
+import logging
 import re
 import csv
 import os
@@ -7,8 +8,6 @@ import importlib
 import subprocess
 import sys
 from typing import Dict
-
-import regex
 
 
 def find_python_arguments(source_file):
@@ -322,8 +321,8 @@ def get_declared_variable_mapping(example_code: str, classes: Dict) -> Dict:
                     var_declarations[func_call_assign[0]] = func_call_assign[1]
 
         except Exception as e:
-            print(f"Error in get_declared_variable_mapping. Example code line: \n{line}")
-            print(e)
+            logging.debug(f"Error in get_declared_variable_mapping. Example code line: \n{line}")
+            logging.debug(e)
 
     return var_declarations
 
@@ -375,9 +374,9 @@ def match_call_with_other_class_functions(module, classes: Dict, functions: Dict
                             return functions[func]
 
                 except Exception as e:
-                    print(e)
-                    print(function_split[0] + " " + function_split[1])
-                    print(call)
+                    logging.debug(e)
+                    logging.debug(function_split[0] + " " + function_split[1])
+                    logging.debug(call)
 
     return None
 
