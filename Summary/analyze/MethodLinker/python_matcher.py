@@ -216,12 +216,7 @@ def python_match_examples(repo_name, examples, functions, classes):
     method_calls = set()
     links = []
     var_declarations = dict()
-    var_declarations["pd"] = "pandas"
-    var_declarations["df"] = "DataFrame"
-    var_declarations["dft"] = "DataFrame"
-    var_declarations["frame"] = "DataFrame"
-    var_declarations["s"] = "Series"
-    var_declarations["series"] = "Series"
+
     install(repo_name)
     module = importlib.import_module(repo_name)
 
@@ -229,7 +224,7 @@ def python_match_examples(repo_name, examples, functions, classes):
     for ex in examples:
         example = ex[0]
         found_calls = re.findall(call_regex, example)
-        # var_declarations.update(get_var_declarations(example))
+        var_declarations.update(get_declared_variable_mapping(example, classes))
         calls = []
         # Remove duplicate found calls
         [calls.append(item) for item in found_calls if item not in calls]
@@ -302,18 +297,47 @@ def python_match_examples(repo_name, examples, functions, classes):
     return method_calls
 
 
-def get_var_declarations(example_code):
+def get_declared_variable_mapping(example_code, classes):
     var_declarations = dict()
-    import_regex = r"(?:^\s*(?:import)\s+(\w+(?:\.\w+)*)\s+(?:as)\s+(\w+))|(?:^\s*(?:from)\s+(?:\w+(?:\.\w+)*)\s(?:import)\s+(\w+(?:\.\w+)*)\s+(?:as)\s+(\w+))"
+    func_call_assign_regex = r"(\w+)\s*=\s*(?:\w+\.)+(\w+(?=\())"
+    import_regex = r"(?:^\s*(?:import)\s+(\w+(?:\.\w+)*)\s+(?:as)\s+(\w+))|(?:^\s*(?:from)\s+(?:\w+(?:\.\w+)*)\s(?:import)\s+(\w+(?:\.\w+)*)(?:\s+(?:as)\s+(\w+))?)"
     lines = example_code.split('\n')
     for line in lines:
-        if type(ast.parse(line)) == ast.Import:
-            import_values = re.findall(re.compile(import_regex), example_code.split('\n')[0])
-            import_values = [value for value in import_values if value]
-            if len(import_values) == 2:
-                var_declarations[import_values[1]] = import_values[0]
+        try:
+            line = preprocess_doc_example_line(line)
+            if not line:
+                continue
+            parsed_line = "" if not ast.parse(line.strip()).body else ast.parse(line.strip()).body[0]
+            if parsed_line and type(parsed_line) == ast.Import:
+                import_values = re.findall(re.compile(import_regex), line)[0]
+                import_values = [value for value in import_values if value]
+                if len(import_values) == 2:
+                    var_declarations[import_values[1]] = import_values[0]
+
+            elif parsed_line and type(parsed_line) == ast.Assign:
+                func_call_assign = re.findall(func_call_assign_regex, line)
+                func_call_assign = func_call_assign[0] if func_call_assign else None
+
+                if func_call_assign and len(func_call_assign) == 2 and func_call_assign[1] in classes.keys():
+                    var_declarations[func_call_assign[0]] = func_call_assign[1]
+
+        except Exception as e:
+            print(f"Error in get_declared_variable_mapping. Example code line: \n{line}")
+            print(e)
 
     return var_declarations
+
+
+def preprocess_doc_example_line(line):
+    jupyter_notebook_prefix = r"(?:^In\s?\[\d+\]\:\s*)|(?:^Out\s?\[\d+\]\:\s*)"
+    prompt_regex = r"(?:^>>>\s*)"
+    rest_line = r"(.*\S)$"
+    code_line = f'(?:{jupyter_notebook_prefix}|{prompt_regex})?{rest_line}'
+
+    processed_line = re.findall(re.compile(code_line), line)
+    processed_line = processed_line[0] if len(processed_line) > 0 else ''
+
+    return processed_line
 
 
 def match_call_with_other_class_functions(module, classes, functions, call, var_declarations):
@@ -321,7 +345,6 @@ def match_call_with_other_class_functions(module, classes, functions, call, var_
     # Traverse through code and find class declarations as variables
     # e.g: df1 = pd.DataFrame(np.random.randn(6, 4), index=dates, columns=list("ABCD"))
     # we need to know that Dataframe is a class and put df in a dict matched with DataFrame
-    class_name_regex = r"[<](?:function)\s(\w+)"
     function_split = call.split(".")
     class_name = function_split[0]
     function_name = function_split[-1]
@@ -357,3 +380,4 @@ def match_call_with_other_class_functions(module, classes, functions, call, var_
 
 def install(package):
     subprocess.check_call([sys.executable, "-m", "pip", "install", package])
+

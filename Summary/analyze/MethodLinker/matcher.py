@@ -1,4 +1,6 @@
 import html
+import itertools
+import pprint
 import urllib.error
 from urllib.request import Request, urlopen
 
@@ -199,15 +201,10 @@ def get_doc_examples(check_examples, doc_url, pages):
             else:
                 doc_examples.extend(get_documentation_signatures(doc_url, page))
         except urllib.error.HTTPError as e:
-            pass
-            # if e.code == 404:
-            #     pass
-            # else:
-            #     print(page)
-            #     print(traceback.format_exc())
-        except:
-            pass
-            # print(page)
-            # print(traceback.format_exc())
+            print(e)
+            print(traceback.format_exc())
+        except Exception as e:
+            print(e)
+            print(traceback.format_exc())
 
     return doc_examples
