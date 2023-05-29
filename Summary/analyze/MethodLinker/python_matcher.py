@@ -1,9 +1,13 @@
 import ast
-import sys
+import logging
 import re
 import csv
 import os
-import traceback
+import inspect
+import importlib
+import subprocess
+import sys
+from typing import Dict
 
 
 def find_python_arguments(source_file):
@@ -210,12 +214,16 @@ def python_match_signatures(repo_name, examples, functions, classes):
 def python_match_examples(repo_name, examples, functions, classes):
     method_calls = set()
     links = []
-    declared_variable_mapping = dict()
+    var_declarations = dict()
 
-    call_regex = re.compile(r"(?:\w+\.)?\w+(?=\()")
+    install(repo_name)
+    module = importlib.import_module(repo_name)
+
+    call_regex = re.compile(r"(?:\w+\.)+\w+(?=\()")
     for ex in examples:
         example = ex[0]
         found_calls = re.findall(call_regex, example)
+        var_declarations.update(get_declared_variable_mapping(example, classes))
         calls = []
         # Remove duplicate found calls
         [calls.append(item) for item in found_calls if item not in calls]
@@ -229,6 +237,10 @@ def python_match_examples(repo_name, examples, functions, classes):
                 if len(function_split) > 1:
                     if function_split[1] in functions:
                         func_def = functions[function_split[1]]
+                    else:
+                        func_def = match_call_with_other_class_functions(
+                            module, classes, functions, call, var_declarations)
+
             else:
                 func_def = functions[call]
             if func_def:
@@ -284,7 +296,7 @@ def python_match_examples(repo_name, examples, functions, classes):
     return method_calls
 
 
-def get_declared_variable_mapping(example_code, classes):
+def get_declared_variable_mapping(example_code: str, classes: Dict) -> Dict:
     var_declarations = dict()
     func_call_assign_regex = r"(\w+)\s*=\s*(?:\w+\.)+(\w+(?=\())"
     import_regex = r"(?:^\s*(?:import)\s+(\w+(?:\.\w+)*)\s+(?:as)\s+(\w+))|(?:^\s*(?:from)\s+(?:\w+(?:\.\w+)*)\s(?:import)\s+(\w+(?:\.\w+)*)(?:\s+(?:as)\s+(\w+))?)"
@@ -309,13 +321,13 @@ def get_declared_variable_mapping(example_code, classes):
                     var_declarations[func_call_assign[0]] = func_call_assign[1]
 
         except Exception as e:
-            print(f"Error in get_declared_variable_mapping. Example code line: \n{line}")
-            print(e)
+            logging.debug(f"Error in get_declared_variable_mapping. Example code line: \n{line}")
+            logging.debug(e)
 
     return var_declarations
 
 
-def preprocess_doc_example_line(line):
+def preprocess_doc_example_line(line: str) -> str:
     jupyter_notebook_prefix = r"(?:^In\s?\[\d+\]\:\s*)|(?:^Out\s?\[\d+\]\:\s*)"
     prompt_regex = r"(?:^>>>\s*)"
     rest_line = r"(.*\S)$"
@@ -325,3 +337,49 @@ def preprocess_doc_example_line(line):
     processed_line = processed_line[0] if len(processed_line) > 0 else ''
 
     return processed_line
+
+
+def match_call_with_other_class_functions(module, classes: Dict, functions: Dict, call: str,
+                                          var_declarations: Dict) -> Dict:
+    # match df -> DataFrame
+    # Traverse through code and find class declarations as variables
+    # e.g: df1 = pd.DataFrame(np.random.randn(6, 4), index=dates, columns=list("ABCD"))
+    # we need to know that Dataframe is a class and put df in a dict matched with DataFrame
+    function_split = call.split(".")
+    class_name = function_split[0]
+    function_name = function_split[-1]
+
+    actual_class_name = var_declarations[class_name] if class_name in var_declarations else \
+        class_name if class_name in classes.keys() else None
+
+    if actual_class_name:
+        similar_funcs = [s for s in functions.keys() if function_split[1] in s.split('.')]
+        if len(similar_funcs) > 0:
+            for func in similar_funcs:
+                try:
+                    class_members = inspect.getmembers(getattr(module, actual_class_name))
+                    actual_func = [member for member in class_members if not 'NA' in member and function_name in member]
+                    if actual_func:
+                        actual_func_qualified_name = actual_func[0][1].__qualname__
+                        actual_func_module = actual_func[0][1].__module__
+
+                        # e.g: 1. 'NDFrame' in ['NDFrame', 'head'] ;
+                        # e.g: 2.  'indexes' in 'date_range'
+                        if func.split('.')[0] in actual_func_qualified_name.split('.'):
+                            return functions[func]
+
+                        # e.g: 1. 'NDFrame' in ['pandas', 'core', 'generic'] ;
+                        # e.g: 2. 'indexes' in ['pandas', 'core', 'indexes', 'datetimes']
+                        if func.split('.')[0] in actual_func_module.split('.'):
+                            return functions[func]
+
+                except Exception as e:
+                    logging.debug(e)
+                    logging.debug(function_split[0] + " " + function_split[1])
+                    logging.debug(call)
+
+    return None
+
+
+def install(package):
+    subprocess.check_call([sys.executable, "-m", "pip", "install", package])
