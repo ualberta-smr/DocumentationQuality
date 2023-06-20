@@ -1,9 +1,9 @@
 from .matcher import calculate_ratios
-from ..util import get_webpages
+from ..util import get_webpages, get_all_webpages
 
 
 def api_methods_examples(language, library_name, doc_url, repo_path, check_examples):
-    pages = get_webpages(doc_url, library_name)
+    pages = get_all_webpages(doc_url, library_name)
     example_count, total_methods, classes_count, total_classes = calculate_ratios(
         language, library_name, repo_path, doc_url, pages, check_examples)
     return example_count, total_methods, classes_count, total_classes
