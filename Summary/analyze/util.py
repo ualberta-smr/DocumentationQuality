@@ -121,61 +121,63 @@ def get_webpages(doc_home, repo_name):
 
 
 def get_all_webpages(doc_home, repo_name):
-    stack = [doc_home]
     pages = []
 
-    while len(stack) != 0:
-        page = stack.pop()
-        # print("Popped ----->  " + page)
+    dq = deque([[doc_home, 0]])
+    max_depth = 3
 
-        try:
-            req = Request(url=page, headers=HEADERS)
-            content = html.unescape(urlopen(req).read().decode("utf-8"))
-            soup = BeautifulSoup(content, "html.parser")
-            domain = urlparse(page).hostname
-            if not domain:
-                print("Invalid Link")
-                continue
+    while dq:
+        page, depth = dq.popleft()
+        print("Popped ----->  " + page)
+        print("Depth ----->  " + str(depth))
 
-            pages.append(page)
-
-            base_url = re.match(re.compile(".+\/"), page)[0]
-
-            links = soup.find_all("a", href=True)
-            for link in links:
-                href = link["href"]
-
-                # Redirecting to parent
-                if re.findall('.*\.\.\/.*', href):
+        if depth < max_depth:
+            try:
+                req = Request(url=page, headers=HEADERS)
+                content = html.unescape(urlopen(req).read().decode("utf-8"))
+                soup = BeautifulSoup(content, "html.parser")
+                domain = urlparse(page).hostname
+                if not domain:
+                    print("Invalid Link")
                     continue
 
-                # Remove one or more './' from link
-                href = re.sub('(\.\/)*', '', href)
+                pages.append(page)
 
-                parse = urlparse(href)
-                # hostname is None means it is not an external site
-                # path not null means it is another path on the documentation
-                # not fragment means it does not have a "#"
-                # We do not want links with "#" because they're likely redundant
-                if parse.hostname is None:
-                    if parse.path and not parse.fragment and not parse.query:
-                        url = base_url + parse.path
-                        if url not in stack and url not in pages and urlparse(url).hostname == urlparse(doc_home).hostname:
-                            # print(url)
-                            stack.append(url)
-                elif href not in stack and href not in pages and parse.hostname == domain and "#" not in href and urlparse(
-                        href).hostname == urlparse(doc_home).hostname:
-                    # print(href)
-                    stack.append(href)
+                base_url = re.match(re.compile(".+\/"), page)[0]
 
-        except Exception as e:
-            pass
-            # print(e)
+                links = soup.find_all("a", href=True)
+                for link in links:
+                    href = link["href"]
+
+                    # Redirecting to parent
+                    if re.findall('.*\.\.\/.*', href):
+                        continue
+
+                    # Remove one or more './' from link
+                    href = re.sub('(\.\/)*', '', href)
+
+                    parse = urlparse(href)
+                    # hostname is None means it is not an external site
+                    # path not null means it is another path on the documentation
+                    # not fragment means it does not have a "#"
+                    # We do not want links with "#" because they're likely redundant
+                    if parse.hostname is None:
+                        if parse.path and not parse.fragment and not parse.query:
+                            url = base_url + parse.path
+                            if url not in dq and url not in pages and urlparse(url).hostname == urlparse(doc_home).hostname:
+                                # print(url)
+                                dq.append([url, depth+1])
+                    elif href not in dq and href not in pages and parse.hostname == domain and "#" not in href and urlparse(
+                            href).hostname == urlparse(doc_home).hostname:
+                        # print(href)
+                        dq.append([href, depth+1])
+
+            except Exception as e:
+                pass
+                # print(e)
 
     pages = list(dict.fromkeys(pages))
     return pages
-
-
 
 
 def add_to_task_table(item_dict):
