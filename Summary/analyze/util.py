@@ -4,6 +4,7 @@ import html
 import re
 import traceback
 from collections import deque
+from multiprocessing.pool import ThreadPool
 from shutil import rmtree
 
 import mysql.connector
@@ -75,77 +76,69 @@ def get_webpages(doc_home, repo_name):
     return pages
 
 
-# def get_all_webpages_old(doc_home, repo_name, pages=[], base_url=None):
-#     try:
-#         stack = deque()
-#
-#         req = Request(url=doc_home, headers=HEADERS)
-#         content = html.unescape(urlopen(req).read().decode("utf-8"))
-#         soup = BeautifulSoup(content, "html.parser")
-#         domain = urlparse(doc_home).hostname
-#         if not domain:
-#             print("Invalid Link")
-#
-#         base_url = re.match(re.compile(".+\/"), doc_home)[0]
-#
-#         if not pages:
-#             pages = [doc_home]
-#
-#         links = soup.find_all("a", href=True)
-#         for link in links:
-#             href = link["href"]
-#             if re.findall('.*\.\.\/.*', href):
-#                 continue
-#
-#             parse = urlparse(href)
-#             # hostname is None means it is not an external site
-#             # path not null means it is another path on the documentation
-#             # not fragment means it does not have a "#"
-#             # We do not want links with "#" because they're likely redundant
-#             if parse.hostname is None:
-#                 if parse.path and not parse.fragment and not parse.query:
-#                     url = base_url + parse.path
-#                     if url not in pages and urlparse(url).hostname == urlparse(doc_home).hostname:
-#                         print(url)
-#                         pages.append(url)
-#                         get_all_webpages(url, repo_name, pages=pages, base_url=base_url)
-#             elif href not in pages and parse.hostname == domain and "#" not in href and urlparse(href).hostname == urlparse(doc_home).hostname:
-#                 print(href)
-#                 pages.append(href)
-#                 get_all_webpages(href, repo_name, pages=pages, base_url=base_url)
-#         pages = list(dict.fromkeys(pages))
-#         return pages
-#
-#     except Exception as e:
-#         print(e)
+def fetch_url(page_data):
+    url = page_data[0]
+    depth = page_data[1]
+    try:
+        req = Request(url=url, headers=HEADERS)
+        response = urlopen(req)
+    except:
+        return None
+    return response, depth
 
 
-def get_all_webpages(doc_home, repo_name):
-    pages = []
+def get_all_webpages(doc_home, max_depth):
+    print("Getting pages up-to depth", max_depth)
+    pages = {}
+    stop_words = ['releasenotes', 'whatsnew', 'deprecated']
 
     dq = deque([[doc_home, 0]])
-    max_depth = 3
 
+    request_batch = []
+    batch_size = 100
+    visited_links = set()
     while dq:
         page, depth = dq.popleft()
-        print("Popped ----->  " + page)
-        print("Depth ----->  " + str(depth))
+        # print("Popped ----->  " + page)
+        # print("Depth ----->  " + str(depth))
 
-        if depth < max_depth:
+        if any(stop_word in page for stop_word in stop_words):
+            continue
+
+        request_batch.append([page, depth])
+        if len(request_batch) < batch_size and dq:
+            continue
+        valid_requests = []
+        for data in request_batch:
+            page, depth = data[0], data[1]
+            if depth <= max_depth:
+                valid_requests.append((page, depth))
+        if not valid_requests:
+            continue
+        responses = ThreadPool(min(batch_size, len(valid_requests))).imap_unordered(fetch_url, valid_requests)
+        for response_data in responses:
+            if response_data is None:
+                continue
+            response = response_data[0]
+            depth = response_data[1]
+
             try:
-                req = Request(url=page, headers=HEADERS)
-                content = html.unescape(urlopen(req).read().decode("utf-8"))
+                page_url = response.url
+                content = html.unescape(response.read().decode("utf-8"))
                 soup = BeautifulSoup(content, "html.parser")
-                domain = urlparse(page).hostname
+                domain = urlparse(page_url).hostname
                 if not domain:
                     print("Invalid Link")
                     continue
 
-                pages.append(page)
+                pages[page_url] = soup
 
-                base_url = re.match(re.compile(".+\/"), page)[0]
+                base_url = re.match(re.compile(".+\/"), page_url)[0]
 
-                links = soup.find_all("a", href=True)
+                links = set(soup.find_all("a", href=True))
+                links = [x for x in links if x not in visited_links]
+                visited_links.update(links)
+
                 for link in links:
                     href = link["href"]
 
@@ -164,19 +157,18 @@ def get_all_webpages(doc_home, repo_name):
                     if parse.hostname is None:
                         if parse.path and not parse.fragment and not parse.query:
                             url = base_url + parse.path
-                            if url not in dq and url not in pages and urlparse(url).hostname == urlparse(doc_home).hostname:
+                            if url not in dq and url not in pages and urlparse(url).hostname == urlparse(
+                                    doc_home).hostname:
                                 # print(url)
-                                dq.append([url, depth+1])
+                                dq.append([url, depth + 1])
                     elif href not in dq and href not in pages and parse.hostname == domain and "#" not in href and urlparse(
                             href).hostname == urlparse(doc_home).hostname:
                         # print(href)
-                        dq.append([href, depth+1])
-
+                        dq.append([href, depth + 1])
             except Exception as e:
                 pass
-                # print(e)
+        request_batch.clear()
 
-    pages = list(dict.fromkeys(pages))
     return pages
 
 

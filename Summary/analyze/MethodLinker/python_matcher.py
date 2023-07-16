@@ -382,4 +382,4 @@ def match_call_with_other_class_functions(module, classes: Dict, functions: Dict
 
 
 def install(package):
-    subprocess.check_call([sys.executable, "-m", "pip", "install", package])
+    subprocess.check_call([sys.executable, "-m", "pip", "install", package], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)

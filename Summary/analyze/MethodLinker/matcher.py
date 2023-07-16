@@ -116,17 +116,8 @@ def get_source_files(repo_name, repo_path):
 # Retrieves only html <code> tags because we don't want examples
 # we just want to see if there source code is reflected in the documentation,
 # so we need to find the signatures in the documentation
-def get_documentation_signatures(doc_url, url):
-    try:
-        req = Request(url=url, headers=HEADERS)
-    except ValueError:
-        try:
-            url = re.match(re.compile(".+/"), doc_url)[0] + url
-            req = Request(url=url, headers=HEADERS)
-        except ValueError:
-            return []
-    content = html.unescape(urlopen(req).read().decode("utf-8"))
-    soup = BeautifulSoup(content, "html.parser")
+def get_documentation_signatures(page, page_soup):
+    soup = page_soup
     dts = soup.find_all("dt") + soup.find_all("code")
     signatures = []
 
@@ -137,29 +128,20 @@ def get_documentation_signatures(doc_url, url):
                 desc.append(child.get_text())
         description = "".join(desc).strip()
         if "(" in description:
-            signatures.append([description, url])
+            signatures.append([description, page])
     return signatures
 
 
 # Retrieves only html <pre> tags to get code examples
-def get_documentation_examples(doc_url, url):
-    try:
-        req = Request(url=url, headers=HEADERS)
-    except ValueError:
-        try:
-            url = re.match(re.compile(".+/"), doc_url)[0] + url
-            req = Request(url=url, headers=HEADERS)
-        except ValueError:
-            return []
-    content = html.unescape(urlopen(req).read().decode("utf-8"))
-    soup = BeautifulSoup(content, "html.parser")
+def get_documentation_examples(page, page_soup):
+    soup = page_soup
     raw_examples = soup.find_all("pre")
     doc_examples = []
 
     for raw_example in raw_examples:
         example = raw_example.get_text()
         if "(" in example:
-            doc_examples.append([example, url])
+            doc_examples.append([example, page])
     return doc_examples
 
 
@@ -193,11 +175,12 @@ def get_functions(functions, source_file):
 def get_doc_examples(check_examples, doc_url, pages):
     doc_examples = []
     for page in pages:
+        page_soup = pages[page]
         try:
             if check_examples:
-                doc_examples.extend(get_documentation_examples(doc_url, page))
+                doc_examples.extend(get_documentation_examples(page, page_soup))
             else:
-                doc_examples.extend(get_documentation_signatures(doc_url, page))
+                doc_examples.extend(get_documentation_signatures(page, page_soup))
         except urllib.error.HTTPError as e:
             print(e)
             print(traceback.format_exc())
