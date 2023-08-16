@@ -95,7 +95,7 @@ def get_source_files(repo_name, repo_path):
     # Only look at the top level directory in this loop
     for root, dirs, files in os.walk(repo_path):
         for dir_name in dirs:
-            if dir_name.lower() == "src" or dir_name == repo_name:
+            if dir_name.lower() == "src" or dir_name.lower() == repo_name.lower():
                 src_dir = os.path.normpath(root + "/" + dir_name)
                 break
         for file in files:

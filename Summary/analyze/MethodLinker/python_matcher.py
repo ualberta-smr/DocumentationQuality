@@ -223,7 +223,7 @@ def python_match_examples(repo_name, examples, functions, classes):
     for ex in examples:
         example = ex[0]
         found_calls = re.findall(call_regex, example)
-        var_declarations.update(get_declared_variable_mapping(example, classes))
+        var_declarations.update(get_declared_variable_mapping(example, classes)) # need to update for `req = requests.request('GET', 'https://httpbin.org/get')`
         calls = []
         # Remove duplicate found calls
         [calls.append(item) for item in found_calls if item not in calls]
@@ -313,7 +313,7 @@ def get_declared_variable_mapping(example_code: str, classes: Dict) -> Dict:
                 if len(import_values) == 2:
                     var_declarations[import_values[1]] = import_values[0]
 
-            elif parsed_line and type(parsed_line) == ast.Assign:
+            elif parsed_line and type(parsed_line) == ast.Assign:  # need to fix, x = SomeClass()
                 func_call_assign = re.findall(func_call_assign_regex, line)
                 func_call_assign = func_call_assign[0] if func_call_assign else None
 

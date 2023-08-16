@@ -90,7 +90,7 @@ def fetch_url(page_data):
 def get_all_webpages(doc_home, max_depth):
     print("Getting pages up-to depth", max_depth)
     pages = {}
-    stop_words = ['releasenotes', 'whatsnew', 'deprecated']
+    stop_words = ['releasenotes', 'whatsnew', 'deprecated', 'community', 'updates', 'releasehistory', 'release-history']
 
     dq = deque([[doc_home, 0]])
 
