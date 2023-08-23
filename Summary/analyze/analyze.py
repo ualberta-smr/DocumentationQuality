@@ -268,65 +268,104 @@ def analyze_library(language, library_name, doc_url, gh_url, domain, repo_path):
 
 def debug_metrics(language, library_name, doc_url, gh_url, domain):
     os.chdir(ROOT_DIR)
-    description = get_description(library_name, doc_url)
-    if not description:
-        description = "Could not find description"
-    add_or_update_library_record(
-        {"library_name": library_name,
-         "language": language,
-         "domain": domain,
-         "description": description,
-         "doc_url": doc_url,
-         "gh_url": gh_url,
-         "task_list_done": False,
-         "last_updated": datetime.datetime.utcnow()
-         })
-    print("Done description")
-
-    task_extract_and_link(library_name, doc_url, domain)
-    remove_old_tasks(library_name)
-    add_tasks_to_db(library_name)
-    print("Done task extract")
 
     repo_path = clone_repo(gh_url, True)
     print("Done cloning")
-    methods_linked, methods, classes_linked, classes = api_methods_examples(language, library_name, doc_url, repo_path, False)
-    add_or_update_library_record({"library_name": library_name,
-                                  "gh_url": gh_url,
-                                  "doc_url": doc_url,
-                                  "signature_methods": methods_linked,
-                                  "signature_classes": classes_linked,
-                                  "methods": methods,
-                                  "classes": classes,
-                                  "last_updated": datetime.datetime.utcnow()
-                                  })
+
+
+
+    # methods_linked, methods, classes_linked, classes = api_methods_examples(language, library_name, doc_url, repo_path, False)
+    # add_or_update_library_record({"library_name": library_name,
+    #                               "gh_url": gh_url,
+    #                               "doc_url": doc_url,
+    #                               "signature_methods": methods_linked,
+    #                               "signature_classes": classes_linked,
+    #                               "methods": methods,
+    #                               "classes": classes,
+    #                               "last_updated": datetime.datetime.utcnow()
+    #                               })
+
+    # print('Signature: ' + str(methods_linked) + " methods: " + str(methods))
 
     methods_linked, methods, classes_linked, classes = api_methods_examples(language, library_name, doc_url, repo_path, True)
-    add_or_update_library_record({"library_name": library_name,
-                                  "gh_url": gh_url,
-                                  "doc_url": doc_url,
-                                  "method_examples": methods_linked,
-                                  "class_examples": classes_linked,
-                                  "methods": methods,
-                                  "classes": classes,
-                                  "last_updated": datetime.datetime.utcnow()
-                                  })
+    print('Example: ' + str(methods_linked) + " methods: " + str(methods))
+    # add_or_update_library_record({"library_name": library_name,
+    #                               "gh_url": gh_url,
+    #                               "doc_url": doc_url,
+    #                               "method_examples": methods_linked,
+    #                               "class_examples": classes_linked,
+    #                               "methods": methods,
+    #                               "classes": classes,
+    #                               "last_updated": datetime.datetime.utcnow()
+    #                               })
     print("Done method linking")
-    text_score, text_ease, code_score, code_ease = get_readability(library_name,
-                                                                   language,
-                                                                   doc_url)
-    add_or_update_library_record({"library_name": library_name,
-                                  "text_readability_score": round(text_score, 2),
-                                  "text_readability_rating": text_ease,
-                                  "code_readability_score": round(code_score, 2) if code_score else code_score,
-                                  "code_readability_rating": code_ease,
-                                  "last_updated": datetime.datetime.utcnow()})
-    print("Done readability")
-    navigation_dict = run_checklist(library_name, doc_url)
-    add_or_update_library_record({"library_name": library_name,
-                                  "navigability": json.dumps(navigation_dict),
-                                  "last_updated": datetime.datetime.utcnow()})
-    print("Done navigation")
+
+
+
+# def debug_metrics(language, library_name, doc_url, gh_url, domain):
+#     os.chdir(ROOT_DIR)
+#     # description = get_description(library_name, doc_url)
+#     # if not description:
+#     #     description = "Could not find description"
+#     # add_or_update_library_record(
+#     #     {"library_name": library_name,
+#     #      "language": language,
+#     #      "domain": domain,
+#     #      "description": description,
+#     #      "doc_url": doc_url,
+#     #      "gh_url": gh_url,
+#     #      "task_list_done": False,
+#     #      "last_updated": datetime.datetime.utcnow()
+#     #      })
+#     # print("Done description")
+#     #
+#     # task_extract_and_link(library_name, doc_url, domain)
+#     # remove_old_tasks(library_name)
+#     # add_tasks_to_db(library_name)
+#     # print("Done task extract")
+#
+#     repo_path = clone_repo(gh_url, True)
+#     print("Done cloning")
+#     # methods_linked, methods, classes_linked, classes = api_methods_examples(language, library_name, doc_url, repo_path, False)
+#     # add_or_update_library_record({"library_name": library_name,
+#     #                               "gh_url": gh_url,
+#     #                               "doc_url": doc_url,
+#     #                               "signature_methods": methods_linked,
+#     #                               "signature_classes": classes_linked,
+#     #                               "methods": methods,
+#     #                               "classes": classes,
+#     #                               "last_updated": datetime.datetime.utcnow()
+#     #                               })
+#
+#     # print('Signature: ' + str(methods_linked) + " methods: " + str(methods))
+#
+#     methods_linked, methods, classes_linked, classes = api_methods_examples(language, library_name, doc_url, repo_path, True)
+#     print('Example: ' + str(methods_linked) + " methods: " + str(methods))
+#     # add_or_update_library_record({"library_name": library_name,
+#     #                               "gh_url": gh_url,
+#     #                               "doc_url": doc_url,
+#     #                               "method_examples": methods_linked,
+#     #                               "class_examples": classes_linked,
+#     #                               "methods": methods,
+#     #                               "classes": classes,
+#     #                               "last_updated": datetime.datetime.utcnow()
+#     #                               })
+#     print("Done method linking")
+#     # text_score, text_ease, code_score, code_ease = get_readability(library_name,
+#     #                                                                language,
+#     #                                                                doc_url)
+#     # add_or_update_library_record({"library_name": library_name,
+#     #                               "text_readability_score": round(text_score, 2),
+#     #                               "text_readability_rating": text_ease,
+#     #                               "code_readability_score": round(code_score, 2) if code_score else code_score,
+#     #                               "code_readability_rating": code_ease,
+#     #                               "last_updated": datetime.datetime.utcnow()})
+#     # print("Done readability")
+#     # navigation_dict = run_checklist(library_name, doc_url)
+#     # add_or_update_library_record({"library_name": library_name,
+#     #                               "navigability": json.dumps(navigation_dict),
+#     #                               "last_updated": datetime.datetime.utcnow()})
+#     # print("Done navigation")
 
 class AnalyzeConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
