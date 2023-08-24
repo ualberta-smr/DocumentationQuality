@@ -10,6 +10,7 @@ from bs4 import BeautifulSoup
 
 from DocumentationQualityAnalysis.analyze_library.doc_parser.doc_example_util import get_documentation_examples
 from DocumentationQualityAnalysis.analyze_library.doc_parser.doc_signature_util import get_signatures_from_doc
+from DocumentationQualityAnalysis.analyze_library.models.Signature import Signature
 from DocumentationQualityAnalysis.analyze_library.models.doc_page import DocPage
 from DocumentationQualityAnalysis.analyze_library.models.method_signature import MethodSignature
 
@@ -122,14 +123,14 @@ def get_all_webpages(doc_home: str, max_depth: int) -> List[DocPage]:
     return doc_pages
 
 
-def get_functions_and_classes_from_doc_api_ref(doc_pages: List[DocPage]) -> List[MethodSignature]:
+def get_functions_and_classes_from_doc_api_ref(doc_pages: List[DocPage]) -> List[Signature]:
     api_ref = ['api', 'reference']
-    doc_functions = []
+    signatures: List[Signature] = []
     for page in doc_pages:
         if any(word in page.url for word in api_ref):
-            doc_functions.extend(get_signatures_from_doc(page))
+            signatures.extend(get_signatures_from_doc(page))
 
-    return doc_functions
+    return signatures
 
 
 def get_functions_and_classes_from_doc_examples(doc_pages: List[DocPage]) -> List:

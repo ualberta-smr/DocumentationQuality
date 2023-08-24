@@ -1,0 +1,7 @@
+requests.request: 2
+requests.head: 4
+requests.get: 43
+requests.post: 13
+requests.put: 1
+requests.patch: 1
+requests.delete: 2
