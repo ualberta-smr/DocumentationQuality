@@ -6,17 +6,17 @@ import subprocess
 import sys
 from typing import Dict, List, Union
 
-from DocumentationQualityAnalysis.analyze_library.models.Signature import Signature
-from DocumentationQualityAnalysis.analyze_library.models.class_constructor_signature import ClassConstructorSignature
-from DocumentationQualityAnalysis.analyze_library.models.doc_code_example import DocCodeExample
-from DocumentationQualityAnalysis.analyze_library.models.matched_function import MatchedFunction
-from DocumentationQualityAnalysis.analyze_library.models.method_signature import MethodSignature
+from documentation_quality_analysis.analyze_library.models.Signature import Signature
+from documentation_quality_analysis.analyze_library.models.class_constructor_signature import ClassConstructorSignature
+from documentation_quality_analysis.analyze_library.models.doc_code_example import DocCodeExample
+from documentation_quality_analysis.analyze_library.models.matched_function import MatchedCall
+from documentation_quality_analysis.analyze_library.models.method_signature import MethodSignature
 
 
 def python_match_examples(repo_name: str,
                           examples: List[DocCodeExample],
                           doc_apis: List[Union[Signature, None]]
-                          ) -> List[MatchedFunction]:
+                          ) -> List[MatchedCall]:
     matched_apis = list()
     var_declarations = dict()
     functions: List[MethodSignature] = [x for x in doc_apis if type(x) == MethodSignature]
@@ -35,50 +35,65 @@ def python_match_examples(repo_name: str,
         [calls.append(item) for item in found_calls if item not in calls]
 
         for call in calls:
-            matched_func = _get_matched_function(call, functions)
+            matched_call = _get_matched_function(call, doc_apis)
             # Check if the function exists in our dictionary
-            if not matched_func:
+            if not matched_call:
                 function_split = call.split(".")
-                # If not then maybe it does if we remove the first prefix
-                # e.g., nltk.nltk.get -> nltk.get
-                if len(function_split) > 1:
-                    matched_func = _get_matched_function(function_split[1], functions)
-                    if matched_func:
-                        # method_calls.add((ex[1], call))
-                        matched_apis.append(
-                            MatchedFunction(method=matched_func, raw_example=ex, original_call=call, url=ex.url))
-                    else:
-                        if function_split[0] in var_declarations:
-                            actual_function = '.'.join([var_declarations[function_split[0]], function_split[1]])
-                            matched_func = _get_matched_function(actual_function, doc_apis)
-                            if matched_func:
-                                # method_calls.add((ex[1], call))
-                                matched_apis.append(
-                                    MatchedFunction(method=matched_func, raw_example=ex, original_call=call,
-                                                    url=ex.url))
 
-            elif matched_func:
+                if len(function_split) > 1:
+                    if function_split[0] in var_declarations:
+                        actual_function = '.'.join([var_declarations[function_split[0]], function_split[1]])
+                        matched_func = _get_matched_function(actual_function, doc_apis)
+                        if matched_func:
+                            matched_apis.append(
+                                MatchedCall(called_signature=matched_func, raw_example=ex, original_call=call, url=ex.url))
+                    else:
+                        # If not then maybe it does if we remove the first prefix
+                        # e.g., nltk.nltk.get -> nltk.get
+                        first_term_removed_function = '.'.join(function_split[1:])
+                        matched_call = _get_matched_function(first_term_removed_function, functions)
+                        if matched_call:
+                            # method_calls.add((ex[1], call))
+                            matched_apis.append(
+                                MatchedCall(called_signature=matched_call, raw_example=ex, original_call=call, url=ex.url))
+                    # else:
+                        # if function_split[0] in var_declarations:
+                        #     actual_function = '.'.join([var_declarations[function_split[0]], function_split[1]])
+                        #     matched_func = _get_matched_function(actual_function, doc_apis)
+                        #     if matched_func:
+                        #         # method_calls.add((ex[1], call))
+                        #         matched_apis.append(
+                        #             MatchedCall(called_signature=matched_call, raw_example=ex, original_call=call,
+                        #                         url=ex.url))
+
+            elif matched_call:
                 # method_calls.add((ex[1], call))
                 matched_apis.append(
-                    MatchedFunction(method=matched_func, raw_example=ex, original_call=call, url=ex.url))
+                    MatchedCall(called_signature=matched_call, raw_example=ex, original_call=call, url=ex.url))
 
     return matched_apis
 
 
-def _get_matched_function(call: str, functions: List[MethodSignature]) -> Union[MethodSignature, None]:
+def _get_matched_function(call: str, functions: List[Signature]) -> Union[Signature, None]:
     for func in functions:
         if func is None:
             continue
 
         if call == func.fully_qualified_name:
             return func
+        else:
+            parents = func.parent.split(".")
+            if len(parents) > 1:
+                partial_qualified_name = ".".join([parents[-1], func.name])
+                if call == partial_qualified_name:
+                    return func
 
     return None
 
 
 def get_declared_variable_mapping(example_code: str, classes: List[ClassConstructorSignature]) -> Dict:
     var_declarations = dict()
-    func_call_assign_regex = r"(\w+)\s*=\s*(?:\w+\.)+(\w+(?=\())"
+    func_call_assign_regex = r"(\w+)\s*=\s*((?:\w+\.)+(\w+(?=\()))"
     import_regex = r"(?:^\s*(?:import)\s+(\w+(?:\.\w+)*)\s+(?:as)\s+(\w+))|(?:^\s*(?:from)\s+(?:\w+(?:\.\w+)*)\s(?:import)\s+(\w+(?:\.\w+)*)(?:\s+(?:as)\s+(\w+))?)"
     lines = example_code.split('\n')
     for line in lines:
@@ -97,10 +112,10 @@ def get_declared_variable_mapping(example_code: str, classes: List[ClassConstruc
                 matched_list = re.findall(func_call_assign_regex, line)
                 func_call_assign = matched_list[0] if matched_list else None
 
-                if func_call_assign and len(func_call_assign) == 2 and \
-                        (func_call_assign[1] in [x.fully_qualified_name for x in classes] or
-                         func_call_assign[1] in [x.name for x in classes]):
-                    var_declarations[func_call_assign[0]] = func_call_assign[1]
+                if func_call_assign and len(func_call_assign) >= 2:
+                    called_class = [x for x in classes if x.name == func_call_assign[-1]]
+                    if called_class:
+                        var_declarations[func_call_assign[0]] = func_call_assign[-1]
 
         except Exception as e:
             logging.debug(f"Error in get_declared_variable_mapping. Example code line: \n{line}")

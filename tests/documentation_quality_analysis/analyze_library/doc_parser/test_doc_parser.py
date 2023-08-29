@@ -1,11 +1,11 @@
 from unittest import TestCase
 from bs4 import BeautifulSoup
 
-from DocumentationQualityAnalysis.analyze_library.doc_parser.doc_parser import \
+from documentation_quality_analysis.analyze_library.doc_parser.doc_parser import \
     get_functions_and_classes_from_doc_api_ref
-from DocumentationQualityAnalysis.analyze_library.models.class_constructor_signature import ClassConstructorSignature
-from DocumentationQualityAnalysis.analyze_library.models.doc_page import DocPage
-from DocumentationQualityAnalysis.analyze_library.models.method_signature import MethodSignature
+from documentation_quality_analysis.analyze_library.models.class_constructor_signature import ClassConstructorSignature
+from documentation_quality_analysis.analyze_library.models.doc_page import DocPage
+from documentation_quality_analysis.analyze_library.models.method_signature import MethodSignature
 
 
 class TestDocParser(TestCase):

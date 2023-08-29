@@ -1,6 +1,6 @@
 from typing import List
 
-from DocumentationQualityAnalysis.analyze_library.models.parameter import Parameter
+from documentation_quality_analysis.analyze_library.models.parameter import Parameter
 
 
 class Signature:
@@ -8,6 +8,7 @@ class Signature:
                  raw_text: str = ""):
         self.name = name
         self.parent = parent
+        self.fully_qualified_name = self.parent + "." + self.name if self.parent else self.name
         self.req_params = req_params
         self.optional_params = optional_params
         self.raw_text = raw_text

@@ -1,7 +1,7 @@
 from typing import List
 
-from DocumentationQualityAnalysis.analyze_library.models.Signature import Signature
-from DocumentationQualityAnalysis.analyze_library.models.parameter import Parameter
+from documentation_quality_analysis.analyze_library.models.Signature import Signature
+from documentation_quality_analysis.analyze_library.models.parameter import Parameter
 
 
 class MethodSignature(Signature):
@@ -9,5 +9,4 @@ class MethodSignature(Signature):
                  return_type: str = None, raw_text: str = ''):
         super().__init__(name, parent, req_params, optional_params, raw_text)
 
-        self.fully_qualified_name = self.parent + "." + self.name if self.parent else self.name
         self.return_type = return_type

@@ -1,5 +1,6 @@
 import html
 import re
+import ssl
 from collections import deque
 from multiprocessing.pool import ThreadPool
 from typing import List
@@ -8,11 +9,10 @@ from urllib.request import Request, urlopen
 
 from bs4 import BeautifulSoup
 
-from DocumentationQualityAnalysis.analyze_library.doc_parser.doc_example_util import get_documentation_examples
-from DocumentationQualityAnalysis.analyze_library.doc_parser.doc_signature_util import get_signatures_from_doc
-from DocumentationQualityAnalysis.analyze_library.models.Signature import Signature
-from DocumentationQualityAnalysis.analyze_library.models.doc_page import DocPage
-from DocumentationQualityAnalysis.analyze_library.models.method_signature import MethodSignature
+from documentation_quality_analysis.analyze_library.doc_parser.doc_example_util import get_documentation_examples
+from documentation_quality_analysis.analyze_library.doc_parser.doc_signature_util import get_signatures_from_doc
+from documentation_quality_analysis.analyze_library.models.Signature import Signature
+from documentation_quality_analysis.analyze_library.models.doc_page import DocPage
 
 HEADERS = {
     'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) '
@@ -30,7 +30,8 @@ def fetch_url(page_data):
     depth = page_data[1]
     try:
         req = Request(url=url, headers=HEADERS)
-        response = urlopen(req)
+
+        response = urlopen(req, context=ssl.SSLContext())
     except:
         return None
     return response, depth

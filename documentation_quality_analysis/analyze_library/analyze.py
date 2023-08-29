@@ -1,16 +1,13 @@
 from typing import List, Union
 
-from DocumentationQualityAnalysis.analyze_library.doc_parser.doc_parser import get_all_webpages, \
+from documentation_quality_analysis.analyze_library.doc_parser.doc_parser import get_all_webpages, \
     get_functions_and_classes_from_doc_api_ref, get_functions_and_classes_from_doc_examples
-from DocumentationQualityAnalysis.analyze_library.models.Signature import Signature
-from DocumentationQualityAnalysis.analyze_library.models.class_constructor_signature import ClassConstructorSignature
-from DocumentationQualityAnalysis.analyze_library.models.doc_code_example import DocCodeExample
-from DocumentationQualityAnalysis.analyze_library.models.doc_page import DocPage
-from DocumentationQualityAnalysis.analyze_library.models.matched_function import MatchedFunction
-from DocumentationQualityAnalysis.analyze_library.models.method_signature import MethodSignature
-from DocumentationQualityAnalysis.analyze_library.signature_matcher.python_signature_matcher import \
+from documentation_quality_analysis.analyze_library.models.Signature import Signature
+from documentation_quality_analysis.analyze_library.models.doc_code_example import DocCodeExample
+from documentation_quality_analysis.analyze_library.models.doc_page import DocPage
+from documentation_quality_analysis.analyze_library.models.matched_function import MatchedCall
+from documentation_quality_analysis.analyze_library.signature_matcher.python_signature_matcher import \
     python_match_examples
-from Summary.analyze.util import clone_repo
 
 
 def debug_metrics(language, library_name, doc_url, gh_url):
@@ -27,16 +24,39 @@ def debug_metrics(language, library_name, doc_url, gh_url):
 
     doc_code_examples: List[DocCodeExample] = get_functions_and_classes_from_doc_examples(doc_pages)
 
-    matched_methods: List[MatchedFunction] = python_match_examples(library_name, doc_code_examples, doc_api)
+    matched_methods: List[MatchedCall] = python_match_examples(library_name, doc_code_examples, doc_api)
 
-    write_stats_to_file(doc_api, doc_code_examples, matched_methods, library_name)
+    stats_example_per_api = get_stats_ex_per_api(doc_api, matched_methods)
+
+    stats_api_per_example = get_stats_api_per_example(matched_methods)
+
+    # write_stats_to_file(doc_code_examples, stats_example_per_api, stats_api_per_example, library_name)
 
     print("done")
 
+    # write_doc_api_to_csv(doc_api)
+    # write_examples_to_csv(doc_code_examples)
 
-def write_stats_to_file(doc_api, doc_code_examples, matched_methods, lib_name):
-    stats_example_per_api = get_stats_ex_per_api(doc_api, matched_methods)
 
+def write_doc_api_to_csv(doc_api):
+    names = [x.fully_qualified_name for x in doc_api if x]
+    with open("stats/requests_doc_api.csv", "w") as f:
+        for i in names:
+            f.write(str(i))
+            f.write("\n")
+
+
+def write_examples_to_csv(doc_code_examples):
+    examples = ["ID: " + str(x.id) + " --> \n" + x.example for x in doc_code_examples if x]
+    with open("stats/requests_code_examples.csv", "w") as f:
+        for i in examples:
+            f.write(str(i))
+            f.write("\n")
+            f.write(";")
+            f.write("\n")
+
+
+def write_stats_to_file(doc_code_examples, stats_example_per_api, stats_api_per_example, lib_name):
     example_per_api = [x + ": " + str(len(stats_example_per_api[x])) for x in stats_example_per_api if
                        len(stats_example_per_api[x]) > 0]
     with open("temp_stats_example_per_api_" + lib_name + ".txt", "w") as f:
@@ -44,11 +64,10 @@ def write_stats_to_file(doc_api, doc_code_examples, matched_methods, lib_name):
             f.write(str(i))
             f.write("\n")
 
-    stats_api_per_example = get_stats_api_per_example(matched_methods)
-
     api_per_example = ["ID: " + str(x) + " --> " + str(len(stats_api_per_example[x])) + "\n" +
                        doc_code_examples[x].example + "\n" + "---->   " +
-                       '; '.join([i.method.fully_qualified_name for i in stats_api_per_example[x]]) + "\n" for x in
+                       '; '.join([i.called_signature.fully_qualified_name for i in stats_api_per_example[x]]) + "\n" for
+                       x in
                        stats_api_per_example]
     with open("temp_stats_api_per_example_" + lib_name + ".txt", "w") as f:
         for i in api_per_example:
@@ -65,14 +84,14 @@ def get_stats_ex_per_api(doc_api, matched_methods):
             map_of_matched_obj[api.fully_qualified_name] = []
 
     for mm in matched_methods:
-        method = mm.method
+        method = mm.called_signature
         if method.fully_qualified_name in map_of_matched_obj:
             map_of_matched_obj[method.fully_qualified_name].append(mm)
 
     return map_of_matched_obj
 
 
-def get_stats_api_per_example(matched_methods: List[MatchedFunction]):
+def get_stats_api_per_example(matched_methods: List[MatchedCall]):
     map_of_examples_to_api = {}
 
     for mm in matched_methods:

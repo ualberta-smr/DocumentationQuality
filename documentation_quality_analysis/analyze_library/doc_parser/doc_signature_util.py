@@ -2,11 +2,11 @@ import ast
 import re
 from typing import List, Union
 
-from DocumentationQualityAnalysis.analyze_library.models.Signature import Signature
-from DocumentationQualityAnalysis.analyze_library.models.class_constructor_signature import ClassConstructorSignature
-from DocumentationQualityAnalysis.analyze_library.models.doc_page import DocPage
-from DocumentationQualityAnalysis.analyze_library.models.method_signature import MethodSignature
-from DocumentationQualityAnalysis.analyze_library.models.parameter import Parameter
+from documentation_quality_analysis.analyze_library.models.Signature import Signature
+from documentation_quality_analysis.analyze_library.models.class_constructor_signature import ClassConstructorSignature
+from documentation_quality_analysis.analyze_library.models.doc_page import DocPage
+from documentation_quality_analysis.analyze_library.models.method_signature import MethodSignature
+from documentation_quality_analysis.analyze_library.models.parameter import Parameter
 
 
 def get_signatures_from_doc(doc_page: DocPage) -> List[Signature]:
