@@ -25,7 +25,7 @@ def python_match_examples(repo_name: str,
     # install(repo_name)
     # module = importlib.import_module(repo_name)
 
-    call_regex = re.compile(r"(?:\w+\.)+\w+(?=\()")
+    call_regex = re.compile(r"(?:\w+\.)*\w+(?=\()")
     for ex in examples:
         example = ex.example
         found_calls = re.findall(call_regex, example)
@@ -88,12 +88,16 @@ def _get_matched_function(call: str, functions: List[Signature]) -> Union[Signat
                 if call == partial_qualified_name:
                     return func
 
+        if type(func) == ClassConstructorSignature:
+            if call == func.name:
+                return func
+
     return None
 
 
 def get_declared_variable_mapping(example_code: str, classes: List[ClassConstructorSignature]) -> Dict:
     var_declarations = dict()
-    func_call_assign_regex = r"(\w+)\s*=\s*((?:\w+\.)+(\w+(?=\()))"
+    func_call_assign_regex = r"(\w+)\s*=\s*((?:\w+\.)*(\w+(?=\()))"
     import_regex = r"(?:^\s*(?:import)\s+(\w+(?:\.\w+)*)\s+(?:as)\s+(\w+))|(?:^\s*(?:from)\s+(?:\w+(?:\.\w+)*)\s(?:import)\s+(\w+(?:\.\w+)*)(?:\s+(?:as)\s+(\w+))?)"
     lines = example_code.split('\n')
     for line in lines:

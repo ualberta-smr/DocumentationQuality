@@ -38,7 +38,32 @@ class TestPythonSignatureMatcher(TestCase):
         self.assertEqual(matched[0].called_signature.fully_qualified_name, "requests.Session")
         self.assertEqual(matched[1].called_signature.fully_qualified_name, "requests.Session.get")
 
-    # def test_python_match_examples_3(self):
+    def test_python_match_examples_3(self):
+        mock_doc_api = [
+            MethodSignature(name="get", parent="requests.request",
+                            raw_text="requests.request(method, url, **kwargs)"),
+            MethodSignature(name="prepare", parent="requests.Request",
+                            raw_text="requests.Request.prepare()"),
+            MethodSignature(name="get", parent="requests.Session",
+                            raw_text="requests.request(method, url, **kwargs)"),
+            ClassConstructorSignature(name="Session", parent="requests", raw_text="requests.Session()"),
+            ClassConstructorSignature(name="Request", parent="requests", raw_text="requests.Request()")]
+        matched = python_match_examples("",
+                                        examples=[DocCodeExample(example="from requests import Request, Session\n"
+                                                                         "s = Session()\n"
+                                                                         "req = Request('POST', url, data=data, headers=headers)\n"
+                                                                         "prepped = req.prepare()\n"
+                                                                         "s.get(‘https://smth.org/get’)",
+                                                                 url="some_url")],
+                                        doc_apis=mock_doc_api)
+
+        self.assertEqual(matched[0].called_signature.fully_qualified_name, "requests.Session")
+        self.assertEqual(matched[1].called_signature.fully_qualified_name, "requests.Request")
+        self.assertEqual(matched[2].called_signature.fully_qualified_name, "requests.Request.prepare")
+        self.assertEqual(matched[3].called_signature.fully_qualified_name, "requests.Session.get")
+
+
+    # def test_python_match_examples_4(self):
     #     mock_doc_api = [
     #         MethodSignature(name="get", parent="requests.request",
     #                         raw_text="requests.request(method, url, **kwargs)"),
@@ -62,6 +87,21 @@ class TestPythonSignatureMatcher(TestCase):
         declared_variable_mapping = get_declared_variable_mapping(mock_example_code, mock_classes)
 
         expected_declared_variable_mapping = {"s": "Session"}
+
+        self.assertEqual(declared_variable_mapping, expected_declared_variable_mapping)
+
+    def test_get_declared_variable_mapping__with_example__class_name_variable_assignment(self):
+        mock_example_code = "from requests import Request, Session\n" \
+                            "s = Session()\n" \
+                            "req = Request('POST', url, data=data, headers=headers)\n" \
+                            "prepped = req.prepare()\n" \
+                            "s.get(‘https://smth.org/get’)"
+        mock_classes: List[ClassConstructorSignature] = [ClassConstructorSignature(name="Session", parent="requests"),
+                                                         ClassConstructorSignature(name="Request", parent="requests")]
+        declared_variable_mapping = get_declared_variable_mapping(mock_example_code, mock_classes)
+
+        expected_declared_variable_mapping = {"s": "Session",
+                                              "req": "Request"}
 
         self.assertEqual(declared_variable_mapping, expected_declared_variable_mapping)
 

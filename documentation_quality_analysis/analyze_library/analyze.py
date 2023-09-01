@@ -40,7 +40,7 @@ def debug_metrics(language, library_name, doc_url, gh_url):
 
 def write_doc_api_to_csv(doc_api):
     names = [x.fully_qualified_name for x in doc_api if x]
-    with open("stats/requests_doc_api.csv", "w") as f:
+    with open("stats/requests_all_doc_api.csv", "w") as f:
         for i in names:
             f.write(str(i))
             f.write("\n")
@@ -48,7 +48,7 @@ def write_doc_api_to_csv(doc_api):
 
 def write_examples_to_csv(doc_code_examples):
     examples = ["ID: " + str(x.id) + " --> \n" + x.example for x in doc_code_examples if x]
-    with open("stats/requests_code_examples.csv", "w") as f:
+    with open("stats/requests_all_code_examples.csv", "w") as f:
         for i in examples:
             f.write(str(i))
             f.write("\n")
