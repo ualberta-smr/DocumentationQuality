@@ -19,8 +19,8 @@ def python_match_examples(repo_name: str,
                           ) -> List[MatchedCall]:
     matched_apis = list()
     var_declarations = dict()
-    functions: List[MethodSignature] = [x for x in doc_apis if type(x) == MethodSignature]
-    classes: List[ClassConstructorSignature] = [x for x in doc_apis if type(x) == ClassConstructorSignature]
+    functions: List[MethodSignature | None] = [x for x in doc_apis if type(x) == MethodSignature]
+    classes: List[ClassConstructorSignature | None] = [x for x in doc_apis if type(x) == ClassConstructorSignature]
 
     # install(repo_name)
     # module = importlib.import_module(repo_name)
@@ -46,7 +46,8 @@ def python_match_examples(repo_name: str,
                         matched_func = _get_matched_function(actual_function, doc_apis)
                         if matched_func:
                             matched_apis.append(
-                                MatchedCall(called_signature=matched_func, raw_example=ex, original_call=call, url=ex.url))
+                                MatchedCall(called_signature=matched_func, raw_example=ex, original_call=call,
+                                            url=ex.url))
                     else:
                         # If not then maybe it does if we remove the first prefix
                         # e.g., nltk.nltk.get -> nltk.get
@@ -55,16 +56,17 @@ def python_match_examples(repo_name: str,
                         if matched_call:
                             # method_calls.add((ex[1], call))
                             matched_apis.append(
-                                MatchedCall(called_signature=matched_call, raw_example=ex, original_call=call, url=ex.url))
+                                MatchedCall(called_signature=matched_call, raw_example=ex, original_call=call,
+                                            url=ex.url))
                     # else:
-                        # if function_split[0] in var_declarations:
-                        #     actual_function = '.'.join([var_declarations[function_split[0]], function_split[1]])
-                        #     matched_func = _get_matched_function(actual_function, doc_apis)
-                        #     if matched_func:
-                        #         # method_calls.add((ex[1], call))
-                        #         matched_apis.append(
-                        #             MatchedCall(called_signature=matched_call, raw_example=ex, original_call=call,
-                        #                         url=ex.url))
+                    # if function_split[0] in var_declarations:
+                    #     actual_function = '.'.join([var_declarations[function_split[0]], function_split[1]])
+                    #     matched_func = _get_matched_function(actual_function, doc_apis)
+                    #     if matched_func:
+                    #         # method_calls.add((ex[1], call))
+                    #         matched_apis.append(
+                    #             MatchedCall(called_signature=matched_call, raw_example=ex, original_call=call,
+                    #                         url=ex.url))
 
             elif matched_call:
                 # method_calls.add((ex[1], call))
@@ -82,7 +84,7 @@ def _get_matched_function(call: str, functions: List[Signature]) -> Union[Signat
         if call == func.fully_qualified_name:
             return func
         else:
-            parents = func.parent.split(".")
+            parents = func.parent.split(".") if func.parent else []
             if len(parents) > 1:
                 partial_qualified_name = ".".join([parents[-1], func.name])
                 if call == partial_qualified_name:

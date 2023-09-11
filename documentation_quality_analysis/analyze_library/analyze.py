@@ -1,3 +1,4 @@
+import collections
 from typing import List, Union
 
 from documentation_quality_analysis.analyze_library.doc_parser.doc_parser import get_all_webpages, \
@@ -28,7 +29,7 @@ def debug_metrics(language, library_name, doc_url, gh_url):
 
     stats_example_per_api = get_stats_ex_per_api(doc_api, matched_methods)
 
-    stats_api_per_example = get_stats_api_per_example(matched_methods)
+    stats_api_per_example = get_stats_api_per_example(matched_methods, doc_code_examples)
 
     # write_stats_to_file(doc_code_examples, stats_example_per_api, stats_api_per_example, library_name)
 
@@ -38,17 +39,17 @@ def debug_metrics(language, library_name, doc_url, gh_url):
     # write_examples_to_csv(doc_code_examples)
 
 
-def write_doc_api_to_csv(doc_api):
+def write_doc_api_to_csv(doc_api, lib_name):
     names = [x.fully_qualified_name for x in doc_api if x]
-    with open("stats/requests_all_doc_api.csv", "w") as f:
+    with open("stats/" + lib_name + "_all_doc_api.csv", "w") as f:
         for i in names:
             f.write(str(i))
             f.write("\n")
 
 
-def write_examples_to_csv(doc_code_examples):
+def write_examples_to_csv(doc_code_examples, lib_name):
     examples = ["ID: " + str(x.id) + " --> \n" + x.example for x in doc_code_examples if x]
-    with open("stats/requests_all_code_examples.csv", "w") as f:
+    with open("stats/" + lib_name + "_all_code_examples.csv", "w") as f:
         for i in examples:
             f.write(str(i))
             f.write("\n")
@@ -91,7 +92,7 @@ def get_stats_ex_per_api(doc_api, matched_methods):
     return map_of_matched_obj
 
 
-def get_stats_api_per_example(matched_methods: List[MatchedCall]):
+def get_stats_api_per_example(matched_methods: List[MatchedCall], doc_code_examples: List[DocCodeExample]):
     map_of_examples_to_api = {}
 
     for mm in matched_methods:
@@ -102,7 +103,11 @@ def get_stats_api_per_example(matched_methods: List[MatchedCall]):
         else:
             map_of_examples_to_api[example.id] = [mm]
 
-    return map_of_examples_to_api
+    for eg in doc_code_examples:
+        if eg.id not in map_of_examples_to_api:
+            map_of_examples_to_api[eg.id] = []
+
+    return collections.OrderedDict(sorted(map_of_examples_to_api.items()))
 
 
 if __name__ == '__main__':
@@ -113,3 +118,17 @@ if __name__ == '__main__':
     # debug_metrics("python", "pandas",
     #               "https://pandas.pydata.org/docs/index.html",
     #               "https://github.com/pandas-dev/pandas")
+
+    # debug_metrics("python", "GraphQL compiler",
+    #               "https://graphql-compiler.readthedocs.io/",
+    #               "https://github.com/kensho-technologies/graphql-compiler")
+
+    # debug_metrics("python", "collections",
+    #               "https://docs.python.org/3/library/collections.html",
+    #               "https://github.com/python/cpython/tree/3.11/Lib/collections")
+
+    # debug_metrics("python", "TensorFlow",
+    #               "https://www.tensorflow.org/api_docs/python/tf/all_symbols",
+    #               "https://github.com/tensorflow/docs.git")
+
+
