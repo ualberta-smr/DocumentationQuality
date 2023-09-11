@@ -101,276 +101,6 @@ requests.get("http://example.org", proxies=proxies)
 
 ;
 ID: 12 --> 
->>> r = requests.get('https://api.github.com/events')
-
-;
-ID: 13 --> 
->>> r = requests.post('https://httpbin.org/post', data={'key': 'value'})
-
-;
-ID: 14 --> 
->>> r = requests.put('https://httpbin.org/put', data={'key': 'value'})
->>> r = requests.delete('https://httpbin.org/delete')
->>> r = requests.head('https://httpbin.org/get')
->>> r = requests.options('https://httpbin.org/get')
-
-;
-ID: 15 --> 
->>> payload = {'key1': 'value1', 'key2': 'value2'}
->>> r = requests.get('https://httpbin.org/get', params=payload)
-
-;
-ID: 16 --> 
->>> print(r.url)
-https://httpbin.org/get?key2=value2&key1=value1
-
-;
-ID: 17 --> 
->>> payload = {'key1': 'value1', 'key2': ['value2', 'value3']}
-
->>> r = requests.get('https://httpbin.org/get', params=payload)
->>> print(r.url)
-https://httpbin.org/get?key1=value1&key2=value2&key2=value3
-
-;
-ID: 18 --> 
->>> import requests
-
->>> r = requests.get('https://api.github.com/events')
->>> r.text
-'[{"repository":{"open_issues":0,"url":"https://github.com/...
-
-;
-ID: 19 --> 
->>> from PIL import Image
->>> from io import BytesIO
-
->>> i = Image.open(BytesIO(r.content))
-
-;
-ID: 20 --> 
->>> import requests
-
->>> r = requests.get('https://api.github.com/events')
->>> r.json()
-[{'repository': {'open_issues': 0, 'url': 'https://github.com/...
-
-;
-ID: 21 --> 
->>> r = requests.get('https://api.github.com/events', stream=True)
-
->>> r.raw
-
-
->>> r.raw.read(10)
-b'\x1f\x8b\x08\x00\x00\x00\x00\x00\x00\x03'
-
-;
-ID: 22 --> 
-with open(filename, 'wb') as fd:
-    for chunk in r.iter_content(chunk_size=128):
-        fd.write(chunk)
-
-;
-ID: 23 --> 
->>> url = 'https://api.github.com/some/endpoint'
->>> headers = {'user-agent': 'my-app/0.0.1'}
-
->>> r = requests.get(url, headers=headers)
-
-;
-ID: 24 --> 
->>> payload = {'key1': 'value1', 'key2': 'value2'}
-
->>> r = requests.post('https://httpbin.org/post', data=payload)
->>> print(r.text)
-{
-  ...
-  "form": {
-    "key2": "value2",
-    "key1": "value1"
-  },
-  ...
-}
-
-;
-ID: 25 --> 
->>> payload_tuples = [('key1', 'value1'), ('key1', 'value2')]
->>> r1 = requests.post('https://httpbin.org/post', data=payload_tuples)
->>> payload_dict = {'key1': ['value1', 'value2']}
->>> r2 = requests.post('https://httpbin.org/post', data=payload_dict)
->>> print(r1.text)
-{
-  ...
-  "form": {
-    "key1": [
-      "value1",
-      "value2"
-    ]
-  },
-  ...
-}
->>> r1.text == r2.text
-True
-
-;
-ID: 26 --> 
->>> import json
-
->>> url = 'https://api.github.com/some/endpoint'
->>> payload = {'some': 'data'}
-
->>> r = requests.post(url, data=json.dumps(payload))
-
-;
-ID: 27 --> 
->>> r = requests.post(url, json=payload)
-
-;
-ID: 28 --> 
->>> url = 'https://httpbin.org/post'
->>> files = {'file': open('report.xls', 'rb')}
-
->>> r = requests.post(url, files=files)
->>> r.text
-{
-  ...
-  "files": {
-    "file": ""
-  },
-  ...
-}
-
-;
-ID: 29 --> 
->>> url = 'https://httpbin.org/post'
->>> files = {'file': ('report.xls', open('report.xls', 'rb'), 'application/vnd.ms-excel', {'Expires': '0'})}
-
->>> r = requests.post(url, files=files)
->>> r.text
-{
-  ...
-  "files": {
-    "file": ""
-  },
-  ...
-}
-
-;
-ID: 30 --> 
->>> url = 'https://httpbin.org/post'
->>> files = {'file': ('report.csv', 'some,data,to,send\nanother,row,to,send\n')}
-
->>> r = requests.post(url, files=files)
->>> r.text
-{
-  ...
-  "files": {
-    "file": "some,data,to,send\\nanother,row,to,send\\n"
-  },
-  ...
-}
-
-;
-ID: 31 --> 
->>> r = requests.get('https://httpbin.org/get')
->>> r.status_code
-200
-
-;
-ID: 32 --> 
->>> bad_r = requests.get('https://httpbin.org/status/404')
->>> bad_r.status_code
-404
-
->>> bad_r.raise_for_status()
-Traceback (most recent call last):
-  File "requests/models.py", line 832, in raise_for_status
-    raise http_error
-requests.exceptions.HTTPError: 404 Client Error
-
-;
-ID: 33 --> 
->>> r.raise_for_status()
-None
-
-;
-ID: 34 --> 
->>> r.headers['Content-Type']
-'application/json'
-
->>> r.headers.get('content-type')
-'application/json'
-
-;
-ID: 35 --> 
->>> url = 'http://example.com/some/cookie/setting/url'
->>> r = requests.get(url)
-
->>> r.cookies['example_cookie_name']
-'example_cookie_value'
-
-;
-ID: 36 --> 
->>> url = 'https://httpbin.org/cookies'
->>> cookies = dict(cookies_are='working')
-
->>> r = requests.get(url, cookies=cookies)
->>> r.text
-'{"cookies": {"cookies_are": "working"}}'
-
-;
-ID: 37 --> 
->>> jar = requests.cookies.RequestsCookieJar()
->>> jar.set('tasty_cookie', 'yum', domain='httpbin.org', path='/cookies')
->>> jar.set('gross_cookie', 'blech', domain='httpbin.org', path='/elsewhere')
->>> url = 'https://httpbin.org/cookies'
->>> r = requests.get(url, cookies=jar)
->>> r.text
-'{"cookies": {"tasty_cookie": "yum"}}'
-
-;
-ID: 38 --> 
->>> r = requests.get('http://github.com/')
-
->>> r.url
-'https://github.com/'
-
->>> r.status_code
-200
-
->>> r.history
-[]
-
-;
-ID: 39 --> 
->>> r = requests.get('http://github.com/', allow_redirects=False)
-
->>> r.status_code
-301
-
->>> r.history
-[]
-
-;
-ID: 40 --> 
->>> r = requests.head('http://github.com/', allow_redirects=True)
-
->>> r.url
-'https://github.com/'
-
->>> r.history
-[]
-
-;
-ID: 41 --> 
->>> requests.get('https://github.com/', timeout=0.001)
-Traceback (most recent call last):
-  File "", line 1, in 
-requests.exceptions.Timeout: HTTPConnectionPool(host='github.com', port=80): Request timed out. (timeout=0.001)
-
-;
-ID: 42 --> 
 s = requests.Session()
 
 s.get('https://httpbin.org/cookies/set/sessioncookie/123456789')
@@ -380,7 +110,7 @@ print(r.text)
 # '{"cookies": {"sessioncookie": "123456789"}}'
 
 ;
-ID: 43 --> 
+ID: 13 --> 
 s = requests.Session()
 s.auth = ('user', 'pass')
 s.headers.update({'x-test': 'true'})
@@ -389,7 +119,7 @@ s.headers.update({'x-test': 'true'})
 s.get('https://httpbin.org/headers', headers={'x-test2': 'true'})
 
 ;
-ID: 44 --> 
+ID: 14 --> 
 s = requests.Session()
 
 r = s.get('https://httpbin.org/cookies', cookies={'from-my': 'browser'})
@@ -401,16 +131,16 @@ print(r.text)
 # '{"cookies": {}}'
 
 ;
-ID: 45 --> 
+ID: 15 --> 
 with requests.Session() as s:
     s.get('https://httpbin.org/cookies/set/sessioncookie/123456789')
 
 ;
-ID: 46 --> 
+ID: 16 --> 
 >>> r = requests.get('https://en.wikipedia.org/wiki/Monty_Python')
 
 ;
-ID: 47 --> 
+ID: 17 --> 
 from requests import Request, Session
 
 s = Session()
@@ -435,7 +165,7 @@ resp = s.send(prepped,
 print(resp.status_code)
 
 ;
-ID: 48 --> 
+ID: 18 --> 
 from requests import Request, Session
 
 s = Session()
@@ -460,7 +190,7 @@ resp = s.send(prepped,
 print(resp.status_code)
 
 ;
-ID: 49 --> 
+ID: 19 --> 
 from requests import Request, Session
 
 s = Session()
@@ -475,67 +205,67 @@ resp = s.send(prepped, **settings)
 print(resp.status_code)
 
 ;
-ID: 50 --> 
+ID: 20 --> 
 >>> requests.get('https://requestb.in')
 requests.exceptions.SSLError: hostname 'requestb.in' doesn't match either of '*.herokuapp.com', 'herokuapp.com'
 
 ;
-ID: 51 --> 
+ID: 21 --> 
 >>> requests.get('https://github.com')
 
 
 ;
-ID: 52 --> 
+ID: 22 --> 
 >>> requests.get('https://github.com', verify='/path/to/certfile')
 
 ;
-ID: 53 --> 
+ID: 23 --> 
 s = requests.Session()
 s.verify = '/path/to/certfile'
 
 ;
-ID: 54 --> 
+ID: 24 --> 
 >>> requests.get('https://kennethreitz.org', verify=False)
 
 
 ;
-ID: 55 --> 
+ID: 25 --> 
 >>> requests.get('https://kennethreitz.org', cert=('/path/client.cert', '/path/client.key'))
 
 
 ;
-ID: 56 --> 
+ID: 26 --> 
 s = requests.Session()
 s.cert = '/path/client.cert'
 
 ;
-ID: 57 --> 
+ID: 27 --> 
 >>> requests.get('https://kennethreitz.org', cert='/wrong_path/client.pem')
 SSLError: [Errno 336265225] _ssl.c:347: error:140B0009:SSL routines:SSL_CTX_use_PrivateKey_file:PEM lib
 
 ;
-ID: 58 --> 
+ID: 28 --> 
 tarball_url = 'https://github.com/psf/requests/tarball/main'
 r = requests.get(tarball_url, stream=True)
 
 ;
-ID: 59 --> 
+ID: 29 --> 
 if int(r.headers['content-length']) < TOO_LONG:
   content = r.content
   ...
 
 ;
-ID: 60 --> 
+ID: 30 --> 
 with requests.get('https://httpbin.org/get', stream=True) as r:
     # Do things with the response here.
 
 ;
-ID: 61 --> 
+ID: 31 --> 
 with open('massive-body', 'rb') as f:
     requests.post('http://some.url/streamed', data=f)
 
 ;
-ID: 62 --> 
+ID: 32 --> 
 def gen():
     yield 'hi'
     yield 'there'
@@ -543,7 +273,7 @@ def gen():
 requests.post('http://some.url/chunked', data=gen())
 
 ;
-ID: 63 --> 
+ID: 33 --> 
 >>> url = 'https://httpbin.org/post'
 >>> multiple_files = [
 ...     ('images', ('foo.png', open('foo.png', 'rb'), 'image/png')),
@@ -558,30 +288,30 @@ ID: 63 -->
 }
 
 ;
-ID: 64 --> 
+ID: 34 --> 
 def print_url(r, *args, **kwargs):
     print(r.url)
 
 ;
-ID: 65 --> 
+ID: 35 --> 
 def record_hook(r, *args, **kwargs):
     r.hook_called = True
     return r
 
 ;
-ID: 66 --> 
+ID: 36 --> 
 >>> requests.get('https://httpbin.org/', hooks={'response': print_url})
 https://httpbin.org/
 
 
 ;
-ID: 67 --> 
+ID: 37 --> 
 >>> r = requests.get('https://httpbin.org/', hooks={'response': [print_url, record_hook]})
 >>> r.hook_called
 True
 
 ;
-ID: 68 --> 
+ID: 38 --> 
 >>> s = requests.Session()
 >>> s.hooks['response'].append(print_url)
 >>> s.get('https://httpbin.org/')
@@ -589,7 +319,7 @@ ID: 68 -->
  
 
 ;
-ID: 69 --> 
+ID: 39 --> 
 from requests.auth import AuthBase
 
 class PizzaAuth(AuthBase):
@@ -604,12 +334,12 @@ class PizzaAuth(AuthBase):
         return r
 
 ;
-ID: 70 --> 
+ID: 40 --> 
 >>> requests.get('http://pizzabin.org/admin', auth=PizzaAuth('kenneth'))
 
 
 ;
-ID: 71 --> 
+ID: 41 --> 
 import json
 import requests
 
@@ -623,7 +353,7 @@ for line in r.iter_lines():
         print(json.loads(decoded_line))
 
 ;
-ID: 72 --> 
+ID: 42 --> 
 r = requests.get('https://httpbin.org/stream/20', stream=True)
 
 if r.encoding is None:
@@ -634,7 +364,7 @@ for line in r.iter_lines(decode_unicode=True):
         print(json.loads(line))
 
 ;
-ID: 73 --> 
+ID: 43 --> 
 lines = r.iter_lines()
 # Save the first line for later or just skip it
 
@@ -644,7 +374,7 @@ for line in lines:
     print(line)
 
 ;
-ID: 74 --> 
+ID: 44 --> 
 import requests
 
 proxies = {
@@ -655,7 +385,7 @@ proxies = {
 requests.get('http://example.org', proxies=proxies)
 
 ;
-ID: 75 --> 
+ID: 45 --> 
 import requests
 
 proxies = {
@@ -668,7 +398,7 @@ session.proxies.update(proxies)
 session.get('http://example.org')
 
 ;
-ID: 76 --> 
+ID: 46 --> 
 $ export HTTP_PROXY="http://10.10.1.10:3128"
 $ export HTTPS_PROXY="http://10.10.1.10:1080"
 $ export ALL_PROXY="socks5://10.10.1.10:3434"
@@ -678,12 +408,12 @@ $ python
 >>> requests.get('http://example.org')
 
 ;
-ID: 77 --> 
+ID: 47 --> 
 from requests.utils import DEFAULT_CA_BUNDLE_PATH
 print(DEFAULT_CA_BUNDLE_PATH)
 
 ;
-ID: 78 --> 
+ID: 48 --> 
 $ export REQUESTS_CA_BUNDLE="/usr/local/myproxy_info/cacert.pem"
 $ export https_proxy="http://10.10.1.10:1080"
 
@@ -692,19 +422,19 @@ $ python
 >>> requests.get('https://example.org')
 
 ;
-ID: 79 --> 
+ID: 49 --> 
 >>> import requests
 >>> r = requests.get('https://api.github.com/repos/psf/requests/git/commits/a050faf084662f3a352dd1a941f2c7c9f886d4ad')
 
 ;
-ID: 80 --> 
+ID: 50 --> 
 >>> if r.status_code == requests.codes.ok:
 ...     print(r.headers['content-type'])
 ...
 application/json; charset=utf-8
 
 ;
-ID: 81 --> 
+ID: 51 --> 
 >>> commit_data = r.json()
 
 >>> print(commit_data.keys())
@@ -717,19 +447,19 @@ ID: 81 -->
 makin' history
 
 ;
-ID: 82 --> 
+ID: 52 --> 
 >>> verbs = requests.options(r.url)
 >>> verbs.status_code
 500
 
 ;
-ID: 83 --> 
+ID: 53 --> 
 >>> verbs = requests.options('http://a-good-website.com/api/cats')
 >>> print(verbs.headers['allow'])
 GET,HEAD,POST,OPTIONS
 
 ;
-ID: 84 --> 
+ID: 54 --> 
 >>> r = requests.get('https://api.github.com/repos/psf/requests/issues/482')
 >>> r.status_code
 200
@@ -743,7 +473,7 @@ Feature any http verb in docs
 3
 
 ;
-ID: 85 --> 
+ID: 55 --> 
 >>> r = requests.get(r.url + '/comments')
 >>> r.status_code
 200
@@ -757,12 +487,12 @@ ID: 85 -->
 Probably in the "advanced" section
 
 ;
-ID: 86 --> 
+ID: 56 --> 
 >>> print(comments[2]['user']['login'])
 kennethreitz
 
 ;
-ID: 87 --> 
+ID: 57 --> 
 >>> body = json.dumps({u"body": u"Sounds great! I'll get right on it!"})
 >>> url = u"https://api.github.com/repos/psf/requests/issues/482/comments"
 
@@ -771,7 +501,7 @@ ID: 87 -->
 404
 
 ;
-ID: 88 --> 
+ID: 58 --> 
 >>> from requests.auth import HTTPBasicAuth
 >>> auth = HTTPBasicAuth('fake@example.com', 'not_a_real_password')
 
@@ -784,7 +514,7 @@ ID: 88 -->
 Sounds great! I'll get right on it.
 
 ;
-ID: 89 --> 
+ID: 59 --> 
 >>> print(content[u"id"])
 5804413
 
@@ -796,7 +526,7 @@ ID: 89 -->
 200
 
 ;
-ID: 90 --> 
+ID: 60 --> 
 >>> r = requests.delete(url=url, auth=auth)
 >>> r.status_code
 204
@@ -804,7 +534,7 @@ ID: 90 -->
 '204 No Content'
 
 ;
-ID: 91 --> 
+ID: 61 --> 
 >>> r = requests.head(url=url, auth=auth)
 >>> print(r.headers)
 ...
@@ -813,25 +543,25 @@ ID: 91 -->
 ...
 
 ;
-ID: 92 --> 
+ID: 62 --> 
 >>> r = requests.request('MKCOL', url, data=data)
 >>> r.status_code
 200 # Assuming your call was correct
 
 ;
-ID: 93 --> 
+ID: 63 --> 
 >>> url = 'https://api.github.com/users/kennethreitz/repos?page=1&per_page=10'
 >>> r = requests.head(url=url)
 >>> r.headers['link']
 '; rel="next", ; rel="last"'
 
 ;
-ID: 94 --> 
+ID: 64 --> 
 >>> s = requests.Session()
 >>> s.mount('https://github.com/', MyAdapter())
 
 ;
-ID: 95 --> 
+ID: 65 --> 
 import ssl
 from urllib3.poolmanager import PoolManager
 
@@ -847,7 +577,7 @@ class Ssl3HttpAdapter(HTTPAdapter):
             block=block, ssl_version=ssl.PROTOCOL_SSLv3)
 
 ;
-ID: 96 --> 
+ID: 66 --> 
 from urllib3.util import Retry
 from requests import Session
 from requests.adapters import HTTPAdapter
@@ -862,15 +592,285 @@ retries = Retry(
 s.mount('https://', HTTPAdapter(max_retries=retries))
 
 ;
-ID: 97 --> 
+ID: 67 --> 
 r = requests.get('https://github.com', timeout=5)
 
 ;
-ID: 98 --> 
+ID: 68 --> 
 r = requests.get('https://github.com', timeout=(3.05, 27))
 
 ;
-ID: 99 --> 
+ID: 69 --> 
 r = requests.get('https://github.com', timeout=None)
+
+;
+ID: 70 --> 
+>>> r = requests.get('https://api.github.com/events')
+
+;
+ID: 71 --> 
+>>> r = requests.post('https://httpbin.org/post', data={'key': 'value'})
+
+;
+ID: 72 --> 
+>>> r = requests.put('https://httpbin.org/put', data={'key': 'value'})
+>>> r = requests.delete('https://httpbin.org/delete')
+>>> r = requests.head('https://httpbin.org/get')
+>>> r = requests.options('https://httpbin.org/get')
+
+;
+ID: 73 --> 
+>>> payload = {'key1': 'value1', 'key2': 'value2'}
+>>> r = requests.get('https://httpbin.org/get', params=payload)
+
+;
+ID: 74 --> 
+>>> print(r.url)
+https://httpbin.org/get?key2=value2&key1=value1
+
+;
+ID: 75 --> 
+>>> payload = {'key1': 'value1', 'key2': ['value2', 'value3']}
+
+>>> r = requests.get('https://httpbin.org/get', params=payload)
+>>> print(r.url)
+https://httpbin.org/get?key1=value1&key2=value2&key2=value3
+
+;
+ID: 76 --> 
+>>> import requests
+
+>>> r = requests.get('https://api.github.com/events')
+>>> r.text
+'[{"repository":{"open_issues":0,"url":"https://github.com/...
+
+;
+ID: 77 --> 
+>>> from PIL import Image
+>>> from io import BytesIO
+
+>>> i = Image.open(BytesIO(r.content))
+
+;
+ID: 78 --> 
+>>> import requests
+
+>>> r = requests.get('https://api.github.com/events')
+>>> r.json()
+[{'repository': {'open_issues': 0, 'url': 'https://github.com/...
+
+;
+ID: 79 --> 
+>>> r = requests.get('https://api.github.com/events', stream=True)
+
+>>> r.raw
+
+
+>>> r.raw.read(10)
+b'\x1f\x8b\x08\x00\x00\x00\x00\x00\x00\x03'
+
+;
+ID: 80 --> 
+with open(filename, 'wb') as fd:
+    for chunk in r.iter_content(chunk_size=128):
+        fd.write(chunk)
+
+;
+ID: 81 --> 
+>>> url = 'https://api.github.com/some/endpoint'
+>>> headers = {'user-agent': 'my-app/0.0.1'}
+
+>>> r = requests.get(url, headers=headers)
+
+;
+ID: 82 --> 
+>>> payload = {'key1': 'value1', 'key2': 'value2'}
+
+>>> r = requests.post('https://httpbin.org/post', data=payload)
+>>> print(r.text)
+{
+  ...
+  "form": {
+    "key2": "value2",
+    "key1": "value1"
+  },
+  ...
+}
+
+;
+ID: 83 --> 
+>>> payload_tuples = [('key1', 'value1'), ('key1', 'value2')]
+>>> r1 = requests.post('https://httpbin.org/post', data=payload_tuples)
+>>> payload_dict = {'key1': ['value1', 'value2']}
+>>> r2 = requests.post('https://httpbin.org/post', data=payload_dict)
+>>> print(r1.text)
+{
+  ...
+  "form": {
+    "key1": [
+      "value1",
+      "value2"
+    ]
+  },
+  ...
+}
+>>> r1.text == r2.text
+True
+
+;
+ID: 84 --> 
+>>> import json
+
+>>> url = 'https://api.github.com/some/endpoint'
+>>> payload = {'some': 'data'}
+
+>>> r = requests.post(url, data=json.dumps(payload))
+
+;
+ID: 85 --> 
+>>> r = requests.post(url, json=payload)
+
+;
+ID: 86 --> 
+>>> url = 'https://httpbin.org/post'
+>>> files = {'file': open('report.xls', 'rb')}
+
+>>> r = requests.post(url, files=files)
+>>> r.text
+{
+  ...
+  "files": {
+    "file": ""
+  },
+  ...
+}
+
+;
+ID: 87 --> 
+>>> url = 'https://httpbin.org/post'
+>>> files = {'file': ('report.xls', open('report.xls', 'rb'), 'application/vnd.ms-excel', {'Expires': '0'})}
+
+>>> r = requests.post(url, files=files)
+>>> r.text
+{
+  ...
+  "files": {
+    "file": ""
+  },
+  ...
+}
+
+;
+ID: 88 --> 
+>>> url = 'https://httpbin.org/post'
+>>> files = {'file': ('report.csv', 'some,data,to,send\nanother,row,to,send\n')}
+
+>>> r = requests.post(url, files=files)
+>>> r.text
+{
+  ...
+  "files": {
+    "file": "some,data,to,send\\nanother,row,to,send\\n"
+  },
+  ...
+}
+
+;
+ID: 89 --> 
+>>> r = requests.get('https://httpbin.org/get')
+>>> r.status_code
+200
+
+;
+ID: 90 --> 
+>>> bad_r = requests.get('https://httpbin.org/status/404')
+>>> bad_r.status_code
+404
+
+>>> bad_r.raise_for_status()
+Traceback (most recent call last):
+  File "requests/models.py", line 832, in raise_for_status
+    raise http_error
+requests.exceptions.HTTPError: 404 Client Error
+
+;
+ID: 91 --> 
+>>> r.raise_for_status()
+None
+
+;
+ID: 92 --> 
+>>> r.headers['Content-Type']
+'application/json'
+
+>>> r.headers.get('content-type')
+'application/json'
+
+;
+ID: 93 --> 
+>>> url = 'http://example.com/some/cookie/setting/url'
+>>> r = requests.get(url)
+
+>>> r.cookies['example_cookie_name']
+'example_cookie_value'
+
+;
+ID: 94 --> 
+>>> url = 'https://httpbin.org/cookies'
+>>> cookies = dict(cookies_are='working')
+
+>>> r = requests.get(url, cookies=cookies)
+>>> r.text
+'{"cookies": {"cookies_are": "working"}}'
+
+;
+ID: 95 --> 
+>>> jar = requests.cookies.RequestsCookieJar()
+>>> jar.set('tasty_cookie', 'yum', domain='httpbin.org', path='/cookies')
+>>> jar.set('gross_cookie', 'blech', domain='httpbin.org', path='/elsewhere')
+>>> url = 'https://httpbin.org/cookies'
+>>> r = requests.get(url, cookies=jar)
+>>> r.text
+'{"cookies": {"tasty_cookie": "yum"}}'
+
+;
+ID: 96 --> 
+>>> r = requests.get('http://github.com/')
+
+>>> r.url
+'https://github.com/'
+
+>>> r.status_code
+200
+
+>>> r.history
+[]
+
+;
+ID: 97 --> 
+>>> r = requests.get('http://github.com/', allow_redirects=False)
+
+>>> r.status_code
+301
+
+>>> r.history
+[]
+
+;
+ID: 98 --> 
+>>> r = requests.head('http://github.com/', allow_redirects=True)
+
+>>> r.url
+'https://github.com/'
+
+>>> r.history
+[]
+
+;
+ID: 99 --> 
+>>> requests.get('https://github.com/', timeout=0.001)
+Traceback (most recent call last):
+  File "", line 1, in 
+requests.exceptions.Timeout: HTTPConnectionPool(host='github.com', port=80): Request timed out. (timeout=0.001)
 
 ;
