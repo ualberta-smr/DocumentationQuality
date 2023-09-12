@@ -1,0 +1,4352 @@
+ID: 7 --> 1
+>>> s.convert_dtypes()
+0       a
+1       b
+2    
+dtype: string
+
+---->   Series.convert_dtypes
+
+***************************************
+ID: 14 --> 1
+>>> df = pd.DataFrame(
+...     np.random.randint(1, 7, 6000),
+...     columns = ['one'])
+>>> df['two'] = df['one'] + np.random.randint(1, 7, 6000)
+>>> ax = df.plot.hist(bins=12, alpha=0.5)
+
+---->   Series.plot.hist
+
+***************************************
+ID: 15 --> 1
+>>> age_list = [8, 10, 12, 14, 72, 74, 76, 78, 20, 25, 30, 35, 60, 85]
+>>> df = pd.DataFrame({"gender": list("MMMMMMMMFFFFFF"), "age": age_list})
+>>> ax = df.plot.hist(column=["age"], by="gender", figsize=(10, 8))
+
+---->   Series.plot.hist
+
+***************************************
+ID: 19 --> 1
+>>> s1.combine(s2, max)
+duck        NaN
+eagle     200.0
+falcon    345.0
+dtype: float64
+
+---->   Series.combine
+
+***************************************
+ID: 20 --> 1
+>>> s1.combine(s2, max, fill_value=0)
+duck       30.0
+eagle     200.0
+falcon    345.0
+dtype: float64
+
+---->   Series.combine
+
+***************************************
+ID: 38 --> 1
+>>> ser.notna()
+0     True
+1     True
+2    False
+dtype: bool
+
+---->   Series.notna
+
+***************************************
+ID: 54 --> 1
+>>> s = pd.Series([1, 2, 3])
+>>> s.median()
+2.0
+
+---->   Series.median
+
+***************************************
+ID: 58 --> 1
+>>> s = pd.Series([-1.10, 2, -3.33, 4])
+>>> s.abs()
+0    1.10
+1    2.00
+2    3.33
+3    4.00
+dtype: float64
+
+---->   Series.abs
+
+***************************************
+ID: 59 --> 1
+>>> s = pd.Series([1.2 + 1j])
+>>> s.abs()
+0    1.56205
+dtype: float64
+
+---->   Series.abs
+
+***************************************
+ID: 60 --> 1
+>>> s = pd.Series([pd.Timedelta('1 days')])
+>>> s.abs()
+0   1 days
+dtype: timedelta64[ns]
+
+---->   Series.abs
+
+***************************************
+ID: 63 --> 1
+>>> s.idxmin()
+'A'
+
+---->   Series.idxmin
+
+***************************************
+ID: 64 --> 1
+>>> s.idxmin(skipna=False)
+nan
+
+---->   Series.idxmin
+
+***************************************
+ID: 71 --> 1
+>>> s = pd.Series(['a', 'B', 'c', 'D', 'e'])
+>>> s.sort_values()
+1    B
+3    D
+0    a
+2    c
+4    e
+dtype: object
+>>> s.sort_values(key=lambda x: x.str.lower())
+0    a
+1    B
+2    c
+3    D
+4    e
+dtype: object
+
+---->   Series.str.lower
+
+***************************************
+ID: 82 --> 1
+>>> ser = df['windspeed']
+>>> ser.get('2014-02-13')
+'high'
+
+---->   Series.get
+
+***************************************
+ID: 84 --> 1
+>>> ser.get('2014-02-10', '[unknown]')
+'[unknown]'
+
+---->   Series.get
+
+***************************************
+ID: 95 --> 1
+>>> s.map({'cat': 'kitten', 'dog': 'puppy'})
+0   kitten
+1    puppy
+2      NaN
+3      NaN
+dtype: object
+
+---->   Series.map
+
+***************************************
+ID: 96 --> 1
+>>> s.map('I am a {}'.format)
+0       I am a cat
+1       I am a dog
+2       I am a nan
+3    I am a rabbit
+dtype: object
+
+---->   Series.map
+
+***************************************
+ID: 97 --> 1
+>>> s.map('I am a {}'.format, na_action='ignore')
+0     I am a cat
+1     I am a dog
+2            NaN
+3  I am a rabbit
+dtype: object
+
+---->   Series.map
+
+***************************************
+ID: 131 --> 1
+>>> s.unstack(level=-1)
+     a  b
+one  1  2
+two  3  4
+
+---->   Series.unstack
+
+***************************************
+ID: 132 --> 1
+>>> s.unstack(level=0)
+   one  two
+a    1    3
+b    2    4
+
+---->   Series.unstack
+
+***************************************
+ID: 139 --> 1
+>>> ser.isna()
+0    False
+1    False
+2     True
+dtype: bool
+
+---->   Series.isna
+
+***************************************
+ID: 157 --> 1
+>>> a = pd.Series([1, 1, 1, np.nan], index=['a', 'b', 'c', 'd'])
+>>> a
+a    1.0
+b    1.0
+c    1.0
+d    NaN
+dtype: float64
+>>> b = pd.Series([1, np.nan, 1, np.nan], index=['a', 'b', 'd', 'e'])
+>>> b
+a    1.0
+b    NaN
+d    1.0
+e    NaN
+dtype: float64
+>>> a.mod(b, fill_value=0)
+a    0.0
+b    NaN
+c    NaN
+d    0.0
+e    NaN
+dtype: float64
+
+---->   Series.mod
+
+***************************************
+ID: 174 --> 1
+>>> s = pd.Series([0.1, 1.3, 2.7])
+>>> s.round()
+0    0.0
+1    1.0
+2    3.0
+dtype: float64
+
+---->   Series.round
+
+***************************************
+ID: 175 --> 1
+>>> df = pd.DataFrame({'lab':['A', 'B', 'C'], 'val':[10, 30, 20]})
+>>> ax = df.plot.bar(x='lab', y='val', rot=0)
+
+---->   Series.plot.bar
+
+***************************************
+ID: 176 --> 1
+>>> speed = [0.1, 17.5, 40, 48, 52, 69, 88]
+>>> lifespan = [2, 8, 70, 1.5, 25, 12, 28]
+>>> index = ['snail', 'pig', 'elephant',
+...          'rabbit', 'giraffe', 'coyote', 'horse']
+>>> df = pd.DataFrame({'speed': speed,
+...                    'lifespan': lifespan}, index=index)
+>>> ax = df.plot.bar(rot=0)
+
+---->   Series.plot.bar
+
+***************************************
+ID: 177 --> 1
+>>> ax = df.plot.bar(stacked=True)
+
+---->   Series.plot.bar
+
+***************************************
+ID: 178 --> 1
+>>> axes = df.plot.bar(rot=0, subplots=True)
+>>> axes[1].legend(loc=2)  
+
+---->   Series.plot.bar
+
+***************************************
+ID: 179 --> 1
+>>> axes = df.plot.bar(
+...     rot=0, subplots=True, color={"speed": "red", "lifespan": "green"}
+... )
+>>> axes[1].legend(loc=2)  
+
+---->   Series.plot.bar
+
+***************************************
+ID: 180 --> 1
+>>> ax = df.plot.bar(y='speed', rot=0)
+
+---->   Series.plot.bar
+
+***************************************
+ID: 181 --> 1
+>>> ax = df.plot.bar(x='lifespan', rot=0)
+
+---->   Series.plot.bar
+
+***************************************
+ID: 185 --> 1
+>>> ser = pd.Series([1, 2], dtype='int32')
+>>> ser
+0    1
+1    2
+dtype: int32
+>>> ser.astype('int64')
+0    1
+1    2
+dtype: int64
+
+---->   Series.astype
+
+***************************************
+ID: 186 --> 1
+>>> ser.astype('category')
+0    1
+1    2
+dtype: category
+Categories (2, int32): [1, 2]
+
+---->   Series.astype
+
+***************************************
+ID: 187 --> 1
+>>> from pandas.api.types import CategoricalDtype
+>>> cat_dtype = CategoricalDtype(
+...     categories=[2, 1], ordered=True)
+>>> ser.astype(cat_dtype)
+0    1
+1    2
+dtype: category
+Categories (2, int64): [2 < 1]
+
+---->   Series.astype
+
+***************************************
+ID: 191 --> 1
+>>> s = pd.Series([1, 2, 3])
+>>> s.describe()
+count    3.0
+mean     2.0
+std      1.0
+min      1.0
+25%      1.5
+50%      2.0
+75%      2.5
+max      3.0
+dtype: float64
+
+---->   Series.describe
+
+***************************************
+ID: 192 --> 1
+>>> s = pd.Series(['a', 'a', 'b', 'c'])
+>>> s.describe()
+count     4
+unique    3
+top       a
+freq      2
+dtype: object
+
+---->   Series.describe
+
+***************************************
+ID: 193 --> 1
+>>> s = pd.Series([
+...     np.datetime64("2000-01-01"),
+...     np.datetime64("2010-01-01"),
+...     np.datetime64("2010-01-01")
+... ])
+>>> s.describe()
+count                      3
+mean     2006-09-01 08:00:00
+min      2000-01-01 00:00:00
+25%      2004-12-31 12:00:00
+50%      2010-01-01 00:00:00
+75%      2010-01-01 00:00:00
+max      2010-01-01 00:00:00
+dtype: object
+
+---->   Series.describe
+
+***************************************
+ID: 203 --> 1
+>>> s.cumsum()
+0    2.0
+1    NaN
+2    7.0
+3    6.0
+4    6.0
+dtype: float64
+
+---->   Series.cumsum
+
+***************************************
+ID: 204 --> 1
+>>> s.cumsum(skipna=False)
+0    2.0
+1    NaN
+2    NaN
+3    NaN
+4    NaN
+dtype: float64
+
+---->   Series.cumsum
+
+***************************************
+ID: 208 --> 1
+>>> s = pd.Series([1, 1, 2, 3, 5, 8])
+>>> s.diff()
+0    NaN
+1    0.0
+2    1.0
+3    1.0
+4    2.0
+5    3.0
+dtype: float64
+
+---->   Series.diff
+
+***************************************
+ID: 209 --> 1
+>>> s.diff(periods=3)
+0    NaN
+1    NaN
+2    NaN
+3    2.0
+4    4.0
+5    6.0
+dtype: float64
+
+---->   Series.diff
+
+***************************************
+ID: 210 --> 1
+>>> s.diff(periods=-1)
+0    0.0
+1   -1.0
+2   -1.0
+3   -2.0
+4   -3.0
+5    NaN
+dtype: float64
+
+---->   Series.diff
+
+***************************************
+ID: 211 --> 1
+>>> s = pd.Series([1, 0], dtype=np.uint8)
+>>> s.diff()
+0      NaN
+1    255.0
+dtype: float64
+
+---->   Series.diff
+
+***************************************
+ID: 245 --> 1
+>>> s.cummax()
+0    2.0
+1    NaN
+2    5.0
+3    5.0
+4    5.0
+dtype: float64
+
+---->   Series.cummax
+
+***************************************
+ID: 246 --> 1
+>>> s.cummax(skipna=False)
+0    2.0
+1    NaN
+2    NaN
+3    NaN
+4    NaN
+dtype: float64
+
+---->   Series.cummax
+
+***************************************
+ID: 250 --> 1
+>>> a = pd.Series([1, 1, 1, np.nan], index=['a', 'b', 'c', 'd'])
+>>> a
+a    1.0
+b    1.0
+c    1.0
+d    NaN
+dtype: float64
+>>> b = pd.Series([1, np.nan, 1, np.nan], index=['a', 'b', 'd', 'e'])
+>>> b
+a    1.0
+b    NaN
+d    1.0
+e    NaN
+dtype: float64
+>>> a.floordiv(b, fill_value=0)
+a    1.0
+b    inf
+c    inf
+d    0.0
+e    NaN
+dtype: float64
+
+---->   Series.floordiv
+
+***************************************
+ID: 260 --> 1
+>>> s.agg('min')
+1
+
+---->   Series.agg
+
+***************************************
+ID: 261 --> 1
+>>> s.agg(['min', 'max'])
+min   1
+max   4
+dtype: int64
+
+---->   Series.agg
+
+***************************************
+ID: 263 --> 1
+>>> pd.Series(rng).dt.round("H")
+0   2018-01-01 12:00:00
+1   2018-01-01 12:00:00
+2   2018-01-01 12:00:00
+dtype: datetime64[ns]
+
+---->   Series.dt.round
+
+***************************************
+ID: 275 --> 1
+>>> animals = pd.Series(['llama', 'cow', 'llama', 'beetle', 'llama'])
+>>> animals.duplicated()
+0    False
+1    False
+2     True
+3    False
+4     True
+dtype: bool
+
+---->   Series.duplicated
+
+***************************************
+ID: 276 --> 1
+>>> animals.duplicated(keep='first')
+0    False
+1    False
+2     True
+3    False
+4     True
+dtype: bool
+
+---->   Series.duplicated
+
+***************************************
+ID: 277 --> 1
+>>> animals.duplicated(keep='last')
+0     True
+1    False
+2     True
+3    False
+4    False
+dtype: bool
+
+---->   Series.duplicated
+
+***************************************
+ID: 278 --> 1
+>>> animals.duplicated(keep=False)
+0     True
+1    False
+2     True
+3    False
+4     True
+dtype: bool
+
+---->   Series.duplicated
+
+***************************************
+ID: 280 --> 1
+>>> ser.searchsorted(4)
+3
+
+---->   Series.searchsorted
+
+***************************************
+ID: 281 --> 1
+>>> ser.searchsorted([0, 4])
+array([0, 3])
+
+---->   Series.searchsorted
+
+***************************************
+ID: 282 --> 1
+>>> ser.searchsorted([1, 3], side='left')
+array([0, 2])
+
+---->   Series.searchsorted
+
+***************************************
+ID: 283 --> 1
+>>> ser.searchsorted([1, 3], side='right')
+array([1, 3])
+
+---->   Series.searchsorted
+
+***************************************
+ID: 285 --> 1
+>>> ser.searchsorted('3/14/2000')
+3
+
+---->   Series.searchsorted
+
+***************************************
+ID: 287 --> 1
+>>> ser.searchsorted('bread')
+1
+
+---->   Series.searchsorted
+
+***************************************
+ID: 288 --> 1
+>>> ser.searchsorted(['bread'], side='right')
+array([3])
+
+---->   Series.searchsorted
+
+***************************************
+ID: 290 --> 1
+>>> ser.searchsorted(1)  
+0  # wrong result, correct would be 1
+
+---->   Series.searchsorted
+
+***************************************
+ID: 292 --> 2
+>>> s.argmax()
+2
+>>> s.argmin()
+0
+
+---->   Series.argmax; Series.argmin
+
+***************************************
+ID: 296 --> 1
+>>> s = pd.Series([3, 2, 1])
+>>> s.argsort()
+0    2
+1    1
+2    0
+dtype: int64
+
+---->   Series.argsort
+
+***************************************
+ID: 304 --> 2
+>>> s.argmax()
+2
+>>> s.argmin()
+0
+
+---->   Series.argmax; Series.argmin
+
+***************************************
+ID: 312 --> 1
+>>> s.nlargest()
+France      65000000
+Italy       59000000
+Malta         434000
+Maldives      434000
+Brunei        434000
+dtype: int64
+
+---->   Series.nlargest
+
+***************************************
+ID: 313 --> 1
+>>> s.nlargest(3)
+France    65000000
+Italy     59000000
+Malta       434000
+dtype: int64
+
+---->   Series.nlargest
+
+***************************************
+ID: 314 --> 1
+>>> s.nlargest(3, keep='last')
+France      65000000
+Italy       59000000
+Brunei        434000
+dtype: int64
+
+---->   Series.nlargest
+
+***************************************
+ID: 315 --> 1
+>>> s.nlargest(3, keep='all')
+France      65000000
+Italy       59000000
+Malta         434000
+Maldives      434000
+Brunei        434000
+dtype: int64
+
+---->   Series.nlargest
+
+***************************************
+ID: 322 --> 1
+>>> s.agg('min')
+1
+
+---->   Series.agg
+
+***************************************
+ID: 323 --> 1
+>>> s.agg(['min', 'max'])
+min   1
+max   4
+dtype: int64
+
+---->   Series.agg
+
+***************************************
+ID: 324 --> 1
+>>> s = pd.Series([1, 2, 3], index=[0, 1, 2])
+>>> s.keys()
+Index([0, 1, 2], dtype='int64')
+
+---->   Series.keys
+
+***************************************
+ID: 327 --> 1
+>>> s = pd.Series(["a", "b", "c"],
+...               name="vals")
+>>> s.to_frame()
+  vals
+0    a
+1    b
+2    c
+
+---->   Series.to_frame
+
+***************************************
+ID: 335 --> 1
+>>> s = pd.Series([0.25, 0.5, 0.2, -0.05])
+>>> s.autocorr()  
+0.10355...
+>>> s.autocorr(lag=2)  
+-0.99999...
+
+---->   Series.autocorr
+
+***************************************
+ID: 336 --> 1
+>>> s = pd.Series([1, 0, 0, 0])
+>>> s.autocorr()
+nan
+
+---->   Series.autocorr
+
+***************************************
+ID: 347 --> 1
+>>> s = pd.Series([2, 4, 2, 2, 4, None])
+>>> s.mode()
+0    2.0
+dtype: float64
+
+---->   Series.mode
+
+***************************************
+ID: 348 --> 1
+>>> s = pd.Series([2, 4, 8, 2, 4, None])
+>>> s.mode()
+0    2.0
+1    4.0
+dtype: float64
+
+---->   Series.mode
+
+***************************************
+ID: 349 --> 1
+>>> s = pd.Series([2, 4, None, None, 4, None])
+>>> s.mode(dropna=False)
+0   NaN
+dtype: float64
+>>> s = pd.Series([2, 4, None, None, 4, None])
+>>> s.mode()
+0    4.0
+dtype: float64
+
+---->   Series.mode
+
+***************************************
+ID: 373 --> 1
+>>> ser = pd.Series([1, 2, 3, 3])
+>>> plot = ser.plot(kind='hist', title="My plot")
+
+
+---->   Series.plot
+
+***************************************
+ID: 0 --> 0
+>>> a = pd.Series([1, 1, 1, np.nan], index=['a', 'b', 'c', 'd'])
+>>> a
+a    1.0
+b    1.0
+c    1.0
+d    NaN
+dtype: float64
+>>> b = pd.Series([1, np.nan, 1, np.nan], index=['a', 'b', 'd', 'e'])
+>>> b
+a    1.0
+b    NaN
+d    1.0
+e    NaN
+dtype: float64
+>>> a.subtract(b, fill_value=0)
+a    0.0
+b    1.0
+c    1.0
+d   -1.0
+e    NaN
+dtype: float64
+
+---->   
+
+***************************************
+ID: 1 --> 0
+>>> ser = pd.Series(['a', 'b', 'c', 'a'], dtype='category')
+>>> ser = ser.cat.reorder_categories(['c', 'b', 'a'], ordered=True)
+>>> ser
+0   a
+1   b
+2   c
+3   a
+dtype: category
+Categories (3, object): ['c' < 'b' < 'a']
+
+---->   
+
+***************************************
+ID: 2 --> 0
+>>> ser.sort_values()
+2   c
+1   b
+0   a
+3   a
+dtype: category
+Categories (3, object): ['c' < 'b' < 'a']
+
+---->   
+
+***************************************
+ID: 3 --> 0
+>>> ci = pd.CategoricalIndex(['a', 'b', 'c', 'a'])
+>>> ci
+CategoricalIndex(['a', 'b', 'c', 'a'], categories=['a', 'b', 'c'],
+                 ordered=False, dtype='category')
+>>> ci.reorder_categories(['c', 'b', 'a'], ordered=True)
+CategoricalIndex(['a', 'b', 'c', 'a'], categories=['c', 'b', 'a'],
+                 ordered=True, dtype='category')
+
+---->   
+
+***************************************
+ID: 4 --> 0
+>>> df = pd.DataFrame(
+...     {
+...         "a": pd.Series([1, 2, 3], dtype=np.dtype("int32")),
+...         "b": pd.Series(["x", "y", "z"], dtype=np.dtype("O")),
+...         "c": pd.Series([True, False, np.nan], dtype=np.dtype("O")),
+...         "d": pd.Series(["h", "i", np.nan], dtype=np.dtype("O")),
+...         "e": pd.Series([10, np.nan, 20], dtype=np.dtype("float")),
+...         "f": pd.Series([np.nan, 100.5, 200], dtype=np.dtype("float")),
+...     }
+... )
+
+---->   
+
+***************************************
+ID: 5 --> 0
+>>> dfn = df.convert_dtypes()
+>>> dfn
+   a  b      c     d     e      f
+0  1  x   True     h    10   
+1  2  y  False     i    100.5
+2  3  z         20  200.0
+
+---->   
+
+***************************************
+ID: 6 --> 0
+>>> s = pd.Series(["a", "b", np.nan])
+>>> s
+0      a
+1      b
+2    NaN
+dtype: object
+
+---->   
+
+***************************************
+ID: 8 --> 0
+>>> a = pd.Series([1, 1, 1, np.nan], index=['a', 'b', 'c', 'd'])
+>>> a
+a    1.0
+b    1.0
+c    1.0
+d    NaN
+dtype: float64
+>>> b = pd.Series([1, np.nan, 1, np.nan], index=['a', 'b', 'd', 'e'])
+>>> b
+a    1.0
+b    NaN
+d    1.0
+e    NaN
+dtype: float64
+>>> a.divide(b, fill_value=0)
+a    1.0
+b    inf
+c    inf
+d    0.0
+e    NaN
+dtype: float64
+
+---->   
+
+***************************************
+ID: 9 --> 0
+>>> d = {'a': 1, 'b': 2, 'c': 3}
+>>> ser = pd.Series(data=d, index=['a', 'b', 'c'])
+>>> ser
+a   1
+b   2
+c   3
+dtype: int64
+
+---->   
+
+***************************************
+ID: 10 --> 0
+>>> d = {'a': 1, 'b': 2, 'c': 3}
+>>> ser = pd.Series(data=d, index=['x', 'y', 'z'])
+>>> ser
+x   NaN
+y   NaN
+z   NaN
+dtype: float64
+
+---->   
+
+***************************************
+ID: 11 --> 0
+>>> r = [1, 2]
+>>> ser = pd.Series(r, copy=False)
+>>> ser.iloc[0] = 999
+>>> r
+[1, 2]
+>>> ser
+0    999
+1      2
+dtype: int64
+
+---->   
+
+***************************************
+ID: 12 --> 0
+>>> r = np.array([1, 2])
+>>> ser = pd.Series(r, copy=False)
+>>> ser.iloc[0] = 999
+>>> r
+array([999,   2])
+>>> ser
+0    999
+1      2
+dtype: int64
+
+---->   
+
+***************************************
+ID: 13 --> 0
+>>> from pandas.arrays import SparseArray
+>>> s = SparseArray([0, 0, 1, 0, 2], fill_value=0)
+>>> s.sp_values
+array([1, 2])
+
+---->   
+
+***************************************
+ID: 16 --> 0
+>>> ser = pd.Series(['ñ'])
+>>> ser.str.normalize('NFC') == ser.str.normalize('NFD')
+0   False
+dtype: bool
+
+---->   
+
+***************************************
+ID: 17 --> 0
+>>> raw_cate = pd.Categorical(["a", "b", "c", "a"], categories=["a", "b"])
+>>> ser = pd.Series(raw_cate)
+>>> ser.cat.codes
+0   0
+1   1
+2  -1
+3   0
+dtype: int8
+
+---->   
+
+***************************************
+ID: 18 --> 0
+>>> s1 = pd.Series({'falcon': 330.0, 'eagle': 160.0})
+>>> s1
+falcon    330.0
+eagle     160.0
+dtype: float64
+>>> s2 = pd.Series({'falcon': 345.0, 'eagle': 200.0, 'duck': 30.0})
+>>> s2
+falcon    345.0
+eagle     200.0
+duck       30.0
+dtype: float64
+
+---->   
+
+***************************************
+ID: 21 --> 0
+>>> s1 = pd.Series(['one', 'one1', '1', ''])
+
+---->   
+
+***************************************
+ID: 22 --> 0
+>>> s1.str.isalpha()
+0     True
+1    False
+2    False
+3    False
+dtype: bool
+
+---->   
+
+***************************************
+ID: 23 --> 0
+>>> s1.str.isnumeric()
+0    False
+1    False
+2     True
+3    False
+dtype: bool
+
+---->   
+
+***************************************
+ID: 24 --> 0
+>>> s1.str.isalnum()
+0     True
+1     True
+2     True
+3    False
+dtype: bool
+
+---->   
+
+***************************************
+ID: 25 --> 0
+>>> s2 = pd.Series(['A B', '1.5', '3,000'])
+>>> s2.str.isalnum()
+0    False
+1    False
+2    False
+dtype: bool
+
+---->   
+
+***************************************
+ID: 26 --> 0
+>>> s3 = pd.Series(['23', '³', '⅕', ''])
+
+---->   
+
+***************************************
+ID: 27 --> 0
+>>> s3.str.isdecimal()
+0     True
+1    False
+2    False
+3    False
+dtype: bool
+
+---->   
+
+***************************************
+ID: 28 --> 0
+>>> s3.str.isdigit()
+0     True
+1     True
+2    False
+3    False
+dtype: bool
+
+---->   
+
+***************************************
+ID: 29 --> 0
+>>> s3.str.isnumeric()
+0     True
+1     True
+2     True
+3    False
+dtype: bool
+
+---->   
+
+***************************************
+ID: 30 --> 0
+>>> s4 = pd.Series([' ', '\t\r\n ', ''])
+>>> s4.str.isspace()
+0     True
+1     True
+2    False
+dtype: bool
+
+---->   
+
+***************************************
+ID: 31 --> 0
+>>> s5 = pd.Series(['leopard', 'Golden Eagle', 'SNAKE', ''])
+
+---->   
+
+***************************************
+ID: 32 --> 0
+>>> s5.str.islower()
+0     True
+1    False
+2    False
+3    False
+dtype: bool
+
+---->   
+
+***************************************
+ID: 33 --> 0
+>>> s5.str.isupper()
+0    False
+1    False
+2     True
+3    False
+dtype: bool
+
+---->   
+
+***************************************
+ID: 34 --> 0
+>>> s5.str.istitle()
+0    False
+1     True
+2    False
+3    False
+dtype: bool
+
+---->   
+
+***************************************
+ID: 35 --> 0
+>>> df = pd.DataFrame(dict(age=[5, 6, np.nan],
+...                        born=[pd.NaT, pd.Timestamp('1939-05-27'),
+...                              pd.Timestamp('1940-04-25')],
+...                        name=['Alfred', 'Batman', ''],
+...                        toy=[None, 'Batmobile', 'Joker']))
+>>> df
+   age       born    name        toy
+0  5.0        NaT  Alfred       None
+1  6.0 1939-05-27  Batman  Batmobile
+2  NaN 1940-04-25              Joker
+
+---->   
+
+***************************************
+ID: 36 --> 0
+>>> df.notna()
+     age   born  name    toy
+0   True  False  True  False
+1   True   True  True   True
+2  False   True  True   True
+
+---->   
+
+***************************************
+ID: 37 --> 0
+>>> ser = pd.Series([5, 6, np.nan])
+>>> ser
+0    5.0
+1    6.0
+2    NaN
+dtype: float64
+
+---->   
+
+***************************************
+ID: 39 --> 0
+>>> ser = pd.Series([1, 2, 3])
+>>> np.asarray(ser)
+array([1, 2, 3])
+
+---->   
+
+***************************************
+ID: 40 --> 0
+>>> tzser = pd.Series(pd.date_range('2000', periods=2, tz="CET"))
+>>> np.asarray(tzser, dtype="object")
+array([Timestamp('2000-01-01 00:00:00+0100', tz='CET'),
+       Timestamp('2000-01-02 00:00:00+0100', tz='CET')],
+      dtype=object)
+
+---->   
+
+***************************************
+ID: 41 --> 0
+>>> np.asarray(tzser, dtype="datetime64[ns]")  
+array(['1999-12-31T23:00:00.000000000', ...],
+      dtype='datetime64[ns]')
+
+---->   
+
+***************************************
+ID: 42 --> 0
+>>> ser = pd.Series(pd.to_timedelta([1, 2, 3], unit='d'))
+>>> ser
+0   1 days
+1   2 days
+2   3 days
+dtype: timedelta64[ns]
+>>> ser.dt.days
+0    1
+1    2
+2    3
+dtype: int64
+
+---->   
+
+***************************************
+ID: 43 --> 0
+>>> tdelta_idx = pd.to_timedelta(["0 days", "10 days", "20 days"])
+>>> tdelta_idx
+TimedeltaIndex(['0 days', '10 days', '20 days'],
+                dtype='timedelta64[ns]', freq=None)
+>>> tdelta_idx.days
+Index([0, 10, 20], dtype='int64')
+
+---->   
+
+***************************************
+ID: 44 --> 0
+>>> s = pd.Series(["koala", "dog", "chameleon"])
+>>> s
+0        koala
+1          dog
+2    chameleon
+dtype: object
+
+---->   
+
+***************************************
+ID: 45 --> 0
+>>> s.str.slice(start=1)
+0        oala
+1          og
+2    hameleon
+dtype: object
+
+---->   
+
+***************************************
+ID: 46 --> 0
+>>> s.str.slice(start=-1)
+0           a
+1           g
+2           n
+dtype: object
+
+---->   
+
+***************************************
+ID: 47 --> 0
+>>> s.str.slice(stop=2)
+0    ko
+1    do
+2    ch
+dtype: object
+
+---->   
+
+***************************************
+ID: 48 --> 0
+>>> s.str.slice(step=2)
+0      kaa
+1       dg
+2    caeen
+dtype: object
+
+---->   
+
+***************************************
+ID: 49 --> 0
+>>> s.str.slice(start=0, stop=5, step=3)
+0    kl
+1     d
+2    cm
+dtype: object
+
+---->   
+
+***************************************
+ID: 50 --> 0
+>>> s = pd.Series(pd.date_range('20180310', periods=2))
+>>> s
+0   2018-03-10
+1   2018-03-11
+dtype: datetime64[ns]
+
+---->   
+
+***************************************
+ID: 51 --> 0
+>>> s.dt.to_pydatetime()
+array([datetime.datetime(2018, 3, 10, 0, 0),
+       datetime.datetime(2018, 3, 11, 0, 0)], dtype=object)
+
+---->   
+
+***************************************
+ID: 52 --> 0
+>>> s = pd.Series(pd.date_range('20180310', periods=2, freq='ns'))
+>>> s
+0   2018-03-10 00:00:00.000000000
+1   2018-03-10 00:00:00.000000001
+dtype: datetime64[ns]
+
+---->   
+
+***************************************
+ID: 53 --> 0
+>>> s.dt.to_pydatetime()
+array([datetime.datetime(2018, 3, 10, 0, 0),
+       datetime.datetime(2018, 3, 10, 0, 0)], dtype=object)
+
+---->   
+
+***************************************
+ID: 55 --> 0
+>>> df = pd.DataFrame({'a': [1, 2], 'b': [2, 3]}, index=['tiger', 'zebra'])
+>>> df
+       a   b
+tiger  1   2
+zebra  2   3
+>>> df.median()
+a   1.5
+b   2.5
+dtype: float64
+
+---->   
+
+***************************************
+ID: 56 --> 0
+>>> df.median(axis=1)
+tiger   1.5
+zebra   2.5
+dtype: float64
+
+---->   
+
+***************************************
+ID: 57 --> 0
+>>> df = pd.DataFrame({'a': [1, 2], 'b': ['T', 'Z']},
+...                   index=['tiger', 'zebra'])
+>>> df.median(numeric_only=True)
+a   1.5
+dtype: float64
+
+---->   
+
+***************************************
+ID: 61 --> 0
+>>> df = pd.DataFrame({
+...     'a': [4, 5, 6, 7],
+...     'b': [10, 20, 30, 40],
+...     'c': [100, 50, -30, -50]
+... })
+>>> df
+     a    b    c
+0    4   10  100
+1    5   20   50
+2    6   30  -30
+3    7   40  -50
+>>> df.loc[(df.c - 43).abs().argsort()]
+     a    b    c
+1    5   20   50
+0    4   10  100
+2    6   30  -30
+3    7   40  -50
+
+---->   
+
+***************************************
+ID: 62 --> 0
+>>> s = pd.Series(data=[1, None, 4, 1],
+...               index=['A', 'B', 'C', 'D'])
+>>> s
+A    1.0
+B    NaN
+C    4.0
+D    1.0
+dtype: float64
+
+---->   
+
+***************************************
+ID: 65 --> 0
+>>> s = pd.Series([np.nan, 1, 3, 10, 5])
+>>> s
+0     NaN
+1     1.0
+2     3.0
+3     10.0
+4     5.0
+dtype: float64
+
+---->   
+
+***************************************
+ID: 66 --> 0
+>>> s.sort_values(ascending=True)
+1     1.0
+2     3.0
+4     5.0
+3    10.0
+0     NaN
+dtype: float64
+
+---->   
+
+***************************************
+ID: 67 --> 0
+>>> s.sort_values(ascending=False)
+3    10.0
+4     5.0
+2     3.0
+1     1.0
+0     NaN
+dtype: float64
+
+---->   
+
+***************************************
+ID: 68 --> 0
+>>> s.sort_values(na_position='first')
+0     NaN
+1     1.0
+2     3.0
+4     5.0
+3    10.0
+dtype: float64
+
+---->   
+
+***************************************
+ID: 69 --> 0
+>>> s = pd.Series(['z', 'b', 'd', 'a', 'c'])
+>>> s
+0    z
+1    b
+2    d
+3    a
+4    c
+dtype: object
+
+---->   
+
+***************************************
+ID: 70 --> 0
+>>> s.sort_values()
+3    a
+1    b
+4    c
+2    d
+0    z
+dtype: object
+
+---->   
+
+***************************************
+ID: 72 --> 0
+>>> s = pd.Series([-4, -2, 0, 2, 4])
+>>> s.sort_values(key=np.sin)
+1   -2
+4    4
+2    0
+0   -4
+3    2
+dtype: int64
+
+---->   
+
+***************************************
+ID: 73 --> 0
+>>> s.sort_values(key=lambda x: (np.tan(x.cumsum())))
+0   -4
+3    2
+4    4
+1   -2
+2    0
+dtype: int64
+
+---->   
+
+***************************************
+ID: 74 --> 0
+>>> data = {'col_0': [9, -3, 0, -1, 5], 'col_1': [-2, -7, 6, 8, -5]}
+>>> df = pd.DataFrame(data)
+>>> df
+   col_0  col_1
+0      9     -2
+1     -3     -7
+2      0      6
+3     -1      8
+4      5     -5
+
+---->   
+
+***************************************
+ID: 75 --> 0
+>>> df.clip(-4, 6)
+   col_0  col_1
+0      6     -2
+1     -3     -4
+2      0      6
+3     -1      6
+4      5     -4
+
+---->   
+
+***************************************
+ID: 76 --> 0
+>>> t = pd.Series([2, -4, -1, 6, 3])
+>>> t
+0    2
+1   -4
+2   -1
+3    6
+4    3
+dtype: int64
+
+---->   
+
+***************************************
+ID: 77 --> 0
+>>> df.clip(t, t + 4, axis=0)
+   col_0  col_1
+0      6      2
+1     -3     -4
+2      0      3
+3      6      8
+4      5      3
+
+---->   
+
+***************************************
+ID: 78 --> 0
+>>> t = pd.Series([2, -4, np.nan, 6, 3])
+>>> t
+0    2.0
+1   -4.0
+2    NaN
+3    6.0
+4    3.0
+dtype: float64
+
+---->   
+
+***************************************
+ID: 79 --> 0
+>>> df.clip(t, axis=0)
+col_0  col_1
+0      9      2
+1     -3     -4
+2      0      6
+3      6      8
+4      5      3
+
+---->   
+
+***************************************
+ID: 80 --> 0
+>>> df = pd.DataFrame(
+...     [
+...         [24.3, 75.7, "high"],
+...         [31, 87.8, "high"],
+...         [22, 71.6, "medium"],
+...         [35, 95, "medium"],
+...     ],
+...     columns=["temp_celsius", "temp_fahrenheit", "windspeed"],
+...     index=pd.date_range(start="2014-02-12", end="2014-02-15", freq="D"),
+... )
+
+---->   
+
+***************************************
+ID: 81 --> 0
+>>> df.get(["temp_celsius", "windspeed"])
+            temp_celsius windspeed
+2014-02-12          24.3      high
+2014-02-13          31.0      high
+2014-02-14          22.0    medium
+2014-02-15          35.0    medium
+
+---->   
+
+***************************************
+ID: 83 --> 0
+>>> df.get(["temp_celsius", "temp_kelvin"], default="default_value")
+'default_value'
+
+---->   
+
+***************************************
+ID: 85 --> 0
+>>> index = ['Firefox', 'Chrome', 'Safari', 'IE10', 'Konqueror']
+>>> df = pd.DataFrame({'http_status': [200, 200, 404, 404, 301],
+...                   'response_time': [0.04, 0.02, 0.07, 0.08, 1.0]},
+...                   index=index)
+>>> df
+           http_status  response_time
+Firefox            200           0.04
+Chrome             200           0.02
+Safari             404           0.07
+IE10               404           0.08
+Konqueror          301           1.00
+
+---->   
+
+***************************************
+ID: 86 --> 0
+>>> new_index = ['Safari', 'Iceweasel', 'Comodo Dragon', 'IE10',
+...              'Chrome']
+>>> df.reindex(new_index)
+               http_status  response_time
+Safari               404.0           0.07
+Iceweasel              NaN            NaN
+Comodo Dragon          NaN            NaN
+IE10                 404.0           0.08
+Chrome               200.0           0.02
+
+---->   
+
+***************************************
+ID: 87 --> 0
+>>> df.reindex(new_index, fill_value=0)
+               http_status  response_time
+Safari                 404           0.07
+Iceweasel                0           0.00
+Comodo Dragon            0           0.00
+IE10                   404           0.08
+Chrome                 200           0.02
+
+---->   
+
+***************************************
+ID: 88 --> 0
+>>> df.reindex(new_index, fill_value='missing')
+              http_status response_time
+Safari                404          0.07
+Iceweasel         missing       missing
+Comodo Dragon     missing       missing
+IE10                  404          0.08
+Chrome                200          0.02
+
+---->   
+
+***************************************
+ID: 89 --> 0
+>>> df.reindex(columns=['http_status', 'user_agent'])
+           http_status  user_agent
+Firefox            200         NaN
+Chrome             200         NaN
+Safari             404         NaN
+IE10               404         NaN
+Konqueror          301         NaN
+
+---->   
+
+***************************************
+ID: 90 --> 0
+>>> df.reindex(['http_status', 'user_agent'], axis="columns")
+           http_status  user_agent
+Firefox            200         NaN
+Chrome             200         NaN
+Safari             404         NaN
+IE10               404         NaN
+Konqueror          301         NaN
+
+---->   
+
+***************************************
+ID: 91 --> 0
+>>> date_index = pd.date_range('1/1/2010', periods=6, freq='D')
+>>> df2 = pd.DataFrame({"prices": [100, 101, np.nan, 100, 89, 88]},
+...                    index=date_index)
+>>> df2
+            prices
+2010-01-01   100.0
+2010-01-02   101.0
+2010-01-03     NaN
+2010-01-04   100.0
+2010-01-05    89.0
+2010-01-06    88.0
+
+---->   
+
+***************************************
+ID: 92 --> 0
+>>> date_index2 = pd.date_range('12/29/2009', periods=10, freq='D')
+>>> df2.reindex(date_index2)
+            prices
+2009-12-29     NaN
+2009-12-30     NaN
+2009-12-31     NaN
+2010-01-01   100.0
+2010-01-02   101.0
+2010-01-03     NaN
+2010-01-04   100.0
+2010-01-05    89.0
+2010-01-06    88.0
+2010-01-07     NaN
+
+---->   
+
+***************************************
+ID: 93 --> 0
+>>> df2.reindex(date_index2, method='bfill')
+            prices
+2009-12-29   100.0
+2009-12-30   100.0
+2009-12-31   100.0
+2010-01-01   100.0
+2010-01-02   101.0
+2010-01-03     NaN
+2010-01-04   100.0
+2010-01-05    89.0
+2010-01-06    88.0
+2010-01-07     NaN
+
+---->   
+
+***************************************
+ID: 94 --> 0
+>>> s = pd.Series(['cat', 'dog', np.nan, 'rabbit'])
+>>> s
+0      cat
+1      dog
+2      NaN
+3   rabbit
+dtype: object
+
+---->   
+
+***************************************
+ID: 98 --> 0
+>>> s = pd.Series(['a', 'ab', 'abc', 'abdc', 'abcde'])
+>>> s
+0        a
+1       ab
+2      abc
+3     abdc
+4    abcde
+dtype: object
+
+---->   
+
+***************************************
+ID: 99 --> 0
+>>> s.str.slice_replace(1, repl='X')
+0    aX
+1    aX
+2    aX
+3    aX
+4    aX
+dtype: object
+
+---->   
+
+***************************************
+ID: 100 --> 0
+>>> s.str.slice_replace(stop=2, repl='X')
+0       X
+1       X
+2      Xc
+3     Xdc
+4    Xcde
+dtype: object
+
+---->   
+
+***************************************
+ID: 101 --> 0
+>>> s.str.slice_replace(start=1, stop=3, repl='X')
+0      aX
+1      aX
+2      aX
+3     aXc
+4    aXde
+dtype: object
+
+---->   
+
+***************************************
+ID: 102 --> 0
+>>> s1 = pd.Series(['one', 'one1', '1', ''])
+
+---->   
+
+***************************************
+ID: 103 --> 0
+>>> s1.str.isalpha()
+0     True
+1    False
+2    False
+3    False
+dtype: bool
+
+---->   
+
+***************************************
+ID: 104 --> 0
+>>> s1.str.isnumeric()
+0    False
+1    False
+2     True
+3    False
+dtype: bool
+
+---->   
+
+***************************************
+ID: 105 --> 0
+>>> s1.str.isalnum()
+0     True
+1     True
+2     True
+3    False
+dtype: bool
+
+---->   
+
+***************************************
+ID: 106 --> 0
+>>> s2 = pd.Series(['A B', '1.5', '3,000'])
+>>> s2.str.isalnum()
+0    False
+1    False
+2    False
+dtype: bool
+
+---->   
+
+***************************************
+ID: 107 --> 0
+>>> s3 = pd.Series(['23', '³', '⅕', ''])
+
+---->   
+
+***************************************
+ID: 108 --> 0
+>>> s3.str.isdecimal()
+0     True
+1    False
+2    False
+3    False
+dtype: bool
+
+---->   
+
+***************************************
+ID: 109 --> 0
+>>> s3.str.isdigit()
+0     True
+1     True
+2    False
+3    False
+dtype: bool
+
+---->   
+
+***************************************
+ID: 110 --> 0
+>>> s3.str.isnumeric()
+0     True
+1     True
+2     True
+3    False
+dtype: bool
+
+---->   
+
+***************************************
+ID: 111 --> 0
+>>> s4 = pd.Series([' ', '\t\r\n ', ''])
+>>> s4.str.isspace()
+0     True
+1     True
+2    False
+dtype: bool
+
+---->   
+
+***************************************
+ID: 112 --> 0
+>>> s5 = pd.Series(['leopard', 'Golden Eagle', 'SNAKE', ''])
+
+---->   
+
+***************************************
+ID: 113 --> 0
+>>> s5.str.islower()
+0     True
+1    False
+2    False
+3    False
+dtype: bool
+
+---->   
+
+***************************************
+ID: 114 --> 0
+>>> s5.str.isupper()
+0    False
+1    False
+2     True
+3    False
+dtype: bool
+
+---->   
+
+***************************************
+ID: 115 --> 0
+>>> s5.str.istitle()
+0    False
+1     True
+2    False
+3    False
+dtype: bool
+
+---->   
+
+***************************************
+ID: 116 --> 0
+>>> df = pd.DataFrame([[1, 2], [4, 5], [7, 8]],
+...      index=['cobra', 'viper', 'sidewinder'],
+...      columns=['max_speed', 'shield'])
+>>> df
+            max_speed  shield
+cobra               1       2
+viper               4       5
+sidewinder          7       8
+
+---->   
+
+***************************************
+ID: 117 --> 0
+>>> df.loc[pd.Series([False, True, False],
+...        index=['viper', 'sidewinder', 'cobra'])]
+            max_speed  shield
+sidewinder          7       8
+
+---->   
+
+***************************************
+ID: 118 --> 0
+>>> df.loc[pd.Index(["cobra", "viper"], name="foo")]
+       max_speed  shield
+foo
+cobra          1       2
+viper          4       5
+
+---->   
+
+***************************************
+ID: 119 --> 0
+>>> df.loc[(df['max_speed'] > 1) & (df['shield'] < 8)]
+       max_speed  shield
+viper          4       5
+
+---->   
+
+***************************************
+ID: 120 --> 0
+>>> df.loc[(df['max_speed'] > 4) | (df['shield'] < 5)]
+            max_speed  shield
+cobra               1       2
+sidewinder          7       8
+
+---->   
+
+***************************************
+ID: 121 --> 0
+>>> df = pd.DataFrame([[1, 2], [4, 5], [7, 8]],
+...      index=[7, 8, 9], columns=['max_speed', 'shield'])
+>>> df
+   max_speed  shield
+7          1       2
+8          4       5
+9          7       8
+
+---->   
+
+***************************************
+ID: 122 --> 0
+>>> tuples = [
+...    ('cobra', 'mark i'), ('cobra', 'mark ii'),
+...    ('sidewinder', 'mark i'), ('sidewinder', 'mark ii'),
+...    ('viper', 'mark ii'), ('viper', 'mark iii')
+... ]
+>>> index = pd.MultiIndex.from_tuples(tuples)
+>>> values = [[12, 2], [0, 4], [10, 20],
+...         [1, 4], [7, 1], [16, 36]]
+>>> df = pd.DataFrame(values, columns=['max_speed', 'shield'], index=index)
+>>> df
+                     max_speed  shield
+cobra      mark i           12       2
+           mark ii           0       4
+sidewinder mark i           10      20
+           mark ii           1       4
+viper      mark ii           7       1
+           mark iii         16      36
+
+---->   
+
+***************************************
+ID: 123 --> 0
+>>> df.loc[('cobra', 'mark ii')]
+max_speed    0
+shield       4
+Name: (cobra, mark ii), dtype: int64
+
+---->   
+
+***************************************
+ID: 124 --> 0
+>>> df.loc['cobra', 'mark i']
+max_speed    12
+shield        2
+Name: (cobra, mark i), dtype: int64
+
+---->   
+
+***************************************
+ID: 125 --> 0
+>>> df.loc[[('cobra', 'mark ii')]]
+               max_speed  shield
+cobra mark ii          0       4
+
+---->   
+
+***************************************
+ID: 126 --> 0
+>>> df.loc[('cobra', 'mark i'), 'shield']
+2
+
+---->   
+
+***************************************
+ID: 127 --> 0
+>>> df.loc[('cobra', 'mark i'):'viper']
+                     max_speed  shield
+cobra      mark i           12       2
+           mark ii           0       4
+sidewinder mark i           10      20
+           mark ii           1       4
+viper      mark ii           7       1
+           mark iii         16      36
+
+---->   
+
+***************************************
+ID: 128 --> 0
+>>> df.loc[('cobra', 'mark i'):('viper', 'mark ii')]
+                    max_speed  shield
+cobra      mark i          12       2
+           mark ii          0       4
+sidewinder mark i          10      20
+           mark ii          1       4
+viper      mark ii          7       1
+
+---->   
+
+***************************************
+ID: 129 --> 0
+>>> a = pd.Series([1, 1, 1, np.nan], index=['a', 'b', 'c', 'd'])
+>>> a
+a    1.0
+b    1.0
+c    1.0
+d    NaN
+dtype: float64
+>>> b = pd.Series([1, np.nan, 1, np.nan], index=['a', 'b', 'd', 'e'])
+>>> b
+a    1.0
+b    NaN
+d    1.0
+e    NaN
+dtype: float64
+>>> a.add(b, fill_value=0)
+a    2.0
+b    1.0
+c    1.0
+d    1.0
+e    NaN
+dtype: float64
+
+---->   
+
+***************************************
+ID: 130 --> 0
+>>> s = pd.Series([1, 2, 3, 4],
+...               index=pd.MultiIndex.from_product([['one', 'two'],
+...                                                 ['a', 'b']]))
+>>> s
+one  a    1
+     b    2
+two  a    3
+     b    4
+dtype: int64
+
+---->   
+
+***************************************
+ID: 133 --> 0
+>>> s = pd.Series([1, 2, 3])
+>>> s.dtype
+dtype('int64')
+
+---->   
+
+***************************************
+ID: 134 --> 0
+>>> s = pd.Series([1, None, None, 2])
+>>> s.bfill()
+0    1.0
+1    2.0
+2    2.0
+3    2.0
+dtype: float64
+>>> s.bfill(limit=1)
+0    1.0
+1    NaN
+2    2.0
+3    2.0
+dtype: float64
+
+---->   
+
+***************************************
+ID: 135 --> 0
+>>> df = pd.DataFrame({'A': [1, None, None, 4], 'B': [None, 5, None, 7]})
+>>> df
+      A     B
+0   1.0   NaN
+1   NaN   5.0
+2   NaN   NaN
+3   4.0   7.0
+>>> df.bfill()
+      A     B
+0   1.0   5.0
+1   4.0   5.0
+2   4.0   7.0
+3   4.0   7.0
+>>> df.bfill(limit=1)
+      A     B
+0   1.0   5.0
+1   NaN   5.0
+2   4.0   7.0
+3   4.0   7.0
+
+---->   
+
+***************************************
+ID: 136 --> 0
+>>> df = pd.DataFrame(dict(age=[5, 6, np.nan],
+...                        born=[pd.NaT, pd.Timestamp('1939-05-27'),
+...                              pd.Timestamp('1940-04-25')],
+...                        name=['Alfred', 'Batman', ''],
+...                        toy=[None, 'Batmobile', 'Joker']))
+>>> df
+   age       born    name        toy
+0  5.0        NaT  Alfred       None
+1  6.0 1939-05-27  Batman  Batmobile
+2  NaN 1940-04-25              Joker
+
+---->   
+
+***************************************
+ID: 137 --> 0
+>>> df.isna()
+     age   born   name    toy
+0  False   True  False   True
+1  False  False  False  False
+2   True  False  False  False
+
+---->   
+
+***************************************
+ID: 138 --> 0
+>>> ser = pd.Series([5, 6, np.nan])
+>>> ser
+0    5.0
+1    6.0
+2    NaN
+dtype: float64
+
+---->   
+
+***************************************
+ID: 140 --> 0
+>>> s = pd.Series(['llama', 'cow', 'llama', 'beetle', 'llama', 'hippo'],
+...               name='animal')
+>>> s
+0     llama
+1       cow
+2     llama
+3    beetle
+4     llama
+5     hippo
+Name: animal, dtype: object
+
+---->   
+
+***************************************
+ID: 141 --> 0
+>>> s.drop_duplicates()
+0     llama
+1       cow
+3    beetle
+5     hippo
+Name: animal, dtype: object
+
+---->   
+
+***************************************
+ID: 142 --> 0
+>>> s.drop_duplicates(keep='last')
+1       cow
+3    beetle
+4     llama
+5     hippo
+Name: animal, dtype: object
+
+---->   
+
+***************************************
+ID: 143 --> 0
+>>> s.drop_duplicates(keep=False)
+1       cow
+3    beetle
+5     hippo
+Name: animal, dtype: object
+
+---->   
+
+***************************************
+ID: 144 --> 0
+>>> i = pd.date_range('2018-04-09', periods=4, freq='1D20min')
+>>> ts = pd.DataFrame({'A': [1, 2, 3, 4]}, index=i)
+>>> ts
+                     A
+2018-04-09 00:00:00  1
+2018-04-10 00:20:00  2
+2018-04-11 00:40:00  3
+2018-04-12 01:00:00  4
+
+---->   
+
+***************************************
+ID: 145 --> 0
+>>> ts.between_time('0:15', '0:45')
+                     A
+2018-04-10 00:20:00  2
+2018-04-11 00:40:00  3
+
+---->   
+
+***************************************
+ID: 146 --> 0
+>>> ts.between_time('0:45', '0:15')
+                     A
+2018-04-09 00:00:00  1
+2018-04-12 01:00:00  4
+
+---->   
+
+***************************************
+ID: 147 --> 0
+>>> s = pd.Series(["1/1/2020 10:00:00+00:00", "2/1/2020 11:00:00+00:00"])
+>>> s = pd.to_datetime(s)
+>>> s
+0   2020-01-01 10:00:00+00:00
+1   2020-02-01 11:00:00+00:00
+dtype: datetime64[ns, UTC]
+>>> s.dt.tz
+datetime.timezone.utc
+
+---->   
+
+***************************************
+ID: 148 --> 0
+>>> idx = pd.DatetimeIndex(["1/1/2020 10:00:00+00:00",
+...                         "2/1/2020 11:00:00+00:00"])
+>>> idx.tz
+datetime.timezone.utc
+
+---->   
+
+***************************************
+ID: 149 --> 0
+>>> s = pd.Series(["1/1/2020 10:00:00+00:00", "2/1/2020 11:00:00+00:00"])
+>>> s = pd.to_datetime(s)
+>>> s
+0   2020-01-01 10:00:00+00:00
+1   2020-02-01 11:00:00+00:00
+dtype: datetime64[ns, UTC]
+>>> s.dt.daysinmonth
+0    31
+1    29
+dtype: int32
+
+---->   
+
+***************************************
+ID: 150 --> 0
+>>> s = pd.Series(['lower', 'CAPITALS', 'this is a sentence', 'SwApCaSe'])
+>>> s
+0                 lower
+1              CAPITALS
+2    this is a sentence
+3              SwApCaSe
+dtype: object
+
+---->   
+
+***************************************
+ID: 151 --> 0
+>>> s.str.lower()
+0                 lower
+1              capitals
+2    this is a sentence
+3              swapcase
+dtype: object
+
+---->   
+
+***************************************
+ID: 152 --> 0
+>>> s.str.upper()
+0                 LOWER
+1              CAPITALS
+2    THIS IS A SENTENCE
+3              SWAPCASE
+dtype: object
+
+---->   
+
+***************************************
+ID: 153 --> 0
+>>> s.str.title()
+0                 Lower
+1              Capitals
+2    This Is A Sentence
+3              Swapcase
+dtype: object
+
+---->   
+
+***************************************
+ID: 154 --> 0
+>>> s.str.capitalize()
+0                 Lower
+1              Capitals
+2    This is a sentence
+3              Swapcase
+dtype: object
+
+---->   
+
+***************************************
+ID: 155 --> 0
+>>> s.str.swapcase()
+0                 LOWER
+1              capitals
+2    THIS IS A SENTENCE
+3              sWaPcAsE
+dtype: object
+
+---->   
+
+***************************************
+ID: 156 --> 0
+>>> s = pd.date_range('2016-12-31', '2017-01-08', freq='D').to_series()
+>>> s.dt.dayofweek
+2016-12-31    5
+2017-01-01    6
+2017-01-02    0
+2017-01-03    1
+2017-01-04    2
+2017-01-05    3
+2017-01-06    4
+2017-01-07    5
+2017-01-08    6
+Freq: D, dtype: int32
+
+---->   
+
+***************************************
+ID: 158 --> 0
+>>> s = pd.Series([1, 2, 3, 4], name='foo',
+...               index=pd.Index(['a', 'b', 'c', 'd'], name='idx'))
+
+---->   
+
+***************************************
+ID: 159 --> 0
+>>> s.reset_index()
+  idx  foo
+0   a    1
+1   b    2
+2   c    3
+3   d    4
+
+---->   
+
+***************************************
+ID: 160 --> 0
+>>> s.reset_index(name='values')
+  idx  values
+0   a       1
+1   b       2
+2   c       3
+3   d       4
+
+---->   
+
+***************************************
+ID: 161 --> 0
+>>> s.reset_index(drop=True)
+0    1
+1    2
+2    3
+3    4
+Name: foo, dtype: int64
+
+---->   
+
+***************************************
+ID: 162 --> 0
+>>> arrays = [np.array(['bar', 'bar', 'baz', 'baz']),
+...           np.array(['one', 'two', 'one', 'two'])]
+>>> s2 = pd.Series(
+...     range(4), name='foo',
+...     index=pd.MultiIndex.from_arrays(arrays,
+...                                     names=['a', 'b']))
+
+---->   
+
+***************************************
+ID: 163 --> 0
+>>> s2.reset_index(level='a')
+       a  foo
+b
+one  bar    0
+two  bar    1
+one  baz    2
+two  baz    3
+
+---->   
+
+***************************************
+ID: 164 --> 0
+>>> s2.reset_index()
+     a    b  foo
+0  bar  one    0
+1  bar  two    1
+2  baz  one    2
+3  baz  two    3
+
+---->   
+
+***************************************
+ID: 165 --> 0
+>>> s = pd.Series(["String",
+...               (1, 2, 3),
+...               ["a", "b", "c"],
+...               123,
+...               -456,
+...               {1: "Hello", "2": "World"}])
+>>> s
+0                        String
+1                     (1, 2, 3)
+2                     [a, b, c]
+3                           123
+4                          -456
+5    {1: 'Hello', '2': 'World'}
+dtype: object
+
+---->   
+
+***************************************
+ID: 166 --> 0
+>>> s.str.get(1)
+0        t
+1        2
+2        b
+3      NaN
+4      NaN
+5    Hello
+dtype: object
+
+---->   
+
+***************************************
+ID: 167 --> 0
+>>> s.str.get(-1)
+0      g
+1      3
+2      c
+3    NaN
+4    NaN
+5    None
+dtype: object
+
+---->   
+
+***************************************
+ID: 168 --> 0
+>>> s = pd.Series([{"name": "Hello", "value": "World"},
+...               {"name": "Goodbye", "value": "Planet"}])
+>>> s.str.get('name')
+0      Hello
+1    Goodbye
+dtype: object
+
+---->   
+
+***************************************
+ID: 169 --> 0
+>>> a = pd.Series([1, 1, 1, np.nan], index=['a', 'b', 'c', 'd'])
+>>> a
+a    1.0
+b    1.0
+c    1.0
+d    NaN
+dtype: float64
+>>> b = pd.Series([1, np.nan, 1, np.nan], index=['a', 'b', 'd', 'e'])
+>>> b
+a    1.0
+b    NaN
+d    1.0
+e    NaN
+dtype: float64
+>>> a.subtract(b, fill_value=0)
+a    0.0
+b    1.0
+c    1.0
+d   -1.0
+e    NaN
+dtype: float64
+
+---->   
+
+***************************************
+ID: 170 --> 0
+>>> df = pd.DataFrame({'animal': ['alligator', 'bee', 'falcon', 'lion',
+...                    'monkey', 'parrot', 'shark', 'whale', 'zebra']})
+>>> df
+      animal
+0  alligator
+1        bee
+2     falcon
+3       lion
+4     monkey
+5     parrot
+6      shark
+7      whale
+8      zebra
+
+---->   
+
+***************************************
+ID: 171 --> 0
+>>> df.tail()
+   animal
+4  monkey
+5  parrot
+6   shark
+7   whale
+8   zebra
+
+---->   
+
+***************************************
+ID: 172 --> 0
+>>> df.tail(3)
+  animal
+6  shark
+7  whale
+8  zebra
+
+---->   
+
+***************************************
+ID: 173 --> 0
+>>> df.tail(-3)
+   animal
+3    lion
+4  monkey
+5  parrot
+6   shark
+7   whale
+8   zebra
+
+---->   
+
+***************************************
+ID: 182 --> 0
+>>> d = {'col1': [1, 2], 'col2': [3, 4]}
+>>> df = pd.DataFrame(data=d)
+>>> df.dtypes
+col1    int64
+col2    int64
+dtype: object
+
+---->   
+
+***************************************
+ID: 183 --> 0
+>>> df.astype('int32').dtypes
+col1    int32
+col2    int32
+dtype: object
+
+---->   
+
+***************************************
+ID: 184 --> 0
+>>> df.astype({'col1': 'int32'}).dtypes
+col1    int32
+col2    int64
+dtype: object
+
+---->   
+
+***************************************
+ID: 188 --> 0
+>>> ser_date = pd.Series(pd.date_range('20200101', periods=3))
+>>> ser_date
+0   2020-01-01
+1   2020-01-02
+2   2020-01-03
+dtype: datetime64[ns]
+
+---->   
+
+***************************************
+ID: 189 --> 0
+>>> ser = pd.Series(["cow_", "duck_", "do_ve"])
+>>> ser.str.find("_")
+0   3
+1   4
+2   2
+dtype: int64
+
+---->   
+
+***************************************
+ID: 190 --> 0
+>>> ser = pd.Series(["_cow_", "duck_", "do_v_e"])
+>>> ser.str.rfind("_")
+0   4
+1   4
+2   4
+dtype: int64
+
+---->   
+
+***************************************
+ID: 194 --> 0
+>>> df = pd.DataFrame({'categorical': pd.Categorical(['d','e','f']),
+...                    'numeric': [1, 2, 3],
+...                    'object': ['a', 'b', 'c']
+...                   })
+>>> df.describe()
+       numeric
+count      3.0
+mean       2.0
+std        1.0
+min        1.0
+25%        1.5
+50%        2.0
+75%        2.5
+max        3.0
+
+---->   
+
+***************************************
+ID: 195 --> 0
+>>> df.describe(include='all')  
+       categorical  numeric object
+count            3      3.0      3
+unique           3      NaN      3
+top              f      NaN      a
+freq             1      NaN      1
+mean           NaN      2.0    NaN
+std            NaN      1.0    NaN
+min            NaN      1.0    NaN
+25%            NaN      1.5    NaN
+50%            NaN      2.0    NaN
+75%            NaN      2.5    NaN
+max            NaN      3.0    NaN
+
+---->   
+
+***************************************
+ID: 196 --> 0
+>>> df.numeric.describe()
+count    3.0
+mean     2.0
+std      1.0
+min      1.0
+25%      1.5
+50%      2.0
+75%      2.5
+max      3.0
+Name: numeric, dtype: float64
+
+---->   
+
+***************************************
+ID: 197 --> 0
+>>> df.describe(include=[np.number])
+       numeric
+count      3.0
+mean       2.0
+std        1.0
+min        1.0
+25%        1.5
+50%        2.0
+75%        2.5
+max        3.0
+
+---->   
+
+***************************************
+ID: 198 --> 0
+>>> df.describe(include=[object])  
+       object
+count       3
+unique      3
+top         a
+freq        1
+
+---->   
+
+***************************************
+ID: 199 --> 0
+>>> df.describe(include=['category'])
+       categorical
+count            3
+unique           3
+top              d
+freq             1
+
+---->   
+
+***************************************
+ID: 200 --> 0
+>>> df.describe(exclude=[np.number])  
+       categorical object
+count            3      3
+unique           3      3
+top              f      a
+freq             1      1
+
+---->   
+
+***************************************
+ID: 201 --> 0
+>>> df.describe(exclude=[object])  
+       categorical  numeric
+count            3      3.0
+unique           3      NaN
+top              f      NaN
+freq             1      NaN
+mean           NaN      2.0
+std            NaN      1.0
+min            NaN      1.0
+25%            NaN      1.5
+50%            NaN      2.0
+75%            NaN      2.5
+max            NaN      3.0
+
+---->   
+
+***************************************
+ID: 202 --> 0
+>>> s = pd.Series([2, np.nan, 5, -1, 0])
+>>> s
+0    2.0
+1    NaN
+2    5.0
+3   -1.0
+4    0.0
+dtype: float64
+
+---->   
+
+***************************************
+ID: 205 --> 0
+>>> df = pd.DataFrame([[2.0, 1.0],
+...                    [3.0, np.nan],
+...                    [1.0, 0.0]],
+...                   columns=list('AB'))
+>>> df
+     A    B
+0  2.0  1.0
+1  3.0  NaN
+2  1.0  0.0
+
+---->   
+
+***************************************
+ID: 206 --> 0
+>>> df.cumsum()
+     A    B
+0  2.0  1.0
+1  5.0  NaN
+2  6.0  1.0
+
+---->   
+
+***************************************
+ID: 207 --> 0
+>>> df.cumsum(axis=1)
+     A    B
+0  2.0  3.0
+1  3.0  NaN
+2  1.0  1.0
+
+---->   
+
+***************************************
+ID: 212 --> 0
+>>> datetime_series = pd.Series(
+...     pd.date_range("2000-01-01", periods=3, freq="us")
+... )
+>>> datetime_series
+0   2000-01-01 00:00:00.000000
+1   2000-01-01 00:00:00.000001
+2   2000-01-01 00:00:00.000002
+dtype: datetime64[ns]
+>>> datetime_series.dt.microsecond
+0       0
+1       1
+2       2
+dtype: int32
+
+---->   
+
+***************************************
+ID: 213 --> 0
+>>> from json import loads, dumps
+>>> df = pd.DataFrame(
+...     [["a", "b"], ["c", "d"]],
+...     index=["row 1", "row 2"],
+...     columns=["col 1", "col 2"],
+... )
+
+---->   
+
+***************************************
+ID: 214 --> 0
+>>> result = df.to_json(orient="split")
+>>> parsed = loads(result)
+>>> dumps(parsed, indent=4)  
+{
+    "columns": [
+        "col 1",
+        "col 2"
+    ],
+    "index": [
+        "row 1",
+        "row 2"
+    ],
+    "data": [
+        [
+            "a",
+            "b"
+        ],
+        [
+            "c",
+            "d"
+        ]
+    ]
+}
+
+---->   
+
+***************************************
+ID: 215 --> 0
+>>> result = df.to_json(orient="records")
+>>> parsed = loads(result)
+>>> dumps(parsed, indent=4)  
+[
+    {
+        "col 1": "a",
+        "col 2": "b"
+    },
+    {
+        "col 1": "c",
+        "col 2": "d"
+    }
+]
+
+---->   
+
+***************************************
+ID: 216 --> 0
+>>> result = df.to_json(orient="index")
+>>> parsed = loads(result)
+>>> dumps(parsed, indent=4)  
+{
+    "row 1": {
+        "col 1": "a",
+        "col 2": "b"
+    },
+    "row 2": {
+        "col 1": "c",
+        "col 2": "d"
+    }
+}
+
+---->   
+
+***************************************
+ID: 217 --> 0
+>>> result = df.to_json(orient="columns")
+>>> parsed = loads(result)
+>>> dumps(parsed, indent=4)  
+{
+    "col 1": {
+        "row 1": "a",
+        "row 2": "c"
+    },
+    "col 2": {
+        "row 1": "b",
+        "row 2": "d"
+    }
+}
+
+---->   
+
+***************************************
+ID: 218 --> 0
+>>> result = df.to_json(orient="values")
+>>> parsed = loads(result)
+>>> dumps(parsed, indent=4)  
+[
+    [
+        "a",
+        "b"
+    ],
+    [
+        "c",
+        "d"
+    ]
+]
+
+---->   
+
+***************************************
+ID: 219 --> 0
+>>> result = df.to_json(orient="table")
+>>> parsed = loads(result)
+>>> dumps(parsed, indent=4)  
+{
+    "schema": {
+        "fields": [
+            {
+                "name": "index",
+                "type": "string"
+            },
+            {
+                "name": "col 1",
+                "type": "string"
+            },
+            {
+                "name": "col 2",
+                "type": "string"
+            }
+        ],
+        "primaryKey": [
+            "index"
+        ],
+        "pandas_version": "1.4.0"
+    },
+    "data": [
+        {
+            "index": "row 1",
+            "col 1": "a",
+            "col 2": "b"
+        },
+        {
+            "index": "row 2",
+            "col 1": "c",
+            "col 2": "d"
+        }
+    ]
+}
+
+---->   
+
+***************************************
+ID: 220 --> 0
+>>> dti = pd.date_range(start='2014-08-01 09:00',
+...                     freq='H', periods=3, tz='Europe/Berlin')
+
+---->   
+
+***************************************
+ID: 221 --> 0
+>>> dti
+DatetimeIndex(['2014-08-01 09:00:00+02:00',
+               '2014-08-01 10:00:00+02:00',
+               '2014-08-01 11:00:00+02:00'],
+              dtype='datetime64[ns, Europe/Berlin]', freq='H')
+
+---->   
+
+***************************************
+ID: 222 --> 0
+>>> dti.tz_convert('US/Central')
+DatetimeIndex(['2014-08-01 02:00:00-05:00',
+               '2014-08-01 03:00:00-05:00',
+               '2014-08-01 04:00:00-05:00'],
+              dtype='datetime64[ns, US/Central]', freq='H')
+
+---->   
+
+***************************************
+ID: 223 --> 0
+>>> dti = pd.date_range(start='2014-08-01 09:00', freq='H',
+...                     periods=3, tz='Europe/Berlin')
+
+---->   
+
+***************************************
+ID: 224 --> 0
+>>> dti
+DatetimeIndex(['2014-08-01 09:00:00+02:00',
+               '2014-08-01 10:00:00+02:00',
+               '2014-08-01 11:00:00+02:00'],
+                dtype='datetime64[ns, Europe/Berlin]', freq='H')
+
+---->   
+
+***************************************
+ID: 225 --> 0
+>>> dti.tz_convert(None)
+DatetimeIndex(['2014-08-01 07:00:00',
+               '2014-08-01 08:00:00',
+               '2014-08-01 09:00:00'],
+                dtype='datetime64[ns]', freq='H')
+
+---->   
+
+***************************************
+ID: 226 --> 0
+>>> df = pd.DataFrame({"A": ["a", 1, 2, 3]})
+>>> df = df.iloc[1:]
+>>> df
+   A
+1  1
+2  2
+3  3
+
+---->   
+
+***************************************
+ID: 227 --> 0
+>>> df.infer_objects().dtypes
+A    int64
+dtype: object
+
+---->   
+
+***************************************
+ID: 228 --> 0
+>>> s1 = pd.Series(['one', 'one1', '1', ''])
+
+---->   
+
+***************************************
+ID: 229 --> 0
+>>> s1.str.isalpha()
+0     True
+1    False
+2    False
+3    False
+dtype: bool
+
+---->   
+
+***************************************
+ID: 230 --> 0
+>>> s1.str.isnumeric()
+0    False
+1    False
+2     True
+3    False
+dtype: bool
+
+---->   
+
+***************************************
+ID: 231 --> 0
+>>> s1.str.isalnum()
+0     True
+1     True
+2     True
+3    False
+dtype: bool
+
+---->   
+
+***************************************
+ID: 232 --> 0
+>>> s2 = pd.Series(['A B', '1.5', '3,000'])
+>>> s2.str.isalnum()
+0    False
+1    False
+2    False
+dtype: bool
+
+---->   
+
+***************************************
+ID: 233 --> 0
+>>> s3 = pd.Series(['23', '³', '⅕', ''])
+
+---->   
+
+***************************************
+ID: 234 --> 0
+>>> s3.str.isdecimal()
+0     True
+1    False
+2    False
+3    False
+dtype: bool
+
+---->   
+
+***************************************
+ID: 235 --> 0
+>>> s3.str.isdigit()
+0     True
+1     True
+2    False
+3    False
+dtype: bool
+
+---->   
+
+***************************************
+ID: 236 --> 0
+>>> s3.str.isnumeric()
+0     True
+1     True
+2     True
+3    False
+dtype: bool
+
+---->   
+
+***************************************
+ID: 237 --> 0
+>>> s4 = pd.Series([' ', '\t\r\n ', ''])
+>>> s4.str.isspace()
+0     True
+1     True
+2    False
+dtype: bool
+
+---->   
+
+***************************************
+ID: 238 --> 0
+>>> s5 = pd.Series(['leopard', 'Golden Eagle', 'SNAKE', ''])
+
+---->   
+
+***************************************
+ID: 239 --> 0
+>>> s5.str.islower()
+0     True
+1    False
+2    False
+3    False
+dtype: bool
+
+---->   
+
+***************************************
+ID: 240 --> 0
+>>> s5.str.isupper()
+0    False
+1    False
+2     True
+3    False
+dtype: bool
+
+---->   
+
+***************************************
+ID: 241 --> 0
+>>> s5.str.istitle()
+0    False
+1     True
+2    False
+3    False
+dtype: bool
+
+---->   
+
+***************************************
+ID: 242 --> 0
+>>> a = pd.Series([1, 1, 1, np.nan], index=['a', 'b', 'c', 'd'])
+>>> a
+a    1.0
+b    1.0
+c    1.0
+d    NaN
+dtype: float64
+>>> b = pd.Series([1, np.nan, 1, np.nan], index=['a', 'b', 'd', 'e'])
+>>> b
+a    1.0
+b    NaN
+d    1.0
+e    NaN
+dtype: float64
+>>> a.multiply(b, fill_value=0)
+a    1.0
+b    0.0
+c    0.0
+d    0.0
+e    NaN
+dtype: float64
+
+---->   
+
+***************************************
+ID: 243 --> 0
+>>> ser = pd.Series(["El niño", "Françoise"])
+>>> mytable = str.maketrans({'ñ': 'n', 'ç': 'c'})
+>>> ser.str.translate(mytable)
+0   El nino
+1   Francoise
+dtype: object
+
+---->   
+
+***************************************
+ID: 244 --> 0
+>>> s = pd.Series([2, np.nan, 5, -1, 0])
+>>> s
+0    2.0
+1    NaN
+2    5.0
+3   -1.0
+4    0.0
+dtype: float64
+
+---->   
+
+***************************************
+ID: 247 --> 0
+>>> df = pd.DataFrame([[2.0, 1.0],
+...                    [3.0, np.nan],
+...                    [1.0, 0.0]],
+...                   columns=list('AB'))
+>>> df
+     A    B
+0  2.0  1.0
+1  3.0  NaN
+2  1.0  0.0
+
+---->   
+
+***************************************
+ID: 248 --> 0
+>>> df.cummax()
+     A    B
+0  2.0  1.0
+1  3.0  NaN
+2  3.0  1.0
+
+---->   
+
+***************************************
+ID: 249 --> 0
+>>> df.cummax(axis=1)
+     A    B
+0  2.0  2.0
+1  3.0  NaN
+2  1.0  1.0
+
+---->   
+
+***************************************
+ID: 251 --> 0
+>>> df = pd.DataFrame(dict(name=['Raphael', 'Donatello'],
+...                        age=[26, 45],
+...                        height=[181.23, 177.65]))
+>>> print(df.to_latex(index=False,
+...                   formatters={"name": str.upper},
+...                   float_format="{:.1f}".format,
+... ))  
+\begin{tabular}{lrr}
+\toprule
+name & age & height \\
+\midrule
+RAPHAEL & 26 & 181.2 \\
+DONATELLO & 45 & 177.7 \\
+\bottomrule
+\end{tabular}
+
+---->   
+
+***************************************
+ID: 252 --> 0
+>>> s = pd.Series([1, 2, 3])
+>>> s
+0    1
+1    2
+2    3
+dtype: int64
+
+---->   
+
+***************************************
+ID: 253 --> 0
+>>> s.set_axis(['a', 'b', 'c'], axis=0)
+a    1
+b    2
+c    3
+dtype: int64
+
+---->   
+
+***************************************
+ID: 254 --> 0
+>>> s = pd.Series([1, 2, 3])
+>>> s.shape
+(3,)
+
+---->   
+
+***************************************
+ID: 255 --> 0
+>>> s = pd.Series(["caribou", "tiger"])
+>>> s
+0    caribou
+1      tiger
+dtype: object
+
+---->   
+
+***************************************
+ID: 256 --> 0
+>>> s.str.pad(width=10)
+0       caribou
+1         tiger
+dtype: object
+
+---->   
+
+***************************************
+ID: 257 --> 0
+>>> s.str.pad(width=10, side='right', fillchar='-')
+0    caribou---
+1    tiger-----
+dtype: object
+
+---->   
+
+***************************************
+ID: 258 --> 0
+>>> s.str.pad(width=10, side='both', fillchar='-')
+0    -caribou--
+1    --tiger---
+dtype: object
+
+---->   
+
+***************************************
+ID: 259 --> 0
+>>> s = pd.Series([1, 2, 3, 4])
+>>> s
+0    1
+1    2
+2    3
+3    4
+dtype: int64
+
+---->   
+
+***************************************
+ID: 262 --> 0
+>>> rng = pd.date_range('1/1/2018 11:59:00', periods=3, freq='min')
+>>> rng
+DatetimeIndex(['2018-01-01 11:59:00', '2018-01-01 12:00:00',
+               '2018-01-01 12:01:00'],
+              dtype='datetime64[ns]', freq='T')
+>>> rng.round('H')
+DatetimeIndex(['2018-01-01 12:00:00', '2018-01-01 12:00:00',
+               '2018-01-01 12:00:00'],
+              dtype='datetime64[ns]', freq=None)
+
+---->   
+
+***************************************
+ID: 264 --> 0
+>>> rng_tz = pd.DatetimeIndex(["2021-10-31 03:30:00"], tz="Europe/Amsterdam")
+
+---->   
+
+***************************************
+ID: 265 --> 0
+>>> rng_tz.floor("2H", ambiguous=False)
+DatetimeIndex(['2021-10-31 02:00:00+01:00'],
+              dtype='datetime64[ns, Europe/Amsterdam]', freq=None)
+
+---->   
+
+***************************************
+ID: 266 --> 0
+>>> rng_tz.floor("2H", ambiguous=True)
+DatetimeIndex(['2021-10-31 02:00:00+02:00'],
+              dtype='datetime64[ns, Europe/Amsterdam]', freq=None)
+
+---->   
+
+***************************************
+ID: 267 --> 0
+>>> ser = pd.Series(["cow_", "duck_", "do_ve"])
+>>> ser.str.find("_")
+0   3
+1   4
+2   2
+dtype: int64
+
+---->   
+
+***************************************
+ID: 268 --> 0
+>>> ser = pd.Series(["_cow_", "duck_", "do_v_e"])
+>>> ser.str.rfind("_")
+0   4
+1   4
+2   4
+dtype: int64
+
+---->   
+
+***************************************
+ID: 269 --> 0
+>>> s = pd.Series(['lower', 'CAPITALS', 'this is a sentence', 'SwApCaSe'])
+>>> s
+0                 lower
+1              CAPITALS
+2    this is a sentence
+3              SwApCaSe
+dtype: object
+
+---->   
+
+***************************************
+ID: 270 --> 0
+>>> s.str.lower()
+0                 lower
+1              capitals
+2    this is a sentence
+3              swapcase
+dtype: object
+
+---->   
+
+***************************************
+ID: 271 --> 0
+>>> s.str.upper()
+0                 LOWER
+1              CAPITALS
+2    THIS IS A SENTENCE
+3              SWAPCASE
+dtype: object
+
+---->   
+
+***************************************
+ID: 272 --> 0
+>>> s.str.title()
+0                 Lower
+1              Capitals
+2    This Is A Sentence
+3              Swapcase
+dtype: object
+
+---->   
+
+***************************************
+ID: 273 --> 0
+>>> s.str.capitalize()
+0                 Lower
+1              Capitals
+2    This is a sentence
+3              Swapcase
+dtype: object
+
+---->   
+
+***************************************
+ID: 274 --> 0
+>>> s.str.swapcase()
+0                 LOWER
+1              capitals
+2    THIS IS A SENTENCE
+3              sWaPcAsE
+dtype: object
+
+---->   
+
+***************************************
+ID: 279 --> 0
+>>> ser = pd.Series([1, 2, 3])
+>>> ser
+0    1
+1    2
+2    3
+dtype: int64
+
+---->   
+
+***************************************
+ID: 284 --> 0
+>>> ser = pd.Series(pd.to_datetime(['3/11/2000', '3/12/2000', '3/13/2000']))
+>>> ser
+0   2000-03-11
+1   2000-03-12
+2   2000-03-13
+dtype: datetime64[ns]
+
+---->   
+
+***************************************
+ID: 286 --> 0
+>>> ser = pd.Categorical(
+...     ['apple', 'bread', 'bread', 'cheese', 'milk'], ordered=True
+... )
+>>> ser
+['apple', 'bread', 'bread', 'cheese', 'milk']
+Categories (4, object): ['apple' < 'bread' < 'cheese' < 'milk']
+
+---->   
+
+***************************************
+ID: 289 --> 0
+>>> ser = pd.Series([2, 1, 3])
+>>> ser
+0    2
+1    1
+2    3
+dtype: int64
+
+---->   
+
+***************************************
+ID: 291 --> 0
+>>> s = pd.Series({'Corn Flakes': 100.0, 'Almond Delight': 110.0,
+...                'Cinnamon Toast Crunch': 120.0, 'Cocoa Puff': 110.0})
+>>> s
+Corn Flakes              100.0
+Almond Delight           110.0
+Cinnamon Toast Crunch    120.0
+Cocoa Puff               110.0
+dtype: float64
+
+---->   
+
+***************************************
+ID: 293 --> 0
+>>> dates = pd.Series(pd.date_range("2017-12-30", periods=3))
+>>> dates
+0   2017-12-30
+1   2017-12-31
+2   2018-01-01
+dtype: datetime64[ns]
+
+---->   
+
+***************************************
+ID: 294 --> 0
+>>> idx = pd.date_range("2017-12-30", periods=3)
+>>> idx
+DatetimeIndex(['2017-12-30', '2017-12-31', '2018-01-01'],
+              dtype='datetime64[ns]', freq='D')
+
+---->   
+
+***************************************
+ID: 295 --> 0
+>>> idx.is_year_end
+array([False,  True, False])
+
+---->   
+
+***************************************
+ID: 297 --> 0
+>>> pd.Series([1, 2, 3]).values
+array([1, 2, 3])
+
+---->   
+
+***************************************
+ID: 298 --> 0
+>>> pd.Series(list('aabc')).values
+array(['a', 'a', 'b', 'c'], dtype=object)
+
+---->   
+
+***************************************
+ID: 299 --> 0
+>>> pd.Series(list('aabc')).astype('category').values
+['a', 'a', 'b', 'c']
+Categories (3, object): ['a', 'b', 'c']
+
+---->   
+
+***************************************
+ID: 300 --> 0
+>>> pd.Series(pd.date_range('20130101', periods=3,
+...                         tz='US/Eastern')).values
+array(['2013-01-01T05:00:00.000000000',
+       '2013-01-02T05:00:00.000000000',
+       '2013-01-03T05:00:00.000000000'], dtype='datetime64[ns]')
+
+---->   
+
+***************************************
+ID: 301 --> 0
+>>> s = pd.Series(["1/1/2020 10:00:00+00:00", "2/1/2020 11:00:00+00:00"])
+>>> s = pd.to_datetime(s)
+>>> s
+0   2020-01-01 10:00:00+00:00
+1   2020-02-01 11:00:00+00:00
+dtype: datetime64[ns, UTC]
+>>> s.dt.dayofyear
+0    1
+1   32
+dtype: int32
+
+---->   
+
+***************************************
+ID: 302 --> 0
+>>> idx = pd.DatetimeIndex(["1/1/2020 10:00:00+00:00",
+...                         "2/1/2020 11:00:00+00:00"])
+>>> idx.dayofyear
+Index([1, 32], dtype='int32')
+
+---->   
+
+***************************************
+ID: 303 --> 0
+>>> s = pd.Series({'Corn Flakes': 100.0, 'Almond Delight': 110.0,
+...                'Cinnamon Toast Crunch': 120.0, 'Cocoa Puff': 110.0})
+>>> s
+Corn Flakes              100.0
+Almond Delight           110.0
+Cinnamon Toast Crunch    120.0
+Cocoa Puff               110.0
+dtype: float64
+
+---->   
+
+***************************************
+ID: 305 --> 0
+>>> s = pd.Series([1, 2, 3])
+>>> s.dtypes
+dtype('int64')
+
+---->   
+
+***************************************
+ID: 306 --> 0
+>>> s = pd.Series(pd.to_timedelta(np.arange(5), unit='s'))
+>>> s
+0   0 days 00:00:00
+1   0 days 00:00:01
+2   0 days 00:00:02
+3   0 days 00:00:03
+4   0 days 00:00:04
+dtype: timedelta64[ns]
+>>> s.dt.components
+   days  hours  minutes  seconds  milliseconds  microseconds  nanoseconds
+0     0      0        0        0             0             0            0
+1     0      0        0        1             0             0            0
+2     0      0        0        2             0             0            0
+3     0      0        0        3             0             0            0
+4     0      0        0        4             0             0            0
+
+---->   
+
+***************************************
+ID: 307 --> 0
+>>> s = pd.Series(["a1a2", "b1", "c1"], index=["A", "B", "C"])
+>>> s.str.extractall(r"[ab](\d)")
+        0
+match
+A 0      1
+  1      2
+B 0      1
+
+---->   
+
+***************************************
+ID: 308 --> 0
+>>> s.str.extractall(r"[ab](?P\d)")
+        digit
+match
+A 0         1
+  1         2
+B 0         1
+
+---->   
+
+***************************************
+ID: 309 --> 0
+>>> s.str.extractall(r"(?P[ab])(?P\d)")
+        letter digit
+match
+A 0          a     1
+  1          a     2
+B 0          b     1
+
+---->   
+
+***************************************
+ID: 310 --> 0
+>>> s.str.extractall(r"(?P[ab])?(?P\d)")
+        letter digit
+match
+A 0          a     1
+  1          a     2
+B 0          b     1
+C 0        NaN     1
+
+---->   
+
+***************************************
+ID: 311 --> 0
+>>> countries_population = {"Italy": 59000000, "France": 65000000,
+...                         "Malta": 434000, "Maldives": 434000,
+...                         "Brunei": 434000, "Iceland": 337000,
+...                         "Nauru": 11300, "Tuvalu": 11300,
+...                         "Anguilla": 11300, "Montserrat": 5200}
+>>> s = pd.Series(countries_population)
+>>> s
+Italy       59000000
+France      65000000
+Malta         434000
+Maldives      434000
+Brunei        434000
+Iceland       337000
+Nauru          11300
+Tuvalu         11300
+Anguilla       11300
+Montserrat      5200
+dtype: int64
+
+---->   
+
+***************************************
+ID: 316 --> 0
+>>> ser = pd.Series(["horse", "eagle", "donkey"])
+>>> ser.str.index("e")
+0   4
+1   0
+2   4
+dtype: int64
+
+---->   
+
+***************************************
+ID: 317 --> 0
+>>> ser = pd.Series(["Deer", "eagle", "Sheep"])
+>>> ser.str.rindex("e")
+0   2
+1   4
+2   3
+dtype: int64
+
+---->   
+
+***************************************
+ID: 318 --> 0
+>>> i = pd.date_range('2018-04-09', periods=4, freq='2D')
+>>> ts = pd.DataFrame({'A': [1, 2, 3, 4]}, index=i)
+>>> ts
+            A
+2018-04-09  1
+2018-04-11  2
+2018-04-13  3
+2018-04-15  4
+
+---->   
+
+***************************************
+ID: 319 --> 0
+>>> ts.last('3D') 
+            A
+2018-04-13  3
+2018-04-15  4
+
+---->   
+
+***************************************
+ID: 320 --> 0
+>>> a = pd.Series([1, 1, 1, np.nan], index=['a', 'b', 'c', 'd'])
+>>> a
+a    1.0
+b    1.0
+c    1.0
+d    NaN
+dtype: float64
+>>> b = pd.Series([1, np.nan, 1, np.nan], index=['a', 'b', 'd', 'e'])
+>>> b
+a    1.0
+b    NaN
+d    1.0
+e    NaN
+dtype: float64
+>>> a.pow(b, fill_value=0)
+a    1.0
+b    1.0
+c    1.0
+d    0.0
+e    NaN
+dtype: float64
+
+---->   
+
+***************************************
+ID: 321 --> 0
+>>> s = pd.Series([1, 2, 3, 4])
+>>> s
+0    1
+1    2
+2    3
+3    4
+dtype: int64
+
+---->   
+
+***************************************
+ID: 325 --> 0
+>>> s = pd.Series(['Ant', 'Bear', 'Cow'])
+>>> s
+0     Ant
+1    Bear
+2     Cow
+dtype: object
+>>> s.T
+0     Ant
+1    Bear
+2     Cow
+dtype: object
+
+---->   
+
+***************************************
+ID: 326 --> 0
+>>> idx = pd.Index([1, 2, 3])
+>>> idx.T
+Index([1, 2, 3], dtype='int64')
+
+---->   
+
+***************************************
+ID: 328 --> 0
+>>> df1 = pd.DataFrame([['a', 'b'], ['c', 'd']],
+...                    index=['row 1', 'row 2'],
+...                    columns=['col 1', 'col 2'])
+>>> df1.to_excel("output.xlsx")  
+
+---->   
+
+***************************************
+ID: 329 --> 0
+>>> df1.to_excel("output.xlsx",
+...              sheet_name='Sheet_name_1')  
+
+---->   
+
+***************************************
+ID: 330 --> 0
+>>> df2 = df1.copy()
+>>> with pd.ExcelWriter('output.xlsx') as writer:  
+...     df1.to_excel(writer, sheet_name='Sheet_name_1')
+...     df2.to_excel(writer, sheet_name='Sheet_name_2')
+
+---->   
+
+***************************************
+ID: 331 --> 0
+>>> with pd.ExcelWriter('output.xlsx',
+...                     mode='a') as writer:
+...     df1.to_excel(writer, sheet_name='Sheet_name_3')
+
+---->   
+
+***************************************
+ID: 332 --> 0
+>>> df1.to_excel('output1.xlsx', engine='xlsxwriter')  
+
+---->   
+
+***************************************
+ID: 333 --> 0
+>>> s = pd.Series(["1/1/2020 10:00:00+00:00", "2/1/2020 11:00:00+00:00"])
+>>> s = pd.to_datetime(s)
+>>> s
+0   2020-01-01 10:00:00+00:00
+1   2020-02-01 11:00:00+00:00
+dtype: datetime64[ns, UTC]
+>>> s.dt.daysinmonth
+0    31
+1    29
+dtype: int32
+
+---->   
+
+***************************************
+ID: 334 --> 0
+>>> a = pd.Series([1, 1, 1, np.nan], index=['a', 'b', 'c', 'd'])
+>>> a
+a    1.0
+b    1.0
+c    1.0
+d    NaN
+dtype: float64
+>>> b = pd.Series([1, np.nan, 1, np.nan], index=['a', 'b', 'd', 'e'])
+>>> b
+a    1.0
+b    NaN
+d    1.0
+e    NaN
+dtype: float64
+>>> a.divide(b, fill_value=0)
+a    1.0
+b    inf
+c    inf
+d    0.0
+e    NaN
+dtype: float64
+
+---->   
+
+***************************************
+ID: 337 --> 0
+>>> ser = pd.Series(['dog', 'bird', 'mouse'])
+>>> ser.str.center(8, fillchar='.')
+0   ..dog...
+1   ..bird..
+2   .mouse..
+dtype: object
+
+---->   
+
+***************************************
+ID: 338 --> 0
+>>> ser = pd.Series(['dog', 'bird', 'mouse'])
+>>> ser.str.ljust(8, fillchar='.')
+0   dog.....
+1   bird....
+2   mouse...
+dtype: object
+
+---->   
+
+***************************************
+ID: 339 --> 0
+>>> ser = pd.Series(['dog', 'bird', 'mouse'])
+>>> ser.str.rjust(8, fillchar='.')
+0   .....dog
+1   ....bird
+2   ...mouse
+dtype: object
+
+---->   
+
+***************************************
+ID: 340 --> 0
+>>> df = pd.DataFrame([[np.nan, 2, np.nan, 0],
+...                    [3, 4, np.nan, 1],
+...                    [np.nan, np.nan, np.nan, np.nan],
+...                    [np.nan, 3, np.nan, 4]],
+...                   columns=list("ABCD"))
+>>> df
+     A    B   C    D
+0  NaN  2.0 NaN  0.0
+1  3.0  4.0 NaN  1.0
+2  NaN  NaN NaN  NaN
+3  NaN  3.0 NaN  4.0
+
+---->   
+
+***************************************
+ID: 341 --> 0
+>>> df.ffill()
+     A    B   C    D
+0  NaN  2.0 NaN  0.0
+1  3.0  4.0 NaN  1.0
+2  3.0  4.0 NaN  1.0
+3  3.0  3.0 NaN  4.0
+
+---->   
+
+***************************************
+ID: 342 --> 0
+>>> ser = pd.Series([1, np.nan, 2, 3])
+>>> ser.ffill()
+0   1.0
+1   1.0
+2   2.0
+3   3.0
+dtype: float64
+
+---->   
+
+***************************************
+ID: 343 --> 0
+>>> df = pd.DataFrame([[1, 2, 3], [4, 5, 6]], columns=['A', 'B', 'C'])
+
+---->   
+
+***************************************
+ID: 344 --> 0
+>>> df.to_clipboard(sep=',')  
+... # Wrote the following to the system clipboard:
+... # ,A,B,C
+... # 0,1,2,3
+... # 1,4,5,6
+
+---->   
+
+***************************************
+ID: 345 --> 0
+>>> df.to_clipboard(sep=',', index=False)  
+... # Wrote the following to the system clipboard:
+... # A,B,C
+... # 1,2,3
+... # 4,5,6
+
+---->   
+
+***************************************
+ID: 346 --> 0
+import pyperclip
+html = df.style.to_html()
+pyperclip.copy(html)
+
+---->   
+
+***************************************
+ID: 350 --> 0
+>>> pd.Series([2, 1, 3, 3], name='A').unique()
+array([2, 1, 3])
+
+---->   
+
+***************************************
+ID: 351 --> 0
+>>> pd.Series([pd.Timestamp('2016-01-01') for _ in range(3)]).unique()
+
+['2016-01-01 00:00:00']
+Length: 1, dtype: datetime64[ns]
+
+---->   
+
+***************************************
+ID: 352 --> 0
+>>> pd.Series([pd.Timestamp('2016-01-01', tz='US/Eastern')
+...            for _ in range(3)]).unique()
+
+['2016-01-01 00:00:00-05:00']
+Length: 1, dtype: datetime64[ns, US/Eastern]
+
+---->   
+
+***************************************
+ID: 353 --> 0
+>>> pd.Series(pd.Categorical(list('baabc'))).unique()
+['b', 'a', 'c']
+Categories (3, object): ['a', 'b', 'c']
+>>> pd.Series(pd.Categorical(list('baabc'), categories=list('abc'),
+...                          ordered=True)).unique()
+['b', 'a', 'c']
+Categories (3, object): ['a' < 'b' < 'c']
+
+---->   
+
+***************************************
+ID: 354 --> 0
+>>> idx = pd.date_range(start='2014-08-01 10:00', freq='H',
+...                     periods=3, tz='Asia/Calcutta')
+>>> idx
+DatetimeIndex(['2014-08-01 10:00:00+05:30',
+               '2014-08-01 11:00:00+05:30',
+               '2014-08-01 12:00:00+05:30'],
+                dtype='datetime64[ns, Asia/Calcutta]', freq='H')
+>>> idx.normalize()
+DatetimeIndex(['2014-08-01 00:00:00+05:30',
+               '2014-08-01 00:00:00+05:30',
+               '2014-08-01 00:00:00+05:30'],
+               dtype='datetime64[ns, Asia/Calcutta]', freq=None)
+
+---->   
+
+***************************************
+ID: 355 --> 0
+>>> ser = pd.Series(pd.to_timedelta([1, 2, 3], unit='U'))
+>>> ser
+0   0 days 00:00:00.000001
+1   0 days 00:00:00.000002
+2   0 days 00:00:00.000003
+dtype: timedelta64[ns]
+>>> ser.dt.microseconds
+0    1
+1    2
+2    3
+dtype: int32
+
+---->   
+
+***************************************
+ID: 356 --> 0
+>>> tdelta_idx = pd.to_timedelta([1, 2, 3], unit='U')
+>>> tdelta_idx
+TimedeltaIndex(['0 days 00:00:00.000001', '0 days 00:00:00.000002',
+                '0 days 00:00:00.000003'],
+               dtype='timedelta64[ns]', freq=None)
+>>> tdelta_idx.microseconds
+Index([1, 2, 3], dtype='int32')
+
+---->   
+
+***************************************
+ID: 357 --> 0
+>>> df = pd.DataFrame({'dates': pd.date_range("2017-03-30",
+...                    periods=4)})
+>>> df.assign(quarter=df.dates.dt.quarter,
+...           is_quarter_end=df.dates.dt.is_quarter_end)
+       dates  quarter    is_quarter_end
+0 2017-03-30        1             False
+1 2017-03-31        1              True
+2 2017-04-01        2             False
+3 2017-04-02        2             False
+
+---->   
+
+***************************************
+ID: 358 --> 0
+>>> idx = pd.date_range('2017-03-30', periods=4)
+>>> idx
+DatetimeIndex(['2017-03-30', '2017-03-31', '2017-04-01', '2017-04-02'],
+              dtype='datetime64[ns]', freq='D')
+
+---->   
+
+***************************************
+ID: 359 --> 0
+>>> idx.is_quarter_end
+array([False,  True, False, False])
+
+---->   
+
+***************************************
+ID: 360 --> 0
+>>> s = pd.Series(['lower', 'CAPITALS', 'this is a sentence', 'SwApCaSe'])
+>>> s
+0                 lower
+1              CAPITALS
+2    this is a sentence
+3              SwApCaSe
+dtype: object
+
+---->   
+
+***************************************
+ID: 361 --> 0
+>>> s.str.lower()
+0                 lower
+1              capitals
+2    this is a sentence
+3              swapcase
+dtype: object
+
+---->   
+
+***************************************
+ID: 362 --> 0
+>>> s.str.upper()
+0                 LOWER
+1              CAPITALS
+2    THIS IS A SENTENCE
+3              SWAPCASE
+dtype: object
+
+---->   
+
+***************************************
+ID: 363 --> 0
+>>> s.str.title()
+0                 Lower
+1              Capitals
+2    This Is A Sentence
+3              Swapcase
+dtype: object
+
+---->   
+
+***************************************
+ID: 364 --> 0
+>>> s.str.capitalize()
+0                 Lower
+1              Capitals
+2    This is a sentence
+3              Swapcase
+dtype: object
+
+---->   
+
+***************************************
+ID: 365 --> 0
+>>> s.str.swapcase()
+0                 LOWER
+1              capitals
+2    THIS IS A SENTENCE
+3              sWaPcAsE
+dtype: object
+
+---->   
+
+***************************************
+ID: 366 --> 0
+>>> ser = pd.Series(pd.to_timedelta([1, 2, 3], unit='N'))
+>>> ser
+0   0 days 00:00:00.000000001
+1   0 days 00:00:00.000000002
+2   0 days 00:00:00.000000003
+dtype: timedelta64[ns]
+>>> ser.dt.nanoseconds
+0    1
+1    2
+2    3
+dtype: int32
+
+---->   
+
+***************************************
+ID: 367 --> 0
+>>> tdelta_idx = pd.to_timedelta([1, 2, 3], unit='N')
+>>> tdelta_idx
+TimedeltaIndex(['0 days 00:00:00.000000001', '0 days 00:00:00.000000002',
+                '0 days 00:00:00.000000003'],
+               dtype='timedelta64[ns]', freq=None)
+>>> tdelta_idx.nanoseconds
+Index([1, 2, 3], dtype='int32')
+
+---->   
+
+***************************************
+ID: 368 --> 0
+>>> pd.Series([True, True]).all()
+True
+>>> pd.Series([True, False]).all()
+False
+>>> pd.Series([], dtype="float64").all()
+True
+>>> pd.Series([np.nan]).all()
+True
+>>> pd.Series([np.nan]).all(skipna=False)
+True
+
+---->   
+
+***************************************
+ID: 369 --> 0
+>>> df = pd.DataFrame({'col1': [True, True], 'col2': [True, False]})
+>>> df
+   col1   col2
+0  True   True
+1  True  False
+
+---->   
+
+***************************************
+ID: 370 --> 0
+>>> df.all()
+col1     True
+col2    False
+dtype: bool
+
+---->   
+
+***************************************
+ID: 371 --> 0
+>>> df.all(axis='columns')
+0     True
+1    False
+dtype: bool
+
+---->   
+
+***************************************
+ID: 372 --> 0
+>>> df.all(axis=None)
+False
+
+---->   
+
+***************************************
+
