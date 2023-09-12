@@ -6,7 +6,7 @@ from documentation_quality_analysis.analyze_library.doc_parser.doc_parser import
 from documentation_quality_analysis.analyze_library.models.Signature import Signature
 from documentation_quality_analysis.analyze_library.models.doc_code_example import DocCodeExample
 from documentation_quality_analysis.analyze_library.models.doc_page import DocPage
-from documentation_quality_analysis.analyze_library.models.matched_function import MatchedCall
+from documentation_quality_analysis.analyze_library.models.matched_call import MatchedCall
 from documentation_quality_analysis.analyze_library.signature_matcher.python_signature_matcher import \
     python_match_examples
 

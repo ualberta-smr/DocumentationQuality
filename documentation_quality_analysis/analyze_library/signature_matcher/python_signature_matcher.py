@@ -9,7 +9,7 @@ from typing import Dict, List, Union
 from documentation_quality_analysis.analyze_library.models.Signature import Signature
 from documentation_quality_analysis.analyze_library.models.class_constructor_signature import ClassConstructorSignature
 from documentation_quality_analysis.analyze_library.models.doc_code_example import DocCodeExample
-from documentation_quality_analysis.analyze_library.models.matched_function import MatchedCall
+from documentation_quality_analysis.analyze_library.models.matched_call import MatchedCall
 from documentation_quality_analysis.analyze_library.models.method_signature import MethodSignature
 
 
