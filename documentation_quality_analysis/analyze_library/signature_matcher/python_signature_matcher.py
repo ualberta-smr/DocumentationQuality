@@ -36,11 +36,11 @@ def python_match_examples(repo_name: str,
 
         for call in calls:
             matched_call = _get_matched_function(call, doc_apis)
-            # Check if the function exists in our dictionary
+
             if not matched_call:
                 function_split = call.split(".")
-
                 if len(function_split) > 1:
+                    # Check if the function exists in our dictionary
                     if function_split[0] in var_declarations:
                         actual_function = '.'.join([var_declarations[function_split[0]], function_split[1]])
                         matched_func = _get_matched_function(actual_function, doc_apis)
@@ -54,7 +54,6 @@ def python_match_examples(repo_name: str,
                         first_term_removed_function = '.'.join(function_split[1:])
                         matched_call = _get_matched_function(first_term_removed_function, functions)
                         if matched_call:
-                            # method_calls.add((ex[1], call))
                             matched_apis.append(
                                 MatchedCall(called_signature=matched_call, raw_example=ex, original_call=call,
                                             url=ex.url))
@@ -69,7 +68,6 @@ def python_match_examples(repo_name: str,
                     #                         url=ex.url))
 
             elif matched_call:
-                # method_calls.add((ex[1], call))
                 matched_apis.append(
                     MatchedCall(called_signature=matched_call, raw_example=ex, original_call=call, url=ex.url))
 
