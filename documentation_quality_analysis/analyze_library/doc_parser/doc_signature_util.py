@@ -8,6 +8,8 @@ from documentation_quality_analysis.analyze_library.models.doc_page import DocPa
 from documentation_quality_analysis.analyze_library.models.method_signature import MethodSignature
 from documentation_quality_analysis.analyze_library.models.parameter import Parameter
 
+REQ_STATEMENT_TYPES = ['method', 'class', 'function', 'exception']
+
 
 def get_signatures_from_doc(doc_page: DocPage) -> List[Signature]:
     page_url = doc_page.url
@@ -28,11 +30,7 @@ def get_signatures_from_doc(doc_page: DocPage) -> List[Signature]:
 
 def get_signatures_from_section(section) -> List[Signature]:
     dts = section.find_all("dt")
-    # method_signatures: List[MethodSignature] = []
-    # class_signatures: List[ClassConstructorSignature] = []
-
     signatures: List[Signature] = []
-    class_name = None
 
     for tag in dts:
         desc = []
@@ -43,27 +41,46 @@ def get_signatures_from_section(section) -> List[Signature]:
         description = "".join(desc).strip()
 
         try:
-            if "class" in description:
-                class_element = re.findall(re.compile(r'class\s((?:.*)(?:\(.*\))?)'), description)
-                if len(class_element) > 0:
-                    class_name = re.findall('(.*)\(', class_element[0])[0] if "(" in class_element[0] else class_element[0].strip()
-                    class_signature: ClassConstructorSignature = _get_parsed_class_details(class_element[0])
-                    signatures.append(class_signature)
-            elif "(" in description:
-                code = re.findall('[A-Za-z]*\s(.+\(.*\))', description)
-                if len(code) > 0:
-                    method = _get_parsed_method_details(method=code[0], class_name=class_name)
-                    signatures.append(method)
-                else:
-                    method = _get_parsed_method_details(method=description, class_name=class_name)
-                    signatures.append(method)
+            if 'id' in tag.attrs:
+                statement_type = tag.parent.attrs['class'][-1]
 
+                if statement_type in REQ_STATEMENT_TYPES:
+                    name = tag.attrs['id']
+                    name_components = name.split('.')
+                    last_component: str = name_components[-1]
+                    class_name = '.'.join(name_components[0:-1])
+
+                    if last_component[0].isupper():
+                        class_element = re.findall(r'(?:class\s|final class\s|exception\s)?(.+)', description)
+                        class_signature: ClassConstructorSignature = _get_parsed_class_details(class_element[0])
+                        signatures.append(class_signature)
+
+                    elif last_component[0].islower() or last_component[0] == "_":
+                        method = re.findall(r'(?:method\s|classmethod\s)?(.+)', description)
+                        method_signature = _get_parsed_method_details(method=method[0], class_name=class_name)
+                        if method_signature:
+                            signatures.append(method_signature)
+
+            # elif "class" in description:
+            #     class_element = re.findall(re.compile(r'class\s(.*)'), description)
+            #     if len(class_element) > 0:
+            #         class_name = re.findall('(.*)\(', class_element[0])[0] if "(" in class_element[0] else class_element[0].strip()
+            #         class_signature: ClassConstructorSignature = _get_parsed_class_details(class_element[0])
+            #         signatures.append(class_signature)
+            # elif "(" in description:
+            #     code = re.findall('([^\s]+\(.*\))', description)
+            #     if len(code) > 0:
+            #         method = _get_parsed_method_details(method=code[0], class_name=class_name)
+            #         signatures.append(method)
+            #     else:
+            #         method = _get_parsed_method_details(method=description, class_name=class_name)
+            #         if method:
+            #             signatures.append(method)
 
         except AttributeError as e:
             print(e)
             print(description)
 
-            # signatures.append([description, page])
     return signatures
 
 
@@ -115,7 +132,7 @@ def get_ast_parsed_expression(expression, method_name, opt_args, parent, req_arg
                     method_name = func.attr
                 elif 'id' in func._fields:
                     method_name = func.id
-                if 'value' in func._fields:
+                if not parent and 'value' in func._fields:
                     if 'id' in func.value._fields:
                         parent = ".".join([parent, func.value.id]) if parent else func.value.id
                     elif 'value' in func.value._fields and 'attr' in func.value._fields:
