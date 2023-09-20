@@ -11,7 +11,7 @@ from documentation_quality_analysis.analyze_library.signature_matcher.python_sig
     python_match_examples
 
 
-def debug_metrics(language, library_name, doc_url, gh_url):
+def debug_metrics(language, library_name, doc_url, gh_url, depth):
     # os.chdir(ROOT_DIR)
 
     # repo_path = clone_repo(gh_url, True)
@@ -19,7 +19,7 @@ def debug_metrics(language, library_name, doc_url, gh_url):
 
     # get_functions_and_classes_from_src()
 
-    doc_pages: List[DocPage] = get_all_webpages(doc_url, 3)
+    doc_pages: List[DocPage] = get_all_webpages(doc_url, depth)
 
     doc_api: List[Union[Signature, None]] = get_functions_and_classes_from_doc_api_ref(doc_pages)
 
@@ -111,24 +111,28 @@ def get_stats_api_per_example(matched_methods: List[MatchedCall], doc_code_examp
 
 
 if __name__ == '__main__':
-    debug_metrics("python", "requests",
-                  "https://requests.readthedocs.io/en/latest/api/",
-                  "https://github.com/psf/requests.git")
+    # debug_metrics("python", "requests",
+    #               "https://requests.readthedocs.io/en/latest/api/",
+    #               "https://github.com/psf/requests.git", 0)
+
+    debug_metrics("python", "pandas",
+                  "https://pandas.pydata.org/docs/reference/api/pandas.Series.__array__.html",
+                  "https://github.com/pandas-dev/pandas", 0)
 
     # debug_metrics("python", "pandas",
-    #               "https://pandas.pydata.org/docs/index.html",
-    #               "https://github.com/pandas-dev/pandas")
+    #               "https://pandas.pydata.org/docs/reference/api/pandas.Series.plot.html",
+    #               "https://github.com/pandas-dev/pandas", 0)
 
     # debug_metrics("python", "GraphQL compiler",
     #               "https://graphql-compiler.readthedocs.io/",
-    #               "https://github.com/kensho-technologies/graphql-compiler")
+    #               "https://github.com/kensho-technologies/graphql-compiler", 3)
 
     # debug_metrics("python", "collections",
     #               "https://docs.python.org/3/library/collections.html",
-    #               "https://github.com/python/cpython/tree/3.11/Lib/collections")
+    #               "https://github.com/python/cpython/tree/3.11/Lib/collections", 0)
 
     # debug_metrics("python", "TensorFlow",
     #               "https://www.tensorflow.org/api_docs/python/tf/all_symbols",
-    #               "https://github.com/tensorflow/docs.git")
+    #               "https://github.com/tensorflow/docs.git", 1)
 
 
