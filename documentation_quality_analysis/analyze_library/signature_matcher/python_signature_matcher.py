@@ -38,12 +38,13 @@ def python_match_examples(repo_name: str,
             matched_call = _get_matched_function(call, doc_apis)
             # Check if the function exists in our dictionary
             if not matched_call:
-                function_split = call.split(".")
+                statement_parts = call.split(".")
 
-                if len(function_split) > 1:
-                    if function_split[0] in var_declarations:
-                        function_split[0] = var_declarations[function_split[0]]
-                        actual_function = '.'.join(function_split)
+                if len(statement_parts) > 1:
+                    declared_variable = statement_parts[0]
+                    if declared_variable in var_declarations:
+                        statement_parts[0] = var_declarations[declared_variable]
+                        actual_function = '.'.join(statement_parts)
                         matched_func = _get_matched_function(actual_function, doc_apis)
                         if matched_func:
                             matched_apis.append(
@@ -54,7 +55,7 @@ def python_match_examples(repo_name: str,
                     else:
                         # If not then maybe it does if we remove the first prefix
                         # e.g., nltk.nltk.get -> nltk.get
-                        first_term_removed_function = '.'.join(function_split[1:])
+                        first_term_removed_function = '.'.join(statement_parts[1:])
                         matched_call = _get_matched_function(call=first_term_removed_function,
                                                              functions=doc_apis,
                                                              no_partial_match=True)
