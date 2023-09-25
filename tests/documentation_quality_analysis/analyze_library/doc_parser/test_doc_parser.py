@@ -19,10 +19,10 @@ class TestDocParser(TestCase):
         classes = [x.fully_qualified_name for x in doc_apis if type(x) == ClassConstructorSignature]
 
         expected_methods = ['requests.request', 'requests.Session.close', 'requests.Session.send']
-        expected_classes = ['requests.Session', 'requests.RequestException']
+        expected_classes = ['x.requests.Request', 'requests.Session', 'requests.RequestException']
 
-        self.assertEqual(len(doc_apis), 5)
+        self.assertEqual(len(doc_apis), 6)
         self.assertEqual(len(methods), 3)
-        self.assertEqual(len(classes), 2)
+        self.assertEqual(len(classes), 3)
         self.assertEqual(expected_methods, methods)
         self.assertEqual(expected_classes, classes)
