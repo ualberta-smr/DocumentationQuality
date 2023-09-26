@@ -76,19 +76,26 @@ def _append_signature_from_generated_html_tag(description, signatures, tag):
             parent = '.'.join(name_components[0:-1])
 
             if last_component[0].isupper():
-                class_element = re.findall(r'(?:class\s|final class\s|exception\s)?(.+)', description)
+                class_element = re.findall(r'(?:class\s|final class\s|exception\s)?(.+)', description)[0]
                 class_signature: ClassConstructorSignature = _get_parsed_class_details(
-                    class_expr=class_element[0],
+                    class_expr=class_element,
                     parent=parent)
-                signatures.append(class_signature)
+                if class_signature:
+                    signatures.append(class_signature)
+                else:
+                    missed_signature = ClassConstructorSignature(name='', parent='', raw_text=class_element)
+                    signatures.append(missed_signature)
 
             elif last_component[0].islower() or last_component[0] == "_":
-                method = re.findall(r'(?:method\s|classmethod\s)?(.+)', description)
+                method = re.findall(r'(?:method\s|classmethod\s)?(.+)', description)[0]
                 method_signature = _get_parsed_method_details(
-                    method=method[0],
+                    method=method,
                     parent=parent)
                 if method_signature:
                     signatures.append(method_signature)
+                else:
+                    missed_signature = MethodSignature(name='', parent='', raw_text=method)
+                    signatures.append(missed_signature)
 
 
 def _get_parsed_method_details(method: str, parent: Union[str, None] = None) -> Union[MethodSignature, None]:
@@ -108,6 +115,26 @@ def _get_parsed_method_details(method: str, parent: Union[str, None] = None) -> 
 
     except:
         return None
+
+
+def _remove_special_param(statement):
+    # e.g: asterisk_usage(either, *, keyword_only) or slash_usage(positional_only, /, either)
+    mid_special_params = re.findall('[(].*(, ?[*|/] ?,)', statement)
+
+    # e.g: Series.fill(*, axis=None, inplace=False, limit=None)
+    side_special_params = re.findall('[(]( ?\* ?,)|[(].*(, ?/) ?[)]', statement)
+
+    if mid_special_params:
+        statement = statement.replace(mid_special_params[0], ',')
+
+    elif side_special_params:
+        if side_special_params[0][0]:
+            statement = statement.replace(side_special_params[0][0], '')
+        elif side_special_params[0][1]:
+            statement = statement.replace(side_special_params[0][1], '')
+
+    return statement
+
 
 
 def _get_parsed_class_details(class_expr: str, parent: Union[str, None] = "") -> Union[ClassConstructorSignature, None]:

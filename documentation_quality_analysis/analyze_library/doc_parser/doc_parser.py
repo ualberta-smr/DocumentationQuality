@@ -127,7 +127,7 @@ def get_all_webpages(doc_home: str, max_depth: int) -> List[DocPage]:
 
 
 def get_functions_and_classes_from_doc_api_ref(doc_pages: List[DocPage]) -> List[Signature]:
-    api_ref_keywords = ['api', 'reference']
+    api_ref_keywords = ['api', 'reference', 'collections']
     signatures: List[Signature] = []
     for page in doc_pages:
         if any(word in page.url for word in api_ref_keywords):
