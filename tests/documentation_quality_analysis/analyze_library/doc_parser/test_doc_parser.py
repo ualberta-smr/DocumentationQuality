@@ -15,9 +15,14 @@ class TestDocParser(TestCase):
     def test_get_functions_and_classes_from_doc_api_ref(self):
         doc_pages = [DocPage(url="https://some_url/api", content=self.soup)]
         doc_apis = get_functions_and_classes_from_doc_api_ref(doc_pages)
-        len_of_func = [x for x in doc_apis if type(x) == MethodSignature]
-        len_of_classes = [x for x in doc_apis if type(x) == ClassConstructorSignature]
+        methods = [x.fully_qualified_name for x in doc_apis if type(x) == MethodSignature]
+        classes = [x.fully_qualified_name for x in doc_apis if type(x) == ClassConstructorSignature]
 
-        self.assertTrue(len(doc_apis), 28)
-        self.assertTrue(len_of_func, 27)
-        self.assertTrue(len_of_classes, 1)
+        expected_methods = ['requests.request', 'requests.Session.close', 'requests.Session.send']
+        expected_classes = ['x.requests.Request', 'requests.Session', 'requests.RequestException']
+
+        self.assertEqual(len(doc_apis), 6)
+        self.assertEqual(len(methods), 3)
+        self.assertEqual(len(classes), 3)
+        self.assertEqual(expected_methods, methods)
+        self.assertEqual(expected_classes, classes)

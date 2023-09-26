@@ -60,7 +60,6 @@ def python_match_examples(repo_name: str,
                                                              functions=doc_apis,
                                                              no_partial_match=True)
                         if matched_call:
-                            # method_calls.add((ex[1], call))
                             matched_apis.append(
                                 MatchedCall(called_signature=matched_call,
                                             raw_example=ex,
@@ -68,7 +67,6 @@ def python_match_examples(repo_name: str,
                                             url=ex.url))
 
             elif matched_call:
-                # method_calls.add((ex[1], call))
                 matched_apis.append(
                     MatchedCall(called_signature=matched_call, raw_example=ex, original_call=call, url=ex.url))
 
