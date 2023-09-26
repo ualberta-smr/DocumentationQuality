@@ -97,6 +97,8 @@ def _get_parsed_method_details(method: str, parent: Union[str, None] = None) -> 
     req_args = []
     opt_args = []
     try:
+        method = _remove_special_param(statement=method)
+
         method_name, parent = get_ast_parsed_expression(method, method_name, opt_args, parent, req_args)
 
         method_signature = MethodSignature(name=method_name, parent=parent, req_params=req_args,
@@ -117,6 +119,9 @@ def _get_parsed_class_details(class_expr: str, parent: Union[str, None] = "") ->
     try:
         if not "(" in class_expr and not ")" in class_expr:
             class_expr = class_expr.strip() + "()"
+
+        class_expr = _remove_special_param(statement=class_expr)
+
         class_name, parent = get_ast_parsed_expression(class_expr, class_name, opt_args, parent, req_args)
 
         class_signature = ClassConstructorSignature(name=class_name, parent=parent, req_params=req_args,
@@ -126,6 +131,25 @@ def _get_parsed_class_details(class_expr: str, parent: Union[str, None] = "") ->
 
     except:
         return None
+
+
+def _remove_special_param(statement):
+    # e.g: asterisk_usage(either, *, keyword_only) or slash_usage(positional_only, /, either)
+    mid_special_params = re.findall('[(].*(, ?[\*|\/] ?,)', statement)
+
+    # e.g: Series.fill(*, axis=None, inplace=False, limit=None)
+    side_special_params = re.findall('[(]( ?\* ?,)|[(].*(, ?\/) ?[)]', statement)
+
+    if mid_special_params:
+        statement = statement.replace(mid_special_params[0], ',')
+
+    elif side_special_params:
+        if side_special_params[0][0]:
+            statement = statement.replace(side_special_params[0][0], '')
+        elif side_special_params[0][1]:
+            statement = statement.replace(side_special_params[0][1], '')
+
+    return statement
 
 
 def get_ast_parsed_expression(expression, method_name, opt_args, parent, req_args):
