@@ -214,25 +214,6 @@ def _get_parsed_class_details(class_expr: str, source: str, parent: Union[str, N
         return None
 
 
-def _remove_special_param(statement):
-    # e.g: asterisk_usage(either, *, keyword_only) or slash_usage(positional_only, /, either)
-    mid_special_params = re.findall('[(].*(, ?[\*|\/] ?,)', statement)
-
-    # e.g: Series.fill(*, axis=None, inplace=False, limit=None)
-    side_special_params = re.findall('[(]( ?\* ?,)|[(].*(, ?\/) ?[)]', statement)
-
-    if mid_special_params:
-        statement = statement.replace(mid_special_params[0], ',')
-
-    elif side_special_params:
-        if side_special_params[0][0]:
-            statement = statement.replace(side_special_params[0][0], '')
-        elif side_special_params[0][1]:
-            statement = statement.replace(side_special_params[0][1], '')
-
-    return statement
-
-
 def get_ast_parsed_expression(expression, method_name, opt_args, parent, req_args):
     ast_parsed_method = ast.parse(expression).body[0]
     if type(ast_parsed_method) == ast.Expr:
