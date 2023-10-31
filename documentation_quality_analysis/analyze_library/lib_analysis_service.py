@@ -22,6 +22,8 @@ from analyze_library.stats.stats import get_stats_ex_per_api, get_stats_api_per_
 from analyze_library.metric_calculation.text_readability.text_readability import get_text_readability
 from analyze_library.metric_calculation.metrics import Metrics
 
+sys.path.append("...")
+
 depth_map = {
     'requests': 2,
     'pandas': 3,
@@ -40,12 +42,11 @@ depth_map = {
 }
 
 
-def analyze_library(language, library_name, doc_url, gh_url):
+def analyze_library(language, library_name, doc_url, gh_url) -> LibraryOverview:
     depth = get_depth(library_name)
     # os.chdir(ROOT_DIR)
 
     repo_path = clone_repo(gh_url, True)
-    # repo_path = 'cloned_repos/' + library_name.strip()
     print("Done cloning")
 
     mapped_source_api: dict[str, List[Signature]] = get_methods_and_classes_from_source_code(
@@ -66,12 +67,47 @@ def analyze_library(language, library_name, doc_url, gh_url):
     stats_example_per_method, stats_example_per_class = get_stats_ex_per_methods_and_classes(doc_apis, matched_methods)
 
     stats_api_per_example = get_stats_api_per_example(matched_methods, doc_code_examples)
+    unmatched_signature_string = ', '.join([i.fully_qualified_name for i in unmatched_signatures])
+
+    metrics = Metrics(example_per_method=stats_example_per_method,
+                      example_per_class=stats_example_per_class,
+                      unmatched_signatures=unmatched_signatures,
+                      matched_signatures=matched_signatures,
+                      doc_pages=doc_pages,
+                      doc_url=doc_url)
+
+    lib_overview = LibraryOverview(
+        library_name=library_name,
+        description="",
+        task_list_done=False,
+        gh_url=gh_url,
+        doc_url=doc_url,
+        language='Python',
+        methods_with_code_examples_ratio=metrics.methods_with_code_examples_ratio,
+        classes_with_code_examples_ratio=metrics.classes_with_code_examples_ratio,
+        doc_api_consistency_ratio=metrics.consistency_ratio,
+        matched_doc_api_len=len(matched_signatures),
+        unmatched_doc_api_len=len(unmatched_signatures),
+        unmatched_doc_api=unmatched_signature_string,
+        documented_methods=len(stats_example_per_method),
+        documented_classes=len(stats_example_per_class),
+        text_readability_score=metrics.text_readability_score,
+        navigability_score=metrics.navigability,
+        general_rating=metrics.general_rating)
+
+    if doc_apis:
+        save_lib_overview_to_db(lib_overview)
+
+    else:
+        print("Got 0 doc APIs for " + library_name)
+
+    print(f'Done analyzing {library_name}')
 
     # write_stats_to_file(doc_code_examples, stats_example_per_api, stats_api_per_example, library_name)
     # write_doc_api_to_csv(doc_apis, library_name)
     # write_examples_to_csv(doc_code_examples, library_name)
 
-    print(f'Done analyzing {library_name}')
+    return lib_overview
 
 
 def get_depth(lib_name):
