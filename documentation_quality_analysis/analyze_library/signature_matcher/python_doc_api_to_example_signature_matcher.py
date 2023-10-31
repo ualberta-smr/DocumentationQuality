@@ -1,35 +1,29 @@
 import ast
-import importlib
 import logging
 import re
 import subprocess
 import sys
 from typing import Dict, List, Union
 
-from documentation_quality_analysis.analyze_library.models.Signature import Signature
-from documentation_quality_analysis.analyze_library.models.class_constructor_signature import ClassConstructorSignature
-from documentation_quality_analysis.analyze_library.models.doc_code_example import DocCodeExample
-from documentation_quality_analysis.analyze_library.models.matched_call import MatchedCall
-from documentation_quality_analysis.analyze_library.models.method_signature import MethodSignature
+from analyze_library.models.Signature import Signature
+from analyze_library.models.class_constructor_signature import ClassConstructorSignature
+from analyze_library.models.doc_code_example import DocCodeExample
+from analyze_library.models.matched_call import MatchedCall
 
 
-def python_match_examples(repo_name: str,
-                          examples: List[DocCodeExample],
-                          doc_apis: List[Union[Signature, None]]
-                          ) -> List[MatchedCall]:
+def match_examples_to_doc_api(repo_name: str,
+                              examples: List[DocCodeExample],
+                              doc_apis: List[Union[Signature, None]]
+                              ) -> List[MatchedCall]:
     matched_apis = list()
     var_declarations = dict()
-    functions: List[MethodSignature | None] = [x for x in doc_apis if type(x) == MethodSignature]
     classes: List[ClassConstructorSignature | None] = [x for x in doc_apis if type(x) == ClassConstructorSignature]
-
-    # install(repo_name)
-    # module = importlib.import_module(repo_name)
 
     call_regex = re.compile(r"(?:\w+\.)*\w+(?=\()")
     for ex in examples:
         example = ex.example
         found_calls = re.findall(call_regex, example)
-        var_declarations.update(get_declared_variable_mapping(example, classes))
+        var_declarations.update(_get_declared_variable_mapping(example, classes))
         calls = []
         # Remove duplicate found calls
         [calls.append(item) for item in found_calls if item not in calls]
@@ -102,14 +96,14 @@ def _get_matched_function(call: str, functions: List[Signature], no_partial_matc
     return None
 
 
-def get_declared_variable_mapping(example_code: str, classes: List[ClassConstructorSignature]) -> Dict:
+def _get_declared_variable_mapping(example_code: str, classes: List[ClassConstructorSignature]) -> Dict:
     var_declarations = dict()
     func_call_assign_regex = r"(\w+)\s*=\s*((?:\w+\.)*(\w+(?=\()))"
     import_regex = r"(?:^\s*(?:import)\s+(\w+(?:\.\w+)*)\s+(?:as)\s+(\w+))|(?:^\s*(?:from)\s+(?:\w+(?:\.\w+)*)\s(?:import)\s+(\w+(?:\.\w+)*)(?:\s+(?:as)\s+(\w+))?)"
     lines = example_code.split('\n')
     for line in lines:
         try:
-            line = preprocess_doc_example_line(line)
+            line = _preprocess_doc_example_line(line)
             if not line:
                 continue
             parsed_line = "" if not ast.parse(line.strip()).body else ast.parse(line.strip()).body[0]
@@ -135,12 +129,12 @@ def get_declared_variable_mapping(example_code: str, classes: List[ClassConstruc
     return var_declarations
 
 
-def install(package):
+def _install(package):
     subprocess.check_call([sys.executable, "-m", "pip", "install", package], stdout=subprocess.DEVNULL,
                           stderr=subprocess.DEVNULL)
 
 
-def preprocess_doc_example_line(line: str) -> str:
+def _preprocess_doc_example_line(line: str) -> str:
     jupyter_notebook_prefix = r"(?:^In\s?\[\d+\]\:\s*)|(?:^Out\s?\[\d+\]\:\s*)"
     prompt_regex = r"(?:^>>>\s*)"
     rest_line = r"(.*\S)$"

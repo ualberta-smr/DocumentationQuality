@@ -4,8 +4,8 @@ from unittest import TestCase
 from documentation_quality_analysis.analyze_library.models.class_constructor_signature import ClassConstructorSignature
 from documentation_quality_analysis.analyze_library.models.doc_code_example import DocCodeExample
 from documentation_quality_analysis.analyze_library.models.method_signature import MethodSignature
-from documentation_quality_analysis.analyze_library.signature_matcher.python_signature_matcher import \
-    python_match_examples, get_declared_variable_mapping
+from documentation_quality_analysis.analyze_library.signature_matcher.python_doc_api_to_example_signature_matcher import \
+    match_examples_to_doc_api, _get_declared_variable_mapping
 
 
 class TestPythonSignatureMatcher(TestCase):
@@ -14,11 +14,11 @@ class TestPythonSignatureMatcher(TestCase):
             ClassConstructorSignature(name="DataFrame", parent="pandas",
                                       raw_text="class pandas.DataFrame(data=None, "
                                                "index=None, columns=None, dtype=None, copy=None)")]
-        matched = python_match_examples("",
-                                        examples=[DocCodeExample(example="import pandas as pd\n"
+        matched = match_examples_to_doc_api("",
+                                            examples=[DocCodeExample(example="import pandas as pd\n"
                                                                          "pd.DataFrame({'A': [1, 2, 3]})",
                                                                  url="some_url")],
-                                        doc_apis=mock_doc_api)
+                                            doc_apis=mock_doc_api)
 
         self.assertEqual("pandas.DataFrame", matched[0].called_signature.fully_qualified_name)
         self.assertEqual(1, len(matched))
@@ -30,11 +30,11 @@ class TestPythonSignatureMatcher(TestCase):
             MethodSignature(name="get", parent="requests.Session",
                             raw_text="requests.request(method, url, **kwargs)"),
             ClassConstructorSignature(name="Session", parent="requests", raw_text="requests.Session()")]
-        matched = python_match_examples("",
-                                        examples=[DocCodeExample(example="s = requests.Session()\n"
+        matched = match_examples_to_doc_api("",
+                                            examples=[DocCodeExample(example="s = requests.Session()\n"
                                                                          "s.get()",
                                                                  url="some_url")],
-                                        doc_apis=mock_doc_api)
+                                            doc_apis=mock_doc_api)
 
         self.assertEqual("requests.Session", matched[0].called_signature.fully_qualified_name)
         self.assertEqual("requests.Session.get", matched[1].called_signature.fully_qualified_name)
@@ -50,14 +50,14 @@ class TestPythonSignatureMatcher(TestCase):
                             raw_text="requests.request(method, url, **kwargs)"),
             ClassConstructorSignature(name="Session", parent="requests", raw_text="requests.Session()"),
             ClassConstructorSignature(name="Request", parent="requests", raw_text="requests.Request()")]
-        matched = python_match_examples("",
-                                        examples=[DocCodeExample(example="from requests import Request, Session\n"
+        matched = match_examples_to_doc_api("",
+                                            examples=[DocCodeExample(example="from requests import Request, Session\n"
                                                                          "s = Session()\n"
                                                                          "req = Request('POST', url, data=data, headers=headers)\n"
                                                                          "prepped = req.prepare()\n"
                                                                          "s.get(‘https://smth.org/get’)",
                                                                  url="some_url")],
-                                        doc_apis=mock_doc_api)
+                                            doc_apis=mock_doc_api)
 
         self.assertEqual("requests.Session", matched[0].called_signature.fully_qualified_name)
         self.assertEqual("requests.Request", matched[1].called_signature.fully_qualified_name)
@@ -71,11 +71,11 @@ class TestPythonSignatureMatcher(TestCase):
             MethodSignature(name="hist", parent="Series.plot",
                             raw_text="Series.plot.hist()")
         ]
-        matched = python_match_examples("",
-                                        examples=[DocCodeExample(example="df=pd.DataFrame()\n"
+        matched = match_examples_to_doc_api("",
+                                            examples=[DocCodeExample(example="df=pd.DataFrame()\n"
                                                                          "ax = df.plot.hist(bins=12, alpha=0.5)",
                                                                  url="some_url")],
-                                        doc_apis=mock_doc_api)
+                                            doc_apis=mock_doc_api)
 
         self.assertEqual([], matched)
 
@@ -86,11 +86,11 @@ class TestPythonSignatureMatcher(TestCase):
             MethodSignature(name="hist", parent="DataFrame.plot",
                             raw_text="DataFrame.plot.hist()")
         ]
-        matched = python_match_examples("",
-                                        examples=[DocCodeExample(example="df=pd.DataFrame()\n"
+        matched = match_examples_to_doc_api("",
+                                            examples=[DocCodeExample(example="df=pd.DataFrame()\n"
                                                                          "ax = df.plot.hist(bins=12, alpha=0.5)",
                                                                  url="some_url")],
-                                        doc_apis=mock_doc_api)
+                                            doc_apis=mock_doc_api)
 
         self.assertEqual([], matched)
 
@@ -103,11 +103,11 @@ class TestPythonSignatureMatcher(TestCase):
             MethodSignature(name="hist", parent="DataFrame.plot",
                             raw_text="DataFrame.plot.hist()")
         ]
-        matched = python_match_examples("",
-                                        examples=[DocCodeExample(example="df=pd.DataFrame()\n"
+        matched = match_examples_to_doc_api("",
+                                            examples=[DocCodeExample(example="df=pd.DataFrame()\n"
                                                                          "ax = df.plot.hist(bins=12, alpha=0.5)",
                                                                  url="some_url")],
-                                        doc_apis=mock_doc_api)
+                                            doc_apis=mock_doc_api)
 
         self.assertEqual("pandas.DataFrame", matched[0].called_signature.fully_qualified_name)
         self.assertEqual("DataFrame.plot.hist", matched[1].called_signature.fully_qualified_name)
@@ -121,11 +121,11 @@ class TestPythonSignatureMatcher(TestCase):
             MethodSignature(name="lower", parent="Series.str",
                             raw_text="Series.str.lower()")
         ]
-        matched = python_match_examples("",
-                                        examples=[DocCodeExample(example="s = pd.Series()\n"
+        matched = match_examples_to_doc_api("",
+                                            examples=[DocCodeExample(example="s = pd.Series()\n"
                                                                          "s.sort_values(key=lambda x: x.str.lower())",
                                                                  url="some_url")],
-                                        doc_apis=mock_doc_api)
+                                            doc_apis=mock_doc_api)
 
         self.assertEqual("pandas.Series", matched[0].called_signature.fully_qualified_name)
         self.assertEqual("Series.sort_values", matched[1].called_signature.fully_qualified_name)
@@ -139,11 +139,11 @@ class TestPythonSignatureMatcher(TestCase):
             MethodSignature(name="all", parent="Series",
                             raw_text="Series.all()")
         ]
-        matched = python_match_examples("",
-                                        examples=[DocCodeExample(example="pd.Series(rng).dt.round('H')\n"
+        matched = match_examples_to_doc_api("",
+                                            examples=[DocCodeExample(example="pd.Series(rng).dt.round('H')\n"
                                                                          "pd.Series([True, True]).all()",
                                                                  url="some_url")],
-                                        doc_apis=mock_doc_api)
+                                            doc_apis=mock_doc_api)
 
         self.assertEqual("pandas.Series", matched[0].called_signature.fully_qualified_name)
         self.assertEqual("Series.dt.round", matched[1].called_signature.fully_qualified_name)
@@ -156,7 +156,7 @@ class TestPythonSignatureMatcher(TestCase):
             MethodSignature(name="normalize", parent="pandas.Series.str",
                             raw_text="Series.str.normalize()"),
         ]
-        matched = python_match_examples("", examples=[
+        matched = match_examples_to_doc_api("", examples=[
             DocCodeExample(example="ser = pd.Series(['ñ'])\n"
                                    "ser.str.normalize('NFC') == ser.str.normalize('NFD')",
                            url="some_url")], doc_apis=mock_doc_api)
@@ -174,7 +174,7 @@ class TestPythonSignatureMatcher(TestCase):
             MethodSignature(name="hist", parent="pandas.DataFrame",
                             raw_text="DataFrame.hist")
         ]
-        matched = python_match_examples("", examples=[
+        matched = match_examples_to_doc_api("", examples=[
             DocCodeExample(example="hist()",
                            url="some_url")], doc_apis=mock_doc_api)
 
@@ -201,7 +201,7 @@ class TestPythonSignatureMatcher(TestCase):
                             "s.get()"
         mock_classes: List[ClassConstructorSignature] = [ClassConstructorSignature(name="Session", parent="requests"),
                                                          ClassConstructorSignature(name="Request", parent="requests")]
-        declared_variable_mapping = get_declared_variable_mapping(mock_example_code, mock_classes)
+        declared_variable_mapping = _get_declared_variable_mapping(mock_example_code, mock_classes)
 
         expected_declared_variable_mapping = {"s": "Session"}
 
@@ -215,7 +215,7 @@ class TestPythonSignatureMatcher(TestCase):
                             "s.get(‘https://smth.org/get’)"
         mock_classes: List[ClassConstructorSignature] = [ClassConstructorSignature(name="Session", parent="requests"),
                                                          ClassConstructorSignature(name="Request", parent="requests")]
-        declared_variable_mapping = get_declared_variable_mapping(mock_example_code, mock_classes)
+        declared_variable_mapping = _get_declared_variable_mapping(mock_example_code, mock_classes)
 
         expected_declared_variable_mapping = {"s": "Session",
                                               "req": "Request"}
@@ -228,7 +228,7 @@ class TestPythonSignatureMatcher(TestCase):
                             "df.describe()"
         mock_classes: List[ClassConstructorSignature] = [ClassConstructorSignature(name="Series", parent="pandas"),
                                                          ClassConstructorSignature(name="DataFrame", parent="pandas")]
-        declared_variable_mapping = get_declared_variable_mapping(mock_example_code, mock_classes)
+        declared_variable_mapping = _get_declared_variable_mapping(mock_example_code, mock_classes)
 
         expected_declared_variable_mapping = {"df": "DataFrame", "pd": "pandas"}
 
@@ -242,7 +242,7 @@ class TestPythonSignatureMatcher(TestCase):
 
         mock_classes: List[ClassConstructorSignature] = [ClassConstructorSignature(name="Series", parent="pandas"),
                                                          ClassConstructorSignature(name="DataFrame", parent="pandas")]
-        declared_variable_mapping = get_declared_variable_mapping(mock_example_code, mock_classes)
+        declared_variable_mapping = _get_declared_variable_mapping(mock_example_code, mock_classes)
 
         expected_declared_variable_mapping = {"df": "DataFrame", "pd": "pandas"}
 
@@ -257,7 +257,7 @@ class TestPythonSignatureMatcher(TestCase):
         mock_class_2 = ClassConstructorSignature(name="DataFrame", parent="pandas")
 
         mock_classes: List[ClassConstructorSignature] = [mock_class_1, mock_class_2]
-        declared_variable_mapping = get_declared_variable_mapping(mock_example_code, mock_classes)
+        declared_variable_mapping = _get_declared_variable_mapping(mock_example_code, mock_classes)
 
         expected_declared_variable_mapping = {"df": "DataFrame", "pd": "pandas"}
 

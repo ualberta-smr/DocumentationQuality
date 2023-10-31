@@ -1,5 +1,5 @@
-from documentation_quality_analysis.analyze_library.models.Signature import Signature
-from documentation_quality_analysis.analyze_library.models.doc_code_example import DocCodeExample
+from analyze_library.models.Signature import Signature
+from analyze_library.models.doc_code_example import DocCodeExample
 
 
 class MatchedCall:
