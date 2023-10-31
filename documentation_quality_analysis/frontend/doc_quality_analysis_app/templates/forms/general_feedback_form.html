@@ -1,0 +1,54 @@
+{% load questions %}
+
+<form action="/overview/forms/general/"
+      method="post"
+      id="general_feedback_form"
+      class="form"
+      style="display: block;">
+    {% csrf_token %}
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title">General Feedback</h4>
+{#            <button type="button" class="btn-close"#}
+{#                    onclick="hideForm('#general_feedback_form', false)"></button>#}
+        </div>
+        {{ form.library_name }}
+        {{ form.session_key }}
+        <div class="form-group col">
+            <label class="question" for="{{ form.usefulness.id_for_label }}">
+                {% general_useful %}
+            </label>
+            {{ form.usefulness }}
+        </div>
+        <div class="form-group col">
+            <label class="question" for="{{ form.where_see.id_for_label }}">
+                {% where_see %}
+            </label>
+            <select id="{{ form.where_see.id_for_label }}"
+                    name="{{ form.where_see.name }}"
+                    onchange="checkOption({{ form.where_see.id_for_label }})"
+                    style="float: left">
+                {% for choice in form.where_see.field.choices %}
+                    <option value="{{ choice.0 }}">
+                        {{ choice.1 }}
+                    </option>
+                {% endfor %}
+            </select>
+            <input id="custom_where" name="{{ form.where_see.name }}" style="display: none"/>
+        </div>
+        <div class="form-group col">
+            <label class="question" for="{{ form.general_feedback.id_for_label }}">
+                {% additional_feedback %}
+            </label>
+            {{ form.general_feedback }}
+        </div>
+        <div class="col" style="text-align: right;padding: .75rem">
+            <button type="submit" form="general_feedback_form"
+                    value="Submit"
+                    class="btn btn-primary is-success is-fullwidth is-medium"
+                    onclick="hideForm('#general_feedback_form', true)">
+                Submit
+            </button>
+        </div>
+    </div>
+</form>

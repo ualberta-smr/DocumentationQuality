@@ -1,0 +1,120 @@
+.metrics-container {
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 15px;
+    padding: 10px;
+}
+
+.metrics-child {
+    display: flex;
+    align-items: center;
+}
+
+.metrics-row {
+    margin-bottom: 10px;
+}
+
+.title-container {
+    color: white;
+    padding: 15px;
+    background: #28a745;
+    width: fit-content;
+    border-radius: 15px;
+}
+
+.btn-outline {
+    padding: 5px;
+    color: darkgreen;
+    border-color: transparent;
+}
+
+.btn-outline:hover {
+    background-color: darkgreen;
+    color: white;
+}
+
+.btn-metric {
+    text-align: left;
+}
+
+.row {
+    --bs-gutter-x: none;
+}
+
+label {
+    display: inline-block;
+    float: left;
+    clear: left;
+    text-align: left;
+    margin-top: 5px;
+    margin-left: 10px;
+    margin-right: 15px;
+}
+
+label.question {
+    color: forestgreen;
+    font-size: large;
+}
+
+input {
+    display: inline-block;
+    float: right;
+    height: 20px;
+    width: 200px;
+    margin-top: 5px;
+}
+
+select {
+    display: inline-block;
+    float: right;
+    margin-top: 5px;
+    width: 125px;
+}
+
+.select2-search__field {
+    margin-bottom: 10px;
+}
+
+.select2-results__options {
+    width: 300px;
+}
+
+.modal-dialog-centered {
+    justify-content: center;
+}
+
+.errorlist, .error {
+    color: red;
+    margin-top: 5px;
+    margin-bottom: 0;
+    clear: left;
+}
+
+hr {
+    margin-top: 0;
+}
+
+input.form-check-inline {
+    width: auto;
+    float: none;
+}
+
+textarea {
+    width: 100%;
+    resize: none;
+}
+
+.modal-content {
+    border: none;
+}
+
+.strikediag {
+    background: linear-gradient(to left top, transparent 47.75%, currentColor 49.5%, currentColor 50.5%, transparent 52.25%),
+    linear-gradient(to left bottom, transparent 47.75%, currentColor 49.5%, currentColor 50.5%, transparent 52.25%);
+}
+
+#form_col {
+    height: 75%;
+    right: 0;
+    overflow-y: scroll;
+}

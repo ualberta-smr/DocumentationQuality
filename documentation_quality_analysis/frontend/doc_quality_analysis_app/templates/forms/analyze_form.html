@@ -1,0 +1,84 @@
+<div class="modal" id="analyze">
+    <div class="modal-dialog modal-dialog-centered">
+        <form novalidate action="/create/"
+              method="post"
+              id="analyze_form">
+            {% csrf_token %}
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">
+                        Analyze a library
+                    </h4>
+                    <button type="button" class="btn-close"
+                            data-bs-dismiss="modal"></button>
+                </div>
+
+                <div id="loading" class="modal-body" style="display: none;">
+                    <div class="d-flex justify-content-center">
+                        <div class="spinner-border text-primary"
+                             role="status">
+                            <span class="sr-only"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="form_inputs" class="modal-body">
+                    {{ form.non_field_errors }}
+                    <div class="form-group">
+                        <label for={{ forms.library_name.id_for_label }}>
+                            Library name
+                        </label>
+                        {{ form.library_name }}
+                        {{ form.library_name.errors }}
+                    </div>
+                    <div class="form-group">
+                        <label for={{ forms.language.id_for_label }}>
+                            Library language
+                        </label>
+                        {{ form.language }}
+                        {{ form.language.errors }}
+                    </div>
+                    <div class="form-group">
+                        <label for={{ forms.doc_url.id_for_label }}>
+                            Official documentation URL
+                        </label>
+                        {{ form.doc_url }}
+                        {{ form.doc_url.errors }}
+                    </div>
+                    <div class="form-group">
+                        <label for={{ forms.gh_url.id_for_label }}>
+                            GitHub .git url
+                        </label>
+                        {{ form.gh_url }}
+                        {{ form.gh_url.errors }}
+                    </div>
+{#                     <div class="form-group">#}
+{#                         {{ form.domain.errors }}#}
+{#                         <label for={{ forms.domain.id_for_label }}>#}
+{#                             Library domain#}
+{#                         </label>#}
+{#                         {{ form.domain }}#}
+{#                     </div>#}
+                </div>
+
+                <div class="modal-footer">
+                    <button type="submit"
+                            form="analyze_form"
+                            value="Submit"
+                            class="btn btn-primary is-success is-fullwidth is-medium"
+                            onclick="(() => {
+                                $('#form_inputs')[0].style.display = 'none';
+                                $('#loading')[0].style.display = 'block';
+                             })()">
+                        Submit
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<script>
+    $("analyze_form").submit(function (event) {
+        event.preventDefault();
+    });
+</script>

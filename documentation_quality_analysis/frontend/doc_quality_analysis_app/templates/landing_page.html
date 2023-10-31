@@ -1,0 +1,204 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+    <link rel="icon" href="data:,">
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css"
+          rel="stylesheet"/>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+          crossorigin="anonymous">
+    <!-- style.css -->
+    {% load static %}
+    <link rel="stylesheet" type="text/css"
+          href="{% static 'overview/styles.css' %}">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+            crossorigin="anonymous"></script>
+
+    <title>Library Documentation Quality Evaluation</title>
+</head>
+<body style="margin-top: 20px">
+<div class="container">
+    <div class="row justify-content-center align-items-center">
+        <div class="col">
+            <img class="d-flex mx-auto"
+                 src="{% static "overview/images/UA_Logo_Green_RGB.png" %}"
+                 alt="University of Alberta Logo" width="50%"/>
+        </div>
+        <div class="col">
+            <img class="d-flex mx-auto"
+                 src="{% static "overview/images/Logo_web_color_640.png" %}"
+                 alt="SMR Logo" width="50%"/>
+        </div>
+    </div>
+
+    <h1>
+        Evaluating the Quality of Library Documentation
+    </h1>
+    <hr>
+    <h2>
+        Introduction
+    </h2>
+    <p>
+        We are researchers from the Department of Computing Science at the
+        University of Alberta, Canada, interested in providing a way for
+        developers to quickly evaluate the documentation quality of software
+        libraries they want to use.
+        The purpose of this webservice is to provide a summary of different
+        metrics regarding a library's documentation quality.
+        We foresee that the information and metrics in this documentation
+        quality summary can eventually be displayed in a library's GitHub repo
+        or on a package management system, for example.
+        Your use and feedback will be used to gauge the current accuracy and
+        usefulness of this service.
+        Please note that feedback is <b> completely optional</b>, and you can
+        use this service without providing any feedback.
+        You can provide feedback by clicking on the "Answer Survey Questions" button on
+        the summary page.
+        Note that this study has received ethics clearance from
+        the University of Alberta (study Pro00074107).
+        See "Consent Details" link for study details of what is collected.
+    </p>
+    <hr>
+    <div class="row align-items-center">
+        <div class="d-flex col-md-6 text-center justify-content-center"
+             id="library_selector">
+            <form id="search_form" action="search/" method="post">
+                {% csrf_token %}
+                <label for="library_select">
+                    <select id="library_select" class="js-example-basic-single"
+                            name="library_select" style="width: 300px">
+                        {% for language, libraries in groupings.items %}
+                            <optgroup label="{{ language }}">
+                                {% for library in libraries %}
+                                    <option value="{{ library }}">{{ library }}</option>
+                                {% endfor %}
+                            </optgroup>
+                        {% endfor %}
+                    </select>
+                </label>
+                <button type="submit" form="search_form" value="Search"
+                        class="btn btn-primary">Check existing library
+                </button>
+            </form>
+        </div>
+        <div class="col-md-2 text-center">
+            OR
+        </div>
+        <div class="d-flex col justify-content-center"
+             style="align-content: center">
+            <button type="button"
+                    class="btn btn-primary"
+                    data-bs-toggle="modal"
+                    data-bs-target="#analyze">
+                Analyze a new library
+            </button>
+            {% include "forms/analyze_form.html" %}
+        </div>
+    </div>
+
+    <div class="d-flex justify-content-end">
+        <span data-bs-toggle="modal" data-bs-target="#about"
+              style="text-decoration: underline; cursor: pointer;">Consent Details</span>
+        <div class="modal fade" id="about" tabindex="-1"
+             aria-labelledby="about_label" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="about_label">
+                            Consent Details
+                        </h5>
+                        <button type="button" class="btn-close"
+                                data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <h2>
+                            Legal Information
+                        </h2>
+                        <p>
+                            Please note that this study has received ethics
+                            clearance from the University of Alberta (study
+                            Pro00074107). We do not collect any identifying
+                            information. By providing feedback, your
+                            free and informed consent is implied where you
+                            acknowledge your data will be used for research
+                            purposes. All information will be treated
+                            in an anonymous and aggregated way.
+
+                        <ol>
+                            <li>
+                                You are under no obligation to participate in
+                                this study. Participation is completely
+                                voluntary.
+                            </li>
+                            <li>
+                                The feedback responses will be used for academic
+                                theses and publication in software engineering
+                                conferences and journals.
+                            </li>
+                            <li>
+                                Data will be kept confidential and anonymous.
+                                The project team will retain access to the data.
+                            </li>
+                            <li>
+                                Data is kept securely on encrypted file systems
+                                for a minimum of 5 years following completion of
+                                the research project. Data will not be
+                                destroyed.
+                            </li>
+                            <li>
+                                Completely anonymized and non-linkable data may
+                                be posted to backup the results of our analysis.
+                            </li>
+                            <li>
+                                We do not plan to share confidential data with
+                                other researchers.
+                            </li>
+                            <li>
+                                We may use the data from these responses in
+                                future research, but after approval from a
+                                research ethics board.
+                            </li>
+                        </ol>
+                        </p>
+                        <hr>
+                        <h2>
+                            Contact Information
+                        </h2>
+                        <p>
+                            If you have any further questions regarding this
+                            study,
+                            please email Henry Tang (hktang@ualberta.ca) or Sarah Nadi
+                            (snadi@ualberta.ca).
+                        </p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary"
+                                data-bs-dismiss="modal">
+                            Close
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            $('.js-example-basic-single').select2();
+        });
+    </script>
+</div>
+</body>
+</html>
