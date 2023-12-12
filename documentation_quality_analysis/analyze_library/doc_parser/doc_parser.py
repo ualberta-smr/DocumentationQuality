@@ -33,11 +33,11 @@ def fetch_url(page_data):
         req = Request(url=url, headers=HEADERS)
         response = urlopen(req, context=ssl.SSLContext())
     except Exception as e:
-        if response:
-            print(f'Failed to get response for: {url} with response code {response.code}')
-        else:
-            print(f'Failed to get response for: {url}')
-            print(e)
+        # if response:
+        #     print(f'Failed to get response for: {url} with response code {response.code}')
+        # else:
+        #     print(f'Failed to get response for: {url}')
+        #     print(e)
         return None
     return response, depth
 
@@ -83,7 +83,7 @@ def get_all_webpages(doc_home: str, max_depth: int) -> List[DocPage]:
                 soup = BeautifulSoup(content, "html.parser")
                 domain = urlparse(page_url).hostname
                 if not domain:
-                    print("Invalid Link")
+                    # print("Invalid Link")
                     continue
 
                 if page_url in [i.url for i in doc_pages]:
@@ -133,10 +133,14 @@ def get_all_webpages(doc_home: str, max_depth: int) -> List[DocPage]:
 
 
 def get_functions_and_classes_from_doc_api_ref(doc_pages: List[DocPage]) -> List[Signature]:
-    api_ref_keywords = ['api', 'reference', 'modules', 'module']
+    api_ref_keywords = ['api', 'reference', 'modules', 'module', 'generated', 'github']
     signatures: List[Signature] = []
     for page in doc_pages:
         if any(word in page.url for word in api_ref_keywords):
+            signatures.extend(get_signatures_from_doc(page))
+
+    if not signatures:
+        for page in doc_pages:
             signatures.extend(get_signatures_from_doc(page))
 
     return signatures

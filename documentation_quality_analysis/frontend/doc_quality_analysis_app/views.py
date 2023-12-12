@@ -46,7 +46,7 @@ def overview(request, library_name):
         #     pass
     except Response.DoesNotExist:
         show_demographic_form = True
-        familiar = False
+        familiar = True
 
     values = {
         "language": library.language,
@@ -63,9 +63,9 @@ def overview(request, library_name):
                                'code_readability': None},
         "consistency": round(library.doc_api_consistency_ratio*5),
         "navigability": library.navigability_score,
-        # "familiar": familiar,
+        "familiar": familiar,
         # "show_demographic_form": show_demographic_form,
-        # "survey_form": request.session["store"]["survey_form"],
+        "survey_form": request.session["store"]["survey_form"],
         # "demographics_form": request.session["store"]["demographics_form"],
         # "general_form": request.session["store"]["general_form"],
         # "tasks_form": request.session["store"]["tasks_form"],
