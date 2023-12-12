@@ -61,7 +61,7 @@ def get_signatures_from_section(doc_page: DocPage) -> List[Signature]:
     url = doc_page.url
     signatures: List[Signature] = []
 
-    tags = soup.find_all("code")
+    tags = soup.find_all("div")
 
     for tag in tags:
         desc = []
@@ -84,9 +84,11 @@ def get_signatures_from_section(doc_page: DocPage) -> List[Signature]:
         description = "".join(desc).strip()
 
         try:
-            if last_component in description:
+            if last_component and last_component in description:
                 parent = '.'.join(id_components[0:-1])
                 _append_signature_from_statement(description, signatures, url, parent)
+            else:
+                _append_signature_from_statement(description, signatures, url, None)
 
         except AttributeError as e:
             print(e)

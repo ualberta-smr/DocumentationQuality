@@ -19,7 +19,7 @@ HEADERS = {
 
 
 def get_navigability_score(doc_url: str):
-    rating = None
+    rating = 0
 
     navigation_checklist = get_checklist_values(doc_url=doc_url)
 

@@ -57,13 +57,15 @@ def match_doc_api_to_src_api(library_name: str,
                                     matched = True
                                     break
 
-                        # If only name matches; has at least one param that matches
+                        # If only name matches; has at least one param; and param matches
                         if not matched and (len(doc_api.req_params) + len(doc_api.optional_params)) > 0 \
                                 and _params_match(src_api=src_api, doc_api=doc_api):
                             matched_signatures.append(src_api)
                             matched = True
                             break
 
+                        # If lib_name.api_name or file_name.api_name partially matches doc API's fully_qualified_name
+                        # and param matches
                         if not matched and src_api.parent is None:
                             # source file name; e.g: x/y/z/file_name.py -> file_name
                             possible_qualified_name_1 = src_api.source.split('/')[-1].split('.')[0] + "." + src_api.name

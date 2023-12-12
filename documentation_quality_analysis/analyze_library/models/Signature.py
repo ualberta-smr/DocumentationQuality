@@ -4,7 +4,7 @@ from analyze_library.models.parameter import Parameter
 
 
 class Signature:
-    def __init__(self, name: str, parent: str, req_params: List[Parameter] = [], optional_params: List[Parameter] = [],
+    def __init__(self, name: str, parent: str = None, req_params: List[Parameter] = [], optional_params: List[Parameter] = [],
                  raw_text: str = "", source: str = ""):
         self.name = name
         self.parent = parent

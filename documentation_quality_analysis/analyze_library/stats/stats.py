@@ -46,6 +46,14 @@ def write_stats_to_file(doc_code_examples, stats_example_per_api, stats_api_per_
             f.write("\n")
 
 
+def write_examples_per_api_stats_to_file(stats_example_per_api, lib_name):
+    example_per_api = [x + ": " + str(len(stats_example_per_api[x])) for x in stats_example_per_api if x]
+    with open("stats_example_per_api_" + lib_name + ".csv", "w") as f:
+        for i in example_per_api:
+            f.write(str(i))
+            f.write("\n")
+
+
 def get_stats_ex_per_api(doc_apis, matched_methods):
     map_of_matched_obj = {}
     for api in doc_apis:
