@@ -1,0 +1,10 @@
+requests.auth.AuthBase
+requests.ConnectionError
+requests.cookies.RequestsCookieJar.set
+requests.JSONDecodeError
+requests.RequestException
+requests.Response
+requests.Session.close
+requests.Session.request
+requests.utils.add_dict_to_cookiejar
+requests.utils.dict_from_cookiejar
