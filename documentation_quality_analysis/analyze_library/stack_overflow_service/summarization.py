@@ -1,12 +1,9 @@
 import csv
 
 import pandas as pd
-import sumy
 from bs4 import BeautifulSoup
-# Importing the parser and tokenizer
 from sumy.parsers.plaintext import PlaintextParser
 from sumy.nlp.tokenizers import Tokenizer
-# Import the LexRank summarizer
 from sumy.summarizers.lex_rank import LexRankSummarizer
 from sumy.summarizers.lsa import LsaSummarizer
 
@@ -68,46 +65,3 @@ def get_summary_gpt2(original_text):
 
     return GPT_summary
 
-
-if __name__ == '__main__':
-
-    all_posts_df = pd.read_csv('./query_results/SO_posts_flask.csv')
-    # flask_posts_df = pd.read_csv('./SO_stats_Flask.csv', names=list(range(75)))
-
-    results = []
-    with open('./SO_stats_Flask5000posts.csv', 'r') as f:
-        rows = f.read().split('\n')
-        row_c = 0
-        for row in rows:
-            row_c += 1
-
-            if row_c > 5:
-                print('here')
-
-            count = 0
-            cols = row.split(',')
-            result = []
-            for col in cols:
-                if count == 0:
-                    result.append(col)
-                    results.append(result)
-                elif col.strip():
-                    result = ['', col]
-
-                    post_id = col.split('/')[-1]
-                    post_body = all_posts_df.loc[all_posts_df['post_id'] == int(post_id)].iloc[0]['body']
-                    original_text = get_text(post_body)
-                    result.append(original_text)
-
-                    text_summary = get_summary_gpt2(original_text)
-                    result.append(text_summary)
-                    # result.append(' '.join([str(i) for i in text_summary]))
-                    results.append(result)
-
-                count += 1
-
-            # results.append(result)
-
-    with open('summary_gpt2_flask_5000posts.csv', 'w', newline='') as f:
-        writer = csv.writer(f)
-        writer.writerows(results)
