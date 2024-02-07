@@ -142,9 +142,9 @@ def analyze_single_api_usage(lib_name, api_name):
 
 if __name__ == '__main__':
     # library_name = 'numpy'
-    library_name = 'pandas'
+    library_name = 'requests'
     # library_name = 'requests'
-    api_name = 'pandas.Series.plot.bar'
+    api_name = 'requests.Session.close'
 
     # analyze_api_usage(library_name)
     # analyze_sampled_api_usage(library_name)

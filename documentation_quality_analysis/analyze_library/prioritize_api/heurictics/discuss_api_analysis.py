@@ -3,11 +3,10 @@ import re
 
 import numpy as np
 import pandas as pd
-from sklearn.metrics import recall_score, precision_score, f1_score
+from sklearn.metrics import recall_score, precision_score, f1_score, accuracy_score
 
-from analyze_library.analysis.has_api_analysis import get_all_posts
-from analyze_library.stack_overflow_service.summarization import get_text, get_summary_lexrank, get_summary_LSA, \
-    get_summary_gpt2
+from analyze_library.prioritize_api.heurictics.has_api_analysis import get_all_posts
+from analyze_library.stack_overflow_service.summarization import get_text, get_summary_lexrank
 
 
 def get_word_match(w):
@@ -74,18 +73,18 @@ def get_post_discusses_api_result():
 
             discusses_api_result.append(find_if_api_discussed_full_name(api_name=api, post=summarized_text))
 
-            summary = get_summary_LSA(original_text)
-            LSA_summary.append(' '.join([str(i) for i in summary]))
+            # summary = get_summary_LSA(original_text)
+            # LSA_summary.append(' '.join([str(i) for i in summary]))
             # summary = get_summary_gpt2(original_text)
             # GPT2_summary.append(' '.join([str(i) for i in summary]))
 
         data['discusses_api_result'] = discusses_api_result
 
         data['lexrank_summary'] = lexrank_summary
-        data['LSA_summary'] = lexrank_summary
+        # data['LSA_summary'] = lexrank_summary
         # data['GPT2_summary'] = lexrank_summary
 
-        data.to_csv(f"./libraries/{lib_name}/summaries/{api}.csv")
+        data.to_csv(f"./libraries/{lib_name}/heuristic_results/{api}.csv")
 
 
 def evaluate_result():
@@ -99,13 +98,14 @@ def evaluate_result():
 
     with open(f'./libraries/{lib_name}/overall_eval.csv', 'w', newline='') as f:
 
-        result = [['API', 'Num Example', 'Recall', 'Precision', 'F-measure']]
+        result = [['API', 'Num Example', 'Recall', 'Accuracy', 'Precision', 'F-measure']]
         recalls = []
         precisions = []
+        accuracies = []
         f_measures = []
         df1 = pd.DataFrame(columns=['DISCUSSES_API', 'discusses_api_result'])
         for api in apis:
-            data = pd.read_csv(f"./libraries/{lib_name}/summaries/{api}.csv")
+            data = pd.read_csv(f"./libraries/{lib_name}/heuristic_results/{api}.csv")
             df2 = data.loc[:, ['DISCUSSES_API', 'discusses_api_result']]
             df1 = pd.concat([df1, df2])
             eval_data = []
@@ -113,7 +113,7 @@ def evaluate_result():
             print("API:  " + api)
             eval_data.append("API " + api)
 
-            recall = recall_score(data['DISCUSSES_API'], data['discusses_api_result'], zero_division=1)
+            recall = recall_score(data['DISCUSSES_API'], data['discusses_api_result'])
             print('Recall: ', recall)
             eval_data.append('Recall ' + str(recall))
             recalls.append(recall)
@@ -123,22 +123,29 @@ def evaluate_result():
             eval_data.append('Precision ' + str(precision))
             precisions.append(precision)
 
+            accuracy = accuracy_score(data['DISCUSSES_API'], data['discusses_api_result'])
+            print('Precision: ', accuracy)
+            eval_data.append('Accuracy: ' + str(accuracy))
+            accuracies.append(accuracy)
+
             f_measure = f1_score(data['DISCUSSES_API'], data['discusses_api_result'], zero_division=1)
             print('F_measure: ', f_measure)
             eval_data.append('F_measure ' + str(f_measure))
             f_measures.append(f_measure)
             print()
 
-            result.append([api, len(data), recall, precision, f_measure])
+            result.append([api, len(data), recall, accuracy, precision, f_measure])
 
         y_true = list(df1['DISCUSSES_API'])
         y = list(df1['discusses_api_result'])
         overall_recall = recall_score(y_true, y)
+        overall_accuracy = accuracy_score(y_true, y)
         overall_precision = precision_score(y_true, y, zero_division=1)
         overall_f_measure = f1_score(y_true, y, zero_division=1)
-        result.append(['Overall', len(df1), overall_recall, overall_precision, overall_f_measure])
+        result.append(['Overall', len(df1), overall_recall, overall_accuracy, overall_precision, overall_f_measure])
 
         result.append(['Average', '', np.sum(recalls)/len(recalls),
+                       np.sum(accuracies) / len(accuracies),
                        np.sum(precisions)/len(precisions),
                        np.sum(f_measures)/len(f_measures)])
 
@@ -149,9 +156,9 @@ def evaluate_result():
 
 
 if __name__ == '__main__':
-    lib_name = "pandas"
+    lib_name = "numpy"
 
-    get_post_discusses_api_result()
+    # get_post_discusses_api_result()
 
-    # evaluate_result()
+    evaluate_result()
 
