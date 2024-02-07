@@ -1,10 +1,10 @@
+pandas.concat
 pandas.cut
 pandas.get_dummies
 pandas.isnull
+pandas.merge
 pandas.pivot
 pandas.pivot_table
 pandas.Series.plot.bar
 pandas.read_csv
-pandas.merge
-pandas.concat
 pandas.read_excel
