@@ -2,6 +2,7 @@ import csv
 import random
 
 import pandas as pd
+import os
 
 from analyze_library.stack_overflow_service.stack_overflow_service import analyze_SO_posts
 
@@ -79,7 +80,7 @@ def get_random_posts(posts, lib_name):
 
 def get_all_posts(lib_name):
     posts = []
-    with open(f'../stack_overflow_service/SO_posts_tagged_{lib_name}.csv', mode='r') as csv_file:
+    with open(f'./stack_overflow_service/query_results/SO_posts_tagged_{lib_name}.csv', mode='r') as csv_file:
         csv_reader = csv.DictReader(csv_file)
         line_count = 0
         for row in csv_reader:
