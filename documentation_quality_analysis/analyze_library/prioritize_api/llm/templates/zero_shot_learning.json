@@ -1,9 +1,0 @@
-{
-  "messages": [
-    {"role": "user",
-    "content":  "this is a stack overflow post:\n\n'$post_body'\n\nIs the main topic of this post this API: '$api_fqn'?\n\nAnswer in yes or no"}
-  ]
-}
-
-
-
