@@ -1,0 +1,6 @@
+numpy.unique with order preserved:
+['b','b','b','a','a','c','c']
+numpy.unique gives
+['a','b','c']
+How can I get the original order preserved
+['b','a','c']
