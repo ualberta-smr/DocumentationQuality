@@ -1,7 +1,7 @@
 from typing import List
 
-from documentation_quality_analysis.analyze_library.models.doc_code_example import DocCodeExample
-from documentation_quality_analysis.analyze_library.models.doc_page import DocPage
+from analyze_library.models.doc_code_example import DocCodeExample
+from analyze_library.models.doc_page import DocPage
 
 
 def get_documentation_examples(doc_page: DocPage) -> List:

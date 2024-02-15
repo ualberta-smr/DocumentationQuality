@@ -9,10 +9,10 @@ from urllib.request import Request, urlopen
 
 from bs4 import BeautifulSoup
 
-from documentation_quality_analysis.analyze_library.doc_parser.doc_example_util import get_documentation_examples
-from documentation_quality_analysis.analyze_library.doc_parser.doc_signature_util import get_signatures_from_doc
-from documentation_quality_analysis.analyze_library.models.Signature import Signature
-from documentation_quality_analysis.analyze_library.models.doc_page import DocPage
+from analyze_library.doc_parser.doc_example_util import get_documentation_examples
+from analyze_library.doc_parser.doc_signature_util import get_signatures_from_doc
+from analyze_library.models.Signature import Signature
+from analyze_library.models.doc_page import DocPage
 
 HEADERS = {
     'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) '
@@ -28,11 +28,16 @@ HEADERS = {
 def fetch_url(page_data):
     url = page_data[0]
     depth = page_data[1]
+    response = None
     try:
         req = Request(url=url, headers=HEADERS)
-
         response = urlopen(req, context=ssl.SSLContext())
-    except:
+    except Exception as e:
+        if response:
+            print(f'Failed to get response for: {url} with response code {response.code}')
+        else:
+            print(f'Failed to get response for: {url}')
+            print(e)
         return None
     return response, depth
 
@@ -40,7 +45,8 @@ def fetch_url(page_data):
 def get_all_webpages(doc_home: str, max_depth: int) -> List[DocPage]:
     print("Getting pages up-to depth", max_depth)
     doc_pages: List[DocPage] = []
-    stop_words = ['releasenotes', 'whatsnew', 'deprecated', 'community', 'updates', 'releasehistory', 'release-history']
+    stop_words = ['releasenotes', 'whatsnew', 'deprecated', 'community', 'updates', 'releasehistory', 'release-history',
+                  'changes', 'license']
 
     dq = deque([[doc_home, 0]])
 
@@ -127,7 +133,7 @@ def get_all_webpages(doc_home: str, max_depth: int) -> List[DocPage]:
 
 
 def get_functions_and_classes_from_doc_api_ref(doc_pages: List[DocPage]) -> List[Signature]:
-    api_ref_keywords = ['api', 'reference']
+    api_ref_keywords = ['api', 'reference', 'modules', 'module']
     signatures: List[Signature] = []
     for page in doc_pages:
         if any(word in page.url for word in api_ref_keywords):

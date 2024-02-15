@@ -18,11 +18,13 @@ class TestDocParser(TestCase):
         methods = [x.fully_qualified_name for x in doc_apis if type(x) == MethodSignature]
         classes = [x.fully_qualified_name for x in doc_apis if type(x) == ClassConstructorSignature]
 
-        expected_methods = ['requests.request', 'requests.Session.close', 'requests.Session.send']
+        expected_methods = ['requests.request', 'requests.Session.close', 'requests.Session.send',
+                            'pandas.Series.set_axis', 'pandas.Series.ffill', 'pandas.Series.spparam1',
+                            'pandas.Series.spparam2']
         expected_classes = ['x.requests.Request', 'requests.Session', 'requests.RequestException']
 
-        self.assertEqual(len(doc_apis), 6)
-        self.assertEqual(len(methods), 3)
+        self.assertEqual(len(doc_apis), 9)
+        self.assertEqual(len(methods), 7)
         self.assertEqual(len(classes), 3)
         self.assertEqual(expected_methods, methods)
         self.assertEqual(expected_classes, classes)
