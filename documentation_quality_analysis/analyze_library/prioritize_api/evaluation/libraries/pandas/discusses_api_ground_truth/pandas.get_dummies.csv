@@ -1,0 +1,47 @@
+,id,,heuristic result,HAS_API,DISCUSSES_API,,,LSA_summary
+15,50607740,https://stackoverflow.com/questions/50607740,TRUE,TRUE,FALSE,,,"Reverse a get_dummies encoding in pandas Column names are: ID,1,2,3,4,5,6,7,8,9. The col values are either 0 or 1 My dataframe looks like this: I want the column names in front of the ID where the value in a row is 1."
+16,37265312,https://stackoverflow.com/questions/37265312,TRUE,TRUE,TRUE,,,"How to create dummies for certain columns with pandas.get_dummies() I just want Column A and D to get dummies not for Column B. If I used pd.get_dummies(df), all columns turned into dummies."
+17,18889588,https://stackoverflow.com/questions/18889588,TRUE,TRUE,TRUE,,,"Create dummies from column with multiple values in pandas I am looking for for a pythonic way to handle the following problem. For example, if the column has values in ['A', 'B'], get_dummies() creates 2 dummy variables and assigns 0 or 1 accordingly."
+18,31498390,https://stackoverflow.com/questions/31498390,TRUE,TRUE,TRUE,,,how to get pandas get_dummies to emit N-1 variables to avoid collinearity? pandas.get_dummies emits a dummy variable per categorical value.
+19,38413579,https://stackoverflow.com/questions/38413579,TRUE,TRUE,TRUE,,,What is the difference between sklearn LabelEncoder and pd.get_dummies? What is the advantage of using one over another?
+20,31888856,https://stackoverflow.com/questions/31888856,TRUE,TRUE,FALSE,,,"I've tried loading it into a dense matrix first with read_csv and then calling to_sparse, but it takes a long time and chokes on text fields, although most of the data is floating point. This happens even if I strip the zeros out of the original file and call to_sparse() (so that the fill value is NaN)."
+21,28465633,https://stackoverflow.com/questions/28465633,TRUE,TRUE,TRUE,,,Easy way to apply transformation from `pandas.get_dummies` to new data? Now I have a single new observation that I want to run through my model.
+22,48170405,https://stackoverflow.com/questions/48170405,TRUE,TRUE,TRUE,,,"Is pd.get_dummies one-hot encoding? Given the difference between one-hot encoding and dummy coding, is the pandas.get_dummies method one-hot encoding when using default parameters (i.e. drop_first=False)?"
+23,26724872,https://stackoverflow.com/questions/26724872,TRUE,TRUE,FALSE,,,
+24,29221894,https://stackoverflow.com/questions/29221894,TRUE,TRUE,FALSE,,,
+25,34529542,https://stackoverflow.com/questions/34529542,TRUE,TRUE,FALSE,,,
+26,37381862,https://stackoverflow.com/questions/37381862,TRUE,TRUE,TRUE,,,
+27,39923927,https://stackoverflow.com/questions/39923927,TRUE,TRUE,FALSE,,,
+28,43334222,https://stackoverflow.com/questions/43334222,TRUE,TRUE,FALSE,,,
+29,47127388,https://stackoverflow.com/questions/47127388,TRUE,TRUE,FALSE,,,
+30,50138787,https://stackoverflow.com/questions/50138787,TRUE,TRUE,TRUE,,,
+31,52072821,https://stackoverflow.com/questions/52072821,TRUE,TRUE,FALSE,,,
+32,53002047,https://stackoverflow.com/questions/53002047,TRUE,TRUE,FALSE,,,
+33,53004426,https://stackoverflow.com/questions/53004426,TRUE,TRUE,TRUE,,,
+34,54411582,https://stackoverflow.com/questions/54411582,TRUE,TRUE,TRUE,,,
+35,55520223,https://stackoverflow.com/questions/55520223,TRUE,TRUE,FALSE,,,
+36,55546321,https://stackoverflow.com/questions/55546321,TRUE,TRUE,TRUE,,,
+37,55751906,https://stackoverflow.com/questions/55751906,TRUE,TRUE,FALSE,,,
+38,56099598,https://stackoverflow.com/questions/56099598,TRUE,TRUE,FALSE,,,
+39,56733297,https://stackoverflow.com/questions/56733297,TRUE,TRUE,FALSE,,,
+40,56738267,https://stackoverflow.com/questions/56738267,TRUE,TRUE,TRUE,,,
+41,56742667,https://stackoverflow.com/questions/56742667,TRUE,TRUE,TRUE,,,
+42,56929119,https://stackoverflow.com/questions/56929119,TRUE,TRUE,TRUE,,,
+43,57065878,https://stackoverflow.com/questions/57065878,TRUE,TRUE,FALSE,,,
+44,57950901,https://stackoverflow.com/questions/57950901,TRUE,TRUE,FALSE,,,
+45,58564612,https://stackoverflow.com/questions/58564612,TRUE,TRUE,TRUE,,,
+0,11869910,https://stackoverflow.com/questions/11869910,FALSE,FALSE,FALSE,,,"pandas: filter rows of DataFrame with operator chaining Most operations in pandas can be accomplished with operator chaining (groupby, aggregate, apply, etc), but the only way I've found to filter rows is via normal bracket indexing This is unappealing as it requires I assign df to a variable before being able to filter on its values. Is there something more like the following?"
+1,51174691,https://stackoverflow.com/questions/51174691,FALSE,FALSE,FALSE,,,"How to increase image size of pandas.DataFrame.plot How can I modify the size of the output image of the function pandas.DataFrame.plot? I tried: plt.figure(figsize=(10, 5)) and %matplotlib notebook but none of them work."
+2,33149428,https://stackoverflow.com/questions/33149428,FALSE,FALSE,FALSE,,,Modify the legend of pandas bar plot I am always bothered when I make a bar plot with pandas and I want to change the names of the labels in the legend. Consider for instance the output of this code:
+3,12860421,https://stackoverflow.com/questions/12860421,FALSE,FALSE,FALSE,,,How to aggregate unique count with pandas pivot_table This code: returns the following error: How do I get a Pivot Table with counts of unique values of one DataFrame column for two other columns? Should I be using np.bincount()?
+4,43172970,https://stackoverflow.com/questions/43172970,FALSE,FALSE,FALSE,,,"Python pandas groupby aggregate on multiple columns, then pivot In Python, I have a pandas DataFrame similar to the following: Where shop1, shop2 and shop3 are the costs of every item in different shops. Now, I need to  return a DataFrame, after some data cleaning, like this one: where size is the number of items in each Category and sum, mean and std are related to the same functions applied to the 3 shops."
+5,38951345,https://stackoverflow.com/questions/38951345,FALSE,FALSE,FALSE,,,"How to get rid of multilevel index after using pivot table pandas? I had following data frame (the real data frame is much more larger than this one ) : Then reshaped it to move the values in sale_product_id as column headers using the following code: and the resulting data frame is: as you can see we have a multililevel index , what i need is to have sale_user_is in the first column without multilevel indexing: i take the following approach : the the result would be like this i still have the sale_product_id column , but i do not need it anymore: i can subset this data frame to get rid of sale_product_id but i don't think it would be efficient.I am looking for an efficient way to get rid of multilevel indexing while reshaping the original data frame"
+6,33290374,https://stackoverflow.com/questions/33290374,FALSE,FALSE,FALSE,,,pandas pivot_table column names For a dataframe like this: to which I apply pivot_table to get df2: is there an easy way to format resulting dataframe column names like If I do: I get: How to get rid of the extra level? thanks!
+7,43821529,https://stackoverflow.com/questions/43821529,FALSE,FALSE,FALSE,,,"Filter out nan rows in a specific column Given the dataframe df, I want to obtain a new dataframe df2 that does not contain nan in the column Col2. This is the expected result: df2 = I know that it's possible to use pandas.isnull and dropna, however how to specify only particular column to which filtering should be applied?"
+8,16860172,https://stackoverflow.com/questions/16860172,FALSE,FALSE,FALSE,,,python pandas: pivot_table silently drops indices with nans Is there an option not to drop the indices with NaN in them? I think silently dropping these rows from the pivot will at some point cause someone serious pain.
+9,42921854,https://stackoverflow.com/questions/42921854,FALSE,FALSE,FALSE,,,How to check if a particular cell in pandas DataFrame isnull? I have the following df in pandas.
+10,20119414,https://stackoverflow.com/questions/20119414,FALSE,FALSE,FALSE,,,So is it possible to do so using pandas? Now this will get a pivot table with sum: And this for mean: How can I get sum for D and mean for E?
+11,43756052,https://stackoverflow.com/questions/43756052,FALSE,FALSE,FALSE,,,transform pandas pivot table to regular dataframe How can I convert a pandas pivot table to a regular dataframe ? For example: to a regular datetime such as this:
+12,55204418,https://stackoverflow.com/questions/55204418,FALSE,FALSE,FALSE,,,"How to rename categories after using pandas.cut with IntervalIndex? Example: The resulting categories will be: I am trying to change [(0, 1] < (2, 3] < (4, 5]] into something like 1, 2 ,3 or small, medium ,large."
+13,25695986,https://stackoverflow.com/questions/25695986,FALSE,FALSE,FALSE,,,"We can get the correct value with np.std(): But obviously, this is not a solution when I have more than one restaurant. There is a related discussion here, but their suggestions do not work either."
+14,32552027,https://stackoverflow.com/questions/32552027,FALSE,FALSE,FALSE,,,"With `pandas.cut()`, how do I get integer bins and avoid getting a negative lowest bound? I am trying to use the precision and include_lowest parameters of pandas.cut(), but I can't get the intervals consist of integers rather than floats with one decimal."

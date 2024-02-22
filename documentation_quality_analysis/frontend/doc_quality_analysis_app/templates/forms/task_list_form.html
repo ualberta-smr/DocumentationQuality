@@ -1,0 +1,39 @@
+{% load questions %}
+
+<form action="/overview/forms/task_list/"
+      method="post"
+      id="task_list_form"
+      class="form"
+      style="display: block">
+    {% csrf_token %}
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title">Documented Library Tasks</h4>
+            <button type="button" class="btn-close"
+                    onclick="hideForm('#task_list_form', false)"></button>
+        </div>
+        {{ form.library_name }}
+        {{ form.session_key }}
+        <div class="form-group col-md-9">
+            <label class="question" for="{{ form.task_list.id_for_label }}">
+                {% if familiar and familiar == True %}
+                    {% task_list_familiar %}
+                {% else %}
+                    {% task_list_not_familiar %}
+                {% endif %}
+            </label>
+            {% for choice in form.task_list %}
+                {{ choice }}
+            {% endfor %}
+        </div>
+        <div class="col-md-9" style="text-align: right;padding: .75rem">
+            <button type="submit" form="task_list_form"
+                    value="Submit  "
+                    class="btn btn-primary is-success is-fullwidth is-medium"
+                    onclick="hideForm('#task_list_form', true)">
+                Submit
+            </button>
+        </div>
+    </div>
+
+</form>

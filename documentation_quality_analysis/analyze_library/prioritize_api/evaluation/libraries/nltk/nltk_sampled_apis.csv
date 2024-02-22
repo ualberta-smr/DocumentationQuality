@@ -1,0 +1,11 @@
+nltk.tokenize.word_tokenize
+nltk.parse.generate.generate
+nltk.classify.naivebayes.NaiveBayesClassifier
+nltk.classify.maxent.MaxentClassifier.classify
+nltk.tokenize.regexp.RegexpTokenizer.tokenize
+nltk.grammar.CFG
+nltk.tree.ParentedTree.parent
+nltk.app.chartparser_app.app
+nltk.tree.Tree.convert
+nltk.tag.hmm.HiddenMarkovModelTagger
+nltk.stem.snowball.ArabicStemmer.stem

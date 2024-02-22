@@ -17,10 +17,15 @@ from analyze_library.signature_matcher.python_src_api_to_doc_api_matcher import 
 from analyze_library.source_parser.source_code_parser import \
     get_methods_and_classes_from_source_code
 from analyze_library.source_parser.source_util import clone_repo
+from analyze_library.stack_overflow_service.stack_overflow_service import get_mentions_in_stack_overflow, \
+    analyze_SO_posts
 from analyze_library.stats.stats import get_stats_ex_per_api, get_stats_api_per_example, \
-    write_stats_to_file, write_doc_api_to_csv, write_examples_to_csv, get_stats_ex_per_methods_and_classes
+    write_stats_to_file, write_doc_api_to_csv, write_examples_to_csv, get_stats_ex_per_methods_and_classes, \
+    write_examples_per_api_stats_to_file
 from analyze_library.metric_calculation.text_readability.text_readability import get_text_readability
 from analyze_library.metric_calculation.metrics import Metrics
+
+sys.path.append("...")
 
 depth_map = {
     'requests': 2,
@@ -36,20 +41,22 @@ depth_map = {
     'python-socketio': 1,
     'scanpy': 2,
     'bionumpy': 1,
-    'wikidata': 1
+    'wikidata': 1,
+    'orjson': 0,
+    'mockito': 0
 }
 
 
-def analyze_library(language, library_name, doc_url, gh_url):
+def analyze_library(language, library_name, doc_url, gh_url) -> LibraryOverview:
     depth = get_depth(library_name)
     # os.chdir(ROOT_DIR)
 
-    repo_path = clone_repo(gh_url, True)
-    # repo_path = 'cloned_repos/' + library_name.strip()
+    # repo_path = clone_repo(gh_url, True)
     print("Done cloning")
 
-    mapped_source_api: dict[str, List[Signature]] = get_methods_and_classes_from_source_code(
-        repo_name=library_name, repo_path=repo_path)
+    # mapped_source_api: dict[str, List[Signature]] = get_methods_and_classes_from_source_code(
+    #     repo_name=library_name, repo_path=repo_path)
+    mapped_source_api = {}
 
     doc_pages: List[DocPage] = get_all_webpages(doc_url, depth)
 
@@ -66,12 +73,52 @@ def analyze_library(language, library_name, doc_url, gh_url):
     stats_example_per_method, stats_example_per_class = get_stats_ex_per_methods_and_classes(doc_apis, matched_methods)
 
     stats_api_per_example = get_stats_api_per_example(matched_methods, doc_code_examples)
+    write_examples_per_api_stats_to_file(stats_example_per_api, library_name)
+    unmatched_signature_string = ', '.join([i.fully_qualified_name for i in unmatched_signatures])
+
+    if doc_apis:
+        apis_with_no_example = [i for i in stats_example_per_api if i and not stats_example_per_api[i]]
+        analyze_SO_posts(lib_name=library_name, apis=apis_with_no_example)
+
+    metrics = Metrics(example_per_method=stats_example_per_method,
+                      example_per_class=stats_example_per_class,
+                      unmatched_signatures=unmatched_signatures,
+                      matched_signatures=matched_signatures,
+                      doc_pages=doc_pages,
+                      doc_url=doc_url)
+
+    lib_overview = LibraryOverview(
+        library_name=library_name,
+        description="",
+        task_list_done=False,
+        gh_url=gh_url,
+        doc_url=doc_url,
+        language='Python',
+        methods_with_code_examples_ratio=metrics.methods_with_code_examples_ratio,
+        classes_with_code_examples_ratio=metrics.classes_with_code_examples_ratio,
+        doc_api_consistency_ratio=metrics.consistency_ratio,
+        matched_doc_api_len=len(matched_signatures),
+        unmatched_doc_api_len=len(unmatched_signatures),
+        unmatched_doc_api=unmatched_signature_string,
+        documented_methods=len(stats_example_per_method),
+        documented_classes=len(stats_example_per_class),
+        text_readability_score=metrics.text_readability_score,
+        navigability_score=metrics.navigability,
+        general_rating=metrics.general_rating)
+
+    if doc_apis:
+        save_lib_overview_to_db(lib_overview)
+
+    else:
+        print("Got 0 doc APIs for " + library_name)
+
+    print(f'Done analyzing {library_name}')
 
     # write_stats_to_file(doc_code_examples, stats_example_per_api, stats_api_per_example, library_name)
     # write_doc_api_to_csv(doc_apis, library_name)
     # write_examples_to_csv(doc_code_examples, library_name)
 
-    print(f'Done analyzing {library_name}')
+    return lib_overview
 
 
 def get_depth(lib_name):
@@ -83,6 +130,7 @@ def get_depth(lib_name):
 
 
 if __name__ == '__main__':
+
     analyze_library("python", "requests",
                     "https://requests.readthedocs.io/en/latest/",
                     "https://github.com/psf/requests.git")
@@ -91,9 +139,22 @@ if __name__ == '__main__':
     #                 "https://ibis-project.org/",
     #                 "https://github.com/ibis-project/ibis")
 
+    # analyze_library("python", "nltk",
+    #                 "https://www.nltk.org/",
+    #                 "https://github.com/nltk/nltk.git")
+    #
+    # print('done nltk')
+    #
     # analyze_library("python", "pandas",
-    #               "https://pandas.pydata.org/docs/reference/api/pandas.Series.plot.html",
-    #               "https://github.com/pandas-dev/pandas", 0)
+    #                 "https://pandas.pydata.org/docs/",
+    #                 "https://github.com/pandas-dev/pandas")
+    # print('done pandas')
+    #
+    # analyze_library("python", "numpy",
+    #                 "https://numpy.org/doc/stable/",
+    #                 "https://github.com/numpy/numpy.git")
+    #
+    # print('done numpy')
     #
     # analyze_library("python", "GraphQL compiler",
     #               "https://graphql-compiler.readthedocs.io/",
@@ -112,28 +173,15 @@ if __name__ == '__main__':
     #                 "https://github.com/pallets/flask")
     # print('done flask')
     #
-    # analyze_library("python", "nltk",
-    #                 "https://www.nltk.org/",
-    #                 "https://github.com/nltk/nltk.git")
-    #
-    # print('done nltk')
-    #
+
     # analyze_library("python", "Numba",
     #                 "https://numba.readthedocs.io",
     #                 "https://github.com/numba/numba.git")
     #
     # print('done Numba')
     #
-    # analyze_library("python", "numpy",
-    #                 "https://numpy.org/doc/stable/",
-    #                 "https://github.com/numpy/numpy.git")
     #
-    # print('done numpy')
-    #
-    # analyze_library("python", "pandas",
-    #                 "https://pandas.pydata.org/docs/",
-    #                 "https://github.com/pandas-dev/pandas")
-    # print('done pandas')
+
     #
     # analyze_library("python", "pyppeteer",
     #                 "https://pyppeteer.github.io/pyppeteer/",
@@ -154,7 +202,7 @@ if __name__ == '__main__':
     # print('done scanpy')
     #
     # analyze_library("python", "bionumpy",
-    #                 "https://scanpy.readthedocs.io/en/stable/",
+    #                 "https://bionumpy.github.io/bionumpy/",
     #                 "https://github.com/scverse/scanpy")
     #
     # print('done bionumpy')
@@ -164,11 +212,23 @@ if __name__ == '__main__':
     #                 "https://github.com/dahlia/wikidata.git")
     #
     # print('done Wikidata')
-    #
+
     # analyze_library("python", "pytest",
     #                 "https://docs.pytest.org/en/7.2.x/",
     #                 "https://github.com/pytest-dev/pytest")
     #
     # print('done pytest')
+
+    # analyze_library("javascript", "orjson",
+    #                 "https://github.com/ijl/orjson",
+    #                 "https://github.com/ijl/orjson")
+    #
+    # print('done orjson')
+
+    # analyze_library("java", "mockito",
+    #                 "https://javadoc.io/doc/org.mockito/mockito-core/latest/org/mockito/Mockito.html",
+    #                 "https://github.com/mockito/mockito")
+    #
+    # print('done mockito')
 
     pass

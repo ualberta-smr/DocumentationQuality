@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <link rel="icon" href="data:,">
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+          crossorigin="anonymous">
+    <!-- style.css -->
+    {% load static %}
+    <link rel="stylesheet" type="text/css"
+          href="{% static 'overview/styles.css' %}">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"
+            integrity="sha512-rstIgDs0xPgmG6RX1Aba4KV5cWJbAMcvRCVmglpam9SoHZiUCyQVDdH2LPlxoHtrv17XWblE/V/PP+Tr04hbtA=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script type="text/javascript"
+            src="{% static 'overview/util.js' %}"></script>
+
+    {% load overview_extras %}
+
+    <title>{{ library_name }}</title>
+</head>
+{# style="max-width: 90%;" #}
+<body class="container-fluid" style="margin-top: 20px; max-width: 90%;">
+<div class="row">
+    <div id="summary_col" class="col">
+        {% include "components/general_rating.html" with general_rating=general_rating form=general library_name=library_name doc_url=doc_url %}
+        <br>
+        <div class="row">
+            <div class="col-9"></div>
+            <div class="d-flex col-3 justify-content-end">
+                <span id="instructions_toggle"
+                      style="display: block; text-decoration: underline; cursor: pointer;"
+                      onclick="(() => {
+                          let instructions = $('#instructions_box')[0];
+                          if (instructions.style.display === 'block') {
+                              instructions.style.display = 'none';
+                              $('#instructions_toggle')[0].textContent = 'Show Instructions';
+                          } else {
+                              instructions.style.display = 'block';
+                              $('#instructions_toggle')[0].textContent = 'Hide Instructions';
+                          }
+                      })()">Hide Instructions</span>
+            </div>
+        </div>
+        <div class="row" style="margin-bottom: 15px;">
+            <div id="instructions_box" class="metrics-container"
+                 style="box-shadow: 5px 10px 5px #888888">
+                <h5>Instructions</h5>
+                <hr>
+                Hovering over any of the presented metrics/information provides
+                details on what it represents.
+                You can provide feedback by clicking on the bottom "Answer Survey Questions" button.
+                Please note that this feedback is optional, and you are under no
+                obligation to provide any.
+                Also note that when processing a new library, calculating the
+                different metrics will take time; a page refresh will
+                automatically occur when each process is complete.
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <button type="button"
+                    class="btn btn-primary"
+                    style="margin: 20px"
+                    onclick="(() => {
+                        showForm('#survey_form')
+                        $('#survey_inputs')[0].style.display = 'flex';
+                        $('#survey_submit')[0].style.visibility = 'visible';
+                        $('#submit_message')[0].style.display = 'none';
+                    })()">
+                Answer Survey Questions
+            </button>
+        </div>
+        {#Start of content#}
+        <div class="row">
+            <div class="col">
+                {% include "components/task_list.html" with task_list=task_list form=tasks %}
+            </div>
+            <div class="col-md-1" style="width: 1%"></div>
+            <div class="col h-50">
+                <div class="metrics-container h-50" style="overflow-y: scroll">
+                    <h5>Library Description</h5>
+                    <hr>
+                    {{ description|capfirst }}
+                </div>
+                <br>
+                <div class="metrics-container">
+                    <h5>Documentation Quality Metrics</h5>
+                    <hr>
+                    {% include "components/examples.html" with example_ratios=example_ratios gh_url=gh_url %}
+                    {% include "components/readability.html" with readability_ratios=readability_ratios language=language %}
+                    {% include "components/consistency.html" with consistency=consistency gh_url=gh_url %}
+                    {% include "components/navigability.html" with navigability=navigability %}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-1 " style="width: 2%"></div>
+    <div id="form_col" class="col-md-4 align-self-center"
+         style="position: absolute;{% if show_survey_form %}display: inline-block;{% else %}display: none;{% endif %}">
+        {% include "forms/survey_form.html" with familiar=familiar form=survey_form success=survey_form_success %}
+        {#            {% include "forms/general_rating_form.html" with form=general_form familiar=familiar %}#}
+        {#            {% include "forms/task_list_form.html" with form=tasks_form familiar=familiar %}#}
+        {#            {% include "forms/method_examples_form.html" with form=method_examples_form familiar=familiar %}#}
+        {#            {% include "forms/class_examples_form.html" with form=class_examples_form familiar=familiar %}#}
+        {#            {% include "forms/text_readability_form.html" with form=text_readability_form familiar=familiar %}#}
+        {#            {% include "forms/code_readability_form.html" with form=code_readability_form familiar=familiar %}#}
+        {#            {% include "forms/consistency_form.html" with form=consistency_form familiar=familiar %}#}
+        {#            {% include "forms/navigability_form.html" with form=navigability_form familiar=familiar %}#}
+        {#            {% include "forms/general_feedback_form.html" with form=feedback_form familiar=familiar %}#}
+    </div>
+</div>
+{% include "forms/demographics_form.html" with form=demographics_form library_name=library_name show_form=show_demographic_form %}
+<script>
+    {# Needs to be placed at the end to activate all the tooltips above#}
+    {# Taken from: https://getbootstrap.com/docs/5.0/components/tooltips/#examples #}
+    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+    var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+        return new bootstrap.Tooltip(tooltipTriggerEl)
+    })
+    let refreshInterval = setInterval(httpGetAsync, 300000);
+
+    (function () {
+        {% if task_list %}
+            clearInterval(refreshInterval)
+        {% endif %}
+    })();
+
+    $(function () {
+        let isMobile = window.matchMedia("only screen and (max-width: 760px)").matches;
+
+        if (isMobile) {
+            $("#form_col")[0].style.position = "relative"
+        } else {
+            $("#form_col")[0].style.position = "absolute"
+        }
+    });
+    {% if show_survey_form %}
+        showForm('#survey_form')
+    {% endif %}
+</script>
+</body>
+</html>

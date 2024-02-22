@@ -1,0 +1,32 @@
+,id,,result,HAS_API,DISCUSSES_API,,,LSA_summary
+17,40318380,https://stackoverflow.com/questions/40318380,,FALSE,FALSE,,,
+1,55204418,https://stackoverflow.com/questions/55204418,TRUE,TRUE,FALSE,,,"How to rename categories after using pandas.cut with IntervalIndex? Example: The resulting categories will be: I am trying to change [(0, 1] < (2, 3] < (4, 5]] into something like 1, 2 ,3 or small, medium ,large."
+2,32552027,https://stackoverflow.com/questions/32552027,TRUE,TRUE,TRUE,,,"With `pandas.cut()`, how do I get integer bins and avoid getting a negative lowest bound? I am trying to use the precision and include_lowest parameters of pandas.cut(), but I can't get the intervals consist of integers rather than floats with one decimal."
+3,30127427,https://stackoverflow.com/questions/30127427,TRUE,TRUE,TRUE,,,"What I'm trying to do is produce something like > 200 for the first example and < 10 for the second. Have I exhausted all the possibilities, or is there something in cut() or elsewhere in pandas that would help me do this?"
+4,30211923,https://stackoverflow.com/questions/30211923,TRUE,TRUE,TRUE,,,"What is the difference between pandas.qcut and pandas.cut? The documentation says: http://pandas.pydata.org/pandas-docs/dev/basics.html ""Continuous values can be discretized using the cut (bins based on values) and qcut (bins based on sample quantiles) functions"" Sounds very abstract to me..."
+5,46775308,https://stackoverflow.com/questions/46775308,TRUE,TRUE,TRUE,,,"pandas cut: how to convert categorical labels to strings (otherwise cannot export to Excel)? I use pandas.cut() to discretise a continuous variable into a range, and then group by the result."
+6,42442043,https://stackoverflow.com/questions/42442043,TRUE,TRUE,FALSE,,,"I need to group it along positionX, positionY and do binning in energy classes. So, I try to use dask."
+7,32744558,https://stackoverflow.com/questions/32744558,TRUE,TRUE,TRUE,,,python bin data and return bin midpoint (maybe using pandas.cut and qcut) Can I make pandas cut/qcut function to return with bin endpoint or bin midpoint instead of a string of bin label? Currently with category / string values.
+8,16319106,https://stackoverflow.com/questions/16319106,,TRUE,FALSE,,,
+9,19248234,https://stackoverflow.com/questions/19248234,,TRUE,FALSE,,,
+10,22286930,https://stackoverflow.com/questions/22286930,,TRUE,TRUE,,,
+11,26879295,https://stackoverflow.com/questions/26879295,,TRUE,TRUE,,,
+12,31416684,https://stackoverflow.com/questions/31416684,,TRUE,TRUE,,,
+13,35027279,https://stackoverflow.com/questions/35027279,,TRUE,FALSE,,,
+14,37215876,https://stackoverflow.com/questions/37215876,,TRUE,FALSE,,,
+15,37823074,https://stackoverflow.com/questions/37823074,,TRUE,TRUE,,,
+16,38927585,https://stackoverflow.com/questions/38927585,,TRUE,FALSE,,,
+18,41983874,https://stackoverflow.com/questions/41983874,,TRUE,FALSE,,,
+19,42265471,https://stackoverflow.com/questions/42265471,,TRUE,FALSE,,,
+20,42347173,https://stackoverflow.com/questions/42347173,,TRUE,TRUE,,,
+21,43057733,https://stackoverflow.com/questions/43057733,,TRUE,TRUE,,,
+22,43251277,https://stackoverflow.com/questions/43251277,,TRUE,FALSE,,,
+23,45721456,https://stackoverflow.com/questions/45721456,,TRUE,FALSE,,,
+24,47053770,https://stackoverflow.com/questions/47053770,,TRUE,TRUE,,,
+25,48248731,https://stackoverflow.com/questions/48248731,,TRUE,TRUE,,,
+26,48447147,https://stackoverflow.com/questions/48447147,,TRUE,TRUE,,,
+27,49410331,https://stackoverflow.com/questions/49410331,,TRUE,FALSE,,,
+28,49458297,https://stackoverflow.com/questions/49458297,,TRUE,FALSE,,,
+29,50145702,https://stackoverflow.com/questions/50145702,,TRUE,FALSE,,,
+30,52356473,https://stackoverflow.com/questions/52356473,,TRUE,TRUE,,,
+31,53080937,https://stackoverflow.com/questions/53080937,,TRUE,FALSE,,,

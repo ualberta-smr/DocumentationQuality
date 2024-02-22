@@ -1,0 +1,197 @@
+{% load questions %}
+
+<form action="/docquality/forms/survey/"
+      method="POST"
+      id="survey_form"
+      class="form">
+    {% csrf_token %}
+    <div id="survey_inputs" class="modal-content">
+        <div class="modal-header" style="border-bottom: none">
+            <h4 class="modal-title">Star rating at top</h4>
+            <button type="button" class="btn-close"
+                    onclick="hideForm('#survey_form', false)"></button>
+        </div>
+        <span style="color: red; display: inline-block;">Please submit the form by scrolling down and clicking the "Submit" button. Note that this survey form is scrollable.</span>
+        <hr>
+        {{ form.library_name }}
+        {{ form.session_key }}
+        <div class="form-group col-md-11">
+            <label class="question"
+                   for="{{ form.general_rating.id_for_label }}">
+                {% general_rating_not_familiar 1 form.library_name.value %}
+            </label>
+            {{ form.general_rating }}
+            {{ form.general_rating.errors }}
+        </div>
+        <div class="modal-header">
+            <h4 class="modal-title">Documented Library Tasks</h4>
+        </div>
+        <div class="form-group col-md-11">
+            <label class="question"
+                   for="{{ form.task_list.id_for_label }}">
+                {% task_list_not_familiar 2 form.library_name.value %}
+            </label>
+            {{ form.task_list }}
+            {{ form.task_list.errors }}
+        </div>
+        <div class="modal-header">
+            <h4 class="modal-title">Methods with Code Examples</h4>
+        </div>
+        <div class="form-group col-md-11">
+            <label class="question"
+                   for="{{ form.code_examples_methods.id_for_label }}">
+                {% method_examples_not_familiar 3 form.library_name.value %}
+            </label>
+            {{ form.code_examples_methods }}
+            {{ form.code_examples_methods.errors }}
+        </div>
+        <div class="modal-header">
+            <h4 class="modal-title">Classes with Code Examples</h4>
+        </div>
+        <div class="form-group col-md-11">
+            <label class="question"
+                   for="{{ form.code_examples_classes.id_for_label }}">
+                {% class_examples_not_familiar 4 form.library_name.value %}
+            </label>
+            {{ form.code_examples_classes }}
+            {{ form.code_examples_classes.errors }}
+        </div>
+        <div class="modal-header">
+            <h4 class="modal-title">Readability of text</h4>
+        </div>
+        <div class="form-group col-md-11">
+            <label class="question"
+                   for="{{ form.text_readability.id_for_label }}">
+                {% text_readability_not_familiar 5 form.library_name.value %}
+            </label>
+            {{ form.text_readability }}
+            {{ form.text_readability.errors }}
+        </div>
+        <div class="modal-header">
+            <h4 class="modal-title">Readability of code examples</h4>
+        </div>
+        <div class="form-group col-md-11">
+            <label class="question"
+                   for="{{ form.code_readability.id_for_label }}">
+                {% code_readability_not_familiar 6 form.library_name.value %}
+            </label>
+            {{ form.code_readability }}
+            {{ form.code_readability.errors }}
+        </div>
+        <div class="modal-header">
+            <h4 class="modal-title">Documentation/Source code similarity</h4>
+        </div>
+        <div class="form-group col-md-11">
+            <label class="question"
+                   for="{{ form.consistency.id_for_label }}">
+                {% consistency_not_familiar 7 form.library_name.value %}
+            </label>
+            {{ form.consistency }}
+            {{ form.consistency.errors }}
+        </div>
+        <div class="modal-header">
+            <h4 class="modal-title">Navigation Rating</h4>
+        </div>
+        <div class="form-group col-md-11">
+            <label class="question"
+                   for="{{ form.navigability.id_for_label }}">
+                {% navigability_not_familiar 8 form.library_name.value %}
+            </label>
+            {{ form.navigability }}
+            {{ form.navigability.errors }}
+        </div>
+        <div class="modal-header">
+            <h4 class="modal-title">General Feedback</h4>
+        </div>
+        <div class="form-group col-md-11">
+            <label class="question" for="{{ form.usefulness.id_for_label }}">
+                {% general_useful 9 form.library_name.value %}
+            </label>
+            {{ form.usefulness }}
+            {{ form.usefulness.errors }}
+        </div>
+        <div class="form-group col-md-11">
+            <label class="question" for="{{ form.where_see.id_for_label }}">
+                {% where_see 10 %}
+            </label>
+            <select id="{{ form.where_see.id_for_label }}"
+                    name="{{ form.where_see.name }}"
+                    onchange="checkOption({{ form.where_see.id_for_label }})"
+                    style="float: left; width: auto">
+                {% for choice in form.where_see.field.choices %}
+                    <option value="{{ choice.0 }}"
+                            {% if form.where_see.value == choice.0 %}
+                            selected="selected"
+                            {% endif %}>
+                        {{ choice.1 }}
+                    </option>
+                {% endfor %}
+            </select>
+            {{ form.where_see.errors }}
+        </div>
+        <div class="form-group col-md-11">
+            <input id="{{ form.where_see.id_for_label }}"
+                   name="{{ form.where_see.name }}"
+                   class="custom_where"
+                   disabled
+                   style="display: none; float:none; height: 25px"
+                   placeholder="Please specify"
+                   value="{{ form.where_see.value }}"
+            />
+        </div>
+        {% if familiar and familiar == True %}
+            <div class="form-group col-md-11">
+                <label class="question"
+                       for="{{ form.matching.id_for_label }}">
+                    {% matching 11 form.library_name.value %}
+                </label>
+                {{ form.matching }}
+            </div>
+            {{ form.matching.errors }}
+        {% endif %}
+        <div class="form-group col-md-11">
+            <label class="question"
+                   for="{{ form.general_feedback.id_for_label }}">
+                {% if familiar and familiar == True %}
+                    {% with 12 as qn %}
+                        {% additional_feedback qn form.library_name.value %}
+                    {% endwith %}
+                {% else %}
+                    {% with 11 as qn %}
+                        {% additional_feedback qn form.library_name.value %}
+                    {% endwith %}
+                {% endif %}
+
+            </label>
+            {{ form.general_feedback }}
+        </div>
+    </div>
+    <div class="col-md-11">
+        <div id="submit_message"
+             style="display: none; color: forestgreen; font-size: 1.5rem;">
+            Form submitted!
+        </div>
+        <div class="col" style="text-align: right;padding: .75rem">
+            <button type="button"
+                    class="btn btn-secondary is-fullwidth is-medium"
+                    onclick="hideForm('#survey_form', true)">
+                Close
+            </button>
+            <button id="survey_submit"
+                    type="submit"
+                    form="survey_form"
+                    value="Submit"
+                    class="btn btn-primary is-success is-fullwidth is-medium">
+                Submit
+            </button>
+        </div>
+    </div>
+</form>
+<script>
+    changeWhereSee("#{{ form.where_see.id_for_label }}")
+    {% if success %}
+        $('#survey_inputs')[0].style.display = 'none';
+        $('#survey_submit')[0].style.visibility = 'hidden';
+        $('#submit_message')[0].style.display = 'block';
+    {% endif %}
+</script>
