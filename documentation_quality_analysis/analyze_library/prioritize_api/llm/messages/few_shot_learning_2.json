@@ -2,7 +2,7 @@
   "messages": [
     {
       "role": "user",
-      "content": ""
+      "content": "I want to know if the core topic of a Stack Overflow post is a given API. I am giving two examples below.\n\nThis is a stack overflow post:\n\"\"\"\n'$example1'\n\"\"\"\n\nMy question:\n\"\"\"\nIs the main topic of this post this API: '$api1'?\n\"\"\"\n\nThe correct answer is '$answer1'\n\nThis is another stackoverflow post:\n\"\"\"\n'$example2'\n\"\"\"\n\nMy question:\n\"\"\"\nIs the main topic of this post this API: '$api2'?\n\"\"\"\n\nThe correct answer is: '$answer2'\n\nNow, this is another Stack Overflow post:\n‘$post_body’\n\nIs the main topic of this post this API: '$api_fqn'?\n\nAnswer in yes or no"
     }
   ]
 }
