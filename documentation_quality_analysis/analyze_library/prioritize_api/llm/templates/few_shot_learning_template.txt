@@ -1,0 +1,32 @@
+I want to know if the core topic of a Stack Overflow post is a given API. I am giving two examples below.
+
+This is a stack overflow post:
+"""
+'$example1'
+"""
+
+My question:
+"""
+Is the main topic of this post this API: '$api1'?
+"""
+
+The correct answer is '$answer1'
+
+This is another stackoverflow post:
+"""
+'$example2'
+"""
+
+My question:
+"""
+Is the main topic of this post this API: '$api2'?
+"""
+
+The correct answer is: '$answer2'
+
+Now, this is another Stack Overflow post:
+‘$post_body’
+
+Is the main topic of this post this API: '$api_fqn'?
+
+Answer in yes or no
