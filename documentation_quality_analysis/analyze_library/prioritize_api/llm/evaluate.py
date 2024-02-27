@@ -32,7 +32,7 @@ def evaluate_result():
         eval_df = pd.concat([df_title, df_values])
         eval_df["result"] = np.nan
 
-        res_data = pd.read_csv(os.path.join(response_dir_path, f"{api}.csv"))
+        res_data = pd.read_csv(os.path.join(response_dir_path, f"{api}.csv"), names=['id', 'response'])
 
         for id in res_data['id'].values:
             print(id)
