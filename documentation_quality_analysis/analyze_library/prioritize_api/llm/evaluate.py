@@ -15,19 +15,22 @@ EVAL_DATA_PATH = os.path.join(ROOT_DIR, "evaluate")
 
 def evaluate_result():
     library = "pandas"
+    run_count = "run1"
+    mode_directory = f"zero-shot/{run_count}"
+    # mode_directory = f"few-shot/{run_count}"
 
-    gt_path = os.path.join(CWD, f"prioritize_api/evaluation/libraries/{library}/discusses_api_ground_truth")
-    response_dir_path = os.path.join(RESPONSE_PATH, library)
-    eval_data_dir_path = os.path.join(EVAL_DATA_PATH, library)
+    ground_truth_path = os.path.join(CWD, f"prioritize_api/evaluation/libraries/{library}/discusses_api_ground_truth")
+    response_dir_path = os.path.join(RESPONSE_PATH, f'{library}/{mode_directory}')
+    eval_data_dir_path = os.path.join(EVAL_DATA_PATH, f'{library}/{mode_directory}')
 
     results = [['API', 'Num Example', 'Recall', 'Accuracy', 'Precision', 'F-measure']]
     df_title = pd.DataFrame(columns=['id', 'DISCUSSES_API'])
 
-    with open(os.path.join(gt_path, "selected_apis_for_ground_truth.csv")) as f:
+    with open(os.path.join(ground_truth_path, "selected_apis_for_ground_truth.csv")) as f:
         apis = f.read().split()
 
     for api in apis:
-        gt_data = pd.read_csv(os.path.join(gt_path, f"{api}.csv"))
+        gt_data = pd.read_csv(os.path.join(ground_truth_path, f"{api}.csv"))
         df_values = gt_data.loc[:, ['id', 'DISCUSSES_API']]
         eval_df = pd.concat([df_title, df_values])
         eval_df["result"] = np.nan

@@ -92,7 +92,7 @@ def run_pipeline(lib_name, mode):
 
         response = detect_api_discussion(prompt)
 
-        save_result(query_metadata=query_metadata, query_result=response)
+        save_result(query_metadata=query_metadata, query_result=response, mode=mode)
 
         print(f'{query_metadata.post_id}: {response}')
 

@@ -7,6 +7,7 @@ from bs4 import BeautifulSoup
 
 from analyze_library.prioritize_api.heurictics.has_api_analysis import get_all_posts
 from analyze_library.prioritize_api.llm.dtos.QueryMetadata import QueryMetadata
+from analyze_library.prioritize_api.llm.dtos.prompt_mode import PromptMode
 
 CWD = os.getcwd()
 ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -55,11 +56,13 @@ def get_query_metadata(library) -> list[QueryMetadata]:
         return query_metadata_list
 
 
-def save_result(query_metadata: QueryMetadata, query_result: str):
+def save_result(query_metadata: QueryMetadata, query_result: str, mode: PromptMode = None):
+    run_count = "run1"
+    mode_directory = f'{mode.value}/{run_count}'
     if not os.path.exists(os.path.join(RESPONSE_PATH, query_metadata.library)):
-        os.makedirs(os.path.join(RESPONSE_PATH, query_metadata.library))
+        os.makedirs(os.path.join(RESPONSE_PATH, f'{query_metadata.library}/{mode_directory}'))
 
-    dir_path = os.path.join(RESPONSE_PATH, query_metadata.library)
+    dir_path = os.path.join(RESPONSE_PATH, f'{query_metadata.library}/{mode_directory}')
 
     with open(os.path.join(dir_path, f'{query_metadata.api}.csv'), 'a', newline='') as f:
         line = [[query_metadata.post_id, query_result]]
