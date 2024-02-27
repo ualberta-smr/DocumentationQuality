@@ -1,15 +1,15 @@
 {
   "messages": [
     {"role": "user",
-    "content":  "This is a stack overflow post:\n\nPost: \"\"\"\n'$example1'\n\"\"\"\n\nIs the main topic of this post this API: '$api1'?\n\nAnswer in yes or no"},
+    "content":  "$message1"},
     {"role": "assistant",
     "content":  "$answer1"},
     {"role": "user",
-    "content":  "This is a stack overflow post:\n\nPost: \"\"\"\n'$example2'\n\"\"\"\n\nIs the main topic of this post this API: '$api2'?\n\nAnswer in yes or no"},
+    "content":  "$message2"},
     {"role": "assistant",
     "content":  "$answer2"},
     {"role": "user",
-    "content":  "This is a stack overflow post:\n\nPost: \"\"\"\n'$post_body'\n\"\"\"\n\nIs the main topic of this post this API: '$api_fqn'?\n\nAnswer in yes or no"}
+    "content":  "$message3"}
 
   ]
 }

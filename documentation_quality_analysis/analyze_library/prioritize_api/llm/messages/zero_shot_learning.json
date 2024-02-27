@@ -1,7 +1,7 @@
 {
   "messages": [
     {"role": "user",
-    "content":  "This is a stack overflow post:\n\nPost: \"\"\"\n$post_body\n\"\"\"\n        \nIs the main topic of this post this API: '$api_fqn'?\n\nAnswer in yes or no"}
+    "content":  "$message"}
   ]
 }
 
