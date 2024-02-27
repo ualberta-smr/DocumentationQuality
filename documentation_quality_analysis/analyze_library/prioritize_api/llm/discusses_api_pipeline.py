@@ -10,11 +10,11 @@ from analyze_library.prioritize_api.heurictics.has_api_analysis import get_all_p
 from analyze_library.prioritize_api.llm.create_prompt import get_few_shot_learning_prompt, get_zero_shot_learning_prompt
 from analyze_library.prioritize_api.llm.detect_api_discussion import detect_api_discussion
 from analyze_library.prioritize_api.llm.dtos.QueryMetadata import QueryMetadata
-from analyze_library.prioritize_api.llm.dtos.modes import Modes
+from analyze_library.prioritize_api.llm.dtos.prompt_mode import PromptMode
 from analyze_library.prioritize_api.llm.util import get_query_metadata, save_result
 
 
-def get_prompt_messages(library, api_fqn, post_body, mode: Modes):
+def get_prompt_messages(library, api_fqn, post_body, mode: PromptMode):
     metadata: dict = {
         'library': library,
         'api_fqn': api_fqn,
@@ -23,10 +23,10 @@ def get_prompt_messages(library, api_fqn, post_body, mode: Modes):
 
     messages = []
 
-    if mode == Modes.ZERO_SHOT:
+    if mode == PromptMode.ZERO_SHOT:
         messages: list[dict] = get_zero_shot_learning_prompt(metadata=metadata)
 
-    elif mode == Modes.FEW_SHOT:
+    elif mode == PromptMode.FEW_SHOT:
         messages: list[dict] = get_few_shot_learning_prompt(metadata=metadata)
 
     return messages
@@ -68,7 +68,7 @@ def run_pipeline_temp(lib_name=""):
             library=query_metadata.library,
             api_fqn=query_metadata.api,
             post_body=query_metadata.post,
-            mode=Modes.FEW_SHOT
+            mode=PromptMode.FEW_SHOT
         )
 
         response = detect_api_discussion(prompt)
@@ -78,24 +78,24 @@ def run_pipeline_temp(lib_name=""):
         print(f'{query_metadata.post}: {response}')
 
 
-def run_pipeline(lib_name=""):
+def run_pipeline(lib_name, mode):
 
-    query_metadata_list = get_query_metadata(library=lib_name)
+    query_metadata_list: list[QueryMetadata] = get_query_metadata(library=lib_name)
 
     for query_metadata in query_metadata_list:
         prompt = get_prompt_messages(
             library=query_metadata.library,
             api_fqn=query_metadata.api,
             post_body=query_metadata.post,
-            mode=Modes.FEW_SHOT
+            mode=mode
         )
 
         response = detect_api_discussion(prompt)
 
         save_result(query_metadata=query_metadata, query_result=response)
 
-        print(f'{query_metadata.post}: {response}')
+        print(f'{query_metadata.post_id}: {response}')
 
 
 if __name__ == '__main__':
-    run_pipeline("pandas")
+    run_pipeline("pandas", mode=PromptMode.ZERO_SHOT)
