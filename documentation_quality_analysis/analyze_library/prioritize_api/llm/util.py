@@ -75,10 +75,10 @@ def get_text(post_body):
 
 
 def preprocess_response(response: str) -> bool:
-    if get_word_match('yes')(response):
+    if get_word_match('Yes')(response):
         return True
     return False
 
 
 def get_word_match(w):
-    return re.compile(r'\b({0})\b'.format(w)).search
+    return re.compile(r'\b({0})\b'.format(w), re.IGNORECASE).search
