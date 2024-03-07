@@ -16,8 +16,8 @@ EVAL_DATA_PATH = os.path.join(ROOT_DIR, "evaluate")
 def evaluate_result():
     library = "pandas"
     run_count = "run1"
-    mode_directory = f"zero-shot/{run_count}"
-    # mode_directory = f"few-shot/{run_count}"
+    # mode_directory = f"zero-shot/{run_count}"
+    mode_directory = f"few-shot/{run_count}"
 
     ground_truth_path = os.path.join(CWD, f"prioritize_api/evaluation/libraries/{library}/discusses_api_ground_truth")
     response_dir_path = os.path.join(RESPONSE_PATH, f'{library}/{mode_directory}')
@@ -45,6 +45,7 @@ def evaluate_result():
 
             eval_df.loc[eval_df['id'] == id, ['result']] = result
 
+        eval_df.dropna(inplace=True)
         recall = recall_score(list(eval_df['DISCUSSES_API']), list(eval_df['result']))
         precision = precision_score(list(eval_df['DISCUSSES_API']), list(eval_df['result']), zero_division=1)
         accuracy = accuracy_score(list(eval_df['DISCUSSES_API']), list(eval_df['result']))

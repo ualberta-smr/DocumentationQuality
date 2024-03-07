@@ -1,8 +1,3 @@
-import json
-import os
-from string import Template
-from typing import List
-
 import pandas as pd
 from bs4 import BeautifulSoup
 
@@ -78,7 +73,7 @@ def run_pipeline_temp(lib_name=""):
         print(f'{query_metadata.post}: {response}')
 
 
-def run_pipeline(lib_name, mode):
+def run_pipeline(lib_name, mode, run_count):
 
     query_metadata_list: list[QueryMetadata] = get_query_metadata(library=lib_name)
 
@@ -92,10 +87,10 @@ def run_pipeline(lib_name, mode):
 
         response = detect_api_discussion(prompt)
 
-        save_result(query_metadata=query_metadata, query_result=response, mode=mode)
+        save_result(query_metadata=query_metadata, query_result=response, run_count=run_count, mode=mode)
 
         print(f'{query_metadata.post_id}: {response}')
 
 
 if __name__ == '__main__':
-    run_pipeline("pandas", mode=PromptMode.ZERO_SHOT)
+    run_pipeline("pandas", mode=PromptMode.FEW_SHOT, run_count="run2")

@@ -56,10 +56,9 @@ def get_query_metadata(library) -> list[QueryMetadata]:
         return query_metadata_list
 
 
-def save_result(query_metadata: QueryMetadata, query_result: str, mode: PromptMode = None):
-    run_count = "run1"
+def save_result(query_metadata: QueryMetadata, query_result: str, run_count: str, mode: PromptMode = None):
     mode_directory = f'{mode.value}/{run_count}'
-    if not os.path.exists(os.path.join(RESPONSE_PATH, query_metadata.library)):
+    if not os.path.exists(os.path.join(RESPONSE_PATH, f'{query_metadata.library}/{mode_directory}')):
         os.makedirs(os.path.join(RESPONSE_PATH, f'{query_metadata.library}/{mode_directory}'))
 
     dir_path = os.path.join(RESPONSE_PATH, f'{query_metadata.library}/{mode_directory}')
