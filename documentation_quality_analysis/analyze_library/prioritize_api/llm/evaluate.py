@@ -13,15 +13,14 @@ RESPONSE_PATH = os.path.join(ROOT_DIR, "query_responses")
 EVAL_DATA_PATH = os.path.join(ROOT_DIR, "evaluate")
 
 
-def evaluate_result():
-    library = "pandas"
-    run_count = "run1"
-    # mode_directory = f"zero-shot/{run_count}"
-    mode_directory = f"few-shot/{run_count}"
+def evaluate_result(library, run_count, mode_directory):
 
     ground_truth_path = os.path.join(CWD, f"prioritize_api/evaluation/libraries/{library}/discusses_api_ground_truth")
     response_dir_path = os.path.join(RESPONSE_PATH, f'{library}/{mode_directory}')
     eval_data_dir_path = os.path.join(EVAL_DATA_PATH, f'{library}/{mode_directory}')
+
+    if not os.path.exists(eval_data_dir_path):
+        os.makedirs(eval_data_dir_path)
 
     results = [['API', 'Num Example', 'Recall', 'Accuracy', 'Precision', 'F-measure']]
     df_title = pd.DataFrame(columns=['id', 'DISCUSSES_API'])
@@ -61,4 +60,12 @@ def evaluate_result():
 
 
 if __name__ == '__main__':
-    evaluate_result()
+    library = "pandas"
+    run_count = "run3"
+    mode_directory = f"zero-shot/{run_count}"
+    # mode_directory = f"few-shot/{run_count}"
+    # mode_directory = f"chain-of-thought/{run_count}"
+
+    evaluate_result(library=library,
+                    run_count=run_count,
+                    mode_directory=mode_directory)

@@ -2,7 +2,8 @@ import pandas as pd
 from bs4 import BeautifulSoup
 
 from analyze_library.prioritize_api.heurictics.has_api_analysis import get_all_posts
-from analyze_library.prioritize_api.llm.create_prompt import get_few_shot_learning_prompt, get_zero_shot_learning_prompt
+from analyze_library.prioritize_api.llm.create_prompt import get_few_shot_learning_prompt, \
+    get_zero_shot_learning_prompt, get_chain_of_thought_learning_prompt
 from analyze_library.prioritize_api.llm.detect_api_discussion import detect_api_discussion
 from analyze_library.prioritize_api.llm.dtos.QueryMetadata import QueryMetadata
 from analyze_library.prioritize_api.llm.dtos.prompt_mode import PromptMode
@@ -23,6 +24,9 @@ def get_prompt_messages(library, api_fqn, post_body, mode: PromptMode):
 
     elif mode == PromptMode.FEW_SHOT:
         messages: list[dict] = get_few_shot_learning_prompt(metadata=metadata)
+
+    elif mode == PromptMode.CHAIN_OF_THOUGHT:
+        messages: list[dict] = get_chain_of_thought_learning_prompt(metadata=metadata)
 
     return messages
 
@@ -93,4 +97,4 @@ def run_pipeline(lib_name, mode, run_count):
 
 
 if __name__ == '__main__':
-    run_pipeline("pandas", mode=PromptMode.FEW_SHOT, run_count="run2")
+    run_pipeline("pandas", mode=PromptMode.FEW_SHOT, run_count="run3")

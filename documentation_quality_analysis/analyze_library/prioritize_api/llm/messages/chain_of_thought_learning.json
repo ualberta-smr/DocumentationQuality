@@ -1,0 +1,15 @@
+{
+  "messages": [
+    {"role": "user",
+    "content":  "$message1"},
+    {"role": "assistant",
+    "content":  "$thought1"},
+    {"role": "user",
+    "content":  "$message2"},
+    {"role": "assistant",
+    "content":  "$thought2"},
+    {"role": "user",
+    "content":  "$message3"}
+
+  ]
+}
