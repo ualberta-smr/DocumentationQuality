@@ -1,0 +1,4 @@
+boto3.session.Session.client,62827430,no
+boto3.s3.transfer.S3Transfer.upload_file,46506864,yes
+boto3.session.Session.client,67502338,no
+boto3.session.Session.client,70153342,yes

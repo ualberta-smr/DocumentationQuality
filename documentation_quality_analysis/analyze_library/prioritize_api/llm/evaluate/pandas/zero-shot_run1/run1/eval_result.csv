@@ -1,6 +1,0 @@
-API,Num Example,Recall,Accuracy,Precision,F-measure
-pandas.cut,31,0.0,0.5161290322580645,1.0,0.0
-pandas.get_dummies,46,0.0,0.6739130434782609,1.0,0.0
-pandas.pivot,39,0.0,0.8974358974358975,1.0,0.0
-pandas.pivot_table,49,0.0,0.5510204081632653,1.0,0.0
-pandas.read_excel,36,0.0,0.16666666666666666,1.0,0.0
