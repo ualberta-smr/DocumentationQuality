@@ -1,0 +1,31 @@
+Why does numpy.savez() output non reproducible files?:
+The function numpy.savez() allows to store numpy objects in a file. Storing the same same object in two files results in two different files:
+
+import numpy as np
+some_array = np.arange(42)
+np.savez('/tmp/file1', some_array=some_array)
+np.savez('/tmp/file2', some_array=some_array)
+The two files differ:
+
+$ diff /tmp/file1.npz /tmp/file2.npz
+Binary files /tmp/file1.npz and /tmp/file2.npz differ
+Why aren't the files identical? Is there some random behavior, filename or time stamp included? Can this be workaround or fixed? (Is it a bug?)
+
+Note that this is not the case for np.save(). Files produced by np.save() are identical for identical inputs. So I guess it is related to zipping of the data.
+
+AFAICS there are only two bits different:
+
+$ xxd /tmp/file1.npz > /tmp/file1.hex
+$ xxd /tmp/file2.npz > /tmp/file2.hex
+$ diff -u0 /tmp/file1.hex /tmp/file2.hex
+--- /tmp/file1.hex      2018-03-13 13:39:12.235897095 +0100
++++ /tmp/file2.hex      2018-03-13 13:39:08.743927081 +0100
+@@ -1 +1 @@
+-0000000: 504b 0304 1400 0000 0000 ce6c 6d4c 9c9d  PK.........lmL..
++0000000: 504b 0304 1400 0000 0000 cf6c 6d4c 9c9d  PK.........lmL..
+@@ -30 +30 @@
+-00001d0: 1403 1400 0000 0000 ce6c 6d4c 9c9d 6ad9  .........lmL..j.
++00001d0: 1403 1400 0000 0000 cf6c 6d4c 9c9d 6ad9  .........lmL..j.
+I can't find any good hint in the implementation of the function, but I haven't checked the zipping code yet (also Python 3.6 might make a difference).
+
+Note: Tested with Python 2.7 and numpy 1.9.2.

@@ -1,0 +1,9 @@
+This is a stack overflow post:
+
+Post: """
+$post_body
+"""
+
+Is the main topic of this post this API: '$api_fqn'?
+
+Answer in yes or no

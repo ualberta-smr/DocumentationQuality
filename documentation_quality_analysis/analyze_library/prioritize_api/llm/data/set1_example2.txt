@@ -1,0 +1,7 @@
+How to create dummies for certain columns with pandas.get_dummies():
+df = pd.DataFrame({'A': ['x', 'y', 'x'], 'B': ['z', 'u', 'z'],
+                  'C': ['1', '2', '3'],
+                  'D':['j', 'l', 'j']})
+I just want Column A and D to get dummies not for Column B. If I used pd.get_dummies(df), all columns turned into dummies.
+
+I want the final result containing all of columns , which means column C and column B exit,like 'A_x','A_y','B','C','D_j','D_l'.

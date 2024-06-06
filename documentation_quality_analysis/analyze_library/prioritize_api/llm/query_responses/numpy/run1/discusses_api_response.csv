@@ -1,0 +1,11 @@
+numpy.ndarray.clip,78262160,yes
+numpy.ndarray.take,8708758,no
+numpy.core.defchararray.array,78066982,no
+numpy.char.rjust,77867505,yes
+numpy.ufunc.accumulate,78329495,no
+numpy.random.Generator.random,58046849,no
+numpy.random.Generator.random,78190580,no
+numpy.random.Generator.random,77843088,yes
+numpy.random.Generator.random,77826365,no
+numpy.random.Generator.random,77824174,no
+numpy.random.Generator.random,54725976,no

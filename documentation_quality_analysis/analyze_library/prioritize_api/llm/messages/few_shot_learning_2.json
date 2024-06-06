@@ -1,0 +1,8 @@
+{
+  "messages": [
+    {
+      "role": "user",
+      "content": "$few_shot_leaning_message"
+    }
+  ]
+}
