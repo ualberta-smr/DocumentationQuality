@@ -1,0 +1,2941 @@
+post_id,title,body,score,creation_date,tags,is_answered,view_count,answer_count,last_activity_date,link
+77950916,How many instances of Tracer should I use with opencensus?,"<p>The <a href=""https://opencensus.io/api/python/trace/usage.html"" rel=""nofollow noreferrer"">documentation</a> on the <code>Tracer</code> class gives some examples but does not provide recommendations on what is the desired lifecycle of a <code>Tracer</code> instance. It is possible to reuse the same instance for multiple traces. Should I practice that or should I create an new instance every time? Are there performance considerations or other caveats?</p>
+<p>One reason to create a new instance could be setting a desired operation ID through <code>SpanContext(trace_id=...)</code> however the same can be achieved through</p>
+<p><code>span.context_tracer.span_context.trace_id = my_trace_id</code></p>
+<p>What is the best practice here?</p>
+",0,1707254646,trace;opencensus,False,8,0,1707254646,https://stackoverflow.com/questions/77950916/how-many-instances-of-tracer-should-i-use-with-opencensus
+57278096,How can I expose metrics of my NodeJS service using opencensus / prometheus library?,"<p>My service is written using NodeJS and I want to create a separate endpoint <code>\metrics</code> that will return the following metrics:</p>
+
+<pre><code>Average request latency
+99th percentile request latencies
+</code></pre>
+
+<p>Is there a hello world example for either <em>opencensus / prometheus</em> libraries? I didn't manage to find any examples of using it in NodeJS.</p>
+
+<p>For example, when I add the following code from <a href=""https://gregoryguillou.github.io/gregoryguillou.github.io/2019-01/prometheus-configuration/"" rel=""nofollow noreferrer"">this tutorial</a>, my output is empty even after I execute a couple of requests.</p>
+",0,1564511754,node.js;kibana;prometheus;opencensus,False,445,1,1703722454,https://stackoverflow.com/questions/57278096/how-can-i-expose-metrics-of-my-nodejs-service-using-opencensus-prometheus-libr
+77242611,Migrating Azure Application Insights logging in a python project from OpenCensus to OpenTelemetary,"<p>I am trying to move from OpenCensus to OpenTelemetry as the former project has been <a href=""https://opentelemetry.io/blog/2023/sunsetting-opencensus/"" rel=""nofollow noreferrer"">sunsetted</a> and will no longer be supported by Microsoft <a href=""https://learn.microsoft.com/en-us/azure/azure-monitor/app/opentelemetry-python-opencensus-migrate?tabs=python"" rel=""nofollow noreferrer"">later next year</a>.</p>
+<p><strong>Current code to create log config:</strong></p>
+<pre><code>log_config = {
+    &quot;version&quot;: 1,
+    &quot;disable_existing_loggers&quot;: True,
+        &quot;formatters&quot;: {
+        &quot;default&quot;: {
+            &quot;()&quot;: &quot;uvicorn.logging.DefaultFormatter&quot;,
+            &quot;fmt&quot;: &quot;%(levelprefix)s [%(thread)d] [%(asctime)s.%(msecs)03d] %(message)s&quot;,
+            &quot;datefmt&quot;: &quot;%Y-%m-%d %H:%M:%S&quot;,
+
+        },
+    },
+    &quot;handlers&quot;: {
+        &quot;default&quot;: {
+            &quot;level&quot;: &quot;INFO&quot;,
+            &quot;formatter&quot;: &quot;default&quot;,
+            &quot;class&quot;: &quot;logging.StreamHandler&quot;,
+            &quot;stream&quot;: &quot;ext://sys.stderr&quot;,
+        },
+        &quot;azure&quot;: {
+            &quot;level&quot;: &quot;WARNING&quot;,
+            &quot;class&quot;: &quot;opencensus.ext.azure.log_exporter.AzureLogHandler&quot;,
+            &quot;instrumentation_key&quot;: &quot;&lt;appinsights-connection-string&gt;&quot;,
+        }
+    },
+    &quot;loggers&quot;: {
+        &quot;&quot;: {&quot;handlers&quot;: [&quot;default&quot;, &quot;azure&quot;], &quot;level&quot;: &quot;INFO&quot;},
+    },
+}
+</code></pre>
+<p><strong>Current code to apply log config:</strong></p>
+<pre><code>import logging
+from logging.config import dictConfig
+from log_config import log_config
+
+
+dictConfig(log_config)
+</code></pre>
+<p>The sunsetting article states that:</p>
+<blockquote>
+<p>We are excited to announce that OpenTelemetry has reached feature parity with OpenCensus in C++, .NET, Go, Java, JavaScript, PHP and Python.</p>
+</blockquote>
+<p>So I thought it would be a drop in solution but I can't seem to find and code sample that looks like what I am currently doing. Is there an OpenTelemetry handler that I can use to log to AppInsights or is there another approach I can use? The Microsoft page specifically advises against using the <a href=""https://github.com/open-telemetry/opentelemetry-python/tree/main/shim/opentelemetry-opencensus-shim"" rel=""nofollow noreferrer"">opentelemetry-opencensus-shim</a>.</p>
+",3,1696577729,python-3.x;azure-application-insights;open-telemetry;python-logging;opencensus,True,864,2,1696870026,https://stackoverflow.com/questions/77242611/migrating-azure-application-insights-logging-in-a-python-project-from-opencensus
+64576336,Remove customDimensions items from Application Insights when using opencensus-python,"<p>In <a href=""https://learn.microsoft.com/en-us/azure/azure-monitor/app/opencensus-python"" rel=""nofollow noreferrer"">the documentation</a> on how to use <code>opencensus-python</code> to submit traces to Azure Application Insights, it's spelled out how to add additional information to the <code>customDimensions</code> field. That is,</p>
+<pre class=""lang-py prettyprint-override""><code>import logging
+
+from opencensus.ext.azure.log_exporter import AzureLogHandler
+
+logger = logging.getLogger(__name__)
+logger.addHandler(AzureLogHandler(
+    connection_string='InstrumentationKey=00000000-0000-0000-0000-000000000000')
+)
+
+logger.error('blooh')
+logger.error('blooh2', extra={'custom_dimensions': {'woot': 42}})
+</code></pre>
+<p>becomes</p>
+<p><a href=""https://i.stack.imgur.com/gZFxZ.png"" rel=""nofollow noreferrer""><img src=""https://i.stack.imgur.com/gZFxZ.png"" alt=""enter image description here"" /></a></p>
+<p>in the Application Insights UI.</p>
+<p>That's all well and good, but what is the intended way to remove the items from <code>customDimensions</code> that are included by default; i.e. things like <code>fileName</code> and <code>process</code>?</p>
+",1,1603899783,python;azure;azure-application-insights;azure-monitoring;opencensus,True,393,2,1693249245,https://stackoverflow.com/questions/64576336/remove-customdimensions-items-from-application-insights-when-using-opencensus-py
+76566334,Starting Apache Ignite Docker container with OpenCensus,"<p>I am trying to start an Apache Ignite Docker container (2.15.0 or 2.15.0-jdk11).
+We need to get the metrics from the container with OpenCensus.</p>
+<p>Now the documentation says there is an OpenCensus exporter:
+<a href=""https://ignite.apache.org/docs/latest/monitoring-metrics/new-metrics-system"" rel=""nofollow noreferrer"">https://ignite.apache.org/docs/latest/monitoring-metrics/new-metrics-system</a></p>
+<p>And here we have the corresponding class:
+<a href=""https://ignite.apache.org/releases/latest/javadoc/org/apache/ignite/spi/metric/opencensus/OpenCensusMetricExporterSpi.html"" rel=""nofollow noreferrer"">https://ignite.apache.org/releases/latest/javadoc/org/apache/ignite/spi/metric/opencensus/OpenCensusMetricExporterSpi.html</a></p>
+<p>I did what I read in the documentation and added a few things to the default-config.xml which i can successfully use when starting my docker container with this docker-compose.yml:</p>
+<pre><code>services:
+  ignite:
+    image: apacheignite/ignite:2.15.0-jdk11
+    environment:
+      - IGNITE_QUIET=false
+      - IGNITE_PERFORMANCE_SUGGESTIONS_DISABLED=true
+      - IGNITE_NO_ASCII=true
+      - JAVA_OPTS=&quot;Djava.net.preferIPv4Stack=true&quot;
+    volumes:
+      - ./config:/opt/ignite/apache-ignite/config/
+    ports:
+      - 11211:11211
+      - 47100-47110:47100-47110
+      - 47500-47509:47500-47509
+      - 49112:49112
+      - 10800:10800
+</code></pre>
+<p>This is in the configuration file (default-config.xml):</p>
+<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+
+&lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot;
+       xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+       xmlns:util=&quot;http://www.springframework.org/schema/util&quot;
+       xsi:schemaLocation=&quot;
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/util
+        http://www.springframework.org/schema/util/spring-util.xsd&quot;&gt;
+        
+    &lt;bean id=&quot;ignite.cfg&quot; class=&quot;org.apache.ignite.configuration.IgniteConfiguration&quot;&gt;
+        &lt;!-- Set to true to enable distributed class loading for examples, default is false. --&gt;
+        &lt;property name=&quot;peerClassLoadingEnabled&quot; value=&quot;true&quot;/&gt;
+        &lt;property name=&quot;metricsLogFrequency&quot; value=&quot;5000&quot;/&gt;
+        &lt;property name=&quot;metricExporterSpi&quot;&gt;
+            &lt;list&gt;
+                &lt;bean class=&quot;org.apache.ignite.spi.metric.jmx.JmxMetricExporterSpi&quot;/&gt;
+                &lt;bean class=&quot;org.apache.ignite.spi.metric.log.LogExporterSpi&quot;/&gt;
+                &lt;bean class=&quot;org.apache.ignite.spi.metric.opencensus.OpenCensusMetricExporterSpi&quot;/&gt;
+            &lt;/list&gt;
+        &lt;/property&gt;
+        
+        &lt;!-- Enable task execution events for examples. --&gt;
+        &lt;property name=&quot;includeEventTypes&quot;&gt;
+            &lt;list&gt;
+                &lt;util:constant static-field=&quot;org.apache.ignite.events.EventType.EVT_NODE_SEGMENTED&quot;/&gt;
+            &lt;/list&gt;
+        &lt;/property&gt;
+
+        &lt;!-- Explicitly configure TCP discovery SPI to provide list of initial nodes. --&gt;
+        &lt;property name=&quot;discoverySpi&quot;&gt;
+            &lt;bean class=&quot;org.apache.ignite.spi.discovery.tcp.TcpDiscoverySpi&quot;&gt;
+                &lt;property name=&quot;ipFinder&quot;&gt;
+                    &lt;bean class=&quot;org.apache.ignite.spi.discovery.tcp.ipfinder.multicast.TcpDiscoveryMulticastIpFinder&quot;&gt;
+                        &lt;property name=&quot;addresses&quot;&gt;
+                            &lt;list&gt;
+                                &lt;!-- In distributed environment, replace with actual host IP address. --&gt;
+                                &lt;value&gt;127.0.0.1:47500..47509&lt;/value&gt;
+                            &lt;/list&gt;
+                        &lt;/property&gt;
+                    &lt;/bean&gt;
+                &lt;/property&gt;
+            &lt;/bean&gt;
+        &lt;/property&gt;
+                
+        &lt;property name=&quot;cacheConfiguration&quot;&gt;
+            &lt;list&gt;
+                &lt;bean class=&quot;org.apache.ignite.configuration.CacheConfiguration&quot;&gt;
+                    &lt;property name=&quot;name&quot; value=&quot;mycache&quot;/&gt;
+                    &lt;!-- Enable statistics for the cache. --&gt;
+                    &lt;property name=&quot;statisticsEnabled&quot; value=&quot;true&quot;/&gt;
+                &lt;/bean&gt;
+            &lt;/list&gt;
+        &lt;/property&gt;
+
+    &lt;/bean&gt;
+    
+&lt;/beans&gt;
+</code></pre>
+<p>So the problem now is: Basically the metrics/monitoring works, as long as I don't have that line in the default-config.xml:</p>
+<p><code>&lt;bean class=&quot;org.apache.ignite.spi.metric.opencensus.OpenCensusMetricExporterSpi&quot;/&gt;</code></p>
+<p>Then I get this error from spring:</p>
+<pre><code>WARNING: Unknown module: jdk.internal.jvmstat specified to --add-exports
+WARNING: An illegal reflective access operation has occurred
+WARNING: Illegal reflective access by org.apache.ignite.internal.util.GridUnsafe$2 (file:/opt/ignite/apache-ignite/libs/ignite-core-2.15.0.jar) to field java.nio.Buffer.address
+WARNING: Please consider reporting this to the maintainers of org.apache.ignite.internal.util.GridUnsafe$2
+WARNING: Use --illegal-access=warn to enable warnings of further illegal reflective access operations
+WARNING: All illegal access operations will be denied in a future release
+Ignite Command Line Startup, ver. 2.15.0#20230425-sha1:f98f7f35
+2023 Copyright(C) Apache Software Foundation
+
+class org.apache.ignite.IgniteException: Failed to instantiate Spring XML application context (make sure all classes used in Spring configuration are present at CLASSPATH) [springUrl=file:/opt/ignite/apache-ignite/config/default-config.xml]
+at org.apache.ignite.internal.util.IgniteUtils.convertException(IgniteUtils.java:1150)
+at org.apache.ignite.Ignition.start(Ignition.java:328)
+at org.apache.ignite.startup.cmdline.CommandLineStartup.main(CommandLineStartup.java:365)
+Caused by: class org.apache.ignite.IgniteCheckedException: Failed to instantiate Spring XML application context (make sure all classes used in Spring configuration are present at CLASSPATH) [springUrl=file:/opt/ignite/apache-ignite/config/default-config.xml]
+at org.apache.ignite.internal.util.spring.IgniteSpringHelperImpl.applicationContext(IgniteSpringHelperImpl.java:381)
+at org.apache.ignite.internal.util.spring.IgniteSpringHelperImpl.loadConfigurations(IgniteSpringHelperImpl.java:103)
+at org.apache.ignite.internal.util.spring.IgniteSpringHelperImpl.loadConfigurations(IgniteSpringHelperImpl.java:97)
+at org.apache.ignite.internal.IgnitionEx.loadConfigurations(IgnitionEx.java:698)
+at org.apache.ignite.internal.IgnitionEx.start(IgnitionEx.java:883)
+at org.apache.ignite.internal.IgnitionEx.start(IgnitionEx.java:808)
+at org.apache.ignite.internal.IgnitionEx.start(IgnitionEx.java:678)
+at org.apache.ignite.internal.IgnitionEx.start(IgnitionEx.java:647)
+at org.apache.ignite.Ignition.start(Ignition.java:325)
+... 1 more
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'ignite.cfg' defined in URL [file:/opt/ignite/apache-ignite/config/default-config.xml]: Cannot create inner bean 'org.apache.ignite.spi.metric.opencensus.OpenCensusMetricExporterSpi#71e9ddb4' of type [org.apache.ignite.spi.metric.opencensus.OpenCensusMetricExporterSpi] while setting bean property 'metricExporterSpi' with key [2]; nested exception is org.springframework.beans.factory.CannotLoadBeanClassException: Cannot find class [org.apache.ignite.spi.metric.opencensus.OpenCensusMetricExporterSpi] for bean with name 'org.apache.ignite.spi.metric.opencensus.OpenCensusMetricExporterSpi#71e9ddb4' defined in URL [file:/opt/ignite/apache-ignite/config/default-config.xml]; nested exception is java.lang.ClassNotFoundException: org.apache.ignite.spi.metric.opencensus.OpenCensusMetricExporterSpi
+at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveInnerBean(BeanDefinitionValueResolver.java:389)
+at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveValueIfNecessary(BeanDefinitionValueResolver.java:127)
+at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveManagedList(BeanDefinitionValueResolver.java:428)
+at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveValueIfNecessary(BeanDefinitionValueResolver.java:173)
+at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyPropertyValues(AbstractAutowireCapableBeanFactory.java:1702)
+at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1447)
+at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:593)
+at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:516)
+at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:324)
+at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:322)
+at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
+at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:897)
+at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:879)
+at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:551)
+at org.apache.ignite.internal.util.spring.IgniteSpringHelperImpl.applicationContext(IgniteSpringHelperImpl.java:375)
+... 9 more
+Caused by: org.springframework.beans.factory.CannotLoadBeanClassException: Cannot find class [org.apache.ignite.spi.metric.opencensus.OpenCensusMetricExporterSpi] for bean with name 'org.apache.ignite.spi.metric.opencensus.OpenCensusMetricExporterSpi#71e9ddb4' defined in URL [file:/opt/ignite/apache-ignite/config/default-config.xml]; nested exception is java.lang.ClassNotFoundException: org.apache.ignite.spi.metric.opencensus.OpenCensusMetricExporterSpi
+at org.springframework.beans.factory.support.AbstractBeanFactory.resolveBeanClass(AbstractBeanFactory.java:1486)
+at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:488)
+at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveInnerBean(BeanDefinitionValueResolver.java:374)
+... 24 more
+Caused by: java.lang.ClassNotFoundException: org.apache.ignite.spi.metric.opencensus.OpenCensusMetricExporterSpi
+at java.base/jdk.internal.loader.BuiltinClassLoader.loadClass(Unknown Source)
+at java.base/jdk.internal.loader.ClassLoaders$AppClassLoader.loadClass(Unknown Source)
+at java.base/java.lang.ClassLoader.loadClass(Unknown Source)
+at java.base/java.lang.Class.forName0(Native Method)
+at java.base/java.lang.Class.forName(Unknown Source)
+at org.springframework.util.ClassUtils.forName(ClassUtils.java:284)
+at org.springframework.beans.factory.support.AbstractBeanDefinition.resolveBeanClass(AbstractBeanDefinition.java:469)
+at org.springframework.beans.factory.support.AbstractBeanFactory.doResolveBeanClass(AbstractBeanFactory.java:1551)
+at org.springframework.beans.factory.support.AbstractBeanFactory.resolveBeanClass(AbstractBeanFactory.java:1478)
+... 26 more
+Failed to start grid: Failed to instantiate Spring XML application context (make sure all classes used in Spring configuration are present at CLASSPATH) [springUrl=file:/opt/ignite/apache-ignite/config/default-config.xml]
+Note! You may use 'USER_LIBS' environment variable to specify your classpath.
+</code></pre>
+<p><strong>So finally my question:</strong> Am I missing a step? Do I have to manually provide the SPI class for the container? Or is there something else that I can do?</p>
+<p>I have tried to adjust the configuration file in many ways, but this seems to be the correct structure.</p>
+<p><strong>Update:</strong></p>
+<p>I have adjusted the docker-compose.yml, so now it looks like this:</p>
+<pre><code>services:
+  ignite:
+    image: apacheignite/ignite:2.15.0-jdk11
+    environment:
+      - IGNITE_QUIET=false
+      - IGNITE_PERFORMANCE_SUGGESTIONS_DISABLED=true
+      - IGNITE_NO_ASCII=true
+      - OPTION_LIBS=ignite-opencensus,ignite-web
+      - JAVA_OPTS=&quot;Djava.net.preferIPv4Stack=true&quot;
+      #- EXTERNAL_LIBS = &quot;C:/git/ignite-prometheus/target/ignite-prometheus-1.0.0-jar-with-dependencies.jar&quot;
+
+    volumes:
+      - ./config:/opt/ignite/apache-ignite/config/
+      - ./libs:/opt/ignite/apache-ignite/libs/user_libs
+    ports:
+      - 11211:11211
+      - 47100-47110:47100-47110
+      - 47500-47509:47500-47509
+      - 49112:49112
+      - 10800:10800
+      - 9000:9000
+</code></pre>
+<p>(Note: I'm testing locally, so I have Windows paths. This will ofc not be the final version.)</p>
+<p>Additionally I have provided a Jar file with the needed dependencies for my new beans in the configuration. (Taken from the blog post mentioned in the answer by Stephen).</p>
+<p>So now my default-config.xml looks like this:
+(I excluded the beans tag for this.)</p>
+<pre><code>&lt;bean id=&quot;ignite.cfg&quot; class=&quot;org.apache.ignite.configuration.IgniteConfiguration&quot;&gt;
+    &lt;!-- Set to true to enable distributed class loading for examples, default is false. --&gt;
+    &lt;property name=&quot;peerClassLoadingEnabled&quot; value=&quot;true&quot;/&gt;
+    &lt;property name=&quot;metricsLogFrequency&quot; value=&quot;60000&quot;/&gt;
+    &lt;property name=&quot;metricExporterSpi&quot;&gt;
+        &lt;list&gt;
+            &lt;bean class=&quot;org.apache.ignite.spi.metric.jmx.JmxMetricExporterSpi&quot;/&gt;
+            &lt;bean class=&quot;org.apache.ignite.spi.metric.log.LogExporterSpi&quot;/&gt;
+            &lt;bean class=&quot;org.apache.ignite.spi.metric.opencensus.OpenCensusMetricExporterSpi&quot;&gt;
+              &lt;property name=&quot;period&quot; value=&quot;60000&quot; /&gt;
+            &lt;/bean&gt;
+        &lt;/list&gt;
+    &lt;/property&gt;
+    
+    &lt;!-- Enable task execution events for examples. --&gt;
+    &lt;property name=&quot;includeEventTypes&quot;&gt;
+        &lt;list&gt;
+            &lt;util:constant static-field=&quot;org.apache.ignite.events.EventType.EVT_NODE_SEGMENTED&quot;/&gt;
+        &lt;/list&gt;
+    &lt;/property&gt;
+
+    &lt;!-- Explicitly configure TCP discovery SPI to provide list of initial nodes. --&gt;
+    &lt;property name=&quot;discoverySpi&quot;&gt;
+        &lt;bean class=&quot;org.apache.ignite.spi.discovery.tcp.TcpDiscoverySpi&quot;&gt;
+            &lt;property name=&quot;ipFinder&quot;&gt;
+                &lt;bean class=&quot;org.apache.ignite.spi.discovery.tcp.ipfinder.multicast.TcpDiscoveryMulticastIpFinder&quot;&gt;
+                    &lt;property name=&quot;addresses&quot;&gt;
+                        &lt;list&gt;
+                            &lt;!-- In distributed environment, replace with actual host IP address. --&gt;
+                            &lt;value&gt;127.0.0.1:47500..47509&lt;/value&gt;
+                        &lt;/list&gt;
+                    &lt;/property&gt;
+                &lt;/bean&gt;
+            &lt;/property&gt;
+        &lt;/bean&gt;
+    &lt;/property&gt;
+            
+    &lt;property name=&quot;cacheConfiguration&quot;&gt;
+        &lt;list&gt;
+            &lt;bean class=&quot;org.apache.ignite.configuration.CacheConfiguration&quot;&gt;
+                &lt;property name=&quot;name&quot; value=&quot;mycache&quot;/&gt;
+                &lt;property name=&quot;statisticsEnabled&quot; value=&quot;true&quot;/&gt;
+            &lt;/bean&gt;
+        &lt;/list&gt;
+    &lt;/property&gt;
+
+&lt;/bean&gt;
+
+&lt;bean id=&quot;opencensusWrapper&quot; class=&quot;org.springframework.beans.factory.config.MethodInvokingBean&quot;&gt;
+    &lt;property name=&quot;staticMethod&quot; value=&quot;io.opencensus.exporter.stats.prometheus.PrometheusStatsCollector.createAndRegister&quot;/&gt;
+&lt;/bean&gt;
+
+&lt;bean id=&quot;httpServer&quot; class=&quot;io.prometheus.client.exporter.HTTPServer&quot;&gt;
+    &lt;constructor-arg type=&quot;java.lang.String&quot; value=&quot;localhost&quot;/&gt;
+    &lt;constructor-arg type=&quot;int&quot; value=&quot;9000&quot;/&gt;
+    &lt;constructor-arg type=&quot;boolean&quot; value=&quot;true&quot;/&gt;
+&lt;/bean&gt;
+</code></pre>
+<p>The Ignites spring framework does <strong>something</strong> with it.
+Because without the Jar file I would get corresponding ClassNotFoundExceptions.</p>
+<p>Now maybe the structure of the configuration could be messed up, but I don't have any idea what I could do to reach my goal.</p>
+<p>Note that in the logs of the Ignite container I don't see any sign of a web server being started. And no sign of port 9000 being used.</p>
+<p>But I also don't get any errors in the container log.</p>
+",1,1687878971,spring;docker;ignite;opencensus,True,236,1,1688049152,https://stackoverflow.com/questions/76566334/starting-apache-ignite-docker-container-with-opencensus
+76158054,Azure function keeps sending the same metric value overtime,"<p>I want to send some metric data to Azure appinsight, I am using Azure function ,this is my code :</p>
+<pre><code>from opencensus.ext.azure import metrics_exporter
+from opencensus.stats import aggregation as aggregation_module
+from opencensus.stats import measure as measure_module
+from opencensus.stats import stats as stats_module
+from opencensus.stats import view as view_module
+from opencensus.tags import tag_map as tag_map_module
+
+def build_sum_aggregation_metric(measure_name, measure_description, measure_unit, view_name, view_description, metric_value):   
+    stats = stats_module.stats
+    view_manager = stats.view_manager
+    stats_recorder = stats.stats_recorder
+
+    MEASURE = measure_module.MeasureInt(measure_name,
+                                                measure_description,
+                                                measure_unit)
+
+    VIEW = view_module.View(view_name,
+                                    view_description,
+                                    [],
+                                    MEASURE,
+                                    aggregation_module.SumAggregation())
+
+    instrumentation_key = os.getenv(&quot;APP_INSIGHTS_KEY&quot;)
+    exporter = metrics_exporter.new_metrics_exporter(
+            connection_string=instrumentation_key
+        )
+    view_manager.register_exporter(exporter)
+
+    view_manager.register_view(VIEW)
+
+
+    mmap = stats_recorder.new_measurement_map()
+    tmap = tag_map_module.TagMap()
+
+    mmap.measure_int_put(MEASURE, metric_value)
+    mmap.record(tmap)
+</code></pre>
+<p>And here is my azure function :</p>
+<pre><code>def main(req: func.HttpRequest) -&gt; func.HttpResponse:
+    req_body = req.get_json()
+    build_sum_aggregation_metric(&quot;metric 1&quot;,&quot;metric 1&quot;,&quot;metric 1&quot;, &quot;metric 1&quot;, &quot;metric 1&quot;, 5)
+        
+    build_sum_aggregation_metric(&quot;metric 2&quot;,&quot;metric 2&quot;,&quot;metric 2&quot;, &quot;metric 2&quot;, &quot;metric 2&quot;, 10)
+    response ={ &quot;value&quot; : &quot;metric sent&quot; }
+
+    return func.HttpResponse(
+        json.dumps(response),
+        headers={
+            &quot;Content-Type&quot;: &quot;application/json&quot;
+        }
+    )
+</code></pre>
+<p>After doing a request I thought that this will only send the request 1 time but in Application Insights count it shows it keeps sending the metric multiple time until I stop the function even thought I did not run any request is that a normal behavior , and there is a way to send only the metric 1 time for each request ?</p>
+",0,1683053975,python-3.x;azure-functions;azure-application-insights;appinsights;opencensus,False,105,1,1683203528,https://stackoverflow.com/questions/76158054/azure-function-keeps-sending-the-same-metric-value-overtime
+69455830,Why won&#39;t custom events logged in Python show up in API Explorer?,"<p>For context, I am building a dashboard summarizing events, traces, and exceptions across multiple environments on Azure.</p>
+<p>I am using the opencensus github project at <br />
+<a href=""https://github.com/census-instrumentation/opencensus-python/tree/master/contrib/opencensus-ext-azure"" rel=""nofollow noreferrer"">https://github.com/census-instrumentation/opencensus-python/tree/master/contrib/opencensus-ext-azure</a></p>
+<p>I am able to fetch and retrieve the customEvents logs, but only through the Azure portal.</p>
+<p><img src=""https://i.stack.imgur.com/3OLaB.png"" alt=""Azure Portal"" /></p>
+<p>The API Explorer returns no data.</p>
+<p><img src=""https://i.stack.imgur.com/GQNqZ.png"" alt=""API Explorer"" /></p>
+<p><i>For reference</i></p>
+<p>App Insights logging in JS and TS trackEvent has no issue. <br />
+I cannot find any documentation on why this is happening nor how to query the logs outside of the Azure portal.</p>
+",0,1633459974,python;azure;azure-application-insights;opencensus,False,374,0,1680792118,https://stackoverflow.com/questions/69455830/why-wont-custom-events-logged-in-python-show-up-in-api-explorer
+75887819,How to manually connect nodes in the application map?,"<p>I want to do this:</p>
+<p><img src=""https://i.stack.imgur.com/Jwy4T.png"" alt=""ideal application map"" /></p>
+<p>the function I wish to connect to the others does use the requests library to hit both external and internal APIs but these links don't show in the application map.</p>
+<p>Is there a way to connect them manually?</p>
+<p>If the solution is not available using the portal, all code is written in python.</p>
+",0,1680176725,python;azure-functions;azure-application-insights;opencensus,True,43,1,1680181023,https://stackoverflow.com/questions/75887819/how-to-manually-connect-nodes-in-the-application-map
+75876605,How to change the application insights cloud role name for an azure function in python?,"<p>Basically as said in title.</p>
+<p>I've read doc on callback functions and changes of variables but where does this all go?</p>
+<p>I suspect I'm missing something but im not sure what</p>
+<p>What needs to exist for this change to happen?</p>
+<p>I suspect its something to do with OpenCensus,handlers and loggers but im not entirely confident what their functions are.</p>
+<p>my function is written in vscode and the code is written entirely in Python</p>
+",0,1680089348,python;azure-functions;azure-application-insights;opencensus,True,1029,1,1680093498,https://stackoverflow.com/questions/75876605/how-to-change-the-application-insights-cloud-role-name-for-an-azure-function-in
+75608062,Are traces sent from OpenCensus to OpenTelemetry recognizable,"<p>I have OpenCensus implemented in my Go application and planning on sending <a href=""https://pkg.go.dev/go.opencensus.io/trace#SpanContext"" rel=""nofollow noreferrer"">SpanContext</a> to a downstream service that uses OpenTelemetry. The SpanContext would include populated TraceID, SpanID, Tracestate and I'm planning to send the SpanContext in the PubSub message attributes.</p>
+<p>I'm wondering if the information within the SpanContext sent downstream will be recognizable by OpenTelemetry?</p>
+",1,1677698352,go;trace;open-telemetry;distributed-tracing;opencensus,False,76,1,1678891505,https://stackoverflow.com/questions/75608062/are-traces-sent-from-opencensus-to-opentelemetry-recognizable
+74637543,Segmentation fault after calling py_Finalize() with python version higher than 3.6,"<p>I am using ubuntu 18.04 LTS.</p>
+<p>I am embedding python to C++ for uploading logs to azure application insights. My code worked well with python3.6 but now support is not available for python3.6 for the python core team. So I am trying to use a higher version of python for my code, but it causes a segmentation fault when repetitive calls to py_Initialize() and py_Finalize() are made. If py_Finalize() is called only once, there is no crash, but the logs are not uploaded to the cloud. I want to keep the application running.</p>
+<p><strong>Install Python &amp; App Insight Dependencies:</strong>
+a) sudo apt-get update
+b) sudo apt install python3.6 (or use a higher version)
+c) python3 -V (Use to check python3 version)
+d) sudo apt-get install python3-dev
+e) sudo apt-get install libpython3.6-dev
+f) sudo apt-get install python3-pip
+h) sudo apt install rustc
+i) sudo -H pip3 install setuptools_rust
+g) sudo -H pip3 install opencensus-ext-azure applicationinsights</p>
+<p><strong>Code Sample:</strong></p>
+<pre><code>#include &lt;stdio.h&gt;
+#include &lt;Python.h&gt;
+#include &lt;iostream&gt;
+#include &lt;string&gt;
+#include &lt;stdint.h&gt;
+
+void CallAppInsightUploadFunction();
+
+int main()
+{
+
+    for (int i = 0; i &lt;= 5; i++)
+    {
+        Py_Initialize();
+        CallAppInsightUploadFunction();
+        std::cout &lt;&lt; &quot;Loop count: &quot; + std::to_string(i) &lt;&lt; std::endl;
+        Py_Finalize();
+    }
+
+    printf(&quot;\nGood Bye...\n&quot;);
+    return 0;
+}
+
+void CallAppInsightUploadFunction()
+{
+
+    PyRun_SimpleString(&quot;import sys&quot;);
+
+    PyRun_SimpleString(&quot;if not hasattr(sys, 'argv'):  sys.argv  = ['']&quot;);
+
+    PyRun_SimpleString(&quot;import logging&quot;);
+
+    PyRun_SimpleString(&quot;from opencensus.ext.azure.log_exporter import AzureLogHandler&quot;);
+
+    PyRun_SimpleString(&quot;logger = logging.getLogger(__name__)&quot;);
+
+    PyRun_SimpleString(&quot;logger.addHandler(AzureLogHandler(connection_string='InstrumentationKey=&lt;YOUR-INSTRUMENTATION-KEY&gt;'))&quot;);
+    PyRun_SimpleString(&quot;logger.setLevel(logging.INFO)&quot;);
+    PyRun_SimpleString(&quot;logger.info('Testing AppInsight Uploads from VM...')&quot;);
+}
+</code></pre>
+<p><strong>CMakeLists.txt file:</strong>
+cmake_minimum_required(VERSION 3.13)
+project(AppInsightTest)</p>
+<p>find_package(PythonLibs 3 REQUIRED)
+include_directories(include)
+include_directories(${PYTHON_INCLUDE_DIRS})</p>
+<p>message(&quot;Python Include directory:&quot;)
+message(&quot;${PYTHON_INCLUDE_DIRS}&quot;)</p>
+<p>message(&quot;Python Library:&quot;)
+message(&quot;${PYTHON_LIBRARIES}&quot;)</p>
+<p>set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)</p>
+<p>include_directories(${CMAKE_SOURCE_DIR}/include)</p>
+<p>file(GLOB SOURCES src/*.cpp)</p>
+<p>add_executable(AppInsightTest ${SOURCES})</p>
+<p>target_link_libraries(AppInsightTest PRIVATE ${PYTHON_LIBRARIES} )</p>
+<p><strong>Output when using python3.6:</strong>
+Loop count: 0
+context.c:55: warning: mpd_setminalloc: ignoring request to set MPD_MINALLOC a second time</p>
+<p>Loop count: 1
+context.c:55: warning: mpd_setminalloc: ignoring request to set MPD_MINALLOC a second time</p>
+<p>Loop count: 2
+context.c:55: warning: mpd_setminalloc: ignoring request to set MPD_MINALLOC a second time</p>
+<p>Loop count: 3
+context.c:55: warning: mpd_setminalloc: ignoring request to set MPD_MINALLOC a second time</p>
+<p>Loop count: 4
+context.c:55: warning: mpd_setminalloc: ignoring request to set MPD_MINALLOC a second time</p>
+<p>Loop count: 5</p>
+<p>Good Bye...</p>
+<p><strong>Expected output:</strong></p>
+<p>When I run the same code with a python version higher than 3.6, the code should work and give the same output as above. I use the following flag in cmake command when using a higher python version(python 3.8):
+-DPYTHON_LIBRARY=/usr/lib/aarch64-linux-gnu/libpython3.8.so -DPYTHON_INCLUDE_DIR=/usr/include/python3.8</p>
+",0,1669874694,python;segmentation-fault;azure-application-insights;python-3.8;opencensus,True,335,1,1669969716,https://stackoverflow.com/questions/74637543/segmentation-fault-after-calling-py-finalize-with-python-version-higher-than-3
+64521460,Get current InvocationId or operation_Id,"<p>Is there a way to have one complete output log with <code>custom_dimensions</code>? I see in the monitor tab (of Azure Functions) that only messages with <code>operation_Id</code> and <code>customDimensions['InvocationId']</code> are shown. Is there a way to add these two parameters all the log-messages from opencensus?</p>
+<p>I know you can <a href=""https://learn.microsoft.com/de-de/azure/azure-monitor/app/opencensus-python"" rel=""nofollow noreferrer"">use a second logger</a>. But that only helps for debugging. For running the Azure Functions in production, I need to look at both streams. That is possible, but inefficient and frustrating, as the information is disconnected and impossible to summarize.</p>
+<p>However another alternative would be joining the streams on the Azure Monitor side. But I can't do that unless I know the current <code>InvocationId</code>or <code>operation_Id</code>. Therefore my question if I can add any of those two IDs to my current log-message</p>
+<p>My minimal example <code>__init__.py</code> looks like this:</p>
+<pre><code>from opencensus.ext.azure.log_exporter import AzureLogHandler
+import logging.config
+import yaml
+
+import azure.functions as func
+
+# Load logging configuration
+with open(&quot;logging.yaml&quot;, 'rt') as f: # for local debugging add the console handler to the output
+    config_data = yaml.safe_load(f.read())
+    logging.config.dictConfig(config_data)
+
+def main(mytimer: func.TimerRequest) -&gt; None:
+    try: 
+        someID = 14
+        logging.debug('debug message',extra = {'custom_dimensions': {'ID': someID}})
+        logging.info('info message',extra = {'custom_dimensions': {'ID': someID}})
+        logging.warning('warn message',extra = {'custom_dimensions': {'ID': someID}})
+        logging.error('error message',extra = {'custom_dimensions': {'ID': someID}})
+        logging.critical('critical message',extra = {'custom_dimensions': {'ID': someID}})
+    except Exception as e:
+        logging.error(&quot;Main program failed with error: &quot; + str(e))
+</code></pre>
+<p>I prefer to keep my logging configuration in a <code>logging.yaml</code>:</p>
+<pre><code>version: 1
+formatters:
+  simple:
+    format: '%(asctime)s | %(levelname)-8s | %(module)s:%(funcName)s:%(lineno)d | %(message)s'
+handlers:
+  azure:
+    class: opencensus.ext.azure.log_exporter.AzureLogHandler
+    level: DEBUG
+    formatter: simple
+    instrumentation_key: 'your-key'
+loggers:
+  simpleExample:
+    level: DEBUG
+    handlers: [azure]
+    propagate: no
+root:
+  level: INFO
+  handlers: [azure]
+</code></pre>
+",1,1603611848,python;azure-functions;azure-monitoring;python-logging;opencensus,True,1830,2,1668516490,https://stackoverflow.com/questions/64521460/get-current-invocationid-or-operation-id
+73516547,Azure app insights not working with Python console app,"<p>I am trying to setup AI similar to how it is being done <a href=""https://learn.microsoft.com/en-us/azure/azure-monitor/app/opencensus-python"" rel=""nofollow noreferrer"">here</a></p>
+<p>I am using Python 3.9.13 and following packages: opencensus==0.11.0, opencensus-ext-azure==1.1.7, opencensus-context==0.1.3</p>
+<p>My code looks something like this:</p>
+<pre class=""lang-py prettyprint-override""><code>import logging
+import time
+from opencensus.ext.azure.log_exporter import AzureLogHandler
+
+
+# create the logger
+app_insights_logger = logging.getLogger(__name__)
+
+# set the handler 
+app_insights_logger.addHandler(AzureLogHandler(
+    connection_string='InstrumentationKey=00000000-0000-0000-0000-000000000000')
+)
+
+# set the logging level
+app_insights_logger.setLevel(logging.INFO)
+
+# this prints 'logging level = 20'
+print('logging level = ',app_insights_logger.getEffectiveLevel())
+
+# try to log an exception
+try:
+    result = 1 / 0  
+except Exception:
+    app_insights_logger.exception('Captured a math exception.')
+    app_insights_logger.handlers[0].flush()
+    time.sleep(5)
+</code></pre>
+<p>However the exception does not get logged, I tried adding the explicit flush as mentioned in this <a href=""https://stackoverflow.com/questions/51954418/flush-in-azure-app-insights"">post</a></p>
+<p>Additionally, I tried adding the instrumentation key as mentioned in the docs, when that didn't work I tried with the entire connection string(the one with the ingestion key)</p>
+<p>So,</p>
+<ol>
+<li>How can I debug if my app is indeed sending requests to Azure ?</li>
+<li>How can I check on the Azure portal if it is a permission issue ?</li>
+</ol>
+",0,1661668879,python;azure-application-insights;opencensus,False,1274,1,1662483349,https://stackoverflow.com/questions/73516547/azure-app-insights-not-working-with-python-console-app
+72052899,Python Azure function logging into Azure Monitor (App Insights),"<p>We are wanting to log custom properties using the Opencensus library in our Azure function. We are able to log custom properties (in our logs) into Azure Monitor via a standalone python code (locally run). We are also able to log custom properties into Azure Monitor when the Azure function is run locally. However, when we deploy the function in Azure, the Azure Function SDK behaves very differently every time.</p>
+<ol>
+<li>It doesn't log custom telemetry in some runs</li>
+<li>It logs custom telemetry other times, but logs the same log entry multiple times (logging the same line twice sometimes, while thrice other times). Please see the code below.</li>
+</ol>
+<pre><code>import logging
+import azure.functions as func
+
+from opencensus.ext.azure.trace_exporter import AzureExporter
+from opencensus.ext.azure.log_exporter import AzureLogHandler
+from opencensus.trace import config_integration
+from opencensus.trace.samplers import ProbabilitySampler, AlwaysOnSampler
+from opencensus.trace.tracer import Tracer
+from opencensus.trace import execution_context
+from opencensus.trace.propagation.trace_context_http_header_format import TraceContextPropagator
+        
+config_integration.trace_integrations(['logging'])                
+
+        
+def main(req: func.HttpRequest, context: func.Context) -&gt; func.HttpResponse:
+    try:
+        exporter = AzureExporter(connection_string=&lt;ConnString&gt;)
+        logger = logging.getLogger(__name__)
+        handler = AzureLogHandler(connection_string=&lt;ConnString&gt;)
+        if(logger.hasHandlers()):
+            logger.handlers.clear()
+
+        logger.addHandler(handler)
+        logger.info('Python HTTP trigger function processed a request.')
+
+        properties = {'custom_dimensions': {'memberId': '220', 'transactionId': '98480dcc-3abc-45a3-9145-f4b97b991f95'}}
+
+        span_context = TraceContextPropagator().from_headers({
+            &quot;traceparent&quot;: context.trace_context.Traceparent,
+            &quot;tracestate&quot;: context.trace_context.Tracestate
+        })
+        tracer = Tracer(
+            span_context=span_context,
+            exporter=exporter,
+            sampler=AlwaysOnSampler()
+        )
+        execution_context.set_opencensus_tracer(tracer)
+
+        logger.warning('Before the span', extra=properties)
+        
+        with tracer.span(&quot;custom_dimensions_span&quot;):
+            # properties = {'custom_dimensions': {'ABCD': 'EFG'}}
+            logger.info(&quot;This HTTP triggered function executed successfully. Pass a name in the query string or in the request body for a personalized response.&quot;, extra=properties)  
+            
+        logger.warning('After the span', extra=properties)
+
+        name = req.params.get('name')
+        if not name:
+            try:
+                req_body = req.get_json()
+            except ValueError:
+                pass
+            else:
+                name = req_body.get('name')
+        
+        #result = 1 / 0  # generate a ZeroDivisionError
+        if name:
+            return func.HttpResponse(f&quot;Hello, {name}. This HTTP triggered function executed successfully.&quot;)
+        else:
+            return func.HttpResponse(
+                &quot;This HTTP triggered function executed successfully. Pass a name in the query string or in the request body for a personalized response.&quot;,
+                status_code=200
+            )
+    except Exception as e:
+            logger.error('Captured an exception. ' + str(e), extra=properties)
+
+</code></pre>
+",0,1651207156,azure-functions;azure-application-insights;azure-monitoring;appinsights;opencensus,False,3261,1,1659443185,https://stackoverflow.com/questions/72052899/python-azure-function-logging-into-azure-monitor-app-insights
+73108795,Trace failed fastapi requests with opencensus,"<p>I'm using opencensus-python to track requests to my python <a href=""https://fastapi.tiangolo.com/"" rel=""nofollow noreferrer"">fastapi</a> application running in production, and exporting the information to Azure AppInsights using the opencensus exporters. I followed the <a href=""https://learn.microsoft.com/en-us/azure/azure-monitor/app/opencensus-python"" rel=""nofollow noreferrer"">Azure Monitor docs</a> and was helped out by <a href=""https://github.com/census-instrumentation/opencensus-python/issues/1020"" rel=""nofollow noreferrer"">this issue post</a> which puts all the necessary bits in a useful middleware class.</p>
+<p>Only to realize later on that requests that caused the app to crash, i.e. unhandled 5xx type errors, would never be tracked, since the call to execute the logic for the request fails before any tracing happens. The Azure Monitor docs only talk about tracking exceptions through the logs, but this is separate from the tracing of requests, unless I'm missing something. I certainly wouldn't want to lose out on failed requests, these are super important to track! I'm accustomed to using the &quot;Failures&quot; tab in app insights to monitor any failing requests.</p>
+<p>I figured the way to track these requests is to explicitly handle any internal exceptions using try/catch and export the trace, manually setting the result code to 500. But I found it really odd that there seems to be no documentation of this, on opencensus or Azure.</p>
+<p>The problem I have now is: this middleware function is expected to pass back a &quot;response&quot; object, which fastapi then uses as a callable object down the line (not sure why) - but in the case where I caught an exception in the underlying processing (i.e. at <code>await call_next(request)</code>) I don't have any response to return. I tried returning None but this just causes further exceptions down the line (None is not callable).</p>
+<p>Here is my version of the middleware class - its very similar to the issue post I linked, but I'm try/catching over <code>await call_next(request)</code> rather than just letting it fail unhanded. Scroll down to the final 5 lines of code to see that.</p>
+<pre><code>import logging
+
+from fastapi import Request
+from opencensus.trace import (
+    attributes_helper,
+    execution_context,
+    samplers,
+)
+from opencensus.ext.azure.trace_exporter import AzureExporter
+from opencensus.trace import span as span_module
+from opencensus.trace import tracer as tracer_module
+from opencensus.trace import utils
+from opencensus.trace.propagation import trace_context_http_header_format
+from opencensus.ext.azure.log_exporter import AzureLogHandler
+from starlette.types import ASGIApp
+
+from src.settings import settings
+
+HTTP_HOST = attributes_helper.COMMON_ATTRIBUTES[&quot;HTTP_HOST&quot;]
+HTTP_METHOD = attributes_helper.COMMON_ATTRIBUTES[&quot;HTTP_METHOD&quot;]
+HTTP_PATH = attributes_helper.COMMON_ATTRIBUTES[&quot;HTTP_PATH&quot;]
+HTTP_ROUTE = attributes_helper.COMMON_ATTRIBUTES[&quot;HTTP_ROUTE&quot;]
+HTTP_URL = attributes_helper.COMMON_ATTRIBUTES[&quot;HTTP_URL&quot;]
+HTTP_STATUS_CODE = attributes_helper.COMMON_ATTRIBUTES[&quot;HTTP_STATUS_CODE&quot;]
+
+module_logger = logging.getLogger(__name__)
+module_logger.addHandler(AzureLogHandler(
+    connection_string=settings.appinsights_connection_string
+))
+
+class AppInsightsMiddleware:
+    &quot;&quot;&quot;
+    Middleware class to handle tracing of fastapi requests and exporting the data to AppInsights. 
+    
+    Most of the code here is copied from a github issue: https://github.com/census-instrumentation/opencensus-python/issues/1020
+    &quot;&quot;&quot;
+    def __init__(
+        self,
+        app: ASGIApp,
+        excludelist_paths=None,
+        excludelist_hostnames=None,
+        sampler=None,
+        exporter=None,
+        propagator=None,
+    ) -&gt; None:
+        self.app = app
+        self.excludelist_paths = excludelist_paths
+        self.excludelist_hostnames = excludelist_hostnames
+        self.sampler = sampler or samplers.AlwaysOnSampler()
+        self.propagator = (
+            propagator or trace_context_http_header_format.TraceContextPropagator()
+        )
+        self.exporter = exporter or AzureExporter(
+            connection_string=settings.appinsights_connection_string
+        )
+
+    async def __call__(self, request: Request, call_next):
+
+        # Do not trace if the url is in the exclude list
+        if utils.disable_tracing_url(str(request.url), self.excludelist_paths):
+            return await call_next(request)
+
+        try:
+            span_context = self.propagator.from_headers(request.headers)
+
+            tracer = tracer_module.Tracer(
+                span_context=span_context,
+                sampler=self.sampler,
+                exporter=self.exporter,
+                propagator=self.propagator,
+            )
+        except Exception:
+            module_logger.error(&quot;Failed to trace request&quot;, exc_info=True)
+            return await call_next(request)
+
+        try:
+            span = tracer.start_span()
+            span.span_kind = span_module.SpanKind.SERVER
+            span.name = &quot;[{}]{}&quot;.format(request.method, request.url)
+            tracer.add_attribute_to_current_span(HTTP_HOST, request.url.hostname)
+            tracer.add_attribute_to_current_span(HTTP_METHOD, request.method)
+            tracer.add_attribute_to_current_span(HTTP_PATH, request.url.path)
+            tracer.add_attribute_to_current_span(HTTP_URL, str(request.url))
+            execution_context.set_opencensus_attr(
+                &quot;excludelist_hostnames&quot;, self.excludelist_hostnames
+            )
+        except Exception:  # pragma: NO COVER
+            module_logger.error(&quot;Failed to trace request&quot;, exc_info=True)
+
+        try:
+            response = await call_next(request)
+            tracer.add_attribute_to_current_span(HTTP_STATUS_CODE, response.status_code)
+            tracer.end_span()
+            return response
+        # Explicitly handle any internal exception here, and set status code to 500 
+        except Exception as exception:
+            module_logger.exception(exception)
+            tracer.add_attribute_to_current_span(HTTP_STATUS_CODE, 500)
+            tracer.end_span()
+            return None
+</code></pre>
+<p>I then register this middleware class in <code>main.py</code> like so:</p>
+<pre><code>app.middleware(&quot;http&quot;)(AppInsightsMiddleware(app, sampler=samplers.AlwaysOnSampler()))
+</code></pre>
+",0,1658750062,fastapi;azure-application-insights;azure-monitor;opencensus,True,1111,1,1658838341,https://stackoverflow.com/questions/73108795/trace-failed-fastapi-requests-with-opencensus
+72521701,"Azure application insights, nested object in Custom Dimension appears as [object Object ]","<p>I have a nested object which i send through the custom dimension to azure appInsights logs
+below is the object</p>
+<pre><code>{
+   .
+   .
+  'special_chars':'6'
+  'storage_acc_name':'subrodecadlsdev',
+  'top_10_line_width':{
+       'LW_101':45,
+       'LW_229':78,
+       'LW_77':67
+    }
+}
+</code></pre>
+<p>The <strong>top_10_lines_width</strong> object is coming as <strong>[object Object]</strong> in customdimension. Below is the pic</p>
+<p><a href=""https://i.stack.imgur.com/MI48s.jpg"" rel=""nofollow noreferrer""><img src=""https://i.stack.imgur.com/MI48s.jpg"" alt=""enter image description here"" /></a></p>
+<p>I tried using this query but no luck</p>
+<pre><code>extend tp = todynamic(tostring(customDimensions['top_10_line_width']))
+</code></pre>
+<p>This is how the result looks
+<a href=""https://i.stack.imgur.com/evfFw.jpg"" rel=""nofollow noreferrer""><img src=""https://i.stack.imgur.com/evfFw.jpg"" alt=""enter image description here"" /></a></p>
+<p>Does this have to do with the object? As it cant be extracted as rows. If so then how do I extract it, I just need the message and tp column to show as a dashboard</p>
+<p>So for the context, I am using python, and using opencenus SDK for logging here is the code snippet specifying how I send the logs and custom properties using customdimensions</p>
+<pre><code>import logging
+
+from opencensus.ext.azure.log_exporter import AzureLogHandler
+
+logger = logging.getLogger(__name__)
+# TODO: replace the all-zero GUID with your instrumentation key.
+logger.addHandler(AzureLogHandler(
+    connection_string='InstrumentationKey=00000000-0000-0000-0000-000000000000')
+)
+
+counts_dict = {
+  'special_chars':'6'
+  'storage_acc_name':'subrodecadlsdev',
+  'top_10_line_width':{
+       'LW_101':45,
+       'LW_229':78,
+       'LW_77':67
+    }
+}
+
+#this is the line where I am adding my custom props to customdimensions
+properties = {'custom_dimensions': counts_dict}  
+
+# Use properties in logging statements
+logger.warning('action', extra=properties)
+
+</code></pre>
+<p><a href=""https://learn.microsoft.com/en-us/azure/azure-monitor/app/opencensus-python#introducing-opencensus-python-sdk"" rel=""nofollow noreferrer"">Link</a> to official ms docs</p>
+",1,1654538202,python;azure;azure-application-insights;azure-log-analytics;opencensus,False,975,0,1654582449,https://stackoverflow.com/questions/72521701/azure-application-insights-nested-object-in-custom-dimension-appears-as-object
+72001398,Ingestion is allowed only from stamp specific endpoint (Azure East US 2),"<p>I am getting this error starting this weekend for Azure East US 2 region. This may also be happening in other regions that I am not aware of.</p>
+<p>The code was logging to appinsights last week.</p>
+<pre><code>Non-retryable server side error 404: {&quot;itemsReceived&quot;:12,&quot;itemsAccepted&quot;:0,&quot;errors&quot;:[{&quot;index&quot;:0,&quot;statusCode&quot;:404,&quot;message&quot;:&quot;Ingestion is allowed only from stamp specific endpoint - Location: https://eastus2-3.in.applicationinsights.azure.com/v2.1/track&quot;,&quot;location&quot;:&quot;https://eastus2-3.in.applicationinsights.azure.com/v2.1/track&quot;,&quot;cacheControl&quot;:&quot;max-age=604800&quot;},{&quot;index&quot;:1,&quot;status ....
+</code></pre>
+<p>Code:</p>
+<pre><code>import logging
+from opencensus.ext.azure.log_exporter import AzureLogHandler
+logger = logging.getLogger(__name__)
+
+logger.addHandler(AzureLogHandler(
+    connection_string='InstrumentationKey=672e7b1f-......')
+)
+
+logger.warning(&quot;This is a logger warning&quot;)
+</code></pre>
+<p><strong>UPDATE:</strong>
+Putting full connection string fixed the issue. Still this breaking change seems like unreliable, and sudden (over the weekend the code which was working fine, has stopped working).</p>
+<p>I am happy that I DID NOT USED AppInsights yet for software shipped to customer site.</p>
+<p><strong>UPDATE 3 hrs later:</strong>
+Apparently, something changed on Azure and things have started working again without placing full connection string. (Thank you, Microsoft). We will accelerate the connection string change now, but without panic.</p>
+",2,1650897918,python;azure-application-insights;opencensus,True,433,1,1650912964,https://stackoverflow.com/questions/72001398/ingestion-is-allowed-only-from-stamp-specific-endpoint-azure-east-us-2
+67119785,Sleuth basic tracing example not working in java,"<p>I tried to implement tracing using <code>sleuth-otel</code>. For that, I followed the steps mentioned in the official <code>sleuth-otel</code> documentation. I created a sample project to implement this. but that did't work.
+I followed this <a href=""https://github.com/spring-cloud-incubator/spring-cloud-sleuth-otel"" rel=""nofollow noreferrer"">link</a>.</p>
+<p>This is my pom.xml</p>
+<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;project xmlns=&quot;http://maven.apache.org/POM/4.0.0&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xsi:schemaLocation=&quot;http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd&quot;&gt;
+   &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;
+   &lt;parent&gt;
+      &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+      &lt;artifactId&gt;spring-boot-starter-parent&lt;/artifactId&gt;
+      &lt;version&gt;2.4.4&lt;/version&gt;
+      &lt;relativePath /&gt;
+      &lt;!-- lookup parent from repository --&gt;
+   &lt;/parent&gt;
+   &lt;groupId&gt;com.example&lt;/groupId&gt;
+   &lt;artifactId&gt;demo&lt;/artifactId&gt;
+   &lt;version&gt;0.0.1-SNAPSHOT&lt;/version&gt;
+   &lt;name&gt;demo&lt;/name&gt;
+   &lt;description&gt;Demo project for Spring Boot&lt;/description&gt;
+   &lt;properties&gt;
+      &lt;java.version&gt;11&lt;/java.version&gt;
+      &lt;spring-cloud.version&gt;2020.0.2&lt;/spring-cloud.version&gt;
+   &lt;/properties&gt;
+   &lt;dependencies&gt;
+      &lt;dependency&gt;
+         &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+         &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;
+         &lt;version&gt;2.4.4&lt;/version&gt;
+      &lt;/dependency&gt;
+      &lt;dependency&gt;
+         &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+         &lt;artifactId&gt;spring-boot-starter-test&lt;/artifactId&gt;
+         &lt;version&gt;2.4.4&lt;/version&gt;
+         &lt;scope&gt;test&lt;/scope&gt;
+      &lt;/dependency&gt;
+      &lt;dependency&gt;
+         &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+         &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;
+      &lt;/dependency&gt;
+      &lt;dependency&gt;
+         &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+         &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;
+      &lt;/dependency&gt;
+      &lt;!-- Sleuth with OpenTelemetry tracer implementation --&gt;
+      &lt;dependency&gt;
+         &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
+         &lt;artifactId&gt;spring-cloud-starter-sleuth&lt;/artifactId&gt;
+         &lt;exclusions&gt;
+            &lt;exclusion&gt;
+               &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
+               &lt;artifactId&gt;spring-cloud-sleuth-brave&lt;/artifactId&gt;
+            &lt;/exclusion&gt;
+         &lt;/exclusions&gt;
+      &lt;/dependency&gt;
+      &lt;!-- This dependency adds OTel support --&gt;
+      &lt;dependency&gt;
+         &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
+         &lt;artifactId&gt;spring-cloud-sleuth-otel-autoconfigure&lt;/artifactId&gt;
+         &lt;version&gt;1.0.0-M2&lt;/version&gt;
+      &lt;/dependency&gt;
+   &lt;/dependencies&gt;
+   &lt;build&gt;
+      &lt;plugins&gt;
+         &lt;plugin&gt;
+            &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+            &lt;artifactId&gt;spring-boot-maven-plugin&lt;/artifactId&gt;
+         &lt;/plugin&gt;
+      &lt;/plugins&gt;
+   &lt;/build&gt;
+   &lt;dependencyManagement&gt;
+      &lt;dependencies&gt;
+         &lt;dependency&gt;
+            &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
+            &lt;artifactId&gt;spring-cloud-dependencies&lt;/artifactId&gt;
+            &lt;version&gt;2020.0.0&lt;/version&gt;
+            &lt;type&gt;pom&lt;/type&gt;
+            &lt;scope&gt;import&lt;/scope&gt;
+         &lt;/dependency&gt;
+         &lt;dependency&gt;
+            &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
+            &lt;artifactId&gt;spring-cloud-sleuth-otel-dependencies&lt;/artifactId&gt;
+            &lt;version&gt;1.0.0-M2&lt;/version&gt;
+            &lt;scope&gt;import&lt;/scope&gt;
+            &lt;type&gt;pom&lt;/type&gt;
+         &lt;/dependency&gt;
+      &lt;/dependencies&gt;
+   &lt;/dependencyManagement&gt;
+   &lt;repositories&gt;
+      &lt;repository&gt;
+         &lt;id&gt;spring-snapshots&lt;/id&gt;
+         &lt;url&gt;https://repo.spring.io/snapshot&lt;/url&gt;
+         &lt;snapshots&gt;
+            &lt;enabled&gt;true&lt;/enabled&gt;
+         &lt;/snapshots&gt;
+      &lt;/repository&gt;
+      &lt;repository&gt;
+         &lt;id&gt;spring-milestones&lt;/id&gt;
+         &lt;url&gt;https://repo.spring.io/milestone&lt;/url&gt;
+      &lt;/repository&gt;
+   &lt;/repositories&gt;
+   &lt;pluginRepositories&gt;
+      &lt;pluginRepository&gt;
+         &lt;id&gt;spring-snapshots&lt;/id&gt;
+         &lt;url&gt;https://repo.spring.io/snapshot&lt;/url&gt;
+      &lt;/pluginRepository&gt;
+      &lt;pluginRepository&gt;
+         &lt;id&gt;spring-milestones&lt;/id&gt;
+         &lt;url&gt;https://repo.spring.io/milestone&lt;/url&gt;
+      &lt;/pluginRepository&gt;
+   &lt;/pluginRepositories&gt;
+&lt;/project&gt;
+</code></pre>
+<p>This is my controller</p>
+<pre><code>package com.example.demo;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class DemoController {
+    private static Logger log = LoggerFactory.getLogger(DemoController.class);
+
+    @RequestMapping(&quot;/&quot;)
+    public String home() {
+        log.info(&quot;Handling home&quot;);
+        return &quot;Hello World&quot;;
+    }
+}
+</code></pre>
+<p>Main method</p>
+<pre><code>package com.example.demo;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class DemoApplication {
+    private static Logger log = LoggerFactory.getLogger(DemoApplication.class);
+    public static void main(String[] args) {
+        SpringApplication.run(DemoApplication.class, args);
+    }
+
+}
+</code></pre>
+<p>application.properties</p>
+<pre><code>spring.application.name=demoApp
+spring.sleuth.otel.log.slf4j.enabled=true
+spring.sleuth.otel.log.exporter.enabled=true
+</code></pre>
+<p>While hitting the url via postman, I got the result like this
+<a href=""https://i.stack.imgur.com/lxa4y.jpg"" rel=""nofollow noreferrer"">result image link</a></p>
+<p>I am wondering why the basic example didn't work. Is the documentation incorrect or did I make any mistake.</p>
+",2,1618552343,microservices;spring-cloud-sleuth;distributed-tracing;open-telemetry;opencensus,False,1106,0,1646503506,https://stackoverflow.com/questions/67119785/sleuth-basic-tracing-example-not-working-in-java
+62674846,Opencensus Stackdriver traces from Python app not appearing in the Trace list in GCP,"<p>I'm comparing different tracing backend using OpenCensus.
+I already have the simple OpenCensus.io python samples running fine using Zipkin and Azure Monitor.</p>
+<p>Now I'm trying to test using GCP's Stackdriver...</p>
+<p>I have set up the test code from Opencensus
+<a href=""https://opencensus.io/exporters/supported-exporters/python/stackdriver/"" rel=""nofollow noreferrer"">https://opencensus.io/exporters/supported-exporters/python/stackdriver/</a> as follows:</p>
+<pre><code>#!/usr/bin/env python
+
+import os
+
+from opencensus.common.transports.async_ import AsyncTransport
+from opencensus.ext.stackdriver.trace_exporter import StackdriverExporter
+from opencensus.trace.tracer import Tracer
+
+def main():
+    sde = StackdriverExporter(
+        project_id=os.environ.get(&quot;GCP_PROJECT_ID&quot;),
+        transport=AsyncTransport)
+
+    tracer = Tracer(exporter=sde)
+    with tracer.span(name=&quot;doingWork&quot;) as span:
+        for i in range(10):
+            pass
+
+if __name__ == &quot;__main__&quot;:
+    main()
+</code></pre>
+<p>I have set the environment variable for <strong>GCP_PROJECT_ID</strong> and also have my key file path for my service account JSON file set in <strong>GOOGLE_APPLICATION_CREDENTIALS</strong>.</p>
+<p>The service account has the <em><strong>&quot;Cloud trace agent&quot;</strong></em> role.</p>
+<p>My code runs through with no errors but I can't see any info appearing in the GCP console under traces or in the monitoring dashboard.</p>
+<p>Am I missing something?</p>
+<p>Environment notes:
+I'm testing this from my local Windows machine using Python 3.7.2</p>
+",3,1593599520,python-3.x;stackdriver;google-cloud-stackdriver;opencensus,True,521,2,1643015616,https://stackoverflow.com/questions/62674846/opencensus-stackdriver-traces-from-python-app-not-appearing-in-the-trace-list-in
+69821314,Conda/Pip Environment creation fails with azureml &amp; adlfs/opencensus-ext-azure,"<p>I am trying to create a local development environment using conda with <code>azureml</code> libraries. Following environment.yml file works fine.</p>
+<pre><code>name: cortixml_azure_env
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.8.3
+  - pandas
+  - numpy
+  - flake8
+  - black
+  - pip
+  - pip:
+    - pyarrow
+    - pytest
+    - rope
+    - dask[dataframe,distributed]
+    - azure-storage-blob
+    - opencensus-ext-azure
+    - azureml-core
+    - azureml-pipeline-steps
+    - azureml-pipeline-core
+    - azureml-pipeline
+    - azureml-mlflow
+    - scikit-learn
+    - lightgbm
+    - xgboost
+</code></pre>
+<p>But the moment, I add <a href=""https://pypi.org/project/adlfs/0.0.9/"" rel=""nofollow noreferrer"">adlfs</a> under pip installable, it get stuck at &quot;Installing pip dependencies:&quot; for hours and finally fails. This happens for <code>opencensus-ext-azure</code> as well.</p>
+<p>Any suggestions?</p>
+",1,1635926056,python;dask;azure-machine-learning-service;opencensus;azureml-python-sdk,True,885,1,1642153465,https://stackoverflow.com/questions/69821314/conda-pip-environment-creation-fails-with-azureml-adlfs-opencensus-ext-azure
+70636922,Python Opencenus Trace ID and Span ID in azure monitor,"<p>I am trying to add traceId and spanId to logs in azure functions in python, following <a href=""https://learn.microsoft.com/en-us/azure/azure-monitor/app/correlation#log-correlation"" rel=""nofollow noreferrer"">https://learn.microsoft.com/en-us/azure/azure-monitor/app/correlation#log-correlation</a>  in Azure documentation</p>
+<p><strong>traceId and spanId is added to log statements in local development using VS Code but I am not able to see the same traceId and spanId in azure monitor</strong>,</p>
+<p>I followed <a href=""https://learn.microsoft.com/en-us/azure/azure-monitor/app/opencensus-python#logs"" rel=""nofollow noreferrer"">https://learn.microsoft.com/en-us/azure/azure-monitor/app/opencensus-python#logs</a>  section of the documentation to add AzureLogHandler but still things don't seem to work</p>
+<p>I want to be able to query the logs in Azure Application insights using the traceId and spanId
+What is missing in my code so traceId and spanId is not logged in azure monitor</p>
+<p>Below is my code to configure logs in python</p>
+<pre><code>  def logger_and_tracer(name):
+
+    config_integration.trace_integrations([&quot;logging&quot;, &quot;requests&quot;])
+    tracer = Tracer(sampler=AlwaysOnSampler())
+    formatter = logging.Formatter(
+        &quot;fileName=%(filename)s functionName=%(funcName)s traceId=%(traceId)s spanId=%(spanId)s %(message)s&quot;
+    )
+    logger = logging.getLogger(name)
+    azure_logger = AzureLogHandler()
+    syslog = logging.StreamHandler()
+    azure_logger.addFilter(CustomDimensionsFilter(default_log_items))
+    syslog.addFilter(CustomDimensionsFilter(default_log_items))
+
+    azure_logger.setFormatter(formatter)
+    syslog.setFormatter(formatter)
+
+    logger.setLevel(logging.DEBUG)
+
+    logger.addHandler(syslog)
+    logger.addHandler(azure_logger)
+
+    return (logger, tracer)
+</code></pre>
+",2,1641680663,azure;azure-functions;opencensus,True,1441,1,1641817458,https://stackoverflow.com/questions/70636922/python-opencenus-trace-id-and-span-id-in-azure-monitor
+70580190,Adding the opencensus AzureLogHandler to the root logger in FastAPI applications,"<p>I am having significant difficulty with emitting logs to the Azure Application Insights. When the AzureLogHandler is initialised and added to a child logger within <em>app.py</em>, it works fine. However, the issue begins outside of <em>app.py</em> when I go to create a new logger instance, the logs are not emitted to Azure. Sample:</p>
+<pre><code># app.py
+logger = logging.getLogger(__name__)
+logger.addHandler(AzureLogHandler(connection_string=&quot;&quot;))
+
+logger.info(&quot;This is emitted&quot;)
+
+</code></pre>
+<pre><code>
+# main.py
+logger = logging.getLogger(__name__)
+logger.addHandler(AzureLogHandler(connection_string=&quot;&quot;))
+
+logger.info(&quot;This is NOT emitted&quot;)
+</code></pre>
+<p>The only way I have managed to get it to work is by importing the logger instance I created in <em>app.py</em> which is suboptimal:</p>
+<pre><code># sub-optimal - does not permit me to create a log hierarchy
+# main.py
+from app.py import logger
+
+logger.info(&quot;This works but restricts me&quot;)
+</code></pre>
+<p>Ideally, I would like to implement opencensus AzureLogHandler with as little interference with the project as possible, for example adding the AzureLogHandler to the root logger at the start and then deriving all child loggers without need to attach the handler seperately:</p>
+<pre><code># app.py
+logging.basicConfig(handlers=[AzurelogHandler(connection_string=&quot;&quot;))
+logger = logging.getLogger(__name__)
+logger.debug(&quot;so simple!&quot;)
+</code></pre>
+<pre><code># main.py
+logger = logging.getLogger(__name__)
+logger.debug(&quot;so simple!&quot;)
+</code></pre>
+<p><em><strong>Note:</strong></em> The solution must work with Asyncronous FastAPI. This seems to complicate things as I have implemented this for Flask and other services just fine.</p>
+<p>Thanks!</p>
+",2,1641305941,python;logging;azure-application-insights;fastapi;opencensus,False,2049,0,1641471876,https://stackoverflow.com/questions/70580190/adding-the-opencensus-azureloghandler-to-the-root-logger-in-fastapi-applications
+69861133,OpenCensus distributed tracing propagation using both Flask &amp; requests,"<p>I'm attempting to implement distributed tracing via OpenCensus across different services where each service is using Flask for serving and sends downstream requests using... er..  <code>requests</code> to build its reply. The tracing platform is GCP Cloud Trace.</p>
+<p>I'm using <code>FlaskMiddleware</code>, which traces the initial call correctly, but there's no propagation of span info between the source and target service, even when the middleware has a propagation defined (I've tried a few):</p>
+<pre><code>#middleware = FlaskMiddleware(app, exporter=exporter, sampler=sampler, excludelist_paths=['healthz', 'metrics'], propagator=google_cloud_format.GoogleCloudFormatPropagator())
+middleware = FlaskMiddleware(app, exporter=exporter, sampler=sampler, excludelist_paths=['healthz', 'metrics'], propagator=b3_format.B3FormatPropagator())
+#middleware = FlaskMiddleware(app, exporter=exporter, sampler=sampler, excludelist_paths=['healthz', 'metrics'], propagator=trace_context_http_header_format.TraceContextPropagator())
+</code></pre>
+<p>I guess the question is, does anyone have an example of setting up tracing that traverses several downstream calls when each service is serving via Flask and making downstream requests via <code>requests</code>.</p>
+<p>Currently I end up with each service having its own trace with a single span.</p>
+",1,1636167581,flask;python-requests;distributed-tracing;opencensus,False,120,0,1636167581,https://stackoverflow.com/questions/69861133/opencensus-distributed-tracing-propagation-using-both-flask-requests
+67800370,Recursive logging issue when using Opencensus with FastAPI,"<p>I have a problem with my implementation of Opencensus, logging in Python and FastAPI. I want to log incomming requests to Application Insights in Azure, so I added a FastAPI middleware to my code following <a href=""https://learn.microsoft.com/en-us/azure/azure-monitor/app/opencensus-python-request#tracking-fastapi-applications"" rel=""nofollow noreferrer"">the Microsoft docs</a> and <a href=""https://github.com/census-instrumentation/opencensus-python/issues/1020"" rel=""nofollow noreferrer"">this Github post</a>:</p>
+<pre><code>propagator = TraceContextPropagator()
+
+@app.middleware('http')
+async def middleware_opencensus(request: Request, call_next):
+    tracer = Tracer(
+        span_context=propagator.from_headers(request.headers),
+        exporter=AzureExporter(connection_string=os.environ['APPLICATION_INSIGHTS_CONNECTION_STRING']),
+        sampler=AlwaysOnSampler(),
+        propagator=propagator)
+
+    with tracer.span('main') as span:
+        span.span_kind = SpanKind.SERVER
+        tracer.add_attribute_to_current_span(HTTP_HOST, request.url.hostname)
+        tracer.add_attribute_to_current_span(HTTP_METHOD, request.method)
+        tracer.add_attribute_to_current_span(HTTP_PATH, request.url.path)
+        tracer.add_attribute_to_current_span(HTTP_ROUTE, request.url.path)
+        tracer.add_attribute_to_current_span(HTTP_URL, str(request.url))
+
+        response = await call_next(request)
+        tracer.add_attribute_to_current_span(HTTP_STATUS_CODE, response.status_code)
+
+    return response
+</code></pre>
+<p>This works great when running local, and all incomming requests to the api are logged to Application Insights. Since having Opencensus implemented however, when deployed in a Container Instance on Azure, after a couple of days (approximately 3) an issue arises where it looks like some recursive logging issue happens (+30.000 logs per second!), i.a. stating <code>Queue is full. Dropping telemetry</code>, before finally crashing after a few hours of mad logging:</p>
+<p><a href=""https://i.stack.imgur.com/U1cqd.png"" rel=""nofollow noreferrer""><img src=""https://i.stack.imgur.com/U1cqd.png"" alt=""enter image description here"" /></a></p>
+<p>Our <code>logger.py</code> file where we define our logging handlers is as follows:</p>
+<pre><code>import logging.config
+import os
+import tqdm
+from pathlib import Path
+from opencensus.ext.azure.log_exporter import AzureLogHandler
+
+
+class TqdmLoggingHandler(logging.Handler):
+    &quot;&quot;&quot;
+        Class for enabling logging during a process with a tqdm progress bar.
+        Using this handler logs will be put above the progress bar, pushing the
+        process bar down instead of replacing it.
+    &quot;&quot;&quot;
+    def __init__(self, level=logging.NOTSET):
+        super().__init__(level)
+        self.formatter = logging.Formatter(fmt='%(asctime)s &lt;%(name)s&gt; %(levelname)s: %(message)s',
+                                           datefmt='%d-%m-%Y %H:%M:%S')
+
+    def emit(self, record):
+        try:
+            msg = self.format(record)
+            tqdm.tqdm.write(msg)
+            self.flush()
+        except (KeyboardInterrupt, SystemExit):
+            raise
+        except:
+            self.handleError(record)
+
+
+logging_conf_path = Path(__file__).parent
+logging.config.fileConfig(logging_conf_path / 'logging.conf')
+
+logger = logging.getLogger(__name__)
+logger.addHandler(TqdmLoggingHandler(logging.DEBUG))  # Add tqdm handler to root logger to replace the stream handler
+if os.getenv('APPLICATION_INSIGHTS_CONNECTION_STRING'):
+    logger.addHandler(AzureLogHandler(connection_string=os.environ['APPLICATION_INSIGHTS_CONNECTION_STRING']))
+
+warning_level_loggers = ['urllib3', 'requests']
+for lgr in warning_level_loggers:
+    logging.getLogger(lgr).setLevel(logging.WARNING)
+</code></pre>
+<p>Does anyone have any idea on what could be the cause of this issue, or have people encountered similar issues? I don't know what the 'first' error log is due to the fast amount of logging.</p>
+<p>Please let me know if additional information is required.</p>
+<p>Thanks in advance!</p>
+",3,1622617311,python;logging;azure-application-insights;fastapi;opencensus,True,1506,1,1634737899,https://stackoverflow.com/questions/67800370/recursive-logging-issue-when-using-opencensus-with-fastapi
+69558625,Can&#39;t filter custom metrics in google cloud monitoring with tags,"<p>I registered stats with opencensus and attached tags thanks to a StackDriver exporter:</p>
+<pre><code>ctx, err = tag.New(ctx, tag.Upsert(key, val))
+stats.Record(ctx, []stats.Measurement{csqAverage.M(m)}...)
+</code></pre>
+<p>In the metric explorer, I can see the metrics, but I can't see or filter with the associated tag. When I retrieve the resources thanks to the REST API, I don't see tags at all, and this kind of property is not mentionened in the documentation describing a metric. However, the gcloud documentation indicates that opencensus tag can be exported to filter the metrics.</p>
+",0,1634140484,go;gcloud;opencensus,True,407,1,1634735579,https://stackoverflow.com/questions/69558625/cant-filter-custom-metrics-in-google-cloud-monitoring-with-tags
+68342262,Track python simpleHttp server logging information in azure application insights application map,"<p>We have different microservices(function apps, vm servers, etc) logging to application insights. A simple python http server is hosted on a linux VM, I want this server to receive a traceparent http header (W3C tracing) log the information to application insights. This python server should create a separate node in the Application map.</p>
+<p>I am able to extract the span context from traceparent http header and use it to log the information. But i am not able to view it as a separate node in Application map.</p>
+<p>There are <a href=""https://github.com/census-instrumentation/opencensus-python/tree/master/contrib"" rel=""nofollow noreferrer"">middlewares</a> for flask,django for tracing the requests. But there is no ready made solution available for python simple http server.</p>
+<p>The goal is to have this python server on vm be represented as a separate node in Application map.</p>
+<p>Attaching my python script for reference. (this code was written using the code from <a href=""https://github.com/census-instrumentation/opencensus-python/tree/master/contrib/opencensus-ext-flask"" rel=""nofollow noreferrer"">flask-middleware</a>)</p>
+<pre><code>import six
+
+import logging
+import sys
+
+from opencensus.ext.azure.log_exporter import AzureLogHandler
+from google.rpc import code_pb2
+from opencensus.ext.azure.trace_exporter import AzureExporter
+from opencensus.common import configuration
+from opencensus.trace import (
+    attributes_helper,
+    execution_context,
+    print_exporter,
+    samplers,
+)
+from opencensus.trace import span as span_module
+from opencensus.trace import stack_trace, status
+from opencensus.trace import tracer as tracer_module
+from opencensus.trace import utils
+from opencensus.trace.propagation import trace_context_http_header_format
+from opencensus.trace import config_integration
+
+HTTP_HOST = attributes_helper.COMMON_ATTRIBUTES['HTTP_HOST']
+HTTP_METHOD = attributes_helper.COMMON_ATTRIBUTES['HTTP_METHOD']
+HTTP_PATH = attributes_helper.COMMON_ATTRIBUTES['HTTP_PATH']
+HTTP_ROUTE = attributes_helper.COMMON_ATTRIBUTES['HTTP_ROUTE']
+HTTP_URL = attributes_helper.COMMON_ATTRIBUTES['HTTP_URL']
+HTTP_STATUS_CODE = attributes_helper.COMMON_ATTRIBUTES['HTTP_STATUS_CODE']
+
+EXCLUDELIST_PATHS = 'EXCLUDELIST_PATHS'
+EXCLUDELIST_HOSTNAMES = 'EXCLUDELIST_HOSTNAMES'
+
+config_integration.trace_integrations(['logging'])
+
+trace_parent_header= &quot;00-4bf92f3577b34da6a3ce929d0e0e4736-00f067aa0ba902b7-01&quot;
+APP_INSIGHTS_KEY = &quot;KEY HERE&quot;
+
+logging.basicConfig(
+    format='%(asctime)s traceId=%(traceId)s spanId=%(spanId)s %(message)s')
+log = logging.getLogger(__name__)
+
+def callback_function(envelope):
+    envelope.tags['ai.cloud.role'] = 'Pixm Agent'
+
+
+handler = AzureLogHandler(
+    connection_string='InstrumentationKey=APP_INSIGHTS_KEY')
+handler.setFormatter(logging.Formatter('%(traceId)s %(spanId)s %(message)s'))
+handler.add_telemetry_processor(callback_function)
+log.addHandler(handler)
+
+
+propogator = trace_context_http_header_format.TraceContextPropagator()
+sampler = samplers.ProbabilitySampler(rate=1.0)
+exporter = AzureExporter(
+    connection_string=&quot;InstrumentationKey=APP_INSIGHTS_KEY&quot;)
+
+exporter.add_telemetry_processor(callback_function)
+try:
+    span_context = propogator.from_headers(
+        {&quot;traceparent&quot;: trace_parent_header})
+    log.info(&quot;he...&quot;)
+    tracer = tracer_module.Tracer(
+        span_context=span_context,
+        sampler=sampler,
+        exporter=exporter,
+        propagator=propogator)
+
+    span = tracer.start_span()
+    span.span_kind = span_module.SpanKind.SERVER
+    # Set the span name as the name of the current module name
+    span.name = '[{}]{}'.format(
+        'get',
+        'testurl')
+    tracer.add_attribute_to_current_span(
+        HTTP_HOST, 'testurlhost'
+    )
+    tracer.add_attribute_to_current_span(
+        HTTP_METHOD, 'get'
+    )
+    tracer.add_attribute_to_current_span(
+        HTTP_PATH, 'testurlpath'
+    )
+    tracer.add_attribute_to_current_span(
+        HTTP_URL, str('testurl')
+    )
+    # execution_context.set_opencensus_attr(
+    #     'excludelist_hostnames',
+    #     self.excludelist_hostnames
+    # )
+
+    with tracer.span(name=&quot;main-ashish&quot;):
+        for i in range(0, 10):
+            log.warning(&quot;identity logs...&quot;+str(i))
+
+except Exception:  # pragma: NO COVER
+    log.error('Failed to trace request', exc_info=True)
+
+</code></pre>
+",1,1626067537,azure-application-insights;azure-monitoring;distributed-tracing;opencensus,True,709,1,1628162821,https://stackoverflow.com/questions/68342262/track-python-simplehttp-server-logging-information-in-azure-application-insights
+68552810,OpenTelemetry Collector 404&#39;ing at http://localhost:55681/v1/traces,"<p>I've run through the official Otel collector dockumentation, as well as run the collector using Docker and the follow config/code files, but always get a 404 from the collector when the app tries to POST to the /v1/traces endpoint. I've also tried various code samples, <a href=""https://stackoverflow.com/questions/63485673/how-to-correctly-use-opentelemetry-exporter-with-opentelemetry-collector-in-clie"">this post</a>, running the collector on macOS and Ubuntu, using old builds, all with no success. Even <code>curl -s -X POST 'http://localhost:55681/v1/traces</code> gives a 404. Is this no longer the correct endpoint? It must be something simple. :)</p>
+<p><code>docker run -it --rm -p 13133:13133 -p 14250:14250 -p 14268:14268 -p 55678-55681:55678-55681 -p 4317:4317 -p 8888:8888 -p 9411:9411 --name opentelemetry-collector -v &quot;${PWD}/collector.yaml&quot;:/collector.yaml otel/opentelemetry-collector --config collector.yaml</code></p>
+<p>collector.yaml</p>
+<pre class=""lang-yaml prettyprint-override""><code>receivers:
+  otlp:
+    protocols:
+      grpc:
+      http:
+
+processors:
+  batch:
+
+exporters:
+  otlp:
+    endpoint: 0.0.0.0:4317
+  jaeger:
+    endpoint: 0.0.0.0:14250
+
+extensions:
+  health_check:
+  pprof:
+  zpages:
+
+service:
+  extensions: [health_check, pprof, zpages]
+  pipelines:
+    traces:
+      receivers: [otlp]
+      processors: [batch]
+      exporters: [otlp]
+    metrics:
+      receivers: [otlp]
+      processors: [batch]
+      exporters: [otlp]
+    logs:
+      receivers: [otlp]
+      processors: [batch]
+      exporters: [otlp]
+</code></pre>
+<p>TypeScript within an Angular app</p>
+<pre class=""lang-js prettyprint-override""><code>import { Injectable } from '@angular/core';
+import { JaegerExporter, ExporterConfig } from '@opentelemetry/exporter-jaeger';
+import { WebTracerProvider } from '@opentelemetry/web';
+import { SimpleSpanProcessor, ConsoleSpanExporter } from '@opentelemetry/tracing';
+import { CollectorExporterNodeConfigBase, CollectorTraceExporter } from '@opentelemetry/exporter-collector';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class TracerService {
+
+  public tracerProvider: WebTracerProvider;
+
+  constructor() {
+    this.tracerProvider = new WebTracerProvider();
+    this.tracerProvider.addSpanProcessor(new SimpleSpanProcessor(new ConsoleSpanExporter()));
+
+    let conf: CollectorExporterNodeConfigBase = {};
+    const exporter = new CollectorTraceExporter(conf);
+    this.tracerProvider.addSpanProcessor(new SimpleSpanProcessor(exporter));
+    this.tracerProvider.register();
+  }
+}
+</code></pre>
+<p>Prometheus.yaml</p>
+<pre class=""lang-yaml prettyprint-override""><code>global:
+  scrape_interval: 15s # Default is every 1 minute.
+
+scrape_configs:
+  - job_name: 'collector'
+    # metrics_path defaults to '/metrics'
+    # scheme defaults to 'http'.
+    static_configs:
+      - targets: ['collector:9464']
+</code></pre>
+",0,1627429133,angular;prometheus;opentracing;open-telemetry;opencensus,False,2743,1,1628037609,https://stackoverflow.com/questions/68552810/opentelemetry-collector-404ing-at-http-localhost55681-v1-traces
+68186622,Django API &quot;request count&quot; now showing in Azure App Insights &gt; Performance with opencensus,"<p>running into an issue where my Django python API application is not logging all metrics to Azure App Insights using <a href=""https://github.com/census-instrumentation/opencensus-python/tree/master/contrib/opencensus-ext-azure"" rel=""nofollow noreferrer"">opencensus</a>.</p>
+<p><a href=""https://i.stack.imgur.com/a4zjx.png"" rel=""nofollow noreferrer""><img src=""https://i.stack.imgur.com/a4zjx.png"" alt=""request count"" /></a></p>
+<p>But for example, we are getting CPU/memory logging:
+<a href=""https://i.stack.imgur.com/2sLLP.png"" rel=""nofollow noreferrer""><img src=""https://i.stack.imgur.com/2sLLP.png"" alt=""cpu "" /></a></p>
+<p>I would expect the performance &gt; request count to look similar to this (on a different application framework):
+<a href=""https://i.stack.imgur.com/bJsl1.png"" rel=""nofollow noreferrer""><img src=""https://i.stack.imgur.com/bJsl1.png"" alt=""working app request count"" /></a></p>
+<p>The <a href=""https://github.com/census-instrumentation/opencensus-python/tree/master/contrib/opencensus-ext-azure#performance-counters"" rel=""nofollow noreferrer"">performance counters</a> section looks pretty straight forward.</p>
+<p>My code looks like this:</p>
+<pre class=""lang-py prettyprint-override""><code>from opencensus.ext.azure import metrics_exporter
+
+def main():
+  INSTRUMENTATION_KEY = os.getenv(&quot;INSTRUMENTATION_KEY&quot;, &quot;xxx&quot;)
+
+  exporter = metrics_exporter.new_metrics_exporter(connection_string='InstrumentationKey='+INSTRUMENTATION_KEY)
+
+</code></pre>
+",0,1625008088,python;django;azure;azure-application-insights;opencensus,True,396,1,1625021268,https://stackoverflow.com/questions/68186622/django-api-request-count-now-showing-in-azure-app-insights-performance-with
+68135898,Where is the Spring Actuator Controller endpoint and can I call it programmatically with jvm call?,"<p>I want to find the actual java class that serves the Spring Actuator endpoint (<code>/actuator</code>).</p>
+<p>It's similar to this <a href=""https://stackoverflow.com/questions/65934535/call-actuator-within-controller-spring-boot"">question</a> in a way, but that person wanted to call it via a network HTTP call. Ideally, I can call it within the JVM to save on the cost of setting up an HTTP connection.</p>
+<p>The reason for this is because we have 2 metrics frameworks in our system. We have a legacy metrics framework built on OpenCensus and we migrated to Spring Actuator (Prometheus metrics based on Micrometer). I think the Spring one is better but I didn't realize how much my company built infrastructure around the old one. For example, we leverage internal libraries that use OpenCensus. Infra team is depending on Opencensus-based metrics from our app. So the idea is to try to merge and report both sets of metrics.</p>
+<p>I want to create my own metrics endpoint that pulls in data from Opencensus's endpoint and Actuator's endpoint. I could make an HTTP call to each, but I'd rather call them within the JVM to save on resources and reduce latency.</p>
+<p>Or perhaps I'm thinking about it wrong. Should I simply be using <code>MeterRegistry.forEachMeter()</code> in my endpoint?
+In any case, I thought if I found the Spring Actuator endpoint, I can see an example of how they're doing it and mimic the implementation even if I don't call it directly.</p>
+<p>Bonus: I'll need to track down the Opencensus handler that serves its endpoint too and will probably make another post for that, but if you know the answer to that as well, please share!</p>
+",0,1624647165,java;prometheus;spring-boot-actuator;opencensus,True,1281,2,1625004402,https://stackoverflow.com/questions/68135898/where-is-the-spring-actuator-controller-endpoint-and-can-i-call-it-programmatica
+67876075,Python opencensus flask set request-id header as set in FlaskMiddleware/AzureLogHandler,"<p>I'm using Azure Application Insights for my logging. I'm trying to set up an environment that all my logs have the same trace-id/request-id for visibility.</p>
+<p>In the <a href=""https://learn.microsoft.com/en-us/azure/azure-monitor/app/opencensus-python-request"" rel=""nofollow noreferrer"">documentation for logging requests</a>, by using the following code:</p>
+<pre><code>from flask import Flask
+from opencensus.ext.azure.trace_exporter import AzureExporter
+from opencensus.ext.flask.flask_middleware import FlaskMiddleware
+from opencensus.trace.samplers import ProbabilitySampler
+
+app = Flask(__name__)
+middleware = FlaskMiddleware(
+    app,
+    exporter=AzureExporter(connection_string=&quot;InstrumentationKey=&lt;your-ikey-here&gt;&quot;),
+    sampler=ProbabilitySampler(rate=1.0),
+)
+
+@app.route('/')
+def hello():
+    return 'Hello World!'
+
+if __name__ == '__main__':
+    app.run(host='localhost', port=8080, threaded=True)
+</code></pre>
+<p>The request is being successfully logged in Azure Monitor with its request ID as operation_Id.</p>
+<p>I can add logs with the same operation_Id with <a href=""https://learn.microsoft.com/en-us/azure/azure-monitor/app/opencensus-python#tracing"" rel=""nofollow noreferrer"">traces</a>, and I'll be able to see what traces were in some request:</p>
+<pre><code>from opencensus.ext.azure.trace_exporter import AzureExporter
+from opencensus.ext.azure.log_exporter import AzureLogHandler
+from opencensus.ext.flask.flask_middleware import FlaskMiddleware
+from opencensus.trace.samplers import ProbabilitySampler
+from opencensus.trace import config_integration
+from opencensus.trace.samplers import AlwaysOnSampler
+from opencensus.trace.tracer import Tracer
+
+config_integration.trace_integrations(['logging'])
+logging.basicConfig(format='%(asctime)s traceId=%(traceId)s spanId=%(spanId)s %(message)s')
+tracer = Tracer(sampler=AlwaysOnSampler())
+
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.INFO)
+logger.addHandler(AzureLogHandler(
+    connection_string='InstrumentationKey=...')
+)
+
+app = Flask(__name__)
+middleware = FlaskMiddleware(
+    app,
+    exporter=AzureExporter(connection_string=&quot;InstrumentationKey=...&quot;),
+    sampler=ProbabilitySampler(rate=1.0),
+)
+</code></pre>
+<p>But how to write this trace-id that is logged in both requests and traces as a header to the user in the response?</p>
+",1,1623086380,python;azure;flask;azure-application-insights;opencensus,False,776,0,1623086830,https://stackoverflow.com/questions/67876075/python-opencensus-flask-set-request-id-header-as-set-in-flaskmiddleware-azurelog
+67227091,Azure App Service ModueNotFoundError opencensus,"<p>I am trying to use application insights inside of a flask app using:</p>
+<pre><code>from opencensus.ext.azure.log_exporter import AzureLogHandler
+</code></pre>
+<p>but the runtime throws the following error:</p>
+<p><code> ModuleNotFoundError: No module named 'opencensus'</code></p>
+<p>However it works perfectly fine locally. I don't have anything to investigate next What should I do now?</p>
+",1,1619168844,flask;azure-web-app-service;modulenotfounderror;opencensus,False,2415,1,1619829007,https://stackoverflow.com/questions/67227091/azure-app-service-moduenotfounderror-opencensus
+67196775,Is there a workaround to make opencensus work with MLFlow?,"<p>I'm not able to import mlflow after having launched a log with opencensus Azure.
+The MLFlow import runs forever.</p>
+<p>My environment is the following:</p>
+<ul>
+<li>Python 3.7</li>
+<li>opencensus-ext-azure 1.0.7</li>
+<li>opencensus-ext-logging 0.1.0</li>
+<li>mlflow 1.15.0</li>
+</ul>
+<p>Here is the code to repoduce the bug:</p>
+<pre class=""lang-py prettyprint-override""><code>import logging
+
+from opencensus.ext.azure.log_exporter import AzureLogHandler
+
+logger = logging.getLogger(__name__)
+logger.addHandler(AzureLogHandler(connection_string='InstrumentationKey=&lt;your-key&gt;'))
+logger.warning('Hello, World!')
+
+import mlflow
+</code></pre>
+",1,1619011270,azure;mlflow;opencensus,True,92,1,1619077377,https://stackoverflow.com/questions/67196775/is-there-a-workaround-to-make-opencensus-work-with-mlflow
+66219108,Error -Cannot recognize package: go.opencensus.io While build datacollector-edge,"<p>I have created directory $GOPATH/src/github.com/streamsets . Then cloned <a href=""https://github.com/streamsets/datacollector-edge.git"" rel=""nofollow noreferrer"">https://github.com/streamsets/datacollector-edge.git</a> into it. When I run './gradlew goClean dist publishToMavenLocal', after resolving many dependencies I get the below error.</p>
+<p>Task :resolveBuildDependencies FAILED</p>
+<p>FAILURE: Build failed with an exception.</p>
+<p>What went wrong: Execution failed for task ':resolveBuildDependencies'.
+Exception in resolution, message is: Cannot recognize package: go.opencensus.io Resolution stack is: +- github.com/streamsets/datacollector-edge
+I am trying to resolve dependencies behind company proxy. Please help me with this</p>
+<p>Thanks,
+Aleena</p>
+",0,1613453319,gradle;build.gradle;gradlew;streamsets;opencensus,False,137,1,1614142100,https://stackoverflow.com/questions/66219108/error-cannot-recognize-package-go-opencensus-io-while-build-datacollector-edge
+65313480,DJANGO OPENCENSUS url field in request data too long,"<p>I am having a similar issue to <a href=""https://stackoverflow.com/questions/65189698/django-celery-wsgi-dropping-telemetry"">this question</a> since adding App Insights to my application.  It may be related to <a href=""https://stackoverflow.com/questions/34214037/why-does-djangos-urlfield-truncate-to-200-characters-by-default"">this other question</a> also, but neither of them are directly related to App Insights and neither have solutions.</p>
+<p>This is the error from the django-tasks.log</p>
+<pre><code>Data drop 400: 100: Field 'url' on type 'RequestData' is too long. Expected: 2048 characters, Actual: 3701 {'iKey': &lt;uuid&gt;, 'tags': {'ai.cloud.role': 'manage.py', 'ai.cloud.roleInstance': &lt;instance&gt;, 'ai.device.id': &lt;device&gt;, 'ai.device.locale': 'en_US', 'ai.device.osVersion': '#1 SMP Tue Aug 25 17:23:54 UTC 2020', 'ai.device.type': 'Other', 'ai.internal.sdkVersion': 'py3.6.12:oc0.7.11:ext1.0.4', 'ai.operation.id': 'fcbe18bf6ca9036aa4546af171f3e877', 'ai.operation.name': 'GET /&lt;my_url&gt;/'}, 'time': '2020-12-15T17:58:36.498868Z', 'name': 'Microsoft.ApplicationInsights.Request', 'data': {'baseData': {'id': '116a0658b513bdb9', 'duration': '0.00:00:00.096', 'responseCode': '200', 'success': True, 'properties': {'request.name': 'GET /&lt;my_url&gt;/', 'request.url': 'https://&lt;my host&gt;/&lt;my_url&gt;/?&lt;my very long query string&gt;', 'django.user.id': '90', 'django.user.name': '100044505'}, 'ver': 2, 'name': 'GET /&lt;my_url&gt;/', 'url': 'https://&lt;my host&gt;/&lt;my_url&gt;/?&lt;my very long query string&gt;', 'source': None, 'measurements': None}, 'baseType': 'RequestData'}, 'ver': 1, 'sampleRate': None, 'seq': None, 'flags': None}.
+</code></pre>
+<p>We also see this repeating in the logs.</p>
+<pre><code>Queue is full. Dropping telemetry.
+Queue is full. Dropping telemetry.
+Queue is full. Dropping telemetry.
+Queue is full. Dropping telemetry.
+Queue is full. Dropping telemetry.
+Queue is full. Dropping telemetry.
+</code></pre>
+<p>I could rewrite the app to use shorter queries, but that seems like the wrong answer.  Is there a way to configure django to support long URLs.</p>
+",0,1608065420,django;appinsights;opencensus,True,540,1,1610232680,https://stackoverflow.com/questions/65313480/django-opencensus-url-field-in-request-data-too-long
+65377607,Linkerd distributed tracing with OpenCensus,"<h2>Context</h2>
+<p>I am trying to use OpenCensus and Linkerd.
+Though Linkerd has an option to automatically provision OpenCensus and jaeger in its namespace, I don't want to use them. Instead, I deployed them independently by myself under the namespace named 'ops'.</p>
+<h2>Questions</h2>
+<ol>
+<li>Whether OpenCensus collector should be injected by Linkerd.</li>
+</ol>
+<p>At the end (exactly 4th line from the last) of the the official <a href=""https://linkerd.io/2/tasks/distributed-tracing/"" rel=""nofollow noreferrer"">docs</a>, it says,</p>
+<blockquote>
+<p>Ensure the OpenCensus collector is injected with the Linkerd proxy.</p>
+</blockquote>
+<p>What does this mean?<br />
+Should I inject linkerd sidecar into OpenCensus collector pod?<br />
+If so, why?</p>
+<ol start=""2"">
+<li>Should I suffix serviceaccount name by namespace?</li>
+</ol>
+<p>For example, let's say I've configured the default namespace like this.</p>
+<pre class=""lang-yaml prettyprint-override""><code>apiVersion: v1
+kind: Namespace
+metadata:
+  name: default
+  annotations:
+    linkerd.io/inject: enabled
+    config.linkerd.io/trace-collector: my-opencensus-collector.ops:12345
+    config.alpha.linkerd.io/trace-collector-service-account: my-opencensus-collector-service-account
+</code></pre>
+<p><code>my-opencensus-collector</code> is in <code>ops</code> namespace, so I put <code>.ops</code> at the end of its service name, resulting <code>my-opencensus-collector.ops:12345</code>.
+And the dedicated service account for the OpenCensus collector exists in <code>ops</code> namespace, too. In this case, should I put the namespace name at the end of service account name as well?</p>
+<p>Which one would be right?</p>
+<pre class=""lang-yaml prettyprint-override""><code>config.alpha.linkerd.io/trace-collector-service-account: my-opencensus-collector-service-account
+</code></pre>
+<p>or</p>
+<pre class=""lang-yaml prettyprint-override""><code>config.alpha.linkerd.io/trace-collector-service-account: my-opencensus-collector-service-account.ops
+</code></pre>
+<p>Thanks!</p>
+",0,1608447509,trace;distributed-tracing;opencensus;linkerd,False,462,1,1609197529,https://stackoverflow.com/questions/65377607/linkerd-distributed-tracing-with-opencensus
+65026892,Problem accessing custom metrics sent by opencensus exporter,"<p>I would like to export custom metrics using the opencensus python exporter as described in:  <a href=""https://cloud.google.com/monitoring/custom-metrics/open-census"" rel=""nofollow noreferrer"">https://cloud.google.com/monitoring/custom-metrics/open-census</a></p>
+<p>I have a flask application deployed on <strong>Google Cloud Run</strong> that uses the piece of code in example.
+When I deploy the service, everything seems to be ok (the <strong>Exporting stats to project</strong>  log indicates the correct project id), and then no exception is thrown by the exporter at any time. The <strong>mmap.record()</strong> method is also called without error.</p>
+<p>However, I don't manage to retrieve any value from <em><strong>Metrics Explorer</strong></em>, nor using the <em><strong>metricDescriptors API</strong></em> (searching for <em><strong>task_latency_distribution</strong></em>). Monitoring API is activated on my project, and as far as I understood there is no need to create the metric through the API since the exporter should do it by itself.</p>
+<p>My questions are:</p>
+<ul>
+<li>Are custom metrics compatible with Google Cloud Run deployment?</li>
+<li>Is there is way to check/debug what is sent by the exporter?</li>
+</ul>
+<p>Or more basically, does anybody have any clue of what can go wrong with test :-)?</p>
+<p>Thanks for your help,</p>
+<p>Aurelien</p>
+",0,1606412255,python;flask;google-cloud-run;opencensus,True,275,1,1609147960,https://stackoverflow.com/questions/65026892/problem-accessing-custom-metrics-sent-by-opencensus-exporter
+65386079,How to create percentile-based metric chart?,"<p>My application generates &quot;score&quot; values for a particular use case. These scores generally are anywhere in the range of 0-120, but most cluster in the range of 60-95.</p>
+<p>I currently have a stat chart using counts with cardinality, e.g., 0, 1-12, 13-24, 25-36, ... 97-108, and 109+.</p>
+<p>I'd like to instead create a percentile chart with time series lines showing percentile scores in increments of 10%, i.e., 10% score line, 20% score line, 40% score line, etc., up to 90% score line.</p>
+<p>Is that even possible? How do I do that, beginning with recording the stat using OpenCensus Java?</p>
+",2,1608509312,stackdriver;google-cloud-stackdriver;google-cloud-monitoring;opencensus,True,144,1,1608590501,https://stackoverflow.com/questions/65386079/how-to-create-percentile-based-metric-chart
+65363434,Cannot see traces in AWS Xray,"<p>I'm trying to upload some traces on AWS xray using opencensus.
+The route of traces is simply this:</p>
+<p><code>client -&gt; opencensus agent -&gt; xray</code></p>
+<p>I'm using a docker-compose.yml with this configuration:</p>
+<pre><code>version: '3.7'
+services:
+  #login
+  login:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    hostname: login
+    ports:
+      - 8080:8080
+    volumes:
+      - ./src:/app
+  #ocagent
+  ocagent:
+    image: omnition/opencensus-agent
+    volumes:
+      - ./ocagent-config.yaml:/conf/ocagent-config.yaml
+  #xray
+  xray:
+    image: amazon/aws-xray-daemon
+    volumes:
+      - ./.aws/:/root/.aws/
+    command: -o -n eu-west-1 --bind=xray:2000
+</code></pre>
+<p>and my config file for the opencensus exporter to aws is this:</p>
+<pre><code>exporters:
+   aws-xray:
+    region: &quot;eu-west-1&quot;
+    version: &quot;latest&quot;
+    buffer_size: 200
+</code></pre>
+<p>I uploaded credential as environment variables.</p>
+<p>when I run <code>docker-compose up</code> my service starts and all works fine but the traces doesn't show up in the console, it seems traces get lost in the route (maybe for a misconfiguration).
+Can you help me pls?</p>
+",0,1608322860,amazon-web-services;docker;devops;aws-xray;opencensus,False,118,0,1608322860,https://stackoverflow.com/questions/65363434/cannot-see-traces-in-aws-xray
+64953626,&quot;Exception iterating requests&quot; with Opencensus Python gRPC,"<p>I'm trying to send OpenCensus spans via gRPC to an OpenCensus collector with python as follows:</p>
+<pre class=""lang-py prettyprint-override""><code>from opencensus.proto.agent.trace.v1.trace_service_pb2 import ExportTraceServiceRequest
+from opencensus.proto.agent.trace.v1.trace_service_pb2_grpc import TraceServiceStub
+import grpc
+
+
+def export(spans, endpoint):
+    channel = grpc.insecure_channel(endpoint)
+    client = TraceServiceStub(channel=channel)
+    rq = ExportTraceServiceRequest(spans = spans)
+    responses = client.Export(rq)
+    print(list(responses))
+</code></pre>
+<p>The <code>spans</code> argument contains a list of type <code>opencensus.proto.trace.v1.trace_pb2.Span</code>.
+I expected this to export all spans in the list to the opencensus collector listening at <code>endpoint</code>. However, I don't see any data arriving and the response object contains</p>
+<pre><code>&lt;_MultiThreadedRendezvous of RPC that terminated with:
+    status = StatusCode.UNKNOWN
+    details = &quot;Exception iterating requests!&quot;
+    debug_error_string = &quot;None&quot;
+&gt;
+</code></pre>
+",1,1606044578,python;protocol-buffers;grpc;opencensus,False,528,0,1606044578,https://stackoverflow.com/questions/64953626/exception-iterating-requests-with-opencensus-python-grpc
+64335865,Export Django logs to Azure AppInsights with OpenCensus,"<p>I'm following this guidance for <a href=""https://github.com/census-instrumentation/opencensus-python/tree/master/contrib/opencensus-ext-django"" rel=""nofollow noreferrer"">Django</a> and <a href=""https://github.com/census-instrumentation/opencensus-python/tree/master/contrib/opencensus-ext-azure"" rel=""nofollow noreferrer"">Azure</a>.  I'm able to get dependancies and requests, but not traces.</p>
+<p>I added this to middleware:</p>
+<p>'opencensus.ext.django.middleware.OpencensusMiddleware'</p>
+<p>Here is the LOGGING and OPENCENSUS portions of settings.py</p>
+<pre><code>LOGGING = {
+'version': 1,
+'disable_existing_loggers': False,
+'formatters': {
+    'default': {
+        'format': '%(asctime)s - %(levelname)s - %(processName)s - %(name)s\n%(message)s',
+    },
+},
+&quot;handlers&quot;: {
+    &quot;azure&quot;: {
+        &quot;level&quot;: &quot;DEBUG&quot;,
+    &quot;class&quot;: &quot;opencensus.ext.azure.log_exporter.AzureLogHandler&quot;,
+        &quot;instrumentation_key&quot;: assert_env('APPINSIGHTS_INSTRUMENTATIONKEY'),
+     },
+    &quot;console&quot;: {
+        &quot;level&quot;: &quot;DEBUG&quot;,
+        &quot;class&quot;: &quot;logging.StreamHandler&quot;,
+        &quot;formatter&quot;: &quot;default&quot;,
+     },
+  },
+&quot;loggers&quot;: {
+    &quot;logger_name&quot;: {&quot;handlers&quot;: [&quot;azure&quot;, &quot;console&quot;]},
+},
+    # For some reason, this is needed or logging doesn't show up in the
+    # celery log file.
+'skyforge.tasks': {
+    'handlers': ['azure','console'],
+    'level': assert_env('DJANGO_LOG_LEVEL'),
+},
+</code></pre>
+<p>}</p>
+<pre><code>OPENCENSUS = {
+    'TRACE': {
+        'SAMPLER': 'opencensus.trace.samplers.ProbabilitySampler(rate=1)',
+        'EXPORTER': '''opencensus.ext.azure.trace_exporter.AzureExporter(
+            service_name='skyforge'
+        )'''
+        #Assumes Environmental Variable 'APPINSIGHTS_INSTRUMENTATIONKEY'
+    }
+}
+</code></pre>
+<p>Any guidance on where to look for why no trace logs.  The django-critical and django-tasks are still going to the console.</p>
+",0,1602594184,django;azure-application-insights;opencensus,True,1384,1,1605214820,https://stackoverflow.com/questions/64335865/export-django-logs-to-azure-appinsights-with-opencensus
+64256689,How to instrument Prometheus Gauge using OpenCensus?,"<p>I am trying to find a way to instrument Prometheus Gauge metrics using OpenCencus in Golang. The goal is to track no of active sessions. So value can increase and decrease and also can reset to 0 on server restart.</p>
+<p>They have an example of it <a href=""https://opencensus.io/quickstart/go/metrics/"" rel=""nofollow noreferrer"">https://opencensus.io/quickstart/go/metrics/</a>, but I am not able to co-relate any with Gauge and resetting to 0.</p>
+<p>Could you suggest which Measure and View I should use to instrument Gauge which can increase, decrease, and reset to 0?</p>
+",1,1602137236,go;prometheus;gauge;opencensus,True,659,1,1602805288,https://stackoverflow.com/questions/64256689/how-to-instrument-prometheus-gauge-using-opencensus
+64216251,Opencensus Advanced Aggregation,"<p>When i create the metrics in google stackdriver driver monitoring. I do see list of options for aligner (which is under secondary aggregation) similar to aggregator but after implementing the opencensus metrics. I do see only delta and rate options alone.</p>
+<p>Anybody faced the similar issue or Is their any option/parameter to set to fix this issue.</p>
+<p><a href=""https://i.stack.imgur.com/5f6Ij.png"" rel=""nofollow noreferrer"">Stackdriver Metrics Aligner Param</a></p>
+",0,1601932346,stackdriver;google-cloud-stackdriver;opencensus,False,90,0,1601933707,https://stackoverflow.com/questions/64216251/opencensus-advanced-aggregation
+63699085,Can&#39;t get custom metrics data when using OpenCensus,"<p>I am following this guide <a href=""https://cloud.google.com/monitoring/custom-metrics/open-census?hl=zh-cn#monitoring_opencensus_metrics_quickstart-go"" rel=""nofollow noreferrer"">monitoring_opencensus_metrics_quickstart-go</a>. Besides, I also tried the way from this <a href=""https://stackoverflow.com/a/56947466/6463558"">answer</a>.</p>
+<p>Code here:</p>
+<pre class=""lang-golang prettyprint-override""><code>package main
+
+import (
+    &quot;context&quot;
+    &quot;fmt&quot;
+    &quot;log&quot;
+    &quot;os&quot;
+    &quot;path&quot;
+    &quot;time&quot;
+
+    &quot;google.golang.org/api/option&quot;
+
+    &quot;contrib.go.opencensus.io/exporter/stackdriver&quot;
+    &quot;go.opencensus.io/stats&quot;
+    &quot;go.opencensus.io/stats/view&quot;
+    &quot;golang.org/x/exp/rand&quot;
+)
+
+var (
+    // The task latency in milliseconds.
+    latencyMs = stats.Float64(&quot;task_latency&quot;, &quot;The task latency in milliseconds&quot;, &quot;ms&quot;)
+)
+
+func main() {
+    ctx := context.Background()
+    v := &amp;view.View{
+        Name:        &quot;task_latency_distribution&quot;,
+        Measure:     latencyMs,
+        Description: &quot;The distribution of the task latencies&quot;,
+        Aggregation: view.Distribution(0, 100, 200, 400, 1000, 2000, 4000),
+    }
+    if err := view.Register(v); err != nil {
+        log.Fatalf(&quot;Failed to register the view: %v&quot;, err)
+    }
+
+    exporter, err := stackdriver.NewExporter(stackdriver.Options{
+        ProjectID: os.Getenv(&quot;GOOGLE_CLOUD_PROJECT&quot;),
+        MonitoringClientOptions: []option.ClientOption{
+            option.WithCredentialsFile(path.Join(&quot;./.gcp/stackdriver-monitor-admin.json&quot;)),
+        },
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+    view.RegisterExporter(exporter)
+    view.SetReportingPeriod(60 * time.Second)
+    // Flush must be called before main() exits to ensure metrics are recorded.
+    defer exporter.Flush()
+
+    if err := exporter.StartMetricsExporter(); err != nil {
+        log.Fatalf(&quot;Error starting metric exporter: %v&quot;, err)
+    }
+    defer exporter.StopMetricsExporter()
+
+    // Record 100 fake latency values between 0 and 5 seconds.
+    for i := 0; i &lt; 100; i++ {
+        ms := float64(5*time.Second/time.Millisecond) * rand.Float64()
+        fmt.Printf(&quot;Latency %d: %f\n&quot;, i, ms)
+        stats.Record(ctx, latencyMs.M(ms))
+        time.Sleep(1 * time.Second)
+    }
+
+    fmt.Println(&quot;Done recording metrics&quot;)
+}
+</code></pre>
+<p>I run above code locally, NOT in GCE, GAE and GKE environments.</p>
+<p>At the metrics explorer web UI, here is the metric query condition:</p>
+<ul>
+<li>Resource Type: <code>Consumed API</code></li>
+<li>Metric: <code>custom.googleapis.com/opencensus/task_latency_distribution</code></li>
+</ul>
+<p>Full query:</p>
+<pre><code>fetch consumed_api
+| metric 'custom.googleapis.com/opencensus/task_latency_distribution'
+| align delta(1m)
+| every 1m
+| group_by [],
+    [value_task_latency_distribution_aggregate:
+       aggregate(value.task_latency_distribution)]
+</code></pre>
+<p>The service account has <code>Monitoring Admin</code> role.</p>
+<p>But got <code>No data is available for the selected time frame</code>.</p>
+<p><a href=""https://i.stack.imgur.com/791Pn.png"" rel=""nofollow noreferrer""><img src=""https://i.stack.imgur.com/791Pn.png"" alt=""enter image description here"" /></a></p>
+",0,1599023659,google-cloud-platform;stackdriver;google-cloud-stackdriver;google-cloud-monitoring;opencensus,True,1032,1,1599607696,https://stackoverflow.com/questions/63699085/cant-get-custom-metrics-data-when-using-opencensus
+63789417,Azure Application Insights logging for Python Application - Set Exception properties explicitly,"<p>I am trying to send Exceptions from my <strong>Python application</strong> running in <strong>Azure App service</strong> to the designated <strong>Azure Application Insights</strong> instance. I am using <a href=""https://learn.microsoft.com/en-us/azure/azure-monitor/app/opencensus-python"" rel=""nofollow noreferrer"">OpenCensus</a> python library for this purpose.
+The basic logging and exception are successfully reaching to App Insight.</p>
+<p>In addition to this i would like to know if there is a way where I can configure the Exception attributes like: <code>problemId</code> or any other attributes explicitly to reflect specific value for easier alerting (<em>like send email to specific group based on problemId</em>).</p>
+<p>Any suggestion/pointers would be super helpful</p>
+",3,1599551415,python;azure-application-insights;azure-appservice;opencensus,True,9434,1,1599554651,https://stackoverflow.com/questions/63789417/azure-application-insights-logging-for-python-application-set-exception-proper
+63602148,Google App Engine error when use opencensus ext,"<pre><code>WARNING: [pool app] child 29 said into stderr: &quot;php-fpm: pool app: symbol lookup error: /opt/php73/lib/x86_64-linux-gnu/extensions/no-debug-non-zts-20180731/opencensus.so: undefined symbol: ZVAL_DESTRUCTOR&quot;
+</code></pre>
+<p>I using GAE env flex. today GAE use php7.3-fpm and i got that error. I check other website in GAE using php7.2-fpm working normally.</p>
+<p>How can i fix problem.</p>
+",-2,1598460306,google-app-engine;php-7.3;opencensus,True,78,2,1598522015,https://stackoverflow.com/questions/63602148/google-app-engine-error-when-use-opencensus-ext
+63221267,Jaeger integration for a Java low latency application,"<p>Most of the integrations I have come across uses the java-agent to push the traces to a central collector and in turn one can view traces in Jaeger. However in my case I can't use the java agent, hence I decided to go with the custom tracing api which seems fine and there are many examples for this.</p>
+<p>By design my low latency application limits me from making any connections to external components/ports hence I am also trying to avoid pushing the traces/spans to the local Jaeger agent or Collector endpoint, rather have the traces logged via the LogReporter.</p>
+<p>Beyond this I am wondering how to build a pipeline for pushing the trace logs in to Jaeger. The logs themselves are in AWS cloudwatch as streams so I am thinking if I use a Serveless Lambda to subscribe and parse these trace log events then I could ship them myself to Jaeger using may be the HTTP /api/traces endpoint (not much details but read somewhere that this exists in some form).</p>
+<p>At this point my question is if this is the right way or there is a better mechanism to achieve this. As I have no idea if the traces themselves can be replayed in this fashion to the Collector. Also not sure what format the endpoint accepts as I don't see much documentation or example around this.</p>
+<p>The objective is for my application to &quot;not&quot; connect to any external monitoring infrastructure via push events so if there is any better way for Jaeger integration I would love to hear. Also I am okay if any other API in the form of OpenTracing, OpenCensus or even the latest OpenTelemetry can help with this.</p>
+<p>Thanks</p>
+",0,1596404101,java;jaeger;opentracing;opencensus;open-telemetry,False,207,1,1597758718,https://stackoverflow.com/questions/63221267/jaeger-integration-for-a-java-low-latency-application
+63404518,Trying to get some trace information from a Python Google Cloud Function into Cloud Trace,"<p>I have a couple of Cloud Functions that make remote calls out to a 3rd party API and I would like to be able to gather latency metrics in Cloud Trace for those calls.</p>
+<p>I'm trying to find a barebones working piece of example code that I can build off of.  Only one I found is at <a href=""https://medium.com/faun/tracing-python-cloud-functions-a17545586359"" rel=""nofollow noreferrer"">https://medium.com/faun/tracing-python-cloud-functions-a17545586359</a></p>
+<p>It is essentially.</p>
+<pre><code>import requests
+from opencensus.trace import tracer as tracer_module
+from opencensus.trace.exporters import stackdriver_exporter
+from opencensus.trace.exporters.transports.background_thread \
+    import BackgroundThreadTransport
+
+PROJECT_ID = 'test-trace'
+# instantiate trace exporter
+exporter = stackdriver_exporter.StackdriverExporter(project_id=PROJECT_ID, transport=BackgroundThreadTransport)
+
+def main_fun(data, context):
+    tracer = tracer_module.Tracer(exporter=exporter)
+
+    with tracer.span(name='get_token'):
+        print('Getting Token')
+        authtoken = get_token(email,password)
+        print('Got Token')
+
+def get_token(email,password):
+    # Make some request out to an API and get a Token
+    return accesstoken
+</code></pre>
+<p>There are no errors and everything works as intended, minus a trace not showing up in Cloud Trace or Stackdriver.</p>
+<p>Am I doing something wrong here?  Does anyone have some simple code that may work for Cloud Trace within a Cloud Function</p>
+",1,1597361210,python-3.x;google-cloud-functions;google-cloud-stackdriver;opencensus,False,364,0,1597361210,https://stackoverflow.com/questions/63404518/trying-to-get-some-trace-information-from-a-python-google-cloud-function-into-cl
+62998835,Usages of Opentracing tools like Jaeger,"<p>I have come to know about opentracing and is even working on a POC with Jaeger and Spring. We have around 25+ micro services in production. I have read about it but is a bit confused as how it can be really used.</p>
+<p>I'm thinking to use it as a troubleshooting tool to identify the root cause of a failure in the application. For this, we can search for httpStatus codes, custom tags, traceIds and application logs in JaegerUI. Also, we can find areas of bottlenecks/slowness by monitoring the traces.</p>
+<p>What are the other usages?</p>
+<p>Jaeger has a request sampler and I think we should not sample every request in Prod as it may have adverse impact. Is this true?</p>
+<p>If yes, then why and what can be the impact on the application? I guess it can't be really used for troubleshooting in this case as we won't have data on every request.</p>
+<p>What sampling configuration is recommended for Prod?</p>
+<p>Also, how a tool like Jaeger is different from APM tools and where does it fit in? I mean you can do something similar with APM tools as well. For e.g., one can drill through a service's transaction and jump to corresponding request to other service in AppDynamics. Alerts can be put on slow transactions. One can also capture request headers/body so that they can be searched upon, etc.</p>
+",0,1595258992,spring;jaeger;opentracing;opencensus;open-telemetry,True,1209,1,1595860733,https://stackoverflow.com/questions/62998835/usages-of-opentracing-tools-like-jaeger
+62306294,Django server not working with AzureLogHandler (opencensus),"<p>I'm trying to connect my django project logs to Azure Application Insights using OpenCensus. The <a href=""https://learn.microsoft.com/en-us/azure/azure-monitor/app/opencensus-python-dependency#dependencies-with-django-integration"" rel=""nofollow noreferrer"">middleware</a> for montirong requests works well but I also want to send <a href=""https://learn.microsoft.com/en-us/azure/azure-monitor/app/opencensus-python#modify-telemetry-1"" rel=""nofollow noreferrer"">telemetry logs</a> (not just requests) to Azure. Here is my django LOGGING configuration : </p>
+
+<pre><code>LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'verbose': {
+            'format': '%(asctime)s %(levelname).3s %(process)d %(name)s : %(message)s',
+        },
+        'simple': {
+            'format': '%(asctime)s %(levelname)-7s : %(message)s',
+        },
+    },
+    'filters': {
+        'require_debug_false': {
+            '()': 'django.utils.log.RequireDebugFalse',
+        }
+    },
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+            'formatter': 'verbose',
+        },
+        'azure': {
+            'formatter': 'simple',
+            'class': 'opencensus.ext.azure.log_exporter.AzureLogHandler',
+            'connection_string': 'InstrumentationKey=XXXX-XXXX-XXXX-XXXX'
+        },
+        'mail_admins': {
+            'level': 'ERROR',
+            'filters': ['require_debug_false'],
+            'class': 'django.utils.log.AdminEmailHandler'
+        }
+    },
+    'loggers': {
+        '': {
+            'level': os.environ.get('LOGLEVEL', 'INFO'),
+            'handlers': ['console', 'azure'],
+        },
+        'devdebug': {
+            'handlers': ['console'],
+            'level': 'INFO',
+            'propagate': False,
+        },
+        'django': {
+            'handlers': ['console', 'mail_admins'],
+            'level': os.environ.get('LOGLEVEL', 'INFO'),
+            'propagate': False,
+        }
+    },
+}
+</code></pre>
+
+<p>Without <code>'azure'</code> handler in my root logger config, everything works fine. With <code>'azure'</code> handler, the server starts but doesn't work : I am unable to connect to it. I really don't know what is happening as it doesn't show me unusual logs (even with LOGLEVEL=DEBUG).
+My handler configuration should be good as I can receive logs in Azure (when I run any manage command). Even when I run <code>manage runsslserver localhost:53215</code>, I receive logs but it is like my server is not running when I try to reach it.</p>
+",1,1591799965,django;python-3.x;azure;opencensus,False,542,1,1592343235,https://stackoverflow.com/questions/62306294/django-server-not-working-with-azureloghandler-opencensus
+62294715,How to instrument code using OpenTracing / OpenCensus?,"<p>I have to instrument our java/python/c++ application using one of the apis (opentracing/opencensus). The problem is that the instrumentation requires that i start a span, set tags, set logs and then close the span in each method call. This is too much change for us. Can anyone help in solving this problem ? how do i achieve this without polluting my code with all the instrumentation code ?</p>
+",0,1591754922,datadog;jaeger;opentracing;distributed-tracing;opencensus,False,156,1,1591979919,https://stackoverflow.com/questions/62294715/how-to-instrument-code-using-opentracing-opencensus
+62046075,How to consume Google PubSub opencensus metrics using GoLang?,"<p>I am new in Google PubSub. I am using GoLang for the client library.</p>
+
+<p>How to see the opencensus metrics that recorded by the google-cloud-go library?</p>
+
+<p>I already success publish a message to Google PubSub. And now I want to see this metrics, but I can not find these metrics in Google Stackdriver.</p>
+
+<pre><code>PublishLatency = stats.Float64(statsPrefix+""publish_roundtrip_latency"", ""The latency in milliseconds per publish batch"", stats.UnitMilliseconds)
+</code></pre>
+
+<p><a href=""https://github.com/googleapis/google-cloud-go/blob/25803d86c6f5d3a315388d369bf6ddecfadfbfb5/pubsub/trace.go#L59"" rel=""nofollow noreferrer"">https://github.com/googleapis/google-cloud-go/blob/25803d86c6f5d3a315388d369bf6ddecfadfbfb5/pubsub/trace.go#L59</a></p>
+",3,1590591096,go;google-cloud-pubsub;opencensus,True,557,1,1591291104,https://stackoverflow.com/questions/62046075/how-to-consume-google-pubsub-opencensus-metrics-using-golang
+54597464,"Django, Apache2 on Google Kubernetes Engine writing Opencensus Traces to Stackdriver Trace","<p>I have a Django web app served from Apache2 with mod_wsgi in docker containers running on a Kubernetes cluster in Google Cloud Platform, protected by Identity-Aware Proxy. Everything is working great, but I want to send GCP Stackdriver traces for all requests without writing one for each view in my project. I found middleware to handle this, using Opencensus. I went through <a href=""https://census-instrumentation.github.io/opencensus-python/trace/usage.html"" rel=""noreferrer"">this documentation</a>, and was able to manually generate traces that exported to Stackdriver Trace in my project by specifying the <code>StackdriverExporter</code> and passing the <code>project_id</code> parameter as the Google Cloud Platform <code>Project Number</code> for my project.</p>
+
+<p>Now to make this automatic for ALL requests, I followed the instructions to set up the middleware. In settings.py, I added the module to <code>INSTALLED_APPS</code>, <code>MIDDLEWARE</code>, and set up the <code>OPENCENSUS_TRACE</code> dictionary of options. I also added the <code>OPENCENSUS_TRACE_PARAMS</code>. This works great with the default exporter 'opencensus.trace.exporters.print_exporter.PrintExporter', as I can see the Trace and Span information, including Trace ID and all details in my Apache2 web server logs. However, I want to send these to my Stackdriver Trace processor for analysis.</p>
+
+<p>I tried setting the <code>EXPORTER</code> parameter to <code>opencensus.trace.exporters.stackdriver_exporter.StackdriverExporter</code>, which works when run manually from the shell, as long as you supply the project number.</p>
+
+<p>When it is set up to use <code>StackdriverExporter</code>, the web page will not respond load, the health check starts to fail, and ultimately the web page comes back with a 502 error, stating I should try again in 30 seconds (I believe the Identity-Aware Proxy is generating this error, once it detects the failed health check), but the server generates no errors, and there are no logs in access or errors for Apache2.</p>
+
+<p>There is another dictionary in settings.py named <code>OPENCENSUS_TRACE_PARAMS</code>, which I presume is needed to determine which project number the exporter should be using. The example has <code>GCP_EXPORTER_PROJECT</code> set as <code>None</code>, and <code>SERVICE_NAME</code> set as <code>'my_service'</code>.</p>
+
+<p>What options do I need to set to get the exporter to send back to Stackdriver instead of printing to logs? Do you have any idea about how I can set this up?</p>
+
+<p>settings.py</p>
+
+<pre><code>MIDDLEWARE = (
+    ...
+    'opencensus.trace.ext.django.middleware.OpencensusMiddleware',
+)
+INSTALLED_APPS = (
+    ...
+    'opencensus.trace.ext.django',
+)
+
+OPENCENSUS_TRACE = {
+    'SAMPLER': 'opencensus.trace.samplers.probability.ProbabilitySampler',
+    'EXPORTER': 'opencensus.trace.exporters.stackdriver_exporter.StackdriverExporter',  # This one just makes the server hang with no response or error and kills the health check.
+    'PROPAGATOR': 'opencensus.trace.propagation.google_cloud_format.GoogleCloudFormatPropagator',
+    # 'EXPORTER': 'opencensus.trace.exporters.print_exporter.PrintExporter',  # This one works to print the Trace and Span with IDs and details in the logs.
+}
+
+OPENCENSUS_TRACE_PARAMS = {
+    'BLACKLIST_PATHS': ['/health'],
+    'GCP_EXPORTER_PROJECT': 'my_project_number',  # Should this be None like the example, or Project ID, or Project Number?
+    'SAMPLING_RATE': 0.5,
+    'SERVICE_NAME': 'my_service',  # Not sure if this is my app name or some other service name.
+    'ZIPKIN_EXPORTER_HOST_NAME': 'localhost',  # Are the following even necessary, or are they causing a failure that is not detected by Apache2?
+    'ZIPKIN_EXPORTER_PORT': 9411,
+    'ZIPKIN_EXPORTER_PROTOCOL': 'http',
+    'JAEGER_EXPORTER_HOST_NAME': None,
+    'JAEGER_EXPORTER_PORT': None,
+    'JAEGER_EXPORTER_AGENT_HOST_NAME': 'localhost',
+    'JAEGER_EXPORTER_AGENT_PORT': 6831
+}
+</code></pre>
+
+<p>Here's an example (I prettified the format for readability) of the Apache2 log when it is set to use the <code>PrintExporter</code>:</p>
+
+<pre><code>[Fri Feb 08 09:00:32.427575 2019]
+[wsgi:error]
+[pid 1097:tid 139801302882048]
+[client 10.48.0.1:43988]
+[SpanData(
+  name='services.views.my_view', 
+  context=SpanContext(
+    trace_id=e882f23e49e34fc09df621867d753532,
+    span_id=None,
+    trace_options=TraceOptions(enabled=True),
+    tracestate=None
+  ),
+  span_id='bcbe7b96906a482a',
+  parent_span_id=None,
+  attributes={
+    'http.status_code': '200',
+    'http.method': 'GET',
+    'http.url': '/',
+    'django.user.name': ''
+  },
+  start_time='2019-02-08T17:00:29.845733Z',
+  end_time='2019-02-08T17:00:32.427455Z',
+  child_span_count=0,
+  stack_trace=None,
+  time_events=[],
+  links=[],
+  status=None,
+  same_process_as_parent_span=None,
+  span_kind=1
+)]
+</code></pre>
+
+<p>Thanks in advance for any tips, assistance, or troubleshooting advice!</p>
+
+<p><strong>Edit 2019-02-08 6:56 PM UTC:</strong></p>
+
+<p>I found this in the middleware:</p>
+
+<pre><code># Initialize the exporter
+transport = convert_to_import(settings.params.get(TRANSPORT))
+
+if self._exporter.__name__ == 'GoogleCloudExporter':
+    _project_id = settings.params.get(GCP_EXPORTER_PROJECT, None)
+    self.exporter = self._exporter(
+        project_id=_project_id,
+        transport=transport)
+elif self._exporter.__name__ == 'ZipkinExporter':
+    _service_name = self._get_service_name(settings.params)
+    _zipkin_host_name = settings.params.get(
+        ZIPKIN_EXPORTER_HOST_NAME, 'localhost')
+    _zipkin_port = settings.params.get(
+        ZIPKIN_EXPORTER_PORT, 9411)
+    _zipkin_protocol = settings.params.get(
+        ZIPKIN_EXPORTER_PROTOCOL, 'http')
+    self.exporter = self._exporter(
+        service_name=_service_name,
+        host_name=_zipkin_host_name,
+        port=_zipkin_port,
+        protocol=_zipkin_protocol,
+        transport=transport)
+elif self._exporter.__name__ == 'TraceExporter':
+    _service_name = self._get_service_name(settings.params)
+    _endpoint = settings.params.get(
+        OCAGENT_TRACE_EXPORTER_ENDPOINT, None)
+    self.exporter = self._exporter(
+        service_name=_service_name,
+        endpoint=_endpoint,
+        transport=transport)
+elif self._exporter.__name__ == 'JaegerExporter':
+    _service_name = self._get_service_name(settings.params)
+    self.exporter = self._exporter(
+        service_name=_service_name,
+        transport=transport)
+else:
+    self.exporter = self._exporter(transport=transport)
+</code></pre>
+
+<p>The exporter is now named <code>StackdriverExporter</code>, instead of <code>GoogleCloudExporter</code>. I set up a class in my app named <code>GoogleCloudExporter</code> that inherits <code>StackdriverExporter</code>, and updated my settings.py to use <code>GoogleCloudExporter</code>, but it didn't seem to work, I wonder if there is other code referencing these old naming schemes, possibly for the transport. I'm searching the source code for clues... This at least tells me I can get rid of the ZIPKIN and JAEGER param options, as this is determined on the <code>EXPORTER</code> param.</p>
+
+<p><strong>Edit 2019-02-08 11:58 PM UTC:</strong></p>
+
+<p>I scrapped Apache2 to isolate the problem and just set my docker image to use Django's built in webserver <code>CMD [""python"", ""/path/to/manage.py"", ""runserver"", ""0.0.0.0:80""]</code> and it works! When I go to the site, it writes traces to Stackdriver Trace for each request, the Span name is the module and method being executed.</p>
+
+<p>Somehow Apache2 is not being allowed to send these, but I can do so from the shell when running as root. I'm adding Apache2 and mod-wsgi tags to the question, because I have a funny feeling this has to do with forking child processes in Apache2 and mod-WSGI. Would it be the child process being unable to be created as apache2's child process is sandboxed, or could this be a permissions thing? It seems strange, because it is just calling python modules, no external system OS binaries, that I am aware of. Any other ideas would be greatly appreciated!</p>
+",19,1549646759,django;apache2;mod-wsgi;google-cloud-stackdriver;opencensus,True,636,1,1591043581,https://stackoverflow.com/questions/54597464/django-apache2-on-google-kubernetes-engine-writing-opencensus-traces-to-stackdr
+61551616,does OpenCensus is designed to create Custom Metrics over Firestore,"<p>According to <a href=""https://cloud.google.com/monitoring/custom-metrics"" rel=""nofollow noreferrer"">Google Custom Metrics</a> </p>
+
+<blockquote>
+  <p>Using Custom Metrics</p>
+  
+  <p>This guide describes how to create and use custom metrics. The information is divided into the following sections:</p>
+  
+  <p>Custom metrics with OpenCensus describes how to use OpenCensus, an open-source monitoring and tracing library, to create custom metrics, add metric data to them, and export them to Cloud Monitoring.</p>
+  
+  <p>When metrics from OpenCensus are exported to Cloud Monitoring, Monitoring treats them like any other custom metrics.</p>
+</blockquote>
+
+<p>I have a very simple question: is it possible to create a Custom Metrics to be applied on Firestore only? If so, any scratch idea how will be very appreciated.</p>
+",0,1588371208,google-cloud-platform;google-cloud-firestore;opencensus,False,98,0,1588373116,https://stackoverflow.com/questions/61551616/does-opencensus-is-designed-to-create-custom-metrics-over-firestore
+53345865,Can the opencensus stats python stackdriver exporter be used in the python 2 app engine standard environment?,"<p><a href=""https://opencensus.io/quickstart/python/metrics/#installation"" rel=""nofollow noreferrer"">In the docs</a> it says to install a cloud client library (pip install google-cloud-monitoring). However the cloud client libraries aren't available in the python2 standard environment on app engine, <a href=""https://cloud.google.com/appengine/docs/standard/python3/python-differences#cloud_client_libraries"" rel=""nofollow noreferrer"">described here</a>.</p>
+
+<p>To use the stackdriver exporter, do you have to be using the beta python 3 runtime?</p>
+",1,1542404773,python;google-app-engine;google-cloud-platform;opencensus,True,55,1,1588313327,https://stackoverflow.com/questions/53345865/can-the-opencensus-stats-python-stackdriver-exporter-be-used-in-the-python-2-app
+61363408,How to add a custom exporter for capturing traces from opentelemetry?,"<p>I have created a custom exporter by Implementing the SpanExporter class of OpenTelemetry.Trace.Export in .NET Core.</p>
+
+<p>I need to configure the opentelemetry traces to use this as an exporter. I am not using any collector here I want to directly use this exporter in-process.</p>
+
+<p>Earlier we were using Jaeger exporter as follows:</p>
+
+<pre><code>using (_tracerFactory = TracerFactory.Create(
+                builder =&gt; builder.UseJaeger(o =&gt;
+                {
+                    o.ServiceName = ""TestJaeger2"";
+                    o.AgentHost = ""localhost"";
+                })
+
+))
+</code></pre>
+
+<p>I need to use the custom exporter inplace of JaegerExporter now, how to configure this?</p>
+",0,1587553047,.net;opentracing;opencensus,False,1266,0,1587890665,https://stackoverflow.com/questions/61363408/how-to-add-a-custom-exporter-for-capturing-traces-from-opentelemetry
+61274945,Setting up OpenCensus to work with Stackdriver,"<p>I'm trying to setup OpenCensus for our project, but I'm running into <code>Bazel</code> issues.</p>
+
+<pre><code>error loading package '@com_google_googleapis//google/devtools/cloudtrace/v2': Unable to find package for @com_google_googleapis_imports//:imports.bzl: The repository '@com_google_googleapis_imports' could not be resolved. and referenced by '@io_opencensus_cpp//opencensus/exporters/trace/stackdriver:stackdriver_exporter'
+</code></pre>
+
+<p>This happens when trying to use the version at HEAD. Does anyone know how to fix this? Googleapis indeed does not seem to have any file named <code>imports.bzl</code>.</p>
+",1,1587136473,c++;bazel;stackdriver;opencensus,True,321,1,1587730928,https://stackoverflow.com/questions/61274945/setting-up-opencensus-to-work-with-stackdriver
+59214002,How to use metrics using Steeltoe Actuator + opencensus + Prometheus,"<p>We are implementing enterprise level application using micro-services architecture.To implement it, .net core and JAVA are being used and it is used pivotal steeltoe framework to implement micro-services features for .net and sprint boot for JAVA.Now we are production ready and need to capture metrics in production environment. We are planing to use actuator framework and Prometheus + graffana dashboards.
+Metrics monitoring can be achieved by actuator framework very easily.
+If we want to implement same functionality using steeltoe we have to use opencensus to export metrics to Prometheus . My question is - Is there example which is supported to .net core to export metrics from opencensus to Prometheus via steeltoe.</p>
+
+<p>Thanks in advance,</p>
+",0,1575638372,.net-core;microservices;prometheus;opencensus;steeltoe,False,412,1,1585853366,https://stackoverflow.com/questions/59214002/how-to-use-metrics-using-steeltoe-actuator-opencensus-prometheus
+60846142,can I trace sub called function with OpenCensus?,"<p>I want to trace the whole project with Opencensus and Jaeger. I added HTTP trace in entry services and add  <code>stratspan</code> in middleware surrounded whol my services and this two-span called and show on Jaeger. My problem is each service contain a lot of function and I want see a trace of all my functions but in this way not show overall service not shown each function. I don't like add per function add one <code>stratspan</code>. I use <code>ctx context.Context</code> entry all my function but not different!</p>
+",1,1585128920,go;trace;jaeger;opencensus,False,140,1,1585183447,https://stackoverflow.com/questions/60846142/can-i-trace-sub-called-function-with-opencensus
+60594764,Are there any config NOT to use trace on specific environment,"<p>Now I have a Golang Application deployed on GAE, with stackdriver trace.
+About stackdriver Trace, to get custom span data, I did set up on my code, like</p>
+
+<pre><code>        exporter, err := stackdriver.NewExporter(stackdriver.Options{
+                ProjectID: os.Getenv(""GOOGLE_CLOUD_PROJECT""),
+        })
+        if err != nil {
+                log.Fatal(err)
+        }
+        trace.RegisterExporter(exporter)
+
+        client := &amp;http.Client{
+                Transport: &amp;ochttp.Transport{
+                        // Use Google Cloud propagation format.
+                        Propagation: &amp;propagation.HTTPFormat{},
+                },
+        }
+</code></pre>
+
+<p>ref. <a href=""https://cloud.google.com/trace/docs/setup/go"" rel=""nofollow noreferrer"">https://cloud.google.com/trace/docs/setup/go</a></p>
+
+<p>On GAE, I succeed in viewing trace on my GCP console.</p>
+
+<p>but, I DON'T want to trace these log on my local developing environment (I'm using docker).currently, I try to run my application on docker, nil pointer panic shows up on <code>Span.Export()</code> which may be called from <code>Span.End()</code>.</p>
+
+<p>So, I wonder if someone knows the way to DISABLE stackdriver trace on specific environment (with my case, on docker).</p>
+
+<p>Otherwise, should I check condition of trace configuration, like as below ?</p>
+
+<pre><code>    if trace.projectId != """" {
+
+     ctx := reque.Context()
+     _, span := trace.StartSpan(ctx,""Span blahblah"")
+     defer span.End()
+    }
+</code></pre>
+",0,1583728457,go;google-cloud-platform;google-cloud-stackdriver;opencensus,True,355,1,1584368726,https://stackoverflow.com/questions/60594764/are-there-any-config-not-to-use-trace-on-specific-environment
+56950415,ClassNotFoundException: io.opencensus.trace.propagation.TextFormat not found,"<p>I have a module in apache karaf 4.2.6 with java 11 that validates purchase receipts in Google Play. I'm using androidpublisher.</p>
+
+<p>When it sends a request for the first time I get an error in OpenCensusUtils class:</p>
+
+<pre><code>androidPublisher.purchases().products().get(packageName, productId, purchaseToken).execute()
+</code></pre>
+
+<p><code>java.lang.ClassNotFoundException: io.opencensus.trace.propagation.TextFormat not found by wrap_file__Users_USER_NAME_.m2_repository_io_opencensus_opencensus-contrib-http-util_0.22.1_opencensus-contrib-http-util-0.22.1.jar</code></p>
+
+<p>In subsequent times I get error in com.google.api.client.http.HttpRequest class at this point <code>private final Tracer tracer = OpenCensusUtils.getTracer()</code>:</p>
+
+<p><code>java.lang.NoClassDefFoundError: Could not initialize class com.google.api.client.http.OpenCensusUtils</code></p>
+
+<p>Here is dependencies:</p>
+
+<pre><code>    &lt;dependency&gt;
+        &lt;groupId&gt;com.google.apis&lt;/groupId&gt;
+        &lt;artifactId&gt;google-api-services-androidpublisher&lt;/artifactId&gt;
+        &lt;version&gt;v3-rev92-1.25.0&lt;/version&gt;
+        &lt;exclusions&gt;
+            &lt;exclusion&gt;
+                &lt;groupId&gt;org.apache.httpcomponents&lt;/groupId&gt;
+                &lt;artifactId&gt;httpclient&lt;/artifactId&gt;
+            &lt;/exclusion&gt;
+        &lt;/exclusions&gt;
+    &lt;/dependency&gt;
+
+    &lt;dependency&gt;
+        &lt;groupId&gt;com.google.http-client&lt;/groupId&gt;
+        &lt;artifactId&gt;google-http-client&lt;/artifactId&gt;
+        &lt;version&gt;1.29.2&lt;/version&gt;
+    &lt;/dependency&gt;
+
+    &lt;dependency&gt;
+        &lt;groupId&gt;io.opencensus&lt;/groupId&gt;
+        &lt;artifactId&gt;opencensus-api&lt;/artifactId&gt;
+        &lt;version&gt;0.22.1&lt;/version&gt;
+    &lt;/dependency&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;io.opencensus&lt;/groupId&gt;
+        &lt;artifactId&gt;opencensus-contrib-http-util&lt;/artifactId&gt;
+        &lt;version&gt;0.22.1&lt;/version&gt;
+    &lt;/dependency&gt;
+</code></pre>
+
+<p>Also <code>google-api-client</code>, <code>google-http-client-jackson2</code> and <code>google-oauth-client</code> has version 1.29.2</p>
+
+<p>In karaf I see the library <code>opencensus-api</code> is exporting a package   <code>io.opencensus.trace.propagation</code> that contains a class TextFormat.</p>
+
+<p>What am I doing wrong?</p>
+",3,1562667703,java;apache-karaf;google-http-client;opencensus,True,4582,1,1579639460,https://stackoverflow.com/questions/56950415/classnotfoundexception-io-opencensus-trace-propagation-textformat-not-found
+59444729,Zipkin (Opencensus) - 2 Spans with same names instead of different,"<p>Prerequisites:<br>
+<code>Node.js</code> application<br>
+<code>Opencensus</code> library<br>
+<code>Zipkin Exporter</code> and local Zipkin service<br></p>
+
+<p><strong><em>app.js</em></strong>:</p>
+
+<pre><code>    const tracing = require('@opencensus/nodejs');
+    const zipkin = require('@opencensus/exporter-zipkin');
+
+    const ZIPKIN_ENDPOINT = process.env.ZIPKIN_ENDPOINT || ""http://localhost:9411"";
+
+    const options = {
+      url: `${ZIPKIN_ENDPOINT}/api/v2/spans`,
+      serviceName: 'MyApplication'
+    }
+    const exporter = new zipkin.ZipkinTraceExporter(options);
+
+    tracing.start({'exporter': exporter});
+...
+
+    app.use(..)
+...
+</code></pre>
+
+<p><strong><em>package.json</em></strong>:</p>
+
+<pre><code> ""dependencies"": {
+    ""@opencensus/exporter-zipkin"" : ""0.0.19"",
+    ""@opencensus/nodejs"" : ""0.0.19""
+...
+</code></pre>
+
+<p><strong><em>Zipkin</em></strong> server started locally with command:</p>
+
+<pre><code>docker run -d -p 9411:9411 openzipkin/zipkin
+</code></pre>
+
+<p>after triggering <code>/service1</code> Zipkin Ui displays 2 spans for 2 different requests:<br>
+first <code>/service1</code> incoming request that is configured in Node.js routers<br>
+second <code>/external_service_2</code> is subsequent call to external service</p>
+
+<p><strong><em>Problem</em></strong><br></p>
+
+<p>The problem is that after triggering <code>/service1</code>:<br>
+ <strong>1.</strong> Zipkin UI displays 2 spans with same name <code>MyApplication</code>(see image),<br> but expected 2 different span names<br> 
+<a href=""https://i.stack.imgur.com/Qdoy2.png"" rel=""nofollow noreferrer""><img src=""https://i.stack.imgur.com/Qdoy2.png"" alt=""enter image description here""></a><br></p>
+
+<p><strong>2.</strong> As far Zipkin UI displays 2 spans with same name,<br> service dependencies page contains one Service only(see image)
+<a href=""https://i.stack.imgur.com/P8hnR.png"" rel=""nofollow noreferrer""><img src=""https://i.stack.imgur.com/P8hnR.png"" alt=""enter image description here""></a></p>
+",4,1577022356,node.js;zipkin;opencensus,True,860,1,1577814418,https://stackoverflow.com/questions/59444729/zipkin-opencensus-2-spans-with-same-names-instead-of-different
+59381434,Opencensus Tracing in Google Cloud Run,"<p>I'm trying to use Stackdriver tracing while running a Google Cloud Run instance.</p>
+
+<p>However, when tracing a call from point A to the container instance, the trace parent_span_id is broken. This leads to a broken trace on the stackdriver view that looks like the following:
+<a href=""https://i.stack.imgur.com/SXxtG.png"" rel=""nofollow noreferrer""><img src=""https://i.stack.imgur.com/SXxtG.png"" alt=""enter image description here""></a></p>
+
+<p>The first line in the image is the call to my Cloud Run endpoint. The last two lines are the trace from that endpoint. Notice how the display fails to present them properly.</p>
+
+<p>From my investigation, the parent_span_id in the span presented in the end is a span_id that is never reported to StackDriver, meaning the UI (or a human) can't put together the trace.</p>
+
+<p>My theory is that the Google Cloud endpoint that does SSL/TLS termination replaces the span with it's own span (legitimate) but then never reports its own traffic to Stackdriver, breaking all traces that cross a GCR boundary.</p>
+
+<p>This theory seems bolstered by the <a href=""https://github.com/ahmetb/cloud-run-faq/blob/9bc1b6b4134689a70df92acd1cf2e0e37fe3e741/README.md"" rel=""nofollow noreferrer"">unofficial FAQ</a> maintained by ahmetb (as of December 2019).</p>
+
+<p>This seems to happen regardless of whether the container is using node.js or python or any other runtime.</p>
+
+<p>Any ideas/suggestions or something I missed?</p>
+",3,1576613509,stackdriver;google-cloud-stackdriver;google-cloud-run;opencensus,False,407,0,1576869153,https://stackoverflow.com/questions/59381434/opencensus-tracing-in-google-cloud-run
+59289772,Opencenus prevent my java process from exiting,"<p>I am using opencensus in my component, I am running a performance test with JMeter started by Jenkins, but the process never ends and I discovered that it is opencenus that is keeping it alive (because if I remove opencenus the process finishes/dies normally). </p>
+
+<p>Is there anything I can do in opencenus, Jenkins or JMeter to force the job to finish? Aborting the job also does not help as per Jenkins do not collect the results then.</p>
+",0,1576080283,jenkins;jmeter;opencensus,True,43,1,1576191173,https://stackoverflow.com/questions/59289772/opencenus-prevent-my-java-process-from-exiting
+59290214,how to send metrics with OpenCensus,"<p>I am trying to send metrics in Python using OpenCensus and Azure Application Insights. </p>
+
+<p>Ideally I would like to send some Python dictionaries with arbitrary structure, however it seems that OpenCensus is ""automatically listening to logging/print statements"", but I see no evidence of that on the Azure portal when I search for these things. </p>
+
+<p>Is <code>print(...)</code> somehow special to OpenCensus? How does that capture the content of print statements?</p>
+
+<p>I've tried 2 different things (see below for the code):</p>
+
+<ul>
+<li>Sending ""Azure metrics"" (see <a href=""https://pypi.org/project/opencensus-ext-azure/"" rel=""nofollow noreferrer"">https://pypi.org/project/opencensus-ext-azure/</a>, then the ""Metrics"" paragraph): so far I don't see anything on the Azure Portal, clicking on my app for Application Insights. I've monitored the last 24 hours via the ""Search"" tab.</li>
+<li>Sending some sort of ""spans"" via the Azure implementation (see <a href=""https://github.com/census-instrumentation/opencensus-python/tree/master/contrib/opencensus-ext-azure#trace"" rel=""nofollow noreferrer"">https://github.com/census-instrumentation/opencensus-python/tree/master/contrib/opencensus-ext-azure#trace</a>): when I click on the ""Search"" tab checking the last 24 hours, then I actually see some events in there representing the spans (by span name), but then no metrics attached e.g. that key/value attribute etc.</li>
+</ul>
+
+<p>AFAIK as a principle:</p>
+
+<ul>
+<li>there should be a ""tracer"" that is managing a ""span""</li>
+<li>there can be parent/child tracers/spans</li>
+<li>each span should allow to send to a ""collector"" some metrics (HTTP stuff, arbitrary dictionaries/JSON, etc.)</li>
+<li>there should be a dashboard (e.g. the Azure Application Insights) that should show these parent/child spans on the timeline with attached metrics/messages</li>
+</ul>
+
+<p>I would like to understand:</p>
+
+<ul>
+<li>How can I send arbitrary dictionaries as ""metrics"" in OpenCensus? How that would show up on the Azure Portal when using an app for Application Insights?</li>
+<li>What's special with <code>print(...)</code> (or <code>logging.info(...)</code>) and HTTP requests in OpenCensus? How that information should be useful on the Azure Portal in the app for Application Insights?</li>
+<li>Is the above somehow agnostic to tracers/spans, or is a span a must when in need to send a metric?</li>
+</ul>
+
+<pre class=""lang-py prettyprint-override""><code>
+import json
+import psutil
+
+from opencensus.trace.samplers import AlwaysOnSampler
+from opencensus.trace.tracer import Tracer
+
+from opencensus.ext.azure import metrics_exporter
+from opencensus.ext.azure.trace_exporter import AzureExporter
+
+if __name__ == ""__main__"":
+    # loading the instrumentation key (for the Azure Application Insights app) from a JSON file
+    azure_conf = json.loads(open(""tf/ai_details.json"", 'r').read())
+    ai_instrumentation_key = azure_conf['instrumentation_key']['value']
+    # print(ai_instrumentation_key)
+
+    # test 1: trying to ""send a metric"", does that mean that the metric exporter listens to ""print(...)""?
+    _me = metrics_exporter.new_metrics_exporter(connection_string='InstrumentationKey={}'.format(ai_instrumentation_key))
+    print(psutil.virtual_memory())
+    print(""Done recording metrics"")
+
+    # test 2: trying to ""send a metric"", how can I make the ""span"" to send a dictionary?
+    azure_exporter = AzureExporter(connection_string='InstrumentationKey={}'.format(ai_instrumentation_key))
+    # https://opencensus.io/api/python/trace/api/tracer.html
+    tracer = Tracer(exporter=azure_exporter, sampler=AlwaysOnSampler())
+    # https://opencensus.io/api/python/trace/api/span.html#opencensus.trace.span.Span
+    with tracer.span(name='TestSpan') as span:
+        print('Hello, World!') # is the span only listening to ""print(...)""?
+        span.add_attribute(""foo-span-key"", ""foo-span-value"") # this does not seem to do anything
+</code></pre>
+",2,1576081934,python;azure-application-insights;azure-log-analytics;opencensus,True,3034,1,1576186713,https://stackoverflow.com/questions/59290214/how-to-send-metrics-with-opencensus
+58879198,Handle Jaeger errors,"<p>I am planning to use <code>Jaeger</code> tracing in on my <code>Golang</code> server. Everything is ok but I haven't found a way to handle <code>Jaeger</code> errors. I want to catch, for example, connection error to <code>Jaeger</code> backend while sending trace and write it to <code>loggly</code>.  </p>
+
+<p>Code example:  </p>
+
+<pre><code>package main
+
+import (
+    ""fmt""
+    ""log""
+
+    ""golang.org/x/net/context""
+
+    ""contrib.go.opencensus.io/exporter/jaeger""
+    ""go.opencensus.io/trace""
+)
+
+func main() {
+    agentEndpointURI := ""localhost:6831""
+    collectorEndpointURI := ""http://localhost:14268/api/traces""
+
+    je, err := jaeger.NewExporter(jaeger.Options{
+        AgentEndpoint:     agentEndpointURI,
+        CollectorEndpoint: collectorEndpointURI,
+        ServiceName:       ""example"",
+    })
+    if err != nil {
+        log.Fatalf(""Failed to create the Jaeger exporter: %v"", err)
+    }
+
+    trace.RegisterExporter(je)
+    trace.ApplyConfig(trace.Config{
+        DefaultSampler: trace.AlwaysSample(),
+    })
+
+    traceMethod()
+}
+
+func traceMethod() {
+    ctx := context.Background()
+
+    ctx, span := trace.StartSpan(ctx, ""traceMethod"")
+
+    // Do something here if the trace doesn't reach jaeger backend, write error to loggly
+
+    fmt.Println(""send trace"")
+
+    defer span.End()
+}
+</code></pre>
+",0,1573828575,go;jaeger;opencensus,False,458,0,1575962869,https://stackoverflow.com/questions/58879198/handle-jaeger-errors
+59089445,Stackdriver Strace embedded traces for one request with python,"<p>I am using Stackdriver Trace to monitor the delays of some microservices, but am having some issues in making all the round trip to be shown as one request.</p>
+
+<p>Say I have two services (to keep it simple). In order to get the traces from both of them, I need to install client libraries in both services. Now say in the first service I do:</p>
+
+<pre><code>@app.route('/dump')
+def dump():
+    url = ""http://db-dump/dump""
+    tracer = app.config['TRACER']
+    tracer.start_span(name='dump')
+    result = requests.get(url)
+    tracer.end_span()
+
+    return result.content
+</code></pre>
+
+<p>In my second service, I do:</p>
+
+<pre><code>@app.route('/dump')
+def dump():
+    conn = connect()
+    tracer = app.config['TRACER']
+    tracer.start_span(name='dump')
+    db_content = select(conn)
+    tracer.end_span()
+    db_content_to_print = format(db_content)
+
+    return render_page(db_content_to_print)
+</code></pre>
+
+<p>This second service, makes a query to a database, gts the results, and sends them to the first service, which displays the content.</p>
+
+<p>Now, of course I have to start counting the delay in both microservices, since I want to know how long it takes from the first service to the second service. And Also I have to start counting in the second service, since I want to know how long it takes to retrieve the content from the database.</p>
+
+<p>But when I get the traces on GCP console, I see this:</p>
+
+<p><a href=""https://i.stack.imgur.com/yWsk4.png"" rel=""nofollow noreferrer""><img src=""https://i.stack.imgur.com/yWsk4.png"" alt=""enter image description here""></a></p>
+
+<p>Where the first trace is from the database, and the second trace is both (from the first service to the second one + database).</p>
+
+<p>I want to know how can I embed the second trace inside the first one in python. I have been checking <code>opencensus</code> documentation for python, and I found this:</p>
+
+<blockquote>
+  <p><strong>class opencensus.trace.span.Span(name, parent_span=None,...)</strong></p>
+  
+  <p>A span is an individual timed event which forms a node of the trace
+  tree. Each span has its name, span id and parent id. The parent id
+  indicates the causal relationships between the individual spans in a
+  single distributed trace. Span that does not have a parent id is
+  called root span. All spans associated with a specific trace also
+  share a common trace id. Spans do not need to be continuous, there can
+  be gaps between two spans.</p>
+</blockquote>
+
+<p>So, I guess, I have to send the <code>span_id</code> of the first request along with the request to the second microservice? There is another problem here, that this seems to need to initialize the tracer with these parameters, but my tracer on the second microservice is already initialized. I can't initialize it when sending the request as it is already no going to calculate the delay correctly.</p>
+
+<p>I need to ask this, as to make the tests, I have to create the image, upload it to docker hub, then to make the tests on k8s. It is too much work to do being pretty blind here.</p>
+
+<p>Python client library for Stackdriver trace is in alpha, so also there is not much documentation regarding this on GCP site.</p>
+
+<p><strong>EDIT</strong></p>
+
+<p>Since there were no responses, I actually tried passing the <code>span_context</code> information, which is this:</p>
+
+<pre><code>&gt;&gt;&gt; print(tracer.span_context)
+SpanContext(trace_id=987b84e7efc5562ff6c21723e674cd41, span_id=910de32857b896da, trace_options=TraceOptions(enabled=True), tracestate=None)
+</code></pre>
+
+<p>...to the second microservice upon initialization, but it didn't work. When it starts counting the trace on the second microservice, it automatically generates new <code>trace_id</code> and <code>span_id</code> and ignores the <code>span_context</code> of the first one. I am out of ideas at this point.</p>
+
+<p><strong>EDIT2</strong></p>
+
+<p>What I want, is the entire trace (microservice 1 -> microservice 2 -> database) to appear under the same trace, with different spans. Something similar to this:</p>
+
+<p><a href=""https://i.stack.imgur.com/lOmgH.png"" rel=""nofollow noreferrer""><img src=""https://i.stack.imgur.com/lOmgH.png"" alt=""a new ""></a> </p>
+",2,1574945832,python;stackdriver;google-cloud-trace;opencensus,True,224,2,1575059151,https://stackoverflow.com/questions/59089445/stackdriver-strace-embedded-traces-for-one-request-with-python
+57894336,How to tracing a request through a chain of microservices end-to-end?,"<p>I am using OpenCensus in Go to push tracing data to Stackdriver for calls involving a chain of 2 or more micro services and I noticed that I get many traces which contain spans only for certain services but not the entire end to end call.</p>
+
+<p>At the moment I attribute this to the fact that not all calls are traced (only a certain sample) and each service decides whether to trace its current span or not.</p>
+
+<p>Is this the way it is intended to work? Is there any way to make sure when a trace is sampled, it is done so by all services in the call chain?</p>
+",5,1568223973,go;stackdriver;distributed-tracing;google-cloud-trace;opencensus,False,673,1,1573500211,https://stackoverflow.com/questions/57894336/how-to-tracing-a-request-through-a-chain-of-microservices-end-to-end
+58641714,Stackdriver Trace on GKE with Python app aggregates metrics in one collection,"<p>I am preparing a demo on GKE with an simple server app written in python that gets the requests from an Envoy proxy, and adds some delay.</p>
+
+<p>I wanted to use Stackdriver Trace to show the delay applied by each Envoy proxy and the app, but what I am getting is not that attractive visually.</p>
+
+<p>So, there is this Envoy proxy that proxies the request to 3 different apps, called blue, green and red. Each of them also has an Envoy proxy that adds a delay and sends the request to the Python server that returns a simple ""Hello ..."".</p>
+
+<p>I sent 1000 requests to the front service that randomly forwarded these request to the 3 apps. Now when I go to Stackdriver Trace console, this is what I see:</p>
+
+<p><a href=""https://i.stack.imgur.com/iika6.png"" rel=""nofollow noreferrer""><img src=""https://i.stack.imgur.com/iika6.png"" alt=""enter image description here""></a></p>
+
+<p>When I click on each of them (say green), I can see all the requests accumulated under green, with the time it took to respond for each request:</p>
+
+<p><a href=""https://i.stack.imgur.com/OzQaB.png"" rel=""nofollow noreferrer""><img src=""https://i.stack.imgur.com/OzQaB.png"" alt=""enter image description here""></a> </p>
+
+<p>So, all these seems to be fine, but from the point of view of the demo, it is not that attractive to show this dashboard. If I send only few requests, it sometimes is not gathering, and the trace never shows up on the dashboard. I was wondering if there is a way to have these requests broken down to 1. So I will have a dashboard similar to this one (from Stackdriver Examples):</p>
+
+<p><a href=""https://i.stack.imgur.com/EJ4Ap.png"" rel=""nofollow noreferrer""><img src=""https://i.stack.imgur.com/EJ4Ap.png"" alt=""enter image description here""></a></p>
+
+<p>...where each request seems to be 1 dot, and I can just click on it and get the info.</p>
+
+<p>Again, my demo is with Python, and it is in Alpha.</p>
+",0,1572518973,stackdriver;google-cloud-stackdriver;opencensus,False,53,0,1572518973,https://stackoverflow.com/questions/58641714/stackdriver-trace-on-gke-with-python-app-aggregates-metrics-in-one-collection
+58125884,Error in OpenCensus in Google Kubernetes Engine with Python,"<p>I am deploying containers to GKE that contain Python apps and encountering an error when I try to use OpenCensus to send trace messages:</p>
+
+<pre><code>Traceback (most recent call last):
+  File ""/usr/local/lib/python3.7/site-packages/opencensus/metrics/transport.py"", line 59, in func
+    return self.func(*aa, **kw)
+  File ""/usr/local/lib/python3.7/site-packages/opencensus/metrics/transport.py"", line 113, in export_all
+    export(itertools.chain(*all_gets))
+  File ""/usr/local/lib/python3.7/site-packages/opencensus/ext/stackdriver/stats_exporter/__init__.py"", line 162, in export_metrics
+    self.client.project_path(self.options.project_id), ts_batch)
+  File ""/usr/local/lib/python3.7/site-packages/google/cloud/monitoring_v3/gapic/metric_service_client.py"", line 1024, in create_time_series
+    request, retry=retry, timeout=timeout, metadata=metadata
+  File ""/usr/local/lib/python3.7/site-packages/google/api_core/gapic_v1/method.py"", line 143, in __call__
+    return wrapped_func(*args, **kwargs)
+  File ""/usr/local/lib/python3.7/site-packages/google/api_core/retry.py"", line 273, in retry_wrapped_func
+    on_error=on_error,
+  File ""/usr/local/lib/python3.7/site-packages/google/api_core/retry.py"", line 182, in retry_target
+    return target()
+  File ""/usr/local/lib/python3.7/site-packages/google/api_core/timeout.py"", line 214, in func_with_timeout
+    return func(*args, **kwargs)
+  File ""/usr/local/lib/python3.7/site-packages/google/api_core/grpc_helpers.py"", line 59, in error_remapped_callable
+    six.raise_from(exceptions.from_grpc_error(exc), exc)
+  File ""&lt;string&gt;"", line 3, in raise_from
+google.api_core.exceptions.InvalidArgument: 400 One or more TimeSeries could not be written: The set of resource labels is incomplete. Missing labels: (container_name namespace_name).: timeSeries[0-199]
+</code></pre>
+
+<p>The interesting part seems to be this sentence: <code>Missing labels: (container_name namespace_name)</code>.</p>
+
+<p>When I run the exact same code locally, I do not receive any errors and I do see my tracing appearing in Stackdriver Metrics Explorer, so the problem appears to be related specifically to running inside a container in GKE.</p>
+
+<p>Is there something specific that is required to get OpenCensus working in a GKE container?</p>
+",1,1569540148,python;google-kubernetes-engine;opencensus,True,335,1,1570816589,https://stackoverflow.com/questions/58125884/error-in-opencensus-in-google-kubernetes-engine-with-python
+58325024,How to debug opencensus metrics agent?,"<p>I am having a hard time debugging why my metrics don't reach my prometheus. 
+I am trying to send simple metrics to oc agent and from ther pull them with prometheus, but my code does not fail and I can't see the metrics in prometheus.
+So, how can I debug it? Can I see if a metric arrived in the oc agent?</p>
+
+<pre><code>cAgentMetricsExporter.createAndRegister(
+            OcAgentMetricsExporterConfiguration.builder()
+                    .setEndPoint(""IP:55678"")
+                    .setServiceName(""my-service-name"")
+                    .setUseInsecure(true)
+                    .build());
+
+    Aggregation latencyDistribution = Aggregation.Distribution.create(BucketBoundaries.create(
+            Arrays.asList(
+                    0.0, 25.0, 100.0, 200.0, 400.0, 800.0, 10000.0)));
+
+
+    final Measure.MeasureDouble M_LATENCY_MS = Measure.MeasureDouble.create(""latency"", ""The latency in milliseconds"", ""ms"");
+    final Measure.MeasureLong M_LINES = Measure.MeasureLong.create(""lines_in"", ""The number of lines processed"", ""1"");
+    final Measure.MeasureLong M_BYTES_IN = Measure.MeasureLong.create(""bytes_in"", ""The number of bytes received"", ""By"");
+
+    View[] views = new View[]{
+            View.create(View.Name.create(""myapp/latency""),
+                    ""The distribution of the latencies"",
+                    M_LATENCY_MS,
+                    latencyDistribution,
+                    Collections.emptyList()),
+
+            View.create(View.Name.create(""myapp/lines_in""),
+                    ""The number of lines that were received"",
+                    M_LATENCY_MS,
+                    Aggregation.Count.create(),
+                    Collections.emptyList()),
+    };
+
+    // Ensure that they are registered so
+    // that measurements won't be dropped.
+    ViewManager manager = Stats.getViewManager();
+    for (View view : views)
+        manager.registerView(view);
+
+
+    final StatsRecorder STATS_RECORDER = Stats.getStatsRecorder();
+
+    STATS_RECORDER.newMeasureMap()
+            .put(M_LATENCY_MS, 17.0)
+            .put(M_LINES, 238)
+            .put(M_BYTES_IN, 7000)
+            .record();
+</code></pre>
+",1,1570716900,opencensus,True,194,1,1570728223,https://stackoverflow.com/questions/58325024/how-to-debug-opencensus-metrics-agent
+57666103,Simple hello world demo for writing custom OpenCensus metrics to StackDriver on GKE?,"<p>Is there a simple hello world sample for creating and writing custom metrics in a GKE application to StackDriver?</p>
+
+<p>I see there’s a couple larger demo projects that seem to use it, like:</p>
+
+<p><a href=""https://github.com/GoogleCloudPlatform/microservices-demo"" rel=""nofollow noreferrer"">https://github.com/GoogleCloudPlatform/microservices-demo</a>
+<a href=""https://github.com/rghetia/microservices-demo/tree/oc_agent"" rel=""nofollow noreferrer"">https://github.com/rghetia/microservices-demo/tree/oc_agent</a></p>
+
+<p>But they seem to be different. The latter one has a DaemonSet for the oc-agent, whereas the first one appears to not have one. Also, there’s the beta Stackdriver Kubernetes Engine Monitoring, and I’m not sure if it would be done differently that way? It seems already set up a metrics server pod, as well as a prometheus-to-sd prod.</p>
+",1,1566863201,google-cloud-platform;google-kubernetes-engine;stackdriver;google-cloud-stackdriver;opencensus,True,902,2,1566953305,https://stackoverflow.com/questions/57666103/simple-hello-world-demo-for-writing-custom-opencensus-metrics-to-stackdriver-on
+57403475,How does opencensus create metrics?,"<p>E.g., if I use <a href=""https://blog.risingstack.com/node-js-performance-monitoring-with-prometheus/"" rel=""nofollow noreferrer"">prometheus</a> I explicitly create histograms, but I can't see such an option for <a href=""https://github.com/census-instrumentation/opencensus-node"" rel=""nofollow noreferrer"">opencensus</a></p>
+",0,1565221292,prometheus;opencensus,True,162,1,1565812058,https://stackoverflow.com/questions/57403475/how-does-opencensus-create-metrics
+57380205,Unable to use opencensus collector to post traces to backend,"<p>I have these containers running on my localhost</p>
+
+<p>openzipkin/zipkin                   |   0.0.0.0:9410->9410/tcp, 0.0.0.0:9412->9411/tcp</p>
+
+<p>omnition/opencensus-collector:0.1.9 |         0.0.0.0:1777->1777/tcp, 0.0.0.0:8888->8888/tcp, 0.0.0.0:9411->9411/tcp, 0.0.0.0:32776->55678/tcp, 0.0.0.0:55680->55679/tcp   |</p>
+
+<p>Trying to directly use the opencensus collector and my collector configuration looks like this</p>
+
+<pre><code>#opencensus collector configuration
+receivers:
+  zipkin:
+    address: ""127.0.0.1:9411""
+
+exporters:
+  zipkin:
+    endpoint: ""http://127.0.0.1:9412/api/v2/spans""
+
+</code></pre>
+
+<pre><code>package main
+
+import (
+    ""log""
+    ""math/rand""
+    ""net/http""
+    ""strings""
+    ""time""
+
+    ""contrib.go.opencensus.io/exporter/zipkin""
+    ""go.opencensus.io/plugin/ochttp""
+    ""go.opencensus.io/stats/view""
+    ""go.opencensus.io/trace""
+
+    openzipkin ""github.com/openzipkin/zipkin-go""
+    zipkinHTTP ""github.com/openzipkin/zipkin-go/reporter/http""
+)
+
+
+func registerZipkin() {
+    localEndpoint, err := openzipkin.NewEndpoint(""golangsvc"", ""&lt;My IP Address&gt;:8080"")
+    if err != nil {
+        log.Fatalf(""Failed to create Zipkin exporter: %v"", err)
+    }
+    reporter := zipkinHTTP.NewReporter**(""http://localhost:9411/api/v2/spans"")**
+    exporter := zipkin.NewExporter(reporter, localEndpoint)
+    trace.RegisterExporter(exporter)
+    trace.ApplyConfig(trace.Config{DefaultSampler: trace.AlwaysSample()})
+}
+
+func main() {
+    registerZipkin()
+    mux := http.NewServeMux()
+    mux.HandleFunc(""/list"", list)
+
+    log.Printf(""Server listening! ..."")
+    log.Fatal(http.ListenAndServe("":8080"", h))
+}
+
+func list(w http.ResponseWriter, r *http.Request) {
+    log.Printf(""Serving request: %s"", r.URL.Path)
+    res := strings.Repeat(""o"", rand.Intn(99971)+1)
+    time.Sleep(time.Duration(rand.Intn(977)+1) * time.Millisecond)
+    w.Write([]byte(""Hello, w"" + res + ""rld!""))
+}
+
+</code></pre>
+
+<p>When I run this sample, collector logs have lots of errors</p>
+
+<pre><code>{""level"":""info"",""ts"":1565104219.6790097,""caller"":""collector/collector.go:167"",""msg"":""Starting..."",""NumCPU"":2}
+{""level"":""info"",""ts"":1565104219.6798325,""caller"":""pprofserver/pprofserver.go:62"",""msg"":""Starting net/http/pprof server"",""port"":1777}
+{""level"":""info"",""ts"":1565104219.6800768,""caller"":""healthcheck/handler.go:99"",""msg"":""Health Check server started"",""http-port"":13133,""status"":""unavailable""}
+{""level"":""info"",""ts"":1565104219.680858,""caller"":""config/config.go:490"",""msg"":""Trace Exporter enabled"",""exporter"":""zipkin""}
+{""level"":""info"",""ts"":1565104219.6812553,""caller"":""collector/collector.go:114"",""msg"":""Running zPages"",""port"":55679}
+{""level"":""info"",""ts"":1565104220.6819282,""caller"":""opencensus/receiver.go:51"",""msg"":""OpenCensus receiver is running."",""port"":55678}
+{""level"":""info"",""ts"":1565104220.6824179,""caller"":**""zipkin/receiver.go:50"",""msg"":""Zipkin receiver is running."",""port"":9411}**
+{""level"":""info"",""ts"":1565104220.6848924,""caller"":""collector/telemetry.go:93"",""msg"":""Serving Prometheus metrics"",""port"":8888}
+{""level"":""info"",""ts"":1565104220.685225,""caller"":""healthcheck/handler.go:133"",""msg"":""Health Check state change"",""status"":""ready""}
+2019/08/06 15:11:24 failed to send the request: Post http://127.0.0.1:9412/api/v2/spans: dial tcp 127.0.0.1:9412: connect: connection refused
+2019/08/06 15:11:25 failed to send the request: Post http://127.0.0.1:9412/api/v2/spans: dial tcp 127.0.0.1:9412: connect: connection refused
+2019/08/06 15:11:26 failed to send the request: Post http://127.0.0.1:9412/api/v2/spans: dial tcp 127.0.0.1:9412: connect: connection refused
+2019/08/06 15:11:27 failed to send the request: Post http://127.0.0.1:9412/api/v2/spans: dial tcp 127.0.0.1:9412: connect: connection refused
+</code></pre>
+
+<p>I am unable to use the collector to sends the traces from opencensus collector to the zipkin backend.</p>
+
+<p>Also tried to use the jaeger backend to post the traces from collector, but I still see the same errors.</p>
+",0,1565108190,opencensus,False,424,1,1565189033,https://stackoverflow.com/questions/57380205/unable-to-use-opencensus-collector-to-post-traces-to-backend
+56995102,Using Prometheus PushGateway with OpenCensus Java Client,"<p>I've got a CronJob running that I'd like to integrate OpenCensus into to export to Prometheus. However I currently have to add a 1 minute sleep after my job finishes to make sure that Prometheus has scraped my metrics.</p>
+
+<p>I'd like to use the Prometheus PushGateway to avoid the extra sleep if possible, but I can't figure out how to hook it up to OpenCensus.</p>
+
+<p>Here's the documentation for it that mentions it: <a href=""https://github.com/census-instrumentation/opencensus-java/tree/master/exporters/stats/prometheus"" rel=""nofollow noreferrer"">https://github.com/census-instrumentation/opencensus-java/tree/master/exporters/stats/prometheus</a> - it says the following:</p>
+
+<pre class=""lang-java prettyprint-override""><code>public class MyMainClass {
+  public static void main(String[] args) {
+    // Creates a PrometheusStatsCollector and registers it to the default Prometheus registry.
+    PrometheusStatsCollector.createAndRegister();
+
+    // Uses a simple Prometheus HTTPServer to export metrics. 
+    // You can use a Prometheus PushGateway instead, though that's discouraged by Prometheus:
+    // https://prometheus.io/docs/practices/pushing/#should-i-be-using-the-pushgateway.
+    io.prometheus.client.exporter.HTTPServer server = 
+      new HTTPServer(/*host*/ ""localhost"", /*port*/  9091, /*daemon*/ true);
+
+    // Your code here.
+    // ...
+  }
+}
+</code></pre>
+
+<p>However there's no examples of how I actually would use it with OpenCensus. Has anyone done it before, and how?</p>
+",0,1562868543,prometheus;opencensus;prometheus-java,False,1315,1,1562990441,https://stackoverflow.com/questions/56995102/using-prometheus-pushgateway-with-opencensus-java-client
+56937653,Custom OpenCensus metrics not appearing on Stackdriver,"<p>I'm trying to send custom metrics to Stackdriver from my Go application using OpenCensus.</p>
+
+<p>I've followed the <a href=""https://cloud.google.com/monitoring/custom-metrics/open-census"" rel=""nofollow noreferrer"">guide</a>, so the views and exporter are setup:</p>
+
+<pre class=""lang-golang prettyprint-override""><code>import (
+    ""context""
+    ""contrib.go.opencensus.io/exporter/stackdriver""
+    ""github.com/pkg/errors""
+    ""go.opencensus.io/stats""
+    ""go.opencensus.io/stats/view""
+    ""time""
+)
+
+var (
+    apiRequestDurationMs = stats.Int64(""api_request_duration"", ""API request duration in milliseconds"", stats.UnitMilliseconds)
+)
+
+func NewMetricsExporter() (*stackdriver.Exporter, error) {
+    v := &amp;view.View{
+        Name:        ""api_request_durations"",
+        Measure:     apiRequestDurationMs,
+        Description: ""The distribution of request durations"",
+        Aggregation: view.Distribution(0, 100, 200, 400, 1000, 2000, 4000),
+    }
+    if registerError := view.Register(v); registerError != nil {
+        return nil, errors.Wrapf(registerError, ""failed to register request duration view"")
+    }
+
+    exporter, exporterError := stackdriver.NewExporter(stackdriver.Options{ProjectID: ""project-ID""})
+    if exporterError != nil {
+        return nil, errors.Wrapf(exporterError, ""failed to create stackdriver exporter"")
+    }
+
+    if startError := exporter.StartMetricsExporter(); startError != nil {
+        return nil, errors.Wrapf(startError, ""failed to create stackdriver exporter"")
+
+    }
+    return exporter, nil
+}
+</code></pre>
+
+<p>And then I send my metrics using:</p>
+
+<pre class=""lang-golang prettyprint-override""><code>func RequestDuration(d time.Duration) {
+    stats.Record(context.Background(), apiRequestDurationMs.M(int64(d)))
+}
+</code></pre>
+
+<p>But the custom metrics I'm sending aren't appearing in Stackdriver's Metrics Explorer.</p>
+
+<p>What am I missing?</p>
+",2,1562597952,go;stackdriver;google-cloud-stackdriver;opencensus,True,950,1,1562657583,https://stackoverflow.com/questions/56937653/custom-opencensus-metrics-not-appearing-on-stackdriver
+56278381,Tracing second generation java app engine,"<p>i'm trying to get some custom tracing and Firestore tracing added to a second generation app engine java app.</p>
+
+<p>Out of the box i can already see my WebServlets being called and calls to the tasks client library in my cloud console.</p>
+
+<p>But adding new traces is not working and also i see no traces about firestore.</p>
+
+<p>I tried adding new traces as according to the <a href=""https://cloud.google.com/trace/docs/setup/java"" rel=""nofollow noreferrer"">google</a> and <a href=""https://opencensus.io/integrations/google_cloud/google_cloud_spanner/java/"" rel=""nofollow noreferrer"">opencencus</a> documentation</p>
+
+<pre class=""lang-java prettyprint-override""><code>try (Scope scope = tracer.spanBuilder(""myTrace"").startScopedSpan()) {
+  // do some http requests
+}
+
+</code></pre>
+
+<p>When i register <code>StackdriverTraceExporter.createAndRegister()</code> i get a error message which tells me that it is already configured. Which makes sense as i already see the jetty HttpServlet traces. But i cannot find my own traces.</p>
+
+<p>Also when i check <a href=""https://github.com/googleapis/google-cloud-java/blob/master/google-cloud-clients/google-cloud-firestore/src/main/java/com/google/cloud/firestore/FirestoreImpl.java"" rel=""nofollow noreferrer"">firestore client library source</a> It is also adding traces as expected but they do not appear in the cloud console.</p>
+
+<p>Anyone a idea what i am missing or where to get help?</p>
+",0,1558624715,java;google-cloud-firestore;stackdriver;opencensus,True,288,1,1561681297,https://stackoverflow.com/questions/56278381/tracing-second-generation-java-app-engine
+56409579,tracing: how can use distribution for unlimited increasing value,"<p>I try to implement tracing for my system. I use <code>OpenCensus</code> for tracing and <code>Prometheus</code> for metric backend. In <code>OpenCensus</code>, when defining a view, we will define <code>Aggregation</code> function. (i.e: count, last value, distribution ...)</p>
+
+<p>My problem is: I have a metric, for example named <code>cache_missed</code> to express total cached miss when querying to caching server. This number definitely will increase overtime (and not have upper limit). I want to track data so when looking into dashboard, I will know there is a day that cache miss happen more often. In other word, I want to view the correlation between cache miss at different timestamp.</p>
+
+<p>I think I can do that by using <code>distribution</code> for aggregation function. But I don't sure does it is possible and how can I achieve that. Please tell me.</p>
+
+<p>Thanks </p>
+",0,1559415409,prometheus;trace;opencensus,False,63,0,1559415409,https://stackoverflow.com/questions/56409579/tracing-how-can-use-distribution-for-unlimited-increasing-value
+56358050,How to append Strackdriver trace with custom spans using Opencencsus library?,"<p>I'm setting up a Standard, Java, AppEngine Service and I need to trace custom location in the code. I have followed the tutorial provided by Google: <a href=""https://cloud.google.com/trace/docs/setup/java"" rel=""nofollow noreferrer"">https://cloud.google.com/trace/docs/setup/java</a> to setup the tracing, however the issue, is that that approach creates a new trace rather than appending new spans to the trace started by Google.      </p>
+
+<p>To append new spans to an existing trace I have tried extracting the traceId and rootSpanId from <code>X-Cloud-Trace-Context</code> header, and using <code>spanBuilderWithRemoteParent</code> method to create child spans.</p>
+
+<p>However, the  problem is that, <code>SpanId.fromLowerBase16</code> expects a 16 byte ID, where as the rootSpanId is 19 bytes long. Thus my code  throws a <code>java.lang.IllegalArgumentException: Invalid size: expected 16, got 19</code> exception.</p>
+
+<p>Code example:</p>
+
+<pre class=""lang-java prettyprint-override""><code>List&lt;String&gt; traceHeaders = headers.get(""X-Cloud-Trace-Context"");
+String traceID = """";
+String rootSpanId = """";
+if (traceHeaders.size() &gt; 0) {
+    traceID = traceHeaders.get(0).split(""/"")[0];
+    rootSpanId = traceHeaders.get(0).split(""/"")[1].split("";"")[0];
+}
+
+Span sp1 =
+    tracer
+        .spanBuilderWithRemoteParent(
+            ""fetch-data"",
+            SpanContext.create(
+                TraceId.fromLowerBase16(traceID),
+                SpanId.fromLowerBase16(rootSpanId), &lt;- exception thrown here
+                tracer.getCurrentSpan().getContext().getTraceOptions()))
+        .setSampler(Samplers.alwaysSample())
+        .startSpan();
+</code></pre>
+
+<p>Thus, is there a way to append customs spans to an existing Stackdriver trace using Opencensus library, or are we limited to using Stackdriver Trace API?</p>
+",3,1559124450,java;trace;google-cloud-stackdriver;opencensus,False,205,0,1559131265,https://stackoverflow.com/questions/56358050/how-to-append-strackdriver-trace-with-custom-spans-using-opencencsus-library
+56280196,Observability: can we filter by tags then aggregate on prometheus or any metrics backend server,"<p>For example, I call Redis server with following command:</p>
+
+<pre><code>SET key ""value""
+</code></pre>
+
+<p>After running, I want to track those 2 information at the same time:</p>
+
+<ul>
+<li>statistic of all write operators (so tag should be SET)</li>
+<li>statistic of all specific operators (so tag should be SET and key)</li>
+</ul>
+
+<p>So I will create views for tracking metrics. There are 2 ways I can think:</p>
+
+<ul>
+<li>Single view with tag ""SET"" <strong>and</strong> key. and later hopefully I can filter by ""SET"" or by ""SET"" and by key. (1)</li>
+<li>Creating 2 views. First view only has tag ""SET"" and second view will have tags ""SET"" and key. So each view for each query. (2)</li>
+</ul>
+
+<p>I prefer (1) because it is more elegant and I don't need to create too many views. My question is: If I do on (1), can it works on metric backend server ? (i.e: Prometheus). Or metric backend server doesn't support filter by tag and aggregation, so I must create separate views ?</p>
+
+<p>Thanks </p>
+",1,1558632109,prometheus;metrics;distributed-tracing;opencensus,True,2787,1,1558904789,https://stackoverflow.com/questions/56280196/observability-can-we-filter-by-tags-then-aggregate-on-prometheus-or-any-metrics
+56172038,How to install the OpenCensus extension with PECL on PHP,"<p>Following the instructions (here: <a href=""https://github.com/census-instrumentation/opencensus-php"" rel=""nofollow noreferrer"">https://github.com/census-instrumentation/opencensus-php</a>) I am unable to install the OpenCensus extension for PHP using PECL.</p>
+
+<p>I have tried installing other PECL extensions, which worked fine.</p>
+
+<p>I have also tried doing this from a VPN.</p>
+
+<p>The install steps I tried are:</p>
+
+<hr>
+
+<ol>
+<li>Install the opencensus/opencensus package using composer:</li>
+</ol>
+
+<pre><code>$ composer require opencensus/opencensus:~0.2
+IMPORTANT: Please ensure your version is &gt;= 0.2.0. There is a potential security vulnerability in &lt; 0.2.0.
+</code></pre>
+
+<ol start=""2"">
+<li>Install the opencensus extension from PECL:</li>
+</ol>
+
+<pre><code>$ pecl install opencensus-alpha
+</code></pre>
+
+<hr>
+
+<p>The error I get is: </p>
+
+<blockquote>
+  <p>No releases available for package ""pecl.php.net/opencensus"" install failed""</p>
+</blockquote>
+
+<p>See also: <a href=""https://prnt.sc/nnt5er"" rel=""nofollow noreferrer"">https://prnt.sc/nnt5er</a></p>
+",1,1558020740,php;pecl;opencensus,False,218,0,1558039258,https://stackoverflow.com/questions/56172038/how-to-install-the-opencensus-extension-with-pecl-on-php
+55333645,Trouble shooting when tring to install and import `stats_exporter` from `opencensus.ext.stackdriver`,"<p>Im trying to install and use <code>stats_exporter</code> from <code>opencensus.ext.stackdriver</code> using the following guide: <a href=""https://github.com/census-instrumentation/opencensus-python/tree/master/contrib/opencensus-ext-stackdriver"" rel=""nofollow noreferrer"">opencensus-ext-stackdriver</a></p>
+
+<p>after installing it through pip:</p>
+
+<p><code>pip install opencensus-ext-stackdriver</code> </p>
+
+<p>Im trying to import it and:</p>
+
+<pre><code>from opencensus.ext.stackdriver import stats_exporter as stackdriver
+ImportError: cannot import name 'stats_exporter' from 'opencensus.ext.stackdriver'
+</code></pre>
+
+<p>When comparing the Git repo, and my local <code>venv/lib/python3.7/site-packages/...</code>   it seems like the pip version isn't compatible with Github , so i tried to install it though cloning, and using <code>setup.py</code></p>
+
+<pre><code>pip install ../opencensus-python/contrib/opencensus-ext-stackdriver/dist/opencensus-ext-stackdriver-0.2.dev0.tar.gz
+</code></pre>
+
+<p>which gives me the following error:</p>
+
+<pre><code>(venv) Yehoshaphats-MacBook-Pro:present-value yehoshaphatschellekens$ pip install ../opencensus-python/contrib/opencensus-ext-stackdriver/dist/opencensus-ext-stackdriver-0.2.dev0.tar.gz 
+Processing /Users/yehoshaphatschellekens/opencensus-python/contrib/opencensus-ext-stackdriver/dist/opencensus-ext-stackdriver-0.2.dev0.tar.gz
+    Complete output from command python setup.py egg_info:
+    Traceback (most recent call last):
+      File ""&lt;string&gt;"", line 1, in &lt;module&gt;
+      File ""/private/var/folders/s2/y6vcdc1105s8xlpb12slr9z00000gn/T/pip-req-build-7m1ibdpd/setup.py"", line 17, in &lt;module&gt;
+        from version import __version__
+    ModuleNotFoundError: No module named 'version'
+
+    ----------------------------------------
+Command ""python setup.py egg_info"" failed with error code 1 in /private/var/folders/s2/y6vcdc1105s8xlpb12slr9z00000gn/T/pip-req-build-7m1ibdpd/
+</code></pre>
+
+<p>Similar errors of this type indicated that i need to upgrade <code>setuptools</code>, tried that also :(</p>
+
+<p><a href=""https://stackoverflow.com/questions/32423793/importerror-no-module-named-version"">This post</a> suggests that it might related to the fact that i'm using python3, which isn't completable with <code>version</code> though i really need to install this package on my python3 venv.</p>
+
+<p>Any Help on this issue would be great!</p>
+",0,1553501883,python;opencensus,True,727,1,1554432508,https://stackoverflow.com/questions/55333645/trouble-shooting-when-tring-to-install-and-import-stats-exporter-from-opencen
+54862424,gRPC Stackdriver issue,"<p>I have tried to log call stack info through opencensus. I have enabled permission in google account. I am using default credentials method. Stackdriver Trace API is enabled for the corresponding account.
+ Permission for <code>monitoring.viewer</code>, <code>monitoring.editor</code> and <code>cloudtrace</code> are also given.
+Still, we are facing below-mentioned error from client side while pushing the logs.</p>
+
+<pre><code>2019/02/21 12:40:14 Failed to export to Stackdriver: rpc error: code = NotFound desc = Requested entity was not found.
+
+2019/02/21 12:37:47 Failed to export to Stackdriver: rpc error: code = PermissionDenied desc = Permission monitoring.metricDescriptors.create denied (or the resource may not exist).
+</code></pre>
+",1,1551084501,grpc;stackdriver;google-cloud-stackdriver;opencensus,False,2157,0,1551235403,https://stackoverflow.com/questions/54862424/grpc-stackdriver-issue
+54725320,Not able populating the method and etc for Stackdriver Trace,"<p>I am new to <code>Stackdriver Trace</code>. I am not sure what I am doing wrong if can somebody point me to right direction. I would really appreciate. Basicall I am not able populate methods and such from <code>Request</code></p>
+
+<pre>
+        ...
+        var ctx context.Context
+        var span *trace.Span
+        if sc, ok := hf.SpanContextFromRequest(r); ok {
+            ctx, span = trace.StartSpanWithRemoteParent(r.Context(), ""internal.platform.web"", sc)
+        } else {
+            ctx, span = trace.StartSpan(r.Context(), ""internal.platform.web"")
+        }
+        defer span.End()
+        ...
+        ...
+
+</pre>
+
+<p>Here is what I see at Dashboard View.</p>
+
+<p><a href=""https://i.stack.imgur.com/mcbAx.png"" rel=""nofollow noreferrer""><img src=""https://i.stack.imgur.com/mcbAx.png"" alt=""enter image description here""></a></p>
+
+<p>I can see my <code>midleware</code> can logging.</p>
+
+<pre><code>2019/02/17 20:39:41.976194 logger.go:25: 277f1b2d7d870603d5693333e7594a81 : (200) : GET /dev/v1/health -&gt; 10.28.0.1:60580 (127.269µs)
+2019/02/17 20:39:45.148052 logger.go:25: 98efb55e9c5dc093e107cf356668099a : (200) : GET /dev/v1/health -&gt; 10.28.0.1:44956 (93.801µs)
+2019/02/17 20:40:58.019661 logger.go:25: 1b714a54e80cef85bec6c5b65d25cebb : (200) : GET /dev/v1/health -&gt; 10.28.0.1:49086 (99.875µs)
+2019/02/17 20:41:29.917161 logger.go:25: 0826c046716a1f333eab9d1c762e1561 : (200) : GET /dev/v1/health -&gt; 10.28.0.1:52910 (98.377µs)
+2019/02/17 20:42:11.988756 logger.go:25: 6870a9ea2cac0493aab1e472ce895bbf : (200) : GET /dev/v1/health -&gt; 10.28.0.1:57362 (113.634µs)
+2019/02/17 20:42:15.165058 logger.go:25: f7b77d80452ae686f15001e663187004 : (200) : GET /dev/v1/health -&gt; 10.28.0.1:42420 (142.178µs)
+</code></pre>
+",0,1550335265,google-cloud-stackdriver;opencensus,True,51,1,1550633218,https://stackoverflow.com/questions/54725320/not-able-populating-the-method-and-etc-for-stackdriver-trace
+53238493,opencensus - explicit context management,"<p>I am implementing an opencensus tracing in my (asynchronous) JVM app.</p>
+
+<p>However I don't understand how is the context passed.
+Sometimes it seems to work fine, sometimes traces from different requests appear nested for no reason.</p>
+
+<p>I also have this warning appearing in the logs along with a stacktrace:
+<code>
+SEVERE: Context was not attached when detaching
+</code></p>
+
+<p>How do I explicitly create a root span, and how can I explicitly pass a parent/context to the child spans?</p>
+",1,1541849351,trace;opencensus,True,900,1,1542742648,https://stackoverflow.com/questions/53238493/opencensus-explicit-context-management
+53055561,opencensus exporter - one global or per thread?,"<p>I am using Opencensus to do some monitoring on a grpc server with 10 workers. My question is whether, when making a Tracer, the exporter for the tracer should be local or Global. IE</p>
+
+<p>this is the server:</p>
+
+<p>server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))</p>
+
+<p>Do I do:</p>
+
+<p>tracer_module.Tracer(sampler=always_on.AlwaysOnSampler(), exporter=GLOBAL_EXPORTER)
+where:
+GLOBAL_EXPORTER = stackdriver_exporter.StackdriverExporter(transport=BackgroundThreadTransport))
+OR do I do:
+tracer_module.Tracer(sampler=always_on.AlwaysOnSampler(), exporter=stackdriver_exporter.StackdriverExporter(transport=BackgroundThreadTransport)))</p>
+
+<p>I have tried both and they work. The former will use a global exporter which should be more efficient (I would think) but the aggregation seems a bit odd (one call is 'aggregated with another). On the other hand, the second way makes a second exporter (which is short lived, since it will exist only for that call) and does seem to export correctly. Question is more what is more correct from a system perspective. IE for the second option does creating stackdriver_exporter.StackdriverExporter(transport=BackgroundThreadTransport) invalidate a different exporter (which was created in a different thread)?</p>
+",2,1540857692,python;python-3.x;grpc;stackdriver;opencensus,True,211,1,1541019170,https://stackoverflow.com/questions/53055561/opencensus-exporter-one-global-or-per-thread
+52033621,OpenCensus Not Showing Traces On Google App Engine in Stack Driver,"<p>I am using OpenCensus as recommended by Google Cloud to run StackDriver Trace (<a href=""https://cloud.google.com/trace/docs/setup/java"" rel=""nofollow noreferrer"">https://cloud.google.com/trace/docs/setup/java</a>).  My configuration is running on Google App Engine Standard Java 8. I have ensure the API is enabled on the project, used the initialization code and have created spans where I am trying to trace.  </p>
+
+<p>I simply create the span with </p>
+
+<pre><code>Span span = tracer.spanBuilder(spanName).startSpan();
+</code></pre>
+
+<p>and then finish it with </p>
+
+<pre><code>span.end();
+</code></pre>
+
+<p>It seems straight forward but none of my custom traces were visible in the Google Cloud Trace console, only the default RPC calls traced by Google.  I then tried using Scopes instead of Span, initializing StackdriverTraceExporter with and without the project name, but nothing results in creating the custom traces. </p>
+
+<p>Any guidance or suggestion on where to look would be greatly appreciated as this is the first time I am using OpenCensus. </p>
+",2,1535351190,stackdriver;google-cloud-stackdriver;google-cloud-sdk;google-cloud-trace;opencensus,True,783,1,1540850516,https://stackoverflow.com/questions/52033621/opencensus-not-showing-traces-on-google-app-engine-in-stack-driver
