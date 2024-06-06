@@ -4,7 +4,7 @@ import random
 import pandas as pd
 import os
 
-from analyze_library.stack_overflow_service.stack_overflow_service import analyze_SO_posts
+from analyze_library.stack_overflow_service.stack_overflow_service import get_SO_posts_for_APIs_wo_eg
 
 
 def get_random_apis(apis, lib_name):
@@ -22,12 +22,17 @@ def get_random_apis(apis, lib_name):
     return random_api
 
 
-def get_all_apis_wo_eg(lib_name):
-    # with open(f'./{lib_name}/{lib_name}_apis_wo_eg.csv', 'r') as f:
-    #     all_api_wo_eg = f.read()
+CWD = os.getcwd()
 
-    with open(f'./libraries/{lib_name}/{lib_name}_all_apis', 'r') as f:
+
+def get_all_apis_wo_eg(lib_name):
+    path = os.path.join(CWD, f"prioritize_api/evaluation/libraries/{lib_name}/{lib_name}_apis_wo_eg.csv")
+
+    with open(path, 'r') as f:
         all_api_wo_eg = f.read()
+
+    # with open(f'./libraries/{lib_name}/{lib_name}_all_apis', 'r') as f:
+    #     all_api_wo_eg = f.read()
 
     all_api_wo_eg = all_api_wo_eg.split('\n')
 
@@ -80,26 +85,31 @@ def get_random_posts(posts, lib_name):
 
 def get_all_posts(lib_name):
     posts = []
-    with open(f'./stack_overflow_service/query_results/SO_posts_tagged_{lib_name}.csv', mode='r') as csv_file:
-        csv_reader = csv.DictReader(csv_file)
-        line_count = 0
-        for row in csv_reader:
-            if line_count == 0:
-                line_count += 1
-            else:
-                posts.append(row)
-                line_count += 1
 
-    return posts
+    try:
+
+        path = os.path.join(CWD, f"stack_overflow_service/query_results/SO_posts_tagged_{lib_name}.csv")
+        # path = os.path.join(CWD, f"stack_overflow_service/query_results/SO_posts_tagged_python.csv")
+
+        with open(path, mode='r') as csv_file:
+            csv_reader = csv.DictReader(csv_file)
+            line_count = 0
+            for row in csv_reader:
+                if line_count == 0:
+                    line_count += 1
+                else:
+                    posts.append(row)
+                    line_count += 1
+
+        return posts
+
+    except Exception as e:
+        return posts
 
 
-def analyze_api_usage(lib_name):
-    # all_api_wo_eg = get_all_apis_wo_eg(lib_name)
-    all_api_wo_eg = get_all_apis(lib_name)
-    # print(all_api_wo_eg)
-
-    # random_api = get_random_apis(apis=all_api_wo_eg)
-    # post_ids = get_post_ids()
+def find_SO_posts_for_APIs_wo_eg(lib_name):
+    all_api_wo_eg = get_all_apis_wo_eg(lib_name)
+    all_api_wo_eg = [api_without_empty for api_without_empty in all_api_wo_eg if api_without_empty]
 
     posts = get_all_posts(lib_name)
 
@@ -108,7 +118,7 @@ def analyze_api_usage(lib_name):
 
     unique_posts = df.to_dict(orient='records')
 
-    analyze_SO_posts(apis=all_api_wo_eg, lib_name=lib_name, posts=unique_posts)
+    get_SO_posts_for_APIs_wo_eg(apis=all_api_wo_eg, lib_name=lib_name, posts=unique_posts)
 
 
 def analyze_sampled_api_usage(lib_name):
@@ -124,21 +134,20 @@ def analyze_sampled_api_usage(lib_name):
     sampled_posts = df[df['post_id'].isin(post_ids)].to_dict(orient='records')
 
     for api in sampled_apis:
-        result = analyze_SO_posts(apis=[api], lib_name=lib_name, posts=sampled_posts)
+        result = get_SO_posts_for_APIs_wo_eg(apis=[api], lib_name=lib_name, posts=sampled_posts)
         with open(f'libraries/results/{lib_name}/{api[0]}.csv', 'w', newline='') as f:
             writer = csv.writer(f)
             writer.writerows(result)
 
 
 def analyze_single_api_usage(lib_name, api_name):
-
     posts = get_all_posts(lib_name)
     df1 = pd.DataFrame(posts)
     df = df1.drop_duplicates()
 
     unique_posts: list = df.to_dict(orient='records')
 
-    analyze_SO_posts(apis=[api_name], lib_name=lib_name, posts=unique_posts)
+    get_SO_posts_for_APIs_wo_eg(apis=[api_name], lib_name=lib_name, posts=unique_posts)
 
 
 if __name__ == '__main__':
@@ -147,6 +156,6 @@ if __name__ == '__main__':
     # library_name = 'requests'
     api_name = 'requests.Session.close'
 
-    # analyze_api_usage(library_name)
+    find_SO_posts_for_APIs_wo_eg(library_name)
     # analyze_sampled_api_usage(library_name)
-    analyze_single_api_usage(library_name, api_name)
+    # analyze_single_api_usage(library_name, api_name)
