@@ -12,7 +12,7 @@ def get_documentation_examples(doc_page: DocPage) -> List:
 
     for raw_example in raw_examples:
         example = raw_example.get_text()
-        if "(" in example:
+        if "(" in example or "import" in example:
             doc_examples.append(DocCodeExample(example, page_url))
 
     return doc_examples

@@ -15,9 +15,10 @@ from analyze_library.models.Signature import Signature
 from analyze_library.models.doc_page import DocPage
 
 HEADERS = {
-    'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) '
-                  'AppleWebKit/537.11 (KHTML, like Gecko) '
-                  'Chrome/23.0.1271.64 Safari/537.11',
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) '
+                  'AppleWebKit/537.36 (KHTML, like Gecko) '
+                  'Chrome/125.0.0.0 '
+                  'Safari/537.36',
     'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
     'Accept-Charset': 'ISO-8859-1,utf-8;q=0.7,*;q=0.3',
     'Accept-Encoding': 'none',
@@ -45,8 +46,12 @@ def fetch_url(page_data):
 def get_all_webpages(doc_home: str, max_depth: int) -> List[DocPage]:
     print("Getting pages up-to depth", max_depth)
     doc_pages: List[DocPage] = []
-    stop_words = ['releasenotes', 'whatsnew', 'deprecated', 'community', 'updates', 'releasehistory', 'release-history',
+    version_regex = '((\d+)[.](\d{1,3})([.]\d{0,3})?)'
+
+    stop_words = ['releasenotes', 'release', 'whatsnew', 'deprecated', 'community', 'updates', 'releasehistory', 'release-history',
                   'changes', 'license']
+
+    # stop_words.extend(['user_guide', 'development'])  # TEMPORARY
 
     dq = deque([[doc_home, 0]])
 
@@ -57,6 +62,10 @@ def get_all_webpages(doc_home: str, max_depth: int) -> List[DocPage]:
         page, depth = dq.popleft()
 
         if any(stop_word in page for stop_word in stop_words):
+            continue
+
+        version = re.findall(re.compile(version_regex), page)
+        if version:
             continue
 
         request_batch.append([page, depth])
@@ -108,13 +117,18 @@ def get_all_webpages(doc_home: str, max_depth: int) -> List[DocPage]:
                     # Remove one or more './' from link
                     href = re.sub('(\.\/)*', '', href)
 
+                    if href == 'user-guide.html':
+                        a = 'here'
+
                     parse = urlparse(href)
                     # hostname is None means it is not an external site
                     # path not null means it is another path on the documentation
                     # not fragment means it does not have a "#"
                     # We do not want links with "#" because they're likely redundant
                     if parse.hostname is None:
-                        if parse.path and not parse.fragment and not parse.query:
+                        # Removing fragment check for including scipy library methods
+                        # if parse.path and not parse.fragment and not parse.query:
+                        if parse.path and not parse.query:
                             url = base_url + parse.path
                             if url not in [i[0] for i in dq] and url not in [x.url for x in doc_pages] and urlparse(
                                     url).hostname == urlparse(doc_home).hostname:
@@ -133,20 +147,20 @@ def get_all_webpages(doc_home: str, max_depth: int) -> List[DocPage]:
 
 
 def get_functions_and_classes_from_doc_api_ref(doc_pages: List[DocPage]) -> List[Signature]:
-    api_ref_keywords = ['api', 'reference', 'modules', 'module', 'generated', 'github']
+    api_ref_keywords = ['api', 'reference', 'modules', 'module', 'generated', 'github', '_apidocs']
     signatures: List[Signature] = []
     for page in doc_pages:
         if any(word in page.url for word in api_ref_keywords):
             signatures.extend(get_signatures_from_doc(page))
 
-    if not signatures:
-        for page in doc_pages:
-            signatures.extend(get_signatures_from_doc(page))
+    # if not signatures:
+    #     for page in doc_pages:
+    #         signatures.extend(get_signatures_from_doc(page))
 
     return signatures
 
 
-def get_functions_and_classes_from_doc_examples(doc_pages: List[DocPage]) -> List:
+def get_code_examples_from_doc(doc_pages: List[DocPage]) -> List:
     doc_examples: List = []
 
     for page in doc_pages:

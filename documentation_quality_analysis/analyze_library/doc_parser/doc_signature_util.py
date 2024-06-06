@@ -23,9 +23,9 @@ def get_signatures_from_doc(doc_page: DocPage) -> List[Signature]:
         parsing_method = PARSE_GENERATED_HTML
         signatures.extend(get_signature_from_generated_html(doc_page))
 
-    else:
-        parsing_method = PARSE_ANY_DOC
-        signatures.extend(get_signatures_from_section(doc_page))
+    # else:
+    #     parsing_method = PARSE_ANY_DOC
+    #     signatures.extend(get_signatures_from_section(doc_page))
 
     return signatures
 
@@ -127,7 +127,7 @@ def _append_signature_from_generated_html_tag(description, signatures, tag, url)
             last_component: str = name_components[-1]
             parent = '.'.join(name_components[0:-1])
 
-            if last_component[0].isupper():
+            if last_component[0].isupper() or statement_type == 'class':
                 class_element = re.findall(r'(?:class\s|final class\s|exception\s)?(.+)', description)[0]
                 class_signature: ClassConstructorSignature = _get_parsed_class_details(
                     class_expr=class_element,
@@ -139,7 +139,7 @@ def _append_signature_from_generated_html_tag(description, signatures, tag, url)
                     missed_signature = ClassConstructorSignature(name='', parent='', source=url, raw_text=class_element)
                     signatures.append(missed_signature)
 
-            elif last_component[0].islower() or last_component[0] == "_":
+            elif last_component[0].islower() and not last_component[0] == "_":
                 method = re.findall(r'(?:method\s|classmethod\s)?(.+)', description)[0]
                 method_signature = _get_parsed_method_details(
                     method=method,
