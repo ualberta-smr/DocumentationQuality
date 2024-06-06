@@ -86,7 +86,7 @@ def evaluate_discusses_api():
 
 def analyze_post_discusses_api(lib_name):
     mode = PromptMode.FEW_SHOT
-    restructure_file(lib_name)
+    # restructure_file(lib_name)
 
     run_count = 0
 

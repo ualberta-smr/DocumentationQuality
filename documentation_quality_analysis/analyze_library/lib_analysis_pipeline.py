@@ -103,8 +103,8 @@ if __name__ == '__main__':
     # get_apis_without_eg()
 
     # file_path = get_SO_posts(lib_name=lib_name)
-    #
-    find_SO_posts_for_APIs_wo_eg(lib_name=lib_name)
+
+    # find_SO_posts_for_APIs_wo_eg(lib_name=lib_name)
 
     analyze_post_discusses_api(lib_name=lib_name)
 
