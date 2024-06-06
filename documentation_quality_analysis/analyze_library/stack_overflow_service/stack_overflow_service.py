@@ -60,7 +60,8 @@ def get_so_question(item):
 def get_SO_posts(lib_name, filter='!-MWWGgGi9_1e3AU1g)AXhbg55NTHxOeLY'):
     # date - 01.01.2020 - 03.20.2024
     new_filter = '!Oev7WyagIsoZeK7(hPYYYL1w4dJ6bdJETeyqmWz2wxb'
-    SITE = StackAPI('stackoverflow', key='c7m77CeXsNdKwnAYmCrIeg((')
+    key = os.environ.get('STACKAPI_KEY')
+    SITE = StackAPI('stackoverflow', key=key)
 
     SITE.page_size = 100
     SITE.max_pages = 400
