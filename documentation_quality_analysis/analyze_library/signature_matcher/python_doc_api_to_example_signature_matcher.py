@@ -33,32 +33,37 @@ def match_examples_to_doc_api(repo_name: str,
             # Check if the function exists in our dictionary
             if not matched_call:
                 statement_parts = call.split(".")
+                variable = statement_parts[0]
 
-                if len(statement_parts) > 1:
-                    declared_variable = statement_parts[0]
-                    if declared_variable in var_declarations:
-                        statement_parts[0] = var_declarations[declared_variable]
-                        actual_function = '.'.join(statement_parts)
-                        matched_func = _get_matched_function(actual_function, doc_apis)
-                        if matched_func:
-                            matched_apis.append(
-                                MatchedCall(called_signature=matched_func,
-                                            raw_example=ex,
-                                            original_call=call,
-                                            url=ex.url))
-                    else:
-                        # If not then maybe it does if we remove the first prefix
-                        # e.g., nltk.nltk.get -> nltk.get
-                        first_term_removed_function = '.'.join(statement_parts[1:])
-                        matched_call = _get_matched_function(call=first_term_removed_function,
-                                                             functions=doc_apis,
-                                                             no_partial_match=True)
-                        if matched_call:
-                            matched_apis.append(
-                                MatchedCall(called_signature=matched_call,
-                                            raw_example=ex,
-                                            original_call=call,
-                                            url=ex.url))
+                if variable in var_declarations:
+                    while variable in var_declarations:
+                        if variable == var_declarations[variable]:
+                            break
+                        variable = var_declarations[variable]
+
+                    statement_parts[0] = variable
+                    actual_function = '.'.join(statement_parts)
+
+                    matched_func = _get_matched_function(actual_function, doc_apis)
+                    if matched_func:
+                        matched_apis.append(
+                            MatchedCall(called_signature=matched_func,
+                                        raw_example=ex,
+                                        original_call=call,
+                                        url=ex.url))
+                elif len(statement_parts) > 1:
+                    # If not then maybe it does if we remove the first prefix
+                    # e.g., nltk.nltk.get -> nltk.get
+                    first_term_removed_function = '.'.join(statement_parts[1:])
+                    matched_call = _get_matched_function(call=first_term_removed_function,
+                                                         functions=doc_apis,
+                                                         no_partial_match=True)
+                    if matched_call:
+                        matched_apis.append(
+                            MatchedCall(called_signature=matched_call,
+                                        raw_example=ex,
+                                        original_call=call,
+                                        url=ex.url))
 
             elif matched_call:
                 matched_apis.append(
@@ -104,6 +109,7 @@ def _get_declared_variable_mapping(example_code: str, classes: List[ClassConstru
     for line in lines:
         try:
             line = _preprocess_doc_example_line(line)
+            line = _remove_open_brackets(line)
             if not line:
                 continue
             parsed_line = "" if not ast.parse(line.strip()).body else ast.parse(line.strip()).body[0]
@@ -112,6 +118,16 @@ def _get_declared_variable_mapping(example_code: str, classes: List[ClassConstru
                 import_values = [value for value in import_values if value]
                 if len(import_values) == 2:
                     var_declarations[import_values[1]] = import_values[0]
+
+            elif parsed_line and type(parsed_line) == ast.ImportFrom:
+                import_module = parsed_line.module
+                for name in parsed_line.names:
+                    imported_value_name = name.name
+                    full_value = '.'.join([import_module, imported_value_name])
+                    var_declarations[imported_value_name] = full_value
+
+                # if len(import_values) == 2:
+                #     var_declarations[import_values[1]] = import_values[0]
 
             elif parsed_line and type(parsed_line) == ast.Assign:
                 matched_list = re.findall(func_call_assign_regex, line)
@@ -144,3 +160,13 @@ def _preprocess_doc_example_line(line: str) -> str:
     processed_line = processed_line[0] if len(processed_line) > 0 else ''
 
     return processed_line
+
+
+def _remove_open_brackets(line: str) -> str:
+    if line.count('(') == line.count(')'):
+        return line
+
+    first_bracket_occurrence = line.find('(')
+    line = line[0:first_bracket_occurrence + 1] + ')'
+
+    return line
