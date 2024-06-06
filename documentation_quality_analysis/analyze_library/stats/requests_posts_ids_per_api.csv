@@ -1,0 +1,84 @@
+requests.RequestException, 49099313
+requests.ConnectionError, 74253820,67474679,40990472,21407147,64658898,21275072,18478013,14236426,68899331,66137200,53660287,32250340,34595218,28627162,24619150,13699159,63648752,77590979,75720088,64236686,57690498,48435200,48014240,43343375,40141876,32982410,24467557,19720719,78253535,76434691,68377428,74613109,69986406,70726047,70404894,70464359,69237108,60672745,63933816,63351096,62307838,62192568,61986238,60200016,58165021,57616668,55635167,49332408,47219360,44731578,44354761,43888631,42032753,20075831,30359472,29058768,22388166,53766219,33827013,74601518,70272732
+requests.HTTPError, 19342111,69782728,66908549,66370259,16206062,63406195,56811121,62359449
+requests.URLRequired, 
+requests.TooManyRedirects, 43421026,23651947,48388552,46881720,27766515
+requests.ConnectTimeout, 68294548,77319906,75618304,51144752
+requests.ReadTimeout, 66673389,76222354,58165021
+requests.Timeout, 21965484,61974206,59197263,50032614,40009499,75977025,66382131,60700698,60200016,48176618,62049807
+requests.JSONDecodeError, 52488117,56594317,76326769,74838554,72122276,70406639,70896452,68090446,58594635,64814332,63146451,56090654
+requests.Session.close, 49253246,55354427,71821057
+requests.Session.delete, 
+requests.Session.get_adapter, 
+requests.Session.get_redirect_target, 
+requests.Session.head, 
+requests.Session.patch, 57599574
+requests.Session.post, 74036046,71943475,68942161,42118029
+requests.Session.put, 
+requests.Session.rebuild_auth, 
+requests.Session.rebuild_method, 
+requests.Session.rebuild_proxies, 
+requests.Session.request, 52299667,41314953,46878216,25253134,52171712,42118029,40303258
+requests.Session.resolve_redirects, 
+requests.Session.should_strip_auth, 
+requests.Request.deregister_hook, 
+requests.Request.register_hook, 
+requests.Response, 47193745,19568950,43616566,42014301,67281120,63512275,56442782,71461952,70925585,68524478,68039452,57312396,54823236,17188348,40483149,56683240,41314953,59657613,73820454,70554533,60937771,64773690,62353642,61879292,15535445,75721585,76495482,76218035,75625319,74088953,70731505,65972717,59482110,51692985,51308375,42433543,38958492,26211998,65768030,58832116,58307731,57064192
+requests.Response.close, 
+requests.PreparedRequest, 72690927
+requests.PreparedRequest.deregister_hook, 
+requests.PreparedRequest.prepare, 
+requests.PreparedRequest.prepare_auth, 
+requests.PreparedRequest.prepare_body, 
+requests.PreparedRequest.prepare_content_length, 
+requests.PreparedRequest.prepare_cookies, 
+requests.PreparedRequest.prepare_headers, 
+requests.PreparedRequest.prepare_hooks, 
+requests.PreparedRequest.prepare_method, 
+requests.PreparedRequest.prepare_url, 
+requests.PreparedRequest.register_hook, 
+requests.adapters.BaseAdapter, 
+requests.adapters.BaseAdapter.close, 
+requests.adapters.BaseAdapter.send, 
+requests.adapters.HTTPAdapter.add_headers, 
+requests.adapters.HTTPAdapter.build_response, 
+requests.adapters.HTTPAdapter.cert_verify, 
+requests.adapters.HTTPAdapter.close, 
+requests.adapters.HTTPAdapter.get_connection, 
+requests.adapters.HTTPAdapter.proxy_headers, 
+requests.adapters.HTTPAdapter.proxy_manager_for, 
+requests.adapters.HTTPAdapter.request_url, 
+requests.adapters.HTTPAdapter.send, 
+requests.auth.AuthBase, 17427507,68374804
+requests.auth.HTTPProxyAuth, 
+requests.utils.get_encodings_from_content, 
+requests.utils.get_encoding_from_headers, 
+requests.utils.get_unicode_from_response, 
+requests.utils.dict_from_cookiejar, 13971649
+requests.utils.add_dict_to_cookiejar, 40692514
+requests.cookies.cookiejar_from_dict, 
+requests.cookies.RequestsCookieJar.add_cookie_header, 
+requests.cookies.RequestsCookieJar.clear, 
+requests.cookies.RequestsCookieJar.clear_expired_cookies, 
+requests.cookies.RequestsCookieJar.clear_session_cookies, 
+requests.cookies.RequestsCookieJar.copy, 
+requests.cookies.RequestsCookieJar.extract_cookies, 
+requests.cookies.RequestsCookieJar.get, 68140641,42720830,25091976,74964777,56931598,44445739,77895796,55767905,74314013,73025110,51754074
+requests.cookies.RequestsCookieJar.get_dict, 
+requests.cookies.RequestsCookieJar.get_policy, 
+requests.cookies.RequestsCookieJar.items, 
+requests.cookies.RequestsCookieJar.iteritems, 
+requests.cookies.RequestsCookieJar.iterkeys, 
+requests.cookies.RequestsCookieJar.itervalues, 
+requests.cookies.RequestsCookieJar.list_domains, 
+requests.cookies.RequestsCookieJar.list_paths, 
+requests.cookies.RequestsCookieJar.make_cookies, 
+requests.cookies.RequestsCookieJar.multiple_domains, 
+requests.cookies.RequestsCookieJar.set, 75514573,56931598,69990660,68278888,65300274
+requests.cookies.RequestsCookieJar.set_cookie, 
+requests.cookies.RequestsCookieJar.set_cookie_if_ok, 
+requests.cookies.RequestsCookieJar.update, 
+requests.cookies.RequestsCookieJar.values, 
+requests.cookies.CookieConflictError, 25589021,14873277
+requests.cookies.CookieConflictError.add_note, 
+requests.cookies.CookieConflictError.with_traceback, 

@@ -1,0 +1,8 @@
+desert.exceptions.DesertException: 0
+desert.exceptions.NotAnAttrsClassOrDataclass: 0
+desert.exceptions.UnknownType: 0
+desert.field: 3
+desert.ib: 4
+desert.metadata: 3
+desert.schema: 6
+desert.schema_class: 1

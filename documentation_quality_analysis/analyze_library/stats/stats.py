@@ -1,10 +1,15 @@
 import collections
+import csv
+import os
 from typing import List
 
 from analyze_library.models.class_constructor_signature import ClassConstructorSignature
 from analyze_library.models.doc_code_example import DocCodeExample
 from analyze_library.models.matched_call import MatchedCall
 from analyze_library.models.method_signature import MethodSignature
+
+CWD = os.getcwd()
+STAT_PATH = os.path.join(CWD, "stats")
 
 
 def write_doc_api_to_csv(doc_apis, lib_name):
@@ -25,25 +30,38 @@ def write_examples_to_csv(doc_code_examples, lib_name):
             f.write("\n")
 
 
-def write_stats_to_file(doc_code_examples, stats_example_per_api, stats_api_per_example, lib_name):
-    example_per_api = [x + ": " + str(len(stats_example_per_api[x])) for x in stats_example_per_api if
-                       len(stats_example_per_api[x]) > 0]
-    with open("temp_stats_example_per_api_" + lib_name + ".txt", "w") as f:
-        for i in example_per_api:
-            f.write(str(i))
-            f.write("\n")
+def write_api_per_example_stats_to_file(stats_api_per_example, lib_name):
+    final_list = []
+    for i in stats_api_per_example:
+        stat: List[MatchedCall] = stats_api_per_example[i]
 
-    api_per_example = ["ID: " + str(x) + " --> " + str(len(stats_api_per_example[x])) + "\n" +
-                       doc_code_examples[x].example + "\n" + "---->   " +
-                       '; '.join([i.called_signature.fully_qualified_name for i in stats_api_per_example[x]]) + "\n" for
-                       x in
-                       stats_api_per_example]
-    with open("temp_stats_api_per_example_" + lib_name + ".txt", "w") as f:
-        for i in api_per_example:
-            f.write(i)
-            f.write("\n")
-            f.write("--------------------------------------")
-            f.write("\n")
+        if not stat:
+            continue
+
+        called_signatures = ""
+        for matched_call in stat:
+            called_signature = matched_call.called_signature.fully_qualified_name
+            called_signatures = called_signatures + " " + called_signature
+
+        apis_per_eg_list = [stat[0].raw_example.example, stat[0].url, called_signatures]
+
+        final_list.append(apis_per_eg_list)
+
+    with open(os.path.join(STAT_PATH, f"stats_api_per_example_{lib_name}.csv"), 'w', newline='') as f:
+        writer = csv.writer(f)
+        writer.writerows(final_list)
+
+    # api_per_example = ["ID: " + str(x) + " --> " + str(len(stats_api_per_example[x])) + "\n" +
+    #                    doc_code_examples[x].example + "\n" + "---->   " +
+    #                    '; '.join([i.called_signature.fully_qualified_name for i in stats_api_per_example[x]]) + "\n" for
+    #                    x in
+    #                    stats_api_per_example]
+    # with open("stats_api_per_example_" + lib_name + ".txt", "w") as f:
+    #     for i in api_per_example:
+    #         f.write(i)
+    #         f.write("\n")
+    #         f.write("--------------------------------------")
+    #         f.write("\n")
 
 
 def write_examples_per_api_stats_to_file(stats_example_per_api, lib_name):
