@@ -1,20 +1,29 @@
 import csv
-import random
+import os
 import re
 from typing import List, Dict
 
 import pandas as pd
 from stackapi import StackAPI
 from bs4 import BeautifulSoup
-
-from analyze_library.models.Signature import Signature
 from analyze_library.stack_overflow_service.SO_question import SOQuestions
+from analyze_library.stack_overflow_service.stack_overflow_util import save_SO_posts
 
 SO_TAGS = {
     'requests': 'python;python-requests',
     'pandas': 'python;pandas',
     'numpy': 'python;numpy',
     'flask': 'python;flask',
+    'dagster': 'dagster',
+    'urllib3': 'python;urllib3',
+    'typing_extensions': 'python',
+    'boto3': 'python;boto3',
+    'botocore': 'python;botocore',
+    'opencensus': 'opencensus',
+    'fn_graph': 'fn_graph',
+    'scipy': 'python;scipy',
+    'charset_normalizer': 'python',
+
     'nltk': 'python;nltk',
     'graphql compiler': 'python',
     'collections': 'python',
@@ -49,6 +58,8 @@ def get_so_question(item):
 
 
 def get_SO_posts(lib_name, filter='!-MWWGgGi9_1e3AU1g)AXhbg55NTHxOeLY'):
+    # date - 01.01.2020 - 03.20.2024
+    new_filter = '!Oev7WyagIsoZeK7(hPYYYL1w4dJ6bdJETeyqmWz2wxb'
     SITE = StackAPI('stackoverflow', key='c7m77CeXsNdKwnAYmCrIeg((')
 
     SITE.page_size = 100
@@ -58,11 +69,13 @@ def get_SO_posts(lib_name, filter='!-MWWGgGi9_1e3AU1g)AXhbg55NTHxOeLY'):
 
     # filter created from here: https://api.stackexchange.com/docs/questions
     questions = SITE.fetch('questions',
-                           tagged=tags, filter='!-MWWGgGi9_1e3AU1g)AXhbg55NTHxOeLY')
+                           tagged=tags, filter=new_filter)
 
     items = questions.get('items')
 
-    return items
+    saved_file_path = save_SO_posts(lib_name=lib_name, items=items)
+
+    return saved_file_path
 
 
 def get_match_in_title(post: dict, api: str):
@@ -154,9 +167,6 @@ def get_match_in_body(post: dict, api: str):
 
 
 def get_mentions_in_stack_overflow(lib_name, apis: List[str], posts=None):
-    if not posts:
-        # posts = get_SO_posts(lib_name, filter='!-MWWGgGi9_1e3AU1g)AXhbg55NTHxOeLY')
-        pass
 
     so_questions: Dict[str, List[SOQuestions]] = {}
     so_links: Dict[str, list] = {}
@@ -203,27 +213,34 @@ def get_mentions_in_stack_overflow(lib_name, apis: List[str], posts=None):
     for api in so_questions:
         so_questions[api].sort(key=lambda x: x.score, reverse=True)
 
-    with open("stats_new/SO_stats_" + lib_name + "_" + apis[0] + ".csv", "a") as f:
+    CWD = os.getcwd()
+    path = os.path.join(CWD, f"stats/{lib_name}_posts_ids_per_api.csv")
+
+    with open(path, "w") as f:
         for i in so_questions:
             line = f'{i}, {",".join([x.question_id for x in so_questions[i]])}'
             f.write(line)
             f.write("\n")
 
+    print("Saved post IDs per API at: " + path)
+
     return match_details
 
 
-def analyze_SO_posts(apis, lib_name, posts):
+def get_SO_posts_for_APIs_wo_eg(apis, lib_name, posts):
     match_details = get_mentions_in_stack_overflow(lib_name=lib_name, apis=apis, posts=posts)
 
     return match_details
 
 
 if __name__ == "__main__":
-    apis = ['requests.Session.close']
+    # file_path = get_SO_posts('dagster-snowflake-pandas')
+
+    apis = ['requests.patch']
     # mentions = get_mentions_in_stack_overflow(lib_name='flask', apis=apis, query_result="SO_posts_flask_")
 
     items = []
-    with open('./query_results/SO_posts_flask.csv', mode='r') as csv_file:
+    with open('./query_results/SO_posts_tagged_requests.csv', mode='r') as csv_file:
         csv_reader = csv.DictReader(csv_file)
         line_count = 0
         for row in csv_reader:
