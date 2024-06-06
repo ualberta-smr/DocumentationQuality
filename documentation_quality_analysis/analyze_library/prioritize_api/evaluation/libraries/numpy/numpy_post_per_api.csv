@@ -1,0 +1,12 @@
+API,post_id
+numpy.ndarray.clip,78262160
+numpy.ndarray.take,8708758
+numpy.core.defchararray.array,78066982
+numpy.char.rjust,77867505
+numpy.ufunc.accumulate,78329495
+numpy.random.Generator.random,58046849
+numpy.random.Generator.random,78190580
+numpy.random.Generator.random,77843088
+numpy.random.Generator.random,77826365
+numpy.random.Generator.random,77824174
+numpy.random.Generator.random,54725976

@@ -80,5 +80,4 @@ requests.cookies.RequestsCookieJar.set_cookie_if_ok
 requests.cookies.RequestsCookieJar.update
 requests.cookies.RequestsCookieJar.values
 requests.cookies.CookieConflictError
-requests.cookies.CookieConflictError.add_note
 requests.cookies.CookieConflictError.with_traceback

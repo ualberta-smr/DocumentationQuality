@@ -1,0 +1,5 @@
+pandas.cut
+pandas.get_dummies
+pandas.pivot
+pandas.pivot_table
+pandas.read_excel

@@ -1,0 +1,5 @@
+numpy.apply_along_axis
+numpy.diagonal
+numpy.gradient
+numpy.save
+numpy.unique
