@@ -4,6 +4,13 @@ Post: """
 $post_body
 """
 
-Is the main topic of this post this API: '$api_fqn'?
+Is the author of this post facing any difficulty using this particular API '$api_fqn' and is this API the post's main topic of discussion?
+
+These are a few of the scenarios by which we can say that the author is having difficulty with this API:
+1. They cannot understand the parameter(s)
+2. They are getting errors while using the API
+3. They are not getting their desired output using the API
+4. The behavior of the API is inconsistent
+5. They are talking about any issues/inconsistencies in the API documentation of this particular API
 
 Answer in yes or no
