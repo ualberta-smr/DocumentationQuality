@@ -77,10 +77,10 @@ FLUSH PRIVILEGES;
 The former is for use in the metric scripts, while the latter is for the Django project.
 
 ### Extra downloads
-The program should automatically download any extra files needed to run the metric implementations, however, if unable to do so we make the `StringToTasks.jar` file, and `rsm.jar` available.
+The program should automatically download any extra files needed to run the metric implementations, however, if unable to do so we make the `StringToTasks.jar` file, and `rsm.jar` available [here](https://zenodo.org/records/10951436).
 
-- [StringToTasks.jar](https://drive.google.com/file/d/19gV3aDLz5e6Gmb7nn29BlsfVX0AbHZ41/view?usp=sharing). Place the task extraction jar in `Summary/analyze/TaskExtractor`, (i.e., `Summary/analyze/TaskExtractor/StringToTasks.jar`).
-- - [rsm.jar](https://drive.google.com/file/d/1S5tl8fFoZLbln8MsP-f6-F7K-F66HPZb/view?usp=share_link). Place the code readability jar to `Summary/analyze/Readability`, (i.e., `Summary/analyze/Readability/rsm.jar`).
+- StringToTasks.jar. Place the task extraction jar in `Summary/analyze/TaskExtractor`, (i.e., `Summary/analyze/TaskExtractor/StringToTasks.jar`).
+- rsm.jar. Place the code readability jar to `Summary/analyze/Readability`, (i.e., `Summary/analyze/Readability/rsm.jar`).
 
 ## Running
 Since this service is a Django project, the typical Django commands can be used to run this application.
